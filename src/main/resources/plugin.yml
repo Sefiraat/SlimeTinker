@@ -1,0 +1,9 @@
+name: SlimeTinker
+author: Sefiraat
+description: An addon that is trying to recreate Tinker's Construct within Slimefun. Adds new customisable tools with leveling and modifiers.
+main: io.github.sefiraat.slimetinker.SlimeTinker
+website: https://github.com/Sefiraat/SlimeTinker
+version: ${project.version}
+api-version: 1.16
+depend:
+- Slimefun

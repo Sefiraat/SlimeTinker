@@ -5,9 +5,12 @@ import io.github.sefiraat.slimetinker.items.SkullTextures;
 import io.github.sefiraat.slimetinker.utils.ThemeUtils;
 import io.github.thebusybiscuit.slimefun4.core.categories.MultiCategory;
 import io.github.thebusybiscuit.slimefun4.core.categories.SubCategory;
+import me.mrCookieSlime.Slimefun.Objects.Category;
 import me.mrCookieSlime.Slimefun.cscorelib2.item.CustomItem;
 import me.mrCookieSlime.Slimefun.cscorelib2.skull.SkullItem;
+import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
+import org.bukkit.inventory.ItemStack;
 
 public final class Categories {
 
@@ -35,6 +38,14 @@ public final class Categories {
                 ThemeUtils.MAIN + "Slime Tinker Machinery"
         );
     }
+
+    public static CustomItem catDummy() {
+        return new CustomItem(
+                Material.BARRIER,
+                ThemeUtils.MAIN + "Slime Tinker Dummy"
+        );
+    }
+
     public static final MultiCategory MAIN = new MultiCategory(new NamespacedKey(SlimeTinker.inst(), "slime-tinker"), catMain());
     public static final SubCategory METALS = new SubCategory(new NamespacedKey(SlimeTinker.inst(), "slime-tinker-metals"), MAIN, catMaterials());
     public static final SubCategory MACHINES = new SubCategory(new NamespacedKey(SlimeTinker.inst(), "slime-tinker-machines"), MAIN, catMachines());
@@ -43,6 +54,7 @@ public final class Categories {
         MAIN.register(p);
         METALS.register(p);
         MACHINES.register(p);
+        new DummyCategory(new NamespacedKey(SlimeTinker.inst(),"dummy"), catDummy()).register(SlimeTinker.inst());
     }
 
 }

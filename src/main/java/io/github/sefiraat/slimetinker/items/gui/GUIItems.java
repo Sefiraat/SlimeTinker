@@ -47,13 +47,13 @@ public final class GUIItems {
 
     public static CustomItem menuLavaInfo(int fillPerc, int fillAmt) {
         ItemStack skull;
-        if (fillPerc >= 80) {
+        if (fillPerc >= 95) {
             skull = SkullItem.fromBase64(SkullTextures.TANK_LAVA_5);
-        } else if (fillPerc >= 60) {
+        } else if (fillPerc >= 75) {
             skull = SkullItem.fromBase64(SkullTextures.TANK_LAVA_4);
-        } else if (fillPerc >= 40) {
+        } else if (fillPerc >= 50) {
             skull = SkullItem.fromBase64(SkullTextures.TANK_LAVA_3);
-        } else if (fillPerc >= 20) {
+        } else if (fillPerc >= 25) {
             skull = SkullItem.fromBase64(SkullTextures.TANK_LAVA_2);
         } else if (fillPerc > 0) {
             skull = SkullItem.fromBase64(SkullTextures.TANK_LAVA_1);
@@ -72,13 +72,13 @@ public final class GUIItems {
 
     public static CustomItem menuMetalInfo(int fillPerc, int fillAmt, @Nullable Map<String, Integer> map) {
         ItemStack skull;
-        if (fillPerc >= 80) {
+        if (fillPerc >= 95) {
             skull = SkullItem.fromBase64(SkullTextures.TANK_METAL_5);
-        } else if (fillPerc >= 60) {
+        } else if (fillPerc >= 75) {
             skull = SkullItem.fromBase64(SkullTextures.TANK_METAL_4);
-        } else if (fillPerc >= 40) {
+        } else if (fillPerc >= 50) {
             skull = SkullItem.fromBase64(SkullTextures.TANK_METAL_3);
-        } else if (fillPerc >= 20) {
+        } else if (fillPerc >= 25) {
             skull = SkullItem.fromBase64(SkullTextures.TANK_METAL_2);
         } else if (fillPerc > 0) {
             skull = SkullItem.fromBase64(SkullTextures.TANK_METAL_1);

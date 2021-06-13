@@ -18,13 +18,15 @@ public final class Machines {
     public static final SlimefunItemStack SMELTERY_CORE =
             ThemeUtils.themedItemStack(
                     "TINKERS_SMELTERY_CORE",
-                    Material.SMITHING_TABLE,
+                    Material.CHISELED_POLISHED_BLACKSTONE,
                     ThemeUtils.SimpleItemType.MACHINE,
                     "Tinkers Smeltery Core",
                     "Melts down metals into liquids.",
                     "Metals can then be alloyed and",
                     "cast out into various forms.",
-                    "Requires lava as fuel"
+                    "Requires lava as fuel",
+                    "",
+                    ThemeUtils.LORE_TYPE_MACHINE
             );
 
     public static void set(SlimeTinker p) {

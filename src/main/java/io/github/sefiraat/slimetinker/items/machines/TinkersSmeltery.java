@@ -7,6 +7,7 @@ import me.mrCookieSlime.Slimefun.Lists.RecipeType;
 import me.mrCookieSlime.Slimefun.Objects.Category;
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.SlimefunItem;
 import me.mrCookieSlime.Slimefun.Objects.handlers.BlockTicker;
+import me.mrCookieSlime.Slimefun.api.BlockStorage;
 import me.mrCookieSlime.Slimefun.api.SlimefunItemStack;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenuPreset;
@@ -54,7 +55,7 @@ public class TinkersSmeltery extends AbstractContainer {
             public void tick(Block block, SlimefunItem item, Config data) {
                 TinkersSmelteryCache cache = TinkersSmeltery.this.caches.get(block.getLocation());
                 if (cache != null) {
-                    cache.process();
+                    cache.process(false);
                 }
             }
         });
@@ -108,7 +109,22 @@ public class TinkersSmeltery extends AbstractContainer {
     @Override
     protected void onNewInstance(@Nonnull BlockMenu menu, @Nonnull Block b) {
         super.onNewInstance(menu, b);
-        caches.put(b.getLocation(), new TinkersSmelteryCache(menu));
+        TinkersSmelteryCache cache = new TinkersSmelteryCache(menu);
+
+        String lavaLevel = BlockStorage.getLocationInfo(menu.getLocation(), TinkersSmelteryCache.LAVA_LEVEL_BS);
+        if (lavaLevel != null) { cache.setLevelLava(Integer.parseInt(lavaLevel)); }
+
+        Config c = BlockStorage.getLocationInfo(menu.getLocation());
+
+        for (String key : c.getKeys()) {
+            if (key.startsWith(TinkersSmelteryCache.METAL_LEVEL_PREFIX)) {
+                String id = key.replace(TinkersSmelteryCache.METAL_LEVEL_PREFIX, "");
+                int amount = Integer.parseInt(c.getString(key));
+                cache.getTankContent().put(id, amount);
+            }
+        }
+
+        caches.put(b.getLocation(), cache);
         menu.addMenuOpeningHandler((player -> validateMultiblock()));
     }
 

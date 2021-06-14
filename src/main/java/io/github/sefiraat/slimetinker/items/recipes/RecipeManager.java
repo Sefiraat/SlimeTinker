@@ -8,6 +8,7 @@ import io.github.sefiraat.slimetinker.items.Liquids;
 import io.github.sefiraat.slimetinker.items.Materials;
 import io.github.sefiraat.slimetinker.items.materials.Liquid;
 import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
+import org.apache.http.nio.util.ContentOutputBuffer;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
@@ -45,7 +46,19 @@ public class RecipeManager {
     public static final String ID_ZINC = "ZINC";
     public static final String ID_COAL = "COAL";
     public static final String ID_STEEL = "STEEL";
-    public static final String ID_DAM_STEEL = "DAMASCUS_STEEL";
+    public static final String ID_DAM_STEEL = "DAMASCUS STEEL";
+    public static final String ID_DURALIUM = "DURALIUM";
+    public static final String ID_BRONZE = "BRONZE";
+    public static final String ID_ALUBRONZE = "ALUMINIUM BRONZE";
+    public static final String ID_HARD = "HARDENED METAL";
+    public static final String ID_CORBRONZE = "CORINTHIAN BRONZE";
+    public static final String ID_SOLDER = "SOLDER";
+    public static final String ID_BILLON = "BILLON";
+    public static final String ID_BRASS = "BRASS";
+    public static final String ID_ALUBRASS = "ALUMINIUM BRASS";
+    public static final String ID_NICKEL = "NICKEL";
+    public static final String ID_COBALT = "COBALT";
+    public static final String ID_REINFORCED = "REINFORCED ALLOY";
 
     public final Map<String, MoltenResult> meltingRecipes = new HashMap<>();
     public final Map<String, CastResult> castingRecipes = new HashMap<>();
@@ -86,6 +99,18 @@ public class RecipeManager {
         MAP_CAST_NUGGET.put(Liquids.getById(ID_COAL), Materials.NUGGET_CAST_COAL);
         MAP_CAST_NUGGET.put(Liquids.getById(ID_STEEL), Materials.NUGGET_CAST_STEEL);
         MAP_CAST_NUGGET.put(Liquids.getById(ID_DAM_STEEL), Materials.NUGGET_CAST_DAMASCUS_STEEL);
+        MAP_CAST_NUGGET.put(Liquids.getById(ID_DURALIUM), Materials.NUGGET_CAST_DURALIUM);
+        MAP_CAST_NUGGET.put(Liquids.getById(ID_BRONZE), Materials.NUGGET_CAST_BRONZE);
+        MAP_CAST_NUGGET.put(Liquids.getById(ID_ALUBRONZE), Materials.NUGGET_CAST_ALU_BRONZE);
+        MAP_CAST_NUGGET.put(Liquids.getById(ID_HARD), Materials.NUGGET_CAST_HARD_METAL);
+        MAP_CAST_NUGGET.put(Liquids.getById(ID_CORBRONZE), Materials.NUGGET_CAST_COR_BRONZE);
+        MAP_CAST_NUGGET.put(Liquids.getById(ID_SOLDER), Materials.NUGGET_CAST_SOLDER);
+        MAP_CAST_NUGGET.put(Liquids.getById(ID_BILLON), Materials.NUGGET_CAST_BILLON);
+        MAP_CAST_NUGGET.put(Liquids.getById(ID_BRASS), Materials.NUGGET_CAST_BRASS);
+        MAP_CAST_NUGGET.put(Liquids.getById(ID_ALUBRASS), Materials.NUGGET_CAST_ALU_BRASS);
+        MAP_CAST_NUGGET.put(Liquids.getById(ID_NICKEL), Materials.NUGGET_CAST_NICKEL);
+        MAP_CAST_NUGGET.put(Liquids.getById(ID_COBALT), Materials.NUGGET_CAST_COBALT);
+        MAP_CAST_NUGGET.put(Liquids.getById(ID_REINFORCED), Materials.NUGGET_CAST_REINFORCED);
 
         // Ingots
         MAP_CAST_INGOT.put(Liquids.getById(ID_IRON), new ItemStack(Material.IRON_INGOT));
@@ -99,6 +124,18 @@ public class RecipeManager {
         MAP_CAST_INGOT.put(Liquids.getById(ID_ZINC), SlimefunItems.ZINC_INGOT);
         MAP_CAST_INGOT.put(Liquids.getById(ID_STEEL), SlimefunItems.STEEL_INGOT);
         MAP_CAST_INGOT.put(Liquids.getById(ID_DAM_STEEL), SlimefunItems.DAMASCUS_STEEL_INGOT);
+        MAP_CAST_INGOT.put(Liquids.getById(ID_DURALIUM), SlimefunItems.DURALUMIN_INGOT);
+        MAP_CAST_INGOT.put(Liquids.getById(ID_BRONZE), SlimefunItems.BRONZE_INGOT);
+        MAP_CAST_INGOT.put(Liquids.getById(ID_ALUBRONZE), SlimefunItems.ALUMINUM_BRONZE_INGOT);
+        MAP_CAST_INGOT.put(Liquids.getById(ID_HARD), SlimefunItems.HARDENED_METAL_INGOT);
+        MAP_CAST_INGOT.put(Liquids.getById(ID_CORBRONZE), SlimefunItems.CORINTHIAN_BRONZE_INGOT);
+        MAP_CAST_INGOT.put(Liquids.getById(ID_SOLDER), SlimefunItems.SOLDER_INGOT);
+        MAP_CAST_INGOT.put(Liquids.getById(ID_BILLON), SlimefunItems.BILLON_INGOT);
+        MAP_CAST_INGOT.put(Liquids.getById(ID_BRASS), SlimefunItems.BRASS_INGOT);
+        MAP_CAST_INGOT.put(Liquids.getById(ID_ALUBRASS), SlimefunItems.ALUMINUM_BRASS_INGOT);
+        MAP_CAST_INGOT.put(Liquids.getById(ID_NICKEL), SlimefunItems.NICKEL_INGOT);
+        MAP_CAST_INGOT.put(Liquids.getById(ID_COBALT), SlimefunItems.COBALT_INGOT);
+        MAP_CAST_INGOT.put(Liquids.getById(ID_REINFORCED), SlimefunItems.REINFORCED_ALLOY_INGOT);
 
         // Blocks
         MAP_CAST_BLOCK.put(Liquids.getById(ID_IRON), new ItemStack(Material.IRON_BLOCK));
@@ -113,6 +150,18 @@ public class RecipeManager {
         MAP_CAST_BLOCK.put(Liquids.getById(ID_COAL), new ItemStack(Material.COAL_BLOCK));
         MAP_CAST_BLOCK.put(Liquids.getById(ID_STEEL), Materials.BLOCK_CAST_STEEL);
         MAP_CAST_BLOCK.put(Liquids.getById(ID_DAM_STEEL), Materials.BLOCK_CAST_DAMASCUS_STEEL);
+        MAP_CAST_BLOCK.put(Liquids.getById(ID_DURALIUM), Materials.BLOCK_CAST_DURALIUM);
+        MAP_CAST_BLOCK.put(Liquids.getById(ID_BRONZE), Materials.BLOCK_CAST_BRONZE);
+        MAP_CAST_BLOCK.put(Liquids.getById(ID_ALUBRONZE), Materials.BLOCK_CAST_ALU_BRONZE);
+        MAP_CAST_BLOCK.put(Liquids.getById(ID_HARD), Materials.BLOCK_CAST_HARD_METAL);
+        MAP_CAST_BLOCK.put(Liquids.getById(ID_CORBRONZE), Materials.BLOCK_CAST_COR_BRONZE);
+        MAP_CAST_BLOCK.put(Liquids.getById(ID_SOLDER), Materials.BLOCK_CAST_SOLDER);
+        MAP_CAST_BLOCK.put(Liquids.getById(ID_BILLON), Materials.BLOCK_CAST_BILLON);
+        MAP_CAST_BLOCK.put(Liquids.getById(ID_BRASS), Materials.BLOCK_CAST_BRASS);
+        MAP_CAST_BLOCK.put(Liquids.getById(ID_ALUBRASS), Materials.BLOCK_CAST_ALU_BRASS);
+        MAP_CAST_BLOCK.put(Liquids.getById(ID_NICKEL), Materials.BLOCK_CAST_NICKEL);
+        MAP_CAST_BLOCK.put(Liquids.getById(ID_COBALT), Materials.BLOCK_CAST_COBALT);
+        MAP_CAST_BLOCK.put(Liquids.getById(ID_REINFORCED), Materials.BLOCK_CAST_REINFORCED);
 
         // Gems
         MAP_CAST_GEM.put(Liquids.getById(ID_COAL), new ItemStack(Material.COAL));
@@ -130,6 +179,18 @@ public class RecipeManager {
         MAP_CAST_AXEHEAD.put(Liquids.getById(ID_ZINC), CastParts.AXE_HEAD.getStack(ID_ZINC));
         MAP_CAST_AXEHEAD.put(Liquids.getById(ID_STEEL), CastParts.AXE_HEAD.getStack(ID_STEEL));
         MAP_CAST_AXEHEAD.put(Liquids.getById(ID_DAM_STEEL), CastParts.AXE_HEAD.getStack(ID_DAM_STEEL));
+        MAP_CAST_AXEHEAD.put(Liquids.getById(ID_DURALIUM), CastParts.AXE_HEAD.getStack(ID_DURALIUM));
+        MAP_CAST_AXEHEAD.put(Liquids.getById(ID_BRONZE), CastParts.AXE_HEAD.getStack(ID_BRONZE));
+        MAP_CAST_AXEHEAD.put(Liquids.getById(ID_ALUBRONZE), CastParts.AXE_HEAD.getStack(ID_ALUBRONZE));
+        MAP_CAST_AXEHEAD.put(Liquids.getById(ID_HARD), CastParts.AXE_HEAD.getStack(ID_HARD));
+        MAP_CAST_AXEHEAD.put(Liquids.getById(ID_CORBRONZE), CastParts.AXE_HEAD.getStack(ID_CORBRONZE));
+        MAP_CAST_AXEHEAD.put(Liquids.getById(ID_SOLDER), CastParts.AXE_HEAD.getStack(ID_SOLDER));
+        MAP_CAST_AXEHEAD.put(Liquids.getById(ID_BILLON), CastParts.AXE_HEAD.getStack(ID_BILLON));
+        MAP_CAST_AXEHEAD.put(Liquids.getById(ID_BRASS), CastParts.AXE_HEAD.getStack(ID_BRASS));
+        MAP_CAST_AXEHEAD.put(Liquids.getById(ID_ALUBRASS), CastParts.AXE_HEAD.getStack(ID_ALUBRASS));
+        MAP_CAST_AXEHEAD.put(Liquids.getById(ID_NICKEL), CastParts.AXE_HEAD.getStack(ID_NICKEL));
+        MAP_CAST_AXEHEAD.put(Liquids.getById(ID_COBALT), CastParts.AXE_HEAD.getStack(ID_COBALT));
+        MAP_CAST_AXEHEAD.put(Liquids.getById(ID_REINFORCED), CastParts.AXE_HEAD.getStack(ID_REINFORCED));
 
     }
 
@@ -215,6 +276,66 @@ public class RecipeManager {
         meltingRecipes.put(SlimefunItems.DAMASCUS_STEEL_INGOT.getItemId(), new MoltenResult(Liquids.getById(ID_DAM_STEEL), AMOUNT_INGOT));
         meltingRecipes.put(Materials.NUGGET_CAST_DAMASCUS_STEEL.getItemId(), new MoltenResult(Liquids.getById(ID_DAM_STEEL), AMOUNT_NUGGET));
         meltingRecipes.put(Materials.BLOCK_CAST_DAMASCUS_STEEL.getItemId(), new MoltenResult(Liquids.getById(ID_DAM_STEEL), AMOUNT_BLOCK));
+
+        // DURALIUM
+        meltingRecipes.put(SlimefunItems.DURALUMIN_INGOT.getItemId(), new MoltenResult(Liquids.getById(ID_DURALIUM), AMOUNT_INGOT));
+        meltingRecipes.put(Materials.NUGGET_CAST_DURALIUM.getItemId(), new MoltenResult(Liquids.getById(ID_DURALIUM), AMOUNT_NUGGET));
+        meltingRecipes.put(Materials.BLOCK_CAST_DURALIUM.getItemId(), new MoltenResult(Liquids.getById(ID_DURALIUM), AMOUNT_BLOCK));
+
+        // BRONZE
+        meltingRecipes.put(SlimefunItems.BRONZE_INGOT.getItemId(), new MoltenResult(Liquids.getById(ID_BRONZE), AMOUNT_INGOT));
+        meltingRecipes.put(Materials.NUGGET_CAST_BRONZE.getItemId(), new MoltenResult(Liquids.getById(ID_BRONZE), AMOUNT_NUGGET));
+        meltingRecipes.put(Materials.BLOCK_CAST_BRONZE.getItemId(), new MoltenResult(Liquids.getById(ID_BRONZE), AMOUNT_BLOCK));
+
+        // ALU_BRONZE
+        meltingRecipes.put(SlimefunItems.ALUMINUM_BRONZE_INGOT.getItemId(), new MoltenResult(Liquids.getById(ID_ALUBRONZE), AMOUNT_INGOT));
+        meltingRecipes.put(Materials.NUGGET_CAST_ALU_BRONZE.getItemId(), new MoltenResult(Liquids.getById(ID_ALUBRONZE), AMOUNT_NUGGET));
+        meltingRecipes.put(Materials.BLOCK_CAST_ALU_BRONZE.getItemId(), new MoltenResult(Liquids.getById(ID_ALUBRONZE), AMOUNT_BLOCK));
+
+        // HARDENED METAL
+        meltingRecipes.put(SlimefunItems.HARDENED_METAL_INGOT.getItemId(), new MoltenResult(Liquids.getById(ID_HARD), AMOUNT_INGOT));
+        meltingRecipes.put(Materials.NUGGET_CAST_HARD_METAL.getItemId(), new MoltenResult(Liquids.getById(ID_HARD), AMOUNT_NUGGET));
+        meltingRecipes.put(Materials.BLOCK_CAST_HARD_METAL.getItemId(), new MoltenResult(Liquids.getById(ID_HARD), AMOUNT_BLOCK));
+
+        // COR BRONZE
+        meltingRecipes.put(SlimefunItems.CORINTHIAN_BRONZE_INGOT.getItemId(), new MoltenResult(Liquids.getById(ID_CORBRONZE), AMOUNT_INGOT));
+        meltingRecipes.put(Materials.NUGGET_CAST_COR_BRONZE.getItemId(), new MoltenResult(Liquids.getById(ID_CORBRONZE), AMOUNT_NUGGET));
+        meltingRecipes.put(Materials.BLOCK_CAST_COR_BRONZE.getItemId(), new MoltenResult(Liquids.getById(ID_CORBRONZE), AMOUNT_BLOCK));
+
+        // SOLDER
+        meltingRecipes.put(SlimefunItems.SOLDER_INGOT.getItemId(), new MoltenResult(Liquids.getById(ID_SOLDER), AMOUNT_INGOT));
+        meltingRecipes.put(Materials.NUGGET_CAST_SOLDER.getItemId(), new MoltenResult(Liquids.getById(ID_SOLDER), AMOUNT_NUGGET));
+        meltingRecipes.put(Materials.BLOCK_CAST_SOLDER.getItemId(), new MoltenResult(Liquids.getById(ID_SOLDER), AMOUNT_BLOCK));
+
+        // BILLON
+        meltingRecipes.put(SlimefunItems.BILLON_INGOT.getItemId(), new MoltenResult(Liquids.getById(ID_BILLON), AMOUNT_INGOT));
+        meltingRecipes.put(Materials.NUGGET_CAST_BILLON.getItemId(), new MoltenResult(Liquids.getById(ID_BILLON), AMOUNT_NUGGET));
+        meltingRecipes.put(Materials.BLOCK_CAST_BILLON.getItemId(), new MoltenResult(Liquids.getById(ID_BILLON), AMOUNT_BLOCK));
+
+        // BRASS
+        meltingRecipes.put(SlimefunItems.BRASS_INGOT.getItemId(), new MoltenResult(Liquids.getById(ID_BRASS), AMOUNT_INGOT));
+        meltingRecipes.put(Materials.NUGGET_CAST_BRASS.getItemId(), new MoltenResult(Liquids.getById(ID_BRASS), AMOUNT_NUGGET));
+        meltingRecipes.put(Materials.BLOCK_CAST_BRASS.getItemId(), new MoltenResult(Liquids.getById(ID_BRASS), AMOUNT_BLOCK));
+
+        // ALU BRASS
+        meltingRecipes.put(SlimefunItems.ALUMINUM_BRASS_INGOT.getItemId(), new MoltenResult(Liquids.getById(ID_ALUBRASS), AMOUNT_INGOT));
+        meltingRecipes.put(Materials.NUGGET_CAST_ALU_BRASS.getItemId(), new MoltenResult(Liquids.getById(ID_ALUBRASS), AMOUNT_NUGGET));
+        meltingRecipes.put(Materials.BLOCK_CAST_ALU_BRASS.getItemId(), new MoltenResult(Liquids.getById(ID_ALUBRASS), AMOUNT_BLOCK));
+
+        // NICKEL
+        meltingRecipes.put(SlimefunItems.NICKEL_INGOT.getItemId(), new MoltenResult(Liquids.getById(ID_NICKEL), AMOUNT_INGOT));
+        meltingRecipes.put(Materials.NUGGET_CAST_NICKEL.getItemId(), new MoltenResult(Liquids.getById(ID_NICKEL), AMOUNT_NUGGET));
+        meltingRecipes.put(Materials.BLOCK_CAST_NICKEL.getItemId(), new MoltenResult(Liquids.getById(ID_NICKEL), AMOUNT_BLOCK));
+
+        // COBALT
+        meltingRecipes.put(SlimefunItems.COBALT_INGOT.getItemId(), new MoltenResult(Liquids.getById(ID_COBALT), AMOUNT_INGOT));
+        meltingRecipes.put(Materials.NUGGET_CAST_COBALT.getItemId(), new MoltenResult(Liquids.getById(ID_COBALT), AMOUNT_NUGGET));
+        meltingRecipes.put(Materials.BLOCK_CAST_COBALT.getItemId(), new MoltenResult(Liquids.getById(ID_COBALT), AMOUNT_BLOCK));
+
+         // COBALT
+        meltingRecipes.put(SlimefunItems.REINFORCED_ALLOY_INGOT.getItemId(), new MoltenResult(Liquids.getById(ID_REINFORCED), AMOUNT_INGOT));
+        meltingRecipes.put(Materials.NUGGET_CAST_REINFORCED.getItemId(), new MoltenResult(Liquids.getById(ID_REINFORCED), AMOUNT_NUGGET));
+        meltingRecipes.put(Materials.BLOCK_CAST_REINFORCED.getItemId(), new MoltenResult(Liquids.getById(ID_REINFORCED), AMOUNT_BLOCK));
 
         // endregion
 

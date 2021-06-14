@@ -27,6 +27,18 @@ public final class Liquids {
         map.put(RecipeManager.ID_COAL, new Liquid(RecipeManager.ID_COAL, "#2d2e2d"));
         map.put(RecipeManager.ID_STEEL, new Liquid(RecipeManager.ID_STEEL,"#d1d1d1"));
         map.put(RecipeManager.ID_DAM_STEEL, new Liquid(RecipeManager.ID_DAM_STEEL, "#a38c8c"));
+        map.put(RecipeManager.ID_DURALIUM, new Liquid(RecipeManager.ID_DURALIUM, "#a3a089"));
+        map.put(RecipeManager.ID_BRONZE, new Liquid(RecipeManager.ID_BRONZE, "#877435"));
+        map.put(RecipeManager.ID_ALUBRONZE, new Liquid(RecipeManager.ID_ALUBRONZE, "#bdaa6d"));
+        map.put(RecipeManager.ID_HARD, new Liquid(RecipeManager.ID_HARD, "#29251a"));
+        map.put(RecipeManager.ID_CORBRONZE, new Liquid(RecipeManager.ID_CORBRONZE, "#8a6500"));
+        map.put(RecipeManager.ID_SOLDER, new Liquid(RecipeManager.ID_SOLDER, "#b7afbd"));
+        map.put(RecipeManager.ID_BILLON, new Liquid(RecipeManager.ID_BILLON, "#b0c2be"));
+        map.put(RecipeManager.ID_BRASS, new Liquid(RecipeManager.ID_BRASS, "#dbcd4b"));
+        map.put(RecipeManager.ID_ALUBRASS, new Liquid(RecipeManager.ID_ALUBRASS, "#dbd279"));
+        map.put(RecipeManager.ID_NICKEL, new Liquid(RecipeManager.ID_NICKEL, "#ebebeb"));
+        map.put(RecipeManager.ID_COBALT, new Liquid(RecipeManager.ID_COBALT, "#9e9e9e"));
+        map.put(RecipeManager.ID_REINFORCED, new Liquid(RecipeManager.ID_REINFORCED, "#465899"));
     }
 
     public static Liquid getById(String id) {

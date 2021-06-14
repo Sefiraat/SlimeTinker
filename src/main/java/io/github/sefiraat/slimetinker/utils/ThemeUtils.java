@@ -116,7 +116,7 @@ public final class ThemeUtils {
 
     public static String toTitleCase(String string) {
         final char[] delimiters = { ' ', '_' };
-        return WordUtils.capitalizeFully(string, delimiters);
+        return WordUtils.capitalizeFully(string, delimiters).replace("_"," ");
     }
 
     public enum ThemeItemType {

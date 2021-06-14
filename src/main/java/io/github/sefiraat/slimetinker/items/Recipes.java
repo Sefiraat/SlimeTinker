@@ -38,10 +38,40 @@ public final class Recipes {
 
     // region Dies
 
+    protected static final ItemStack[] DIE_SHOVEL_HEAD = new ItemStack[] {
+            null,    new ItemStack(Material.COBBLESTONE),    null,
+            null,    null,                                   null,
+            null,    null,                                   null
+    };
+
+    protected static final ItemStack[] DIE_PICKAXE_HEAD = new ItemStack[] {
+            new ItemStack(Material.COBBLESTONE),    new ItemStack(Material.COBBLESTONE),    new ItemStack(Material.COBBLESTONE),
+            null,                                   null,                                   null,
+            null,                                   null,                                   null
+    };
+
     protected static final ItemStack[] DIE_AXE_HEAD = new ItemStack[] {
             new ItemStack(Material.COBBLESTONE),    new ItemStack(Material.COBBLESTONE),    null,
             new ItemStack(Material.COBBLESTONE),    null,                                   null,
             null,                                   null,                                   null
+    };
+
+    protected static final ItemStack[] DIE_HOE_HEAD = new ItemStack[] {
+            new ItemStack(Material.COBBLESTONE),    new ItemStack(Material.COBBLESTONE),    null,
+            null,                                   null,                                   null,
+            null,                                   null,                                   null
+    };
+
+    protected static final ItemStack[] DIE_SWORD_BLADE = new ItemStack[] {
+            null,    new ItemStack(Material.COBBLESTONE),    null,
+            null,    new ItemStack(Material.COBBLESTONE),    null,
+            null,    null,                                   null
+    };
+
+    protected static final ItemStack[] DIE_TOOL_ROD = new ItemStack[] {
+            null,    null,                          null,
+            null,    new ItemStack(Material.STICK), null,
+            null,    null,                          null
     };
 
     //
@@ -72,10 +102,40 @@ public final class Recipes {
             null,                                           null,   null
     };
 
-    protected static final ItemStack[] CAST_AXEHEAD = new ItemStack[] {
-            new ItemStack(Material.GOLD_INGOT, 2),   Casts.DIE_AXEHEAD,   null,
+    protected static final ItemStack[] CAST_SHOVEL_HEAD = new ItemStack[] {
+            new ItemStack(Material.GOLD_INGOT, 2),   Casts.DIE_SHOVEL_HEAD,   null,
             null,                                           null,   null,
             null,                                           null,   null
+    };
+
+    protected static final ItemStack[] CAST_PICKAXE_HEAD = new ItemStack[] {
+            new ItemStack(Material.GOLD_INGOT, 2),   Casts.DIE_PICKAXE_HEAD,   null,
+            null,                                           null,   null,
+            null,                                           null,   null
+    };
+
+    protected static final ItemStack[] CAST_AXE_HEAD = new ItemStack[] {
+            new ItemStack(Material.GOLD_INGOT, 2),   Casts.DIE_AXE_HEAD,   null,
+            null,                                           null,   null,
+            null,                                           null,   null
+    };
+
+    protected static final ItemStack[] CAST_HOE_HEAD = new ItemStack[] {
+            new ItemStack(Material.GOLD_INGOT, 2),   Casts.DIE_HOE_HEAD,   null,
+            null,                                           null,   null,
+            null,                                           null,   null
+    };
+
+    protected static final ItemStack[] CAST_SWORD_BLADE = new ItemStack[] {
+            new ItemStack(Material.GOLD_INGOT, 2),   Casts.DIE_SWORD_BLADE,   null,
+            null,                                           null,   null,
+            null,                                           null,   null
+    };
+
+    protected static final ItemStack[] CAST_TOOL_ROD = new ItemStack[] {
+            new ItemStack(Material.GOLD_INGOT, 2),   Casts.DIE_TOOL_ROD, null,
+            null,                                           null,               null,
+            null,                                           null,               null
     };
 
     // endregion

@@ -20,12 +20,57 @@ public final class Casts {
 
     // region Crafted Dies
 
-    public static final SlimefunItemStack DIE_AXEHEAD =
+    public static final SlimefunItemStack DIE_SHOVEL_HEAD =
             ThemeUtils.themedItemStack(
-                    "DIE_AXEHEAD",
+                    "DIE_SHOVEL_HEAD",
+                    SkullTextures.PART_SHOVEL_HEAD,
+                    ThemeUtils.ThemeItemType.CAST,
+                    "Die: Stone Shovel Head",
+                    ThemeUtils.PASSIVE + "A die to create a cast from"
+            );
+
+    public static final SlimefunItemStack DIE_PICKAXE_HEAD =
+            ThemeUtils.themedItemStack(
+                    "DIE_PICKAXE_HEAD",
+                    SkullTextures.PART_PICKAXE_HEAD,
+                    ThemeUtils.ThemeItemType.CAST,
+                    "Die: Stone Pickaxe Head",
+                    ThemeUtils.PASSIVE + "A die to create a cast from"
+            );
+
+    public static final SlimefunItemStack DIE_AXE_HEAD =
+            ThemeUtils.themedItemStack(
+                    "DIE_AXE_HEAD",
                     SkullTextures.PART_AXE_HEAD,
                     ThemeUtils.ThemeItemType.CAST,
                     "Die: Stone Axe Head",
+                    ThemeUtils.PASSIVE + "A die to create a cast from"
+            );
+
+    public static final SlimefunItemStack DIE_HOE_HEAD =
+            ThemeUtils.themedItemStack(
+                    "DIE_HOE_HEAD",
+                    SkullTextures.PART_HOE_HEAD,
+                    ThemeUtils.ThemeItemType.CAST,
+                    "Die: Stone Hoe Head",
+                    ThemeUtils.PASSIVE + "A die to create a cast from"
+            );
+
+    public static final SlimefunItemStack DIE_SWORD_BLADE =
+            ThemeUtils.themedItemStack(
+                    "DIE_SWORD_BLADE",
+                    SkullTextures.PART_SWORD_BLADE,
+                    ThemeUtils.ThemeItemType.CAST,
+                    "Die: Stone Axe Head",
+                    ThemeUtils.PASSIVE + "A die to create a cast from"
+            );
+
+    public static final SlimefunItemStack DIE_TOOL_ROD =
+            ThemeUtils.themedItemStack(
+                    "DIE_TOOL_ROD",
+                    SkullTextures.PART_TOOL_ROD,
+                    ThemeUtils.ThemeItemType.CAST,
+                    "Die: Tool Rod",
                     ThemeUtils.PASSIVE + "A die to create a cast from"
             );
 
@@ -34,7 +79,7 @@ public final class Casts {
     public static final SlimefunItemStack CAST_NUGGET =
             ThemeUtils.themedItemStack(
                     "CAST_NUGGET",
-                    Material.YELLOW_STAINED_GLASS_PANE,
+                    Material.YELLOW_CARPET,
                     ThemeUtils.ThemeItemType.CAST,
                     "Cast: Metal Nugget",
                     ThemeUtils.PASSIVE + "A cast for metals.",
@@ -46,7 +91,7 @@ public final class Casts {
     public static final SlimefunItemStack CAST_BLOCK =
             ThemeUtils.themedItemStack(
                     "CAST_BLOCK",
-                    Material.YELLOW_STAINED_GLASS_PANE,
+                    Material.YELLOW_CARPET,
                     ThemeUtils.ThemeItemType.CAST,
                     "Cast: Metal Block",
                     ThemeUtils.PASSIVE + "A cast for metals.",
@@ -58,7 +103,7 @@ public final class Casts {
     public static final SlimefunItemStack CAST_INGOT =
             ThemeUtils.themedItemStack(
                     "CAST_INGOT",
-                    Material.YELLOW_STAINED_GLASS_PANE,
+                    Material.YELLOW_CARPET,
                     ThemeUtils.ThemeItemType.CAST,
                     "Cast: Metal Ingot",
                     ThemeUtils.PASSIVE + "A cast for metals.",
@@ -70,7 +115,7 @@ public final class Casts {
     public static final SlimefunItemStack CAST_GEM =
             ThemeUtils.themedItemStack(
                     "CAST_GEM",
-                    Material.YELLOW_STAINED_GLASS_PANE,
+                    Material.YELLOW_CARPET,
                     ThemeUtils.ThemeItemType.CAST,
                     "Cast: Gem",
                     ThemeUtils.PASSIVE + "A cast for non-metallic liquids.",
@@ -79,10 +124,34 @@ public final class Casts {
                     ThemeUtils.CLICK_INFO + "Output : " + ChatColor.WHITE + "1 Gem"
             );
 
+    public static final SlimefunItemStack CAST_SHOVELHEAD =
+            ThemeUtils.themedItemStack(
+                    "CAST_SHOVELHEAD",
+                    Material.ORANGE_CARPET,
+                    ThemeUtils.ThemeItemType.CAST,
+                    "Cast: Shovel Head",
+                    ThemeUtils.PASSIVE + "A cast for metals.",
+                    "",
+                    ThemeUtils.CLICK_INFO + "Input : " + ChatColor.WHITE + RecipeManager.AMOUNT_SHOVELHEAD + " Units",
+                    ThemeUtils.CLICK_INFO + "Output : " + ChatColor.WHITE + "1 Shovel Head"
+            );
+
+    public static final SlimefunItemStack CAST_PICKAXEHEAD =
+            ThemeUtils.themedItemStack(
+                    "CAST_PICKAXEHEAD",
+                    Material.ORANGE_CARPET,
+                    ThemeUtils.ThemeItemType.CAST,
+                    "Cast: Pickaxe Head",
+                    ThemeUtils.PASSIVE + "A cast for metals.",
+                    "",
+                    ThemeUtils.CLICK_INFO + "Input : " + ChatColor.WHITE + RecipeManager.AMOUNT_PICKAXEHEAD + " Units",
+                    ThemeUtils.CLICK_INFO + "Output : " + ChatColor.WHITE + "1 Pickaxe Head"
+            );
+
     public static final SlimefunItemStack CAST_AXEHEAD =
             ThemeUtils.themedItemStack(
-                    "CAST_AXEHEAD",
-                    Material.YELLOW_STAINED_GLASS_PANE,
+                    "CAST_AXE_HEAD",
+                    Material.ORANGE_CARPET,
                     ThemeUtils.ThemeItemType.CAST,
                     "Cast: Axe Head",
                     ThemeUtils.PASSIVE + "A cast for metals.",
@@ -91,6 +160,43 @@ public final class Casts {
                     ThemeUtils.CLICK_INFO + "Output : " + ChatColor.WHITE + "1 Axe Head"
             );
 
+    public static final SlimefunItemStack CAST_HOEHEAD =
+            ThemeUtils.themedItemStack(
+                    "CAST_HOEHEAD",
+                    Material.ORANGE_CARPET,
+                    ThemeUtils.ThemeItemType.CAST,
+                    "Cast: Hoe Head",
+                    ThemeUtils.PASSIVE + "A cast for metals.",
+                    "",
+                    ThemeUtils.CLICK_INFO + "Input : " + ChatColor.WHITE + RecipeManager.AMOUNT_HOEHEAD + " Units",
+                    ThemeUtils.CLICK_INFO + "Output : " + ChatColor.WHITE + "1 Hoe Head"
+            );
+
+    public static final SlimefunItemStack CAST_SWORDBLADE =
+            ThemeUtils.themedItemStack(
+                    "CAST_SWORDBLADE",
+                    Material.ORANGE_CARPET,
+                    ThemeUtils.ThemeItemType.CAST,
+                    "Cast: Sword Blade",
+                    ThemeUtils.PASSIVE + "A cast for metals.",
+                    "",
+                    ThemeUtils.CLICK_INFO + "Input : " + ChatColor.WHITE + RecipeManager.AMOUNT_SWORDBLADE + " Units",
+                    ThemeUtils.CLICK_INFO + "Output : " + ChatColor.WHITE + "1 Sword Blade"
+            );
+
+    public static final SlimefunItemStack CAST_TOOLROD =
+            ThemeUtils.themedItemStack(
+                    "CAST_TOOLROD",
+                    Material.ORANGE_CARPET,
+                    ThemeUtils.ThemeItemType.CAST,
+                    "Cast: Tool Rod",
+                    ThemeUtils.PASSIVE + "A cast for metals.",
+                    "",
+                    ThemeUtils.CLICK_INFO + "Input : " + ChatColor.WHITE + RecipeManager.AMOUNT_TOOLROD + " Units",
+                    ThemeUtils.CLICK_INFO + "Output : " + ChatColor.WHITE + "1 Tool Rod"
+            );
+
+
     // end region
 
 
@@ -98,13 +204,23 @@ public final class Casts {
 
     public static void set(SlimeTinker p) {
 
-        new UnplaceableBlock(Categories.CASTS, DIE_AXEHEAD, RecipeType.ENHANCED_CRAFTING_TABLE, Recipes.DIE_AXE_HEAD).register(p);
+        new UnplaceableBlock(Categories.CASTS, DIE_SHOVEL_HEAD, RecipeType.ENHANCED_CRAFTING_TABLE, Recipes.DIE_SHOVEL_HEAD).register(p);
+        new UnplaceableBlock(Categories.CASTS, DIE_PICKAXE_HEAD, RecipeType.ENHANCED_CRAFTING_TABLE, Recipes.DIE_PICKAXE_HEAD).register(p);
+        new UnplaceableBlock(Categories.CASTS, DIE_AXE_HEAD, RecipeType.ENHANCED_CRAFTING_TABLE, Recipes.DIE_AXE_HEAD).register(p);
+        new UnplaceableBlock(Categories.CASTS, DIE_HOE_HEAD, RecipeType.ENHANCED_CRAFTING_TABLE, Recipes.DIE_HOE_HEAD).register(p);
+        new UnplaceableBlock(Categories.CASTS, DIE_SWORD_BLADE, RecipeType.ENHANCED_CRAFTING_TABLE, Recipes.DIE_SWORD_BLADE).register(p);
+        new UnplaceableBlock(Categories.CASTS, DIE_TOOL_ROD , RecipeType.ENHANCED_CRAFTING_TABLE, Recipes.DIE_TOOL_ROD).register(p);
 
         new UnplaceableBlock(Categories.CASTS, CAST_NUGGET, DummySmeltery.TYPE, Recipes.CAST_NUGGET).register(p);
         new UnplaceableBlock(Categories.CASTS, CAST_INGOT, DummySmeltery.TYPE, Recipes.CAST_INGOT).register(p);
         new UnplaceableBlock(Categories.CASTS, CAST_BLOCK, DummySmeltery.TYPE, Recipes.CAST_BLOCK).register(p);
         new UnplaceableBlock(Categories.CASTS, CAST_GEM, DummySmeltery.TYPE, Recipes.CAST_GEM).register(p);
-        new UnplaceableBlock(Categories.CASTS, CAST_AXEHEAD, DummySmeltery.TYPE, Recipes.CAST_AXEHEAD).register(p);
+        new UnplaceableBlock(Categories.CASTS, CAST_SHOVELHEAD, DummySmeltery.TYPE, Recipes.CAST_SHOVEL_HEAD).register(p);
+        new UnplaceableBlock(Categories.CASTS, CAST_PICKAXEHEAD, DummySmeltery.TYPE, Recipes.CAST_PICKAXE_HEAD).register(p);
+        new UnplaceableBlock(Categories.CASTS, CAST_AXEHEAD, DummySmeltery.TYPE, Recipes.CAST_AXE_HEAD).register(p);
+        new UnplaceableBlock(Categories.CASTS, CAST_HOEHEAD, DummySmeltery.TYPE, Recipes.CAST_HOE_HEAD).register(p);
+        new UnplaceableBlock(Categories.CASTS, CAST_SWORDBLADE, DummySmeltery.TYPE, Recipes.CAST_SWORD_BLADE).register(p);
+        new UnplaceableBlock(Categories.CASTS, CAST_TOOLROD, DummySmeltery.TYPE, Recipes.CAST_TOOL_ROD).register(p);
 
     }
 }

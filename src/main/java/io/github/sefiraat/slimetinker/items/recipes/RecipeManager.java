@@ -8,7 +8,6 @@ import io.github.sefiraat.slimetinker.items.Liquids;
 import io.github.sefiraat.slimetinker.items.Materials;
 import io.github.sefiraat.slimetinker.items.materials.Liquid;
 import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
-import org.apache.http.nio.util.ContentOutputBuffer;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
@@ -33,7 +32,12 @@ public class RecipeManager {
     public static final int AMOUNT_GEM = AMOUNT_INGOT;
     public static final int AMOUNT_CAST = AMOUNT_INGOT * 2;
 
+    public static final int AMOUNT_SHOVELHEAD = AMOUNT_INGOT;
+    public static final int AMOUNT_PICKAXEHEAD = AMOUNT_INGOT * 3;
     public static final int AMOUNT_AXEHEAD = AMOUNT_INGOT * 3;
+    public static final int AMOUNT_HOEHEAD = AMOUNT_INGOT * 2;
+    public static final int AMOUNT_SWORDBLADE = AMOUNT_INGOT * 2;
+    public static final int AMOUNT_TOOLROD = AMOUNT_INGOT;
 
     public static final String ID_IRON = "IRON";
     public static final String ID_GOLD = "GOLD";
@@ -68,14 +72,24 @@ public class RecipeManager {
     protected static final Map<Liquid, ItemStack> MAP_DIE_INGOT = new HashMap<>();
     protected static final Map<Liquid, ItemStack> MAP_DIE_BLOCK = new HashMap<>();
     protected static final Map<Liquid, ItemStack> MAP_DIE_GEM = new HashMap<>();
+    protected static final Map<Liquid, ItemStack> MAP_DIE_SHOVELHEAD = new HashMap<>();
+    protected static final Map<Liquid, ItemStack> MAP_DIE_PICKAXEHEAD = new HashMap<>();
     protected static final Map<Liquid, ItemStack> MAP_DIE_AXEHEAD = new HashMap<>();
+    protected static final Map<Liquid, ItemStack> MAP_DIE_HOEHEAD = new HashMap<>();
+    protected static final Map<Liquid, ItemStack> MAP_DIE_SWORDBLADE = new HashMap<>();
+    protected static final Map<Liquid, ItemStack> MAP_DIE_TOOLROD = new HashMap<>();
 
     // Casts (Items that cast metals and remain)
     protected static final Map<Liquid, ItemStack> MAP_CAST_NUGGET = new HashMap<>();
     protected static final Map<Liquid, ItemStack> MAP_CAST_INGOT = new HashMap<>();
     protected static final Map<Liquid, ItemStack> MAP_CAST_BLOCK = new HashMap<>();
     protected static final Map<Liquid, ItemStack> MAP_CAST_GEM = new HashMap<>();
+    protected static final Map<Liquid, ItemStack> MAP_CAST_SHOVELHEAD = new HashMap<>();
+    protected static final Map<Liquid, ItemStack> MAP_CAST_PICKAXEHEAD = new HashMap<>();
     protected static final Map<Liquid, ItemStack> MAP_CAST_AXEHEAD = new HashMap<>();
+    protected static final Map<Liquid, ItemStack> MAP_CAST_HOEHEAD = new HashMap<>();
+    protected static final Map<Liquid, ItemStack> MAP_CAST_SWORDBLADE = new HashMap<>();
+    protected static final Map<Liquid, ItemStack> MAP_CAST_TOOLROD = new HashMap<>();
 
     static {
 
@@ -84,7 +98,12 @@ public class RecipeManager {
         MAP_DIE_INGOT.put(Liquids.getById(ID_GOLD), Casts.CAST_INGOT);
         MAP_DIE_BLOCK.put(Liquids.getById(ID_GOLD), Casts.CAST_BLOCK);
         MAP_DIE_GEM.put(Liquids.getById(ID_GOLD), Casts.CAST_GEM);
+        MAP_DIE_SHOVELHEAD.put(Liquids.getById(ID_GOLD), Casts.CAST_SHOVELHEAD);
+        MAP_DIE_PICKAXEHEAD.put(Liquids.getById(ID_GOLD), Casts.CAST_PICKAXEHEAD);
         MAP_DIE_AXEHEAD.put(Liquids.getById(ID_GOLD), Casts.CAST_AXEHEAD);
+        MAP_DIE_HOEHEAD.put(Liquids.getById(ID_GOLD), Casts.CAST_HOEHEAD);
+        MAP_DIE_SWORDBLADE.put(Liquids.getById(ID_GOLD), Casts.CAST_SWORDBLADE);
+        MAP_DIE_TOOLROD.put(Liquids.getById(ID_GOLD), Casts.CAST_TOOLROD);
 
         // Nuggets
         MAP_CAST_NUGGET.put(Liquids.getById(ID_IRON), new ItemStack(Material.IRON_NUGGET));
@@ -165,9 +184,58 @@ public class RecipeManager {
 
         // Gems
         MAP_CAST_GEM.put(Liquids.getById(ID_COAL), new ItemStack(Material.COAL));
-        
-        // Axe Heads
 
+        // Shovel Heads
+        MAP_CAST_SHOVELHEAD.put(Liquids.getById(ID_IRON), CastParts.SHOVEL_HEAD.getStack(ID_IRON));
+        MAP_CAST_SHOVELHEAD.put(Liquids.getById(ID_GOLD), CastParts.SHOVEL_HEAD.getStack(ID_GOLD));
+        MAP_CAST_SHOVELHEAD.put(Liquids.getById(ID_COPPER), CastParts.SHOVEL_HEAD.getStack(ID_COPPER));
+        MAP_CAST_SHOVELHEAD.put(Liquids.getById(ID_SILVER), CastParts.SHOVEL_HEAD.getStack(ID_SILVER));
+        MAP_CAST_SHOVELHEAD.put(Liquids.getById(ID_TIN), CastParts.SHOVEL_HEAD.getStack(ID_TIN));
+        MAP_CAST_SHOVELHEAD.put(Liquids.getById(ID_MAGNESIUM), CastParts.SHOVEL_HEAD.getStack(ID_MAGNESIUM));
+        MAP_CAST_SHOVELHEAD.put(Liquids.getById(ID_ALUMINIUM), CastParts.SHOVEL_HEAD.getStack(ID_ALUMINIUM));
+        MAP_CAST_SHOVELHEAD.put(Liquids.getById(ID_LEAD), CastParts.SHOVEL_HEAD.getStack(ID_LEAD));
+        MAP_CAST_SHOVELHEAD.put(Liquids.getById(ID_ZINC), CastParts.SHOVEL_HEAD.getStack(ID_ZINC));
+        MAP_CAST_SHOVELHEAD.put(Liquids.getById(ID_STEEL), CastParts.SHOVEL_HEAD.getStack(ID_STEEL));
+        MAP_CAST_SHOVELHEAD.put(Liquids.getById(ID_DAM_STEEL), CastParts.SHOVEL_HEAD.getStack(ID_DAM_STEEL));
+        MAP_CAST_SHOVELHEAD.put(Liquids.getById(ID_DURALIUM), CastParts.SHOVEL_HEAD.getStack(ID_DURALIUM));
+        MAP_CAST_SHOVELHEAD.put(Liquids.getById(ID_BRONZE), CastParts.SHOVEL_HEAD.getStack(ID_BRONZE));
+        MAP_CAST_SHOVELHEAD.put(Liquids.getById(ID_ALUBRONZE), CastParts.SHOVEL_HEAD.getStack(ID_ALUBRONZE));
+        MAP_CAST_SHOVELHEAD.put(Liquids.getById(ID_HARD), CastParts.SHOVEL_HEAD.getStack(ID_HARD));
+        MAP_CAST_SHOVELHEAD.put(Liquids.getById(ID_CORBRONZE), CastParts.SHOVEL_HEAD.getStack(ID_CORBRONZE));
+        MAP_CAST_SHOVELHEAD.put(Liquids.getById(ID_SOLDER), CastParts.SHOVEL_HEAD.getStack(ID_SOLDER));
+        MAP_CAST_SHOVELHEAD.put(Liquids.getById(ID_BILLON), CastParts.SHOVEL_HEAD.getStack(ID_BILLON));
+        MAP_CAST_SHOVELHEAD.put(Liquids.getById(ID_BRASS), CastParts.SHOVEL_HEAD.getStack(ID_BRASS));
+        MAP_CAST_SHOVELHEAD.put(Liquids.getById(ID_ALUBRASS), CastParts.SHOVEL_HEAD.getStack(ID_ALUBRASS));
+        MAP_CAST_SHOVELHEAD.put(Liquids.getById(ID_NICKEL), CastParts.SHOVEL_HEAD.getStack(ID_NICKEL));
+        MAP_CAST_SHOVELHEAD.put(Liquids.getById(ID_COBALT), CastParts.SHOVEL_HEAD.getStack(ID_COBALT));
+        MAP_CAST_SHOVELHEAD.put(Liquids.getById(ID_REINFORCED), CastParts.SHOVEL_HEAD.getStack(ID_REINFORCED));
+
+        // Pickaxe Heads
+        MAP_CAST_PICKAXEHEAD.put(Liquids.getById(ID_IRON), CastParts.PICKAXE_HEAD.getStack(ID_IRON));
+        MAP_CAST_PICKAXEHEAD.put(Liquids.getById(ID_GOLD), CastParts.PICKAXE_HEAD.getStack(ID_GOLD));
+        MAP_CAST_PICKAXEHEAD.put(Liquids.getById(ID_COPPER), CastParts.PICKAXE_HEAD.getStack(ID_COPPER));
+        MAP_CAST_PICKAXEHEAD.put(Liquids.getById(ID_SILVER), CastParts.PICKAXE_HEAD.getStack(ID_SILVER));
+        MAP_CAST_PICKAXEHEAD.put(Liquids.getById(ID_TIN), CastParts.PICKAXE_HEAD.getStack(ID_TIN));
+        MAP_CAST_PICKAXEHEAD.put(Liquids.getById(ID_MAGNESIUM), CastParts.PICKAXE_HEAD.getStack(ID_MAGNESIUM));
+        MAP_CAST_PICKAXEHEAD.put(Liquids.getById(ID_ALUMINIUM), CastParts.PICKAXE_HEAD.getStack(ID_ALUMINIUM));
+        MAP_CAST_PICKAXEHEAD.put(Liquids.getById(ID_LEAD), CastParts.PICKAXE_HEAD.getStack(ID_LEAD));
+        MAP_CAST_PICKAXEHEAD.put(Liquids.getById(ID_ZINC), CastParts.PICKAXE_HEAD.getStack(ID_ZINC));
+        MAP_CAST_PICKAXEHEAD.put(Liquids.getById(ID_STEEL), CastParts.PICKAXE_HEAD.getStack(ID_STEEL));
+        MAP_CAST_PICKAXEHEAD.put(Liquids.getById(ID_DAM_STEEL), CastParts.PICKAXE_HEAD.getStack(ID_DAM_STEEL));
+        MAP_CAST_PICKAXEHEAD.put(Liquids.getById(ID_DURALIUM), CastParts.PICKAXE_HEAD.getStack(ID_DURALIUM));
+        MAP_CAST_PICKAXEHEAD.put(Liquids.getById(ID_BRONZE), CastParts.PICKAXE_HEAD.getStack(ID_BRONZE));
+        MAP_CAST_PICKAXEHEAD.put(Liquids.getById(ID_ALUBRONZE), CastParts.PICKAXE_HEAD.getStack(ID_ALUBRONZE));
+        MAP_CAST_PICKAXEHEAD.put(Liquids.getById(ID_HARD), CastParts.PICKAXE_HEAD.getStack(ID_HARD));
+        MAP_CAST_PICKAXEHEAD.put(Liquids.getById(ID_CORBRONZE), CastParts.PICKAXE_HEAD.getStack(ID_CORBRONZE));
+        MAP_CAST_PICKAXEHEAD.put(Liquids.getById(ID_SOLDER), CastParts.PICKAXE_HEAD.getStack(ID_SOLDER));
+        MAP_CAST_PICKAXEHEAD.put(Liquids.getById(ID_BILLON), CastParts.PICKAXE_HEAD.getStack(ID_BILLON));
+        MAP_CAST_PICKAXEHEAD.put(Liquids.getById(ID_BRASS), CastParts.PICKAXE_HEAD.getStack(ID_BRASS));
+        MAP_CAST_PICKAXEHEAD.put(Liquids.getById(ID_ALUBRASS), CastParts.PICKAXE_HEAD.getStack(ID_ALUBRASS));
+        MAP_CAST_PICKAXEHEAD.put(Liquids.getById(ID_NICKEL), CastParts.PICKAXE_HEAD.getStack(ID_NICKEL));
+        MAP_CAST_PICKAXEHEAD.put(Liquids.getById(ID_COBALT), CastParts.PICKAXE_HEAD.getStack(ID_COBALT));
+        MAP_CAST_PICKAXEHEAD.put(Liquids.getById(ID_REINFORCED), CastParts.PICKAXE_HEAD.getStack(ID_REINFORCED));
+
+        // Axe Heads
         MAP_CAST_AXEHEAD.put(Liquids.getById(ID_IRON), CastParts.AXE_HEAD.getStack(ID_IRON));
         MAP_CAST_AXEHEAD.put(Liquids.getById(ID_GOLD), CastParts.AXE_HEAD.getStack(ID_GOLD));
         MAP_CAST_AXEHEAD.put(Liquids.getById(ID_COPPER), CastParts.AXE_HEAD.getStack(ID_COPPER));
@@ -191,6 +259,81 @@ public class RecipeManager {
         MAP_CAST_AXEHEAD.put(Liquids.getById(ID_NICKEL), CastParts.AXE_HEAD.getStack(ID_NICKEL));
         MAP_CAST_AXEHEAD.put(Liquids.getById(ID_COBALT), CastParts.AXE_HEAD.getStack(ID_COBALT));
         MAP_CAST_AXEHEAD.put(Liquids.getById(ID_REINFORCED), CastParts.AXE_HEAD.getStack(ID_REINFORCED));
+
+         // Hoe Heads
+        MAP_CAST_HOEHEAD.put(Liquids.getById(ID_IRON), CastParts.HOE_HEAD.getStack(ID_IRON));
+        MAP_CAST_HOEHEAD.put(Liquids.getById(ID_GOLD), CastParts.HOE_HEAD.getStack(ID_GOLD));
+        MAP_CAST_HOEHEAD.put(Liquids.getById(ID_COPPER), CastParts.HOE_HEAD.getStack(ID_COPPER));
+        MAP_CAST_HOEHEAD.put(Liquids.getById(ID_SILVER), CastParts.HOE_HEAD.getStack(ID_SILVER));
+        MAP_CAST_HOEHEAD.put(Liquids.getById(ID_TIN), CastParts.HOE_HEAD.getStack(ID_TIN));
+        MAP_CAST_HOEHEAD.put(Liquids.getById(ID_MAGNESIUM), CastParts.HOE_HEAD.getStack(ID_MAGNESIUM));
+        MAP_CAST_HOEHEAD.put(Liquids.getById(ID_ALUMINIUM), CastParts.HOE_HEAD.getStack(ID_ALUMINIUM));
+        MAP_CAST_HOEHEAD.put(Liquids.getById(ID_LEAD), CastParts.HOE_HEAD.getStack(ID_LEAD));
+        MAP_CAST_HOEHEAD.put(Liquids.getById(ID_ZINC), CastParts.HOE_HEAD.getStack(ID_ZINC));
+        MAP_CAST_HOEHEAD.put(Liquids.getById(ID_STEEL), CastParts.HOE_HEAD.getStack(ID_STEEL));
+        MAP_CAST_HOEHEAD.put(Liquids.getById(ID_DAM_STEEL), CastParts.HOE_HEAD.getStack(ID_DAM_STEEL));
+        MAP_CAST_HOEHEAD.put(Liquids.getById(ID_DURALIUM), CastParts.HOE_HEAD.getStack(ID_DURALIUM));
+        MAP_CAST_HOEHEAD.put(Liquids.getById(ID_BRONZE), CastParts.HOE_HEAD.getStack(ID_BRONZE));
+        MAP_CAST_HOEHEAD.put(Liquids.getById(ID_ALUBRONZE), CastParts.HOE_HEAD.getStack(ID_ALUBRONZE));
+        MAP_CAST_HOEHEAD.put(Liquids.getById(ID_HARD), CastParts.HOE_HEAD.getStack(ID_HARD));
+        MAP_CAST_HOEHEAD.put(Liquids.getById(ID_CORBRONZE), CastParts.HOE_HEAD.getStack(ID_CORBRONZE));
+        MAP_CAST_HOEHEAD.put(Liquids.getById(ID_SOLDER), CastParts.HOE_HEAD.getStack(ID_SOLDER));
+        MAP_CAST_HOEHEAD.put(Liquids.getById(ID_BILLON), CastParts.HOE_HEAD.getStack(ID_BILLON));
+        MAP_CAST_HOEHEAD.put(Liquids.getById(ID_BRASS), CastParts.HOE_HEAD.getStack(ID_BRASS));
+        MAP_CAST_HOEHEAD.put(Liquids.getById(ID_ALUBRASS), CastParts.HOE_HEAD.getStack(ID_ALUBRASS));
+        MAP_CAST_HOEHEAD.put(Liquids.getById(ID_NICKEL), CastParts.HOE_HEAD.getStack(ID_NICKEL));
+        MAP_CAST_HOEHEAD.put(Liquids.getById(ID_COBALT), CastParts.HOE_HEAD.getStack(ID_COBALT));
+        MAP_CAST_HOEHEAD.put(Liquids.getById(ID_REINFORCED), CastParts.HOE_HEAD.getStack(ID_REINFORCED));
+
+         // Sword Blades
+        MAP_CAST_SWORDBLADE.put(Liquids.getById(ID_IRON), CastParts.SWORD_BLADE.getStack(ID_IRON));
+        MAP_CAST_SWORDBLADE.put(Liquids.getById(ID_GOLD), CastParts.SWORD_BLADE.getStack(ID_GOLD));
+        MAP_CAST_SWORDBLADE.put(Liquids.getById(ID_COPPER), CastParts.SWORD_BLADE.getStack(ID_COPPER));
+        MAP_CAST_SWORDBLADE.put(Liquids.getById(ID_SILVER), CastParts.SWORD_BLADE.getStack(ID_SILVER));
+        MAP_CAST_SWORDBLADE.put(Liquids.getById(ID_TIN), CastParts.SWORD_BLADE.getStack(ID_TIN));
+        MAP_CAST_SWORDBLADE.put(Liquids.getById(ID_MAGNESIUM), CastParts.SWORD_BLADE.getStack(ID_MAGNESIUM));
+        MAP_CAST_SWORDBLADE.put(Liquids.getById(ID_ALUMINIUM), CastParts.SWORD_BLADE.getStack(ID_ALUMINIUM));
+        MAP_CAST_SWORDBLADE.put(Liquids.getById(ID_LEAD), CastParts.SWORD_BLADE.getStack(ID_LEAD));
+        MAP_CAST_SWORDBLADE.put(Liquids.getById(ID_ZINC), CastParts.SWORD_BLADE.getStack(ID_ZINC));
+        MAP_CAST_SWORDBLADE.put(Liquids.getById(ID_STEEL), CastParts.SWORD_BLADE.getStack(ID_STEEL));
+        MAP_CAST_SWORDBLADE.put(Liquids.getById(ID_DAM_STEEL), CastParts.SWORD_BLADE.getStack(ID_DAM_STEEL));
+        MAP_CAST_SWORDBLADE.put(Liquids.getById(ID_DURALIUM), CastParts.SWORD_BLADE.getStack(ID_DURALIUM));
+        MAP_CAST_SWORDBLADE.put(Liquids.getById(ID_BRONZE), CastParts.SWORD_BLADE.getStack(ID_BRONZE));
+        MAP_CAST_SWORDBLADE.put(Liquids.getById(ID_ALUBRONZE), CastParts.SWORD_BLADE.getStack(ID_ALUBRONZE));
+        MAP_CAST_SWORDBLADE.put(Liquids.getById(ID_HARD), CastParts.SWORD_BLADE.getStack(ID_HARD));
+        MAP_CAST_SWORDBLADE.put(Liquids.getById(ID_CORBRONZE), CastParts.SWORD_BLADE.getStack(ID_CORBRONZE));
+        MAP_CAST_SWORDBLADE.put(Liquids.getById(ID_SOLDER), CastParts.SWORD_BLADE.getStack(ID_SOLDER));
+        MAP_CAST_SWORDBLADE.put(Liquids.getById(ID_BILLON), CastParts.SWORD_BLADE.getStack(ID_BILLON));
+        MAP_CAST_SWORDBLADE.put(Liquids.getById(ID_BRASS), CastParts.SWORD_BLADE.getStack(ID_BRASS));
+        MAP_CAST_SWORDBLADE.put(Liquids.getById(ID_ALUBRASS), CastParts.SWORD_BLADE.getStack(ID_ALUBRASS));
+        MAP_CAST_SWORDBLADE.put(Liquids.getById(ID_NICKEL), CastParts.SWORD_BLADE.getStack(ID_NICKEL));
+        MAP_CAST_SWORDBLADE.put(Liquids.getById(ID_COBALT), CastParts.SWORD_BLADE.getStack(ID_COBALT));
+        MAP_CAST_SWORDBLADE.put(Liquids.getById(ID_REINFORCED), CastParts.SWORD_BLADE.getStack(ID_REINFORCED));
+
+        // Tool Rods
+        MAP_CAST_TOOLROD.put(Liquids.getById(ID_IRON), CastParts.TOOL_ROD.getStack(ID_IRON));
+        MAP_CAST_TOOLROD.put(Liquids.getById(ID_GOLD), CastParts.TOOL_ROD.getStack(ID_GOLD));
+        MAP_CAST_TOOLROD.put(Liquids.getById(ID_COPPER), CastParts.TOOL_ROD.getStack(ID_COPPER));
+        MAP_CAST_TOOLROD.put(Liquids.getById(ID_SILVER), CastParts.TOOL_ROD.getStack(ID_SILVER));
+        MAP_CAST_TOOLROD.put(Liquids.getById(ID_TIN), CastParts.TOOL_ROD.getStack(ID_TIN));
+        MAP_CAST_TOOLROD.put(Liquids.getById(ID_MAGNESIUM), CastParts.TOOL_ROD.getStack(ID_MAGNESIUM));
+        MAP_CAST_TOOLROD.put(Liquids.getById(ID_ALUMINIUM), CastParts.TOOL_ROD.getStack(ID_ALUMINIUM));
+        MAP_CAST_TOOLROD.put(Liquids.getById(ID_LEAD), CastParts.TOOL_ROD.getStack(ID_LEAD));
+        MAP_CAST_TOOLROD.put(Liquids.getById(ID_ZINC), CastParts.TOOL_ROD.getStack(ID_ZINC));
+        MAP_CAST_TOOLROD.put(Liquids.getById(ID_STEEL), CastParts.TOOL_ROD.getStack(ID_STEEL));
+        MAP_CAST_TOOLROD.put(Liquids.getById(ID_DAM_STEEL), CastParts.TOOL_ROD.getStack(ID_DAM_STEEL));
+        MAP_CAST_TOOLROD.put(Liquids.getById(ID_DURALIUM), CastParts.TOOL_ROD.getStack(ID_DURALIUM));
+        MAP_CAST_TOOLROD.put(Liquids.getById(ID_BRONZE), CastParts.TOOL_ROD.getStack(ID_BRONZE));
+        MAP_CAST_TOOLROD.put(Liquids.getById(ID_ALUBRONZE), CastParts.TOOL_ROD.getStack(ID_ALUBRONZE));
+        MAP_CAST_TOOLROD.put(Liquids.getById(ID_HARD), CastParts.TOOL_ROD.getStack(ID_HARD));
+        MAP_CAST_TOOLROD.put(Liquids.getById(ID_CORBRONZE), CastParts.TOOL_ROD.getStack(ID_CORBRONZE));
+        MAP_CAST_TOOLROD.put(Liquids.getById(ID_SOLDER), CastParts.TOOL_ROD.getStack(ID_SOLDER));
+        MAP_CAST_TOOLROD.put(Liquids.getById(ID_BILLON), CastParts.TOOL_ROD.getStack(ID_BILLON));
+        MAP_CAST_TOOLROD.put(Liquids.getById(ID_BRASS), CastParts.TOOL_ROD.getStack(ID_BRASS));
+        MAP_CAST_TOOLROD.put(Liquids.getById(ID_ALUBRASS), CastParts.TOOL_ROD.getStack(ID_ALUBRASS));
+        MAP_CAST_TOOLROD.put(Liquids.getById(ID_NICKEL), CastParts.TOOL_ROD.getStack(ID_NICKEL));
+        MAP_CAST_TOOLROD.put(Liquids.getById(ID_COBALT), CastParts.TOOL_ROD.getStack(ID_COBALT));
+        MAP_CAST_TOOLROD.put(Liquids.getById(ID_REINFORCED), CastParts.TOOL_ROD.getStack(ID_REINFORCED));
 
     }
 
@@ -345,7 +488,12 @@ public class RecipeManager {
         castingRecipes.put(Material.BRICK.toString(), new CastResult(Material.BRICK.toString(), AMOUNT_CAST, MAP_DIE_INGOT, true));
         castingRecipes.put(Material.STONE.toString(), new CastResult(Material.STONE.toString(), AMOUNT_CAST, MAP_DIE_BLOCK, true));
         castingRecipes.put(Material.DIAMOND.toString(), new CastResult(Material.DIAMOND.toString(), AMOUNT_CAST, MAP_DIE_GEM, true));
-        castingRecipes.put(Casts.DIE_AXEHEAD.getItemId(), new CastResult(Casts.DIE_AXEHEAD.getItemId(), AMOUNT_CAST, MAP_DIE_AXEHEAD, true));
+        castingRecipes.put(Casts.DIE_SHOVEL_HEAD.getItemId(), new CastResult(Casts.DIE_SHOVEL_HEAD.getItemId(), AMOUNT_CAST, MAP_DIE_SHOVELHEAD, true));
+        castingRecipes.put(Casts.DIE_PICKAXE_HEAD.getItemId(), new CastResult(Casts.DIE_PICKAXE_HEAD.getItemId(), AMOUNT_CAST, MAP_DIE_PICKAXEHEAD, true));
+        castingRecipes.put(Casts.DIE_AXE_HEAD.getItemId(), new CastResult(Casts.DIE_AXE_HEAD.getItemId(), AMOUNT_CAST, MAP_DIE_AXEHEAD, true));
+        castingRecipes.put(Casts.DIE_HOE_HEAD.getItemId(), new CastResult(Casts.DIE_HOE_HEAD.getItemId(), AMOUNT_CAST, MAP_DIE_HOEHEAD, true));
+        castingRecipes.put(Casts.DIE_SWORD_BLADE.getItemId(), new CastResult(Casts.DIE_SWORD_BLADE.getItemId(), AMOUNT_CAST, MAP_DIE_SWORDBLADE, true));
+        castingRecipes.put(Casts.DIE_TOOL_ROD.getItemId(), new CastResult(Casts.DIE_TOOL_ROD.getItemId(), AMOUNT_CAST, MAP_DIE_TOOLROD, true));
 
         // endregion
 
@@ -355,7 +503,12 @@ public class RecipeManager {
         castingRecipes.put(Casts.CAST_INGOT.getItemId(), new CastResult(Casts.CAST_INGOT.getItemId(), AMOUNT_INGOT, MAP_CAST_INGOT, false));
         castingRecipes.put(Casts.CAST_BLOCK.getItemId(), new CastResult(Casts.CAST_BLOCK.getItemId(), AMOUNT_BLOCK, MAP_CAST_BLOCK, false));
         castingRecipes.put(Casts.CAST_GEM.getItemId(), new CastResult(Casts.CAST_GEM.getItemId(), AMOUNT_GEM, MAP_CAST_GEM, false));
+        castingRecipes.put(Casts.CAST_SHOVELHEAD.getItemId(), new CastResult(Casts.CAST_SHOVELHEAD.getItemId(), AMOUNT_SHOVELHEAD, MAP_CAST_SHOVELHEAD, false));
+        castingRecipes.put(Casts.CAST_PICKAXEHEAD.getItemId(), new CastResult(Casts.CAST_PICKAXEHEAD.getItemId(), AMOUNT_PICKAXEHEAD, MAP_CAST_PICKAXEHEAD, false));
         castingRecipes.put(Casts.CAST_AXEHEAD.getItemId(), new CastResult(Casts.CAST_AXEHEAD.getItemId(), AMOUNT_AXEHEAD, MAP_CAST_AXEHEAD, false));
+        castingRecipes.put(Casts.CAST_HOEHEAD.getItemId(), new CastResult(Casts.CAST_HOEHEAD.getItemId(), AMOUNT_HOEHEAD, MAP_CAST_HOEHEAD, false));
+        castingRecipes.put(Casts.CAST_SWORDBLADE.getItemId(), new CastResult(Casts.CAST_SWORDBLADE.getItemId(), AMOUNT_SWORDBLADE, MAP_CAST_SWORDBLADE, false));
+        castingRecipes.put(Casts.CAST_TOOLROD.getItemId(), new CastResult(Casts.CAST_TOOLROD.getItemId(), AMOUNT_TOOLROD, MAP_CAST_TOOLROD, false));
 
         // endregion
     }

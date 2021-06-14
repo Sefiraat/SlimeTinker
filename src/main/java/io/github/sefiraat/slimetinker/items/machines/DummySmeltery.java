@@ -1,4 +1,4 @@
-package io.github.sefiraat.slimetinker.items.recipes;
+package io.github.sefiraat.slimetinker.items.machines;
 
 import io.github.mooy1.infinitylib.recipes.RecipeMap;
 import io.github.mooy1.infinitylib.recipes.ShapedRecipe;

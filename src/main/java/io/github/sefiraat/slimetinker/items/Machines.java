@@ -19,7 +19,7 @@ public final class Machines {
             ThemeUtils.themedItemStack(
                     "TINKERS_SMELTERY_CORE",
                     Material.CHISELED_POLISHED_BLACKSTONE,
-                    ThemeUtils.SimpleItemType.MACHINE,
+                    ThemeUtils.ThemeItemType.MACHINE,
                     "Tinkers Smeltery Core",
                     "Melts down metals into liquids.",
                     "Metals can then be alloyed and",

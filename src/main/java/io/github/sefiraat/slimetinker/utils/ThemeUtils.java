@@ -46,7 +46,7 @@ public final class ThemeUtils {
     public static final String LORE_LIQUID = ITEM_TYPEDESC + "Liquid";
     public static final String LORE_CAST = ITEM_TYPEDESC + "Cast";
 
-    public static SlimefunItemStack themedItemStack(String id, String skull, SimpleItemType type, String name, String... loreLines) {
+    public static SlimefunItemStack themedItemStack(String id, String skull, ThemeItemType type, String name, String... loreLines) {
         AbstractItem itemStack = new AbstractItem(
                 id,
                 skull,
@@ -65,7 +65,7 @@ public final class ThemeUtils {
         return itemStack;
     }
 
-    public static SlimefunItemStack themedItemStack(String id, Material material, SimpleItemType type, String name, String... loreLines) {
+    public static SlimefunItemStack themedItemStack(String id, Material material, ThemeItemType type, String name, String... loreLines) {
         AbstractItem itemStack = new AbstractItem(
                 id,
                 material,
@@ -84,7 +84,7 @@ public final class ThemeUtils {
         return itemStack;
     }
 
-    public static ChatColor itemTypeColor(SimpleItemType type) {
+    public static ChatColor itemTypeColor(ThemeItemType type) {
         switch (type) {
             case DROP: return ITEM_RARE_DROP;
             case CHEST: return ITEM_CHEST;
@@ -97,7 +97,7 @@ public final class ThemeUtils {
         }
     }
 
-    public static String itemTypeDescriptor(SimpleItemType type) {
+    public static String itemTypeDescriptor(ThemeItemType type) {
         switch (type) {
             case DROP: return LORE_TYPE_DROP;
             case CHEST: return LORE_TYPE_CHEST;
@@ -115,7 +115,7 @@ public final class ThemeUtils {
         return WordUtils.capitalizeFully(string, delimiters);
     }
 
-    public enum SimpleItemType {
+    public enum ThemeItemType {
         CRAFTING,
         MACHINE,
         CHEST,

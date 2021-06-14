@@ -2,11 +2,14 @@ package io.github.sefiraat.slimetinker.items;
 
 import io.github.sefiraat.slimetinker.SlimeTinker;
 import io.github.sefiraat.slimetinker.categories.Categories;
+import io.github.sefiraat.slimetinker.categories.DummyCategory;
+import io.github.sefiraat.slimetinker.items.machines.DummySmeltery;
 import io.github.sefiraat.slimetinker.utils.ThemeUtils;
 import io.github.thebusybiscuit.slimefun4.implementation.items.blocks.UnplaceableBlock;
 import me.mrCookieSlime.Slimefun.Lists.RecipeType;
 import me.mrCookieSlime.Slimefun.api.SlimefunItemStack;
 import org.bukkit.Material;
+import org.bukkit.inventory.ItemStack;
 
 public final class Materials {
 
@@ -14,14 +17,14 @@ public final class Materials {
         throw new IllegalStateException("Utility class");
     }
 
-    // region Molten Metals
+    // region Molten Bucketed Metals
 
     // Molten Iron
     public static final SlimefunItemStack MOLTEN_IRON =
             ThemeUtils.themedItemStack(
                     "MOLTEN_IRON",
                     SkullTextures.BUCKET_WHITE,
-                    ThemeUtils.SimpleItemType.MOLTEN_METAL,
+                    ThemeUtils.ThemeItemType.MOLTEN_METAL,
                     "Molten Iron",
                     "A bucket of Molten Iron.",
                     "How on earth are you holding this?"
@@ -32,7 +35,7 @@ public final class Materials {
             ThemeUtils.themedItemStack(
                     "MOLTEN_GOLD",
                     SkullTextures.BUCKET_YELLOW,
-                    ThemeUtils.SimpleItemType.MOLTEN_METAL,
+                    ThemeUtils.ThemeItemType.MOLTEN_METAL,
                     "Molten Gold",
                     "A bucket of Molten Gold.",
                     "Costly, be careful not to spill it!"
@@ -40,19 +43,100 @@ public final class Materials {
 
     // endregion
 
+
+    // region Crafting Materials
+
     public static final SlimefunItemStack SEARED_STONE =
             ThemeUtils.themedItemStack(
                     "SEARED_STONE",
                     Material.POLISHED_BASALT,
-                    ThemeUtils.SimpleItemType.MOLTEN_METAL,
+                    ThemeUtils.ThemeItemType.MOLTEN_METAL,
                     "Seared Stone",
                     "A heat-resistant stone that can",
                     "be used to make up the walls of a smeltery."
             );
 
+    // endregion
+
+    // region Custom Cast Blocks
+
+    public static final SlimefunItemStack BLOCK_CAST_COPPER =
+            ThemeUtils.themedItemStack(
+                    "BLOCK_CAST_COPPER",
+                    Material.TERRACOTTA,
+                    ThemeUtils.ThemeItemType.CRAFTING,
+                    "Copper Block",
+                    "A block made from solid copper"
+            );
+
+    public static final SlimefunItemStack BLOCK_CAST_TIN =
+            ThemeUtils.themedItemStack(
+                    "BLOCK_CAST_TIN",
+                    Material.IRON_BLOCK,
+                    ThemeUtils.ThemeItemType.CRAFTING,
+                    "Tin Block",
+                    "A block made from solid tin"
+            );
+
+    public static final SlimefunItemStack BLOCK_CAST_ZINC =
+            ThemeUtils.themedItemStack(
+                    "BLOCK_CAST_ZINC",
+                    Material.IRON_BLOCK,
+                    ThemeUtils.ThemeItemType.CRAFTING,
+                    "Zinc Block",
+                    "A block made from solid zinc"
+            );
+
+    public static final SlimefunItemStack BLOCK_CAST_ALUMINIUM =
+            ThemeUtils.themedItemStack(
+                    "BLOCK_CAST_ALUMINIUM",
+                    Material.IRON_BLOCK,
+                    ThemeUtils.ThemeItemType.CRAFTING,
+                    "Aluminium Block",
+                    "A block made from solid aluminium"
+            );
+
+    public static final SlimefunItemStack BLOCK_CAST_MAGNESIUM =
+            ThemeUtils.themedItemStack(
+                    "BLOCK_CAST_MAGNESIUM",
+                    Material.PINK_TERRACOTTA,
+                    ThemeUtils.ThemeItemType.CRAFTING,
+                    "Magnesium Block",
+                    "A block made from solid magnesium"
+            );
+
+    public static final SlimefunItemStack BLOCK_CAST_LEAD =
+            ThemeUtils.themedItemStack(
+                    "BLOCK_CAST_LEAD",
+                    Material.PURPLE_TERRACOTTA,
+                    ThemeUtils.ThemeItemType.CRAFTING,
+                    "Lead Block",
+                    "A block made from solid lead"
+            );
+
+    public static final SlimefunItemStack BLOCK_CAST_SILVER =
+            ThemeUtils.themedItemStack(
+                    "BLOCK_CAST_SILVER",
+                    Material.IRON_BLOCK,
+                    ThemeUtils.ThemeItemType.CRAFTING,
+                    "Silver Block",
+                    "A block made from solid silver"
+            );
+
+
+    // endregion
+
     public static void set(SlimeTinker p) {
-        new UnplaceableBlock(Categories.METALS, MOLTEN_IRON, RecipeType.ENHANCED_CRAFTING_TABLE, Recipes.MOLTEN_IRON).register(p);
-        new UnplaceableBlock(Categories.METALS, MOLTEN_GOLD, RecipeType.ENHANCED_CRAFTING_TABLE, Recipes.MOLTEN_GOLD).register(p);
+        // Blocks
+        new UnplaceableBlock(Categories.MATERIALS, BLOCK_CAST_ALUMINIUM, DummySmeltery.TYPE, Recipes.getDummyCastRecipe(Casts.CAST_BLOCK)).register(p);
+        new UnplaceableBlock(Categories.MATERIALS, BLOCK_CAST_COPPER, DummySmeltery.TYPE, Recipes.getDummyCastRecipe(Casts.CAST_BLOCK)).register(p);
+        new UnplaceableBlock(Categories.MATERIALS, BLOCK_CAST_LEAD, DummySmeltery.TYPE, Recipes.getDummyCastRecipe(Casts.CAST_BLOCK)).register(p);
+        new UnplaceableBlock(Categories.MATERIALS, BLOCK_CAST_MAGNESIUM, DummySmeltery.TYPE, Recipes.getDummyCastRecipe(Casts.CAST_BLOCK)).register(p);
+        new UnplaceableBlock(Categories.MATERIALS, BLOCK_CAST_SILVER, DummySmeltery.TYPE, Recipes.getDummyCastRecipe(Casts.CAST_BLOCK)).register(p);
+        new UnplaceableBlock(Categories.MATERIALS, BLOCK_CAST_TIN, DummySmeltery.TYPE, Recipes.getDummyCastRecipe(Casts.CAST_BLOCK)).register(p);
+        new UnplaceableBlock(Categories.MATERIALS, BLOCK_CAST_ZINC, DummySmeltery.TYPE, Recipes.getDummyCastRecipe(Casts.CAST_BLOCK)).register(p);
+
+
     }
 
 

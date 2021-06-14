@@ -27,7 +27,7 @@ public final class Recipes {
 
     // region Machines
 
-    protected static final ItemStack[] TINKERS_SMELTERY = new ItemStack[] {
+    protected static final ItemStack[] TINKERS_SMELTERY_CORE = new ItemStack[] {
             null,   null,   null,
             null,   null,   null,
             null,   null,   null
@@ -35,5 +35,23 @@ public final class Recipes {
 
 
     // endregion
+
+    // region Casts
+
+    protected static final ItemStack[] CAST_BLOCK = new ItemStack[] {
+            new ItemStack(Material.GOLD_INGOT, 2),   new ItemStack(Material.STONE),   null,
+            null,                                           null,   null,
+            null,                                           null,   null
+    };
+
+    // endregion
+
+    protected static ItemStack[] getDummyCastRecipe(ItemStack cast) {
+        return new ItemStack[]{
+                null, null, null,
+                null, cast, null,
+                null, null, null
+        };
+    }
 
 }

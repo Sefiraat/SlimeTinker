@@ -1,10 +1,11 @@
 package io.github.sefiraat.slimetinker.items.gui;
 
+import io.github.sefiraat.slimetinker.items.Liquids;
 import io.github.sefiraat.slimetinker.items.SkullTextures;
 import io.github.sefiraat.slimetinker.utils.ThemeUtils;
 import me.mrCookieSlime.Slimefun.cscorelib2.item.CustomItem;
 import me.mrCookieSlime.Slimefun.cscorelib2.skull.SkullItem;
-import org.bukkit.ChatColor;
+import net.md_5.bungee.api.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
@@ -17,35 +18,37 @@ public final class GUIItems {
 
     public static CustomItem menuBackground() {
         return new CustomItem(
-                Material.LIGHT_GRAY_STAINED_GLASS_PANE
+                Material.BLACK_STAINED_GLASS_PANE,
+                "",
+                ""
         );
     }
 
     public static CustomItem menuBackgroundInput() {
         return new CustomItem(
-                Material.LIGHT_BLUE_STAINED_GLASS_PANE
+                Material.LIGHT_BLUE_STAINED_GLASS_PANE,
+                "",
+                ""
         );
     }
 
     public static CustomItem menuBackgroundOutput() {
         return new CustomItem(
-                Material.ORANGE_STAINED_GLASS_PANE
+                Material.ORANGE_STAINED_GLASS_PANE,
+                "",
+                ""
         );
     }
 
     public static CustomItem menuBackgroundCast() {
         return new CustomItem(
-                Material.LIME_STAINED_GLASS_PANE
+                Material.LIME_STAINED_GLASS_PANE,
+                "",
+                ""
         );
     }
 
-    public static CustomItem menuDividerGui() {
-        return new CustomItem(
-                Material.BROWN_STAINED_GLASS_PANE
-        );
-    }
-
-    public static CustomItem menuLavaInfo(int fillPerc, int fillAmt) {
+    public static CustomItem menuLavaInfo(int fillPerc, int fillAmt, int fillMax) {
         ItemStack skull;
         if (fillPerc >= 95) {
             skull = SkullItem.fromBase64(SkullTextures.TANK_LAVA_5);
@@ -63,14 +66,14 @@ public final class GUIItems {
         List<String> meta = new ArrayList<>();
         meta.add(ThemeUtils.GUI_HEAD + "Lava Tank");
         meta.add("");
-        meta.add(ThemeUtils.CLICK_INFO + "Lava: " + ChatColor.WHITE + fillAmt);
+        meta.add(ThemeUtils.CLICK_INFO + "Lava: " + ChatColor.WHITE + fillAmt + " / " + fillMax);
         return new CustomItem(
                 skull,
                 meta
         );
     }
 
-    public static CustomItem menuMetalInfo(int fillPerc, int fillAmt, @Nullable Map<String, Integer> map) {
+    public static CustomItem menuMetalInfo(int fillPerc, int fillAmt, int fillMax, @Nullable Map<String, Integer> map) {
         ItemStack skull;
         if (fillPerc >= 95) {
             skull = SkullItem.fromBase64(SkullTextures.TANK_METAL_5);
@@ -88,14 +91,21 @@ public final class GUIItems {
         List<String> meta = new ArrayList<>();
         meta.add(ThemeUtils.GUI_HEAD + "Metals Tank");
         meta.add("");
-        meta.add(ThemeUtils.CLICK_INFO + "Total Metal: " + ChatColor.WHITE + fillAmt);
+        meta.add(ThemeUtils.CLICK_INFO + "Total Metal: " + ChatColor.WHITE + fillAmt + " / " + fillMax);
+        meta.add("");
         if (map != null) {
             for (Map.Entry<String, Integer> e : map.entrySet()) {
-                String name = ThemeUtils.toTitleCase(e.getKey());
+                String name =
+                        ChatColor.of(Liquids.LIQUIDS.get(e.getKey()).getColorHex()) +
+                        ThemeUtils.toTitleCase(e.getKey());
                 String amount = e.getValue().toString();
                 meta.add(ThemeUtils.CLICK_INFO + name + ": " + ChatColor.WHITE + amount + " units.");
             }
         }
+        meta.add("");
+        meta.add(ThemeUtils.PASSIVE + "Metals pour out from the " + ChatColor.BOLD + "top" + ThemeUtils.PASSIVE + " first");
+        meta.add("");
+        meta.add(ThemeUtils.CLICK_INFO + "Click to cycle metal order.");
         return new CustomItem(
                 skull,
                 meta

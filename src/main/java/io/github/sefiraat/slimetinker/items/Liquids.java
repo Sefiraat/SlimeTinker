@@ -25,6 +25,8 @@ public final class Liquids {
         map.put(RecipeManager.ID_ZINC, new Liquid(RecipeManager.ID_ZINC,"#9ba8a6"));
         map.put(RecipeManager.ID_MAGNESIUM, new Liquid(RecipeManager.ID_MAGNESIUM,"#e8cef5"));
         map.put(RecipeManager.ID_COAL, new Liquid(RecipeManager.ID_COAL, "#2d2e2d"));
+        map.put(RecipeManager.ID_STEEL, new Liquid(RecipeManager.ID_STEEL,"#d1d1d1"));
+        map.put(RecipeManager.ID_DAM_STEEL, new Liquid(RecipeManager.ID_DAM_STEEL, "#a38c8c"));
     }
 
     public static Liquid getById(String id) {

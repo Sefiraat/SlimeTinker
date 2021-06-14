@@ -1,12 +1,16 @@
 package io.github.sefiraat.slimetinker.items.parts;
 
 import io.github.sefiraat.slimetinker.SlimeTinker;
+import io.github.sefiraat.slimetinker.items.Liquids;
 import io.github.sefiraat.slimetinker.items.SkullTextures;
 import io.github.sefiraat.slimetinker.utils.ThemeUtils;
+import io.github.thebusybiscuit.slimefun4.implementation.items.blocks.UnplaceableBlock;
+import lombok.Getter;
+import lombok.Setter;
 import me.mrCookieSlime.Slimefun.Lists.RecipeType;
 import me.mrCookieSlime.Slimefun.Objects.Category;
 import me.mrCookieSlime.Slimefun.api.SlimefunItemStack;
-import org.bukkit.ChatColor;
+import net.md_5.bungee.api.ChatColor;
 import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -16,10 +20,17 @@ import org.bukkit.persistence.PersistentDataType;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AxeHead extends AbstractPart {
+public class AxeHead extends UnplaceableBlock {
+
+    @Getter
+    @Setter
+    private String materialType;
 
     public static String getName(String material) {
-        return ThemeUtils.ITEM_PART + ThemeUtils.toTitleCase(material) + " Axe Head";
+        return
+                ChatColor.of(Liquids.getById(material).getColorHex()) +
+                ThemeUtils.toTitleCase(material) +
+                ThemeUtils.ITEM_PART + " Axe Head";
     }
 
     public static List<String> getLore(String material) {
@@ -28,7 +39,7 @@ public class AxeHead extends AbstractPart {
         list.add(ThemeUtils.PASSIVE + "An axe head. Useless by itself, can be");
         list.add(ThemeUtils.PASSIVE + "made into an axe at the Tinker's table.");
         list.add("");
-        list.add(ThemeUtils.CLICK_INFO + "Material : " + ChatColor.WHITE + ThemeUtils.toTitleCase(material));
+        list.add(ThemeUtils.CLICK_INFO + "Material : " + ChatColor.of(Liquids.getById(material).getColorHex()) + ThemeUtils.toTitleCase(material));
         return list;
     }
 

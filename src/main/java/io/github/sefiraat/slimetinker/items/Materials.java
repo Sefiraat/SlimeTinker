@@ -129,6 +129,23 @@ public final class Materials {
                     "A nugget made from liquifacted coal"
             );
 
+    public static final SlimefunItemStack NUGGET_CAST_STEEL =
+            ThemeUtils.themedItemStack(
+                    "NUGGET_CAST_STEEL",
+                    Material.IRON_NUGGET,
+                    ThemeUtils.ThemeItemType.CRAFTING,
+                    "Steel Nugget",
+                    "A nugget made from solid steel"
+            );
+
+    public static final SlimefunItemStack NUGGET_CAST_DAMASCUS_STEEL =
+            ThemeUtils.themedItemStack(
+                    "NUGGET_CAST_DAMASCUS_STEEL",
+                    Material.IRON_NUGGET,
+                    ThemeUtils.ThemeItemType.CRAFTING,
+                    "Damascus Steel Nugget",
+                    "A nugget made from damascus steel"
+            );
 
     // endregion
 
@@ -197,6 +214,23 @@ public final class Materials {
                     "A block made from solid silver"
             );
 
+    public static final SlimefunItemStack BLOCK_CAST_STEEL =
+            ThemeUtils.themedItemStack(
+                    "BLOCK_CAST_STEEL",
+                    Material.IRON_BLOCK,
+                    ThemeUtils.ThemeItemType.CRAFTING,
+                    "Steel Block",
+                    "A block made from solid steel"
+            );
+
+    public static final SlimefunItemStack BLOCK_CAST_DAMASCUS_STEEL =
+            ThemeUtils.themedItemStack(
+                    "BLOCK_CAST_DAMASCUS_STEEL",
+                    Material.IRON_BLOCK,
+                    ThemeUtils.ThemeItemType.CRAFTING,
+                    "Damascus Steel Block",
+                    "A block made from damascus steel"
+            );
 
     // endregion
 
@@ -222,6 +256,21 @@ public final class Materials {
 
         new UnplaceableBlock(Categories.MATERIALS, NUGGET_CAST_TIN, DummySmeltery.TYPE, Recipes.getDummyCastRecipe(Casts.CAST_NUGGET)).register(p);
         new UnplaceableBlock(Categories.MATERIALS, BLOCK_CAST_TIN, DummySmeltery.TYPE, Recipes.getDummyCastRecipe(Casts.CAST_BLOCK)).register(p);
+
+        new UnplaceableBlock(Categories.MATERIALS, NUGGET_CAST_STEEL, DummySmeltery.TYPE, Recipes.getDummyCastRecipe(Casts.CAST_NUGGET)).register(p);
+        new UnplaceableBlock(Categories.MATERIALS, BLOCK_CAST_STEEL, DummySmeltery.TYPE, Recipes.getDummyCastRecipe(Casts.CAST_BLOCK)).register(p);
+
+        new UnplaceableBlock(Categories.MATERIALS, NUGGET_CAST_DAMASCUS_STEEL, DummySmeltery.TYPE, Recipes.getDummyCastRecipe(Casts.CAST_NUGGET)).register(p);
+        new UnplaceableBlock(Categories.MATERIALS, BLOCK_CAST_DAMASCUS_STEEL, DummySmeltery.TYPE, Recipes.getDummyCastRecipe(Casts.CAST_BLOCK)).register(p);
+
+
+
+
+
+
+
+        new UnplaceableBlock(Categories.MATERIALS, NUGGET_CAST_COAL, DummySmeltery.TYPE, Recipes.getDummyCastRecipe(Casts.CAST_NUGGET)).register(p);
+
 
     }
 

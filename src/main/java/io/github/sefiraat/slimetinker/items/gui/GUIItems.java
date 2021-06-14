@@ -121,8 +121,10 @@ public final class GUIItems {
                 SkullItem.fromBase64(SkullTextures.BUTTON_PURGE),
                 ThemeUtils.GUI_HEAD + "Purge Metals",
                 "",
-                ThemeUtils.PASSIVE + "Purge all the metal currently in the",
-                ThemeUtils.PASSIVE + "metal tank."
+                ThemeUtils.PASSIVE + "Purge unwanted metals from the tank.",
+                "",
+                ThemeUtils.CLICK_INFO + "Left Click: " + ChatColor.WHITE + "Remove the TOP MOST metal",
+                ThemeUtils.CLICK_INFO + "Right Click: " + ChatColor.WHITE + "Remove ALL metals"
         );
     }
 

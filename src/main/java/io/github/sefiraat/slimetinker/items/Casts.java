@@ -69,7 +69,7 @@ public final class Casts {
 
     public static final SlimefunItemStack CAST_GEM =
             ThemeUtils.themedItemStack(
-                    "CAST_GEM<",
+                    "CAST_GEM",
                     Material.YELLOW_STAINED_GLASS_PANE,
                     ThemeUtils.ThemeItemType.CAST,
                     "Cast: Gem",
@@ -100,8 +100,10 @@ public final class Casts {
 
         new UnplaceableBlock(Categories.CASTS, DIE_AXEHEAD, RecipeType.ENHANCED_CRAFTING_TABLE, Recipes.DIE_AXE_HEAD).register(p);
 
-        new UnplaceableBlock(Categories.CASTS, CAST_BLOCK, DummySmeltery.TYPE, Recipes.CAST_BLOCK).register(p);
         new UnplaceableBlock(Categories.CASTS, CAST_NUGGET, DummySmeltery.TYPE, Recipes.CAST_NUGGET).register(p);
+        new UnplaceableBlock(Categories.CASTS, CAST_INGOT, DummySmeltery.TYPE, Recipes.CAST_INGOT).register(p);
+        new UnplaceableBlock(Categories.CASTS, CAST_BLOCK, DummySmeltery.TYPE, Recipes.CAST_BLOCK).register(p);
+        new UnplaceableBlock(Categories.CASTS, CAST_GEM, DummySmeltery.TYPE, Recipes.CAST_GEM).register(p);
         new UnplaceableBlock(Categories.CASTS, CAST_AXEHEAD, DummySmeltery.TYPE, Recipes.CAST_AXEHEAD).register(p);
 
     }

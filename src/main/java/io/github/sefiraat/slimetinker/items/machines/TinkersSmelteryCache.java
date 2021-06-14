@@ -11,6 +11,7 @@ import io.github.sefiraat.slimetinker.utils.ThemeUtils;
 import lombok.Getter;
 import lombok.Setter;
 import me.mrCookieSlime.CSCoreLibPlugin.Configuration.Config;
+import me.mrCookieSlime.CSCoreLibPlugin.general.Inventory.ClickAction;
 import me.mrCookieSlime.Slimefun.api.BlockStorage;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
 import org.bukkit.Location;
@@ -45,7 +46,7 @@ public final class TinkersSmelteryCache extends AbstractCache {
         process(true);
 
         blockMenu.addItem(TinkersSmeltery.PURGE_BUTTON, GUIItems.menuPurge());
-        blockMenu.addMenuClickHandler(TinkersSmeltery.PURGE_BUTTON, (player, i, itemStack, clickAction) -> clickPurge());
+        blockMenu.addMenuClickHandler(TinkersSmeltery.PURGE_BUTTON, (player, i, itemStack, clickAction) -> clickPurge(clickAction));
 
         blockMenu.addItem(TinkersSmeltery.ALLOY_BUTTON, GUIItems.menuAlloy());
         blockMenu.addMenuClickHandler(TinkersSmeltery.ALLOY_BUTTON, (player, i, itemStack, clickAction) -> clickAlloy());
@@ -67,8 +68,9 @@ public final class TinkersSmelteryCache extends AbstractCache {
                 input.setAmount(input.getAmount() - 1);
                 blockMenu.pushItem(new ItemStack(Material.BUCKET), TinkersSmeltery.OUTPUT_SLOT);
                 levelLava += LAVA_PER_BUCKET;
-            } else if (blockMenu.fits(input, TinkersSmeltery.OUTPUT_SLOT)) {
-                blockMenu.pushItem(input, TinkersSmeltery.OUTPUT_SLOT);
+            } else if (blockMenu.fits(new ItemStack(Material.LAVA_BUCKET), TinkersSmeltery.OUTPUT_SLOT)) {
+                input.setAmount(input.getAmount() - 1);
+                blockMenu.pushItem(new ItemStack(Material.LAVA_BUCKET), TinkersSmeltery.OUTPUT_SLOT);
             }
         }
 
@@ -165,19 +167,35 @@ public final class TinkersSmelteryCache extends AbstractCache {
         }
     }
 
-    private boolean clickPurge() {
+    private boolean clickPurge(ClickAction clickAction) {
 
-        tankContent.clear();
-        Config c = BlockStorage.getLocationInfo(blockMenu.getLocation());
-        List<String> keys = new ArrayList<>();
-        for (String key : c.getKeys()) {
-            if (key.startsWith(TinkersSmelteryCache.METAL_LEVEL_PREFIX)) {
-                keys.add(key);
+        if (tankContent.isEmpty()) {
+            return false;
+        }
+
+        if (clickAction.isRightClicked()) {
+            tankContent.clear();
+            Config c = BlockStorage.getLocationInfo(blockMenu.getLocation());
+            List<String> keys = new ArrayList<>();
+            for (String key : c.getKeys()) {
+                if (key.startsWith(TinkersSmelteryCache.METAL_LEVEL_PREFIX)) {
+                    keys.add(key);
+                }
             }
+            for (String key : keys) {
+                BlockStorage.addBlockInfo(blockMenu.getLocation(), key, null);
+            }
+            return false;
         }
-        for (String key : keys) {
-            BlockStorage.addBlockInfo(blockMenu.getLocation(), key, null);
+
+        Optional<String> first = tankContent.keySet().stream().findFirst();
+        if (first.isPresent()) {
+            String key = first.get();
+            tankContent.remove(key);
+            BlockStorage.addBlockInfo(blockMenu.getLocation(), METAL_LEVEL_PREFIX + key, null);
+            return false;
         }
+
         return false;
 
     }

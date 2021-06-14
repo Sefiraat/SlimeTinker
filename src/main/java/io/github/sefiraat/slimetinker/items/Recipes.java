@@ -66,6 +66,12 @@ public final class Recipes {
             null,                                           null,   null
     };
 
+    protected static final ItemStack[] CAST_GEM = new ItemStack[] {
+            new ItemStack(Material.GOLD_INGOT, 2),   new ItemStack(Material.DIAMOND),   null,
+            null,                                           null,   null,
+            null,                                           null,   null
+    };
+
     protected static final ItemStack[] CAST_AXEHEAD = new ItemStack[] {
             new ItemStack(Material.GOLD_INGOT, 2),   Casts.DIE_AXEHEAD,   null,
             null,                                           null,   null,

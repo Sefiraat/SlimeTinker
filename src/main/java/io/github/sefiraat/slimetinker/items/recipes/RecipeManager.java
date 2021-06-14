@@ -44,6 +44,8 @@ public class RecipeManager {
     public static final String ID_LEAD = "LEAD";
     public static final String ID_ZINC = "ZINC";
     public static final String ID_COAL = "COAL";
+    public static final String ID_STEEL = "STEEL";
+    public static final String ID_DAM_STEEL = "DAMASCUS_STEEL";
 
     public final Map<String, MoltenResult> meltingRecipes = new HashMap<>();
     public final Map<String, CastResult> castingRecipes = new HashMap<>();
@@ -82,6 +84,8 @@ public class RecipeManager {
         MAP_CAST_NUGGET.put(Liquids.getById(ID_LEAD), Materials.NUGGET_CAST_LEAD);
         MAP_CAST_NUGGET.put(Liquids.getById(ID_ZINC), Materials.NUGGET_CAST_ZINC);
         MAP_CAST_NUGGET.put(Liquids.getById(ID_COAL), Materials.NUGGET_CAST_COAL);
+        MAP_CAST_NUGGET.put(Liquids.getById(ID_STEEL), Materials.NUGGET_CAST_STEEL);
+        MAP_CAST_NUGGET.put(Liquids.getById(ID_DAM_STEEL), Materials.NUGGET_CAST_DAMASCUS_STEEL);
 
         // Ingots
         MAP_CAST_INGOT.put(Liquids.getById(ID_IRON), new ItemStack(Material.IRON_INGOT));
@@ -93,7 +97,9 @@ public class RecipeManager {
         MAP_CAST_INGOT.put(Liquids.getById(ID_ALUMINIUM), SlimefunItems.ALUMINUM_INGOT);
         MAP_CAST_INGOT.put(Liquids.getById(ID_LEAD), SlimefunItems.LEAD_INGOT);
         MAP_CAST_INGOT.put(Liquids.getById(ID_ZINC), SlimefunItems.ZINC_INGOT);
-        
+        MAP_CAST_INGOT.put(Liquids.getById(ID_STEEL), SlimefunItems.STEEL_INGOT);
+        MAP_CAST_INGOT.put(Liquids.getById(ID_DAM_STEEL), SlimefunItems.DAMASCUS_STEEL_INGOT);
+
         // Blocks
         MAP_CAST_BLOCK.put(Liquids.getById(ID_IRON), new ItemStack(Material.IRON_BLOCK));
         MAP_CAST_BLOCK.put(Liquids.getById(ID_GOLD), new ItemStack(Material.GOLD_BLOCK));
@@ -105,6 +111,8 @@ public class RecipeManager {
         MAP_CAST_BLOCK.put(Liquids.getById(ID_LEAD), Materials.BLOCK_CAST_LEAD);
         MAP_CAST_BLOCK.put(Liquids.getById(ID_ZINC), Materials.BLOCK_CAST_ZINC);
         MAP_CAST_BLOCK.put(Liquids.getById(ID_COAL), new ItemStack(Material.COAL_BLOCK));
+        MAP_CAST_BLOCK.put(Liquids.getById(ID_STEEL), Materials.BLOCK_CAST_STEEL);
+        MAP_CAST_BLOCK.put(Liquids.getById(ID_DAM_STEEL), Materials.BLOCK_CAST_DAMASCUS_STEEL);
 
         // Gems
         MAP_CAST_GEM.put(Liquids.getById(ID_COAL), new ItemStack(Material.COAL));
@@ -120,6 +128,8 @@ public class RecipeManager {
         MAP_CAST_AXEHEAD.put(Liquids.getById(ID_ALUMINIUM), CastParts.AXE_HEAD.getStack(ID_ALUMINIUM));
         MAP_CAST_AXEHEAD.put(Liquids.getById(ID_LEAD), CastParts.AXE_HEAD.getStack(ID_LEAD));
         MAP_CAST_AXEHEAD.put(Liquids.getById(ID_ZINC), CastParts.AXE_HEAD.getStack(ID_ZINC));
+        MAP_CAST_AXEHEAD.put(Liquids.getById(ID_STEEL), CastParts.AXE_HEAD.getStack(ID_STEEL));
+        MAP_CAST_AXEHEAD.put(Liquids.getById(ID_DAM_STEEL), CastParts.AXE_HEAD.getStack(ID_DAM_STEEL));
 
     }
 
@@ -195,6 +205,16 @@ public class RecipeManager {
         meltingRecipes.put(Material.COAL.toString(), new MoltenResult(Liquids.getById(ID_COAL), AMOUNT_GEM));
         meltingRecipes.put(Materials.NUGGET_CAST_COAL.getItemId(), new MoltenResult(Liquids.getById(ID_COAL), AMOUNT_NUGGET));
         meltingRecipes.put(Material.COAL_BLOCK.toString(), new MoltenResult(Liquids.getById(ID_COAL), AMOUNT_BLOCK));
+
+        // STEEL
+        meltingRecipes.put(SlimefunItems.STEEL_INGOT.getItemId(), new MoltenResult(Liquids.getById(ID_STEEL), AMOUNT_INGOT));
+        meltingRecipes.put(Materials.NUGGET_CAST_STEEL.getItemId(), new MoltenResult(Liquids.getById(ID_STEEL), AMOUNT_NUGGET));
+        meltingRecipes.put(Materials.BLOCK_CAST_STEEL.getItemId(), new MoltenResult(Liquids.getById(ID_STEEL), AMOUNT_BLOCK));
+
+        // DAMASCUS STEEL
+        meltingRecipes.put(SlimefunItems.DAMASCUS_STEEL_INGOT.getItemId(), new MoltenResult(Liquids.getById(ID_DAM_STEEL), AMOUNT_INGOT));
+        meltingRecipes.put(Materials.NUGGET_CAST_DAMASCUS_STEEL.getItemId(), new MoltenResult(Liquids.getById(ID_DAM_STEEL), AMOUNT_NUGGET));
+        meltingRecipes.put(Materials.BLOCK_CAST_DAMASCUS_STEEL.getItemId(), new MoltenResult(Liquids.getById(ID_DAM_STEEL), AMOUNT_BLOCK));
 
         // endregion
 

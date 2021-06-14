@@ -37,9 +37,16 @@ public final class Categories {
         );
     }
 
+    public static CustomItem catParts() {
+        return new CustomItem(
+                SkullItem.fromBase64(SkullTextures.CAT_PARTS),
+                ThemeUtils.MAIN + "Parts"
+        );
+    }
+
     public static CustomItem catMachines() {
         return new CustomItem(
-                SkullItem.fromBase64(SkullTextures.CAT_MATERIALS),
+                SkullItem.fromBase64(SkullTextures.CAT_MAIN),
                 ThemeUtils.MAIN + "Slime Tinker Machinery"
         );
     }
@@ -55,13 +62,15 @@ public final class Categories {
     public static final SubCategory MATERIALS = new SubCategory(new NamespacedKey(SlimeTinker.inst(), "slime-tinker-materials"), MAIN, catMaterials());
     public static final SubCategory MACHINES = new SubCategory(new NamespacedKey(SlimeTinker.inst(), "slime-tinker-machines"), MAIN, catMachines());
     public static final SubCategory CASTS = new SubCategory(new NamespacedKey(SlimeTinker.inst(), "slime-tinker-casts"), MAIN, catCasts());
+    public static final SubCategory PARTS = new SubCategory(new NamespacedKey(SlimeTinker.inst(), "slime-tinker-parts"), MAIN, catParts());
+    public static final DummyCategory DUMMY = new DummyCategory(new NamespacedKey(SlimeTinker.inst(), "slime-tinker-dummy"), catDummy());
 
     public static void set(SlimeTinker p) {
         MAIN.register(p);
         MATERIALS.register(p);
         MACHINES.register(p);
         CASTS.register(p);
-        new DummyCategory(new NamespacedKey(SlimeTinker.inst(),"dummy"), catDummy()).register(SlimeTinker.inst());
+        PARTS.register(p);
     }
 
 }

@@ -16,4 +16,5 @@ public class DummyCategory extends Category {
     public boolean isHidden(@NotNull Player p) {
         return true;
     }
+
 }

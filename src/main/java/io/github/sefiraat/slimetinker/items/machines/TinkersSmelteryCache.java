@@ -17,6 +17,7 @@ import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.persistence.PersistentDataContainer;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -66,6 +67,8 @@ public final class TinkersSmelteryCache extends AbstractCache {
                 input.setAmount(input.getAmount() - 1);
                 blockMenu.pushItem(new ItemStack(Material.BUCKET), TinkersSmeltery.OUTPUT_SLOT);
                 levelLava += LAVA_PER_BUCKET;
+            } else if (blockMenu.fits(input, TinkersSmeltery.OUTPUT_SLOT)) {
+                blockMenu.pushItem(input, TinkersSmeltery.OUTPUT_SLOT);
             }
         }
 
@@ -203,7 +206,7 @@ public final class TinkersSmelteryCache extends AbstractCache {
         }
 
         String metalID = first.get();
-        Liquid liquid = Liquids.LIQUIDS.get(metalID);
+        Liquid liquid = Liquids.getById(metalID);
 
         // Cast valid, but this cast and metal combination doesn't work
         if (!result.getOutputs().containsKey(liquid)) {
@@ -242,13 +245,14 @@ public final class TinkersSmelteryCache extends AbstractCache {
 
     private boolean clickMetalTank() {
         // 0 or 1 metals, wont do anything
-        if (tankContent.size() < 2) {
+        Optional<String> first = tankContent.keySet().stream().findFirst();
+        if (first.isPresent() && tankContent.size() > 1) {
+            String string = first.get();
+            int amount = tankContent.get(string);
+            tankContent.remove(string);
+            tankContent.put(string, amount);
             return false;
         }
-        String first = tankContent.keySet().stream().findFirst().get();
-        int amount = tankContent.get(first);
-        tankContent.remove(first);
-        tankContent.put(first, amount);
         return false;
     }
 

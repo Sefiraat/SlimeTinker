@@ -2,6 +2,7 @@ package io.github.sefiraat.slimetinker;
 
 import io.github.mooy1.infinitylib.AbstractAddon;
 import io.github.sefiraat.slimetinker.categories.Categories;
+import io.github.sefiraat.slimetinker.items.CastParts;
 import io.github.sefiraat.slimetinker.items.Casts;
 import io.github.sefiraat.slimetinker.items.Machines;
 import io.github.sefiraat.slimetinker.items.Materials;
@@ -34,6 +35,7 @@ public class SlimeTinker extends AbstractAddon {
         Materials.set(this);
         Machines.set(this);
         Casts.set(this);
+        CastParts.set(this);
 
     }
 

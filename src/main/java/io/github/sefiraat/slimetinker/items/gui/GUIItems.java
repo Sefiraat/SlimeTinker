@@ -16,6 +16,10 @@ import java.util.Map;
 
 public final class GUIItems {
 
+    private GUIItems() {
+        throw new IllegalStateException("Utility class");
+    }
+
     public static CustomItem menuBackground() {
         return new CustomItem(
                 Material.BLACK_STAINED_GLASS_PANE,
@@ -96,7 +100,7 @@ public final class GUIItems {
         if (map != null) {
             for (Map.Entry<String, Integer> e : map.entrySet()) {
                 String name =
-                        ChatColor.of(Liquids.LIQUIDS.get(e.getKey()).getColorHex()) +
+                        ChatColor.of(Liquids.getById(e.getKey()).getColorHex()) +
                         ThemeUtils.toTitleCase(e.getKey());
                 String amount = e.getValue().toString();
                 meta.add(ThemeUtils.CLICK_INFO + name + ": " + ChatColor.WHITE + amount + " units.");

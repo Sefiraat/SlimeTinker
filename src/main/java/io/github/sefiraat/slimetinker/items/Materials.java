@@ -2,14 +2,11 @@ package io.github.sefiraat.slimetinker.items;
 
 import io.github.sefiraat.slimetinker.SlimeTinker;
 import io.github.sefiraat.slimetinker.categories.Categories;
-import io.github.sefiraat.slimetinker.categories.DummyCategory;
 import io.github.sefiraat.slimetinker.items.machines.DummySmeltery;
 import io.github.sefiraat.slimetinker.utils.ThemeUtils;
 import io.github.thebusybiscuit.slimefun4.implementation.items.blocks.UnplaceableBlock;
-import me.mrCookieSlime.Slimefun.Lists.RecipeType;
 import me.mrCookieSlime.Slimefun.api.SlimefunItemStack;
 import org.bukkit.Material;
-import org.bukkit.inventory.ItemStack;
 
 public final class Materials {
 
@@ -57,9 +54,86 @@ public final class Materials {
             );
 
     // endregion
+    
+    // region Custom Cast Nuggets
+
+    public static final SlimefunItemStack NUGGET_CAST_COPPER =
+            ThemeUtils.themedItemStack(
+                    "NUGGET_CAST_COPPER",
+                    Material.IRON_NUGGET,
+                    ThemeUtils.ThemeItemType.CRAFTING,
+                    "Copper Nugget",
+                    "A nugget made from solid copper"
+            );
+
+    public static final SlimefunItemStack NUGGET_CAST_TIN =
+            ThemeUtils.themedItemStack(
+                    "NUGGET_CAST_TIN",
+                    Material.IRON_NUGGET,
+                    ThemeUtils.ThemeItemType.CRAFTING,
+                    "Tin Nugget",
+                    "A nugget made from solid tin"
+            );
+
+    public static final SlimefunItemStack NUGGET_CAST_ZINC =
+            ThemeUtils.themedItemStack(
+                    "NUGGET_CAST_ZINC",
+                    Material.IRON_NUGGET,
+                    ThemeUtils.ThemeItemType.CRAFTING,
+                    "Zinc Nugget",
+                    "A nugget made from solid zinc"
+            );
+
+    public static final SlimefunItemStack NUGGET_CAST_ALUMINIUM =
+            ThemeUtils.themedItemStack(
+                    "NUGGET_CAST_ALUMINIUM",
+                    Material.IRON_NUGGET,
+                    ThemeUtils.ThemeItemType.CRAFTING,
+                    "Aluminium Nugget",
+                    "A nugget made from solid aluminium"
+            );
+
+    public static final SlimefunItemStack NUGGET_CAST_MAGNESIUM =
+            ThemeUtils.themedItemStack(
+                    "NUGGETCAST_MAGNESIUM",
+                    Material.IRON_NUGGET,
+                    ThemeUtils.ThemeItemType.CRAFTING,
+                    "Magnesium Nugget",
+                    "A nugget made from solid magnesium"
+            );
+
+    public static final SlimefunItemStack NUGGET_CAST_LEAD =
+            ThemeUtils.themedItemStack(
+                    "NUGGET_CAST_LEAD",
+                    Material.IRON_NUGGET,
+                    ThemeUtils.ThemeItemType.CRAFTING,
+                    "Lead Nugget",
+                    "A nugget made from solid lead"
+            );
+
+    public static final SlimefunItemStack NUGGET_CAST_SILVER =
+            ThemeUtils.themedItemStack(
+                    "NUGGET_CAST_SILVER",
+                    Material.IRON_NUGGET,
+                    ThemeUtils.ThemeItemType.CRAFTING,
+                    "Silver Nugget",
+                    "A nugget made from solid silver"
+            );
+
+    public static final SlimefunItemStack NUGGET_CAST_COAL =
+            ThemeUtils.themedItemStack(
+                    "NUGGET_CAST_COAL",
+                    Material.INK_SAC,
+                    ThemeUtils.ThemeItemType.CRAFTING,
+                    "Coal Nugget",
+                    "A nugget made from liquifacted coal"
+            );
+
+
+    // endregion
 
     // region Custom Cast Blocks
-
+        
     public static final SlimefunItemStack BLOCK_CAST_COPPER =
             ThemeUtils.themedItemStack(
                     "BLOCK_CAST_COPPER",
@@ -127,15 +201,27 @@ public final class Materials {
     // endregion
 
     public static void set(SlimeTinker p) {
-        // Blocks
-        new UnplaceableBlock(Categories.MATERIALS, BLOCK_CAST_ALUMINIUM, DummySmeltery.TYPE, Recipes.getDummyCastRecipe(Casts.CAST_BLOCK)).register(p);
+
+        new UnplaceableBlock(Categories.MATERIALS, NUGGET_CAST_COPPER, DummySmeltery.TYPE, Recipes.getDummyCastRecipe(Casts.CAST_NUGGET)).register(p);
         new UnplaceableBlock(Categories.MATERIALS, BLOCK_CAST_COPPER, DummySmeltery.TYPE, Recipes.getDummyCastRecipe(Casts.CAST_BLOCK)).register(p);
+
+        new UnplaceableBlock(Categories.MATERIALS, NUGGET_CAST_LEAD, DummySmeltery.TYPE, Recipes.getDummyCastRecipe(Casts.CAST_NUGGET)).register(p);
         new UnplaceableBlock(Categories.MATERIALS, BLOCK_CAST_LEAD, DummySmeltery.TYPE, Recipes.getDummyCastRecipe(Casts.CAST_BLOCK)).register(p);
-        new UnplaceableBlock(Categories.MATERIALS, BLOCK_CAST_MAGNESIUM, DummySmeltery.TYPE, Recipes.getDummyCastRecipe(Casts.CAST_BLOCK)).register(p);
+
+        new UnplaceableBlock(Categories.MATERIALS, NUGGET_CAST_SILVER, DummySmeltery.TYPE, Recipes.getDummyCastRecipe(Casts.CAST_NUGGET)).register(p);
         new UnplaceableBlock(Categories.MATERIALS, BLOCK_CAST_SILVER, DummySmeltery.TYPE, Recipes.getDummyCastRecipe(Casts.CAST_BLOCK)).register(p);
-        new UnplaceableBlock(Categories.MATERIALS, BLOCK_CAST_TIN, DummySmeltery.TYPE, Recipes.getDummyCastRecipe(Casts.CAST_BLOCK)).register(p);
+
+        new UnplaceableBlock(Categories.MATERIALS, NUGGET_CAST_ALUMINIUM, DummySmeltery.TYPE, Recipes.getDummyCastRecipe(Casts.CAST_NUGGET)).register(p);
+        new UnplaceableBlock(Categories.MATERIALS, BLOCK_CAST_ALUMINIUM, DummySmeltery.TYPE, Recipes.getDummyCastRecipe(Casts.CAST_BLOCK)).register(p);
+
+        new UnplaceableBlock(Categories.MATERIALS, NUGGET_CAST_MAGNESIUM, DummySmeltery.TYPE, Recipes.getDummyCastRecipe(Casts.CAST_NUGGET)).register(p);
+        new UnplaceableBlock(Categories.MATERIALS, BLOCK_CAST_MAGNESIUM, DummySmeltery.TYPE, Recipes.getDummyCastRecipe(Casts.CAST_BLOCK)).register(p);
+
+        new UnplaceableBlock(Categories.MATERIALS, NUGGET_CAST_ZINC, DummySmeltery.TYPE, Recipes.getDummyCastRecipe(Casts.CAST_NUGGET)).register(p);
         new UnplaceableBlock(Categories.MATERIALS, BLOCK_CAST_ZINC, DummySmeltery.TYPE, Recipes.getDummyCastRecipe(Casts.CAST_BLOCK)).register(p);
 
+        new UnplaceableBlock(Categories.MATERIALS, NUGGET_CAST_TIN, DummySmeltery.TYPE, Recipes.getDummyCastRecipe(Casts.CAST_NUGGET)).register(p);
+        new UnplaceableBlock(Categories.MATERIALS, BLOCK_CAST_TIN, DummySmeltery.TYPE, Recipes.getDummyCastRecipe(Casts.CAST_BLOCK)).register(p);
 
     }
 

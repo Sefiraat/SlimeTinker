@@ -36,10 +36,38 @@ public final class Recipes {
 
     // endregion
 
+    // region Dies
+
+    protected static final ItemStack[] DIE_AXE_HEAD = new ItemStack[] {
+            new ItemStack(Material.COBBLESTONE),    new ItemStack(Material.COBBLESTONE),    null,
+            new ItemStack(Material.COBBLESTONE),    null,                                   null,
+            null,                                   null,                                   null
+    };
+
+    //
+
     // region Casts
+
+    protected static final ItemStack[] CAST_NUGGET = new ItemStack[] {
+            new ItemStack(Material.GOLD_INGOT, 2),   new ItemStack(Material.IRON_NUGGET),   null,
+            null,                                           null,   null,
+            null,                                           null,   null
+    };
+
+    protected static final ItemStack[] CAST_INGOT = new ItemStack[] {
+            new ItemStack(Material.GOLD_INGOT, 2),   new ItemStack(Material.IRON_INGOT),   null,
+            null,                                           null,   null,
+            null,                                           null,   null
+    };
 
     protected static final ItemStack[] CAST_BLOCK = new ItemStack[] {
             new ItemStack(Material.GOLD_INGOT, 2),   new ItemStack(Material.STONE),   null,
+            null,                                           null,   null,
+            null,                                           null,   null
+    };
+
+    protected static final ItemStack[] CAST_AXEHEAD = new ItemStack[] {
+            new ItemStack(Material.GOLD_INGOT, 2),   Casts.DIE_AXEHEAD,   null,
             null,                                           null,   null,
             null,                                           null,   null
     };

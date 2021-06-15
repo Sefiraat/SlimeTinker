@@ -4,12 +4,14 @@ import io.github.sefiraat.slimetinker.SlimeTinker;
 import io.github.sefiraat.slimetinker.categories.Categories;
 import io.github.sefiraat.slimetinker.items.workstations.smeltery.DummySmeltery;
 import io.github.sefiraat.slimetinker.items.recipes.RecipeManager;
+import io.github.sefiraat.slimetinker.utils.SkullTextures;
 import io.github.sefiraat.slimetinker.utils.ThemeUtils;
 import io.github.thebusybiscuit.slimefun4.implementation.items.blocks.UnplaceableBlock;
 import me.mrCookieSlime.Slimefun.Lists.RecipeType;
 import me.mrCookieSlime.Slimefun.api.SlimefunItemStack;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
+import org.bukkit.inventory.ItemStack;
 
 
 public final class Casts {
@@ -18,69 +20,70 @@ public final class Casts {
         throw new IllegalStateException("Utility class");
     }
 
-    public static final String DIE_DESC = "A die to create a cast from";
     public static final String CAST_DESC = "A cast for metals.";
     public static final String INPUT_DESC = "Input : ";
     public static final String OUTPUT_DESC = "Output : ";
     public static final String UNIT_DESC = " Units";
-    
-    // region Crafted Dies
 
-    public static final SlimefunItemStack DIE_SHOVEL_HEAD =
-            ThemeUtils.themedItemStack(
-                    "DIE_SHOVEL_HEAD",
-                    SkullTextures.PART_SHOVEL_HEAD,
-                    ThemeUtils.ThemeItemType.CAST,
-                    "Die: Stone Shovel Head",
-                    ThemeUtils.PASSIVE + DIE_DESC
-            );
+    protected static final ItemStack[] RECIPE_CAST_NUGGET = new ItemStack[] {
+            new ItemStack(Material.GOLD_INGOT, 2),   new ItemStack(Material.IRON_NUGGET),   null,
+            null,                                           null,   null,
+            null,                                           null,   null
+    };
 
-    public static final SlimefunItemStack DIE_PICKAXE_HEAD =
-            ThemeUtils.themedItemStack(
-                    "DIE_PICKAXE_HEAD",
-                    SkullTextures.PART_PICKAXE_HEAD,
-                    ThemeUtils.ThemeItemType.CAST,
-                    "Die: Stone Pickaxe Head",
-                    ThemeUtils.PASSIVE + DIE_DESC
-            );
+    protected static final ItemStack[] RECIPE_CAST_INGOT = new ItemStack[] {
+            new ItemStack(Material.GOLD_INGOT, 2),   new ItemStack(Material.IRON_INGOT),   null,
+            null,                                           null,   null,
+            null,                                           null,   null
+    };
 
-    public static final SlimefunItemStack DIE_AXE_HEAD =
-            ThemeUtils.themedItemStack(
-                    "DIE_AXE_HEAD",
-                    SkullTextures.PART_AXE_HEAD,
-                    ThemeUtils.ThemeItemType.CAST,
-                    "Die: Stone Axe Head",
-                    ThemeUtils.PASSIVE + DIE_DESC
-            );
+    protected static final ItemStack[] RECIPE_CAST_BLOCK = new ItemStack[] {
+            new ItemStack(Material.GOLD_INGOT, 2),   new ItemStack(Material.STONE),   null,
+            null,                                           null,   null,
+            null,                                           null,   null
+    };
 
-    public static final SlimefunItemStack DIE_HOE_HEAD =
-            ThemeUtils.themedItemStack(
-                    "DIE_HOE_HEAD",
-                    SkullTextures.PART_HOE_HEAD,
-                    ThemeUtils.ThemeItemType.CAST,
-                    "Die: Stone Hoe Head",
-                    ThemeUtils.PASSIVE + DIE_DESC
-            );
+    protected static final ItemStack[] RECIPE_CAST_GEM = new ItemStack[] {
+            new ItemStack(Material.GOLD_INGOT, 2),   new ItemStack(Material.DIAMOND),   null,
+            null,                                           null,   null,
+            null,                                           null,   null
+    };
 
-    public static final SlimefunItemStack DIE_SWORD_BLADE =
-            ThemeUtils.themedItemStack(
-                    "DIE_SWORD_BLADE",
-                    SkullTextures.PART_SWORD_BLADE,
-                    ThemeUtils.ThemeItemType.CAST,
-                    "Die: Stone Axe Head",
-                    ThemeUtils.PASSIVE + DIE_DESC
-            );
+    protected static final ItemStack[] RECIPE_CAST_SHOVEL_HEAD = new ItemStack[] {
+            new ItemStack(Material.GOLD_INGOT, 2),   Dies.DIE_SHOVEL_HEAD,   null,
+            null,                                           null,   null,
+            null,                                           null,   null
+    };
 
-    public static final SlimefunItemStack DIE_TOOL_ROD =
-            ThemeUtils.themedItemStack(
-                    "DIE_TOOL_ROD",
-                    SkullTextures.PART_TOOL_ROD,
-                    ThemeUtils.ThemeItemType.CAST,
-                    "Die: Tool Rod",
-                    ThemeUtils.PASSIVE + DIE_DESC
-            );
+    protected static final ItemStack[] RECIPE_CAST_PICKAXE_HEAD = new ItemStack[] {
+            new ItemStack(Material.GOLD_INGOT, 2),   Dies.DIE_PICKAXE_HEAD,   null,
+            null,                                           null,   null,
+            null,                                           null,   null
+    };
 
-    // region Casts
+    protected static final ItemStack[] RECIPE_CAST_AXE_HEAD = new ItemStack[] {
+            new ItemStack(Material.GOLD_INGOT, 2),   Dies.DIE_AXE_HEAD,   null,
+            null,                                           null,   null,
+            null,                                           null,   null
+    };
+
+    protected static final ItemStack[] RECIPE_CAST_HOE_HEAD = new ItemStack[] {
+            new ItemStack(Material.GOLD_INGOT, 2),   Dies.DIE_HOE_HEAD,   null,
+            null,                                           null,   null,
+            null,                                           null,   null
+    };
+
+    protected static final ItemStack[] RECIPE_CAST_SWORD_BLADE = new ItemStack[] {
+            new ItemStack(Material.GOLD_INGOT, 2),   Dies.DIE_SWORD_BLADE,   null,
+            null,                                           null,   null,
+            null,                                           null,   null
+    };
+
+    protected static final ItemStack[] RECIPE_CAST_TOOL_ROD = new ItemStack[] {
+            new ItemStack(Material.GOLD_INGOT, 2),   Dies.DIE_TOOL_ROD, null,
+            null,                                           null,               null,
+            null,                                           null,               null
+    };
 
     public static final SlimefunItemStack CAST_NUGGET =
             ThemeUtils.themedItemStack(
@@ -202,31 +205,18 @@ public final class Casts {
                     ThemeUtils.CLICK_INFO + OUTPUT_DESC + ChatColor.WHITE + "1 Tool Rod"
             );
 
-
-    // end region
-
-
-
-
     public static void set(SlimeTinker p) {
 
-        new UnplaceableBlock(Categories.CASTS, DIE_SHOVEL_HEAD, RecipeType.ENHANCED_CRAFTING_TABLE, Recipes.DIE_SHOVEL_HEAD).register(p);
-        new UnplaceableBlock(Categories.CASTS, DIE_PICKAXE_HEAD, RecipeType.ENHANCED_CRAFTING_TABLE, Recipes.DIE_PICKAXE_HEAD).register(p);
-        new UnplaceableBlock(Categories.CASTS, DIE_AXE_HEAD, RecipeType.ENHANCED_CRAFTING_TABLE, Recipes.DIE_AXE_HEAD).register(p);
-        new UnplaceableBlock(Categories.CASTS, DIE_HOE_HEAD, RecipeType.ENHANCED_CRAFTING_TABLE, Recipes.DIE_HOE_HEAD).register(p);
-        new UnplaceableBlock(Categories.CASTS, DIE_SWORD_BLADE, RecipeType.ENHANCED_CRAFTING_TABLE, Recipes.DIE_SWORD_BLADE).register(p);
-        new UnplaceableBlock(Categories.CASTS, DIE_TOOL_ROD , RecipeType.ENHANCED_CRAFTING_TABLE, Recipes.DIE_TOOL_ROD).register(p);
-
-        new UnplaceableBlock(Categories.CASTS, CAST_NUGGET, DummySmeltery.TYPE, Recipes.CAST_NUGGET).register(p);
-        new UnplaceableBlock(Categories.CASTS, CAST_INGOT, DummySmeltery.TYPE, Recipes.CAST_INGOT).register(p);
-        new UnplaceableBlock(Categories.CASTS, CAST_BLOCK, DummySmeltery.TYPE, Recipes.CAST_BLOCK).register(p);
-        new UnplaceableBlock(Categories.CASTS, CAST_GEM, DummySmeltery.TYPE, Recipes.CAST_GEM).register(p);
-        new UnplaceableBlock(Categories.CASTS, CAST_SHOVELHEAD, DummySmeltery.TYPE, Recipes.CAST_SHOVEL_HEAD).register(p);
-        new UnplaceableBlock(Categories.CASTS, CAST_PICKAXEHEAD, DummySmeltery.TYPE, Recipes.CAST_PICKAXE_HEAD).register(p);
-        new UnplaceableBlock(Categories.CASTS, CAST_AXEHEAD, DummySmeltery.TYPE, Recipes.CAST_AXE_HEAD).register(p);
-        new UnplaceableBlock(Categories.CASTS, CAST_HOEHEAD, DummySmeltery.TYPE, Recipes.CAST_HOE_HEAD).register(p);
-        new UnplaceableBlock(Categories.CASTS, CAST_SWORDBLADE, DummySmeltery.TYPE, Recipes.CAST_SWORD_BLADE).register(p);
-        new UnplaceableBlock(Categories.CASTS, CAST_TOOLROD, DummySmeltery.TYPE, Recipes.CAST_TOOL_ROD).register(p);
+        new UnplaceableBlock(Categories.CASTS, CAST_NUGGET, DummySmeltery.TYPE, RECIPE_CAST_NUGGET).register(p);
+        new UnplaceableBlock(Categories.CASTS, CAST_INGOT, DummySmeltery.TYPE, RECIPE_CAST_INGOT).register(p);
+        new UnplaceableBlock(Categories.CASTS, CAST_BLOCK, DummySmeltery.TYPE, RECIPE_CAST_BLOCK).register(p);
+        new UnplaceableBlock(Categories.CASTS, CAST_GEM, DummySmeltery.TYPE, RECIPE_CAST_GEM).register(p);
+        new UnplaceableBlock(Categories.CASTS, CAST_SHOVELHEAD, DummySmeltery.TYPE, RECIPE_CAST_SHOVEL_HEAD).register(p);
+        new UnplaceableBlock(Categories.CASTS, CAST_PICKAXEHEAD, DummySmeltery.TYPE, RECIPE_CAST_PICKAXE_HEAD).register(p);
+        new UnplaceableBlock(Categories.CASTS, CAST_AXEHEAD, DummySmeltery.TYPE, RECIPE_CAST_AXE_HEAD).register(p);
+        new UnplaceableBlock(Categories.CASTS, CAST_HOEHEAD, DummySmeltery.TYPE, RECIPE_CAST_HOE_HEAD).register(p);
+        new UnplaceableBlock(Categories.CASTS, CAST_SWORDBLADE, DummySmeltery.TYPE, RECIPE_CAST_SWORD_BLADE).register(p);
+        new UnplaceableBlock(Categories.CASTS, CAST_TOOLROD, DummySmeltery.TYPE, RECIPE_CAST_TOOL_ROD).register(p);
 
     }
 }

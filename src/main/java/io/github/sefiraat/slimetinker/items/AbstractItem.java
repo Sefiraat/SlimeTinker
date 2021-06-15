@@ -1,4 +1,4 @@
-package io.github.sefiraat.slimetinker.items.materials;
+package io.github.sefiraat.slimetinker.items;
 
 import io.github.thebusybiscuit.slimefun4.core.attributes.NotPlaceable;
 import me.mrCookieSlime.Slimefun.api.SlimefunItemStack;

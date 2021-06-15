@@ -4,7 +4,9 @@ import io.github.mooy1.infinitylib.items.StackUtils;
 import io.github.sefiraat.slimetinker.SlimeTinker;
 import io.github.sefiraat.slimetinker.items.ComponentMaterials;
 import io.github.sefiraat.slimetinker.items.gui.GUIItems;
+import io.github.sefiraat.slimetinker.items.materials.Alloy;
 import io.github.sefiraat.slimetinker.items.materials.ComponentMaterial;
+import io.github.sefiraat.slimetinker.items.recipes.Alloys;
 import io.github.sefiraat.slimetinker.items.recipes.CastResult;
 import io.github.sefiraat.slimetinker.items.recipes.MoltenResult;
 import io.github.sefiraat.slimetinker.utils.ThemeUtils;
@@ -14,11 +16,13 @@ import me.mrCookieSlime.CSCoreLibPlugin.Configuration.Config;
 import me.mrCookieSlime.CSCoreLibPlugin.general.Inventory.ClickAction;
 import me.mrCookieSlime.Slimefun.api.BlockStorage;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
+import me.mrCookieSlime.Slimefun.cscorelib2.collections.Pair;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
+import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -156,6 +160,14 @@ public final class TinkersSmelteryCache extends AbstractCache {
         }
     }
 
+    private void addMetal(String metalName, int amount) {
+        if (tankContent.containsKey(metalName)) {
+            tankContent.put(metalName, tankContent.get(metalName) + amount);
+        } else {
+            tankContent.put(metalName, amount);
+        }
+    }
+
     private void removeMetal(String metalId, int amount) {
         int volume = tankContent.get(metalId);
         if (volume - amount <= 0) {
@@ -200,6 +212,28 @@ public final class TinkersSmelteryCache extends AbstractCache {
     }
 
     private boolean clickAlloy() {
+
+        for (Alloy alloy : Alloys.ALLOY_LIST) {
+            if (!alloy.getRecipe().keySet().equals(tankContent.keySet())) {
+                continue;
+            }
+            int maxPossible = 0;
+            for (Map.Entry<String, Integer> entry : alloy.getRecipe().entrySet()) {
+                int tankAmount = tankContent.get(entry.getKey());
+                int requiredAmount = entry.getValue();
+                if (tankAmount < requiredAmount) {
+                    return false;
+                }
+                int possible = Math.floorDiv(tankAmount, requiredAmount);
+                if (maxPossible == 0 || maxPossible > possible) {
+                    maxPossible = possible;
+                }
+            }
+            for (Map.Entry<String, Integer> entry : alloy.getRecipe().entrySet()) {
+                removeMetal(entry.getKey(), entry.getValue() * maxPossible);
+            }
+            addMetal(alloy.getName(), maxPossible);
+        }
         return false;
     }
 

@@ -65,6 +65,7 @@ public class TinkersSmeltery extends AbstractContainer {
 
     @Override
     protected void setupMenu(BlockMenuPreset blockMenuPreset) {
+
         blockMenuPreset.setSize(54);
 
         blockMenuPreset.drawBackground(GUIItems.menuBackground(), BACKGROUND_SLOTS);

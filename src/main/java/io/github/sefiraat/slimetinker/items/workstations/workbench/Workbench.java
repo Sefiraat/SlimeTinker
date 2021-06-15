@@ -71,7 +71,6 @@ public class Workbench extends AbstractContainer {
 
     @Override
     protected void setupMenu(BlockMenuPreset blockMenuPreset) {
-        blockMenuPreset.setSize(45);
 
         blockMenuPreset.drawBackground(GUIItems.menuBackground(), BACKGROUND_SLOTS);
 

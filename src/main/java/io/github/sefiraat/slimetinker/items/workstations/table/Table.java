@@ -2,7 +2,6 @@ package io.github.sefiraat.slimetinker.items.workstations.table;
 
 import io.github.mooy1.infinitylib.items.StackUtils;
 import io.github.mooy1.infinitylib.recipes.RecipeMap;
-import io.github.mooy1.infinitylib.recipes.RecipeOutput;
 import io.github.mooy1.infinitylib.recipes.ShapedRecipe;
 import io.github.mooy1.infinitylib.slimefun.AbstractContainer;
 import io.github.sefiraat.slimetinker.SlimeTinker;
@@ -10,7 +9,7 @@ import io.github.sefiraat.slimetinker.items.Parts;
 import io.github.sefiraat.slimetinker.items.Tools;
 import io.github.sefiraat.slimetinker.items.Workstations;
 import io.github.sefiraat.slimetinker.items.gui.GUIItems;
-import io.github.sefiraat.slimetinker.items.recipes.RecipeManager;
+import io.github.sefiraat.slimetinker.utils.IDStrings;
 import io.github.sefiraat.slimetinker.items.tools.ToolDefinition;
 import io.github.sefiraat.slimetinker.utils.ThemeUtils;
 import me.mrCookieSlime.CSCoreLibPlugin.Configuration.Config;
@@ -34,14 +33,13 @@ import org.bukkit.persistence.PersistentDataType;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nonnull;
-import java.util.Stack;
 
 public class Table extends AbstractContainer {
 
     private static final RecipeMap<ItemStack> RECIPES = new RecipeMap<>(ShapedRecipe::new);
     public static final RecipeType TYPE = new RecipeType(SlimeTinker.inst().getKey("tinkers-table"), Workstations.TINKERS_TABLE, RECIPES::put);
 
-    private static final int[] BACKGROUND_SLOTS = {0,1,2,3,5,7,8,18,19,21,23,25,26,27,28,30,32,34,35,45,46,48,50,52,53};
+    private static final int[] BACKGROUND_SLOTS = {0,1,3,5,7,8,18,19,21,23,25,26,27,28,30,32,34,35,45,46,48,50,52,53};
     private static final int[] BACKGROUND_INPUTS = {2,4,6,9,10,12,14,16,17,20,22,24,31,49};
     private static final int[] BACKGROUND_PREVIEW = {29,36,37,39,47};
     private static final int[] BACKGROUND_OUTPUT = {33,41,43,44,51};
@@ -53,11 +51,9 @@ public class Table extends AbstractContainer {
     protected static final int OUTPUT_SLOT = 42;
 
     private BlockMenu menu;
-    private final RecipeMap<ItemStack> craftingRecipes;
 
     public Table(Category category, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(category, item, recipeType, recipe);
-        this.craftingRecipes = RECIPES;
 
         addItemHandler(new BlockTicker() {
             @Override
@@ -81,7 +77,7 @@ public class Table extends AbstractContainer {
                 clearPreview();
                 return;
             }
-            if (!validateClass(head, RecipeManager.ID_HEAD) || !validateBinder(binding) || !validateClass(rod, RecipeManager.ID_ROD)) { // One or more items are not the correct part
+            if (!validateClass(head, IDStrings.ID_HEAD) || !validateBinder(binding) || !validateClass(rod, IDStrings.ID_ROD)) { // One or more items are not the correct part
                 clearPreview();
                 return;
             }
@@ -121,19 +117,19 @@ public class Table extends AbstractContainer {
         SlimeTinker.inst().getLogger().info(toolDefinition.getRodMaterial());
 
         switch (toolDefinition.getPartType()) {
-            case RecipeManager.ID_SHOVEL:
+            case IDStrings.ID_SHOVEL:
                 itemStack = Tools.SHOVEL.getStack(toolDefinition);
                 break;
-            case RecipeManager.ID_PICKAXE:
+            case IDStrings.ID_PICKAXE:
                 itemStack = Tools.PICKAXE.getStack(toolDefinition);
                 break;
-            case RecipeManager.ID_AXE:
+            case IDStrings.ID_AXE:
                 itemStack = Tools.AXE.getStack(toolDefinition);
                 break;
-            case RecipeManager.ID_HOE:
+            case IDStrings.ID_HOE:
                 itemStack = Tools.HOE.getStack(toolDefinition);
                 break;
-            case RecipeManager.ID_SWORD:
+            case IDStrings.ID_SWORD:
                 itemStack = Tools.SWORD.getStack(toolDefinition);
                 break;
             default:
@@ -172,7 +168,7 @@ public class Table extends AbstractContainer {
             player.sendMessage(ThemeUtils.ERROR + "Not all items present");
             return false;
         }
-        if (!validateClass(head, RecipeManager.ID_HEAD) || !validateBinder(binding) || !validateClass(rod, RecipeManager.ID_ROD)) { // One or more items are not the correct part
+        if (!validateClass(head, IDStrings.ID_HEAD) || !validateBinder(binding) || !validateClass(rod, IDStrings.ID_ROD)) { // One or more items are not the correct part
             player.sendMessage(ThemeUtils.WARNING + "One or more items are either not Tinker's parts or in the wrong slot?");
             return false;
         }
@@ -189,15 +185,16 @@ public class Table extends AbstractContainer {
 
     @Override
     protected void setupMenu(BlockMenuPreset blockMenuPreset) {
-        blockMenuPreset.setSize(54);
 
-        blockMenuPreset.drawBackground(GUIItems.menuBackground(), BACKGROUND_SLOTS);
         blockMenuPreset.drawBackground(GUIItems.menuBackgroundInput(), BACKGROUND_INPUTS);
         blockMenuPreset.drawBackground(GUIItems.menuBackgroundOutput(), BACKGROUND_OUTPUT);
         blockMenuPreset.drawBackground(GUIItems.menuBackgroundPreview(), BACKGROUND_PREVIEW);
 
         blockMenuPreset.addItem(CRAFT_BUTTON, GUIItems.menuCraft());
         blockMenuPreset.addMenuClickHandler(CRAFT_BUTTON, (player, i, itemStack, clickAction) -> false);
+        blockMenuPreset.addMenuClickHandler(PREVIEW_SLOT, (player, i, itemStack, clickAction) -> false);
+
+        blockMenuPreset.drawBackground(GUIItems.menuBackground(), BACKGROUND_SLOTS);
 
     }
 

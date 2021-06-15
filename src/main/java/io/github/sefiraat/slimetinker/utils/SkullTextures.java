@@ -1,4 +1,4 @@
-package io.github.sefiraat.slimetinker.items;
+package io.github.sefiraat.slimetinker.utils;
 
 public final class SkullTextures {
 

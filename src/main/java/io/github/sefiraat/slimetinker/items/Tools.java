@@ -2,20 +2,26 @@ package io.github.sefiraat.slimetinker.items;
 
 import io.github.sefiraat.slimetinker.SlimeTinker;
 import io.github.sefiraat.slimetinker.categories.Categories;
-import io.github.sefiraat.slimetinker.items.parts.AbstractPart;
 import io.github.sefiraat.slimetinker.items.tools.AbstractTool;
-import io.github.sefiraat.slimetinker.items.workstations.smeltery.DummySmeltery;
 import io.github.sefiraat.slimetinker.items.workstations.table.DummyTable;
+import io.github.sefiraat.slimetinker.utils.SkullTextures;
 import io.github.sefiraat.slimetinker.utils.ThemeUtils;
 import io.github.thebusybiscuit.slimefun4.implementation.items.blocks.UnplaceableBlock;
 import me.mrCookieSlime.Slimefun.api.SlimefunItemStack;
 import org.bukkit.Material;
-import org.bukkit.entity.Slime;
 import org.bukkit.inventory.ItemStack;
 
-public class Tools {
+public final class Tools {
 
     public static final String DESC_ERROR = "Error";
+
+    protected static ItemStack[] getDummyToolRecipe(ItemStack i1, ItemStack i2, ItemStack i3) {
+        return new ItemStack[]{
+                null,   null,   null,
+                i1,     i2,     i3,
+                null,   null,   null
+        };
+    }
 
     public static final SlimefunItemStack TOOL_SHOVEL_DUMMY =
             ThemeUtils.themedItemStack(
@@ -124,11 +130,11 @@ public class Tools {
     public static final AbstractTool SWORD = new AbstractTool(Categories.DUMMY, TOOL_SWORD, DummyTable.TYPE, new ItemStack[9]);
 
     public static void set(SlimeTinker p) {
-        new UnplaceableBlock(Categories.TOOLS, TOOL_SHOVEL_DUMMY, DummyTable.TYPE, Recipes.getDummyToolRecipe(Parts.PART_TOOL_ROD_DUMMY, Parts.PART_BINDING_DUMMY, Parts.PART_SHOVEL_HEAD_DUMMY)).register(p);
-        new UnplaceableBlock(Categories.TOOLS, TOOL_PICKAXE_DUMMY, DummyTable.TYPE, Recipes.getDummyToolRecipe(Parts.PART_TOOL_ROD_DUMMY, Parts.PART_BINDING_DUMMY, Parts.PART_PICKAXE_HEAD_DUMMY)).register(p);
-        new UnplaceableBlock(Categories.TOOLS, TOOL_AXE_DUMMY, DummyTable.TYPE, Recipes.getDummyToolRecipe(Parts.PART_TOOL_ROD_DUMMY, Parts.PART_BINDING_DUMMY, Parts.PART_AXE_HEAD_DUMMY)).register(p);
-        new UnplaceableBlock(Categories.TOOLS, TOOL_HOE_DUMMY, DummyTable.TYPE, Recipes.getDummyToolRecipe(Parts.PART_TOOL_ROD_DUMMY, Parts.PART_BINDING_DUMMY, Parts.PART_HOE_HEAD_DUMMY)).register(p);
-        new UnplaceableBlock(Categories.TOOLS, TOOL_SWORD_DUMMY, DummyTable.TYPE, Recipes.getDummyToolRecipe(Parts.PART_TOOL_ROD_DUMMY, Parts.PART_BINDING_DUMMY, Parts.PART_SWORD_BLADE_DUMMY)).register(p);
+        new UnplaceableBlock(Categories.TOOLS, TOOL_SHOVEL_DUMMY, DummyTable.TYPE, getDummyToolRecipe(Parts.PART_TOOL_ROD_DUMMY, Parts.PART_BINDING_DUMMY, Parts.PART_SHOVEL_HEAD_DUMMY)).register(p);
+        new UnplaceableBlock(Categories.TOOLS, TOOL_PICKAXE_DUMMY, DummyTable.TYPE, getDummyToolRecipe(Parts.PART_TOOL_ROD_DUMMY, Parts.PART_BINDING_DUMMY, Parts.PART_PICKAXE_HEAD_DUMMY)).register(p);
+        new UnplaceableBlock(Categories.TOOLS, TOOL_AXE_DUMMY, DummyTable.TYPE, getDummyToolRecipe(Parts.PART_TOOL_ROD_DUMMY, Parts.PART_BINDING_DUMMY, Parts.PART_AXE_HEAD_DUMMY)).register(p);
+        new UnplaceableBlock(Categories.TOOLS, TOOL_HOE_DUMMY, DummyTable.TYPE, getDummyToolRecipe(Parts.PART_TOOL_ROD_DUMMY, Parts.PART_BINDING_DUMMY, Parts.PART_HOE_HEAD_DUMMY)).register(p);
+        new UnplaceableBlock(Categories.TOOLS, TOOL_SWORD_DUMMY, DummyTable.TYPE, getDummyToolRecipe(Parts.PART_TOOL_ROD_DUMMY, Parts.PART_BINDING_DUMMY, Parts.PART_SWORD_BLADE_DUMMY)).register(p);
     }
 
 }

@@ -2,8 +2,7 @@ package io.github.sefiraat.slimetinker.items.tools;
 
 import io.github.sefiraat.slimetinker.SlimeTinker;
 import io.github.sefiraat.slimetinker.items.ComponentMaterials;
-import io.github.sefiraat.slimetinker.items.Tools;
-import io.github.sefiraat.slimetinker.items.recipes.RecipeManager;
+import io.github.sefiraat.slimetinker.utils.IDStrings;
 import io.github.sefiraat.slimetinker.utils.ThemeUtils;
 import io.github.thebusybiscuit.slimefun4.implementation.items.blocks.UnplaceableBlock;
 import me.mrCookieSlime.Slimefun.Lists.RecipeType;
@@ -45,15 +44,15 @@ public class AbstractTool extends UnplaceableBlock {
 
     public Material getMaterial(ToolDefinition toolDefinition) {
         switch (toolDefinition.getPartType()) {
-            case RecipeManager.ID_SHOVEL:
+            case IDStrings.ID_SHOVEL:
                 return Material.STONE_SHOVEL;
-            case RecipeManager.ID_PICKAXE:
+            case IDStrings.ID_PICKAXE:
                 return Material.STONE_PICKAXE;
-            case RecipeManager.ID_AXE:
+            case IDStrings.ID_AXE:
                 return Material.STONE_AXE;
-            case RecipeManager.ID_HOE:
+            case IDStrings.ID_HOE:
                 return Material.STONE_HOE;
-            case RecipeManager.ID_SWORD:
+            case IDStrings.ID_SWORD:
                 return Material.STONE_SWORD;
             default:
                 throw new IllegalStateException("Unexpected value: " + toolDefinition.getClassType());

@@ -1,7 +1,7 @@
 package io.github.sefiraat.slimetinker.items.gui;
 
 import io.github.sefiraat.slimetinker.items.ComponentMaterials;
-import io.github.sefiraat.slimetinker.items.SkullTextures;
+import io.github.sefiraat.slimetinker.utils.SkullTextures;
 import io.github.sefiraat.slimetinker.utils.ThemeUtils;
 import me.mrCookieSlime.Slimefun.cscorelib2.item.CustomItem;
 import me.mrCookieSlime.Slimefun.cscorelib2.skull.SkullItem;

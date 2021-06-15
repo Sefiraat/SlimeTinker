@@ -106,12 +106,12 @@ public class RecipeManager {
         MAP_DIE_INGOT.put(Liquids.getById(ID_GOLD), Casts.CAST_INGOT);
         MAP_DIE_BLOCK.put(Liquids.getById(ID_GOLD), Casts.CAST_BLOCK);
         MAP_DIE_GEM.put(Liquids.getById(ID_GOLD), Casts.CAST_GEM);
-        MAP_DIE_SHOVELHEAD.put(Liquids.getById(ID_GOLD), Casts.CAST_SHOVELHEAD);
-        MAP_DIE_PICKAXEHEAD.put(Liquids.getById(ID_GOLD), Casts.CAST_PICKAXEHEAD);
-        MAP_DIE_AXEHEAD.put(Liquids.getById(ID_GOLD), Casts.CAST_AXEHEAD);
-        MAP_DIE_HOEHEAD.put(Liquids.getById(ID_GOLD), Casts.CAST_HOEHEAD);
-        MAP_DIE_SWORDBLADE.put(Liquids.getById(ID_GOLD), Casts.CAST_SWORDBLADE);
-        MAP_DIE_TOOLROD.put(Liquids.getById(ID_GOLD), Casts.CAST_TOOLROD);
+        MAP_DIE_SHOVELHEAD.put(Liquids.getById(ID_BRASS), Casts.CAST_SHOVELHEAD);
+        MAP_DIE_PICKAXEHEAD.put(Liquids.getById(ID_BRASS), Casts.CAST_PICKAXEHEAD);
+        MAP_DIE_AXEHEAD.put(Liquids.getById(ID_BRASS), Casts.CAST_AXEHEAD);
+        MAP_DIE_HOEHEAD.put(Liquids.getById(ID_BRASS), Casts.CAST_HOEHEAD);
+        MAP_DIE_SWORDBLADE.put(Liquids.getById(ID_BRASS), Casts.CAST_SWORDBLADE);
+        MAP_DIE_TOOLROD.put(Liquids.getById(ID_BRASS), Casts.CAST_TOOLROD);
 
         // Nuggets
         MAP_CAST_NUGGET.put(Liquids.getById(ID_IRON), new ItemStack(Material.IRON_NUGGET));

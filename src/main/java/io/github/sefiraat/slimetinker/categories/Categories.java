@@ -19,14 +19,14 @@ public final class Categories {
     public static CustomItem catMain() {
         return new CustomItem(
                 SkullItem.fromBase64(SkullTextures.CAT_MAIN),
-                ThemeUtils.MAIN + "Slime Tinker"
+                ThemeUtils.MAIN + "SlimeTinker"
         );
     }
 
     public static CustomItem catMaterials() {
         return new CustomItem(
                 SkullItem.fromBase64(SkullTextures.CAT_MATERIALS),
-                ThemeUtils.MAIN + "Tinkers Materials"
+                ThemeUtils.MAIN + "Materials"
         );
     }
 
@@ -47,14 +47,14 @@ public final class Categories {
     public static CustomItem catMachines() {
         return new CustomItem(
                 SkullItem.fromBase64(SkullTextures.CAT_MAIN),
-                ThemeUtils.MAIN + "Slime Tinker Machinery"
+                ThemeUtils.MAIN + "Work Stations"
         );
     }
 
     public static CustomItem catDummy() {
         return new CustomItem(
                 Material.BARRIER,
-                ThemeUtils.MAIN + "Slime Tinker Dummy"
+                ThemeUtils.MAIN + "SlimeTinker Dummy"
         );
     }
 

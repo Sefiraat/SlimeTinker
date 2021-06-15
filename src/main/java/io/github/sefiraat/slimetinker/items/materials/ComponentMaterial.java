@@ -3,7 +3,7 @@ package io.github.sefiraat.slimetinker.items.materials;
 import lombok.Getter;
 import net.md_5.bungee.api.ChatColor;
 
-public class Liquid {
+public class ComponentMaterial {
 
     @Getter
     private final String id;
@@ -15,7 +15,7 @@ public class Liquid {
         return ChatColor.of(colorHex);
     }
 
-    public Liquid(String id, String colorHex) {
+    public ComponentMaterial(String id, String colorHex) {
         this.id = id;
         this.colorHex = colorHex;
     }

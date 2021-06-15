@@ -1,11 +1,10 @@
-package io.github.sefiraat.slimetinker.items.machines.smeltery;
+package io.github.sefiraat.slimetinker.items.workstations.smeltery;
 
 import io.github.mooy1.infinitylib.items.StackUtils;
 import io.github.sefiraat.slimetinker.SlimeTinker;
-import io.github.sefiraat.slimetinker.items.Liquids;
+import io.github.sefiraat.slimetinker.items.ComponentMaterials;
 import io.github.sefiraat.slimetinker.items.gui.GUIItems;
-import io.github.sefiraat.slimetinker.items.machines.caches.AbstractCache;
-import io.github.sefiraat.slimetinker.items.materials.Liquid;
+import io.github.sefiraat.slimetinker.items.materials.ComponentMaterial;
 import io.github.sefiraat.slimetinker.items.recipes.CastResult;
 import io.github.sefiraat.slimetinker.items.recipes.MoltenResult;
 import io.github.sefiraat.slimetinker.utils.ThemeUtils;
@@ -150,10 +149,10 @@ public final class TinkersSmelteryCache extends AbstractCache {
     }
 
     private void addMetal(MoltenResult result) {
-        if (tankContent.containsKey(result.getLiquid().getId())) {
-            tankContent.put(result.getLiquid().getId(), tankContent.get(result.getLiquid().getId()) + result.getAmount());
+        if (tankContent.containsKey(result.getComponentMaterial().getId())) {
+            tankContent.put(result.getComponentMaterial().getId(), tankContent.get(result.getComponentMaterial().getId()) + result.getAmount());
         } else {
-            tankContent.put(result.getLiquid().getId(), result.getAmount());
+            tankContent.put(result.getComponentMaterial().getId(), result.getAmount());
         }
     }
 
@@ -224,15 +223,15 @@ public final class TinkersSmelteryCache extends AbstractCache {
         }
 
         String metalID = first.get();
-        Liquid liquid = Liquids.getById(metalID);
+        ComponentMaterial componentMaterial = ComponentMaterials.getById(metalID);
 
         // Cast valid, but this cast and metal combination doesn't work
-        if (!result.getOutputs().containsKey(liquid)) {
+        if (!result.getOutputs().containsKey(componentMaterial)) {
             player.sendMessage(ThemeUtils.WARNING + "The selected metal cannot be shaped into the selected cast.");
             return false;
         }
 
-        ItemStack outputItem = result.getOutputs().get(liquid).clone();
+        ItemStack outputItem = result.getOutputs().get(componentMaterial).clone();
         int metalAmount = result.getAmount();
 
         // Does not have enough metal to cats this specific item

@@ -1,4 +1,4 @@
-package io.github.sefiraat.slimetinker.items.machines.workbench;
+package io.github.sefiraat.slimetinker.items.workstations.workbench;
 
 import io.github.mooy1.infinitylib.recipes.RecipeMap;
 import io.github.mooy1.infinitylib.recipes.ShapedRecipe;
@@ -18,8 +18,8 @@ public class DummyWorkbench {
 
     public static final SlimefunItemStack STACK = new SlimefunItemStack(
             "DUMMY_TINKERS_SMELTERY",
-            Material.CHISELED_POLISHED_BLACKSTONE,
-            ThemeUtils.ITEM_MACHINE + "Workbench",
+            Material.FLETCHING_TABLE,
+            ThemeUtils.ITEM_MACHINE + "Table",
             "",
             ThemeUtils.PASSIVE + "This item is crafted in the workbench.",
             "",

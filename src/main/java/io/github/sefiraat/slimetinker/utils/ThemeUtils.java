@@ -37,6 +37,7 @@ public final class ThemeUtils {
     public static final ChatColor ITEM_LIQUID = ChatColor.of("#65dbb4");
     public static final ChatColor ITEM_CAST = ChatColor.of("#ffe138");
     public static final ChatColor ITEM_PART = ChatColor.of("#42c8f5");
+    public static final ChatColor ITEM_TOOL = ChatColor.of("#c2fc03");
 
     public static final String LORE_TYPE_CRAFT = ITEM_TYPEDESC + "Crafting Material";
     public static final String LORE_TYPE_MACHINE = ITEM_TYPEDESC + "Machine";
@@ -44,9 +45,10 @@ public final class ThemeUtils {
     public static final String LORE_TYPE_BASE = ITEM_TYPEDESC + "Base Resource";
     public static final String LORE_TYPE_CHEST = ITEM_TYPEDESC + "Chest";
     public static final String LORE_MOLTEN_METAL = ITEM_TYPEDESC + "Molten Metal";
-    public static final String LORE_LIQUID = ITEM_TYPEDESC + "Liquid";
+    public static final String LORE_LIQUID = ITEM_TYPEDESC + "ComponentMaterial";
     public static final String LORE_CAST = ITEM_TYPEDESC + "Cast";
     public static final String LORE_PART = ITEM_TYPEDESC + "Part";
+    public static final String LORE_TOOL = ITEM_TYPEDESC + "Tinker's Tool";
 
     public static SlimefunItemStack themedItemStack(String id, String skull, ThemeItemType type, String name, String... loreLines) {
         AbstractItem itemStack = new AbstractItem(
@@ -96,6 +98,7 @@ public final class ThemeUtils {
             case LIQUID: return ITEM_LIQUID;
             case CAST: return ITEM_CAST;
             case PART: return ITEM_PART;
+            case TOOL: return ITEM_TOOL;
             default: return ITEM_BASE;
         }
     }
@@ -110,6 +113,7 @@ public final class ThemeUtils {
             case LIQUID: return LORE_LIQUID;
             case CAST: return LORE_CAST;
             case PART: return LORE_PART;
+            case TOOL: return LORE_TOOL;
             default: return LORE_TYPE_BASE;
         }
     }
@@ -128,7 +132,8 @@ public final class ThemeUtils {
         MOLTEN_METAL,
         LIQUID,
         CAST,
-        PART
+        PART,
+        TOOL
     }
 
 }

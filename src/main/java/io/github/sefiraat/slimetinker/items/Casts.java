@@ -2,7 +2,7 @@ package io.github.sefiraat.slimetinker.items;
 
 import io.github.sefiraat.slimetinker.SlimeTinker;
 import io.github.sefiraat.slimetinker.categories.Categories;
-import io.github.sefiraat.slimetinker.items.machines.smeltery.DummySmeltery;
+import io.github.sefiraat.slimetinker.items.workstations.smeltery.DummySmeltery;
 import io.github.sefiraat.slimetinker.items.recipes.RecipeManager;
 import io.github.sefiraat.slimetinker.utils.ThemeUtils;
 import io.github.thebusybiscuit.slimefun4.implementation.items.blocks.UnplaceableBlock;
@@ -18,6 +18,12 @@ public final class Casts {
         throw new IllegalStateException("Utility class");
     }
 
+    public static final String DIE_DESC = "A die to create a cast from";
+    public static final String CAST_DESC = "A cast for metals.";
+    public static final String INPUT_DESC = "Input : ";
+    public static final String OUTPUT_DESC = "Output : ";
+    public static final String UNIT_DESC = " Units";
+    
     // region Crafted Dies
 
     public static final SlimefunItemStack DIE_SHOVEL_HEAD =
@@ -26,7 +32,7 @@ public final class Casts {
                     SkullTextures.PART_SHOVEL_HEAD,
                     ThemeUtils.ThemeItemType.CAST,
                     "Die: Stone Shovel Head",
-                    ThemeUtils.PASSIVE + "A die to create a cast from"
+                    ThemeUtils.PASSIVE + DIE_DESC
             );
 
     public static final SlimefunItemStack DIE_PICKAXE_HEAD =
@@ -35,7 +41,7 @@ public final class Casts {
                     SkullTextures.PART_PICKAXE_HEAD,
                     ThemeUtils.ThemeItemType.CAST,
                     "Die: Stone Pickaxe Head",
-                    ThemeUtils.PASSIVE + "A die to create a cast from"
+                    ThemeUtils.PASSIVE + DIE_DESC
             );
 
     public static final SlimefunItemStack DIE_AXE_HEAD =
@@ -44,7 +50,7 @@ public final class Casts {
                     SkullTextures.PART_AXE_HEAD,
                     ThemeUtils.ThemeItemType.CAST,
                     "Die: Stone Axe Head",
-                    ThemeUtils.PASSIVE + "A die to create a cast from"
+                    ThemeUtils.PASSIVE + DIE_DESC
             );
 
     public static final SlimefunItemStack DIE_HOE_HEAD =
@@ -53,7 +59,7 @@ public final class Casts {
                     SkullTextures.PART_HOE_HEAD,
                     ThemeUtils.ThemeItemType.CAST,
                     "Die: Stone Hoe Head",
-                    ThemeUtils.PASSIVE + "A die to create a cast from"
+                    ThemeUtils.PASSIVE + DIE_DESC
             );
 
     public static final SlimefunItemStack DIE_SWORD_BLADE =
@@ -62,7 +68,7 @@ public final class Casts {
                     SkullTextures.PART_SWORD_BLADE,
                     ThemeUtils.ThemeItemType.CAST,
                     "Die: Stone Axe Head",
-                    ThemeUtils.PASSIVE + "A die to create a cast from"
+                    ThemeUtils.PASSIVE + DIE_DESC
             );
 
     public static final SlimefunItemStack DIE_TOOL_ROD =
@@ -71,7 +77,7 @@ public final class Casts {
                     SkullTextures.PART_TOOL_ROD,
                     ThemeUtils.ThemeItemType.CAST,
                     "Die: Tool Rod",
-                    ThemeUtils.PASSIVE + "A die to create a cast from"
+                    ThemeUtils.PASSIVE + DIE_DESC
             );
 
     // region Casts
@@ -82,10 +88,10 @@ public final class Casts {
                     Material.YELLOW_CARPET,
                     ThemeUtils.ThemeItemType.CAST,
                     "Cast: Metal Nugget",
-                    ThemeUtils.PASSIVE + "A cast for metals.",
+                    ThemeUtils.PASSIVE + CAST_DESC,
                     "",
-                    ThemeUtils.CLICK_INFO + "Input : " + ChatColor.WHITE + RecipeManager.AMOUNT_NUGGET + " Units",
-                    ThemeUtils.CLICK_INFO + "Output : " + ChatColor.WHITE + "1 Nugget"
+                    ThemeUtils.CLICK_INFO + INPUT_DESC + ChatColor.WHITE + RecipeManager.AMOUNT_NUGGET + UNIT_DESC,
+                    ThemeUtils.CLICK_INFO + OUTPUT_DESC + ChatColor.WHITE + "1 Nugget"
             );
 
     public static final SlimefunItemStack CAST_BLOCK =
@@ -94,10 +100,10 @@ public final class Casts {
                     Material.YELLOW_CARPET,
                     ThemeUtils.ThemeItemType.CAST,
                     "Cast: Metal Block",
-                    ThemeUtils.PASSIVE + "A cast for metals.",
+                    ThemeUtils.PASSIVE + CAST_DESC,
                     "",
-                    ThemeUtils.CLICK_INFO + "Input : " + ChatColor.WHITE + RecipeManager.AMOUNT_BLOCK + " Units",
-                    ThemeUtils.CLICK_INFO + "Output : " + ChatColor.WHITE + "1 Block"
+                    ThemeUtils.CLICK_INFO + INPUT_DESC + ChatColor.WHITE + RecipeManager.AMOUNT_BLOCK + UNIT_DESC,
+                    ThemeUtils.CLICK_INFO + OUTPUT_DESC + ChatColor.WHITE + "1 Block"
             );
 
     public static final SlimefunItemStack CAST_INGOT =
@@ -106,10 +112,10 @@ public final class Casts {
                     Material.YELLOW_CARPET,
                     ThemeUtils.ThemeItemType.CAST,
                     "Cast: Metal Ingot",
-                    ThemeUtils.PASSIVE + "A cast for metals.",
+                    ThemeUtils.PASSIVE + CAST_DESC,
                     "",
-                    ThemeUtils.CLICK_INFO + "Input : " + ChatColor.WHITE + RecipeManager.AMOUNT_INGOT + " Units",
-                    ThemeUtils.CLICK_INFO + "Output : " + ChatColor.WHITE + "1 Block"
+                    ThemeUtils.CLICK_INFO + INPUT_DESC + ChatColor.WHITE + RecipeManager.AMOUNT_INGOT + UNIT_DESC,
+                    ThemeUtils.CLICK_INFO + OUTPUT_DESC + ChatColor.WHITE + "1 Block"
             );
 
     public static final SlimefunItemStack CAST_GEM =
@@ -120,8 +126,8 @@ public final class Casts {
                     "Cast: Gem",
                     ThemeUtils.PASSIVE + "A cast for non-metallic liquids.",
                     "",
-                    ThemeUtils.CLICK_INFO + "Input : " + ChatColor.WHITE + RecipeManager.AMOUNT_GEM + " Units",
-                    ThemeUtils.CLICK_INFO + "Output : " + ChatColor.WHITE + "1 Gem"
+                    ThemeUtils.CLICK_INFO + INPUT_DESC + ChatColor.WHITE + RecipeManager.AMOUNT_GEM + UNIT_DESC,
+                    ThemeUtils.CLICK_INFO + OUTPUT_DESC + ChatColor.WHITE + "1 Gem"
             );
 
     public static final SlimefunItemStack CAST_SHOVELHEAD =
@@ -130,10 +136,10 @@ public final class Casts {
                     Material.ORANGE_CARPET,
                     ThemeUtils.ThemeItemType.CAST,
                     "Cast: Shovel Head",
-                    ThemeUtils.PASSIVE + "A cast for metals.",
+                    ThemeUtils.PASSIVE + CAST_DESC,
                     "",
-                    ThemeUtils.CLICK_INFO + "Input : " + ChatColor.WHITE + RecipeManager.AMOUNT_SHOVELHEAD + " Units",
-                    ThemeUtils.CLICK_INFO + "Output : " + ChatColor.WHITE + "1 Shovel Head"
+                    ThemeUtils.CLICK_INFO + INPUT_DESC + ChatColor.WHITE + RecipeManager.AMOUNT_SHOVELHEAD + UNIT_DESC,
+                    ThemeUtils.CLICK_INFO + OUTPUT_DESC + ChatColor.WHITE + "1 Shovel Head"
             );
 
     public static final SlimefunItemStack CAST_PICKAXEHEAD =
@@ -142,10 +148,10 @@ public final class Casts {
                     Material.ORANGE_CARPET,
                     ThemeUtils.ThemeItemType.CAST,
                     "Cast: Pickaxe Head",
-                    ThemeUtils.PASSIVE + "A cast for metals.",
+                    ThemeUtils.PASSIVE + CAST_DESC,
                     "",
-                    ThemeUtils.CLICK_INFO + "Input : " + ChatColor.WHITE + RecipeManager.AMOUNT_PICKAXEHEAD + " Units",
-                    ThemeUtils.CLICK_INFO + "Output : " + ChatColor.WHITE + "1 Pickaxe Head"
+                    ThemeUtils.CLICK_INFO + INPUT_DESC + ChatColor.WHITE + RecipeManager.AMOUNT_PICKAXEHEAD + UNIT_DESC,
+                    ThemeUtils.CLICK_INFO + OUTPUT_DESC + ChatColor.WHITE + "1 Pickaxe Head"
             );
 
     public static final SlimefunItemStack CAST_AXEHEAD =
@@ -154,10 +160,10 @@ public final class Casts {
                     Material.ORANGE_CARPET,
                     ThemeUtils.ThemeItemType.CAST,
                     "Cast: Axe Head",
-                    ThemeUtils.PASSIVE + "A cast for metals.",
+                    ThemeUtils.PASSIVE + CAST_DESC,
                     "",
-                    ThemeUtils.CLICK_INFO + "Input : " + ChatColor.WHITE + RecipeManager.AMOUNT_AXEHEAD + " Units",
-                    ThemeUtils.CLICK_INFO + "Output : " + ChatColor.WHITE + "1 Axe Head"
+                    ThemeUtils.CLICK_INFO + INPUT_DESC + ChatColor.WHITE + RecipeManager.AMOUNT_AXEHEAD + UNIT_DESC,
+                    ThemeUtils.CLICK_INFO + OUTPUT_DESC + ChatColor.WHITE + "1 Axe Head"
             );
 
     public static final SlimefunItemStack CAST_HOEHEAD =
@@ -166,10 +172,10 @@ public final class Casts {
                     Material.ORANGE_CARPET,
                     ThemeUtils.ThemeItemType.CAST,
                     "Cast: Hoe Head",
-                    ThemeUtils.PASSIVE + "A cast for metals.",
+                    ThemeUtils.PASSIVE + CAST_DESC,
                     "",
-                    ThemeUtils.CLICK_INFO + "Input : " + ChatColor.WHITE + RecipeManager.AMOUNT_HOEHEAD + " Units",
-                    ThemeUtils.CLICK_INFO + "Output : " + ChatColor.WHITE + "1 Hoe Head"
+                    ThemeUtils.CLICK_INFO + INPUT_DESC + ChatColor.WHITE + RecipeManager.AMOUNT_HOEHEAD + UNIT_DESC,
+                    ThemeUtils.CLICK_INFO + OUTPUT_DESC + ChatColor.WHITE + "1 Hoe Head"
             );
 
     public static final SlimefunItemStack CAST_SWORDBLADE =
@@ -178,10 +184,10 @@ public final class Casts {
                     Material.ORANGE_CARPET,
                     ThemeUtils.ThemeItemType.CAST,
                     "Cast: Sword Blade",
-                    ThemeUtils.PASSIVE + "A cast for metals.",
+                    ThemeUtils.PASSIVE + CAST_DESC,
                     "",
-                    ThemeUtils.CLICK_INFO + "Input : " + ChatColor.WHITE + RecipeManager.AMOUNT_SWORDBLADE + " Units",
-                    ThemeUtils.CLICK_INFO + "Output : " + ChatColor.WHITE + "1 Sword Blade"
+                    ThemeUtils.CLICK_INFO + INPUT_DESC + ChatColor.WHITE + RecipeManager.AMOUNT_SWORDBLADE + UNIT_DESC,
+                    ThemeUtils.CLICK_INFO + OUTPUT_DESC + ChatColor.WHITE + "1 Sword Blade"
             );
 
     public static final SlimefunItemStack CAST_TOOLROD =
@@ -190,10 +196,10 @@ public final class Casts {
                     Material.ORANGE_CARPET,
                     ThemeUtils.ThemeItemType.CAST,
                     "Cast: Tool Rod",
-                    ThemeUtils.PASSIVE + "A cast for metals.",
+                    ThemeUtils.PASSIVE + CAST_DESC,
                     "",
-                    ThemeUtils.CLICK_INFO + "Input : " + ChatColor.WHITE + RecipeManager.AMOUNT_TOOLROD + " Units",
-                    ThemeUtils.CLICK_INFO + "Output : " + ChatColor.WHITE + "1 Tool Rod"
+                    ThemeUtils.CLICK_INFO + INPUT_DESC + ChatColor.WHITE + RecipeManager.AMOUNT_TOOLROD + UNIT_DESC,
+                    ThemeUtils.CLICK_INFO + OUTPUT_DESC + ChatColor.WHITE + "1 Tool Rod"
             );
 
 

@@ -1,6 +1,6 @@
 package io.github.sefiraat.slimetinker.items.gui;
 
-import io.github.sefiraat.slimetinker.items.Liquids;
+import io.github.sefiraat.slimetinker.items.ComponentMaterials;
 import io.github.sefiraat.slimetinker.items.SkullTextures;
 import io.github.sefiraat.slimetinker.utils.ThemeUtils;
 import me.mrCookieSlime.Slimefun.cscorelib2.item.CustomItem;
@@ -23,32 +23,40 @@ public final class GUIItems {
     public static CustomItem menuBackground() {
         return new CustomItem(
                 Material.BLACK_STAINED_GLASS_PANE,
-                "",
-                ""
+                " ",
+                " "
         );
     }
 
     public static CustomItem menuBackgroundInput() {
         return new CustomItem(
                 Material.LIGHT_BLUE_STAINED_GLASS_PANE,
-                "",
-                ""
+                ChatColor.BLUE + "Input",
+                " "
         );
     }
 
     public static CustomItem menuBackgroundOutput() {
         return new CustomItem(
                 Material.ORANGE_STAINED_GLASS_PANE,
-                "",
-                ""
+                ChatColor.RED + "Output",
+                " "
         );
     }
 
     public static CustomItem menuBackgroundCast() {
         return new CustomItem(
                 Material.LIME_STAINED_GLASS_PANE,
-                "",
-                ""
+                ChatColor.GREEN + "Cast/Die",
+                " "
+        );
+    }
+
+    public static CustomItem menuBackgroundPreview() {
+        return new CustomItem(
+                Material.LIME_STAINED_GLASS_PANE,
+                ChatColor.GREEN + "Preview",
+                " "
         );
     }
 
@@ -100,7 +108,7 @@ public final class GUIItems {
         if (map != null) {
             for (Map.Entry<String, Integer> e : map.entrySet()) {
                 String name =
-                        ChatColor.of(Liquids.getById(e.getKey()).getColorHex()) +
+                        ChatColor.of(ComponentMaterials.getById(e.getKey()).getColorHex()) +
                         ThemeUtils.toTitleCase(e.getKey());
                 String amount = e.getValue().toString();
                 meta.add(ThemeUtils.CLICK_INFO + name + ": " + ChatColor.WHITE + amount + " units.");

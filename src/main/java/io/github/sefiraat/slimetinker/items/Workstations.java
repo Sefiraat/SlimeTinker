@@ -2,16 +2,17 @@ package io.github.sefiraat.slimetinker.items;
 
 import io.github.sefiraat.slimetinker.SlimeTinker;
 import io.github.sefiraat.slimetinker.categories.Categories;
-import io.github.sefiraat.slimetinker.items.machines.smeltery.TinkersSmeltery;
-import io.github.sefiraat.slimetinker.items.machines.workbench.Workbench;
+import io.github.sefiraat.slimetinker.items.workstations.smeltery.TinkersSmeltery;
+import io.github.sefiraat.slimetinker.items.workstations.table.Table;
+import io.github.sefiraat.slimetinker.items.workstations.workbench.Workbench;
 import io.github.sefiraat.slimetinker.utils.ThemeUtils;
 import me.mrCookieSlime.Slimefun.Lists.RecipeType;
 import me.mrCookieSlime.Slimefun.api.SlimefunItemStack;
 import org.bukkit.Material;
 
-public final class Machines {
+public final class Workstations {
 
-    private Machines() {
+    private Workstations() {
         throw new IllegalStateException("Utility class");
     }
 
@@ -32,7 +33,7 @@ public final class Machines {
     public static final SlimefunItemStack TINKERS_WORKBENCH =
             ThemeUtils.themedItemStack(
                     "TINKERS_WORKBENCH",
-                    Material.CRAFTING_TABLE,
+                    Material.FLETCHING_TABLE,
                     ThemeUtils.ThemeItemType.MACHINE,
                     "Tinkers Workbench",
                     "Used for crafting various items",
@@ -40,10 +41,21 @@ public final class Machines {
                     "constructions."
             );
 
+    // Table
+    public static final SlimefunItemStack TINKERS_TABLE =
+            ThemeUtils.themedItemStack(
+                    "TINKERS_TABLE",
+                    Material.SMITHING_TABLE,
+                    ThemeUtils.ThemeItemType.MACHINE,
+                    "Tinkers Table",
+                    "Combines parts into tools."
+            );
+
     public static void set(SlimeTinker p) {
 
-        new TinkersSmeltery(Categories.MACHINES, TINKERS_SMELTERY_CORE, RecipeType.ENHANCED_CRAFTING_TABLE, Recipes.MOLTEN_IRON).register(p);
-        new Workbench(Categories.MACHINES, TINKERS_WORKBENCH, RecipeType.ENHANCED_CRAFTING_TABLE, Recipes.MOLTEN_IRON).register(p);
+        new Workbench(Categories.WORKSTATIONS, TINKERS_WORKBENCH, RecipeType.ENHANCED_CRAFTING_TABLE, Recipes.TINKERS_WORKBENCH).register(p);
+        new TinkersSmeltery(Categories.WORKSTATIONS, TINKERS_SMELTERY_CORE, Workbench.TYPE, Recipes.TINKERS_SMELTERY_CORE).register(p);
+        new Table(Categories.WORKSTATIONS, TINKERS_TABLE, Workbench.TYPE, Recipes.TINKERS_TABLE).register(p);
 
     }
 

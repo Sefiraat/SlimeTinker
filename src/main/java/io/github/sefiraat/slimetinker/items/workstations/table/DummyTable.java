@@ -1,4 +1,4 @@
-package io.github.sefiraat.slimetinker.items.machines.smeltery;
+package io.github.sefiraat.slimetinker.items.workstations.table;
 
 import io.github.mooy1.infinitylib.recipes.RecipeMap;
 import io.github.mooy1.infinitylib.recipes.ShapedRecipe;
@@ -10,25 +10,23 @@ import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.ItemStack;
 
-public class DummySmeltery {
+public class DummyTable {
 
-    private DummySmeltery() {
+    private DummyTable() {
         throw new IllegalStateException("Utility class");
     }
 
     public static final SlimefunItemStack STACK = new SlimefunItemStack(
-            "DUMMY_TINKERS_SMELTERY",
-            Material.CHISELED_POLISHED_BLACKSTONE,
-            ThemeUtils.ITEM_MACHINE + "Tinker's Smeltery",
+            "DUMMY_TINKERS_TABLE",
+            Material.SMITHING_TABLE,
+            ThemeUtils.ITEM_MACHINE + "Tinker's Table",
             "",
-            ThemeUtils.PASSIVE + "This item is cast out from the",
-            ThemeUtils.PASSIVE + "tinkers smeltery using the",
-            ThemeUtils.PASSIVE + "relevant cast and metal/liquid.",
+            ThemeUtils.PASSIVE + "This item is made on a Tinker's Table.",
             "",
             ThemeUtils.LORE_TYPE_MACHINE
     );
 
     private static final RecipeMap<ItemStack> RECIPES = new RecipeMap<>(ShapedRecipe::new);
-    public static final RecipeType TYPE = new RecipeType(new NamespacedKey(SlimeTinker.inst(), "dummy-smeltery"), STACK, RECIPES::put);
+    public static final RecipeType TYPE = new RecipeType(new NamespacedKey(SlimeTinker.inst(), "dummy-table"), STACK, RECIPES::put);
 
 }

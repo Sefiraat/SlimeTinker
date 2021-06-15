@@ -2,9 +2,10 @@ package io.github.sefiraat.slimetinker.items;
 
 import io.github.sefiraat.slimetinker.SlimeTinker;
 import io.github.sefiraat.slimetinker.categories.Categories;
-import io.github.sefiraat.slimetinker.items.machines.smeltery.DummySmeltery;
-import io.github.sefiraat.slimetinker.items.machines.workbench.DummyWorkbench;
-import io.github.sefiraat.slimetinker.items.machines.workbench.Workbench;
+import io.github.sefiraat.slimetinker.items.recipes.RecipeManager;
+import io.github.sefiraat.slimetinker.items.workstations.smeltery.DummySmeltery;
+import io.github.sefiraat.slimetinker.items.workstations.workbench.DummyWorkbench;
+import io.github.sefiraat.slimetinker.items.workstations.workbench.Workbench;
 import io.github.sefiraat.slimetinker.items.parts.AbstractPart;
 import io.github.sefiraat.slimetinker.utils.ThemeUtils;
 import io.github.thebusybiscuit.slimefun4.implementation.items.blocks.UnplaceableBlock;
@@ -12,7 +13,12 @@ import me.mrCookieSlime.Slimefun.api.SlimefunItemStack;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class Parts {
+
+    public static final String DESC_ERROR = "Error";
 
     private Parts() {
         throw new IllegalStateException("Utility class");
@@ -86,8 +92,8 @@ public class Parts {
                     "PART_AXE_HEAD",
                     SkullTextures.PART_AXE_HEAD,
                     ThemeUtils.ThemeItemType.PART,
-                    "Error",
-                    ThemeUtils.PASSIVE + "Error"
+                    DESC_ERROR,
+                    ThemeUtils.PASSIVE + DESC_ERROR
             );
 
     public static final SlimefunItemStack PART_HOE_HEAD =
@@ -95,8 +101,8 @@ public class Parts {
                     "PART_HOE_HEAD",
                     SkullTextures.PART_HOE_HEAD,
                     ThemeUtils.ThemeItemType.PART,
-                    "Error",
-                    ThemeUtils.PASSIVE + "Error"
+                    DESC_ERROR,
+                    ThemeUtils.PASSIVE + DESC_ERROR
             );
 
     public static final SlimefunItemStack PART_PICKAXE_HEAD =
@@ -104,8 +110,8 @@ public class Parts {
                     "PART_PICKAXE_HEAD",
                     SkullTextures.PART_PICKAXE_HEAD,
                     ThemeUtils.ThemeItemType.PART,
-                    "Error",
-                    ThemeUtils.PASSIVE + "Error"
+                    DESC_ERROR,
+                    ThemeUtils.PASSIVE + DESC_ERROR
             );
 
     public static final SlimefunItemStack PART_SHOVEL_HEAD =
@@ -113,8 +119,8 @@ public class Parts {
                     "PART_SHOVEL_HEAD",
                     SkullTextures.PART_SHOVEL_HEAD,
                     ThemeUtils.ThemeItemType.PART,
-                    "Error",
-                    ThemeUtils.PASSIVE + "Error"
+                    DESC_ERROR,
+                    ThemeUtils.PASSIVE + DESC_ERROR
             );
 
     public static final SlimefunItemStack PART_SWORD_BLADE =
@@ -122,8 +128,8 @@ public class Parts {
                     "PART_SWORD_BLADE",
                     SkullTextures.PART_SWORD_BLADE,
                     ThemeUtils.ThemeItemType.PART,
-                    "Error",
-                    ThemeUtils.PASSIVE + "Error"
+                    DESC_ERROR,
+                    ThemeUtils.PASSIVE + DESC_ERROR
             );
 
     public static final SlimefunItemStack PART_TOOL_ROD =
@@ -131,8 +137,8 @@ public class Parts {
                     "PART_TOOL_ROD",
                     SkullTextures.PART_TOOL_ROD,
                     ThemeUtils.ThemeItemType.PART,
-                    "Error",
-                    ThemeUtils.PASSIVE + "Error"
+                    DESC_ERROR,
+                    ThemeUtils.PASSIVE + DESC_ERROR
             );
 
     public static final SlimefunItemStack PART_BINDING_STRING =
@@ -209,6 +215,9 @@ public class Parts {
     public static final AbstractPart SWORD_BLADE = new AbstractPart(Categories.DUMMY, PART_SWORD_BLADE, DummySmeltery.TYPE, new ItemStack[9], "Sword Blade");
     public static final AbstractPart TOOL_ROD = new AbstractPart(Categories.DUMMY, PART_TOOL_ROD, DummySmeltery.TYPE, new ItemStack[9], "Tool Rod");
 
+    // Binders cant store class/mat - need a list to check against
+    public static final Map<String, String> binderMap = new HashMap<>();
+
     public static void set(SlimeTinker p) {
 
         // Dummies for the recipe book
@@ -228,14 +237,26 @@ public class Parts {
         SWORD_BLADE.register(p);
         TOOL_ROD.register(p);
 
-        // Parts crafted outside of the smeltery
-        //new UnplaceableBlock(Categories.PARTS, PART_TOOL_ROD_DUMMY, DummySmeltery.TYPE, Recipes.getDummyCastRecipe(Casts.CAST_TOOLROD)).register(p);
-        new AbstractPart(Categories.DUMMY, PART_BINDING_STRING, Workbench.TYPE, Recipes.BINDER_STRING, "String Binder").register(p);
-        new AbstractPart(Categories.DUMMY, PART_BINDING_VINE, Workbench.TYPE, Recipes.BINDER_VINE, "Vine Binder").register(p);
-        new AbstractPart(Categories.DUMMY, PART_BINDING_ROOT_RED, Workbench.TYPE, Recipes.BINDER_ROOT_RED, "Crimson Root Binder").register(p);
-        new AbstractPart(Categories.DUMMY, PART_BINDING_ROOT_GREEN, Workbench.TYPE, Recipes.BINDER_ROOT_GREEN, "Warped Root Binder").register(p);
-        new AbstractPart(Categories.DUMMY, PART_BINDING_VINE_RED, Workbench.TYPE, Recipes.BINDER_VINE_RED, "Weeping Vine Binder").register(p);
-        new AbstractPart(Categories.DUMMY, PART_BINDING_VINE_GREEN, Workbench.TYPE, Recipes.BINDER_VINE_GREEN, "Twisted Vine Binder").register(p);
+        // Bindings
+        AbstractPart binderString = new AbstractPart(Categories.DUMMY, PART_BINDING_STRING, Workbench.TYPE, Recipes.BINDER_STRING, "String Binder");
+        binderString.register(p);
+        AbstractPart binderVine = new AbstractPart(Categories.DUMMY, PART_BINDING_VINE, Workbench.TYPE, Recipes.BINDER_VINE, "Vine Binder");
+        binderVine.register(p);
+        AbstractPart binderRootRed = new AbstractPart(Categories.DUMMY, PART_BINDING_ROOT_RED, Workbench.TYPE, Recipes.BINDER_ROOT_RED, "Crimson Root Binder");
+        binderRootRed.register(p);
+        AbstractPart binderRootGreen = new AbstractPart(Categories.DUMMY, PART_BINDING_ROOT_GREEN, Workbench.TYPE, Recipes.BINDER_ROOT_GREEN, "Warped Root Binder");
+        binderRootGreen.register(p);
+        AbstractPart binderVineRed = new AbstractPart(Categories.DUMMY, PART_BINDING_VINE_RED, Workbench.TYPE, Recipes.BINDER_VINE_RED, "Weeping Vine Binder");
+        binderVineRed.register(p);
+        AbstractPart binderVineGreen = new AbstractPart(Categories.DUMMY, PART_BINDING_VINE_GREEN, Workbench.TYPE, Recipes.BINDER_VINE_GREEN, "Twisted Vine Binder");
+        binderVineGreen.register(p);
+
+        binderMap.put(binderString.getId(), RecipeManager.ID_STRING);
+        binderMap.put(binderVine.getId(), RecipeManager.ID_VINE);
+        binderMap.put(binderRootRed.getId(), RecipeManager.ID_ROOTRED);
+        binderMap.put(binderRootGreen.getId(), RecipeManager.ID_ROOTGREEN);
+        binderMap.put(binderVineRed.getId(), RecipeManager.ID_VINERED);
+        binderMap.put(binderVineGreen.getId(), RecipeManager.ID_VINEGREEN);
 
     }
 

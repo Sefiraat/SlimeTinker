@@ -25,7 +25,9 @@ public final class Recipes {
 
     // endregion
 
-    // region Machines
+    // region Workstations
+
+    // TODO progression through recipes
 
     protected static final ItemStack[] TINKERS_SMELTERY_CORE = new ItemStack[] {
             null,   null,   null,
@@ -34,6 +36,12 @@ public final class Recipes {
     };
 
     protected static final ItemStack[] TINKERS_WORKBENCH = new ItemStack[] {
+            null,   null,   null,
+            null,   null,   null,
+            null,   null,   null
+    };
+
+    protected static final ItemStack[] TINKERS_TABLE = new ItemStack[] {
             null,   null,   null,
             null,   null,   null,
             null,   null,   null
@@ -148,37 +156,37 @@ public final class Recipes {
 
     // region Binders
 
-    protected static ItemStack[] BINDER_STRING = new ItemStack[] {
+    protected static final ItemStack[] BINDER_STRING = new ItemStack[] {
             new ItemStack(Material.STRING), null,                           new ItemStack(Material.STRING),
             null,                           new ItemStack(Material.STRING), null,
             new ItemStack(Material.STRING), null,                           new ItemStack(Material.STRING)
     };
 
-    protected static ItemStack[] BINDER_VINE = new ItemStack[] {
+    protected static final ItemStack[] BINDER_VINE = new ItemStack[] {
             new ItemStack(Material.VINE), null,                           new ItemStack(Material.VINE),
             null,                           new ItemStack(Material.VINE), null,
             new ItemStack(Material.VINE), null,                           new ItemStack(Material.VINE)
     };
 
-    protected static ItemStack[] BINDER_ROOT_RED = new ItemStack[] {
+    protected static final ItemStack[] BINDER_ROOT_RED = new ItemStack[] {
             new ItemStack(Material.CRIMSON_ROOTS),  null,                                   new ItemStack(Material.CRIMSON_ROOTS),
             null,                                   new ItemStack(Material.CRIMSON_ROOTS),  null,
             new ItemStack(Material.CRIMSON_ROOTS),  null,                                   new ItemStack(Material.CRIMSON_ROOTS)
     };
 
-    protected static ItemStack[] BINDER_ROOT_GREEN = new ItemStack[] {
+    protected static final ItemStack[] BINDER_ROOT_GREEN = new ItemStack[] {
             new ItemStack(Material.WARPED_ROOTS),   null,                                   new ItemStack(Material.WARPED_ROOTS),
             null,                                   new ItemStack(Material.WARPED_ROOTS),   null,
             new ItemStack(Material.WARPED_ROOTS),   null,                                   new ItemStack(Material.WARPED_ROOTS)
     };
 
-    protected static ItemStack[] BINDER_VINE_RED = new ItemStack[] {
+    protected static final ItemStack[] BINDER_VINE_RED = new ItemStack[] {
             new ItemStack(Material.WEEPING_VINES),  null,                                   new ItemStack(Material.WEEPING_VINES),
             null,                                   new ItemStack(Material.WEEPING_VINES),  null,
             new ItemStack(Material.WEEPING_VINES),  null,                                   new ItemStack(Material.WEEPING_VINES)
     };
 
-    protected static ItemStack[] BINDER_VINE_GREEN = new ItemStack[] {
+    protected static final ItemStack[] BINDER_VINE_GREEN = new ItemStack[] {
             new ItemStack(Material.TWISTING_VINES), null,                                   new ItemStack(Material.TWISTING_VINES),
             null,                                   new ItemStack(Material.TWISTING_VINES), null,
             new ItemStack(Material.TWISTING_VINES), null,                                   new ItemStack(Material.TWISTING_VINES)
@@ -201,6 +209,14 @@ public final class Recipes {
                 binder, null,   binder,
                 null,   binder, null,
                 binder, null,   binder
+        };
+    }
+
+    protected static ItemStack[] getDummyToolRecipe(ItemStack i1, ItemStack i2, ItemStack i3) {
+        return new ItemStack[]{
+                null,   null,   null,
+                i1,     i2,     i3,
+                null,   null,   null
         };
     }
 

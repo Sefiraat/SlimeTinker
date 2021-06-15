@@ -1,11 +1,11 @@
-package io.github.sefiraat.slimetinker.items.machines.workbench;
+package io.github.sefiraat.slimetinker.items.workstations.workbench;
 
 import io.github.mooy1.infinitylib.recipes.RecipeMap;
 import io.github.mooy1.infinitylib.recipes.RecipeOutput;
 import io.github.mooy1.infinitylib.recipes.ShapedRecipe;
 import io.github.mooy1.infinitylib.slimefun.AbstractContainer;
 import io.github.sefiraat.slimetinker.SlimeTinker;
-import io.github.sefiraat.slimetinker.items.Machines;
+import io.github.sefiraat.slimetinker.items.Workstations;
 import io.github.sefiraat.slimetinker.items.gui.GUIItems;
 import io.github.sefiraat.slimetinker.utils.ThemeUtils;
 import me.mrCookieSlime.Slimefun.Lists.RecipeType;
@@ -27,7 +27,7 @@ import javax.annotation.Nonnull;
 public class Workbench extends AbstractContainer {
 
     private static final RecipeMap<ItemStack> RECIPES = new RecipeMap<>(ShapedRecipe::new);
-    public static final RecipeType TYPE = new RecipeType(SlimeTinker.inst().getKey("tinkers-workbench"), Machines.TINKERS_WORKBENCH, RECIPES::put);
+    public static final RecipeType TYPE = new RecipeType(SlimeTinker.inst().getKey("tinkers-workbench"), Workstations.TINKERS_WORKBENCH, RECIPES::put);
 
     private static final int[] BACKGROUND_SLOTS = {0,1,2,3,4,5,6,7,8,9,13,14,15,16,17,18,22,24,26,27,31,32,33,34,35,36,37,38,39,40,41,42,43,44};
     private static final int[] INPUT_SLOTS = {10,11,12,19,20,21,28,29,30};
@@ -36,13 +36,12 @@ public class Workbench extends AbstractContainer {
 
     private final RecipeMap<ItemStack> craftingRecipes;
 
-
     public Workbench(Category category, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(category, item, recipeType, recipe);
         this.craftingRecipes = RECIPES;
     }
 
-    protected boolean Craft(BlockMenu blockMenu, Player player) {
+    protected boolean craft(BlockMenu blockMenu, Player player) {
 
         ItemStack[] inputs = new ItemStack[9];
         for (int i = 0 ; i < 9 ; i++) {
@@ -96,7 +95,7 @@ public class Workbench extends AbstractContainer {
     @Override
     protected void onNewInstance(@Nonnull BlockMenu menu, @Nonnull Block b) {
         super.onNewInstance(menu, b);
-        menu.addMenuClickHandler(CRAFT_BUTTON, (player, i, itemStack, clickAction) -> Craft(menu, player));
+        menu.addMenuClickHandler(CRAFT_BUTTON, (player, i, itemStack, clickAction) -> craft(menu, player));
     }
 
 }

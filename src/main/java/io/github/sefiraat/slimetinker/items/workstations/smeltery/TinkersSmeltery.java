@@ -1,4 +1,4 @@
-package io.github.sefiraat.slimetinker.items.machines.smeltery;
+package io.github.sefiraat.slimetinker.items.workstations.smeltery;
 
 import io.github.mooy1.infinitylib.slimefun.AbstractContainer;
 import io.github.sefiraat.slimetinker.items.gui.GUIItems;

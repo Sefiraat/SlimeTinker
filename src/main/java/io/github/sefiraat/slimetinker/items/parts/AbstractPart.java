@@ -2,11 +2,9 @@ package io.github.sefiraat.slimetinker.items.parts;
 
 import io.github.sefiraat.slimetinker.SlimeTinker;
 import io.github.sefiraat.slimetinker.items.Liquids;
-import io.github.sefiraat.slimetinker.items.SkullTextures;
 import io.github.sefiraat.slimetinker.utils.ThemeUtils;
 import io.github.thebusybiscuit.slimefun4.implementation.items.blocks.UnplaceableBlock;
 import lombok.Getter;
-import lombok.Setter;
 import me.mrCookieSlime.Slimefun.Lists.RecipeType;
 import me.mrCookieSlime.Slimefun.Objects.Category;
 import me.mrCookieSlime.Slimefun.api.SlimefunItemStack;
@@ -20,30 +18,32 @@ import org.bukkit.persistence.PersistentDataType;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PickaxeHead extends UnplaceableBlock {
+public class AbstractPart extends UnplaceableBlock {
 
     @Getter
-    @Setter
     private String materialType;
 
-    public static String getName(String material) {
+    private final String name;
+
+    public String getName(String material) {
         return
                 ChatColor.of(Liquids.getById(material).getColorHex()) +
-                ThemeUtils.toTitleCase(material) +
-                ThemeUtils.ITEM_PART + " Pickaxe Head";
+                        ThemeUtils.toTitleCase(material) +
+                        ThemeUtils.ITEM_PART + " " + name;
     }
 
-    public static List<String> getLore(String material) {
+    public List<String> getLore(String material) {
         List<String> list = new ArrayList<>();
         list.add("");
-        list.add(ThemeUtils.PASSIVE + "A pickaxe head. Useless by itself, can be");
-        list.add(ThemeUtils.PASSIVE + "made into a pickaxe at the Tinker's table.");
+        list.add(ThemeUtils.PASSIVE + "A tool part. Useless on it's own but can");
+        list.add(ThemeUtils.PASSIVE + "be made into something greater at the");
+        list.add(ThemeUtils.PASSIVE + "Tinker's table.");
         list.add("");
         list.add(ThemeUtils.CLICK_INFO + "Material : " + ChatColor.of(Liquids.getById(material).getColorHex()) + ThemeUtils.toTitleCase(material));
         return list;
     }
 
-    public ItemStack getStack(String material) {
+    public ItemStack getStack(String material, String partType) {
         ItemStack itemStack = this.getItem().clone();
         ItemMeta im = itemStack.getItemMeta();
         assert im != null;
@@ -51,23 +51,15 @@ public class PickaxeHead extends UnplaceableBlock {
         im.setLore(getLore(material));
         im.setDisplayName(getName(material));
         c.set(new NamespacedKey(SlimeTinker.inst(), "ST_Material"), PersistentDataType.STRING, material);
+        c.set(new NamespacedKey(SlimeTinker.inst(), "ST_Type"), PersistentDataType.STRING, partType);
         itemStack.setItemMeta(im);
         return itemStack;
     }
 
-    public static final SlimefunItemStack STACK =
-            ThemeUtils.themedItemStack(
-                    "PART_PICKAXE_HEAD",
-                    SkullTextures.PART_PICKAXE_HEAD,
-                    ThemeUtils.ThemeItemType.PART,
-                    "Error",
-                    ThemeUtils.PASSIVE + "Error"
-            );
-
-
-    public PickaxeHead(Category category, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
+    public AbstractPart(Category category, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe, String name) {
         super(category, item, recipeType, recipe);
-        register(SlimeTinker.inst());
+        this.name = name;
     }
 
 }
+

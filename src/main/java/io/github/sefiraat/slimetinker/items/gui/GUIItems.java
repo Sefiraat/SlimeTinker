@@ -149,4 +149,13 @@ public final class GUIItems {
         );
     }
 
+    public static CustomItem menuCraft() {
+        return new CustomItem(
+                Material.CRAFTING_TABLE,
+                ThemeUtils.GUI_HEAD + "Craft",
+                "",
+                ThemeUtils.PASSIVE + "Let's get crafting!"
+        );
+    }
+
 }

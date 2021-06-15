@@ -33,6 +33,12 @@ public final class Recipes {
             null,   null,   null
     };
 
+    protected static final ItemStack[] TINKERS_WORKBENCH = new ItemStack[] {
+            null,   null,   null,
+            null,   null,   null,
+            null,   null,   null
+    };
+
 
     // endregion
 
@@ -74,7 +80,7 @@ public final class Recipes {
             null,    null,                          null
     };
 
-    //
+    // endregion
 
     // region Casts
 
@@ -140,6 +146,48 @@ public final class Recipes {
 
     // endregion
 
+    // region Binders
+
+    protected static ItemStack[] BINDER_STRING = new ItemStack[] {
+            new ItemStack(Material.STRING), null,                           new ItemStack(Material.STRING),
+            null,                           new ItemStack(Material.STRING), null,
+            new ItemStack(Material.STRING), null,                           new ItemStack(Material.STRING)
+    };
+
+    protected static ItemStack[] BINDER_VINE = new ItemStack[] {
+            new ItemStack(Material.VINE), null,                           new ItemStack(Material.VINE),
+            null,                           new ItemStack(Material.VINE), null,
+            new ItemStack(Material.VINE), null,                           new ItemStack(Material.VINE)
+    };
+
+    protected static ItemStack[] BINDER_ROOT_RED = new ItemStack[] {
+            new ItemStack(Material.CRIMSON_ROOTS),  null,                                   new ItemStack(Material.CRIMSON_ROOTS),
+            null,                                   new ItemStack(Material.CRIMSON_ROOTS),  null,
+            new ItemStack(Material.CRIMSON_ROOTS),  null,                                   new ItemStack(Material.CRIMSON_ROOTS)
+    };
+
+    protected static ItemStack[] BINDER_ROOT_GREEN = new ItemStack[] {
+            new ItemStack(Material.WARPED_ROOTS),   null,                                   new ItemStack(Material.WARPED_ROOTS),
+            null,                                   new ItemStack(Material.WARPED_ROOTS),   null,
+            new ItemStack(Material.WARPED_ROOTS),   null,                                   new ItemStack(Material.WARPED_ROOTS)
+    };
+
+    protected static ItemStack[] BINDER_VINE_RED = new ItemStack[] {
+            new ItemStack(Material.WEEPING_VINES),  null,                                   new ItemStack(Material.WEEPING_VINES),
+            null,                                   new ItemStack(Material.WEEPING_VINES),  null,
+            new ItemStack(Material.WEEPING_VINES),  null,                                   new ItemStack(Material.WEEPING_VINES)
+    };
+
+    protected static ItemStack[] BINDER_VINE_GREEN = new ItemStack[] {
+            new ItemStack(Material.TWISTING_VINES), null,                                   new ItemStack(Material.TWISTING_VINES),
+            null,                                   new ItemStack(Material.TWISTING_VINES), null,
+            new ItemStack(Material.TWISTING_VINES), null,                                   new ItemStack(Material.TWISTING_VINES)
+    };
+
+    // endregion
+
+    // region Dummy
+
     protected static ItemStack[] getDummyCastRecipe(ItemStack cast) {
         return new ItemStack[]{
                 null, null, null,
@@ -147,5 +195,15 @@ public final class Recipes {
                 null, null, null
         };
     }
+
+    protected static ItemStack[] getDummyBindingRecipe(ItemStack binder) {
+        return new ItemStack[]{
+                binder, null,   binder,
+                null,   binder, null,
+                binder, null,   binder
+        };
+    }
+
+    // endregion
 
 }

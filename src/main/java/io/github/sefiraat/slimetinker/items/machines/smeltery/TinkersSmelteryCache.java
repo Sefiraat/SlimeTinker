@@ -1,9 +1,10 @@
-package io.github.sefiraat.slimetinker.items.machines;
+package io.github.sefiraat.slimetinker.items.machines.smeltery;
 
 import io.github.mooy1.infinitylib.items.StackUtils;
 import io.github.sefiraat.slimetinker.SlimeTinker;
 import io.github.sefiraat.slimetinker.items.Liquids;
 import io.github.sefiraat.slimetinker.items.gui.GUIItems;
+import io.github.sefiraat.slimetinker.items.machines.caches.AbstractCache;
 import io.github.sefiraat.slimetinker.items.materials.Liquid;
 import io.github.sefiraat.slimetinker.items.recipes.CastResult;
 import io.github.sefiraat.slimetinker.items.recipes.MoltenResult;
@@ -18,7 +19,6 @@ import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.persistence.PersistentDataContainer;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;

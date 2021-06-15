@@ -1,4 +1,4 @@
-package io.github.sefiraat.slimetinker.items.machines;
+package io.github.sefiraat.slimetinker.items.machines.caches;
 
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
 

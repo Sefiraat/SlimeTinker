@@ -1,4 +1,4 @@
-package io.github.sefiraat.slimetinker.items.workstations.table;
+package io.github.sefiraat.slimetinker.items.workstations.repairbench;
 
 import io.github.mooy1.infinitylib.items.StackUtils;
 import io.github.mooy1.infinitylib.recipes.RecipeMap;
@@ -34,10 +34,10 @@ import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nonnull;
 
-public class Table extends AbstractContainer {
+public class RepairBench extends AbstractContainer {
 
     private static final RecipeMap<ItemStack> RECIPES = new RecipeMap<>(ShapedRecipe::new);
-    public static final RecipeType TYPE = new RecipeType(SlimeTinker.inst().getKey("tinkers-table"), Workstations.TINKERS_TABLE, RECIPES::put);
+    public static final RecipeType TYPE = new RecipeType(SlimeTinker.inst().getKey("tinkers-repair"), Workstations.TINKERS_TABLE, RECIPES::put);
 
     private static final int[] BACKGROUND_SLOTS = {0,1,3,5,7,8,18,19,21,23,25,26,27,28,30,32,34,35,45,46,48,50,52,53};
     private static final int[] BACKGROUND_INPUTS = {2,4,6,9,10,12,14,16,17,20,22,24,31,49};
@@ -52,7 +52,7 @@ public class Table extends AbstractContainer {
 
     private BlockMenu menu;
 
-    public Table(Category category, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
+    public RepairBench(Category category, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(category, item, recipeType, recipe);
 
         addItemHandler(new BlockTicker() {

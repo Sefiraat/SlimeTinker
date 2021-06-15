@@ -19,7 +19,7 @@ import org.bukkit.persistence.PersistentDataType;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AbstractTool extends UnplaceableBlock {
+public class ToolTemplate extends UnplaceableBlock {
 
     public String getName(ToolDefinition toolDefinition) {
         return
@@ -67,6 +67,7 @@ public class AbstractTool extends UnplaceableBlock {
         PersistentDataContainer c = im.getPersistentDataContainer();
         im.setLore(getLore(toolDefinition));
         im.setDisplayName(getName(toolDefinition));
+        c.set(new NamespacedKey(SlimeTinker.inst(), "ST_Tool"), PersistentDataType.STRING, "Y");
         c.set(new NamespacedKey(SlimeTinker.inst(), "ST_Type_Head"), PersistentDataType.STRING, toolDefinition.getClassType());
         c.set(new NamespacedKey(SlimeTinker.inst(), "ST_Tool_Type"), PersistentDataType.STRING, toolDefinition.getPartType());
         c.set(new NamespacedKey(SlimeTinker.inst(), "ST_Material_Head"), PersistentDataType.STRING, toolDefinition.getHeadMaterial());
@@ -76,8 +77,16 @@ public class AbstractTool extends UnplaceableBlock {
         return itemStack;
     }
 
-    public AbstractTool(Category category, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
+    public ToolTemplate(Category category, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(category, item, recipeType, recipe);
+    }
+
+    public static boolean isTool(ItemStack itemStack) {
+        return itemStack.hasItemMeta() &&
+                itemStack.getItemMeta().getPersistentDataContainer().has(
+                        new NamespacedKey(SlimeTinker.inst(),"ST_Tool"),
+                        PersistentDataType.STRING
+                );
     }
 
 }

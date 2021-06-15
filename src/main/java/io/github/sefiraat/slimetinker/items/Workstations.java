@@ -2,6 +2,7 @@ package io.github.sefiraat.slimetinker.items;
 
 import io.github.sefiraat.slimetinker.SlimeTinker;
 import io.github.sefiraat.slimetinker.categories.Categories;
+import io.github.sefiraat.slimetinker.items.workstations.repairbench.RepairBench;
 import io.github.sefiraat.slimetinker.items.workstations.smeltery.TinkersSmeltery;
 import io.github.sefiraat.slimetinker.items.workstations.table.Table;
 import io.github.sefiraat.slimetinker.items.workstations.workbench.Workbench;
@@ -13,6 +14,8 @@ import org.bukkit.inventory.ItemStack;
 
 public final class Workstations {
 
+
+    // TODO Placeholder Recipes
     protected static final ItemStack[] RECIPE_TINKERS_SMELTERY_CORE = new ItemStack[] {
             null,   null,   null,
             null,   null,   null,
@@ -28,6 +31,11 @@ public final class Workstations {
             null,   null,   null,
             null,   null,   null
     };
+    protected static final ItemStack[] RECIPE_TINKERS_REPAIR_BENCH = new ItemStack[] {
+            null,   null,   null,
+            null,   null,   null,
+            null,   null,   null
+    };
 
     private Workstations() {
         throw new IllegalStateException("Utility class");
@@ -39,7 +47,7 @@ public final class Workstations {
                     "TINKERS_SMELTERY_CORE",
                     Material.CHISELED_POLISHED_BLACKSTONE,
                     ThemeUtils.ThemeItemType.MACHINE,
-                    "Tinkers Smeltery Core",
+                    "Tinker's Smeltery Core",
                     "Melts down metals into liquids.",
                     "Metals can then be alloyed and",
                     "cast out into various forms.",
@@ -52,7 +60,7 @@ public final class Workstations {
                     "TINKERS_WORKBENCH",
                     Material.FLETCHING_TABLE,
                     ThemeUtils.ThemeItemType.MACHINE,
-                    "Tinkers Workbench",
+                    "Tinker's Workbench",
                     "Used for crafting various items",
                     "and parts for Tinker's tools and",
                     "constructions."
@@ -64,8 +72,18 @@ public final class Workstations {
                     "TINKERS_TABLE",
                     Material.SMITHING_TABLE,
                     ThemeUtils.ThemeItemType.MACHINE,
-                    "Tinkers Table",
+                    "Tinker's Table",
                     "Combines parts into tools."
+            );
+
+    // Repair
+    public static final SlimefunItemStack TINKERS_REPAIR_BENCH =
+            ThemeUtils.themedItemStack(
+                    "TINKERS_REPAIR_BENCH",
+                    Material.CARTOGRAPHY_TABLE,
+                    ThemeUtils.ThemeItemType.MACHINE,
+                    "Tinkers Table",
+                    "Repairs tools and weapons."
             );
 
     public static void set(SlimeTinker p) {
@@ -73,6 +91,7 @@ public final class Workstations {
         new Workbench(Categories.WORKSTATIONS, TINKERS_WORKBENCH, RecipeType.ENHANCED_CRAFTING_TABLE, RECIPE_TINKERS_WORKBENCH).register(p);
         new TinkersSmeltery(Categories.WORKSTATIONS, TINKERS_SMELTERY_CORE, Workbench.TYPE, RECIPE_TINKERS_SMELTERY_CORE).register(p);
         new Table(Categories.WORKSTATIONS, TINKERS_TABLE, Workbench.TYPE, RECIPE_TINKERS_TABLE).register(p);
+        new RepairBench(Categories.WORKSTATIONS, TINKERS_REPAIR_BENCH, Workbench.TYPE, RECIPE_TINKERS_REPAIR_BENCH).register(p);
 
     }
 

@@ -1,6 +1,5 @@
 package io.github.sefiraat.slimetinker.items;
 
-import io.github.sefiraat.slimetinker.items.Casts;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 

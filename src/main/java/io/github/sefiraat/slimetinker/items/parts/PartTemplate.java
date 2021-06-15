@@ -19,7 +19,7 @@ import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AbstractPart extends UnplaceableBlock {
+public class PartTemplate extends UnplaceableBlock {
 
     @Getter
     private String materialType;
@@ -60,7 +60,7 @@ public class AbstractPart extends UnplaceableBlock {
         return itemStack;
     }
 
-    public AbstractPart(Category category, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe, String name) {
+    public PartTemplate(Category category, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe, String name) {
         super(category, item, recipeType, recipe);
         this.name = name;
     }

@@ -16,13 +16,11 @@ import me.mrCookieSlime.CSCoreLibPlugin.Configuration.Config;
 import me.mrCookieSlime.CSCoreLibPlugin.general.Inventory.ClickAction;
 import me.mrCookieSlime.Slimefun.api.BlockStorage;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
-import me.mrCookieSlime.Slimefun.cscorelib2.collections.Pair;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
-import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -85,7 +83,6 @@ public final class TinkersSmelteryCache extends AbstractCache {
         }
 
         if (canFit(result.getAmount())) {
-            SlimeTinker.inst().getLogger().info("fits");
             // TODO Melt 1 unit per SF tick
             addMetal(result);
             input.setAmount(input.getAmount() - 1);

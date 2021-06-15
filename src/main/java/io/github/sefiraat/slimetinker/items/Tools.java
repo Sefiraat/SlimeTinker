@@ -2,7 +2,7 @@ package io.github.sefiraat.slimetinker.items;
 
 import io.github.sefiraat.slimetinker.SlimeTinker;
 import io.github.sefiraat.slimetinker.categories.Categories;
-import io.github.sefiraat.slimetinker.items.tools.AbstractTool;
+import io.github.sefiraat.slimetinker.items.tools.ToolTemplate;
 import io.github.sefiraat.slimetinker.items.workstations.table.DummyTable;
 import io.github.sefiraat.slimetinker.utils.SkullTextures;
 import io.github.sefiraat.slimetinker.utils.ThemeUtils;
@@ -123,11 +123,11 @@ public final class Tools {
                     ThemeUtils.PASSIVE + DESC_ERROR
             );
 
-    public static final AbstractTool SHOVEL = new AbstractTool(Categories.DUMMY, TOOL_SHOVEL, DummyTable.TYPE, new ItemStack[9]);
-    public static final AbstractTool PICKAXE = new AbstractTool(Categories.DUMMY, TOOL_PICKAXE, DummyTable.TYPE, new ItemStack[9]);
-    public static final AbstractTool AXE = new AbstractTool(Categories.DUMMY, TOOL_AXE, DummyTable.TYPE, new ItemStack[9]);
-    public static final AbstractTool HOE = new AbstractTool(Categories.DUMMY, TOOL_HOE, DummyTable.TYPE, new ItemStack[9]);
-    public static final AbstractTool SWORD = new AbstractTool(Categories.DUMMY, TOOL_SWORD, DummyTable.TYPE, new ItemStack[9]);
+    public static final ToolTemplate SHOVEL = new ToolTemplate(Categories.DUMMY, TOOL_SHOVEL, DummyTable.TYPE, new ItemStack[9]);
+    public static final ToolTemplate PICKAXE = new ToolTemplate(Categories.DUMMY, TOOL_PICKAXE, DummyTable.TYPE, new ItemStack[9]);
+    public static final ToolTemplate AXE = new ToolTemplate(Categories.DUMMY, TOOL_AXE, DummyTable.TYPE, new ItemStack[9]);
+    public static final ToolTemplate HOE = new ToolTemplate(Categories.DUMMY, TOOL_HOE, DummyTable.TYPE, new ItemStack[9]);
+    public static final ToolTemplate SWORD = new ToolTemplate(Categories.DUMMY, TOOL_SWORD, DummyTable.TYPE, new ItemStack[9]);
 
     public static void set(SlimeTinker p) {
         new UnplaceableBlock(Categories.TOOLS, TOOL_SHOVEL_DUMMY, DummyTable.TYPE, getDummyToolRecipe(Parts.PART_TOOL_ROD_DUMMY, Parts.PART_BINDING_DUMMY, Parts.PART_SHOVEL_HEAD_DUMMY)).register(p);

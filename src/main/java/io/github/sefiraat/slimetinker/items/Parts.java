@@ -2,11 +2,11 @@ package io.github.sefiraat.slimetinker.items;
 
 import io.github.sefiraat.slimetinker.SlimeTinker;
 import io.github.sefiraat.slimetinker.categories.Categories;
-import io.github.sefiraat.slimetinker.utils.IDStrings;
+import io.github.sefiraat.slimetinker.items.parts.PartTemplate;
 import io.github.sefiraat.slimetinker.items.workstations.smeltery.DummySmeltery;
 import io.github.sefiraat.slimetinker.items.workstations.workbench.DummyWorkbench;
 import io.github.sefiraat.slimetinker.items.workstations.workbench.Workbench;
-import io.github.sefiraat.slimetinker.items.parts.AbstractPart;
+import io.github.sefiraat.slimetinker.utils.IDStrings;
 import io.github.sefiraat.slimetinker.utils.SkullTextures;
 import io.github.sefiraat.slimetinker.utils.ThemeUtils;
 import io.github.thebusybiscuit.slimefun4.implementation.items.blocks.UnplaceableBlock;
@@ -261,12 +261,12 @@ public final class Parts {
 
 
     // Statics for Recipes
-    public static final AbstractPart SHOVEL_HEAD = new AbstractPart(Categories.DUMMY, PART_SHOVEL_HEAD, DummySmeltery.TYPE, new ItemStack[9],"Shovel Head");
-    public static final AbstractPart PICKAXE_HEAD = new AbstractPart(Categories.DUMMY, PART_PICKAXE_HEAD, DummySmeltery.TYPE, new ItemStack[9], "Pickaxe Head");
-    public static final AbstractPart AXE_HEAD = new AbstractPart(Categories.DUMMY, PART_AXE_HEAD, DummySmeltery.TYPE, new ItemStack[9], "Axe Head");
-    public static final AbstractPart HOE_HEAD = new AbstractPart(Categories.DUMMY, PART_HOE_HEAD, DummySmeltery.TYPE, new ItemStack[9], "Hoe Head");
-    public static final AbstractPart SWORD_BLADE = new AbstractPart(Categories.DUMMY, PART_SWORD_BLADE, DummySmeltery.TYPE, new ItemStack[9], "Sword Blade");
-    public static final AbstractPart TOOL_ROD = new AbstractPart(Categories.DUMMY, PART_TOOL_ROD, DummySmeltery.TYPE, new ItemStack[9], "Tool Rod");
+    public static final PartTemplate SHOVEL_HEAD = new PartTemplate(Categories.DUMMY, PART_SHOVEL_HEAD, DummySmeltery.TYPE, new ItemStack[9],"Shovel Head");
+    public static final PartTemplate PICKAXE_HEAD = new PartTemplate(Categories.DUMMY, PART_PICKAXE_HEAD, DummySmeltery.TYPE, new ItemStack[9], "Pickaxe Head");
+    public static final PartTemplate AXE_HEAD = new PartTemplate(Categories.DUMMY, PART_AXE_HEAD, DummySmeltery.TYPE, new ItemStack[9], "Axe Head");
+    public static final PartTemplate HOE_HEAD = new PartTemplate(Categories.DUMMY, PART_HOE_HEAD, DummySmeltery.TYPE, new ItemStack[9], "Hoe Head");
+    public static final PartTemplate SWORD_BLADE = new PartTemplate(Categories.DUMMY, PART_SWORD_BLADE, DummySmeltery.TYPE, new ItemStack[9], "Sword Blade");
+    public static final PartTemplate TOOL_ROD = new PartTemplate(Categories.DUMMY, PART_TOOL_ROD, DummySmeltery.TYPE, new ItemStack[9], "Tool Rod");
 
     // Binders cant store class/mat - need a list to check against
     public static final Map<String, String> binderMap = new HashMap<>();
@@ -291,17 +291,17 @@ public final class Parts {
         TOOL_ROD.register(p);
 
         // Bindings
-        AbstractPart binderString = new AbstractPart(Categories.DUMMY, PART_BINDING_STRING, Workbench.TYPE, RECIPE_BINDER_STRING, "String Binder");
+        PartTemplate binderString = new PartTemplate(Categories.DUMMY, PART_BINDING_STRING, Workbench.TYPE, RECIPE_BINDER_STRING, "String Binder");
         binderString.register(p);
-        AbstractPart binderVine = new AbstractPart(Categories.DUMMY, PART_BINDING_VINE, Workbench.TYPE, RECIPE_BINDER_VINE, "Vine Binder");
+        PartTemplate binderVine = new PartTemplate(Categories.DUMMY, PART_BINDING_VINE, Workbench.TYPE, RECIPE_BINDER_VINE, "Vine Binder");
         binderVine.register(p);
-        AbstractPart binderRootRed = new AbstractPart(Categories.DUMMY, PART_BINDING_ROOT_RED, Workbench.TYPE, RECIPE_BINDER_ROOT_RED, "Crimson Root Binder");
+        PartTemplate binderRootRed = new PartTemplate(Categories.DUMMY, PART_BINDING_ROOT_RED, Workbench.TYPE, RECIPE_BINDER_ROOT_RED, "Crimson Root Binder");
         binderRootRed.register(p);
-        AbstractPart binderRootGreen = new AbstractPart(Categories.DUMMY, PART_BINDING_ROOT_GREEN, Workbench.TYPE, RECIPE_BINDER_ROOT_GREEN, "Warped Root Binder");
+        PartTemplate binderRootGreen = new PartTemplate(Categories.DUMMY, PART_BINDING_ROOT_GREEN, Workbench.TYPE, RECIPE_BINDER_ROOT_GREEN, "Warped Root Binder");
         binderRootGreen.register(p);
-        AbstractPart binderVineRed = new AbstractPart(Categories.DUMMY, PART_BINDING_VINE_RED, Workbench.TYPE, RECIPE_BINDER_VINE_RED, "Weeping Vine Binder");
+        PartTemplate binderVineRed = new PartTemplate(Categories.DUMMY, PART_BINDING_VINE_RED, Workbench.TYPE, RECIPE_BINDER_VINE_RED, "Weeping Vine Binder");
         binderVineRed.register(p);
-        AbstractPart binderVineGreen = new AbstractPart(Categories.DUMMY, PART_BINDING_VINE_GREEN, Workbench.TYPE, RECIPE_BINDER_VINE_GREEN, "Twisted Vine Binder");
+        PartTemplate binderVineGreen = new PartTemplate(Categories.DUMMY, PART_BINDING_VINE_GREEN, Workbench.TYPE, RECIPE_BINDER_VINE_GREEN, "Twisted Vine Binder");
         binderVineGreen.register(p);
 
         binderMap.put(binderString.getId(), IDStrings.ID_STRING);

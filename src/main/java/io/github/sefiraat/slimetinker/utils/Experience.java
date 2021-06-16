@@ -1,8 +1,7 @@
-package io.github.sefiraat.slimetinker.experience;
+package io.github.sefiraat.slimetinker.utils;
 
 import io.github.sefiraat.slimetinker.SlimeTinker;
-import io.github.sefiraat.slimetinker.utils.ItemUtils;
-import io.github.sefiraat.slimetinker.utils.ThemeUtils;
+import io.github.sefiraat.slimetinker.items.Tools;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -24,8 +23,6 @@ public final class Experience {
 
     public static void addToolExp(ItemStack itemStack, int amount, Player player) {
 
-        SlimeTinker.inst().getLogger().info("" + amount);
-
         ItemMeta im = itemStack.getItemMeta();
         assert im != null;
 
@@ -42,12 +39,11 @@ public final class Experience {
             level++;
             modSlots++;
             expRequired = (expRequired * EXP_GROWTH);
+            promoteMaterial(itemStack, level, player);
             player.sendMessage(ThemeUtils.SUCCESS + "Your Tinker's tool has leveled up! +1 Modifier Slot");
         } else {
             newExp = currentExp + amount;
         }
-
-        SlimeTinker.inst().getLogger().info("" + newExp);
 
         c.set(SlimeTinker.inst().getKeys().getToolExpCurrent(), PersistentDataType.INTEGER, newExp);
         c.set(SlimeTinker.inst().getKeys().getToolExpRequired(), PersistentDataType.DOUBLE, expRequired);
@@ -85,6 +81,19 @@ public final class Experience {
     public static String getLoreModSlots(PersistentDataContainer c) {
         return ThemeUtils.ITEM_TOOL + "Modifier Slots: " +
                 ChatColor.WHITE + Experience.getToolModifierSlots(c);
+    }
+
+    private static void promoteMaterial(ItemStack itemStack, int level, Player player) {
+        // Already at max promotion
+        if (level > (Tools.LEVEL_NETHERITE + 1)) {
+            return;
+        }
+        String toolType = itemStack.getItemMeta().getPersistentDataContainer().get(SlimeTinker.inst().getKeys().getToolInfoToolType(), PersistentDataType.STRING);
+        if (Tools.toolGrowthMap.get(toolType).containsKey(level)) {
+            itemStack.setType(Tools.toolGrowthMap.get(toolType).get(level));
+            player.sendMessage(ThemeUtils.SUCCESS + "Your tool has been promoted!");
+        }
+
     }
 
 

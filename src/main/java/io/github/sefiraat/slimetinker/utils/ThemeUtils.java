@@ -38,6 +38,7 @@ public final class ThemeUtils {
     public static final ChatColor ITEM_CAST = ChatColor.of("#ffe138");
     public static final ChatColor ITEM_PART = ChatColor.of("#42c8f5");
     public static final ChatColor ITEM_TOOL = ChatColor.of("#c2fc03");
+    public static final ChatColor ITEM_INFO = ChatColor.of("#21588f");
 
     public static final String LORE_TYPE_CRAFT = ITEM_TYPEDESC + "Crafting Material";
     public static final String LORE_TYPE_MACHINE = ITEM_TYPEDESC + "Machine";
@@ -49,6 +50,7 @@ public final class ThemeUtils {
     public static final String LORE_CAST = ITEM_TYPEDESC + "Cast";
     public static final String LORE_PART = ITEM_TYPEDESC + "Part";
     public static final String LORE_TOOL = ITEM_TYPEDESC + "Tinker's Tool";
+    public static final String LORE_INFO = ITEM_TYPEDESC + "Info";
 
     public static SlimefunItemStack themedItemStack(String id, String skull, ThemeItemType type, String name, String... loreLines) {
         AbstractItem itemStack = new AbstractItem(
@@ -99,6 +101,7 @@ public final class ThemeUtils {
             case CAST: return ITEM_CAST;
             case PART: return ITEM_PART;
             case TOOL: return ITEM_TOOL;
+            case INFO: return ITEM_INFO;
             default: return ITEM_BASE;
         }
     }
@@ -114,6 +117,7 @@ public final class ThemeUtils {
             case CAST: return LORE_CAST;
             case PART: return LORE_PART;
             case TOOL: return LORE_TOOL;
+            case INFO: return LORE_INFO;
             default: return LORE_TYPE_BASE;
         }
     }
@@ -133,7 +137,8 @@ public final class ThemeUtils {
         LIQUID,
         CAST,
         PART,
-        TOOL
+        TOOL,
+        INFO
     }
 
 }

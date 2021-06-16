@@ -64,6 +64,13 @@ public final class Categories {
         );
     }
 
+    public static CustomItem catModifications() {
+        return new CustomItem(
+                Material.REDSTONE,
+                ThemeUtils.MAIN + "Mods"
+        );
+    }
+
     public static CustomItem catDummy() {
         return new CustomItem(
                 Material.BARRIER,
@@ -78,6 +85,7 @@ public final class Categories {
     public static final SubCategory CASTS = new SubCategory(SlimeTinker.inst().getKeys().getCategoryCasts(), MAIN, catCasts());
     public static final SubCategory PARTS = new SubCategory(SlimeTinker.inst().getKeys().getCategoryParts(), MAIN, catParts());
     public static final SubCategory TOOLS = new SubCategory(SlimeTinker.inst().getKeys().getCategoryTools(), MAIN, catTools());
+    public static final SubCategory MODIFICATIONS = new SubCategory(SlimeTinker.inst().getKeys().getCategoryModifications(), MAIN, catModifications());
     public static final DummyCategory DUMMY = new DummyCategory(SlimeTinker.inst().getKeys().getCategoryDummy(), catDummy());
 
     public static void set(SlimeTinker p) {
@@ -88,6 +96,7 @@ public final class Categories {
         CASTS.register(p);
         PARTS.register(p);
         TOOLS.register(p);
+        MODIFICATIONS.register(p);
     }
 
 }

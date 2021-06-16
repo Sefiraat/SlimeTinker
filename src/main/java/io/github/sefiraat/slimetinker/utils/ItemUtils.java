@@ -1,8 +1,9 @@
 package io.github.sefiraat.slimetinker.utils;
 
 import io.github.sefiraat.slimetinker.SlimeTinker;
-import io.github.sefiraat.slimetinker.experience.Experience;
+import io.github.sefiraat.slimetinker.items.ComponentMaterials;
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.SlimefunItem;
+import net.md_5.bungee.api.ChatColor;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataContainer;
@@ -63,9 +64,9 @@ public final class ItemUtils {
         PersistentDataContainer c = im.getPersistentDataContainer();
         List<String> lore = new ArrayList<>();
         lore.add("");
-        lore.add(ThemeUtils.CLICK_INFO + "Head : " + c.get(SlimeTinker.inst().getKeys().getToolInfoHeadMaterial(), PersistentDataType.STRING));
-        lore.add(ThemeUtils.CLICK_INFO + "Binding : " + c.get(SlimeTinker.inst().getKeys().getToolInfoBinderMaterial(), PersistentDataType.STRING));
-        lore.add(ThemeUtils.CLICK_INFO + "Rod : " + c.get(SlimeTinker.inst().getKeys().getToolInfoRodMaterial(), PersistentDataType.STRING));
+        lore.add(ThemeUtils.CLICK_INFO + "Head : " + formatMaterialName(getToolHeadMaterial(c)));
+        lore.add(ThemeUtils.CLICK_INFO + "Binding : " + formatMaterialName(getToolBindingMaterial(c)));
+        lore.add(ThemeUtils.CLICK_INFO + "Rod : " + formatMaterialName(getToolRodMaterial(c)));
         lore.add("");
         // TODO Tool Properties
         lore.add("PROPERTIES GO HERE");
@@ -75,6 +76,23 @@ public final class ItemUtils {
         lore.add(Experience.getLoreModSlots(c));
         im.setLore(lore);
         itemStack.setItemMeta(im);
+
+    }
+
+    public static String getToolHeadMaterial(PersistentDataContainer c) {
+        return c.get(SlimeTinker.inst().getKeys().getToolInfoHeadMaterial(), PersistentDataType.STRING);
+    }
+
+    public static String getToolBindingMaterial(PersistentDataContainer c) {
+        return c.get(SlimeTinker.inst().getKeys().getToolInfoBinderMaterial(), PersistentDataType.STRING);
+    }
+
+    public static String getToolRodMaterial(PersistentDataContainer c) {
+        return c.get(SlimeTinker.inst().getKeys().getToolInfoRodMaterial(), PersistentDataType.STRING);
+    }
+
+    public static String formatMaterialName(String s) {
+        return ChatColor.of(ComponentMaterials.getById(s).getColorHex()) + ThemeUtils.toTitleCase(s);
     }
 
 }

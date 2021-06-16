@@ -1,9 +1,9 @@
 package io.github.sefiraat.slimetinker.listeners;
 
 import io.github.sefiraat.slimetinker.SlimeTinker;
-import io.github.sefiraat.slimetinker.experience.Experience;
-import io.github.sefiraat.slimetinker.items.Materials;
 import io.github.sefiraat.slimetinker.items.templates.ToolTemplate;
+import io.github.sefiraat.slimetinker.modifiers.Modifications;
+import io.github.sefiraat.slimetinker.utils.Experience;
 import io.github.sefiraat.slimetinker.utils.IDStrings;
 import io.github.sefiraat.slimetinker.utils.ThemeUtils;
 import org.bukkit.Material;
@@ -16,7 +16,6 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.Damageable;
 import org.bukkit.persistence.PersistentDataType;
 
-import java.util.HashMap;
 import java.util.Map;
 
 public class BlockBreakListener implements Listener {
@@ -24,6 +23,10 @@ public class BlockBreakListener implements Listener {
 
     @EventHandler
     public void onBlockBreak(BlockBreakEvent event) {
+
+        if (event.isCancelled()) {
+            return;
+        }
 
         ItemStack heldItem = event.getPlayer().getInventory().getItemInMainHand();
 
@@ -37,9 +40,19 @@ public class BlockBreakListener implements Listener {
             return;
         }
 
+        if (isPlaced(event.getBlock())) {
+            return;
+        }
+
         if (shouldGrantExp(heldItem, event.getBlock())) {
             Experience.addToolExp(heldItem, 1, event.getPlayer());
         }
+
+        for (Map.Entry<Material, Integer> e : Modifications.getModificationMap(heldItem).entrySet()) {
+            SlimeTinker.inst().getLogger().info(e.getKey().toString());
+            SlimeTinker.inst().getLogger().info("" + e.getValue());
+        }
+
 
     }
 
@@ -54,7 +67,7 @@ public class BlockBreakListener implements Listener {
 
     private boolean shouldGrantExp(ItemStack itemStack, Block block) {
 
-        String toolType = itemStack.getItemMeta().getPersistentDataContainer().get(SlimeTinker.inst().getKeys().getToolInfoHeadType(), PersistentDataType.STRING);
+        String toolType = itemStack.getItemMeta().getPersistentDataContainer().get(SlimeTinker.inst().getKeys().getToolInfoToolType(), PersistentDataType.STRING);
 
         // Hoe Stuff (Ageable and fully grown only)
         if (block.getBlockData() instanceof Ageable) {
@@ -73,6 +86,10 @@ public class BlockBreakListener implements Listener {
         // Return toolType matches the stored one from the map
         return BlockMap.materialMap.get(block.getType()).equals(toolType);
 
+    }
+
+    private boolean isPlaced(Block block) {
+        return block.hasMetadata(IDStrings.ID_PLACED);
     }
 
 }

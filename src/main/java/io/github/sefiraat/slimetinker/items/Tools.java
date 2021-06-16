@@ -4,6 +4,7 @@ import io.github.sefiraat.slimetinker.SlimeTinker;
 import io.github.sefiraat.slimetinker.categories.Categories;
 import io.github.sefiraat.slimetinker.items.templates.ToolTemplate;
 import io.github.sefiraat.slimetinker.items.workstations.table.DummyTable;
+import io.github.sefiraat.slimetinker.utils.IDStrings;
 import io.github.sefiraat.slimetinker.utils.SkullTextures;
 import io.github.sefiraat.slimetinker.utils.ThemeUtils;
 import io.github.thebusybiscuit.slimefun4.implementation.items.blocks.UnplaceableBlock;
@@ -11,9 +12,20 @@ import me.mrCookieSlime.Slimefun.api.SlimefunItemStack;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
+
 public final class Tools {
 
     public static final String DESC_ERROR = "Error";
+    public static final int LEVEL_NETHERITE = 10;
+    public static final int LEVEL_DIAMOND = 8;
+    public static final int LEVEL_IRON = 6;
+    public static final int LEVEL_GOLD = 3;
+
+
+    public static Map<String, Map<Integer, Material>> toolGrowthMap = new HashMap<>();
 
     protected static ItemStack[] getDummyToolRecipe(ItemStack i1, ItemStack i2, ItemStack i3) {
         return new ItemStack[]{
@@ -123,6 +135,17 @@ public final class Tools {
                     ThemeUtils.PASSIVE + DESC_ERROR
             );
 
+    public static final SlimefunItemStack TOOL_INFO =
+            ThemeUtils.themedItemStack(
+                    "TOOL_INFO",
+                    SkullTextures.INFO,
+                    ThemeUtils.ThemeItemType.PART,
+                    "Tinker's Tools Info",
+                    ThemeUtils.PASSIVE + "Tinker's tools start at Stone. As you",
+                    ThemeUtils.PASSIVE + "level the tools up, they will promote",
+                    ThemeUtils.PASSIVE + "through Gold > Iron > Diamond > Netherite."
+            );
+
     public static final ToolTemplate SHOVEL = new ToolTemplate(Categories.DUMMY, TOOL_SHOVEL, DummyTable.TYPE, new ItemStack[9]);
     public static final ToolTemplate PICKAXE = new ToolTemplate(Categories.DUMMY, TOOL_PICKAXE, DummyTable.TYPE, new ItemStack[9]);
     public static final ToolTemplate AXE = new ToolTemplate(Categories.DUMMY, TOOL_AXE, DummyTable.TYPE, new ItemStack[9]);
@@ -130,11 +153,65 @@ public final class Tools {
     public static final ToolTemplate SWORD = new ToolTemplate(Categories.DUMMY, TOOL_SWORD, DummyTable.TYPE, new ItemStack[9]);
 
     public static void set(SlimeTinker p) {
+        
+        new UnplaceableBlock(Categories.TOOLS, TOOL_INFO, DummyTable.TYPE, new ItemStack[9]).register(p);
         new UnplaceableBlock(Categories.TOOLS, TOOL_SHOVEL_DUMMY, DummyTable.TYPE, getDummyToolRecipe(Parts.PART_TOOL_ROD_DUMMY, Parts.PART_BINDING_DUMMY, Parts.PART_SHOVEL_HEAD_DUMMY)).register(p);
         new UnplaceableBlock(Categories.TOOLS, TOOL_PICKAXE_DUMMY, DummyTable.TYPE, getDummyToolRecipe(Parts.PART_TOOL_ROD_DUMMY, Parts.PART_BINDING_DUMMY, Parts.PART_PICKAXE_HEAD_DUMMY)).register(p);
         new UnplaceableBlock(Categories.TOOLS, TOOL_AXE_DUMMY, DummyTable.TYPE, getDummyToolRecipe(Parts.PART_TOOL_ROD_DUMMY, Parts.PART_BINDING_DUMMY, Parts.PART_AXE_HEAD_DUMMY)).register(p);
         new UnplaceableBlock(Categories.TOOLS, TOOL_HOE_DUMMY, DummyTable.TYPE, getDummyToolRecipe(Parts.PART_TOOL_ROD_DUMMY, Parts.PART_BINDING_DUMMY, Parts.PART_HOE_HEAD_DUMMY)).register(p);
         new UnplaceableBlock(Categories.TOOLS, TOOL_SWORD_DUMMY, DummyTable.TYPE, getDummyToolRecipe(Parts.PART_TOOL_ROD_DUMMY, Parts.PART_BINDING_DUMMY, Parts.PART_SWORD_BLADE_DUMMY)).register(p);
+
+        toolGrowthMap.put(IDStrings.ID_SHOVEL, getShovelMap());
+        toolGrowthMap.put(IDStrings.ID_PICKAXE, getPickaxeMap());
+        toolGrowthMap.put(IDStrings.ID_AXE, getAxeMap());
+        toolGrowthMap.put(IDStrings.ID_HOE, getHoeMap());
+        toolGrowthMap.put(IDStrings.ID_SWORD, getSwordMap());
+
+    }
+    
+    private static Map<Integer, Material> getShovelMap() {
+        Map<Integer, Material> map = new LinkedHashMap<>();
+        map.put(LEVEL_NETHERITE, Material.NETHERITE_SHOVEL);
+        map.put(LEVEL_DIAMOND, Material.DIAMOND_SHOVEL);
+        map.put(LEVEL_IRON, Material.IRON_SHOVEL);
+        map.put(LEVEL_GOLD, Material.GOLDEN_SHOVEL);
+        return map;
+    }
+
+    private static Map<Integer, Material> getPickaxeMap() {
+        Map<Integer, Material> map = new LinkedHashMap<>();
+        map.put(LEVEL_NETHERITE, Material.NETHERITE_PICKAXE);
+        map.put(LEVEL_DIAMOND, Material.DIAMOND_PICKAXE);
+        map.put(LEVEL_IRON, Material.IRON_PICKAXE);
+        map.put(LEVEL_GOLD, Material.GOLDEN_PICKAXE);
+        return map;
+    }
+
+    private static Map<Integer, Material> getAxeMap() {
+        Map<Integer, Material> map = new LinkedHashMap<>();
+        map.put(LEVEL_NETHERITE, Material.NETHERITE_AXE);
+        map.put(LEVEL_DIAMOND, Material.DIAMOND_AXE);
+        map.put(LEVEL_IRON, Material.IRON_AXE);
+        map.put(LEVEL_GOLD, Material.GOLDEN_AXE);
+        return map;
+    }
+
+    private static Map<Integer, Material> getHoeMap() {
+        Map<Integer, Material> map = new LinkedHashMap<>();
+        map.put(LEVEL_NETHERITE, Material.NETHERITE_HOE);
+        map.put(LEVEL_DIAMOND, Material.DIAMOND_HOE);
+        map.put(LEVEL_IRON, Material.IRON_HOE);
+        map.put(LEVEL_GOLD, Material.GOLDEN_HOE);
+        return map;
+    }
+
+    private static Map<Integer, Material> getSwordMap() {
+        Map<Integer, Material> map = new LinkedHashMap<>();
+        map.put(LEVEL_NETHERITE, Material.NETHERITE_SWORD);
+        map.put(LEVEL_DIAMOND, Material.DIAMOND_SWORD);
+        map.put(LEVEL_IRON, Material.IRON_SWORD);
+        map.put(LEVEL_GOLD, Material.GOLDEN_SWORD);
+        return map;
     }
 
 }

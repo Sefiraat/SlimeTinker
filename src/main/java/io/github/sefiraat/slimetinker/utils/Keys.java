@@ -15,6 +15,7 @@ public class Keys {
     private final NamespacedKey categoryCasts = new NamespacedKey(SlimeTinker.inst(), "slime-tinker-casts");
     private final NamespacedKey categoryParts = new NamespacedKey(SlimeTinker.inst(), "slime-tinker-parts");
     private final NamespacedKey categoryTools = new NamespacedKey(SlimeTinker.inst(), "slime-tinker-tools");
+    private final NamespacedKey categoryModifications = new NamespacedKey(SlimeTinker.inst(), "slime-tinker-modifications");
     private final NamespacedKey categoryDummy = new NamespacedKey(SlimeTinker.inst(), "slime-tinker-dummy");
 
     // Parts information
@@ -33,6 +34,7 @@ public class Keys {
     private final NamespacedKey toolExpRequired = new NamespacedKey(SlimeTinker.inst(), "ST_NextLevelExp");
     private final NamespacedKey toolLevel = new NamespacedKey(SlimeTinker.inst(), "ST_Level");
     private final NamespacedKey toolModSlots = new NamespacedKey(SlimeTinker.inst(), "ST_Modifier_Slots");
+    private final NamespacedKey toolMods = new NamespacedKey(SlimeTinker.inst(), "ST_Modifier_Map");
 
 
     // Workstations

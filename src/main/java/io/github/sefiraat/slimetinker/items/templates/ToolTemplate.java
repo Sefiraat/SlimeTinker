@@ -1,9 +1,10 @@
 package io.github.sefiraat.slimetinker.items.templates;
 
 import io.github.sefiraat.slimetinker.SlimeTinker;
-import io.github.sefiraat.slimetinker.experience.Experience;
 import io.github.sefiraat.slimetinker.items.ComponentMaterials;
+import io.github.sefiraat.slimetinker.utils.Experience;
 import io.github.sefiraat.slimetinker.utils.IDStrings;
+import io.github.sefiraat.slimetinker.utils.ItemUtils;
 import io.github.sefiraat.slimetinker.utils.ThemeUtils;
 import io.github.thebusybiscuit.slimefun4.implementation.items.blocks.UnplaceableBlock;
 import me.mrCookieSlime.Slimefun.Lists.RecipeType;
@@ -30,12 +31,12 @@ public class ToolTemplate extends UnplaceableBlock {
 
     }
 
-    public List<String> getLore(PersistentDataContainer c, ToolDefinition toolDefinition) {
+    public List<String> getLore(PersistentDataContainer c) {
         List<String> list = new ArrayList<>();
         list.add("");
-        list.add(ThemeUtils.CLICK_INFO + "Head : " + ChatColor.of(ComponentMaterials.getById(toolDefinition.getHeadMaterial()).getColorHex()) + ThemeUtils.toTitleCase(toolDefinition.getHeadMaterial()));
-        list.add(ThemeUtils.CLICK_INFO + "Binding : " + ChatColor.of(ComponentMaterials.getById(toolDefinition.getBinderMaterial()).getColorHex()) + ThemeUtils.toTitleCase(toolDefinition.getBinderMaterial()));
-        list.add(ThemeUtils.CLICK_INFO + "Rod : " + ChatColor.of(ComponentMaterials.getById(toolDefinition.getRodMaterial()).getColorHex()) + ThemeUtils.toTitleCase(toolDefinition.getRodMaterial()));
+        list.add(ThemeUtils.CLICK_INFO + "Head : " + ItemUtils.formatMaterialName(ItemUtils.getToolHeadMaterial(c)));
+        list.add(ThemeUtils.CLICK_INFO + "Binding : " + ItemUtils.formatMaterialName(ItemUtils.getToolBindingMaterial(c)));
+        list.add(ThemeUtils.CLICK_INFO + "Rod : " + ItemUtils.formatMaterialName(ItemUtils.getToolBindingMaterial(c)));
         list.add("");
         // TODO Tool Properties
         list.add("PROPERTIES GO HERE");
@@ -78,7 +79,7 @@ public class ToolTemplate extends UnplaceableBlock {
         c.set(SlimeTinker.inst().getKeys().getToolInfoHeadMaterial(), PersistentDataType.STRING, toolDefinition.getHeadMaterial());
         c.set(SlimeTinker.inst().getKeys().getToolInfoBinderMaterial(), PersistentDataType.STRING, toolDefinition.getBinderMaterial());
         c.set(SlimeTinker.inst().getKeys().getToolInfoRodMaterial(), PersistentDataType.STRING, toolDefinition.getRodMaterial());
-        im.setLore(getLore(c, toolDefinition));
+        im.setLore(getLore(c));
         im.setDisplayName(getName(toolDefinition));
         itemStack.setItemMeta(im);
         return itemStack;

@@ -1,8 +1,6 @@
-package io.github.sefiraat.slimetinker.items.gui;
+package io.github.sefiraat.slimetinker.utils;
 
 import io.github.sefiraat.slimetinker.items.ComponentMaterials;
-import io.github.sefiraat.slimetinker.utils.SkullTextures;
-import io.github.sefiraat.slimetinker.utils.ThemeUtils;
 import me.mrCookieSlime.Slimefun.cscorelib2.item.CustomItem;
 import me.mrCookieSlime.Slimefun.cscorelib2.skull.SkullItem;
 import net.md_5.bungee.api.ChatColor;
@@ -56,6 +54,30 @@ public final class GUIItems {
         return new CustomItem(
                 Material.LIME_STAINED_GLASS_PANE,
                 ChatColor.GREEN + "Preview",
+                " "
+        );
+    }
+
+    public static CustomItem menuMarkerRod() {
+        return new CustomItem(
+                Material.RED_STAINED_GLASS_PANE,
+                ChatColor.RED + "Rod Input",
+                " "
+        );
+    }
+
+    public static CustomItem menuMarkerBinder() {
+        return new CustomItem(
+                Material.RED_STAINED_GLASS_PANE,
+                ChatColor.RED + "Binder Input",
+                " "
+        );
+    }
+
+    public static CustomItem menuMarkerHead() {
+        return new CustomItem(
+                Material.RED_STAINED_GLASS_PANE,
+                ChatColor.RED + "Head/Blade Input",
                 " "
         );
     }

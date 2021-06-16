@@ -8,8 +8,8 @@ import io.github.sefiraat.slimetinker.SlimeTinker;
 import io.github.sefiraat.slimetinker.items.Parts;
 import io.github.sefiraat.slimetinker.items.Tools;
 import io.github.sefiraat.slimetinker.items.Workstations;
-import io.github.sefiraat.slimetinker.items.gui.GUIItems;
 import io.github.sefiraat.slimetinker.items.templates.ToolDefinition;
+import io.github.sefiraat.slimetinker.utils.GUIItems;
 import io.github.sefiraat.slimetinker.utils.IDStrings;
 import io.github.sefiraat.slimetinker.utils.ThemeUtils;
 import me.mrCookieSlime.CSCoreLibPlugin.Configuration.Config;
@@ -38,10 +38,13 @@ public class Table extends AbstractContainer {
     private static final RecipeMap<ItemStack> RECIPES = new RecipeMap<>(ShapedRecipe::new);
     public static final RecipeType TYPE = new RecipeType(SlimeTinker.inst().getKey("tinkers-table"), Workstations.TINKERS_TABLE, RECIPES::put);
 
-    private static final int[] BACKGROUND_SLOTS = {0,1,3,5,7,8,18,19,21,23,25,26,27,28,30,32,34,35,45,46,48,50,52,53};
-    private static final int[] BACKGROUND_INPUTS = {2,4,6,9,10,12,14,16,17,20,22,24,31,49};
-    private static final int[] BACKGROUND_PREVIEW = {29,36,37,39,47};
-    private static final int[] BACKGROUND_OUTPUT = {33,41,43,44,51};
+    private static final int[] BACKGROUND_SLOTS = {0,8,9,17,18,26,27,31,35,36,44,45,49,53};
+    private static final int[] BACKGROUND_INPUTS = {1,3,5,7,10,12,14,16,19,20,21,22,23,24,25};
+    private static final int[] BACKGROUND_PREVIEW = {28,29,30,37,39,46,47,48};
+    private static final int[] BACKGROUND_OUTPUT = {32,33,34,41,43,50,51,52};
+    private static final int MARKER_ROD = 2;
+    private static final int MARKER_BINDER = 4;
+    private static final int MARKER_HEAD = 6;
     private static final int INPUT_ROD = 11;
     private static final int INPUT_BINDING = 13;
     private static final int INPUT_HEAD = 15;
@@ -179,15 +182,21 @@ public class Table extends AbstractContainer {
     @Override
     protected void setupMenu(BlockMenuPreset blockMenuPreset) {
 
+        blockMenuPreset.drawBackground(GUIItems.menuBackground(), BACKGROUND_SLOTS);
         blockMenuPreset.drawBackground(GUIItems.menuBackgroundInput(), BACKGROUND_INPUTS);
         blockMenuPreset.drawBackground(GUIItems.menuBackgroundOutput(), BACKGROUND_OUTPUT);
         blockMenuPreset.drawBackground(GUIItems.menuBackgroundPreview(), BACKGROUND_PREVIEW);
 
         blockMenuPreset.addItem(CRAFT_BUTTON, GUIItems.menuCraftTable());
-        blockMenuPreset.addMenuClickHandler(CRAFT_BUTTON, (player, i, itemStack, clickAction) -> false);
-        blockMenuPreset.addMenuClickHandler(PREVIEW_SLOT, (player, i, itemStack, clickAction) -> false);
+        blockMenuPreset.addItem(MARKER_ROD, GUIItems.menuMarkerRod());
+        blockMenuPreset.addItem(MARKER_BINDER, GUIItems.menuMarkerBinder());
+        blockMenuPreset.addItem(MARKER_HEAD, GUIItems.menuMarkerHead());
 
-        blockMenuPreset.drawBackground(GUIItems.menuBackground(), BACKGROUND_SLOTS);
+        blockMenuPreset.addMenuClickHandler(CRAFT_BUTTON, (player, i, itemStack, clickAction) -> false);
+        blockMenuPreset.addMenuClickHandler(MARKER_ROD, (player, i, itemStack, clickAction) -> false);
+        blockMenuPreset.addMenuClickHandler(MARKER_BINDER, (player, i, itemStack, clickAction) -> false);
+        blockMenuPreset.addMenuClickHandler(MARKER_HEAD, (player, i, itemStack, clickAction) -> false);
+        blockMenuPreset.addMenuClickHandler(PREVIEW_SLOT, (player, i, itemStack, clickAction) -> false);
 
     }
 

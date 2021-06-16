@@ -1,16 +1,11 @@
 package io.github.sefiraat.slimetinker.commands;
 
 import io.github.mooy1.infinitylib.commands.AbstractCommand;
-import io.github.mooy1.infinitylib.items.StackUtils;
-import io.github.sefiraat.slimetinker.SlimeTinker;
-import io.github.sefiraat.slimetinker.items.Parts;
 import io.github.sefiraat.slimetinker.items.Tools;
 import io.github.sefiraat.slimetinker.items.templates.ToolDefinition;
-import io.github.sefiraat.slimetinker.items.templates.ToolTemplate;
 import io.github.sefiraat.slimetinker.utils.IDStrings;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import org.bukkit.persistence.PersistentDataType;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;

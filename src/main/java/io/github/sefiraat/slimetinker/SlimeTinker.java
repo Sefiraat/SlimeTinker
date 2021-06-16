@@ -3,6 +3,7 @@ package io.github.sefiraat.slimetinker;
 import io.github.mooy1.infinitylib.AbstractAddon;
 import io.github.mooy1.infinitylib.commands.AbstractCommand;
 import io.github.sefiraat.slimetinker.categories.Categories;
+import io.github.sefiraat.slimetinker.commands.AddExp;
 import io.github.sefiraat.slimetinker.commands.GiveDummyTool;
 import io.github.sefiraat.slimetinker.items.Alloys;
 import io.github.sefiraat.slimetinker.items.Casts;
@@ -19,7 +20,6 @@ import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nonnull;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 public class SlimeTinker extends AbstractAddon {
@@ -70,7 +70,7 @@ public class SlimeTinker extends AbstractAddon {
     @Nonnull
     @Override
     protected List<AbstractCommand> setupSubCommands() {
-        return Collections.singletonList(new GiveDummyTool());
+        return Arrays.asList(new GiveDummyTool(), new AddExp());
     }
 
 

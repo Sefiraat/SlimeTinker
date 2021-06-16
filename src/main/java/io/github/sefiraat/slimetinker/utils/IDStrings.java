@@ -44,4 +44,6 @@ public class IDStrings {
     public static final String ID_AXE = "AXE";
     public static final String ID_HOE = "HOE";
     public static final String ID_SWORD = "SWORD";
+
+    public static final String ID_PLACED = "st-placed-block";
 }

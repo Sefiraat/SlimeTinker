@@ -1,6 +1,7 @@
 package io.github.sefiraat.slimetinker.utils;
 
 public class IDStrings {
+
     public static final String ID_IRON = "IRON";
     public static final String ID_GOLD = "GOLD";
     public static final String ID_COPPER = "COPPER";
@@ -25,16 +26,19 @@ public class IDStrings {
     public static final String ID_NICKEL = "NICKEL";
     public static final String ID_COBALT = "COBALT";
     public static final String ID_REINFORCED = "REINFORCED ALLOY";
+
     public static final String ID_STRING = "STRING";
     public static final String ID_VINE = "VINE";
     public static final String ID_ROOTRED = "CRIMSON ROOT";
     public static final String ID_ROOTGREEN = "WARPED ROOT";
     public static final String ID_VINERED = "WEEPING VINE";
     public static final String ID_VINEGREEN = "TWISTED VINE";
+
     public static final String ID_HEAD = "HEAD";
     public static final String ID_BINDING = "BINDING";
     public static final String ID_ROD = "ROD";
     public static final String ID_REPAIR = "REPAIR";
+
     public static final String ID_SHOVEL = "SHOVEL";
     public static final String ID_PICKAXE = "PICK";
     public static final String ID_AXE = "AXE";

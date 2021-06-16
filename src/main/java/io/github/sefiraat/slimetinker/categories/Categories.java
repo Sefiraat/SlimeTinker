@@ -8,7 +8,6 @@ import io.github.thebusybiscuit.slimefun4.core.categories.SubCategory;
 import me.mrCookieSlime.Slimefun.cscorelib2.item.CustomItem;
 import me.mrCookieSlime.Slimefun.cscorelib2.skull.SkullItem;
 import org.bukkit.Material;
-import org.bukkit.NamespacedKey;
 
 public final class Categories {
 
@@ -72,14 +71,14 @@ public final class Categories {
         );
     }
 
-    public static final MultiCategory MAIN = new MultiCategory(new NamespacedKey(SlimeTinker.inst(), "slime-tinker"), catMain());
-    public static final SubCategory MATERIALS = new SubCategory(new NamespacedKey(SlimeTinker.inst(), "slime-tinker-materials"), MAIN, catMaterials());
-    public static final SubCategory ALLOYS = new SubCategory(new NamespacedKey(SlimeTinker.inst(), "slime-tinker-alloys"), MAIN, catAlloys());
-    public static final SubCategory WORKSTATIONS = new SubCategory(new NamespacedKey(SlimeTinker.inst(), "slime-tinker-workstations"), MAIN, catWorkstations());
-    public static final SubCategory CASTS = new SubCategory(new NamespacedKey(SlimeTinker.inst(), "slime-tinker-casts"), MAIN, catCasts());
-    public static final SubCategory PARTS = new SubCategory(new NamespacedKey(SlimeTinker.inst(), "slime-tinker-parts"), MAIN, catParts());
-    public static final SubCategory TOOLS = new SubCategory(new NamespacedKey(SlimeTinker.inst(), "slime-tinker-tools"), MAIN, catTools());
-    public static final DummyCategory DUMMY = new DummyCategory(new NamespacedKey(SlimeTinker.inst(), "slime-tinker-dummy"), catDummy());
+    public static final MultiCategory MAIN = new MultiCategory(SlimeTinker.inst().getKeys().getCategoryMain(), catMain());
+    public static final SubCategory MATERIALS = new SubCategory(SlimeTinker.inst().getKeys().getCategoryMaterials(), MAIN, catMaterials());
+    public static final SubCategory ALLOYS = new SubCategory(SlimeTinker.inst().getKeys().getCategoryAlloys(), MAIN, catAlloys());
+    public static final SubCategory WORKSTATIONS = new SubCategory(SlimeTinker.inst().getKeys().getCategoryWorkstations(), MAIN, catWorkstations());
+    public static final SubCategory CASTS = new SubCategory(SlimeTinker.inst().getKeys().getCategoryCasts(), MAIN, catCasts());
+    public static final SubCategory PARTS = new SubCategory(SlimeTinker.inst().getKeys().getCategoryParts(), MAIN, catParts());
+    public static final SubCategory TOOLS = new SubCategory(SlimeTinker.inst().getKeys().getCategoryTools(), MAIN, catTools());
+    public static final DummyCategory DUMMY = new DummyCategory(SlimeTinker.inst().getKeys().getCategoryDummy(), catDummy());
 
     public static void set(SlimeTinker p) {
         MAIN.register(p);

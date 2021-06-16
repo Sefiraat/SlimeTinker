@@ -157,12 +157,32 @@ public final class GUIItems {
         );
     }
 
-    public static CustomItem menuCraft() {
+    public static CustomItem menuCraftWorkbench() {
         return new CustomItem(
-                Material.CRAFTING_TABLE,
+                Material.FLETCHING_TABLE,
                 ThemeUtils.GUI_HEAD + "Craft",
                 "",
                 ThemeUtils.PASSIVE + "Let's get crafting!"
+        );
+    }
+
+    public static CustomItem menuCraftTable() {
+        return new CustomItem(
+                Material.SMITHING_TABLE,
+                ThemeUtils.GUI_HEAD + "Form Tool",
+                "",
+                ThemeUtils.PASSIVE + "Forms a tool from the three given",
+                ThemeUtils.PASSIVE + "parts (Rod, Binding and Head/Blade)"
+        );
+    }
+
+    public static CustomItem menuCraftRepair() {
+        return new CustomItem(
+                Material.CARTOGRAPHY_TABLE,
+                ThemeUtils.GUI_HEAD + "Repair",
+                "",
+                ThemeUtils.PASSIVE + "Repairs the tool in the first slot",
+                ThemeUtils.PASSIVE + "using the repair kit in the second."
         );
     }
 

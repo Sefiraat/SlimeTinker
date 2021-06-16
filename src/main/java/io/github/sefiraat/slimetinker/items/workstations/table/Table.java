@@ -24,7 +24,6 @@ import me.mrCookieSlime.Slimefun.api.inventory.DirtyChestMenu;
 import me.mrCookieSlime.Slimefun.api.item_transport.ItemTransportFlow;
 import org.bukkit.Location;
 import org.bukkit.Material;
-import org.bukkit.NamespacedKey;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.event.block.BlockBreakEvent;
@@ -103,18 +102,12 @@ public class Table extends AbstractContainer {
         ItemStack itemStack;
 
         ToolDefinition toolDefinition = new ToolDefinition(
-                head.getItemMeta().getPersistentDataContainer().get(new NamespacedKey(SlimeTinker.inst(), "ST_Class"), PersistentDataType.STRING),
-                head.getItemMeta().getPersistentDataContainer().get(new NamespacedKey(SlimeTinker.inst(), "ST_Type"), PersistentDataType.STRING),
-                head.getItemMeta().getPersistentDataContainer().get(new NamespacedKey(SlimeTinker.inst(), "ST_Material"), PersistentDataType.STRING),
+                head.getItemMeta().getPersistentDataContainer().get(SlimeTinker.inst().getKeys().getPartInfoClassType(), PersistentDataType.STRING),
+                head.getItemMeta().getPersistentDataContainer().get(SlimeTinker.inst().getKeys().getPartInfoType(), PersistentDataType.STRING),
+                head.getItemMeta().getPersistentDataContainer().get(SlimeTinker.inst().getKeys().getPartInfoMaterialType(), PersistentDataType.STRING),
                 Parts.binderMap.get(StackUtils.getIDorType(binding)),
-                rod.getItemMeta().getPersistentDataContainer().get(new NamespacedKey(SlimeTinker.inst(), "ST_Material"), PersistentDataType.STRING)
+                rod.getItemMeta().getPersistentDataContainer().get(SlimeTinker.inst().getKeys().getPartInfoMaterialType(), PersistentDataType.STRING)
         );
-
-        SlimeTinker.inst().getLogger().info(toolDefinition.getClassType());
-        SlimeTinker.inst().getLogger().info(toolDefinition.getPartType());
-        SlimeTinker.inst().getLogger().info(toolDefinition.getHeadMaterial());
-        SlimeTinker.inst().getLogger().info(toolDefinition.getBinderMaterial());
-        SlimeTinker.inst().getLogger().info(toolDefinition.getRodMaterial());
 
         switch (toolDefinition.getPartType()) {
             case IDStrings.ID_SHOVEL:
@@ -143,10 +136,10 @@ public class Table extends AbstractContainer {
         if (itemStack == null || !itemStack.hasItemMeta()) { // No item
             return false;
         }
-        if (!itemStack.getItemMeta().getPersistentDataContainer().has(new NamespacedKey(SlimeTinker.inst(), "ST_Class"), PersistentDataType.STRING)) { // Not a part
+        if (!itemStack.getItemMeta().getPersistentDataContainer().has(SlimeTinker.inst().getKeys().getPartInfoClassType(), PersistentDataType.STRING)) { // Not a part
             return false;
         }
-        String type = itemStack.getItemMeta().getPersistentDataContainer().get(new NamespacedKey(SlimeTinker.inst(), "ST_Class"), PersistentDataType.STRING);
+        String type = itemStack.getItemMeta().getPersistentDataContainer().get(SlimeTinker.inst().getKeys().getPartInfoClassType(), PersistentDataType.STRING);
         assert type != null;
         return type.equals(classType);
     }
@@ -190,7 +183,7 @@ public class Table extends AbstractContainer {
         blockMenuPreset.drawBackground(GUIItems.menuBackgroundOutput(), BACKGROUND_OUTPUT);
         blockMenuPreset.drawBackground(GUIItems.menuBackgroundPreview(), BACKGROUND_PREVIEW);
 
-        blockMenuPreset.addItem(CRAFT_BUTTON, GUIItems.menuCraft());
+        blockMenuPreset.addItem(CRAFT_BUTTON, GUIItems.menuCraftTable());
         blockMenuPreset.addMenuClickHandler(CRAFT_BUTTON, (player, i, itemStack, clickAction) -> false);
         blockMenuPreset.addMenuClickHandler(PREVIEW_SLOT, (player, i, itemStack, clickAction) -> false);
 

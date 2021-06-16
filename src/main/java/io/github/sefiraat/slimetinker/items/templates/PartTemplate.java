@@ -9,7 +9,6 @@ import me.mrCookieSlime.Slimefun.Lists.RecipeType;
 import me.mrCookieSlime.Slimefun.Objects.Category;
 import me.mrCookieSlime.Slimefun.api.SlimefunItemStack;
 import net.md_5.bungee.api.ChatColor;
-import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataContainer;
@@ -51,10 +50,10 @@ public class PartTemplate extends UnplaceableBlock {
         PersistentDataContainer c = im.getPersistentDataContainer();
         im.setLore(getLore(material));
         im.setDisplayName(getName(material));
-        c.set(new NamespacedKey(SlimeTinker.inst(), "ST_Material"), PersistentDataType.STRING, material);
-        c.set(new NamespacedKey(SlimeTinker.inst(), "ST_Class"), PersistentDataType.STRING, partClass);
+        c.set(SlimeTinker.inst().getKeys().getPartInfoMaterialType(), PersistentDataType.STRING, material);
+        c.set(SlimeTinker.inst().getKeys().getPartInfoClassType(), PersistentDataType.STRING, partClass);
         if (partType != null) {
-            c.set(new NamespacedKey(SlimeTinker.inst(), "ST_Type"), PersistentDataType.STRING, partType);
+            c.set(SlimeTinker.inst().getKeys().getPartInfoType(), PersistentDataType.STRING, partType);
         }
         itemStack.setItemMeta(im);
         return itemStack;

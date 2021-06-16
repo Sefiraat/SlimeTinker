@@ -20,7 +20,6 @@ import me.mrCookieSlime.Slimefun.api.inventory.BlockMenuPreset;
 import me.mrCookieSlime.Slimefun.api.inventory.DirtyChestMenu;
 import me.mrCookieSlime.Slimefun.api.item_transport.ItemTransportFlow;
 import org.bukkit.Location;
-import org.bukkit.NamespacedKey;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.event.block.BlockBreakEvent;
@@ -54,10 +53,10 @@ public class RepairBench extends AbstractContainer {
         if (itemStack == null || !itemStack.hasItemMeta()) { // No item
             return false;
         }
-        if (!itemStack.getItemMeta().getPersistentDataContainer().has(new NamespacedKey(SlimeTinker.inst(), "ST_Class"), PersistentDataType.STRING)) { // Not a part
+        if (!itemStack.getItemMeta().getPersistentDataContainer().has(SlimeTinker.inst().getKeys().getPartInfoClassType(), PersistentDataType.STRING)) { // Not a part
             return false;
         }
-        String type = itemStack.getItemMeta().getPersistentDataContainer().get(new NamespacedKey(SlimeTinker.inst(), "ST_Class"), PersistentDataType.STRING);
+        String type = itemStack.getItemMeta().getPersistentDataContainer().get(SlimeTinker.inst().getKeys().getPartInfoClassType(), PersistentDataType.STRING);
         assert type != null;
         return type.equals(classType);
     }
@@ -127,7 +126,7 @@ public class RepairBench extends AbstractContainer {
 
         blockMenuPreset.drawBackground(GUIItems.menuBackground(), BACKGROUND_SLOTS);
 
-        blockMenuPreset.addItem(CRAFT_BUTTON, GUIItems.menuCraft());
+        blockMenuPreset.addItem(CRAFT_BUTTON, GUIItems.menuCraftRepair());
         blockMenuPreset.addMenuClickHandler(CRAFT_BUTTON, (player, i, itemStack, clickAction) -> false);
 
     }

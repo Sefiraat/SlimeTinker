@@ -52,8 +52,8 @@ public class RepairkitTemplate extends UnplaceableBlock {
         PersistentDataContainer c = im.getPersistentDataContainer();
         im.setLore(getLore(material));
         im.setDisplayName(getName(material));
-        c.set(new NamespacedKey(SlimeTinker.inst(), "ST_Material"), PersistentDataType.STRING, material);
-        c.set(new NamespacedKey(SlimeTinker.inst(), "ST_Class"), PersistentDataType.STRING, partClass);
+        c.set(SlimeTinker.inst().getKeys().getPartInfoMaterialType(), PersistentDataType.STRING, material);
+        c.set(SlimeTinker.inst().getKeys().getPartInfoClassType(), PersistentDataType.STRING, partClass);
         itemStack.setItemMeta(im);
         return itemStack;
     }
@@ -64,7 +64,7 @@ public class RepairkitTemplate extends UnplaceableBlock {
     }
 
     public static boolean isRepairKit(ItemStack itemStack) {
-        NamespacedKey key = new NamespacedKey(SlimeTinker.inst(),"ST_Class");
+        NamespacedKey key = SlimeTinker.inst().getKeys().getPartInfoClassType();
         return itemStack.hasItemMeta() &&
                 itemStack.getItemMeta().getPersistentDataContainer().has(key, PersistentDataType.STRING) &&
                 itemStack.getItemMeta().getPersistentDataContainer().get(key, PersistentDataType.STRING).equals(IDStrings.ID_REPAIR);

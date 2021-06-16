@@ -1,5 +1,6 @@
 package io.github.sefiraat.slimetinker.listeners;
 
+import io.github.sefiraat.slimetinker.experience.Experience;
 import io.github.sefiraat.slimetinker.items.templates.ToolTemplate;
 import io.github.sefiraat.slimetinker.utils.ThemeUtils;
 import org.bukkit.entity.Player;
@@ -32,15 +33,14 @@ public class EntityDamagedListener implements Listener {
             return;
         }
 
+        Experience.addToolExp(heldItem, (int) event.getDamage(), player);
+
     }
 
     private boolean cancelIfBroken(ItemStack itemStack) {
         Damageable damageable = (Damageable) itemStack.getItemMeta();
         assert damageable != null;
-        if (damageable.getDamage() == itemStack.getType().getMaxDurability() - 1) { // Tool is 'broken'
-            return true;
-        }
-        return false;
+        return damageable.getDamage() == itemStack.getType().getMaxDurability() - 1;
     }
 
 }

@@ -7,10 +7,9 @@ import io.github.sefiraat.slimetinker.utils.ThemeUtils;
 import me.mrCookieSlime.Slimefun.Lists.RecipeType;
 import me.mrCookieSlime.Slimefun.api.SlimefunItemStack;
 import org.bukkit.Material;
-import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.ItemStack;
 
-public class DummyTable {
+public final class DummyTable {
 
     private DummyTable() {
         throw new IllegalStateException("Utility class");
@@ -27,6 +26,6 @@ public class DummyTable {
     );
 
     private static final RecipeMap<ItemStack> RECIPES = new RecipeMap<>(ShapedRecipe::new);
-    public static final RecipeType TYPE = new RecipeType(new NamespacedKey(SlimeTinker.inst(), "dummy-table"), STACK, RECIPES::put);
+    public static final RecipeType TYPE = new RecipeType(SlimeTinker.inst().getKeys().getWsDummyTable(), STACK, RECIPES::put);
 
 }

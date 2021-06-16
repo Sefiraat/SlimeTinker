@@ -1,6 +1,7 @@
 package io.github.sefiraat.slimetinker.items.templates;
 
 import io.github.sefiraat.slimetinker.SlimeTinker;
+import io.github.sefiraat.slimetinker.experience.Experience;
 import io.github.sefiraat.slimetinker.items.ComponentMaterials;
 import io.github.sefiraat.slimetinker.utils.IDStrings;
 import io.github.sefiraat.slimetinker.utils.ThemeUtils;
@@ -10,7 +11,6 @@ import me.mrCookieSlime.Slimefun.Objects.Category;
 import me.mrCookieSlime.Slimefun.api.SlimefunItemStack;
 import net.md_5.bungee.api.ChatColor;
 import org.bukkit.Material;
-import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataContainer;
@@ -30,15 +30,21 @@ public class ToolTemplate extends UnplaceableBlock {
 
     }
 
-    public List<String> getLore(ToolDefinition toolDefinition) {
+    public List<String> getLore(PersistentDataContainer c, ToolDefinition toolDefinition) {
         List<String> list = new ArrayList<>();
         list.add("");
         list.add(ThemeUtils.CLICK_INFO + "Head : " + ChatColor.of(ComponentMaterials.getById(toolDefinition.getHeadMaterial()).getColorHex()) + ThemeUtils.toTitleCase(toolDefinition.getHeadMaterial()));
         list.add(ThemeUtils.CLICK_INFO + "Binding : " + ChatColor.of(ComponentMaterials.getById(toolDefinition.getBinderMaterial()).getColorHex()) + ThemeUtils.toTitleCase(toolDefinition.getBinderMaterial()));
         list.add(ThemeUtils.CLICK_INFO + "Rod : " + ChatColor.of(ComponentMaterials.getById(toolDefinition.getRodMaterial()).getColorHex()) + ThemeUtils.toTitleCase(toolDefinition.getRodMaterial()));
         list.add("");
-        // TODO Properties
+        // TODO Tool Properties
+        list.add("PROPERTIES GO HERE");
+        list.add("");
         // TODO Exp
+        list.add(Experience.getLoreExp(c));
+        list.add("");
+        // TODO Modifiers
+        list.add(Experience.getLoreModSlots(c));
         return list;
     }
 
@@ -65,14 +71,15 @@ public class ToolTemplate extends UnplaceableBlock {
         ItemMeta im = itemStack.getItemMeta();
         assert im != null;
         PersistentDataContainer c = im.getPersistentDataContainer();
-        im.setLore(getLore(toolDefinition));
+        Experience.setupExpNewTool(c);
+        c.set(SlimeTinker.inst().getKeys().getToolInfoIsTool(), PersistentDataType.STRING, "Y");
+        c.set(SlimeTinker.inst().getKeys().getToolInfoHeadType(), PersistentDataType.STRING, toolDefinition.getClassType());
+        c.set(SlimeTinker.inst().getKeys().getToolInfoToolType(), PersistentDataType.STRING, toolDefinition.getPartType());
+        c.set(SlimeTinker.inst().getKeys().getToolInfoHeadMaterial(), PersistentDataType.STRING, toolDefinition.getHeadMaterial());
+        c.set(SlimeTinker.inst().getKeys().getToolInfoBinderMaterial(), PersistentDataType.STRING, toolDefinition.getBinderMaterial());
+        c.set(SlimeTinker.inst().getKeys().getToolInfoRodMaterial(), PersistentDataType.STRING, toolDefinition.getRodMaterial());
+        im.setLore(getLore(c, toolDefinition));
         im.setDisplayName(getName(toolDefinition));
-        c.set(new NamespacedKey(SlimeTinker.inst(), "ST_Tool"), PersistentDataType.STRING, "Y");
-        c.set(new NamespacedKey(SlimeTinker.inst(), "ST_Type_Head"), PersistentDataType.STRING, toolDefinition.getClassType());
-        c.set(new NamespacedKey(SlimeTinker.inst(), "ST_Tool_Type"), PersistentDataType.STRING, toolDefinition.getPartType());
-        c.set(new NamespacedKey(SlimeTinker.inst(), "ST_Material_Head"), PersistentDataType.STRING, toolDefinition.getHeadMaterial());
-        c.set(new NamespacedKey(SlimeTinker.inst(), "ST_Material_Binder"), PersistentDataType.STRING, toolDefinition.getBinderMaterial());
-        c.set(new NamespacedKey(SlimeTinker.inst(), "ST_Material_Rod"), PersistentDataType.STRING, toolDefinition.getRodMaterial());
         itemStack.setItemMeta(im);
         return itemStack;
     }
@@ -84,7 +91,7 @@ public class ToolTemplate extends UnplaceableBlock {
     public static boolean isTool(ItemStack itemStack) {
         return itemStack.hasItemMeta() &&
                 itemStack.getItemMeta().getPersistentDataContainer().has(
-                        new NamespacedKey(SlimeTinker.inst(),"ST_Tool"),
+                        SlimeTinker.inst().getKeys().getToolInfoIsTool(),
                         PersistentDataType.STRING
                 );
     }

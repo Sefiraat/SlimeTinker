@@ -74,7 +74,7 @@ public class Workbench extends AbstractContainer {
 
         blockMenuPreset.drawBackground(GUIItems.menuBackground(), BACKGROUND_SLOTS);
 
-        blockMenuPreset.addItem(CRAFT_BUTTON, GUIItems.menuCraft());
+        blockMenuPreset.addItem(CRAFT_BUTTON, GUIItems.menuCraftWorkbench());
         blockMenuPreset.addMenuClickHandler(CRAFT_BUTTON, (player, i, itemStack, clickAction) -> false);
 
     }

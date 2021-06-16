@@ -2,7 +2,9 @@ package io.github.sefiraat.slimetinker.items;
 
 import io.github.sefiraat.slimetinker.SlimeTinker;
 import io.github.sefiraat.slimetinker.categories.Categories;
-import io.github.sefiraat.slimetinker.items.workstations.smeltery.DummySmeltery;
+import io.github.sefiraat.slimetinker.items.workstations.smeltery.DummySmelteryAlloy;
+import io.github.sefiraat.slimetinker.utils.SkullTextures;
+import io.github.sefiraat.slimetinker.utils.ThemeUtils;
 import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
 import io.github.thebusybiscuit.slimefun4.implementation.items.blocks.UnplaceableBlock;
 import me.mrCookieSlime.Slimefun.api.SlimefunItemStack;
@@ -95,21 +97,133 @@ public final class Alloys {
             null,                                           null,               null
     };
 
+    public static final SlimefunItemStack ALLOY_STEEL =
+            ThemeUtils.themedItemStack(
+                    "ALLOY_STEEL",
+                    SkullTextures.ALLOY_SILVER,
+                    ThemeUtils.ThemeItemType.MOLTEN_METAL,
+                    "Alloy: Steel"
+            );
+
+    public static final SlimefunItemStack ALLOY_DAM_STEEL =
+            ThemeUtils.themedItemStack(
+                    "ALLOY_DAM_STEEL",
+                    SkullTextures.ALLOY_SILVER,
+                    ThemeUtils.ThemeItemType.MOLTEN_METAL,
+                    "Alloy: Damascus Steel"
+            );
+
+    public static final SlimefunItemStack ALLOY_DURALIUM =
+            ThemeUtils.themedItemStack(
+                    "ALLOY_DURALIUM",
+                    SkullTextures.ALLOY_SILVER,
+                    ThemeUtils.ThemeItemType.MOLTEN_METAL,
+                    "Alloy: Duralium"
+            );
+
+    public static final SlimefunItemStack ALLOY_BRONZE =
+            ThemeUtils.themedItemStack(
+                    "ALLOY_BRONZE",
+                    SkullTextures.ALLOY_BROWN,
+                    ThemeUtils.ThemeItemType.MOLTEN_METAL,
+                    "Alloy: Bronze"
+            );
+
+    public static final SlimefunItemStack ALLOY_ALU_BRONZE =
+            ThemeUtils.themedItemStack(
+                    "ALLOY_ALU_BRONZE",
+                    SkullTextures.ALLOY_TAN,
+                    ThemeUtils.ThemeItemType.MOLTEN_METAL,
+                    "Alloy: Aluminium Bronze"
+            );
+
+    public static final SlimefunItemStack ALLOY_HARD =
+            ThemeUtils.themedItemStack(
+                    "ALLOY_HARD",
+                    SkullTextures.ALLOY_SILVER,
+                    ThemeUtils.ThemeItemType.MOLTEN_METAL,
+                    "Alloy: Hardened Metal"
+            );
+
+    public static final SlimefunItemStack ALLOY_COR_BRONZE =
+            ThemeUtils.themedItemStack(
+                    "ALLOY_COR_BRONZE",
+                    SkullTextures.ALLOY_BROWN,
+                    ThemeUtils.ThemeItemType.MOLTEN_METAL,
+                    "Alloy: Corinthian Bronze"
+            );
+
+    public static final SlimefunItemStack ALLOY_SOLDER =
+            ThemeUtils.themedItemStack(
+                    "ALLOY_SOLDER",
+                    SkullTextures.ALLOY_SILVER,
+                    ThemeUtils.ThemeItemType.MOLTEN_METAL,
+                    "Alloy: Solder"
+            );
+
+    public static final SlimefunItemStack ALLOY_BILLON =
+            ThemeUtils.themedItemStack(
+                    "ALLOY_BILLON",
+                    SkullTextures.ALLOY_BLUE_PALE,
+                    ThemeUtils.ThemeItemType.MOLTEN_METAL,
+                    "Alloy: Billon"
+            );
+
+    public static final SlimefunItemStack ALLOY_BRASS =
+            ThemeUtils.themedItemStack(
+                    "ALLOY_BRASS",
+                    SkullTextures.ALLOY_RED,
+                    ThemeUtils.ThemeItemType.MOLTEN_METAL,
+                    "Alloy: Steel"
+            );
+
+    public static final SlimefunItemStack ALLOY_ALU_BRASS =
+            ThemeUtils.themedItemStack(
+                    "ALLOY_ALU_BRASS",
+                    SkullTextures.ALLOY_RED,
+                    ThemeUtils.ThemeItemType.MOLTEN_METAL,
+                    "Alloy: Aluminium Bronze"
+            );
+
+    public static final SlimefunItemStack ALLOY_NICKEL =
+            ThemeUtils.themedItemStack(
+                    "ALLOY_NICKEL",
+                    SkullTextures.ALLOY_SILVER,
+                    ThemeUtils.ThemeItemType.MOLTEN_METAL,
+                    "Alloy: Nickel"
+            );
+
+    public static final SlimefunItemStack ALLOY_COBALT =
+            ThemeUtils.themedItemStack(
+                    "ALLOY_COBALT",
+                    SkullTextures.ALLOY_PURPLE,
+                    ThemeUtils.ThemeItemType.MOLTEN_METAL,
+                    "Alloy: Cobalt"
+            );
+
+    public static final SlimefunItemStack ALLOY_REINFORCED =
+            ThemeUtils.themedItemStack(
+                    "ALLOY_REINFORCED",
+                    SkullTextures.ALLOY_PINK,
+                    ThemeUtils.ThemeItemType.MOLTEN_METAL,
+                    "Alloy: Reinforced Metal"
+            );
+
     public static void set(SlimeTinker p) {
-        new UnplaceableBlock(Categories.ALLOYS, new SlimefunItemStack(SlimefunItems.STEEL_INGOT, 1), DummySmeltery.TYPE, RECIPE_ALLOY_STEEL).register(p);
-        new UnplaceableBlock(Categories.ALLOYS, SlimefunItems.DAMASCUS_STEEL_INGOT, DummySmeltery.TYPE, RECIPE_ALLOY_DAM_STEEL).register(p);
-        new UnplaceableBlock(Categories.ALLOYS, SlimefunItems.DURALUMIN_INGOT, DummySmeltery.TYPE, RECIPE_ALLOY_DURALIUM).register(p);
-        new UnplaceableBlock(Categories.ALLOYS, SlimefunItems.BRONZE_INGOT, DummySmeltery.TYPE, RECIPE_ALLOY_BRONZE).register(p);
-        new UnplaceableBlock(Categories.ALLOYS, SlimefunItems.ALUMINUM_BRONZE_INGOT, DummySmeltery.TYPE, RECIPE_ALLOY_ALU_BRONZE).register(p);
-        new UnplaceableBlock(Categories.ALLOYS, SlimefunItems.HARDENED_METAL_INGOT, DummySmeltery.TYPE, RECIPE_ALLOY_HARD_METAL).register(p);
-        new UnplaceableBlock(Categories.ALLOYS, SlimefunItems.CORINTHIAN_BRONZE_INGOT, DummySmeltery.TYPE, RECIPE_ALLOY_COR_BRONZE).register(p);
-        new UnplaceableBlock(Categories.ALLOYS, SlimefunItems.SOLDER_INGOT, DummySmeltery.TYPE, RECIPE_ALLOY_SOLDER).register(p);
-        new UnplaceableBlock(Categories.ALLOYS, SlimefunItems.BILLON_INGOT, DummySmeltery.TYPE, RECIPE_ALLOY_BILLON).register(p);
-        new UnplaceableBlock(Categories.ALLOYS, SlimefunItems.BRASS_INGOT, DummySmeltery.TYPE, RECIPE_ALLOY_BRASS).register(p);
-        new UnplaceableBlock(Categories.ALLOYS, SlimefunItems.ALUMINUM_BRASS_INGOT, DummySmeltery.TYPE, RECIPE_ALLOY_ALU_BRASS).register(p);
-        new UnplaceableBlock(Categories.ALLOYS, SlimefunItems.NICKEL_INGOT, DummySmeltery.TYPE, RECIPE_ALLOY_NICKEL).register(p);
-        new UnplaceableBlock(Categories.ALLOYS, SlimefunItems.COBALT_INGOT, DummySmeltery.TYPE, RECIPE_ALLOY_COBALT).register(p);
-        new UnplaceableBlock(Categories.ALLOYS, SlimefunItems.REINFORCED_ALLOY_INGOT, DummySmeltery.TYPE, RECIPE_ALLOY_REINFORCED).register(p);
+        new UnplaceableBlock(Categories.ALLOYS, ALLOY_STEEL, DummySmelteryAlloy.TYPE, RECIPE_ALLOY_STEEL).register(p);
+        new UnplaceableBlock(Categories.ALLOYS, ALLOY_DAM_STEEL, DummySmelteryAlloy.TYPE, RECIPE_ALLOY_DAM_STEEL).register(p);
+        new UnplaceableBlock(Categories.ALLOYS, ALLOY_DURALIUM, DummySmelteryAlloy.TYPE, RECIPE_ALLOY_DURALIUM).register(p);
+        new UnplaceableBlock(Categories.ALLOYS, ALLOY_BRONZE, DummySmelteryAlloy.TYPE, RECIPE_ALLOY_BRONZE).register(p);
+        new UnplaceableBlock(Categories.ALLOYS, ALLOY_ALU_BRONZE, DummySmelteryAlloy.TYPE, RECIPE_ALLOY_ALU_BRONZE).register(p);
+        new UnplaceableBlock(Categories.ALLOYS, ALLOY_HARD, DummySmelteryAlloy.TYPE, RECIPE_ALLOY_HARD_METAL).register(p);
+        new UnplaceableBlock(Categories.ALLOYS, ALLOY_COR_BRONZE, DummySmelteryAlloy.TYPE, RECIPE_ALLOY_COR_BRONZE).register(p);
+        new UnplaceableBlock(Categories.ALLOYS, ALLOY_SOLDER, DummySmelteryAlloy.TYPE, RECIPE_ALLOY_SOLDER).register(p);
+        new UnplaceableBlock(Categories.ALLOYS, ALLOY_BILLON, DummySmelteryAlloy.TYPE, RECIPE_ALLOY_BILLON).register(p);
+        new UnplaceableBlock(Categories.ALLOYS, ALLOY_BRASS, DummySmelteryAlloy.TYPE, RECIPE_ALLOY_BRASS).register(p);
+        new UnplaceableBlock(Categories.ALLOYS, ALLOY_ALU_BRASS, DummySmelteryAlloy.TYPE, RECIPE_ALLOY_ALU_BRASS).register(p);
+        new UnplaceableBlock(Categories.ALLOYS, ALLOY_NICKEL, DummySmelteryAlloy.TYPE, RECIPE_ALLOY_NICKEL).register(p);
+        new UnplaceableBlock(Categories.ALLOYS, ALLOY_COBALT, DummySmelteryAlloy.TYPE, RECIPE_ALLOY_COBALT).register(p);
+        new UnplaceableBlock(Categories.ALLOYS, ALLOY_REINFORCED, DummySmelteryAlloy.TYPE, RECIPE_ALLOY_REINFORCED).register(p);
 
     }
 

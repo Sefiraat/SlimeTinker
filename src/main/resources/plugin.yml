@@ -7,3 +7,9 @@ version: ${project.version}
 api-version: 1.16
 depend:
 - Slimefun
+
+commands:
+  slimetinker:
+    description: /slimetinker
+    usage: /slimetinker <sub>
+    aliases: [st, tinker]

@@ -6,29 +6,27 @@ import io.github.mooy1.infinitylib.recipes.ShapedRecipe;
 import io.github.mooy1.infinitylib.slimefun.AbstractContainer;
 import io.github.sefiraat.slimetinker.SlimeTinker;
 import io.github.sefiraat.slimetinker.items.Parts;
-import io.github.sefiraat.slimetinker.items.Tools;
 import io.github.sefiraat.slimetinker.items.Workstations;
 import io.github.sefiraat.slimetinker.items.gui.GUIItems;
-import io.github.sefiraat.slimetinker.items.tools.ToolDefinition;
-import io.github.sefiraat.slimetinker.utils.IDStrings;
+import io.github.sefiraat.slimetinker.items.templates.RepairkitTemplate;
+import io.github.sefiraat.slimetinker.items.templates.ToolTemplate;
+import io.github.sefiraat.slimetinker.utils.ItemUtils;
 import io.github.sefiraat.slimetinker.utils.ThemeUtils;
-import me.mrCookieSlime.CSCoreLibPlugin.Configuration.Config;
 import me.mrCookieSlime.Slimefun.Lists.RecipeType;
 import me.mrCookieSlime.Slimefun.Objects.Category;
-import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.SlimefunItem;
-import me.mrCookieSlime.Slimefun.Objects.handlers.BlockTicker;
 import me.mrCookieSlime.Slimefun.api.SlimefunItemStack;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenuPreset;
 import me.mrCookieSlime.Slimefun.api.inventory.DirtyChestMenu;
 import me.mrCookieSlime.Slimefun.api.item_transport.ItemTransportFlow;
 import org.bukkit.Location;
-import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.Damageable;
+import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataType;
 import org.jetbrains.annotations.NotNull;
 
@@ -39,103 +37,16 @@ public class RepairBench extends AbstractContainer {
     private static final RecipeMap<ItemStack> RECIPES = new RecipeMap<>(ShapedRecipe::new);
     public static final RecipeType TYPE = new RecipeType(SlimeTinker.inst().getKey("tinkers-repair"), Workstations.TINKERS_TABLE, RECIPES::put);
 
-    private static final int[] BACKGROUND_SLOTS = {0,1,3,5,7,8,18,19,21,23,25,26,27,28,30,32,34,35,45,46,48,50,52,53};
-    private static final int[] BACKGROUND_INPUTS = {2,4,6,9,10,12,14,16,17,20,22,24,31,49};
-    private static final int[] BACKGROUND_PREVIEW = {29,36,37,39,47};
-    private static final int[] BACKGROUND_OUTPUT = {33,41,43,44,51};
-    private static final int INPUT_ROD = 11;
-    private static final int INPUT_BINDING = 13;
-    private static final int INPUT_HEAD = 15;
-    protected static final int PREVIEW_SLOT = 38;
-    protected static final int CRAFT_BUTTON = 40;
-    protected static final int OUTPUT_SLOT = 42;
+    private static final int[] BACKGROUND_SLOTS = {0,1,2,3,4,5,6,7,8,9,11,13,15,17,18,19,20,21,22,23,24,25,26};
+    private static final int INPUT_TOOL = 10;
+    private static final int INPUT_KIT = 12;
+    protected static final int CRAFT_BUTTON = 14;
+    protected static final int OUTPUT_SLOT = 16;
 
     private BlockMenu menu;
 
     public RepairBench(Category category, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(category, item, recipeType, recipe);
-
-        addItemHandler(new BlockTicker() {
-            @Override
-            public boolean isSynchronized() {
-                return true;
-            }
-
-            @Override
-            public void tick(Block block, SlimefunItem item, Config data) {
-                previewCraft();
-            }
-        });
-    }
-
-    protected void previewCraft() {
-        if (menu.hasViewer()) {
-            ItemStack head = menu.getItemInSlot(INPUT_HEAD);
-            ItemStack binding = menu.getItemInSlot(INPUT_BINDING);
-            ItemStack rod = menu.getItemInSlot(INPUT_ROD);
-            if (head == null || binding == null || rod == null) { // Missing one or more items
-                clearPreview();
-                return;
-            }
-            if (!validateClass(head, IDStrings.ID_HEAD) || !validateBinder(binding) || !validateClass(rod, IDStrings.ID_ROD)) { // One or more items are not the correct part
-                clearPreview();
-                return;
-            }
-
-            // All items are valid, lets preview the item!
-            menu.replaceExistingItem(PREVIEW_SLOT, getTool());
-            return;
-
-        }
-        clearPreview();
-    }
-
-    protected void clearPreview() {
-        menu.replaceExistingItem(PREVIEW_SLOT, new ItemStack(Material.AIR));
-    }
-
-    protected ItemStack getTool() {
-
-        ItemStack head = menu.getItemInSlot(INPUT_HEAD);
-        ItemStack binding = menu.getItemInSlot(INPUT_BINDING);
-        ItemStack rod = menu.getItemInSlot(INPUT_ROD);
-
-        ItemStack itemStack;
-
-        ToolDefinition toolDefinition = new ToolDefinition(
-                head.getItemMeta().getPersistentDataContainer().get(new NamespacedKey(SlimeTinker.inst(), "ST_Class"), PersistentDataType.STRING),
-                head.getItemMeta().getPersistentDataContainer().get(new NamespacedKey(SlimeTinker.inst(), "ST_Type"), PersistentDataType.STRING),
-                head.getItemMeta().getPersistentDataContainer().get(new NamespacedKey(SlimeTinker.inst(), "ST_Material"), PersistentDataType.STRING),
-                Parts.binderMap.get(StackUtils.getIDorType(binding)),
-                rod.getItemMeta().getPersistentDataContainer().get(new NamespacedKey(SlimeTinker.inst(), "ST_Material"), PersistentDataType.STRING)
-        );
-
-        SlimeTinker.inst().getLogger().info(toolDefinition.getClassType());
-        SlimeTinker.inst().getLogger().info(toolDefinition.getPartType());
-        SlimeTinker.inst().getLogger().info(toolDefinition.getHeadMaterial());
-        SlimeTinker.inst().getLogger().info(toolDefinition.getBinderMaterial());
-        SlimeTinker.inst().getLogger().info(toolDefinition.getRodMaterial());
-
-        switch (toolDefinition.getPartType()) {
-            case IDStrings.ID_SHOVEL:
-                itemStack = Tools.SHOVEL.getStack(toolDefinition);
-                break;
-            case IDStrings.ID_PICKAXE:
-                itemStack = Tools.PICKAXE.getStack(toolDefinition);
-                break;
-            case IDStrings.ID_AXE:
-                itemStack = Tools.AXE.getStack(toolDefinition);
-                break;
-            case IDStrings.ID_HOE:
-                itemStack = Tools.HOE.getStack(toolDefinition);
-                break;
-            case IDStrings.ID_SWORD:
-                itemStack = Tools.SWORD.getStack(toolDefinition);
-                break;
-            default:
-                throw new IllegalStateException("Unexpected value: " + toolDefinition.getClassType());
-        }
-        return itemStack;
     }
 
 
@@ -160,41 +71,64 @@ public class RepairBench extends AbstractContainer {
 
     protected boolean craft(BlockMenu blockMenu, Player player) {
 
-        ItemStack head = blockMenu.getItemInSlot(INPUT_HEAD);
-        ItemStack binding = blockMenu.getItemInSlot(INPUT_BINDING);
-        ItemStack rod = blockMenu.getItemInSlot(INPUT_ROD);
+        ItemStack tool = blockMenu.getItemInSlot(INPUT_TOOL);
+        ItemStack kit = blockMenu.getItemInSlot(INPUT_KIT);
 
-        if (head == null || binding == null || rod == null) { // Missing one or more items
-            player.sendMessage(ThemeUtils.ERROR + "Not all items present");
+        // No tool dummy!
+        if (tool == null) {
+            player.sendMessage(ThemeUtils.WARNING + "Input a tool into the first slot.");
             return false;
         }
-        if (!validateClass(head, IDStrings.ID_HEAD) || !validateBinder(binding) || !validateClass(rod, IDStrings.ID_ROD)) { // One or more items are not the correct part
-            player.sendMessage(ThemeUtils.WARNING + "One or more items are either not Tinker's parts or in the wrong slot?");
+
+        // Still no tool, nice try
+        if (!ToolTemplate.isTool(tool)) {
+            player.sendMessage(ThemeUtils.WARNING + "The item in the first slot isn't a Tinker's tool.");
+            return false;
+        }
+
+        // No kit!
+        if (kit == null || !RepairkitTemplate.isRepairKit(kit)) {
+            player.sendMessage(ThemeUtils.WARNING + "Input a repair kit into the second slot.");
+            return false;
+        }
+
+        //All items present, are they correct?
+        String toolMaterial = ItemUtils.getToolMaterial(tool);
+        String partMaterial = ItemUtils.getPartMaterial(kit);
+
+        if (!toolMaterial.equals(partMaterial)) {
+            player.sendMessage(ThemeUtils.WARNING + "The kit type does not match the tool material.");
             return false;
         }
 
         // All items are valid, lets preview the item!
-        blockMenu.pushItem(getTool().clone(), OUTPUT_SLOT);
-        blockMenu.getItemInSlot(INPUT_HEAD).setAmount(blockMenu.getItemInSlot(INPUT_HEAD).getAmount() - 1);
-        blockMenu.getItemInSlot(INPUT_BINDING).setAmount(blockMenu.getItemInSlot(INPUT_BINDING).getAmount() - 1);
-        blockMenu.getItemInSlot(INPUT_ROD).setAmount(blockMenu.getItemInSlot(INPUT_ROD).getAmount() - 1);
+        ItemStack newTool = tool.clone();
+        repairItemStack(newTool);
+        blockMenu.pushItem(newTool, OUTPUT_SLOT);
+        blockMenu.getItemInSlot(INPUT_TOOL).setAmount(blockMenu.getItemInSlot(INPUT_TOOL).getAmount() - 1);
+        blockMenu.getItemInSlot(INPUT_KIT).setAmount(blockMenu.getItemInSlot(INPUT_KIT).getAmount() - 1);
 
         return false;
 
     }
 
+    protected void repairItemStack(ItemStack itemStack) {
+        ItemMeta im = itemStack.getItemMeta();
+        if (im instanceof Damageable) {
+            Damageable damageable = (Damageable) im;
+            int amountToRepair = Math.floorDiv(itemStack.getType().getMaxDurability(), 3);
+            damageable.setDamage(Math.max(damageable.getDamage() - amountToRepair, 0));
+        }
+        itemStack.setItemMeta(im);
+    }
+
     @Override
     protected void setupMenu(BlockMenuPreset blockMenuPreset) {
 
-        blockMenuPreset.drawBackground(GUIItems.menuBackgroundInput(), BACKGROUND_INPUTS);
-        blockMenuPreset.drawBackground(GUIItems.menuBackgroundOutput(), BACKGROUND_OUTPUT);
-        blockMenuPreset.drawBackground(GUIItems.menuBackgroundPreview(), BACKGROUND_PREVIEW);
+        blockMenuPreset.drawBackground(GUIItems.menuBackground(), BACKGROUND_SLOTS);
 
         blockMenuPreset.addItem(CRAFT_BUTTON, GUIItems.menuCraft());
         blockMenuPreset.addMenuClickHandler(CRAFT_BUTTON, (player, i, itemStack, clickAction) -> false);
-        blockMenuPreset.addMenuClickHandler(PREVIEW_SLOT, (player, i, itemStack, clickAction) -> false);
-
-        blockMenuPreset.drawBackground(GUIItems.menuBackground(), BACKGROUND_SLOTS);
 
     }
 
@@ -206,9 +140,8 @@ public class RepairBench extends AbstractContainer {
     @Override
     protected void onBreak(@Nonnull BlockBreakEvent event, @Nonnull BlockMenu blockMenu, @Nonnull Location location) {
         super.onBreak(event, blockMenu, location);
-        blockMenu.dropItems(location, INPUT_HEAD);
-        blockMenu.dropItems(location, INPUT_BINDING);
-        blockMenu.dropItems(location, INPUT_ROD);
+        blockMenu.dropItems(location, INPUT_TOOL);
+        blockMenu.dropItems(location, INPUT_KIT);
         blockMenu.dropItems(location, OUTPUT_SLOT);
     }
 

@@ -9,7 +9,7 @@ import io.github.sefiraat.slimetinker.items.Parts;
 import io.github.sefiraat.slimetinker.items.Tools;
 import io.github.sefiraat.slimetinker.items.Workstations;
 import io.github.sefiraat.slimetinker.items.gui.GUIItems;
-import io.github.sefiraat.slimetinker.items.tools.ToolDefinition;
+import io.github.sefiraat.slimetinker.items.templates.ToolDefinition;
 import io.github.sefiraat.slimetinker.utils.IDStrings;
 import io.github.sefiraat.slimetinker.utils.ThemeUtils;
 import me.mrCookieSlime.CSCoreLibPlugin.Configuration.Config;

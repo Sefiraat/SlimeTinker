@@ -1,4 +1,4 @@
-package io.github.sefiraat.slimetinker.items.tools;
+package io.github.sefiraat.slimetinker.items.templates;
 
 import lombok.Getter;
 

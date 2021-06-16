@@ -2,7 +2,7 @@ package io.github.sefiraat.slimetinker.items;
 
 import io.github.sefiraat.slimetinker.SlimeTinker;
 import io.github.sefiraat.slimetinker.categories.Categories;
-import io.github.sefiraat.slimetinker.items.tools.ToolTemplate;
+import io.github.sefiraat.slimetinker.items.templates.ToolTemplate;
 import io.github.sefiraat.slimetinker.items.workstations.table.DummyTable;
 import io.github.sefiraat.slimetinker.utils.SkullTextures;
 import io.github.sefiraat.slimetinker.utils.ThemeUtils;

@@ -83,6 +83,12 @@ public final class Casts {
             null,                                           null,               null
     };
 
+    protected static final ItemStack[] RECIPE_CAST_REPAIR_KIT = new ItemStack[] {
+            new ItemStack(Material.GOLD_INGOT, 2),   Dies.DIE_REPAIR_KIT, null,
+            null,                                           null,               null,
+            null,                                           null,               null
+    };
+
     public static final SlimefunItemStack CAST_NUGGET =
             ThemeUtils.themedItemStack(
                     "CAST_NUGGET",
@@ -203,6 +209,18 @@ public final class Casts {
                     ThemeUtils.CLICK_INFO + OUTPUT_DESC + ChatColor.WHITE + "1 Tool Rod"
             );
 
+    public static final SlimefunItemStack CAST_REPAIRKIT =
+            ThemeUtils.themedItemStack(
+                    "CAST_REPAIRKIT",
+                    Material.YELLOW_CARPET,
+                    ThemeUtils.ThemeItemType.CAST,
+                    "Cast: Repair Kit",
+                    ThemeUtils.PASSIVE + CAST_DESC,
+                    "",
+                    ThemeUtils.CLICK_INFO + INPUT_DESC + ChatColor.WHITE + RecipeManager.AMOUNT_KIT + UNIT_DESC,
+                    ThemeUtils.CLICK_INFO + OUTPUT_DESC + ChatColor.WHITE + "1 Repair Kit"
+            );
+
     public static void set(SlimeTinker p) {
 
         new UnplaceableBlock(Categories.CASTS, CAST_NUGGET, DummySmeltery.TYPE, RECIPE_CAST_NUGGET).register(p);
@@ -215,6 +233,7 @@ public final class Casts {
         new UnplaceableBlock(Categories.CASTS, CAST_HOEHEAD, DummySmeltery.TYPE, RECIPE_CAST_HOE_HEAD).register(p);
         new UnplaceableBlock(Categories.CASTS, CAST_SWORDBLADE, DummySmeltery.TYPE, RECIPE_CAST_SWORD_BLADE).register(p);
         new UnplaceableBlock(Categories.CASTS, CAST_TOOLROD, DummySmeltery.TYPE, RECIPE_CAST_TOOL_ROD).register(p);
+        new UnplaceableBlock(Categories.CASTS, CAST_REPAIRKIT, DummySmeltery.TYPE, RECIPE_CAST_REPAIR_KIT).register(p);
 
     }
 }

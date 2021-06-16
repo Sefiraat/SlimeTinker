@@ -2,7 +2,8 @@ package io.github.sefiraat.slimetinker.items;
 
 import io.github.sefiraat.slimetinker.SlimeTinker;
 import io.github.sefiraat.slimetinker.categories.Categories;
-import io.github.sefiraat.slimetinker.items.parts.PartTemplate;
+import io.github.sefiraat.slimetinker.items.templates.PartTemplate;
+import io.github.sefiraat.slimetinker.items.templates.RepairkitTemplate;
 import io.github.sefiraat.slimetinker.items.workstations.smeltery.DummySmeltery;
 import io.github.sefiraat.slimetinker.items.workstations.workbench.DummyWorkbench;
 import io.github.sefiraat.slimetinker.items.workstations.workbench.Workbench;
@@ -140,6 +141,15 @@ public final class Parts {
                     ThemeUtils.PASSIVE + "A binging to hold parts together."
             );
 
+    public static final SlimefunItemStack PART_REPAIR_KIT_DUMMY =
+            ThemeUtils.themedItemStack(
+                    "PART_REPAIR_KIT_DUMMY",
+                    Material.CHEST_MINECART,
+                    ThemeUtils.ThemeItemType.CAST,
+                    "Part: Repair Kit",
+                    ThemeUtils.PASSIVE + "Repairs broken items in the Repair Bench."
+            );
+
     public static final SlimefunItemStack PART_AXE_HEAD =
             ThemeUtils.themedItemStack(
                     "PART_AXE_HEAD",
@@ -189,6 +199,15 @@ public final class Parts {
             ThemeUtils.themedItemStack(
                     "PART_TOOL_ROD",
                     SkullTextures.PART_TOOL_ROD,
+                    ThemeUtils.ThemeItemType.PART,
+                    DESC_ERROR,
+                    ThemeUtils.PASSIVE + DESC_ERROR
+            );
+
+    public static final SlimefunItemStack PART_REPAIR_KIT =
+            ThemeUtils.themedItemStack(
+                    "PART_REPAIR_KIT",
+                    Material.CHEST_MINECART,
                     ThemeUtils.ThemeItemType.PART,
                     DESC_ERROR,
                     ThemeUtils.PASSIVE + DESC_ERROR
@@ -267,6 +286,7 @@ public final class Parts {
     public static final PartTemplate HOE_HEAD = new PartTemplate(Categories.DUMMY, PART_HOE_HEAD, DummySmeltery.TYPE, new ItemStack[9], "Hoe Head");
     public static final PartTemplate SWORD_BLADE = new PartTemplate(Categories.DUMMY, PART_SWORD_BLADE, DummySmeltery.TYPE, new ItemStack[9], "Sword Blade");
     public static final PartTemplate TOOL_ROD = new PartTemplate(Categories.DUMMY, PART_TOOL_ROD, DummySmeltery.TYPE, new ItemStack[9], "Tool Rod");
+    public static final RepairkitTemplate REPAIR_KIT = new RepairkitTemplate(Categories.DUMMY, PART_REPAIR_KIT, DummySmeltery.TYPE, new ItemStack[9], "Repair Kit");
 
     // Binders cant store class/mat - need a list to check against
     public static final Map<String, String> binderMap = new HashMap<>();
@@ -281,6 +301,7 @@ public final class Parts {
         new UnplaceableBlock(Categories.PARTS, PART_SWORD_BLADE_DUMMY, DummySmeltery.TYPE, getDummyCastRecipe(Casts.CAST_SWORDBLADE)).register(p);
         new UnplaceableBlock(Categories.PARTS, PART_TOOL_ROD_DUMMY, DummySmeltery.TYPE, getDummyCastRecipe(Casts.CAST_TOOLROD)).register(p);
         new UnplaceableBlock(Categories.PARTS, PART_BINDING_DUMMY, DummyWorkbench.TYPE, getDummyBindingRecipe(PART_BINDING_GENERAL_DISPLAY)).register(p);
+        new UnplaceableBlock(Categories.PARTS, PART_REPAIR_KIT_DUMMY, DummySmeltery.TYPE, getDummyCastRecipe(Casts.CAST_REPAIRKIT)).register(p);
 
         // Real ones, not in recipe book due to the variations
         SHOVEL_HEAD.register(p);
@@ -289,6 +310,7 @@ public final class Parts {
         HOE_HEAD.register(p);
         SWORD_BLADE.register(p);
         TOOL_ROD.register(p);
+        REPAIR_KIT.register(p);
 
         // Bindings
         PartTemplate binderString = new PartTemplate(Categories.DUMMY, PART_BINDING_STRING, Workbench.TYPE, RECIPE_BINDER_STRING, "String Binder");

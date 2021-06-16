@@ -1,6 +1,6 @@
 package io.github.sefiraat.slimetinker.listeners;
 
-import io.github.sefiraat.slimetinker.items.tools.ToolTemplate;
+import io.github.sefiraat.slimetinker.items.templates.ToolTemplate;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerItemDamageEvent;

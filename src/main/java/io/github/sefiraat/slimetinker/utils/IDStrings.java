@@ -34,6 +34,7 @@ public class IDStrings {
     public static final String ID_HEAD = "HEAD";
     public static final String ID_BINDING = "BINDING";
     public static final String ID_ROD = "ROD";
+    public static final String ID_REPAIR = "REPAIR";
     public static final String ID_SHOVEL = "SHOVEL";
     public static final String ID_PICKAXE = "PICK";
     public static final String ID_AXE = "AXE";

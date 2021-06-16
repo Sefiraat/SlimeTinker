@@ -2,7 +2,9 @@ package io.github.sefiraat.slimetinker;
 
 import io.github.mooy1.infinitylib.AbstractAddon;
 import io.github.sefiraat.slimetinker.categories.Categories;
+import io.github.sefiraat.slimetinker.items.Alloys;
 import io.github.sefiraat.slimetinker.items.Casts;
+import io.github.sefiraat.slimetinker.items.Dies;
 import io.github.sefiraat.slimetinker.items.Materials;
 import io.github.sefiraat.slimetinker.items.Parts;
 import io.github.sefiraat.slimetinker.items.Tools;
@@ -35,10 +37,12 @@ public class SlimeTinker extends AbstractAddon {
 
         Categories.set(this);
         Materials.set(this);
-        Workstations.set(this);
+        Alloys.set(this);
+        Dies.set(this);
         Casts.set(this);
         Parts.set(this);
         Tools.set(this);
+        Workstations.set(this);
 
         new ListenerManager();
 

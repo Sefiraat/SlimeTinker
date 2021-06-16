@@ -2,10 +2,10 @@ package io.github.sefiraat.slimetinker.items;
 
 import io.github.sefiraat.slimetinker.SlimeTinker;
 import io.github.sefiraat.slimetinker.categories.Categories;
+import io.github.sefiraat.slimetinker.items.workstations.workbench.Workbench;
 import io.github.sefiraat.slimetinker.utils.SkullTextures;
 import io.github.sefiraat.slimetinker.utils.ThemeUtils;
 import io.github.thebusybiscuit.slimefun4.implementation.items.blocks.UnplaceableBlock;
-import me.mrCookieSlime.Slimefun.Lists.RecipeType;
 import me.mrCookieSlime.Slimefun.api.SlimefunItemStack;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
@@ -48,6 +48,12 @@ public final class Dies {
             null,    null,                          null,
             null,    new ItemStack(Material.STICK), null,
             null,    null,                          null
+    };
+
+    protected static final ItemStack[] RECIPE_DIE_REPAIR_KIT = new ItemStack[] {
+            null,    null,                              null,
+            null,    new ItemStack(Material.OBSIDIAN),  null,
+            null,    null,                              null
     };
 
     public static final SlimefunItemStack DIE_SHOVEL_HEAD =
@@ -104,13 +110,23 @@ public final class Dies {
                     ThemeUtils.PASSIVE + DIE_DESC
             );
 
+    public static final SlimefunItemStack DIE_REPAIR_KIT =
+            ThemeUtils.themedItemStack(
+                    "DIE_REPAIR_KIT",
+                    Material.MINECART,
+                    ThemeUtils.ThemeItemType.CAST,
+                    "Die: Repair Kit",
+                    ThemeUtils.PASSIVE + DIE_DESC
+            );
+
 
     public static void set(SlimeTinker p) {
-        new UnplaceableBlock(Categories.CASTS, DIE_SHOVEL_HEAD, RecipeType.ENHANCED_CRAFTING_TABLE, RECIPE_DIE_SHOVEL_HEAD).register(p);
-        new UnplaceableBlock(Categories.CASTS, DIE_PICKAXE_HEAD, RecipeType.ENHANCED_CRAFTING_TABLE, RECIPE_DIE_PICKAXE_HEAD).register(p);
-        new UnplaceableBlock(Categories.CASTS, DIE_AXE_HEAD, RecipeType.ENHANCED_CRAFTING_TABLE, RECIPE_DIE_AXE_HEAD).register(p);
-        new UnplaceableBlock(Categories.CASTS, DIE_HOE_HEAD, RecipeType.ENHANCED_CRAFTING_TABLE, RECIPE_DIE_HOE_HEAD).register(p);
-        new UnplaceableBlock(Categories.CASTS, DIE_SWORD_BLADE, RecipeType.ENHANCED_CRAFTING_TABLE, RECIPE_DIE_SWORD_BLADE).register(p);
-        new UnplaceableBlock(Categories.CASTS, DIE_TOOL_ROD , RecipeType.ENHANCED_CRAFTING_TABLE, RECIPE_DIE_TOOL_ROD).register(p);
+        new UnplaceableBlock(Categories.CASTS, DIE_SHOVEL_HEAD, Workbench.TYPE, RECIPE_DIE_SHOVEL_HEAD).register(p);
+        new UnplaceableBlock(Categories.CASTS, DIE_PICKAXE_HEAD, Workbench.TYPE, RECIPE_DIE_PICKAXE_HEAD).register(p);
+        new UnplaceableBlock(Categories.CASTS, DIE_AXE_HEAD, Workbench.TYPE, RECIPE_DIE_AXE_HEAD).register(p);
+        new UnplaceableBlock(Categories.CASTS, DIE_HOE_HEAD, Workbench.TYPE, RECIPE_DIE_HOE_HEAD).register(p);
+        new UnplaceableBlock(Categories.CASTS, DIE_SWORD_BLADE, Workbench.TYPE, RECIPE_DIE_SWORD_BLADE).register(p);
+        new UnplaceableBlock(Categories.CASTS, DIE_TOOL_ROD , Workbench.TYPE, RECIPE_DIE_TOOL_ROD).register(p);
+        new UnplaceableBlock(Categories.CASTS, DIE_REPAIR_KIT , Workbench.TYPE, RECIPE_DIE_REPAIR_KIT).register(p);
     }
 }

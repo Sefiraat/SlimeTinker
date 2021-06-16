@@ -35,6 +35,7 @@ public class Keys {
     private final NamespacedKey toolLevel = new NamespacedKey(SlimeTinker.inst(), "ST_Level");
     private final NamespacedKey toolModSlots = new NamespacedKey(SlimeTinker.inst(), "ST_Modifier_Slots");
     private final NamespacedKey toolMods = new NamespacedKey(SlimeTinker.inst(), "ST_Modifier_Map");
+    private final NamespacedKey toolModLevelRedstone = new NamespacedKey(SlimeTinker.inst(), "ST_mod_level_redstone");
 
 
     // Workstations

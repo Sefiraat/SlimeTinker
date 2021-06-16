@@ -1,6 +1,6 @@
 package io.github.sefiraat.slimetinker.utils;
 
-import io.github.sefiraat.slimetinker.items.AbstractItem;
+import io.github.sefiraat.slimetinker.items.BaseItem;
 import me.mrCookieSlime.Slimefun.api.SlimefunItemStack;
 import net.md_5.bungee.api.ChatColor;
 import org.apache.commons.lang.WordUtils;
@@ -53,7 +53,7 @@ public final class ThemeUtils {
     public static final String LORE_INFO = ITEM_TYPEDESC + "Info";
 
     public static SlimefunItemStack themedItemStack(String id, String skull, ThemeItemType type, String name, String... loreLines) {
-        AbstractItem itemStack = new AbstractItem(
+        BaseItem itemStack = new BaseItem(
                 id,
                 skull,
                 itemTypeColor(type) + name,
@@ -72,7 +72,7 @@ public final class ThemeUtils {
     }
 
     public static SlimefunItemStack themedItemStack(String id, Material material, ThemeItemType type, String name, String... loreLines) {
-        AbstractItem itemStack = new AbstractItem(
+        BaseItem itemStack = new BaseItem(
                 id,
                 material,
                 itemTypeColor(type) + name,

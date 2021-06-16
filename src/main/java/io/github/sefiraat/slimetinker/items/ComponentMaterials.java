@@ -20,7 +20,7 @@ public final class ComponentMaterials {
         map.put(IDStrings.ID_COPPER, new ComponentMaterial(IDStrings.ID_COPPER,"#c99732"));
         map.put(IDStrings.ID_LEAD, new ComponentMaterial(IDStrings.ID_LEAD,"#9043ba"));
         map.put(IDStrings.ID_SILVER, new ComponentMaterial(IDStrings.ID_SILVER,"#d4d4d4"));
-        map.put(IDStrings.ID_ALUMINIUM, new ComponentMaterial(IDStrings.ID_ALUMINIUM,"#b0b0b0"));
+        map.put(IDStrings.ID_ALUMINUM, new ComponentMaterial(IDStrings.ID_ALUMINUM,"#b0b0b0"));
         map.put(IDStrings.ID_TIN, new ComponentMaterial(IDStrings.ID_TIN,"#a89b9b"));
         map.put(IDStrings.ID_ZINC, new ComponentMaterial(IDStrings.ID_ZINC,"#9ba8a6"));
         map.put(IDStrings.ID_MAGNESIUM, new ComponentMaterial(IDStrings.ID_MAGNESIUM,"#e8cef5"));

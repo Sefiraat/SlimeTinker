@@ -11,6 +11,7 @@ import io.github.sefiraat.slimetinker.utils.IDStrings;
 import io.github.sefiraat.slimetinker.utils.SkullTextures;
 import io.github.sefiraat.slimetinker.utils.ThemeUtils;
 import io.github.thebusybiscuit.slimefun4.implementation.items.blocks.UnplaceableBlock;
+import lombok.Getter;
 import me.mrCookieSlime.Slimefun.api.SlimefunItemStack;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
@@ -289,7 +290,8 @@ public final class Parts {
     public static final RepairkitTemplate REPAIR_KIT = new RepairkitTemplate(Categories.DUMMY, PART_REPAIR_KIT, DummySmeltery.TYPE, new ItemStack[9], "Repair Kit");
 
     // Binders cant store class/mat - need a list to check against
-    public static final Map<String, String> binderMap = new HashMap<>();
+    @Getter
+    protected static final Map<String, String> binderMap = new HashMap<>();
 
     public static void set(SlimeTinker p) {
 

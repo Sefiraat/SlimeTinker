@@ -42,8 +42,6 @@ public class RepairBench extends AbstractContainer {
     protected static final int CRAFT_BUTTON = 14;
     protected static final int OUTPUT_SLOT = 16;
 
-    private BlockMenu menu;
-
     public RepairBench(Category category, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(category, item, recipeType, recipe);
     }
@@ -65,7 +63,7 @@ public class RepairBench extends AbstractContainer {
         if (itemStack == null || !itemStack.hasItemMeta()) { // No item
             return false;
         }
-        return Parts.binderMap.containsKey(StackUtils.getIDorType(itemStack));
+        return Parts.getBinderMap().containsKey(StackUtils.getIDorType(itemStack));
     }
 
     protected boolean craft(BlockMenu blockMenu, Player player) {
@@ -100,7 +98,6 @@ public class RepairBench extends AbstractContainer {
             return false;
         }
 
-        // All items are valid, lets preview the item!
         ItemStack newTool = tool.clone();
         repairItemStack(newTool);
         blockMenu.pushItem(newTool, OUTPUT_SLOT);
@@ -147,7 +144,6 @@ public class RepairBench extends AbstractContainer {
     @Override
     protected void onNewInstance(@Nonnull BlockMenu blockMenu, @Nonnull Block b) {
         super.onNewInstance(blockMenu, b);
-        this.menu = blockMenu;
         blockMenu.addMenuClickHandler(CRAFT_BUTTON, (player, i, itemStack, clickAction) -> craft(blockMenu, player));
     }
 

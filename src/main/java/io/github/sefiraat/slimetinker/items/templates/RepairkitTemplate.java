@@ -28,10 +28,7 @@ public class RepairkitTemplate extends UnplaceableBlock {
     private final String name;
 
     public String getName(String material) {
-        return
-                ChatColor.of(ComponentMaterials.getById(material).getColorHex()) +
-                        ThemeUtils.toTitleCase(material) +
-                        ThemeUtils.ITEM_PART + " " + name;
+        return ChatColor.of(ComponentMaterials.getById(material).getColorHex()) + ThemeUtils.toTitleCase(material) + ThemeUtils.ITEM_PART + " " + name;
     }
 
     public List<String> getLore(String material) {

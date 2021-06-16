@@ -17,7 +17,7 @@ import java.util.Map;
 
 import static io.github.sefiraat.slimetinker.utils.IDStrings.ID_ALUBRASS;
 import static io.github.sefiraat.slimetinker.utils.IDStrings.ID_ALUBRONZE;
-import static io.github.sefiraat.slimetinker.utils.IDStrings.ID_ALUMINIUM;
+import static io.github.sefiraat.slimetinker.utils.IDStrings.ID_ALUMINUM;
 import static io.github.sefiraat.slimetinker.utils.IDStrings.ID_AXE;
 import static io.github.sefiraat.slimetinker.utils.IDStrings.ID_BILLON;
 import static io.github.sefiraat.slimetinker.utils.IDStrings.ID_BRASS;
@@ -125,7 +125,7 @@ public class RecipeManager {
         MAP_CAST_NUGGET.put(ComponentMaterials.getById(ID_SILVER), Materials.NUGGET_CAST_SILVER);
         MAP_CAST_NUGGET.put(ComponentMaterials.getById(ID_TIN), Materials.NUGGET_CAST_TIN);
         MAP_CAST_NUGGET.put(ComponentMaterials.getById(ID_MAGNESIUM), Materials.NUGGET_CAST_MAGNESIUM);
-        MAP_CAST_NUGGET.put(ComponentMaterials.getById(ID_ALUMINIUM), Materials.NUGGET_CAST_ALUMINIUM);
+        MAP_CAST_NUGGET.put(ComponentMaterials.getById(ID_ALUMINUM), Materials.NUGGET_CAST_ALUMINUM);
         MAP_CAST_NUGGET.put(ComponentMaterials.getById(ID_LEAD), Materials.NUGGET_CAST_LEAD);
         MAP_CAST_NUGGET.put(ComponentMaterials.getById(ID_ZINC), Materials.NUGGET_CAST_ZINC);
         MAP_CAST_NUGGET.put(ComponentMaterials.getById(ID_COAL), Materials.NUGGET_CAST_COAL);
@@ -151,7 +151,7 @@ public class RecipeManager {
         MAP_CAST_INGOT.put(ComponentMaterials.getById(ID_SILVER), SlimefunItems.SILVER_INGOT);
         MAP_CAST_INGOT.put(ComponentMaterials.getById(ID_TIN), SlimefunItems.TIN_INGOT);
         MAP_CAST_INGOT.put(ComponentMaterials.getById(ID_MAGNESIUM), SlimefunItems.MAGNESIUM_INGOT);
-        MAP_CAST_INGOT.put(ComponentMaterials.getById(ID_ALUMINIUM), SlimefunItems.ALUMINUM_INGOT);
+        MAP_CAST_INGOT.put(ComponentMaterials.getById(ID_ALUMINUM), SlimefunItems.ALUMINUM_INGOT);
         MAP_CAST_INGOT.put(ComponentMaterials.getById(ID_LEAD), SlimefunItems.LEAD_INGOT);
         MAP_CAST_INGOT.put(ComponentMaterials.getById(ID_ZINC), SlimefunItems.ZINC_INGOT);
         MAP_CAST_INGOT.put(ComponentMaterials.getById(ID_STEEL), SlimefunItems.STEEL_INGOT);
@@ -176,7 +176,7 @@ public class RecipeManager {
         MAP_CAST_BLOCK.put(ComponentMaterials.getById(ID_SILVER), Materials.BLOCK_CAST_SILVER);
         MAP_CAST_BLOCK.put(ComponentMaterials.getById(ID_TIN), Materials.BLOCK_CAST_TIN);
         MAP_CAST_BLOCK.put(ComponentMaterials.getById(ID_MAGNESIUM), Materials.BLOCK_CAST_MAGNESIUM);
-        MAP_CAST_BLOCK.put(ComponentMaterials.getById(ID_ALUMINIUM), Materials.BLOCK_CAST_ALUMINIUM);
+        MAP_CAST_BLOCK.put(ComponentMaterials.getById(ID_ALUMINUM), Materials.BLOCK_CAST_ALUMINUM);
         MAP_CAST_BLOCK.put(ComponentMaterials.getById(ID_LEAD), Materials.BLOCK_CAST_LEAD);
         MAP_CAST_BLOCK.put(ComponentMaterials.getById(ID_ZINC), Materials.BLOCK_CAST_ZINC);
         MAP_CAST_BLOCK.put(ComponentMaterials.getById(ID_COAL), new ItemStack(Material.COAL_BLOCK));
@@ -205,7 +205,7 @@ public class RecipeManager {
         MAP_CAST_REPAIRKIT.put(ComponentMaterials.getById(ID_SILVER), Parts.REPAIR_KIT.getStack(ID_SILVER, ID_REPAIR));
         MAP_CAST_REPAIRKIT.put(ComponentMaterials.getById(ID_TIN), Parts.REPAIR_KIT.getStack(ID_TIN, ID_REPAIR));
         MAP_CAST_REPAIRKIT.put(ComponentMaterials.getById(ID_MAGNESIUM), Parts.REPAIR_KIT.getStack(ID_MAGNESIUM, ID_REPAIR));
-        MAP_CAST_REPAIRKIT.put(ComponentMaterials.getById(ID_ALUMINIUM), Parts.REPAIR_KIT.getStack(ID_ALUMINIUM, ID_REPAIR));
+        MAP_CAST_REPAIRKIT.put(ComponentMaterials.getById(ID_ALUMINUM), Parts.REPAIR_KIT.getStack(ID_ALUMINUM, ID_REPAIR));
         MAP_CAST_REPAIRKIT.put(ComponentMaterials.getById(ID_LEAD), Parts.REPAIR_KIT.getStack(ID_LEAD, ID_REPAIR));
         MAP_CAST_REPAIRKIT.put(ComponentMaterials.getById(ID_ZINC), Parts.REPAIR_KIT.getStack(ID_ZINC, ID_REPAIR));
         MAP_CAST_REPAIRKIT.put(ComponentMaterials.getById(ID_COAL), Parts.REPAIR_KIT.getStack(ID_COAL, ID_REPAIR));
@@ -231,7 +231,7 @@ public class RecipeManager {
         MAP_CAST_SHOVELHEAD.put(ComponentMaterials.getById(ID_SILVER), Parts.SHOVEL_HEAD.getStack(ID_SILVER, ID_HEAD, ID_SHOVEL));
         MAP_CAST_SHOVELHEAD.put(ComponentMaterials.getById(ID_TIN), Parts.SHOVEL_HEAD.getStack(ID_TIN, ID_HEAD, ID_SHOVEL));
         MAP_CAST_SHOVELHEAD.put(ComponentMaterials.getById(ID_MAGNESIUM), Parts.SHOVEL_HEAD.getStack(ID_MAGNESIUM, ID_HEAD, ID_SHOVEL));
-        MAP_CAST_SHOVELHEAD.put(ComponentMaterials.getById(ID_ALUMINIUM), Parts.SHOVEL_HEAD.getStack(ID_ALUMINIUM, ID_HEAD, ID_SHOVEL));
+        MAP_CAST_SHOVELHEAD.put(ComponentMaterials.getById(ID_ALUMINUM), Parts.SHOVEL_HEAD.getStack(ID_ALUMINUM, ID_HEAD, ID_SHOVEL));
         MAP_CAST_SHOVELHEAD.put(ComponentMaterials.getById(ID_LEAD), Parts.SHOVEL_HEAD.getStack(ID_LEAD, ID_HEAD, ID_SHOVEL));
         MAP_CAST_SHOVELHEAD.put(ComponentMaterials.getById(ID_ZINC), Parts.SHOVEL_HEAD.getStack(ID_ZINC, ID_HEAD, ID_SHOVEL));
         MAP_CAST_SHOVELHEAD.put(ComponentMaterials.getById(ID_STEEL), Parts.SHOVEL_HEAD.getStack(ID_STEEL, ID_HEAD, ID_SHOVEL));
@@ -256,7 +256,7 @@ public class RecipeManager {
         MAP_CAST_PICKAXEHEAD.put(ComponentMaterials.getById(ID_SILVER), Parts.PICKAXE_HEAD.getStack(ID_SILVER, ID_HEAD, ID_PICKAXE));
         MAP_CAST_PICKAXEHEAD.put(ComponentMaterials.getById(ID_TIN), Parts.PICKAXE_HEAD.getStack(ID_TIN, ID_HEAD, ID_PICKAXE));
         MAP_CAST_PICKAXEHEAD.put(ComponentMaterials.getById(ID_MAGNESIUM), Parts.PICKAXE_HEAD.getStack(ID_MAGNESIUM, ID_HEAD, ID_PICKAXE));
-        MAP_CAST_PICKAXEHEAD.put(ComponentMaterials.getById(ID_ALUMINIUM), Parts.PICKAXE_HEAD.getStack(ID_ALUMINIUM, ID_HEAD, ID_PICKAXE));
+        MAP_CAST_PICKAXEHEAD.put(ComponentMaterials.getById(ID_ALUMINUM), Parts.PICKAXE_HEAD.getStack(ID_ALUMINUM, ID_HEAD, ID_PICKAXE));
         MAP_CAST_PICKAXEHEAD.put(ComponentMaterials.getById(ID_LEAD), Parts.PICKAXE_HEAD.getStack(ID_LEAD, ID_HEAD, ID_PICKAXE));
         MAP_CAST_PICKAXEHEAD.put(ComponentMaterials.getById(ID_ZINC), Parts.PICKAXE_HEAD.getStack(ID_ZINC, ID_HEAD, ID_PICKAXE));
         MAP_CAST_PICKAXEHEAD.put(ComponentMaterials.getById(ID_STEEL), Parts.PICKAXE_HEAD.getStack(ID_STEEL, ID_HEAD, ID_PICKAXE));
@@ -281,7 +281,7 @@ public class RecipeManager {
         MAP_CAST_AXEHEAD.put(ComponentMaterials.getById(ID_SILVER), Parts.AXE_HEAD.getStack(ID_SILVER, ID_HEAD, ID_AXE));
         MAP_CAST_AXEHEAD.put(ComponentMaterials.getById(ID_TIN), Parts.AXE_HEAD.getStack(ID_TIN, ID_HEAD, ID_AXE));
         MAP_CAST_AXEHEAD.put(ComponentMaterials.getById(ID_MAGNESIUM), Parts.AXE_HEAD.getStack(ID_MAGNESIUM, ID_HEAD, ID_AXE));
-        MAP_CAST_AXEHEAD.put(ComponentMaterials.getById(ID_ALUMINIUM), Parts.AXE_HEAD.getStack(ID_ALUMINIUM, ID_HEAD, ID_AXE));
+        MAP_CAST_AXEHEAD.put(ComponentMaterials.getById(ID_ALUMINUM), Parts.AXE_HEAD.getStack(ID_ALUMINUM, ID_HEAD, ID_AXE));
         MAP_CAST_AXEHEAD.put(ComponentMaterials.getById(ID_LEAD), Parts.AXE_HEAD.getStack(ID_LEAD, ID_HEAD, ID_AXE));
         MAP_CAST_AXEHEAD.put(ComponentMaterials.getById(ID_ZINC), Parts.AXE_HEAD.getStack(ID_ZINC, ID_HEAD, ID_AXE));
         MAP_CAST_AXEHEAD.put(ComponentMaterials.getById(ID_STEEL), Parts.AXE_HEAD.getStack(ID_STEEL, ID_HEAD, ID_AXE));
@@ -306,7 +306,7 @@ public class RecipeManager {
         MAP_CAST_HOEHEAD.put(ComponentMaterials.getById(ID_SILVER), Parts.HOE_HEAD.getStack(ID_SILVER, ID_HEAD, ID_HOE));
         MAP_CAST_HOEHEAD.put(ComponentMaterials.getById(ID_TIN), Parts.HOE_HEAD.getStack(ID_TIN, ID_HEAD, ID_HOE));
         MAP_CAST_HOEHEAD.put(ComponentMaterials.getById(ID_MAGNESIUM), Parts.HOE_HEAD.getStack(ID_MAGNESIUM, ID_HEAD, ID_HOE));
-        MAP_CAST_HOEHEAD.put(ComponentMaterials.getById(ID_ALUMINIUM), Parts.HOE_HEAD.getStack(ID_ALUMINIUM, ID_HEAD, ID_HOE));
+        MAP_CAST_HOEHEAD.put(ComponentMaterials.getById(ID_ALUMINUM), Parts.HOE_HEAD.getStack(ID_ALUMINUM, ID_HEAD, ID_HOE));
         MAP_CAST_HOEHEAD.put(ComponentMaterials.getById(ID_LEAD), Parts.HOE_HEAD.getStack(ID_LEAD, ID_HEAD, ID_HOE));
         MAP_CAST_HOEHEAD.put(ComponentMaterials.getById(ID_ZINC), Parts.HOE_HEAD.getStack(ID_ZINC, ID_HEAD, ID_HOE));
         MAP_CAST_HOEHEAD.put(ComponentMaterials.getById(ID_STEEL), Parts.HOE_HEAD.getStack(ID_STEEL, ID_HEAD, ID_HOE));
@@ -331,7 +331,7 @@ public class RecipeManager {
         MAP_CAST_SWORDBLADE.put(ComponentMaterials.getById(ID_SILVER), Parts.SWORD_BLADE.getStack(ID_SILVER, ID_HEAD, ID_SWORD));
         MAP_CAST_SWORDBLADE.put(ComponentMaterials.getById(ID_TIN), Parts.SWORD_BLADE.getStack(ID_TIN, ID_HEAD, ID_SWORD));
         MAP_CAST_SWORDBLADE.put(ComponentMaterials.getById(ID_MAGNESIUM), Parts.SWORD_BLADE.getStack(ID_MAGNESIUM, ID_HEAD, ID_SWORD));
-        MAP_CAST_SWORDBLADE.put(ComponentMaterials.getById(ID_ALUMINIUM), Parts.SWORD_BLADE.getStack(ID_ALUMINIUM, ID_HEAD, ID_SWORD));
+        MAP_CAST_SWORDBLADE.put(ComponentMaterials.getById(ID_ALUMINUM), Parts.SWORD_BLADE.getStack(ID_ALUMINUM, ID_HEAD, ID_SWORD));
         MAP_CAST_SWORDBLADE.put(ComponentMaterials.getById(ID_LEAD), Parts.SWORD_BLADE.getStack(ID_LEAD, ID_HEAD, ID_SWORD));
         MAP_CAST_SWORDBLADE.put(ComponentMaterials.getById(ID_ZINC), Parts.SWORD_BLADE.getStack(ID_ZINC, ID_HEAD, ID_SWORD));
         MAP_CAST_SWORDBLADE.put(ComponentMaterials.getById(ID_STEEL), Parts.SWORD_BLADE.getStack(ID_STEEL, ID_HEAD, ID_SWORD));
@@ -356,7 +356,7 @@ public class RecipeManager {
         MAP_CAST_TOOLROD.put(ComponentMaterials.getById(ID_SILVER), Parts.TOOL_ROD.getStack(ID_SILVER, ID_ROD, null));
         MAP_CAST_TOOLROD.put(ComponentMaterials.getById(ID_TIN), Parts.TOOL_ROD.getStack(ID_TIN, ID_ROD, null));
         MAP_CAST_TOOLROD.put(ComponentMaterials.getById(ID_MAGNESIUM), Parts.TOOL_ROD.getStack(ID_MAGNESIUM, ID_ROD, null));
-        MAP_CAST_TOOLROD.put(ComponentMaterials.getById(ID_ALUMINIUM), Parts.TOOL_ROD.getStack(ID_ALUMINIUM, ID_ROD, null));
+        MAP_CAST_TOOLROD.put(ComponentMaterials.getById(ID_ALUMINUM), Parts.TOOL_ROD.getStack(ID_ALUMINUM, ID_ROD, null));
         MAP_CAST_TOOLROD.put(ComponentMaterials.getById(ID_LEAD), Parts.TOOL_ROD.getStack(ID_LEAD, ID_ROD, null));
         MAP_CAST_TOOLROD.put(ComponentMaterials.getById(ID_ZINC), Parts.TOOL_ROD.getStack(ID_ZINC, ID_ROD, null));
         MAP_CAST_TOOLROD.put(ComponentMaterials.getById(ID_STEEL), Parts.TOOL_ROD.getStack(ID_STEEL, ID_ROD, null));
@@ -426,11 +426,11 @@ public class RecipeManager {
         meltingRecipes.put(Materials.NUGGET_CAST_MAGNESIUM.getItemId(), new MoltenResult(ComponentMaterials.getById(ID_MAGNESIUM), AMOUNT_NUGGET));
         meltingRecipes.put(Materials.BLOCK_CAST_MAGNESIUM.getItemId(), new MoltenResult(ComponentMaterials.getById(ID_MAGNESIUM), AMOUNT_BLOCK));
 
-        // ALUMINIUM
-        meltingRecipes.put(SlimefunItems.ALUMINUM_DUST.getItemId(), new MoltenResult(ComponentMaterials.getById(ID_ALUMINIUM), AMOUNT_DUST));
-        meltingRecipes.put(SlimefunItems.ALUMINUM_INGOT.getItemId(), new MoltenResult(ComponentMaterials.getById(ID_ALUMINIUM), AMOUNT_INGOT));
-        meltingRecipes.put(Materials.NUGGET_CAST_ALUMINIUM.getItemId(), new MoltenResult(ComponentMaterials.getById(ID_ALUMINIUM), AMOUNT_NUGGET));
-        meltingRecipes.put(Materials.BLOCK_CAST_ALUMINIUM.getItemId(), new MoltenResult(ComponentMaterials.getById(ID_ALUMINIUM), AMOUNT_BLOCK));
+        // ALUMINUM
+        meltingRecipes.put(SlimefunItems.ALUMINUM_DUST.getItemId(), new MoltenResult(ComponentMaterials.getById(ID_ALUMINUM), AMOUNT_DUST));
+        meltingRecipes.put(SlimefunItems.ALUMINUM_INGOT.getItemId(), new MoltenResult(ComponentMaterials.getById(ID_ALUMINUM), AMOUNT_INGOT));
+        meltingRecipes.put(Materials.NUGGET_CAST_ALUMINUM.getItemId(), new MoltenResult(ComponentMaterials.getById(ID_ALUMINUM), AMOUNT_NUGGET));
+        meltingRecipes.put(Materials.BLOCK_CAST_ALUMINUM.getItemId(), new MoltenResult(ComponentMaterials.getById(ID_ALUMINUM), AMOUNT_BLOCK));
 
         // LEAD
         meltingRecipes.put(SlimefunItems.LEAD_DUST.getItemId(), new MoltenResult(ComponentMaterials.getById(ID_LEAD), AMOUNT_DUST));

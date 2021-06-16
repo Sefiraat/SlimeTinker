@@ -72,6 +72,10 @@ public final class Experience {
         return c.get(SlimeTinker.inst().getKeys().getToolModSlots(), PersistentDataType.INTEGER);
     }
 
+    public static void setToolModifierSlots(PersistentDataContainer c, int amount) {
+        c.set(SlimeTinker.inst().getKeys().getToolModSlots(), PersistentDataType.INTEGER, amount);
+    }
+
     public static String getLoreExp(PersistentDataContainer c) {
         return ThemeUtils.ITEM_TOOL + "Level: " +
                 ChatColor.WHITE + Experience.getToolLevel(c) +
@@ -89,8 +93,8 @@ public final class Experience {
             return;
         }
         String toolType = itemStack.getItemMeta().getPersistentDataContainer().get(SlimeTinker.inst().getKeys().getToolInfoToolType(), PersistentDataType.STRING);
-        if (Tools.toolGrowthMap.get(toolType).containsKey(level)) {
-            itemStack.setType(Tools.toolGrowthMap.get(toolType).get(level));
+        if (Tools.getToolGrowthMap().get(toolType).containsKey(level)) {
+            itemStack.setType(Tools.getToolGrowthMap().get(toolType).get(level));
             player.sendMessage(ThemeUtils.SUCCESS + "Your tool has been promoted!");
         }
 

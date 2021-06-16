@@ -108,7 +108,7 @@ public class Table extends AbstractContainer {
                 head.getItemMeta().getPersistentDataContainer().get(SlimeTinker.inst().getKeys().getPartInfoClassType(), PersistentDataType.STRING),
                 head.getItemMeta().getPersistentDataContainer().get(SlimeTinker.inst().getKeys().getPartInfoType(), PersistentDataType.STRING),
                 head.getItemMeta().getPersistentDataContainer().get(SlimeTinker.inst().getKeys().getPartInfoMaterialType(), PersistentDataType.STRING),
-                Parts.binderMap.get(StackUtils.getIDorType(binding)),
+                Parts.getBinderMap().get(StackUtils.getIDorType(binding)),
                 rod.getItemMeta().getPersistentDataContainer().get(SlimeTinker.inst().getKeys().getPartInfoMaterialType(), PersistentDataType.STRING)
         );
 
@@ -151,7 +151,7 @@ public class Table extends AbstractContainer {
         if (itemStack == null || !itemStack.hasItemMeta()) { // No item
             return false;
         }
-        return Parts.binderMap.containsKey(StackUtils.getIDorType(itemStack));
+        return Parts.getBinderMap().containsKey(StackUtils.getIDorType(itemStack));
     }
 
     protected boolean craft(BlockMenu blockMenu, Player player) {

@@ -210,7 +210,7 @@ public final class TinkersSmelteryCache extends AbstractCache {
 
     private boolean clickAlloy() {
 
-        for (Alloy alloy : Alloys.ALLOY_LIST) {
+        for (Alloy alloy : Alloys.getALLOY_LIST()) {
             if (!alloy.getRecipe().keySet().equals(tankContent.keySet())) {
                 continue;
             }

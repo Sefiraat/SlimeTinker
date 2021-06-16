@@ -208,4 +208,13 @@ public final class GUIItems {
         );
     }
 
+    public static CustomItem menuCraftMod() {
+        return new CustomItem(
+                Material.GRINDSTONE,
+                ThemeUtils.GUI_HEAD + "Apply Modification",
+                "",
+                ThemeUtils.PASSIVE + "Apply the modification to the tool."
+        );
+    }
+
 }

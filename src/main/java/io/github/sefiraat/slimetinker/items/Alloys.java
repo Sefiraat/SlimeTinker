@@ -134,7 +134,7 @@ public final class Alloys {
                     "ALLOY_ALU_BRONZE",
                     SkullTextures.ALLOY_TAN,
                     ThemeUtils.ThemeItemType.MOLTEN_METAL,
-                    "Alloy: Aluminium Bronze"
+                    "Alloy: Aluminum Bronze"
             );
 
     public static final SlimefunItemStack ALLOY_HARD =
@@ -174,7 +174,7 @@ public final class Alloys {
                     "ALLOY_BRASS",
                     SkullTextures.ALLOY_RED,
                     ThemeUtils.ThemeItemType.MOLTEN_METAL,
-                    "Alloy: Steel"
+                    "Alloy: Brass"
             );
 
     public static final SlimefunItemStack ALLOY_ALU_BRASS =
@@ -182,7 +182,7 @@ public final class Alloys {
                     "ALLOY_ALU_BRASS",
                     SkullTextures.ALLOY_RED,
                     ThemeUtils.ThemeItemType.MOLTEN_METAL,
-                    "Alloy: Aluminium Bronze"
+                    "Alloy: Aluminum Brass"
             );
 
     public static final SlimefunItemStack ALLOY_NICKEL =

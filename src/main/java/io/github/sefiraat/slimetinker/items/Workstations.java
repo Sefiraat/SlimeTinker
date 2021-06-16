@@ -2,6 +2,7 @@ package io.github.sefiraat.slimetinker.items;
 
 import io.github.sefiraat.slimetinker.SlimeTinker;
 import io.github.sefiraat.slimetinker.categories.Categories;
+import io.github.sefiraat.slimetinker.items.workstations.modificationstation.ModificationStation;
 import io.github.sefiraat.slimetinker.items.workstations.repairbench.RepairBench;
 import io.github.sefiraat.slimetinker.items.workstations.smeltery.TinkersSmeltery;
 import io.github.sefiraat.slimetinker.items.workstations.table.Table;
@@ -14,6 +15,9 @@ import org.bukkit.inventory.ItemStack;
 
 public final class Workstations {
 
+    private Workstations() {
+        throw new IllegalStateException("Utility class");
+    }
 
     // TODO Placeholder Recipes
     protected static final ItemStack[] RECIPE_TINKERS_SMELTERY_CORE = new ItemStack[] {
@@ -36,10 +40,11 @@ public final class Workstations {
             null,   null,   null,
             null,   null,   null
     };
-
-    private Workstations() {
-        throw new IllegalStateException("Utility class");
-    }
+    protected static final ItemStack[] RECIPE_TINKERS_MOD_STATION = new ItemStack[] {
+            null,   null,   null,
+            null,   null,   null,
+            null,   null,   null
+    };
 
     // Tinkers Smeltery
     public static final SlimefunItemStack TINKERS_SMELTERY_CORE =
@@ -82,8 +87,18 @@ public final class Workstations {
                     "TINKERS_REPAIR_BENCH",
                     Material.CARTOGRAPHY_TABLE,
                     ThemeUtils.ThemeItemType.MACHINE,
-                    "Tinkers Table",
+                    "Tinker's Repair Bench",
                     "Repairs tools and weapons."
+            );
+
+    // Modification
+    public static final SlimefunItemStack TINKERS_MOD_STATION =
+            ThemeUtils.themedItemStack(
+                    "TINKERS_MOD_STATION",
+                    Material.GRINDSTONE,
+                    ThemeUtils.ThemeItemType.MACHINE,
+                    "Tinker's Modification Station",
+                    "Applies modifications to tools and weapons."
             );
 
     public static void set(SlimeTinker p) {
@@ -92,6 +107,7 @@ public final class Workstations {
         new TinkersSmeltery(Categories.WORKSTATIONS, TINKERS_SMELTERY_CORE, Workbench.TYPE, RECIPE_TINKERS_SMELTERY_CORE).register(p);
         new Table(Categories.WORKSTATIONS, TINKERS_TABLE, Workbench.TYPE, RECIPE_TINKERS_TABLE).register(p);
         new RepairBench(Categories.WORKSTATIONS, TINKERS_REPAIR_BENCH, Workbench.TYPE, RECIPE_TINKERS_REPAIR_BENCH).register(p);
+        new ModificationStation(Categories.WORKSTATIONS, TINKERS_MOD_STATION, Workbench.TYPE, RECIPE_TINKERS_MOD_STATION).register(p);
 
     }
 

@@ -8,6 +8,7 @@ import io.github.sefiraat.slimetinker.utils.IDStrings;
 import io.github.sefiraat.slimetinker.utils.SkullTextures;
 import io.github.sefiraat.slimetinker.utils.ThemeUtils;
 import io.github.thebusybiscuit.slimefun4.implementation.items.blocks.UnplaceableBlock;
+import lombok.Getter;
 import me.mrCookieSlime.Slimefun.api.SlimefunItemStack;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
@@ -18,14 +19,18 @@ import java.util.Map;
 
 public final class Tools {
 
+    private Tools() {
+        throw new IllegalStateException("Utility class");
+    }
+
     public static final String DESC_ERROR = "Error";
     public static final int LEVEL_NETHERITE = 10;
     public static final int LEVEL_DIAMOND = 8;
     public static final int LEVEL_IRON = 6;
     public static final int LEVEL_GOLD = 3;
 
-
-    public static Map<String, Map<Integer, Material>> toolGrowthMap = new HashMap<>();
+    @Getter
+    protected static final Map<String, Map<Integer, Material>> toolGrowthMap = new HashMap<>();
 
     protected static ItemStack[] getDummyToolRecipe(ItemStack i1, ItemStack i2, ItemStack i3) {
         return new ItemStack[]{

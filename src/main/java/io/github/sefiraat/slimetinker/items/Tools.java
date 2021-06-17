@@ -144,7 +144,7 @@ public final class Tools {
             ThemeUtils.themedItemStack(
                     "TOOL_INFO",
                     SkullTextures.INFO,
-                    ThemeUtils.ThemeItemType.PART,
+                    ThemeUtils.ThemeItemType.INFO,
                     "Tinker's Tools Info",
                     ThemeUtils.PASSIVE + "Tinker's tools start at Stone. As you",
                     ThemeUtils.PASSIVE + "level the tools up, they will promote",

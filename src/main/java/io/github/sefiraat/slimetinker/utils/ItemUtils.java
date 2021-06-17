@@ -2,6 +2,7 @@ package io.github.sefiraat.slimetinker.utils;
 
 import io.github.sefiraat.slimetinker.SlimeTinker;
 import io.github.sefiraat.slimetinker.items.ComponentMaterials;
+import io.github.sefiraat.slimetinker.modifiers.Mod;
 import io.github.sefiraat.slimetinker.modifiers.Modifications;
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.SlimefunItem;
 import net.md_5.bungee.api.ChatColor;
@@ -93,7 +94,14 @@ public final class ItemUtils {
         Map<Material, Integer> mapLevels = Modifications.getAllModLevels(itemStack);
 
         for (Map.Entry<Material, Integer> entry : mapLevels.entrySet()) {
-            lore.add(ThemeUtils.toTitleCase(entry.getKey().toString()) + " - " + entry.getValue() + " (" + mapAmounts.get(entry.getKey()) + ")"); // TODO fetch the max required
+            Material m = entry.getKey();
+            int level = entry.getValue();
+            Mod mod = Modifications.MODIFICATION_DEFINITIONS.get(m);
+            String amountRequired = "∞";
+            if (mod.getRequirementMap().containsKey(level + 1)) {
+                amountRequired = String.valueOf(mod.getRequirementMap().get(level + 1));
+            }
+            lore.add(ThemeUtils.CLICK_INFO + ThemeUtils.toTitleCase(entry.getKey().toString()) + " Level " + entry.getValue() + ThemeUtils.PASSIVE + " - (" + mapAmounts.get(entry.getKey()) + "/" + amountRequired + ")"); // TODO fetch the max required
         }
 
         im.setLore(lore);

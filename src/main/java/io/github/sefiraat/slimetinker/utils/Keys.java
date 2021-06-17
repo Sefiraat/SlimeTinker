@@ -36,6 +36,11 @@ public class Keys {
     private final NamespacedKey toolModSlots = new NamespacedKey(SlimeTinker.inst(), "ST_Modifier_Slots");
     private final NamespacedKey toolMods = new NamespacedKey(SlimeTinker.inst(), "ST_Modifier_Map");
     private final NamespacedKey toolModLevelRedstone = new NamespacedKey(SlimeTinker.inst(), "ST_mod_level_redstone");
+    private final NamespacedKey toolModLevelLapis = new NamespacedKey(SlimeTinker.inst(), "ST_mod_level_lapis");
+    private final NamespacedKey toolModLevelQuartz = new NamespacedKey(SlimeTinker.inst(), "ST_mod_level_quartz");
+    private final NamespacedKey toolModLevelDiamond = new NamespacedKey(SlimeTinker.inst(), "ST_mod_level_diamond");
+    private final NamespacedKey toolModLevelEmerald = new NamespacedKey(SlimeTinker.inst(), "ST_mod_level_emerald");
+    private final NamespacedKey toolModLevelObsidian = new NamespacedKey(SlimeTinker.inst(), "ST_mod_level_obsidian");
 
 
     // Workstations

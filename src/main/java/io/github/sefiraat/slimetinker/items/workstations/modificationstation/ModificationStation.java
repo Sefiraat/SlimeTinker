@@ -74,7 +74,7 @@ public class ModificationStation extends AbstractContainer {
         assert im != null;
         PersistentDataContainer c = im.getPersistentDataContainer();
 
-        LinkedHashMap<Material, Integer> modMap = Modifications.getModificationMap(tool);
+        LinkedHashMap<Material, Integer> modMap = Modifications.getModificationMap(c);
 
         Mod mod = Modifications.MODIFICATION_DEFINITIONS.get(modItem.getType()); // The definition of the mod being created/updated
         int modSlots = Experience.getToolModifierSlots(tool.getItemMeta().getPersistentDataContainer()); // Number of free modification slots on the tool
@@ -83,9 +83,11 @@ public class ModificationStation extends AbstractContainer {
 
         if (!mod.getRequirementMap().containsKey(currentLevel + 1)) { // Max level
             player.sendMessage(ThemeUtils.WARNING + "You have already maxed out this modifier");
+            return false;
         }
 
-        int requiredAmount = mod.getRequirementMap().get(currentLevel + 1);
+        int requiredAmount = mod.getRequirementMap().get(currentLevel + 1) - currentAmount; // The amount needed for the next level less the amount currently on the tool
+        int leftoverAmount = 0;
 
         if (currentAmount <= 0) {
             if (modSlots == 0) { // New mod and no slots
@@ -96,24 +98,25 @@ public class ModificationStation extends AbstractContainer {
             }
         }  // Or continuing on with a previous mod so we can continue without a free slot
 
-        if (requiredAmount < modItem.getAmount()) { //We dont need the full amount
-            modItem.setAmount(modItem.getAmount() - (modItem.getAmount() - requiredAmount)); // Remove what we need
+        if (requiredAmount <= modItem.getAmount()) { // We dont need the full amount (or the full amount will level up the tool)
+            leftoverAmount = modItem.getAmount() - requiredAmount; // Remove what we need
             Modifications.setModLevel(mod, c, currentLevel + 1);
             currentAmount = 0;
         } else {
             currentAmount = currentAmount + modItem.getAmount();
-            modMap.put(modItem.getType(), currentAmount);
-            modItem.setAmount(0);
         }
 
-        Modifications.setModificationMap(tool, modMap);
+        modMap.put(modItem.getType(), currentAmount);
+        Modifications.setModificationMap(c, modMap);
 
         tool.setItemMeta(im);
 
-        blockMenu.pushItem(tool.clone(), OUTPUT_SLOT);
-        tool.setAmount(0);
-
         ItemUtils.rebuildToolLore(tool);
+        blockMenu.pushItem(tool.clone(), OUTPUT_SLOT);
+
+        tool.setAmount(0);
+        modItem.setAmount(leftoverAmount);
+
 
         return false;
     }

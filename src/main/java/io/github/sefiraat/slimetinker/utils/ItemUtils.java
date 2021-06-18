@@ -6,8 +6,8 @@ import io.github.sefiraat.slimetinker.modifiers.Mod;
 import io.github.sefiraat.slimetinker.modifiers.Modifications;
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.SlimefunItem;
 import net.md_5.bungee.api.ChatColor;
-import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.Damageable;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
@@ -72,41 +72,47 @@ public final class ItemUtils {
 
 
         // General Material information
-        lore.add("");
+        lore.add(ThemeUtils.PASSIVE + "-".repeat(20));
         lore.add(ThemeUtils.CLICK_INFO + "Head : " + formatMaterialName(getToolHeadMaterial(c)));
         lore.add(ThemeUtils.CLICK_INFO + "Binding : " + formatMaterialName(getToolBindingMaterial(c)));
         lore.add(ThemeUtils.CLICK_INFO + "Rod : " + formatMaterialName(getToolRodMaterial(c)));
+        lore.add(ThemeUtils.PASSIVE + "-".repeat(20));
 
         // Material properties
-        lore.add("");
         // TODO Tool Properties
         lore.add("PROPERTIES GO HERE");
+        lore.add(ThemeUtils.PASSIVE + "-".repeat(20));
 
-        // Exp / Leveling information
-        lore.add("");
+        // Exp / Leveling / Mod Slot information
         lore.add(Experience.getLoreExp(c));
-
-        // Modification Information
-        lore.add("");
         lore.add(Experience.getLoreModSlots(c));
+        lore.add(ThemeUtils.PASSIVE + "-".repeat(20));
 
-        LinkedHashMap<Material, Integer> mapAmounts = Modifications.getModificationMap(itemStack);
-        Map<Material, Integer> mapLevels = Modifications.getAllModLevels(itemStack);
+        // Active Mods
+        LinkedHashMap<String, Integer> mapAmounts = Modifications.getModificationMap(itemStack);
+        Map<String, Integer> mapLevels = Modifications.getAllModLevels(itemStack);
 
-        for (Map.Entry<Material, Integer> entry : mapLevels.entrySet()) {
-            Material m = entry.getKey();
+        for (Map.Entry<String, Integer> entry : mapLevels.entrySet()) {
             int level = entry.getValue();
-            Mod mod = Modifications.MODIFICATION_DEFINITIONS.get(m);
-            String amountRequired = "∞";
+            Mod mod = Modifications.MODIFICATION_DEFINITIONS.get(entry.getKey());
             if (mod.getRequirementMap().containsKey(level + 1)) {
-                amountRequired = String.valueOf(mod.getRequirementMap().get(level + 1));
+                String amountRequired = String.valueOf(mod.getRequirementMap().get(level + 1));
+                lore.add(ThemeUtils.CLICK_INFO + ThemeUtils.toTitleCase(entry.getKey().toString()) + " Level " + entry.getValue() + ThemeUtils.PASSIVE + " - (" + mapAmounts.get(entry.getKey()) + "/" + amountRequired + ")");
+            } else {
+                lore.add(ThemeUtils.CLICK_INFO + ThemeUtils.toTitleCase(entry.getKey().toString()) + " Level " + entry.getValue() + ThemeUtils.PASSIVE + " - (MAX)");
             }
-            lore.add(ThemeUtils.CLICK_INFO + ThemeUtils.toTitleCase(entry.getKey().toString()) + " Level " + entry.getValue() + ThemeUtils.PASSIVE + " - (" + mapAmounts.get(entry.getKey()) + "/" + amountRequired + ")"); // TODO fetch the max required
         }
 
         im.setLore(lore);
         itemStack.setItemMeta(im);
 
+    }
+
+    public static boolean isToolBroken(ItemStack itemStack) {
+        Damageable damageable = (Damageable) itemStack.getItemMeta();
+        assert damageable != null;
+        // Tool is 'broken'
+        return damageable.getDamage() == itemStack.getType().getMaxDurability() - 1;
     }
 
     public static String getToolHeadMaterial(PersistentDataContainer c) {

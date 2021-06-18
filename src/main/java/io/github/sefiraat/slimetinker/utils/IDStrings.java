@@ -1,6 +1,6 @@
 package io.github.sefiraat.slimetinker.utils;
 
-public class IDStrings {
+public final class IDStrings {
 
     public static final String ID_IRON = "IRON";
     public static final String ID_GOLD = "GOLD";

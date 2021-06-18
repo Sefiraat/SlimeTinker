@@ -1,5 +1,6 @@
 package io.github.sefiraat.slimetinker.items.workstations.modificationstation;
 
+import io.github.mooy1.infinitylib.items.StackUtils;
 import io.github.mooy1.infinitylib.recipes.RecipeMap;
 import io.github.mooy1.infinitylib.recipes.ShapedRecipe;
 import io.github.mooy1.infinitylib.slimefun.AbstractContainer;
@@ -20,7 +21,6 @@ import me.mrCookieSlime.Slimefun.api.inventory.BlockMenuPreset;
 import me.mrCookieSlime.Slimefun.api.inventory.DirtyChestMenu;
 import me.mrCookieSlime.Slimefun.api.item_transport.ItemTransportFlow;
 import org.bukkit.Location;
-import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.event.block.BlockBreakEvent;
@@ -65,7 +65,7 @@ public class ModificationStation extends AbstractContainer {
         }
 
         // No modifier!
-        if (modItem == null || !Modifications.MODIFICAION_LIST.contains(modItem.getType())) {
+        if (modItem == null || !Modifications.MODIFICAION_LIST.contains(StackUtils.getIDorType(modItem))) {
             player.sendMessage(ThemeUtils.WARNING + "Input a valid modifier into the second slot.");
             return false;
         }
@@ -74,11 +74,11 @@ public class ModificationStation extends AbstractContainer {
         assert im != null;
         PersistentDataContainer c = im.getPersistentDataContainer();
 
-        LinkedHashMap<Material, Integer> modMap = Modifications.getModificationMap(c);
+        LinkedHashMap<String, Integer> modMap = Modifications.getModificationMap(c);
 
-        Mod mod = Modifications.MODIFICATION_DEFINITIONS.get(modItem.getType()); // The definition of the mod being created/updated
+        Mod mod = Modifications.MODIFICATION_DEFINITIONS.get(StackUtils.getIDorType(modItem)); // The definition of the mod being created/updated
         int modSlots = Experience.getToolModifierSlots(tool.getItemMeta().getPersistentDataContainer()); // Number of free modification slots on the tool
-        int currentAmount = modMap.get(modItem.getType()); // The current value of that material loaded into the tool (not the level)
+        int currentAmount = modMap.get(StackUtils.getIDorType(modItem)); // The current value of that material loaded into the tool (not the level)
         int currentLevel = Modifications.getModLevel(mod, tool); // The current level of this mod (or 0)
 
         if (!mod.getRequirementMap().containsKey(currentLevel + 1)) { // Max level
@@ -106,17 +106,21 @@ public class ModificationStation extends AbstractContainer {
             currentAmount = currentAmount + modItem.getAmount();
         }
 
-        modMap.put(modItem.getType(), currentAmount);
+        modMap.put(StackUtils.getIDorType(modItem), currentAmount);
         Modifications.setModificationMap(c, modMap);
 
         tool.setItemMeta(im);
+        ItemStack newTool = tool.clone();
 
-        ItemUtils.rebuildToolLore(tool);
-        blockMenu.pushItem(tool.clone(), OUTPUT_SLOT);
+        if (!blockMenu.fits(newTool, OUTPUT_SLOT)) {
+            player.sendMessage(ThemeUtils.WARNING + "Clear the output slot first");
+            return false;
+        }
 
+        ItemUtils.rebuildToolLore(newTool);
+        blockMenu.pushItem(newTool, OUTPUT_SLOT);
         tool.setAmount(0);
         modItem.setAmount(leftoverAmount);
-
 
         return false;
     }

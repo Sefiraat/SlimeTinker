@@ -18,7 +18,7 @@ public class AddExp extends AbstractCommand {
     }
 
     @Override
-    public void onExecute(@NotNull CommandSender commandSender, @NotNull String[] strings) {
+    public void onExecute(@NotNull CommandSender commandSender, @NotNull String @NotNull [] strings) {
 
         Player player = (Player) commandSender;
 
@@ -29,7 +29,7 @@ public class AddExp extends AbstractCommand {
     }
 
     @Override
-    public void onTab(@NotNull CommandSender commandSender, @NotNull String[] strings, @NotNull List<String> list) {
+    public void onTab(@NotNull CommandSender commandSender, @NotNull String @NotNull [] strings, @NotNull List<String> list) {
 
     }
 }

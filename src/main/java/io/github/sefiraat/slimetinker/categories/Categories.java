@@ -22,6 +22,13 @@ public final class Categories {
         );
     }
 
+    public static CustomItem catWorkstations() {
+        return new CustomItem(
+                SkullItem.fromBase64(SkullTextures.CAT_MAIN),
+                ThemeUtils.MAIN + "Workstations"
+        );
+    }
+
     public static CustomItem catMaterials() {
         return new CustomItem(
                 SkullItem.fromBase64(SkullTextures.CAT_MATERIALS),
@@ -36,6 +43,13 @@ public final class Categories {
         );
     }
 
+    public static CustomItem catProperties() {
+        return new CustomItem(
+                SkullItem.fromBase64(SkullTextures.CAT_PROPERTIES),
+                ThemeUtils.MAIN + "Metal Properties"
+        );
+    }
+
     public static CustomItem catCasts() {
         return new CustomItem(
                 SkullItem.fromBase64(SkullTextures.CAT_CASTS),
@@ -47,13 +61,6 @@ public final class Categories {
         return new CustomItem(
                 SkullItem.fromBase64(SkullTextures.CAT_PARTS),
                 ThemeUtils.MAIN + "Parts"
-        );
-    }
-
-    public static CustomItem catWorkstations() {
-        return new CustomItem(
-                SkullItem.fromBase64(SkullTextures.CAT_MAIN),
-                ThemeUtils.MAIN + "Workstations"
         );
     }
 
@@ -79,9 +86,10 @@ public final class Categories {
     }
 
     public static final MultiCategory MAIN = new MultiCategory(SlimeTinker.inst().getKeys().getCategoryMain(), catMain());
+    public static final SubCategory WORKSTATIONS = new SubCategory(SlimeTinker.inst().getKeys().getCategoryWorkstations(), MAIN, catWorkstations());
     public static final SubCategory MATERIALS = new SubCategory(SlimeTinker.inst().getKeys().getCategoryMaterials(), MAIN, catMaterials());
     public static final SubCategory ALLOYS = new SubCategory(SlimeTinker.inst().getKeys().getCategoryAlloys(), MAIN, catAlloys());
-    public static final SubCategory WORKSTATIONS = new SubCategory(SlimeTinker.inst().getKeys().getCategoryWorkstations(), MAIN, catWorkstations());
+    public static final SubCategory PROPERTIES = new SubCategory(SlimeTinker.inst().getKeys().getCategoryProperties(), MAIN, catProperties());
     public static final SubCategory CASTS = new SubCategory(SlimeTinker.inst().getKeys().getCategoryCasts(), MAIN, catCasts());
     public static final SubCategory PARTS = new SubCategory(SlimeTinker.inst().getKeys().getCategoryParts(), MAIN, catParts());
     public static final SubCategory TOOLS = new SubCategory(SlimeTinker.inst().getKeys().getCategoryTools(), MAIN, catTools());
@@ -90,9 +98,10 @@ public final class Categories {
 
     public static void set(SlimeTinker p) {
         MAIN.register(p);
+        WORKSTATIONS.register(p);
         MATERIALS.register(p);
         ALLOYS.register(p);
-        WORKSTATIONS.register(p);
+        PROPERTIES.register(p);
         CASTS.register(p);
         PARTS.register(p);
         TOOLS.register(p);

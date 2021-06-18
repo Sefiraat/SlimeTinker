@@ -9,20 +9,20 @@ import me.mrCookieSlime.Slimefun.api.SlimefunItemStack;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
-public final class DummySmelteryAlloy {
+public final class DummySmelteryProp {
 
-    private DummySmelteryAlloy() {
+    private DummySmelteryProp() {
         throw new IllegalStateException("Utility class");
     }
 
     public static final SlimefunItemStack STACK = new SlimefunItemStack(
-            "DUMMY_TINKERS_SMELTERY_ALLOY",
+            "DUMMY_TINKERS_SMELTERY_PROP",
             Material.CHISELED_POLISHED_BLACKSTONE,
             ThemeUtils.ITEM_MACHINE + "Tinker's Smeltery",
             "",
-            ThemeUtils.PASSIVE + "This alloy is made in the Tinker's",
-            ThemeUtils.PASSIVE + "Smeltery by inputting correct metal",
-            ThemeUtils.PASSIVE + "types and clicking Alloy.",
+            ThemeUtils.PASSIVE + "When a matching part is made using this",
+            ThemeUtils.PASSIVE + "metal, it will give the finished tool",
+            ThemeUtils.PASSIVE + "this property.",
             "",
             ThemeUtils.LORE_TYPE_MACHINE
     );

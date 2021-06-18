@@ -9,9 +9,10 @@ public class Keys {
 
     // Categories
     private final NamespacedKey categoryMain = new NamespacedKey(SlimeTinker.inst(), "slime-tinker");
+    private final NamespacedKey categoryWorkstations = new NamespacedKey(SlimeTinker.inst(), "slime-tinker-workstations");
     private final NamespacedKey categoryMaterials = new NamespacedKey(SlimeTinker.inst(), "slime-tinker-materials");
     private final NamespacedKey categoryAlloys = new NamespacedKey(SlimeTinker.inst(), "slime-tinker-alloys");
-    private final NamespacedKey categoryWorkstations = new NamespacedKey(SlimeTinker.inst(), "slime-tinker-workstations");
+    private final NamespacedKey categoryProperties = new NamespacedKey(SlimeTinker.inst(), "slime-tinker-properties");
     private final NamespacedKey categoryCasts = new NamespacedKey(SlimeTinker.inst(), "slime-tinker-casts");
     private final NamespacedKey categoryParts = new NamespacedKey(SlimeTinker.inst(), "slime-tinker-parts");
     private final NamespacedKey categoryTools = new NamespacedKey(SlimeTinker.inst(), "slime-tinker-tools");

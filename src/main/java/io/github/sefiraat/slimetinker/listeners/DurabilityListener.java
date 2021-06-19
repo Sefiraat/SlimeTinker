@@ -1,7 +1,6 @@
 package io.github.sefiraat.slimetinker.listeners;
 
 import io.github.mooy1.infinitylib.items.StackUtils;
-import io.github.sefiraat.slimetinker.SlimeTinker;
 import io.github.sefiraat.slimetinker.items.Materials;
 import io.github.sefiraat.slimetinker.items.templates.ToolTemplate;
 import io.github.sefiraat.slimetinker.modifiers.Modifications;

@@ -7,6 +7,7 @@ import io.github.sefiraat.slimetinker.modifiers.Modifications;
 import io.github.sefiraat.slimetinker.properties.Properties;
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.SlimefunItem;
 import net.md_5.bungee.api.ChatColor;
+import org.apache.commons.lang.StringUtils;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.Damageable;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -167,7 +168,7 @@ public final class ItemUtils {
     }
 
     public static String line() {
-        return ThemeUtils.PASSIVE + "-".repeat(25);
+        return ThemeUtils.PASSIVE + StringUtils.repeat("-", 25);
     }
 
 }

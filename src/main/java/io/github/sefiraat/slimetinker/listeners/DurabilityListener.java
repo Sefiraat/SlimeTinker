@@ -2,13 +2,11 @@ package io.github.sefiraat.slimetinker.listeners;
 
 import io.github.mooy1.infinitylib.items.StackUtils;
 import io.github.sefiraat.slimetinker.SlimeTinker;
-import io.github.sefiraat.slimetinker.items.Mods;
+import io.github.sefiraat.slimetinker.items.Materials;
 import io.github.sefiraat.slimetinker.items.templates.ToolTemplate;
 import io.github.sefiraat.slimetinker.modifiers.Modifications;
 import io.github.sefiraat.slimetinker.utils.IDStrings;
 import io.github.sefiraat.slimetinker.utils.ItemUtils;
-import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
-import org.bukkit.entity.Slime;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerItemBreakEvent;
@@ -40,7 +38,6 @@ public class DurabilityListener implements Listener {
         modChecks(damagedItem, eventResult, event);
 
         event.setDamage((int) Math.ceil(event.getDamage() * eventResult.getDurabilityMod())); // Modify the damage taken
-        SlimeTinker.inst().getLogger().info(event.getDamage() + "");
         if ((damageable.getDamage() + event.getDamage()) >= event.getItem().getType().getMaxDurability()) { // This will break the tool, lets stop that!
             damageable.setDamage(event.getItem().getType().getMaxDurability() - 1);
             damagedItem.setItemMeta(im);
@@ -133,8 +130,8 @@ public class DurabilityListener implements Listener {
 
         Map<String, Integer> modLevels = Modifications.getAllModLevels(damagedItem);
 
-        if (modLevels.containsKey(StackUtils.getIDorType(Mods.MOD_PLATE))) { // PLATE
-            modCheckPlate(damagedItem, modLevels.get(StackUtils.getIDorType(Mods.MOD_PLATE)), event);
+        if (modLevels.containsKey(StackUtils.getIDorType(Materials.MOD_PLATE))) { // PLATE
+            modCheckPlate(damagedItem, modLevels.get(StackUtils.getIDorType(Materials.MOD_PLATE)), event);
         }
 
     }

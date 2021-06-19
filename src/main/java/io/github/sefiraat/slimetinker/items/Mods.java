@@ -3,7 +3,6 @@ package io.github.sefiraat.slimetinker.items;
 import io.github.sefiraat.slimetinker.SlimeTinker;
 import io.github.sefiraat.slimetinker.categories.Categories;
 import io.github.sefiraat.slimetinker.items.workstations.modificationstation.DummyModificationStation;
-import io.github.sefiraat.slimetinker.items.workstations.workbench.Workbench;
 import io.github.sefiraat.slimetinker.utils.ThemeUtils;
 import io.github.thebusybiscuit.slimefun4.implementation.items.blocks.UnplaceableBlock;
 import me.mrCookieSlime.Slimefun.api.SlimefunItemStack;
@@ -15,12 +14,6 @@ public final class Mods {
     private Mods() {
         throw new IllegalStateException("Utility class");
     }
-
-    protected static final ItemStack[] RECIPE_REINFORCED_PLATE = new ItemStack[] {
-            Materials.BLOCK_CAST_REINFORCED, Materials.BLOCK_CAST_REINFORCED,  Materials.BLOCK_CAST_REINFORCED,
-            Materials.BLOCK_CAST_REINFORCED, new ItemStack(Material.OBSIDIAN), Materials.BLOCK_CAST_REINFORCED,
-            Materials.BLOCK_CAST_REINFORCED, Materials.BLOCK_CAST_REINFORCED,  Materials.BLOCK_CAST_REINFORCED
-    };
 
     public static final SlimefunItemStack MOD_REDSTONE_DUMMY =
             ThemeUtils.themedItemStack(
@@ -80,15 +73,6 @@ public final class Mods {
                     ThemeUtils.PASSIVE + "for weapons."
             );
 
-    public static final SlimefunItemStack MOD_PLATE =
-            ThemeUtils.themedItemStack(
-                    "MOD_PLATE",
-                    Material.OBSIDIAN,
-                    ThemeUtils.ThemeItemType.MOD,
-                    "Reinforced Plate",
-                    ThemeUtils.PASSIVE + "A modification for tools that gives.",
-                    ThemeUtils.PASSIVE + "a chance to ignore tool damage."
-            );
 
     public static final SlimefunItemStack MOD_PLATE_DUMMY =
             ThemeUtils.themedItemStack(
@@ -113,6 +97,6 @@ public final class Mods {
         new UnplaceableBlock(Categories.MODIFICATIONS, MOD_PLATE_DUMMY, DummyModificationStation.TYPE, new ItemStack[9]).register(p);
 
         // Real recipes when modifiers are NOT plain itemstacks
-        new UnplaceableBlock(Categories.MATERIALS, MOD_PLATE, Workbench.TYPE, RECIPE_REINFORCED_PLATE).register(p);
+
     }
 }

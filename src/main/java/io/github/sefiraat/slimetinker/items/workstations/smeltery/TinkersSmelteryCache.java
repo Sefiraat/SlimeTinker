@@ -83,7 +83,6 @@ public final class TinkersSmelteryCache extends AbstractCache {
         }
 
         if (canFit(result.getAmount())) {
-            // TODO Melt 1 unit per SF tick
             addMetal(result);
             input.setAmount(input.getAmount() - 1);
             levelLava -= result.getAmount();
@@ -285,9 +284,6 @@ public final class TinkersSmelteryCache extends AbstractCache {
         }
 
         return false;
-
-        // TODO Pour 1 unit per SF Tick
-        // TODO Make pour a toggle? Pour > Pouring - Check performance
 
     }
 

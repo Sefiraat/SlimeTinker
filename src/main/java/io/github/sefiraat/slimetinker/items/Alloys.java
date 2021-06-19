@@ -13,6 +13,10 @@ import org.bukkit.inventory.ItemStack;
 
 public final class Alloys {
 
+    private Alloys() {
+        throw new IllegalStateException("Utility class");
+    }
+
     protected static final ItemStack[] RECIPE_ALLOY_STEEL = new ItemStack[] {
             new ItemStack(Material.IRON_INGOT, 2),   new ItemStack(Material.COAL), null,
             null,                                           null,               null,

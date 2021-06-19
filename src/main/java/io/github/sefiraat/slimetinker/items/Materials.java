@@ -3,11 +3,16 @@ package io.github.sefiraat.slimetinker.items;
 import io.github.sefiraat.slimetinker.SlimeTinker;
 import io.github.sefiraat.slimetinker.categories.Categories;
 import io.github.sefiraat.slimetinker.items.workstations.smeltery.DummySmeltery;
+import io.github.sefiraat.slimetinker.items.workstations.smeltery.TinkersSmeltery;
+import io.github.sefiraat.slimetinker.items.workstations.workbench.Workbench;
 import io.github.sefiraat.slimetinker.utils.SkullTextures;
 import io.github.sefiraat.slimetinker.utils.ThemeUtils;
 import io.github.thebusybiscuit.slimefun4.implementation.items.blocks.UnplaceableBlock;
+import me.mrCookieSlime.Slimefun.Lists.RecipeType;
+import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.SlimefunItem;
 import me.mrCookieSlime.Slimefun.api.SlimefunItemStack;
 import org.bukkit.Material;
+import org.bukkit.inventory.ItemStack;
 
 public final class Materials {
 
@@ -42,20 +47,10 @@ public final class Materials {
     // endregion
 
 
-    // region Crafting Materials
 
-    public static final SlimefunItemStack SEARED_STONE =
-            ThemeUtils.themedItemStack(
-                    "SEARED_STONE",
-                    Material.POLISHED_BASALT,
-                    ThemeUtils.ThemeItemType.MOLTEN_METAL,
-                    "Seared Stone",
-                    "A heat-resistant stone that can",
-                    "be used to make up the walls of a smeltery."
-            );
 
-    // endregion
-    
+
+
     // region Custom Cast Nuggets
 
     public static final SlimefunItemStack NUGGET_CAST_COPPER =
@@ -448,9 +443,129 @@ public final class Materials {
                     "A block made from reinforced alloy"
             );
 
+    public static final SlimefunItemStack MOD_PLATE =
+            ThemeUtils.themedItemStack(
+                    "MOD_PLATE",
+                    Material.OBSIDIAN,
+                    ThemeUtils.ThemeItemType.MOD,
+                    "Reinforced Plate",
+                    ThemeUtils.PASSIVE + "A modification for tools that gives.",
+                    ThemeUtils.PASSIVE + "a chance to ignore tool damage."
+            );
+
+    public static final SlimefunItemStack GROUT =
+            ThemeUtils.themedItemStack(
+                    "GROUT",
+                    Material.GRAVEL,
+                    ThemeUtils.ThemeItemType.CRAFTING,
+                    "Grout",
+                    ThemeUtils.PASSIVE + "Used to make seared bricks."
+            );
+
+
+    public static final SlimefunItemStack SEARED_BRICK =
+            ThemeUtils.themedItemStack(
+                    "SEARED_BRICK",
+                    Material.BRICK,
+                    ThemeUtils.ThemeItemType.CRAFTING,
+                    "Seared Brick",
+                    ThemeUtils.PASSIVE + "Used in crafting smeltery blocks."
+            );
+
+    public static final SlimefunItemStack SMELTERY_CONTROLLER =
+            ThemeUtils.themedItemStack(
+                    "SMELTERY_CONTROLLER",
+                    Material.CHISELED_POLISHED_BLACKSTONE,
+                    ThemeUtils.ThemeItemType.CRAFTING,
+                    "Smeltery Controller",
+                    ThemeUtils.PASSIVE + "Used in crafting smeltery blocks."
+            );
+
+    public static final SlimefunItemStack SEARED_TANK =
+            ThemeUtils.themedItemStack(
+                    "SEARED_TANK",
+                    Material.BLACKSTONE_WALL,
+                    ThemeUtils.ThemeItemType.CRAFTING,
+                    "Seared Tank",
+                    ThemeUtils.PASSIVE + "Used in building the smeltery."
+            );
+
+    public static final SlimefunItemStack SPOUT =
+            ThemeUtils.themedItemStack(
+                    "SPOUT",
+                    Material.POLISHED_BLACKSTONE_BRICK_WALL,
+                    ThemeUtils.ThemeItemType.CRAFTING,
+                    "Seared Spout",
+                    ThemeUtils.PASSIVE + "Used in building the smeltery."
+            );
+
+    public static final SlimefunItemStack SEARED_BRICK_BLOCK =
+            ThemeUtils.themedItemStack(
+                    "SEARED_BRICK_BLOCK",
+                    Material.POLISHED_BLACKSTONE_BRICKS,
+                    ThemeUtils.ThemeItemType.CRAFTING,
+                    "Seared Brick Block",
+                    ThemeUtils.PASSIVE + "Used in building the smeltery."
+            );
+
+    protected static final ItemStack[] RECIPE_GROUT = new ItemStack[] {
+            new ItemStack(Material.CLAY), new ItemStack(Material.SAND),  new ItemStack(Material.SAND),
+            new ItemStack(Material.SAND), new ItemStack(Material.SAND), new ItemStack(Material.GRAVEL),
+            new ItemStack(Material.GRAVEL), new ItemStack(Material.GRAVEL),  new ItemStack(Material.GRAVEL)
+    };
+
+    protected static final ItemStack[] RECIPE_SEARED_BRICK = new ItemStack[] {
+            Materials.GROUT, null, null,
+            null, null, null,
+            null, null, null
+    };
+
+    protected static final ItemStack[] RECIPE_SEARED_BRICK_BLOCK = new ItemStack[] {
+            Materials.SEARED_BRICK, Materials.SEARED_BRICK, null,
+            Materials.SEARED_BRICK, Materials.SEARED_BRICK, null,
+            null, null, null
+    };
+
+    protected static final ItemStack[] RECIPE_SMELTERY_CONTROLLER = new ItemStack[] {
+            Materials.SEARED_BRICK,   Materials.SEARED_BRICK,   Materials.SEARED_BRICK,
+            Materials.SEARED_BRICK,   null,                     Materials.SEARED_BRICK,
+            Materials.SEARED_BRICK,   Materials.SEARED_BRICK,   Materials.SEARED_BRICK
+    };
+
+    protected static final ItemStack[] RECIPE_SMELTERY_SPOUT = new ItemStack[] {
+            Materials.SEARED_BRICK,   null,   Materials.SEARED_BRICK,
+            Materials.SEARED_BRICK,   null,   Materials.SEARED_BRICK,
+            Materials.SEARED_BRICK,   null,   Materials.SEARED_BRICK
+    };
+
+    protected static final ItemStack[] RECIPE_SMELTERY_TANK = new ItemStack[] {
+            Materials.SEARED_BRICK,   new ItemStack(Material.GLASS),   Materials.SEARED_BRICK,
+            Materials.SEARED_BRICK,   new ItemStack(Material.GLASS),   Materials.SEARED_BRICK,
+            Materials.SEARED_BRICK,   new ItemStack(Material.GLASS),   Materials.SEARED_BRICK
+    };
+
+    protected static final ItemStack[] RECIPE_REINFORCED_PLATE = new ItemStack[] {
+            Materials.BLOCK_CAST_REINFORCED, Materials.BLOCK_CAST_REINFORCED,  Materials.BLOCK_CAST_REINFORCED,
+            Materials.BLOCK_CAST_REINFORCED, new ItemStack(Material.OBSIDIAN), Materials.BLOCK_CAST_REINFORCED,
+            Materials.BLOCK_CAST_REINFORCED, Materials.BLOCK_CAST_REINFORCED,  Materials.BLOCK_CAST_REINFORCED
+    };
+
+
+
+
+
     // endregion
 
     public static void set(SlimeTinker p) {
+
+        new UnplaceableBlock(Categories.MATERIALS, GROUT, Workbench.TYPE, RECIPE_GROUT).register(p);
+        new UnplaceableBlock(Categories.MATERIALS, SEARED_BRICK, RecipeType.SMELTERY, RECIPE_SEARED_BRICK).register(p);
+        new TinkersSmeltery(Categories.MATERIALS, SMELTERY_CONTROLLER, Workbench.TYPE, RECIPE_SMELTERY_CONTROLLER).register(p);
+        new SlimefunItem(Categories.MATERIALS, SEARED_TANK, Workbench.TYPE, RECIPE_SMELTERY_TANK).register(p);
+        new SlimefunItem(Categories.MATERIALS, SPOUT, Workbench.TYPE, RECIPE_SMELTERY_SPOUT).register(p);
+        new SlimefunItem(Categories.MATERIALS, SEARED_BRICK_BLOCK, Workbench.TYPE, RECIPE_SEARED_BRICK_BLOCK).register(p);
+
+        new UnplaceableBlock(Categories.MATERIALS, MOD_PLATE, Workbench.TYPE, RECIPE_REINFORCED_PLATE).register(p);
 
         new UnplaceableBlock(Categories.MATERIALS, NUGGET_CAST_COPPER, DummySmeltery.TYPE, Parts.getDummyCastRecipe(Casts.CAST_NUGGET)).register(p);
         new UnplaceableBlock(Categories.MATERIALS, BLOCK_CAST_COPPER, DummySmeltery.TYPE, Parts.getDummyCastRecipe(Casts.CAST_BLOCK)).register(p);

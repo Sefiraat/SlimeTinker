@@ -1,6 +1,7 @@
 package io.github.sefiraat.slimetinker;
 
 import io.github.mooy1.infinitylib.AbstractAddon;
+import io.github.mooy1.infinitylib.bstats.bukkit.Metrics;
 import io.github.mooy1.infinitylib.commands.AbstractCommand;
 import io.github.sefiraat.slimetinker.categories.Categories;
 import io.github.sefiraat.slimetinker.commands.AddExp;
@@ -78,6 +79,12 @@ public class SlimeTinker extends AbstractAddon {
         saveConfig();
         instance = null;
     }
+
+    @Override
+    protected Metrics setupMetrics() {
+        return new Metrics(this,11748);
+    }
+
 
     @Nonnull
     @Override

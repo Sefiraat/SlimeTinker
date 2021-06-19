@@ -1,7 +1,12 @@
 package io.github.sefiraat.slimetinker.items.workstations.smeltery;
 
 import io.github.mooy1.infinitylib.slimefun.AbstractContainer;
+import io.github.sefiraat.slimetinker.SlimeTinker;
+import io.github.sefiraat.slimetinker.items.Materials;
 import io.github.sefiraat.slimetinker.utils.GUIItems;
+import io.github.sefiraat.slimetinker.utils.ThemeUtils;
+import io.github.thebusybiscuit.slimefun4.core.multiblocks.MultiBlockMachine;
+import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
 import me.mrCookieSlime.CSCoreLibPlugin.Configuration.Config;
 import me.mrCookieSlime.Slimefun.Lists.RecipeType;
 import me.mrCookieSlime.Slimefun.Objects.Category;
@@ -15,12 +20,18 @@ import me.mrCookieSlime.Slimefun.api.inventory.DirtyChestMenu;
 import me.mrCookieSlime.Slimefun.api.item_transport.ItemTransportFlow;
 import org.bukkit.Location;
 import org.bukkit.block.Block;
+import org.bukkit.block.BlockFace;
+import org.bukkit.entity.Player;
 import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nonnull;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class TinkersSmeltery extends AbstractContainer {
@@ -128,11 +139,57 @@ public class TinkersSmeltery extends AbstractContainer {
         }
 
         caches.put(b.getLocation(), cache);
-        menu.addMenuOpeningHandler((player -> validateMultiblock()));
+        menu.addMenuOpeningHandler((player -> validateMultiblock(menu, player)));
     }
 
-    private void validateMultiblock() {
-        // TODO Validate the shape of the multiblock and stop opening if invalid.
+    private void validateMultiblock(BlockMenu blockMenu, Player player) {
+
+        // This is garbage - need something better in future - needs to be modular like the real smeltery
+        Map<String, Integer> blockMapMaster = new HashMap<>();
+
+        blockMapMaster.put(Materials.SEARED_BRICK_BLOCK.getItemId(), 6);
+        blockMapMaster.put(Materials.SEARED_TANK.getItemId(), 1);
+        blockMapMaster.put(Materials.SPOUT.getItemId(), 1);
+        blockMapMaster.put(Materials.SMELTERY_CONTROLLER.getItemId(), 1);
+
+        Location controllerLoc = blockMenu.getLocation();
+        Block b = controllerLoc.getBlock();
+        //if (BlockStorage. controllerLoc.getBlock().getRelative(BlockFace.UP))
+        Map<String, Integer>  blockMapXY = new HashMap<>();
+        Map<String, Integer>  blockMapZY = new HashMap<>();
+
+
+        for (int x = -1; x <= 1; x++) {
+            for (int y = -1; y <= 1; y++) {
+                String id = BlockStorage.getLocationInfo(b.getRelative(x,y,0).getLocation(),"id");
+                if (id != null) {
+                    if (blockMapXY.containsKey(id)) {
+                        blockMapXY.put(id, blockMapXY.get(id) + 1);
+                    } else {
+                        blockMapXY.put(id, 1);
+                    }
+                }
+            }
+        }
+
+        for (int z = -1; z <= 1; z++) {
+            for (int y = -1; y <= 1; y++) {
+                String id = BlockStorage.getLocationInfo(b.getRelative(0,y,z).getLocation(),"id");
+                if (id != null) {
+                    if (blockMapZY.containsKey(id)) {
+                        blockMapZY.put(id, blockMapZY.get(id) + 1);
+                    } else {
+                        blockMapZY.put(id, 1);
+                    }
+                }
+            }
+        }
+
+        if (!blockMapXY.equals(blockMapMaster) && !blockMapZY.equals(blockMapMaster)) {
+            player.sendMessage(ThemeUtils.WARNING + "This multiblock has not been setup correctly.");
+            blockMenu.close();
+        }
+
     }
 
 }

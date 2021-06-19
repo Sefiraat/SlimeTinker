@@ -23,7 +23,7 @@ public class AddExp extends AbstractCommand {
         Player player = (Player) commandSender;
 
         if (ToolTemplate.isTool(player.getInventory().getItemInMainHand())) {
-            Experience.addToolExp(player.getInventory().getItemInMainHand(), 100, player);
+            Experience.addToolExp(player.getInventory().getItemInMainHand(), 100, player, false);
         }
 
     }

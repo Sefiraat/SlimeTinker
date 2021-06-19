@@ -2,7 +2,7 @@ package io.github.sefiraat.slimetinker.modifiers;
 
 import io.github.mooy1.infinitylib.items.StackUtils;
 import io.github.sefiraat.slimetinker.SlimeTinker;
-import io.github.sefiraat.slimetinker.items.Mods;
+import io.github.sefiraat.slimetinker.items.Materials;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -37,7 +37,7 @@ public class Modifications {
         MODIFICAION_LIST.add(StackUtils.getIDorType(new ItemStack(Material.QUARTZ)));
         MODIFICAION_LIST.add(StackUtils.getIDorType(new ItemStack(Material.DIAMOND)));
         MODIFICAION_LIST.add(StackUtils.getIDorType(new ItemStack(Material.EMERALD)));
-        MODIFICAION_LIST.add(StackUtils.getIDorType(Mods.MOD_PLATE));
+        MODIFICAION_LIST.add(StackUtils.getIDorType(Materials.MOD_PLATE));
 
         MOD_MAP_REDSTONE.put(1, 128);
         MOD_MAP_REDSTONE.put(2, 256);
@@ -77,7 +77,7 @@ public class Modifications {
         MOD_MAP_PLATE.put(8, 1);
         MOD_MAP_PLATE.put(9, 1);
         MOD_MAP_PLATE.put(10, 1);
-        MODIFICATION_DEFINITIONS.put(StackUtils.getIDorType(Mods.MOD_PLATE), new Mod(MOD_MAP_PLATE, SlimeTinker.inst().getKeys().getToolModLevelObsidian()));
+        MODIFICATION_DEFINITIONS.put(StackUtils.getIDorType(Materials.MOD_PLATE), new Mod(MOD_MAP_PLATE, SlimeTinker.inst().getKeys().getToolModLevelObsidian()));
 
     }
 

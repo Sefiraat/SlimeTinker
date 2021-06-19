@@ -1,6 +1,5 @@
 package io.github.sefiraat.slimetinker.listeners;
 
-import io.github.sefiraat.slimetinker.SlimeTinker;
 import io.github.sefiraat.slimetinker.items.templates.ToolTemplate;
 import io.github.sefiraat.slimetinker.modifiers.Modifications;
 import io.github.sefiraat.slimetinker.utils.Experience;
@@ -85,7 +84,8 @@ public class EntityDamagedListener implements Listener {
         propertyChecks(event, eventResult, matPropertyHead, matPropertyBinding, matPropertyRod, toolLevel);
         modChecks(event, heldItem, eventResult);
 
-        Experience.addToolExp(heldItem, (int) Math.ceil(event.getDamage() * eventResult.getToolExpMod()), player);
+
+        Experience.addToolExp(heldItem, (int) Math.ceil(event.getDamage() * eventResult.getToolExpMod()), player, false);
 
     }
 
@@ -173,7 +173,7 @@ public class EntityDamagedListener implements Listener {
         if (rnd == 1) {
             eventResult.setDamageMod(eventResult.getDamageMod() * 3);
             Particle.DustOptions dustOptions = new Particle.DustOptions(Color.YELLOW, 5);
-            e.getWorld().spawnParticle(Particle.REDSTONE, e.getLocation(), 50, 1, 1, 1, 0.5, dustOptions);
+            e.getWorld().spawnParticle(Particle.REDSTONE, e.getLocation(), 50, 1, 1, 1, 0.5, dustOptions, true);
             PotionEffect potionEffect = new PotionEffect(PotionEffectType.SLOW, 40,99);
             e.addPotionEffect(potionEffect);
         }

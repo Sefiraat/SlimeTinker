@@ -8,8 +8,10 @@ import io.github.sefiraat.slimetinker.SlimeTinker;
 import io.github.sefiraat.slimetinker.items.Workstations;
 import io.github.sefiraat.slimetinker.utils.GUIItems;
 import io.github.sefiraat.slimetinker.utils.ThemeUtils;
+import io.github.thebusybiscuit.slimefun4.implementation.SlimefunPlugin;
 import me.mrCookieSlime.Slimefun.Lists.RecipeType;
 import me.mrCookieSlime.Slimefun.Objects.Category;
+import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.SlimefunItem;
 import me.mrCookieSlime.Slimefun.api.SlimefunItemStack;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenuPreset;
@@ -39,6 +41,11 @@ public class Workbench extends AbstractContainer {
     public Workbench(Category category, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(category, item, recipeType, recipe);
         this.craftingRecipes = RECIPES;
+        for (SlimefunItem i :SlimefunPlugin.getRegistry().getAllSlimefunItems()) {
+            if (i.getRecipeType() == RecipeType.ENHANCED_CRAFTING_TABLE) {
+                this.craftingRecipes.put(i.getRecipe(), i.getItem());
+            }
+        }
     }
 
     protected boolean craft(BlockMenu blockMenu, Player player) {
@@ -81,7 +88,11 @@ public class Workbench extends AbstractContainer {
 
     @Override
     protected int @NotNull [] getTransportSlots(@NotNull DirtyChestMenu dirtyChestMenu, @NotNull ItemTransportFlow itemTransportFlow, ItemStack itemStack) {
-        return new int[0];
+        if (itemTransportFlow == ItemTransportFlow.WITHDRAW) {
+            return new int[] {OUTPUT_SLOT};
+        } else {
+            return new int[0];
+        }
     }
 
     @Override

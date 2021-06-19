@@ -8,6 +8,7 @@ import io.github.sefiraat.slimetinker.utils.Experience;
 import io.github.sefiraat.slimetinker.utils.IDStrings;
 import io.github.sefiraat.slimetinker.utils.ItemUtils;
 import io.github.sefiraat.slimetinker.utils.ThemeUtils;
+import org.bukkit.Bukkit;
 import org.bukkit.Color;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -18,7 +19,9 @@ import org.bukkit.enchantments.Enchantment;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.inventory.FurnaceRecipe;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.Recipe;
 import org.bukkit.inventory.meta.Damageable;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataContainer;
@@ -26,6 +29,8 @@ import org.bukkit.persistence.PersistentDataType;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -52,9 +57,9 @@ public class BlockBreakListener implements Listener {
             return;
         }
 
-        if (BlockUtils.isPlaced(block)) {
-            return;
-        }
+//        if (BlockUtils.isPlaced(block)) {
+//            return;
+//        }
 
         // pre-flight, some tools stop block breaking
 
@@ -63,16 +68,24 @@ public class BlockBreakListener implements Listener {
         // Property and Mod checks, carries around the additional and normal drops
         Collection<ItemStack> drops = block.getDrops(heldItem);
         Collection<ItemStack> addDrops = new ArrayList<>();
+        Collection<ItemStack> removeDrops = new ArrayList<>();
         EventResult eventResult = new EventResult();
 
-        propertyChecks(heldItem, block, drops, addDrops);
-        modChecks(heldItem, block, drops, addDrops);
+        propertyChecks(heldItem, block, drops, addDrops, removeDrops);
+        modChecks(heldItem, block, addDrops);
+
+        event.setDropItems(false);
 
         for (ItemStack i : addDrops) {
             block.getWorld().dropItemNaturally(block.getLocation().clone().add(0.5, 0.5, 0.5), i);
         }
+        for (ItemStack i : drops) {
+            if (!removeDrops.contains(i)) {
+                block.getWorld().dropItemNaturally(block.getLocation().clone().add(0.5, 0.5, 0.5), i);
+            }
+        }
         if (shouldGrantExp(heldItem, event.getBlock())) { // Should grant exp (checks tool / material validity and the crop state)
-            Experience.addToolExp(heldItem, (int) Math.ceil(1 * eventResult.getToolExpMod()), event.getPlayer());
+            Experience.addToolExp(heldItem, (int) Math.ceil(1 * eventResult.getToolExpMod()), event.getPlayer(), true);
         }
 
     }
@@ -107,7 +120,7 @@ public class BlockBreakListener implements Listener {
 
     }
 
-    private void propertyChecks(ItemStack heldItem, Block block, Collection<ItemStack> drops, Collection<ItemStack> addDrops) {
+    private void propertyChecks(ItemStack heldItem, Block block, Collection<ItemStack> drops, Collection<ItemStack> addDrops, Collection<ItemStack> removeDrops) {
 
         ItemMeta im = heldItem.getItemMeta();
         assert im != null;
@@ -116,6 +129,42 @@ public class BlockBreakListener implements Listener {
         String matPropertyBinding = ItemUtils.getToolBindingMaterial(c);
         String matPropertyRod = ItemUtils.getToolRodMaterial(c);
 
+        if (matPropertyHead.equals(IDStrings.CORBRONZE)) {
+            propHeadCorbronze(drops, addDrops, removeDrops);
+        }
+
+    }
+
+    private void propHeadCorbronze(Collection<ItemStack> drops, Collection<ItemStack> addDrops, Collection<ItemStack> removeDrops) {
+        Collection<ItemStack> newAddDrops = new ArrayList<>();
+
+        Iterator<Recipe> iter = Bukkit.recipeIterator();
+        while (iter.hasNext()) {
+            Recipe recipe = iter.next();
+            if (!(recipe instanceof FurnaceRecipe)) continue;
+            for (ItemStack i : drops) {
+                if (i.isSimilar(((FurnaceRecipe) recipe).getInput())) {
+                    ItemStack ni = recipe.getResult().clone();
+                    ni.setAmount(i.getAmount());
+                    newAddDrops.add(ni);
+                    removeDrops.add(i);
+                    break;
+                }
+            }
+            if (!addDrops.isEmpty()) {
+                for (ItemStack i : addDrops) {
+                    if (i.isSimilar(((FurnaceRecipe) recipe).getInput())) {
+                        ItemStack ni = recipe.getResult().clone();
+                        ni.setAmount(i.getAmount());
+                        newAddDrops.add(ni);
+                        removeDrops.add(i);
+                        break;
+                    }
+                }
+            }
+        }
+        addDrops.clear();
+        addDrops.addAll(newAddDrops);
     }
 
 
@@ -126,12 +175,12 @@ public class BlockBreakListener implements Listener {
 
 
 
-    private void modChecks(ItemStack heldItem, Block block, Collection<ItemStack> drops, Collection<ItemStack> addDrops) {
-        modCheckLapis(heldItem, block, drops, addDrops);
+    private void modChecks(ItemStack heldItem, Block block, Collection<ItemStack> addDrops) {
+        modCheckLapis(heldItem, block, addDrops);
     }
 
 
-    private void modCheckLapis(ItemStack heldItem, Block block, Collection<ItemStack> drops, Collection<ItemStack> addDrops) {
+    private void modCheckLapis(ItemStack heldItem, Block block, Collection<ItemStack> addDrops) {
 
         Map<String, Integer> modLevels = Modifications.getAllModLevels(heldItem);
 

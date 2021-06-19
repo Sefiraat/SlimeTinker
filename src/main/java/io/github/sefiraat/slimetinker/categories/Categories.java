@@ -46,7 +46,7 @@ public final class Categories {
     public static CustomItem catProperties() {
         return new CustomItem(
                 SkullItem.fromBase64(SkullTextures.CAT_PROPERTIES),
-                ThemeUtils.MAIN + "Metal Properties"
+                ThemeUtils.MAIN + "Metal Props"
         );
     }
 

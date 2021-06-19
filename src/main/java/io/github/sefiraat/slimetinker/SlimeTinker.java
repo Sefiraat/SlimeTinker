@@ -11,7 +11,7 @@ import io.github.sefiraat.slimetinker.items.Dies;
 import io.github.sefiraat.slimetinker.items.Materials;
 import io.github.sefiraat.slimetinker.items.Mods;
 import io.github.sefiraat.slimetinker.items.Parts;
-import io.github.sefiraat.slimetinker.items.Properties;
+import io.github.sefiraat.slimetinker.items.Props;
 import io.github.sefiraat.slimetinker.items.Tools;
 import io.github.sefiraat.slimetinker.items.Workstations;
 import io.github.sefiraat.slimetinker.items.recipes.RecipeManager;
@@ -61,7 +61,7 @@ public class SlimeTinker extends AbstractAddon {
         Categories.set(this);
         Materials.set(this);
         Alloys.set(this);
-        Properties.set(this);
+        Props.set(this);
         Dies.set(this);
         Casts.set(this);
         Parts.set(this);

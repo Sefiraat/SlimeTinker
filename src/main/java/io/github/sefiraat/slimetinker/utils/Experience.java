@@ -2,12 +2,17 @@ package io.github.sefiraat.slimetinker.utils;
 
 import io.github.sefiraat.slimetinker.SlimeTinker;
 import io.github.sefiraat.slimetinker.items.Tools;
+import io.github.sefiraat.slimetinker.modifiers.Modifications;
 import org.bukkit.ChatColor;
+import org.bukkit.Material;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
+
+import java.util.Map;
 
 public final class Experience {
 
@@ -21,26 +26,61 @@ public final class Experience {
         c.set(SlimeTinker.inst().getKeys().getToolModSlots(), PersistentDataType.INTEGER, 0);
     }
 
-    public static void addToolExp(ItemStack itemStack, int amount, Player player) {
+    public static void addToolExp(ItemStack itemStack, int amount, Player player, boolean tool) {
 
         ItemMeta im = itemStack.getItemMeta();
         assert im != null;
+        PersistentDataContainer c = im.getPersistentDataContainer();
+
+        // First, any properties/mods changing the values POST being granted (I modify exp values in events and this is for redirecting or other post-giving actions)
+        String matPropertyHead = ItemUtils.getToolHeadMaterial(c);
+        String matPropertyBinding = ItemUtils.getToolBindingMaterial(c);
+        String matPropertyRod = ItemUtils.getToolRodMaterial(c);
+
+        if (matPropertyRod.equals(IDStrings.COPPER)) { // Conductive
+           player.giveExp(amount);
+           return;
+        }
 
         // Add the EXP given
-        PersistentDataContainer c = im.getPersistentDataContainer();
         int currentExp = c.get(SlimeTinker.inst().getKeys().getToolExpCurrent(), PersistentDataType.INTEGER);
         double expRequired = c.get(SlimeTinker.inst().getKeys().getToolExpRequired(), PersistentDataType.DOUBLE);
         int level = c.get(SlimeTinker.inst().getKeys().getToolLevel(), PersistentDataType.INTEGER);
         int modSlots = c.get(SlimeTinker.inst().getKeys().getToolModSlots(), PersistentDataType.INTEGER);
         int newExp = 0;
 
+        // Emerald mod
+
+        Map<String, Integer> modLevels = Modifications.getAllModLevels(itemStack);
+
+        if (modLevels.containsKey(Material.EMERALD.toString())) { // EMERALD
+            level = modLevels.get(Material.EMERALD.toString());
+            if (tool) {
+                amount = amount + level;
+            } else {
+                amount = (int) Math.ceil(amount * (level * 0.1));
+            }
+        }
+
         // Check if it's due to level up
         if ((currentExp + amount) >= expRequired) {
+
             level++;
             modSlots++;
             expRequired = (expRequired * EXP_GROWTH);
             promoteMaterial(itemStack, level, player);
             player.sendMessage(ThemeUtils.SUCCESS + "Your Tinker's tool has leveled up! +1 Modifier Slot");
+
+            if (matPropertyHead.equals(IDStrings.SILVER)) { // ENCHANTING
+                Enchantment randEnchant = Enchantment.values()[(int) (Math.random()*Enchantment.values().length)];
+                if (im.hasEnchant(randEnchant)) {
+                    im.addEnchant(randEnchant, itemStack.getEnchantmentLevel(randEnchant) + 1, true);
+                } else {
+                    im.addEnchant(randEnchant, 1, true);
+                }
+                player.sendMessage(ThemeUtils.SUCCESS + "It also gained a random enchantment! Hope it's good :>");
+            }
+
         } else {
             newExp = currentExp + amount;
         }
@@ -99,6 +139,8 @@ public final class Experience {
         }
 
     }
+
+
 
 
 

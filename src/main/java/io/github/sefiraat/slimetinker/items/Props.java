@@ -11,9 +11,9 @@ import me.mrCookieSlime.Slimefun.api.SlimefunItemStack;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
-public class Properties {
+public class Props {
 
-    private Properties() {
+    private Props() {
         throw new IllegalStateException("Utility class");
     }
 
@@ -56,11 +56,12 @@ public class Properties {
             );
 
     protected static ItemStack[] propRecipe(SlimefunItemStack part, ItemStack stack) {
-        return new ItemStack[] {
-            null, null, null,
+        return new ItemStack[]{
+                null, null, null,
                 part, null, stack,
-            null, null, null };
-    };
+                null, null, null
+        };
+    }
 
     // endregion
 
@@ -90,7 +91,8 @@ public class Properties {
                     SkullTextures.PROPERTY,
                     ThemeUtils.ThemeItemType.PROP,
                     "Property: Attraction",
-                    ThemeUtils.PASSIVE + "Drops are drawn to you"
+                    ThemeUtils.PASSIVE + "All drops are drawn to you within a",
+                    ThemeUtils.PASSIVE + "5 block range."
             );
 
     public static final SlimefunItemStack PROP_BRAINSNOTBRAWN =
@@ -118,7 +120,7 @@ public class Properties {
                     SkullTextures.PROPERTY,
                     ThemeUtils.ThemeItemType.PROP,
                     "Property: Bulky",
-                    ThemeUtils.PASSIVE + "Mines slower but in a 3x3 area"
+                    ThemeUtils.PASSIVE + "Mines in a 3x3 area"
             );
 
     public static final SlimefunItemStack PROP_CAN =
@@ -165,7 +167,7 @@ public class Properties {
                     ThemeUtils.ThemeItemType.PROP,
                     "Property: Decay",
                     ThemeUtils.PASSIVE + "Slowly repairs the tool at night.",
-                    ThemeUtils.PASSIVE + "Doesn't stack with mods."
+                    ThemeUtils.PASSIVE + "Stacks with mods. Must be in hand"
             );
 
     public static final SlimefunItemStack PROP_DOOM =
@@ -183,8 +185,8 @@ public class Properties {
                     SkullTextures.PROPERTY,
                     ThemeUtils.ThemeItemType.PROP,
                     "Property: Durable",
-                    ThemeUtils.PASSIVE + "Ignores being broken but damage 50% and",
-                    ThemeUtils.PASSIVE + "mining will be slower."
+                    ThemeUtils.PASSIVE + "Ignores being broken but damage 50%,",
+                    ThemeUtils.PASSIVE + "mining will be slower and 0 exp."
             );
 
     public static final SlimefunItemStack PROP_EASYFIX =
@@ -223,7 +225,7 @@ public class Properties {
                     SkullTextures.PROPERTY,
                     ThemeUtils.ThemeItemType.PROP,
                     "Property: Flammable",
-                    ThemeUtils.PASSIVE + "Has a (Tool level * 2)% chance to",
+                    ThemeUtils.PASSIVE + "Has a (Tool level x 5)% chance to",
                     ThemeUtils.PASSIVE + "set your enemies ablaze."
             );
 
@@ -253,7 +255,7 @@ public class Properties {
                     ThemeUtils.ThemeItemType.PROP,
                     "Property: Golden Veil",
                     ThemeUtils.PASSIVE + "Makes the player invisible. If used on",
-                    ThemeUtils.PASSIVE + "a weapon it will no longer do any damage."
+                    ThemeUtils.PASSIVE + "a weapon, -100% damage."
             );
 
     public static final SlimefunItemStack PROP_GRACEFUL =
@@ -272,7 +274,7 @@ public class Properties {
                     ThemeUtils.ThemeItemType.PROP,
                     "Property: Growth",
                     ThemeUtils.PASSIVE + "Slowly repairs the tool during the day.",
-                    ThemeUtils.PASSIVE + "Doesn't stack with mods."
+                    ThemeUtils.PASSIVE + "Stacks with mods. Must be in hand"
             );
 
     public static final SlimefunItemStack PROP_HEAVY =
@@ -281,7 +283,7 @@ public class Properties {
                     SkullTextures.PROPERTY,
                     ThemeUtils.ThemeItemType.PROP,
                     "Property: Heavy",
-                    ThemeUtils.PASSIVE + "Mines slower but in a 3x3 area."
+                    ThemeUtils.PASSIVE + "Mines in a 3x3 area."
             );
 
     public static final SlimefunItemStack PROP_HIDDEN =
@@ -317,7 +319,8 @@ public class Properties {
                     SkullTextures.PROPERTY,
                     ThemeUtils.ThemeItemType.PROP,
                     "Property: Magnetesium",
-                    ThemeUtils.PASSIVE + "Random items are drawn to you."
+                    ThemeUtils.PASSIVE + "Random items are drawn to you from",
+                    ThemeUtils.PASSIVE + "within a 10 block range"
             );
 
     public static final SlimefunItemStack PROP_MALLEABLE =
@@ -353,7 +356,7 @@ public class Properties {
                     SkullTextures.PROPERTY,
                     ThemeUtils.ThemeItemType.PROP,
                     "Property: Poisonous",
-                    ThemeUtils.PASSIVE + "Afflicts poison on hit."
+                    ThemeUtils.PASSIVE + "25% chance to afflict poison on hit."
             );
 
     public static final SlimefunItemStack PROP_RECYCLABLE =
@@ -418,7 +421,7 @@ public class Properties {
                     SkullTextures.PROPERTY,
                     ThemeUtils.ThemeItemType.PROP,
                     "Property: Soft",
-                    ThemeUtils.PASSIVE + "Durability loss is doubled but tool EXP + 50%."
+                    ThemeUtils.PASSIVE + "Durability loss +100%, tool EXP +50%."
             );
 
     public static final SlimefunItemStack PROP_SOFTTOUCH =
@@ -463,7 +466,7 @@ public class Properties {
                     SkullTextures.PROPERTY,
                     ThemeUtils.ThemeItemType.PROP,
                     "Property: Stiff",
-                    ThemeUtils.PASSIVE + "Doubles damage but makes you unlucky"
+                    ThemeUtils.PASSIVE + "Damage +50% but makes you unlucky"
             );
 
     public static final SlimefunItemStack PROP_STUDIOUS =
@@ -501,7 +504,8 @@ public class Properties {
                     SkullTextures.PROPERTY,
                     ThemeUtils.ThemeItemType.PROP,
                     "Property: Vampirism",
-                    ThemeUtils.PASSIVE + "Chance to heal by damage given."
+                    ThemeUtils.PASSIVE + "Chance to heal by damage given.",
+                    ThemeUtils.PASSIVE + "Damage dealt varies by time of day."
             );
 
     public static final SlimefunItemStack PROP_WEAK =

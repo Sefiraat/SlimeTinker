@@ -22,18 +22,12 @@ public class GiveDummyTool extends AbstractCommand {
     public void onExecute(@NotNull CommandSender commandSender, @NotNull String[] strings) {
 
         Player player = (Player) commandSender;
-
-        ToolDefinition toolDefinitionShovel = new ToolDefinition(IDStrings.ID_HEAD, IDStrings.ID_SHOVEL, IDStrings.ID_IRON, IDStrings.ID_VINE, IDStrings.ID_IRON);
-        ToolDefinition toolDefinitionPickaxe = new ToolDefinition(IDStrings.ID_HEAD, IDStrings.ID_PICKAXE, IDStrings.ID_IRON, IDStrings.ID_VINE, IDStrings.ID_IRON);
-        ToolDefinition toolDefinitionAxe = new ToolDefinition(IDStrings.ID_HEAD, IDStrings.ID_AXE, IDStrings.ID_IRON, IDStrings.ID_VINE, IDStrings.ID_IRON);
-        ToolDefinition toolDefinitionHoe = new ToolDefinition(IDStrings.ID_HEAD, IDStrings.ID_HOE, IDStrings.ID_IRON, IDStrings.ID_VINE, IDStrings.ID_IRON);
-        ToolDefinition toolDefinitionSword = new ToolDefinition(IDStrings.ID_HEAD, IDStrings.ID_SWORD, IDStrings.ID_IRON, IDStrings.ID_VINE, IDStrings.ID_IRON);
-
-        player.getInventory().addItem(Tools.SHOVEL.getStack(toolDefinitionShovel));
-        player.getInventory().addItem(Tools.SHOVEL.getStack(toolDefinitionPickaxe));
-        player.getInventory().addItem(Tools.SHOVEL.getStack(toolDefinitionAxe));
-        player.getInventory().addItem(Tools.SHOVEL.getStack(toolDefinitionHoe));
-        player.getInventory().addItem(Tools.SHOVEL.getStack(toolDefinitionSword));
+        ToolDefinition tool = new ToolDefinition(IDStrings.HEAD, strings[1], strings[2], strings[3], strings[4]);
+        if (tool.getHeadMaterial().equals(IDStrings.REINFORCED) || tool.getRodMaterial().equals(IDStrings.HARD)) { // Reinforced Head/ Hard Rod tools are explosive
+            player.getInventory().addItem(Tools.EXP_SHOVEL.getStack(tool));
+        } else {
+            player.getInventory().addItem(Tools.SHOVEL.getStack(tool));
+        }
 
     }
 

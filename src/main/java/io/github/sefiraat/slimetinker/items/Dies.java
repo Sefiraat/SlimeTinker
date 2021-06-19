@@ -12,6 +12,10 @@ import org.bukkit.inventory.ItemStack;
 
 public final class Dies {
 
+    private Dies() {
+        throw new IllegalStateException("Utility class");
+    }
+
     public static final String DIE_DESC = "A die to create a cast from";
 
     protected static final ItemStack[] RECIPE_DIE_SHOVEL_HEAD = new ItemStack[] {

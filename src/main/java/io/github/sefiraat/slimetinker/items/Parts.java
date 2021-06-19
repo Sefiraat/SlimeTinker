@@ -328,12 +328,12 @@ public final class Parts {
         PartTemplate binderVineGreen = new PartTemplate(Categories.DUMMY, PART_BINDING_VINE_GREEN, Workbench.TYPE, RECIPE_BINDER_VINE_GREEN, "Twisted Vine Binder");
         binderVineGreen.register(p);
 
-        binderMap.put(binderString.getId(), IDStrings.ID_STRING);
-        binderMap.put(binderVine.getId(), IDStrings.ID_VINE);
-        binderMap.put(binderRootRed.getId(), IDStrings.ID_ROOTRED);
-        binderMap.put(binderRootGreen.getId(), IDStrings.ID_ROOTGREEN);
-        binderMap.put(binderVineRed.getId(), IDStrings.ID_VINERED);
-        binderMap.put(binderVineGreen.getId(), IDStrings.ID_VINEGREEN);
+        binderMap.put(binderString.getId(), IDStrings.STRING);
+        binderMap.put(binderVine.getId(), IDStrings.VINE);
+        binderMap.put(binderRootRed.getId(), IDStrings.ROOTRED);
+        binderMap.put(binderRootGreen.getId(), IDStrings.ROOTGREEN);
+        binderMap.put(binderVineRed.getId(), IDStrings.VINERED);
+        binderMap.put(binderVineGreen.getId(), IDStrings.VINEGREEN);
 
     }
 

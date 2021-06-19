@@ -14,6 +14,13 @@
         <sonar.projectKey>Sefiraat_SlimeTinker</sonar.projectKey>
         <sonar.organization>sefiraat</sonar.organization>
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
+
+        <sonar.issue.ignore.multicriteria>e1,e2</sonar.issue.ignore.multicriteria>
+        <sonar.issue.ignore.multicriteria.e1.ruleKey>java:S6212</sonar.issue.ignore.multicriteria.e1.ruleKey>
+        <sonar.issue.ignore.multicriteria.e1.resourceKey>**</sonar.issue.ignore.multicriteria.e1.resourceKey>
+
+        <sonar.issue.ignore.multicriteria.e2.ruleKey>java:S125</sonar.issue.ignore.multicriteria.e2.ruleKey>
+        <sonar.issue.ignore.multicriteria.e2.resourceKey>**</sonar.issue.ignore.multicriteria.e2.resourceKey>
     </properties>
 
     <repositories>

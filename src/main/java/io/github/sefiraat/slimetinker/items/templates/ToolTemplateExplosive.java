@@ -6,7 +6,9 @@ import io.github.sefiraat.slimetinker.utils.Experience;
 import io.github.sefiraat.slimetinker.utils.IDStrings;
 import io.github.sefiraat.slimetinker.utils.ItemUtils;
 import io.github.sefiraat.slimetinker.utils.ThemeUtils;
+import io.github.thebusybiscuit.slimefun4.api.items.ItemSetting;
 import io.github.thebusybiscuit.slimefun4.implementation.items.blocks.UnplaceableBlock;
+import io.github.thebusybiscuit.slimefun4.implementation.items.tools.ExplosiveTool;
 import me.mrCookieSlime.Slimefun.Lists.RecipeType;
 import me.mrCookieSlime.Slimefun.Objects.Category;
 import me.mrCookieSlime.Slimefun.api.SlimefunItemStack;
@@ -17,7 +19,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
 
-public class ToolTemplate extends UnplaceableBlock {
+public class ToolTemplateExplosive extends ExplosiveTool {
 
     public String getName(ToolDefinition toolDefinition) {
         return
@@ -66,8 +68,10 @@ public class ToolTemplate extends UnplaceableBlock {
         return itemStack;
     }
 
-    public ToolTemplate(Category category, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
+    public ToolTemplateExplosive(Category category, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(category, item, recipeType, recipe);
+        this.getItemSetting("damage-on-use", Boolean.class).get().update(false);
+
     }
 
     public static boolean isTool(ItemStack itemStack) {
@@ -78,5 +82,9 @@ public class ToolTemplate extends UnplaceableBlock {
                 );
     }
 
+    @Override
+    public boolean isDamageable() {
+        return false;
+    }
 }
 

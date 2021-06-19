@@ -10,6 +10,7 @@ import io.github.sefiraat.slimetinker.items.Workstations;
 import io.github.sefiraat.slimetinker.items.templates.RepairkitTemplate;
 import io.github.sefiraat.slimetinker.items.templates.ToolTemplate;
 import io.github.sefiraat.slimetinker.utils.GUIItems;
+import io.github.sefiraat.slimetinker.utils.IDStrings;
 import io.github.sefiraat.slimetinker.utils.ItemUtils;
 import io.github.sefiraat.slimetinker.utils.ThemeUtils;
 import me.mrCookieSlime.Slimefun.Lists.RecipeType;
@@ -89,7 +90,7 @@ public class RepairBench extends AbstractContainer {
             return false;
         }
 
-        //All items present, are they correct?
+        // All items present, are they correct?
         String toolMaterial = ItemUtils.getToolMaterial(tool);
         String partMaterial = ItemUtils.getPartMaterial(kit);
 
@@ -99,7 +100,13 @@ public class RepairBench extends AbstractContainer {
         }
 
         ItemStack newTool = tool.clone();
-        repairItemStack(newTool);
+
+        boolean fixAll = false;
+        if (ItemUtils.getToolRodMaterial(newTool.getItemMeta().getPersistentDataContainer()).equals(IDStrings.DURALIUM)) { // EASY FIX
+            fixAll = true;
+        }
+
+        repairItemStack(newTool, fixAll);
         blockMenu.pushItem(newTool, OUTPUT_SLOT);
         blockMenu.getItemInSlot(INPUT_TOOL).setAmount(blockMenu.getItemInSlot(INPUT_TOOL).getAmount() - 1);
         blockMenu.getItemInSlot(INPUT_KIT).setAmount(blockMenu.getItemInSlot(INPUT_KIT).getAmount() - 1);
@@ -108,12 +115,18 @@ public class RepairBench extends AbstractContainer {
 
     }
 
-    protected void repairItemStack(ItemStack itemStack) {
+
+    protected void repairItemStack(ItemStack itemStack, boolean fixAll) {
         ItemMeta im = itemStack.getItemMeta();
         if (im instanceof Damageable) {
             Damageable damageable = (Damageable) im;
-            int amountToRepair = Math.floorDiv(itemStack.getType().getMaxDurability(), 3);
-            damageable.setDamage(Math.max(damageable.getDamage() - amountToRepair, 0));
+            int dura;
+            if (fixAll) {
+                dura = 0;
+            } else {
+                dura = (Math.max(damageable.getDamage() - Math.floorDiv(itemStack.getType().getMaxDurability(), 3), 0));
+            }
+            damageable.setDamage(dura);
         }
         itemStack.setItemMeta(im);
     }

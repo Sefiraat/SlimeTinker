@@ -3,12 +3,15 @@ package io.github.sefiraat.slimetinker.listeners;
 import io.github.sefiraat.slimetinker.utils.IDStrings;
 import org.bukkit.Material;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.EnumMap;
 
-public class BlockMap {
+public final class BlockMap {
 
-    protected static final Map<Material, String> materialMap = new HashMap<>();
+    private BlockMap() {
+        throw new IllegalStateException("Utility class");
+    }
+
+    protected static final EnumMap<Material, String> materialMap = new EnumMap<>(Material.class);
 
     static {
         for (Material m : Material.values()) {
@@ -57,7 +60,7 @@ public class BlockMap {
                 case AMETHYST_CLUSTER:
                 case GLOWSTONE:
                 case NETHERRACK:
-                    materialMap.put(m, IDStrings.ID_PICKAXE);
+                    materialMap.put(m, IDStrings.PICKAXE);
                     break;
                 case GRASS_BLOCK:
                 case DIRT:
@@ -74,7 +77,7 @@ public class BlockMap {
                 case SOUL_SOIL:
                 case MYCELIUM:
                 case MOSS_BLOCK:
-                    materialMap.put(m, IDStrings.ID_SHOVEL);
+                    materialMap.put(m, IDStrings.SHOVEL);
                     break;
                 case OAK_LOG:
                 case SPRUCE_LOG:
@@ -114,13 +117,15 @@ public class BlockMap {
                 case MUSHROOM_STEM:
                 case PUMPKIN:
                 case MELON:
-                    materialMap.put(m, IDStrings.ID_AXE);
+                    materialMap.put(m, IDStrings.AXE);
                     break;
                 case SEA_PICKLE:
                 case VINE:
                 case GLOW_LICHEN:
                 case LILY_PAD:
-                    materialMap.put(m, IDStrings.ID_HOE);
+                    materialMap.put(m, IDStrings.HOE);
+                    break;
+                default:
                     break;
             }
         }

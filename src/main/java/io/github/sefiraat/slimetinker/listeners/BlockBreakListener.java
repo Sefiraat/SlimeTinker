@@ -3,8 +3,10 @@ package io.github.sefiraat.slimetinker.listeners;
 import io.github.sefiraat.slimetinker.SlimeTinker;
 import io.github.sefiraat.slimetinker.items.templates.ToolTemplate;
 import io.github.sefiraat.slimetinker.modifiers.Modifications;
+import io.github.sefiraat.slimetinker.utils.BlockUtils;
 import io.github.sefiraat.slimetinker.utils.Experience;
 import io.github.sefiraat.slimetinker.utils.IDStrings;
+import io.github.sefiraat.slimetinker.utils.ItemUtils;
 import io.github.sefiraat.slimetinker.utils.ThemeUtils;
 import org.bukkit.Color;
 import org.bukkit.Location;
@@ -18,6 +20,8 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.Damageable;
+import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
 
 import java.util.ArrayList;
@@ -48,29 +52,27 @@ public class BlockBreakListener implements Listener {
             return;
         }
 
-        if (isPlaced(block)) {
+        if (BlockUtils.isPlaced(block)) {
             return;
         }
 
         // pre-flight, some tools stop block breaking
 
 
-        if (shouldGrantExp(heldItem, event.getBlock())) { // Should grant exp (checks tool / material validity and the crop state)
-            Experience.addToolExp(heldItem, 1, event.getPlayer());
-        }
 
         // Property and Mod checks, carries around the additional and normal drops
-        Collection<ItemStack> drops = block.getDrops();
+        Collection<ItemStack> drops = block.getDrops(heldItem);
         Collection<ItemStack> addDrops = new ArrayList<>();
+        EventResult eventResult = new EventResult();
 
         propertyChecks(heldItem, block, drops, addDrops);
         modChecks(heldItem, block, drops, addDrops);
 
-        for (ItemStack i : drops) {
-            block.getWorld().dropItemNaturally(block.getLocation().clone().add(0.5, 0.5, 0.5), i);
-        }
         for (ItemStack i : addDrops) {
             block.getWorld().dropItemNaturally(block.getLocation().clone().add(0.5, 0.5, 0.5), i);
+        }
+        if (shouldGrantExp(heldItem, event.getBlock())) { // Should grant exp (checks tool / material validity and the crop state)
+            Experience.addToolExp(heldItem, (int) Math.ceil(1 * eventResult.getToolExpMod()), event.getPlayer());
         }
 
     }
@@ -90,7 +92,7 @@ public class BlockBreakListener implements Listener {
         if (block.getBlockData() instanceof Ageable) {
             Ageable ageable = (Ageable) block.getBlockData();
             if (ageable.getAge() == ageable.getMaximumAge()) {
-                return toolType.equals(IDStrings.ID_HOE);
+                return toolType.equals(IDStrings.HOE);
             }
             return false;
         }
@@ -105,11 +107,25 @@ public class BlockBreakListener implements Listener {
 
     }
 
-    private boolean isPlaced(Block block) {
-        return block.hasMetadata(IDStrings.ID_PLACED);
+    private void propertyChecks(ItemStack heldItem, Block block, Collection<ItemStack> drops, Collection<ItemStack> addDrops) {
+
+        ItemMeta im = heldItem.getItemMeta();
+        assert im != null;
+        PersistentDataContainer c = im.getPersistentDataContainer();
+        String matPropertyHead = ItemUtils.getToolHeadMaterial(c);
+        String matPropertyBinding = ItemUtils.getToolBindingMaterial(c);
+        String matPropertyRod = ItemUtils.getToolRodMaterial(c);
+
     }
 
-    // region Mods
+
+
+
+
+
+
+
+
     private void modChecks(ItemStack heldItem, Block block, Collection<ItemStack> drops, Collection<ItemStack> addDrops) {
         modCheckLapis(heldItem, block, drops, addDrops);
     }
@@ -151,9 +167,6 @@ public class BlockBreakListener implements Listener {
             }
         }
     }
-    // endregion
 
-    private void propertyChecks(ItemStack heldItem, Block block, Collection<ItemStack> drops, Collection<ItemStack> addDrops) {
 
-    }
 }

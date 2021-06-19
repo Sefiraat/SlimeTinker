@@ -79,7 +79,7 @@ public class Table extends AbstractContainer {
                 clearPreview();
                 return;
             }
-            if (!validateClass(head, IDStrings.ID_HEAD) || !validateBinder(binding) || !validateClass(rod, IDStrings.ID_ROD)) { // One or more items are not the correct part
+            if (!validateClass(head, IDStrings.HEAD) || !validateBinder(binding) || !validateClass(rod, IDStrings.ROD)) { // One or more items are not the correct part
                 clearPreview();
                 return;
             }
@@ -112,25 +112,49 @@ public class Table extends AbstractContainer {
                 rod.getItemMeta().getPersistentDataContainer().get(SlimeTinker.inst().getKeys().getPartInfoMaterialType(), PersistentDataType.STRING)
         );
 
-        switch (toolDefinition.getPartType()) {
-            case IDStrings.ID_SHOVEL:
-                itemStack = Tools.SHOVEL.getStack(toolDefinition);
-                break;
-            case IDStrings.ID_PICKAXE:
-                itemStack = Tools.PICKAXE.getStack(toolDefinition);
-                break;
-            case IDStrings.ID_AXE:
-                itemStack = Tools.AXE.getStack(toolDefinition);
-                break;
-            case IDStrings.ID_HOE:
-                itemStack = Tools.HOE.getStack(toolDefinition);
-                break;
-            case IDStrings.ID_SWORD:
-                itemStack = Tools.SWORD.getStack(toolDefinition);
-                break;
-            default:
-                throw new IllegalStateException("Unexpected value: " + toolDefinition.getClassType());
+        if (toolDefinition.getHeadMaterial().equals(IDStrings.REINFORCED) || toolDefinition.getRodMaterial().equals(IDStrings.HARD)) { // Reinforced Head/ Hard Rod tools are explosive
+            switch (toolDefinition.getPartType()) {
+                case IDStrings.SHOVEL:
+                    itemStack = Tools.EXP_SHOVEL.getStack(toolDefinition);
+                    break;
+                case IDStrings.PICKAXE:
+                    itemStack = Tools.EXP_PICKAXE.getStack(toolDefinition);
+                    break;
+                case IDStrings.AXE:
+                    itemStack = Tools.EXP_AXE.getStack(toolDefinition);
+                    break;
+                case IDStrings.HOE:
+                    itemStack = Tools.EXP_HOE.getStack(toolDefinition);
+                    break;
+                case IDStrings.SWORD:
+                    itemStack = Tools.EXP_SWORD.getStack(toolDefinition);
+                    break;
+                default:
+                    throw new IllegalStateException("Unexpected value: " + toolDefinition.getClassType());
+            }
+        } else {
+            switch (toolDefinition.getPartType()) {
+                case IDStrings.SHOVEL:
+                    itemStack = Tools.SHOVEL.getStack(toolDefinition);
+                    break;
+                case IDStrings.PICKAXE:
+                    itemStack = Tools.PICKAXE.getStack(toolDefinition);
+                    break;
+                case IDStrings.AXE:
+                    itemStack = Tools.AXE.getStack(toolDefinition);
+                    break;
+                case IDStrings.HOE:
+                    itemStack = Tools.HOE.getStack(toolDefinition);
+                    break;
+                case IDStrings.SWORD:
+                    itemStack = Tools.SWORD.getStack(toolDefinition);
+                    break;
+                default:
+                    throw new IllegalStateException("Unexpected value: " + toolDefinition.getClassType());
+            }
+
         }
+
         return itemStack;
     }
 
@@ -164,7 +188,7 @@ public class Table extends AbstractContainer {
             player.sendMessage(ThemeUtils.ERROR + "Not all items present");
             return false;
         }
-        if (!validateClass(head, IDStrings.ID_HEAD) || !validateBinder(binding) || !validateClass(rod, IDStrings.ID_ROD)) { // One or more items are not the correct part
+        if (!validateClass(head, IDStrings.HEAD) || !validateBinder(binding) || !validateClass(rod, IDStrings.ROD)) { // One or more items are not the correct part
             player.sendMessage(ThemeUtils.WARNING + "One or more items are either not Tinker's parts or in the wrong slot?");
             return false;
         }

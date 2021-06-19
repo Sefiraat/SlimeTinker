@@ -2,6 +2,8 @@ package io.github.sefiraat.slimetinker.listeners;
 
 import io.github.sefiraat.slimetinker.items.templates.ToolTemplate;
 import io.github.sefiraat.slimetinker.modifiers.Modifications;
+import io.github.sefiraat.slimetinker.utils.IDStrings;
+import io.github.sefiraat.slimetinker.utils.ItemUtils;
 import org.bukkit.Color;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -11,25 +13,109 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDeathEvent;
+import org.bukkit.event.entity.PlayerDeathEvent;
+import org.bukkit.event.player.PlayerRespawnEvent;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.persistence.PersistentDataContainer;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class EntityKilledListener implements Listener {
 
-    @EventHandler
-    public void onEntityDamaged(EntityDeathEvent event) {
+    public Map<Player, List<ItemStack>>  heldItems = new HashMap<>();
 
-        Player player = event.getEntity().getKiller();
+    @EventHandler
+    public void onPlayerDeath(PlayerDeathEvent event) {
+        Player p = event.getEntity();
+        List<ItemStack> list = new ArrayList<>();
+        if (heldItems.containsKey(p)) {
+            list.addAll(heldItems.get(p));
+        }
+        for (ItemStack i : event.getDrops()) {
+            if (!ToolTemplate.isTool(i) || !ItemUtils.getToolRodMaterial(i.getItemMeta().getPersistentDataContainer()).equals(IDStrings.SOLDER)) {
+                continue;
+            }
+            list.add(i);
+        }
+        for (ItemStack i : list) {
+            event.getDrops().remove(i);
+        }
+        heldItems.put(p, list);
+
+    }
+
+    @EventHandler
+    public void onPlayerRespawn(PlayerRespawnEvent event) {
+        Player p = event.getPlayer();
+        if (heldItems.containsKey(p)) {
+            for (ItemStack i : heldItems.get(p)) {
+                p.getInventory().addItem(i);
+            }
+        }
+        heldItems.remove(p);
+    }
+
+    @EventHandler
+    public void onEntityDeath(EntityDeathEvent event) {
+
+        LivingEntity dyingEntity = event.getEntity();
+
+        if (dyingEntity.getKiller() == null) {
+            return;
+        }
+
+        Player player = dyingEntity.getKiller();
         ItemStack heldItem = player.getInventory().getItemInMainHand();
 
         if (!ToolTemplate.isTool(heldItem)) { // Not a Tinker's tool, so we don't care
             return;
         }
 
-        modCheckLapis(event, heldItem);
+        ItemMeta im = heldItem.getItemMeta();
+        assert im != null;
+        PersistentDataContainer c = im.getPersistentDataContainer();
+
+        String matPropertyHead = ItemUtils.getToolHeadMaterial(c);
+        String matPropertyBinding = ItemUtils.getToolBindingMaterial(c);
+        String matPropertyRod = ItemUtils.getToolRodMaterial(c);
+
+        EventResult eventResult = new EventResult();
+
+        propertyChecks(event, eventResult, matPropertyHead, matPropertyBinding, matPropertyRod);
+        modChecks(event, heldItem);
+
+        event.setDroppedExp((int) Math.ceil(event.getDroppedExp() * eventResult.getPlayerExpMod()));
+
 
     }
+
+    private void propertyChecks(EntityDeathEvent event, EventResult eventResult, String matPropertyHead, String matPropertyBinding, String matPropertyRod) {
+
+        if (matPropertyRod.equals(IDStrings.ALUBRASS)) { // STUDIOUS
+            propRodAlubrass(eventResult);
+        }
+
+    }
+
+    private void propRodAlubrass(EventResult eventResult) {
+        eventResult.setPlayerExpMod(eventResult.getPlayerExpMod() + 0.5);
+    }
+
+
+
+
+
+
+
+
+    private void modChecks(EntityDeathEvent event, ItemStack heldItem) {
+        modCheckLapis(event, heldItem);
+    }
+
 
     private void modCheckLapis(EntityDeathEvent event, ItemStack heldItem) {
 

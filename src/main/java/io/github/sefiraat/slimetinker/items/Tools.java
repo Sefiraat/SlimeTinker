@@ -3,6 +3,7 @@ package io.github.sefiraat.slimetinker.items;
 import io.github.sefiraat.slimetinker.SlimeTinker;
 import io.github.sefiraat.slimetinker.categories.Categories;
 import io.github.sefiraat.slimetinker.items.templates.ToolTemplate;
+import io.github.sefiraat.slimetinker.items.templates.ToolTemplateExplosive;
 import io.github.sefiraat.slimetinker.items.workstations.table.DummyTable;
 import io.github.sefiraat.slimetinker.utils.IDStrings;
 import io.github.sefiraat.slimetinker.utils.SkullTextures;
@@ -140,6 +141,51 @@ public final class Tools {
                     ThemeUtils.PASSIVE + DESC_ERROR
             );
 
+    public static final SlimefunItemStack TOOL_AXE_EXP =
+            ThemeUtils.themedItemStack(
+                    "TOOL_AXE_EXP",
+                    SkullTextures.PART_AXE_HEAD,
+                    ThemeUtils.ThemeItemType.PART,
+                    DESC_ERROR,
+                    ThemeUtils.PASSIVE + DESC_ERROR
+            );
+
+    public static final SlimefunItemStack TOOL_HOE_EXP =
+            ThemeUtils.themedItemStack(
+                    "TOOL_HOE_EXP",
+                    SkullTextures.PART_HOE_HEAD,
+                    ThemeUtils.ThemeItemType.PART,
+                    DESC_ERROR,
+                    ThemeUtils.PASSIVE + DESC_ERROR
+            );
+
+    public static final SlimefunItemStack TOOL_PICKAXE_EXP =
+            ThemeUtils.themedItemStack(
+                    "TOOL_PICKAXE_EXP",
+                    SkullTextures.PART_PICKAXE_HEAD,
+                    ThemeUtils.ThemeItemType.PART,
+                    DESC_ERROR,
+                    ThemeUtils.PASSIVE + DESC_ERROR
+            );
+
+    public static final SlimefunItemStack TOOL_SHOVEL_EXP =
+            ThemeUtils.themedItemStack(
+                    "TOOL_SHOVEL_EXP",
+                    SkullTextures.PART_SHOVEL_HEAD,
+                    ThemeUtils.ThemeItemType.PART,
+                    DESC_ERROR,
+                    ThemeUtils.PASSIVE + DESC_ERROR
+            );
+
+    public static final SlimefunItemStack TOOL_SWORD_EXP =
+            ThemeUtils.themedItemStack(
+                    "TOOL_SWORD_EXP",
+                    SkullTextures.PART_SWORD_BLADE,
+                    ThemeUtils.ThemeItemType.PART,
+                    DESC_ERROR,
+                    ThemeUtils.PASSIVE + DESC_ERROR
+            );
+
     public static final SlimefunItemStack TOOL_INFO =
             ThemeUtils.themedItemStack(
                     "TOOL_INFO",
@@ -157,6 +203,12 @@ public final class Tools {
     public static final ToolTemplate HOE = new ToolTemplate(Categories.DUMMY, TOOL_HOE, DummyTable.TYPE, new ItemStack[9]);
     public static final ToolTemplate SWORD = new ToolTemplate(Categories.DUMMY, TOOL_SWORD, DummyTable.TYPE, new ItemStack[9]);
 
+    public static final ToolTemplateExplosive EXP_SHOVEL = new ToolTemplateExplosive(Categories.DUMMY, TOOL_SHOVEL_EXP, DummyTable.TYPE, new ItemStack[9]);
+    public static final ToolTemplateExplosive EXP_PICKAXE = new ToolTemplateExplosive(Categories.DUMMY, TOOL_PICKAXE_EXP, DummyTable.TYPE, new ItemStack[9]);
+    public static final ToolTemplateExplosive EXP_AXE = new ToolTemplateExplosive(Categories.DUMMY, TOOL_AXE_EXP, DummyTable.TYPE, new ItemStack[9]);
+    public static final ToolTemplateExplosive EXP_HOE = new ToolTemplateExplosive(Categories.DUMMY, TOOL_HOE_EXP, DummyTable.TYPE, new ItemStack[9]);
+    public static final ToolTemplateExplosive EXP_SWORD = new ToolTemplateExplosive(Categories.DUMMY, TOOL_SWORD_EXP, DummyTable.TYPE, new ItemStack[9]);
+
     public static void set(SlimeTinker p) {
         
         new UnplaceableBlock(Categories.TOOLS, TOOL_INFO, DummyTable.TYPE, new ItemStack[9]).register(p);
@@ -166,11 +218,22 @@ public final class Tools {
         new UnplaceableBlock(Categories.TOOLS, TOOL_HOE_DUMMY, DummyTable.TYPE, getDummyToolRecipe(Parts.PART_TOOL_ROD_DUMMY, Parts.PART_BINDING_DUMMY, Parts.PART_HOE_HEAD_DUMMY)).register(p);
         new UnplaceableBlock(Categories.TOOLS, TOOL_SWORD_DUMMY, DummyTable.TYPE, getDummyToolRecipe(Parts.PART_TOOL_ROD_DUMMY, Parts.PART_BINDING_DUMMY, Parts.PART_SWORD_BLADE_DUMMY)).register(p);
 
-        toolGrowthMap.put(IDStrings.ID_SHOVEL, getShovelMap());
-        toolGrowthMap.put(IDStrings.ID_PICKAXE, getPickaxeMap());
-        toolGrowthMap.put(IDStrings.ID_AXE, getAxeMap());
-        toolGrowthMap.put(IDStrings.ID_HOE, getHoeMap());
-        toolGrowthMap.put(IDStrings.ID_SWORD, getSwordMap());
+        SHOVEL.register(p);
+        PICKAXE.register(p);
+        AXE.register(p);
+        HOE.register(p);
+        SWORD.register(p);
+        EXP_SHOVEL.register(p);
+        EXP_PICKAXE.register(p);
+        EXP_AXE.register(p);
+        EXP_HOE.register(p);
+        EXP_SWORD.register(p);
+
+        toolGrowthMap.put(IDStrings.SHOVEL, getShovelMap());
+        toolGrowthMap.put(IDStrings.PICKAXE, getPickaxeMap());
+        toolGrowthMap.put(IDStrings.AXE, getAxeMap());
+        toolGrowthMap.put(IDStrings.HOE, getHoeMap());
+        toolGrowthMap.put(IDStrings.SWORD, getSwordMap());
 
     }
     

@@ -4,6 +4,7 @@ import io.github.sefiraat.slimetinker.SlimeTinker;
 import io.github.sefiraat.slimetinker.items.ComponentMaterials;
 import io.github.sefiraat.slimetinker.modifiers.Mod;
 import io.github.sefiraat.slimetinker.modifiers.Modifications;
+import io.github.sefiraat.slimetinker.properties.Properties;
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.SlimefunItem;
 import net.md_5.bungee.api.ChatColor;
 import org.bukkit.inventory.ItemStack;
@@ -22,6 +23,23 @@ public final class ItemUtils {
 
     private ItemUtils() {
         throw new IllegalStateException("Utility class");
+    }
+
+
+    public static void incrementRepair(ItemStack itemStack) {
+        ItemMeta im = itemStack.getItemMeta();
+        Damageable damageable = (Damageable) im;
+        assert damageable != null;
+        damageable.setDamage(Math.max((damageable.getDamage() - 1), 0));
+        itemStack.setItemMeta(im);
+    }
+
+    public static void incrementRepair(ItemStack itemStack, int amount) {
+        ItemMeta im = itemStack.getItemMeta();
+        Damageable damageable = (Damageable) im;
+        assert damageable != null;
+        damageable.setDamage(Math.max((damageable.getDamage() - amount), 0));
+        itemStack.setItemMeta(im);
     }
 
     @Nullable
@@ -70,23 +88,27 @@ public final class ItemUtils {
         PersistentDataContainer c = im.getPersistentDataContainer();
         List<String> lore = new ArrayList<>();
 
+        String matHead = getToolHeadMaterial(c);
+        String matBind = getToolBindingMaterial(c);
+        String matRod = getToolRodMaterial(c);
 
         // General Material information
-        lore.add(ThemeUtils.PASSIVE + "-".repeat(20));
-        lore.add(ThemeUtils.CLICK_INFO + "Head : " + formatMaterialName(getToolHeadMaterial(c)));
-        lore.add(ThemeUtils.CLICK_INFO + "Binding : " + formatMaterialName(getToolBindingMaterial(c)));
-        lore.add(ThemeUtils.CLICK_INFO + "Rod : " + formatMaterialName(getToolRodMaterial(c)));
-        lore.add(ThemeUtils.PASSIVE + "-".repeat(20));
+        lore.add(line());
+        lore.add(ThemeUtils.CLICK_INFO + "H: " + formatMaterialName(matHead));
+        lore.add(ThemeUtils.CLICK_INFO + "B: " + formatMaterialName(matBind));
+        lore.add(ThemeUtils.CLICK_INFO + "R: " + formatMaterialName(matRod));
+        lore.add(line());
 
         // Material properties
-        // TODO Tool Properties
-        lore.add("PROPERTIES GO HERE");
-        lore.add(ThemeUtils.PASSIVE + "-".repeat(20));
+        lore.add(formatPropertyName(matHead, Properties.PROP_MAP_HEAD.get(matHead)));
+        lore.add(formatPropertyName(matBind, Properties.PROP_MAP_BIND.get(matBind)));
+        lore.add(formatPropertyName(matRod, Properties.PROP_MAP_ROD.get(matRod)));
+        lore.add(line());
 
         // Exp / Leveling / Mod Slot information
         lore.add(Experience.getLoreExp(c));
         lore.add(Experience.getLoreModSlots(c));
-        lore.add(ThemeUtils.PASSIVE + "-".repeat(20));
+        lore.add(line());
 
         // Active Mods
         LinkedHashMap<String, Integer> mapAmounts = Modifications.getModificationMap(itemStack);
@@ -102,6 +124,9 @@ public final class ItemUtils {
                 lore.add(ThemeUtils.CLICK_INFO + ThemeUtils.toTitleCase(entry.getKey().toString()) + " Level " + entry.getValue() + ThemeUtils.PASSIVE + " - (MAX)");
             }
         }
+        if (!mapLevels.isEmpty()) {
+            lore.add(line());
+        }
 
         im.setLore(lore);
         itemStack.setItemMeta(im);
@@ -116,19 +141,33 @@ public final class ItemUtils {
     }
 
     public static String getToolHeadMaterial(PersistentDataContainer c) {
-        return c.get(SlimeTinker.inst().getKeys().getToolInfoHeadMaterial(), PersistentDataType.STRING);
+        String s = c.get(SlimeTinker.inst().getKeys().getToolInfoHeadMaterial(), PersistentDataType.STRING);
+        assert s != null;
+        return s;
     }
 
     public static String getToolBindingMaterial(PersistentDataContainer c) {
-        return c.get(SlimeTinker.inst().getKeys().getToolInfoBinderMaterial(), PersistentDataType.STRING);
+        String s =  c.get(SlimeTinker.inst().getKeys().getToolInfoBinderMaterial(), PersistentDataType.STRING);
+        assert s != null;
+        return s;
     }
 
     public static String getToolRodMaterial(PersistentDataContainer c) {
-        return c.get(SlimeTinker.inst().getKeys().getToolInfoRodMaterial(), PersistentDataType.STRING);
+        String s =  c.get(SlimeTinker.inst().getKeys().getToolInfoRodMaterial(), PersistentDataType.STRING);
+        assert s != null;
+        return s;
     }
 
     public static String formatMaterialName(String s) {
         return ChatColor.of(ComponentMaterials.getById(s).getColorHex()) + ThemeUtils.toTitleCase(s);
+    }
+
+    public static String formatPropertyName(String s, String p) {
+        return ChatColor.of(ComponentMaterials.getById(s).getColorHex()) + ThemeUtils.toTitleCase(p);
+    }
+
+    public static String line() {
+        return ThemeUtils.PASSIVE + "-".repeat(25);
     }
 
 }

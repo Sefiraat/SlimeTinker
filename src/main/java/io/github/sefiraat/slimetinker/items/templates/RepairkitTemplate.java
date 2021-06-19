@@ -64,7 +64,7 @@ public class RepairkitTemplate extends UnplaceableBlock {
         NamespacedKey key = SlimeTinker.inst().getKeys().getPartInfoClassType();
         return itemStack.hasItemMeta() &&
                 itemStack.getItemMeta().getPersistentDataContainer().has(key, PersistentDataType.STRING) &&
-                itemStack.getItemMeta().getPersistentDataContainer().get(key, PersistentDataType.STRING).equals(IDStrings.ID_REPAIR);
+                itemStack.getItemMeta().getPersistentDataContainer().get(key, PersistentDataType.STRING).equals(IDStrings.REPAIR);
     }
 
 }

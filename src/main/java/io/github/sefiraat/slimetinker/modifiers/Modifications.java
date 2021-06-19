@@ -16,6 +16,10 @@ import java.util.Map;
 
 public class Modifications {
 
+    private Modifications() {
+        throw new IllegalStateException("Utility class");
+    }
+
     public static final LinkedList<String> MODIFICAION_LIST = new LinkedList<>();
     public static final Map<String, Mod> MODIFICATION_DEFINITIONS = new HashMap<>();
     public static final Map<Integer, Integer> MOD_MAP_REDSTONE = new HashMap<>();

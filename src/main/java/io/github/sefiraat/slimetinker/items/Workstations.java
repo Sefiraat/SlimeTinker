@@ -5,6 +5,7 @@ import io.github.sefiraat.slimetinker.categories.Categories;
 import io.github.sefiraat.slimetinker.items.workstations.modificationstation.ModificationStation;
 import io.github.sefiraat.slimetinker.items.workstations.repairbench.RepairBench;
 import io.github.sefiraat.slimetinker.items.workstations.smeltery.DummySmelteryMulti;
+import io.github.sefiraat.slimetinker.items.workstations.swappingstation.SwappingStation;
 import io.github.sefiraat.slimetinker.items.workstations.table.Table;
 import io.github.sefiraat.slimetinker.items.workstations.workbench.Workbench;
 import io.github.sefiraat.slimetinker.utils.ThemeUtils;
@@ -67,6 +68,16 @@ public final class Workstations {
                     "Repairs tools and weapons."
             );
 
+    // Swapping
+    public static final SlimefunItemStack TINKERS_SWAPPING_STATION =
+            ThemeUtils.themedItemStack(
+                    "TINKERS_SWAPPING_STATION",
+                    Material.SCAFFOLDING,
+                    ThemeUtils.ThemeItemType.MACHINE,
+                    "Tinker's Swapping Station",
+                    "Swaps parts of tools with new parts."
+            );
+
     // Modification
     public static final SlimefunItemStack TINKERS_MOD_STATION =
             ThemeUtils.themedItemStack(
@@ -97,6 +108,11 @@ public final class Workstations {
             new ItemStack(Material.OAK_PLANKS),   Workstations.TINKERS_WORKBENCH,   new ItemStack(Material.OAK_PLANKS),
             new ItemStack(Material.OAK_PLANKS),   SlimefunItems.POWER_CRYSTAL,   new ItemStack(Material.OAK_PLANKS)
     };
+    protected static final ItemStack[] RECIPE_TINKERS_SWAPPING_STATION = new ItemStack[] {
+            Materials.BLOCK_CAST_COR_BRONZE,   Materials.BLOCK_CAST_COR_BRONZE,   Materials.BLOCK_CAST_COR_BRONZE,
+            new ItemStack(Material.OAK_PLANKS),   Workstations.TINKERS_WORKBENCH,   new ItemStack(Material.OAK_PLANKS),
+            new ItemStack(Material.OAK_PLANKS),   SlimefunItems.POWER_CRYSTAL,   new ItemStack(Material.OAK_PLANKS)
+    };
     protected static final ItemStack[] RECIPE_TINKERS_MOD_STATION = new ItemStack[] {
             Materials.BLOCK_CAST_REINFORCED,   Materials.BLOCK_CAST_REINFORCED,   Materials.BLOCK_CAST_REINFORCED,
             new ItemStack(Material.OAK_PLANKS),   Workstations.TINKERS_TABLE,   new ItemStack(Material.OAK_PLANKS),
@@ -110,6 +126,7 @@ public final class Workstations {
         new UnplaceableBlock(Categories.WORKSTATIONS, TINKERS_SMELTERY_CORE, DummySmelteryMulti.TYPE, RECIPE_TINKERS_SMELTERY_MULTI).register(p);
         new Table(Categories.WORKSTATIONS, TINKERS_TABLE, Workbench.TYPE, RECIPE_TINKERS_TABLE).register(p);
         new RepairBench(Categories.WORKSTATIONS, TINKERS_REPAIR_BENCH, Workbench.TYPE, RECIPE_TINKERS_REPAIR_BENCH).register(p);
+        new SwappingStation(Categories.WORKSTATIONS, TINKERS_SWAPPING_STATION, Workbench.TYPE, RECIPE_TINKERS_SWAPPING_STATION).register(p);
         new ModificationStation(Categories.WORKSTATIONS, TINKERS_MOD_STATION, Workbench.TYPE, RECIPE_TINKERS_MOD_STATION).register(p);
 
     }

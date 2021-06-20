@@ -3,6 +3,7 @@ package io.github.sefiraat.slimetinker.listeners;
 import io.github.sefiraat.slimetinker.SlimeTinker;
 import io.github.sefiraat.slimetinker.items.templates.ToolTemplate;
 import io.github.sefiraat.slimetinker.modifiers.Modifications;
+import io.github.sefiraat.slimetinker.utils.BlockUtils;
 import io.github.sefiraat.slimetinker.utils.Experience;
 import io.github.sefiraat.slimetinker.utils.IDStrings;
 import io.github.sefiraat.slimetinker.utils.ItemUtils;
@@ -55,9 +56,9 @@ public class BlockBreakListener implements Listener {
             return;
         }
 
-//        if (BlockUtils.isPlaced(block)) {
-//            return;
-//        }
+        if (BlockUtils.isPlaced(block)) {
+            return;
+        }
 
         // pre-flight, some tools stop block breaking
 

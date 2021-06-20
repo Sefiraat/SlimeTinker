@@ -1,13 +1,10 @@
 package io.github.sefiraat.slimetinker.items.workstations.table;
 
 import io.github.mooy1.infinitylib.items.StackUtils;
-import io.github.mooy1.infinitylib.recipes.RecipeMap;
-import io.github.mooy1.infinitylib.recipes.ShapedRecipe;
 import io.github.mooy1.infinitylib.slimefun.AbstractContainer;
 import io.github.sefiraat.slimetinker.SlimeTinker;
 import io.github.sefiraat.slimetinker.items.Parts;
 import io.github.sefiraat.slimetinker.items.Tools;
-import io.github.sefiraat.slimetinker.items.Workstations;
 import io.github.sefiraat.slimetinker.items.templates.ToolDefinition;
 import io.github.sefiraat.slimetinker.utils.GUIItems;
 import io.github.sefiraat.slimetinker.utils.IDStrings;
@@ -34,9 +31,6 @@ import org.jetbrains.annotations.NotNull;
 import javax.annotation.Nonnull;
 
 public class Table extends AbstractContainer {
-
-    private static final RecipeMap<ItemStack> RECIPES = new RecipeMap<>(ShapedRecipe::new);
-    public static final RecipeType TYPE = new RecipeType(SlimeTinker.inst().getKey("tinkers-table"), Workstations.TINKERS_TABLE, RECIPES::put);
 
     private static final int[] BACKGROUND_SLOTS = {0,8,9,17,18,26,27,31,35,36,44,45,49,53};
     private static final int[] BACKGROUND_INPUTS = {1,3,5,7,10,12,14,16,19,20,21,22,23,24,25};
@@ -193,7 +187,6 @@ public class Table extends AbstractContainer {
             return false;
         }
 
-        // All items are valid, lets preview the item!
         blockMenu.pushItem(getTool().clone(), OUTPUT_SLOT);
         blockMenu.getItemInSlot(INPUT_HEAD).setAmount(blockMenu.getItemInSlot(INPUT_HEAD).getAmount() - 1);
         blockMenu.getItemInSlot(INPUT_BINDING).setAmount(blockMenu.getItemInSlot(INPUT_BINDING).getAmount() - 1);

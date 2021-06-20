@@ -1,11 +1,7 @@
 package io.github.sefiraat.slimetinker.items.workstations.modificationstation;
 
 import io.github.mooy1.infinitylib.items.StackUtils;
-import io.github.mooy1.infinitylib.recipes.RecipeMap;
-import io.github.mooy1.infinitylib.recipes.ShapedRecipe;
 import io.github.mooy1.infinitylib.slimefun.AbstractContainer;
-import io.github.sefiraat.slimetinker.SlimeTinker;
-import io.github.sefiraat.slimetinker.items.Workstations;
 import io.github.sefiraat.slimetinker.items.templates.ToolTemplate;
 import io.github.sefiraat.slimetinker.modifiers.Mod;
 import io.github.sefiraat.slimetinker.modifiers.Modifications;
@@ -33,9 +29,6 @@ import javax.annotation.Nonnull;
 import java.util.LinkedHashMap;
 
 public class ModificationStation extends AbstractContainer {
-
-    private static final RecipeMap<ItemStack> RECIPES = new RecipeMap<>(ShapedRecipe::new);
-    public static final RecipeType TYPE = new RecipeType(SlimeTinker.inst().getKey("tinkers-modify"), Workstations.TINKERS_TABLE, RECIPES::put);
 
     private static final int[] BACKGROUND_SLOTS = {0,1,2,3,4,5,6,7,8,9,11,13,15,17,18,19,20,21,22,23,24,25,26};
     private static final int INPUT_TOOL = 10;

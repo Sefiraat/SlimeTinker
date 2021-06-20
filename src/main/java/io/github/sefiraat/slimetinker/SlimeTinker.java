@@ -86,11 +86,13 @@ public class SlimeTinker extends AbstractAddon {
     }
 
 
+    /*
     @Nonnull
     @Override
     protected List<AbstractCommand> setupSubCommands() {
         return Arrays.asList(new GiveDummyTool(), new AddExp());
     }
+    */
 
 
     @Override

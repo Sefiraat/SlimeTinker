@@ -476,7 +476,7 @@ public final class Materials {
             ThemeUtils.themedItemStack(
                     "SMELTERY_CONTROLLER",
                     Material.CHISELED_POLISHED_BLACKSTONE,
-                    ThemeUtils.ThemeItemType.CRAFTING,
+                    ThemeUtils.ThemeItemType.MACHINE,
                     "Smeltery Controller",
                     ThemeUtils.PASSIVE + "Used in crafting smeltery blocks."
             );

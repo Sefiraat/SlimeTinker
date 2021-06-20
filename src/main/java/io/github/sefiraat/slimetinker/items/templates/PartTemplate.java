@@ -47,9 +47,9 @@ public class PartTemplate extends UnplaceableBlock {
         im.setLore(getLore(material));
         im.setDisplayName(getName(material));
         c.set(SlimeTinker.inst().getKeys().getPartInfoMaterialType(), PersistentDataType.STRING, material);
-        c.set(SlimeTinker.inst().getKeys().getPartInfoClassType(), PersistentDataType.STRING, partClass);
+        c.set(SlimeTinker.inst().getKeys().getPartInfoClassType(), PersistentDataType.STRING, partClass); // Whether the part is HEAD, BINDER or ROD
         if (partType != null) {
-            c.set(SlimeTinker.inst().getKeys().getPartInfoType(), PersistentDataType.STRING, partType);
+            c.set(SlimeTinker.inst().getKeys().getPartInfoType(), PersistentDataType.STRING, partType); // If HEAD, What tool type is it for?
         }
         itemStack.setItemMeta(im);
         return itemStack;

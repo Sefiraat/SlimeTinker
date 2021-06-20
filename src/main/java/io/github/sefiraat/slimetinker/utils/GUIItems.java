@@ -217,4 +217,13 @@ public final class GUIItems {
         );
     }
 
+    public static CustomItem menuCraftSwap() {
+        return new CustomItem(
+                Material.SCAFFOLDING,
+                ThemeUtils.GUI_HEAD + "Swap out part",
+                "",
+                ThemeUtils.PASSIVE + "Swap tool parts."
+        );
+    }
+
 }

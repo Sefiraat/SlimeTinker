@@ -134,6 +134,29 @@ public final class ItemUtils {
 
     }
 
+    public static void rebuildToolName(ItemStack itemStack) {
+
+        ItemMeta im = itemStack.getItemMeta();
+        assert im != null;
+        PersistentDataContainer c = im.getPersistentDataContainer();
+
+        String matHead = getToolHeadMaterial(c);
+        String matBind = getToolBindingMaterial(c);
+        String matRod = getToolRodMaterial(c);
+        String toolType = getToolTypeName(c);
+
+        String name =
+                        ChatColor.of(ComponentMaterials.getById(matHead).getColorHex()) + ThemeUtils.toTitleCase(matHead) + "-" +
+                        ChatColor.of(ComponentMaterials.getById(matBind).getColorHex()) + ThemeUtils.toTitleCase(matBind) + "-" +
+                        ChatColor.of(ComponentMaterials.getById(matRod).getColorHex()) + ThemeUtils.toTitleCase(matRod) + " " +
+                        ChatColor.WHITE + ThemeUtils.toTitleCase(toolType);
+
+
+        im.setDisplayName(name);
+        itemStack.setItemMeta(im);
+
+    }
+
     public static boolean isToolBroken(ItemStack itemStack) {
         Damageable damageable = (Damageable) itemStack.getItemMeta();
         assert damageable != null;
@@ -155,6 +178,12 @@ public final class ItemUtils {
 
     public static String getToolRodMaterial(PersistentDataContainer c) {
         String s =  c.get(SlimeTinker.inst().getKeys().getToolInfoRodMaterial(), PersistentDataType.STRING);
+        assert s != null;
+        return s;
+    }
+
+    public static String getToolTypeName(PersistentDataContainer c) {
+        String s = c.get(SlimeTinker.inst().getKeys().getToolInfoToolType(), PersistentDataType.STRING);
         assert s != null;
         return s;
     }

@@ -3,6 +3,7 @@ package io.github.sefiraat.slimetinker.utils;
 import io.github.sefiraat.slimetinker.items.BaseItem;
 import me.mrCookieSlime.Slimefun.api.SlimefunItemStack;
 import net.md_5.bungee.api.ChatColor;
+import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.WordUtils;
 import org.bukkit.Material;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -137,6 +138,10 @@ public final class ThemeUtils {
     public static String toTitleCase(String string) {
         final char[] delimiters = { ' ', '_' };
         return WordUtils.capitalizeFully(string, delimiters).replace("_"," ");
+    }
+
+    public static String getLine() {
+        return PASSIVE + StringUtils.repeat("-", 25);
     }
 
     public enum ThemeItemType {

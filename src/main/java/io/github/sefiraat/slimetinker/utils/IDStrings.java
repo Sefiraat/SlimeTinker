@@ -6,6 +6,7 @@ public final class IDStrings {
         throw new IllegalStateException("Utility class");
     }
 
+    // Vanilla + Core SF
     public static final String IRON = "IRON";
     public static final String GOLD = "GOLD";
     public static final String COPPER = "COPPER";
@@ -30,6 +31,29 @@ public final class IDStrings {
     public static final String NICKEL = "NICKEL";
     public static final String COBALT = "COBALT";
     public static final String REINFORCED = "REINFORCED_ALLOY";
+
+    // Infinity Expac
+    public static final String VOID = "VOID";
+    public static final String INFINITY = "INFINITY";
+    public static final String FORTUNE = "SOLIDIFIED_FORTUNE";
+    public static final String MAGIC = "SOLIDIFIED_MAGIC";
+    public static final String EARTH = "SOLIDIFIED_EARTH";
+    public static final String METAL = "SOLIDIFIED_METAL";
+    public static final String MAGSTEEL = "MAGSTEEL";
+    public static final String TITANIUM = "TITANIUM";
+    public static final String MYTHRIL = "MYTHRIL";
+    public static final String ADAMANTITE = "ADAMANTITE";
+    public static final String MAGNONIUM = "MAGNONIUM";
+    public static final String SINGCOPPER = "COPPER_SINGULARITY";
+    public static final String SINGZINC = "ZINC_SINGULARITY";
+    public static final String SINGTIN = "TIN_SINGULARITY";
+    public static final String SINGALUMINUM = "ALUMINUM_SINGULARITY";
+    public static final String SINGSILVER = "SILVER_SINGULARITY";
+    public static final String SINGMAGNESIUM = "MAGNESIUM_SINGULARITY";
+    public static final String SINGLEAD = "LEAD_SINGULARITY";
+    public static final String SINGGOLD = "GOLD_SINGULARITY";
+    public static final String SINGIRON = "IRON_SINGULARITY";
+    public static final String SINGINFINITY = "INFINITY_SINGULARITY";
 
     public static final String STRING = "STRING";
     public static final String VINE = "VINE";

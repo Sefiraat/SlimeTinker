@@ -1,13 +1,14 @@
 package io.github.sefiraat.slimetinker.utils;
 
+import io.github.mooy1.infinitylib.items.StackUtils;
 import io.github.sefiraat.slimetinker.SlimeTinker;
 import io.github.sefiraat.slimetinker.items.ComponentMaterials;
+import io.github.sefiraat.slimetinker.items.recipes.MoltenResult;
 import io.github.sefiraat.slimetinker.modifiers.Mod;
 import io.github.sefiraat.slimetinker.modifiers.Modifications;
 import io.github.sefiraat.slimetinker.properties.Properties;
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.SlimefunItem;
 import net.md_5.bungee.api.ChatColor;
-import org.apache.commons.lang.StringUtils;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.Damageable;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -93,22 +94,22 @@ public final class ItemUtils {
         String matRod = getToolRodMaterial(c);
 
         // General Material information
-        lore.add(line());
+        lore.add(ThemeUtils.getLine());
         lore.add(ThemeUtils.CLICK_INFO + "H: " + formatMaterialName(matHead));
         lore.add(ThemeUtils.CLICK_INFO + "B: " + formatMaterialName(matBind));
         lore.add(ThemeUtils.CLICK_INFO + "R: " + formatMaterialName(matRod));
-        lore.add(line());
+        lore.add(ThemeUtils.getLine());
 
         // Material properties
         lore.add(formatPropertyName(matHead, Properties.getPROP_MAP_HEAD().get(matHead)));
         lore.add(formatPropertyName(matBind, Properties.getPROP_MAP_BIND().get(matBind)));
         lore.add(formatPropertyName(matRod, Properties.getPROP_MAP_ROD().get(matRod)));
-        lore.add(line());
+        lore.add(ThemeUtils.getLine());
 
         // Exp / Leveling / Mod Slot information
         lore.add(Experience.getLoreExp(c));
         lore.add(Experience.getLoreModSlots(c));
-        lore.add(line());
+        lore.add(ThemeUtils.getLine());
 
         // Active Mods
         Map<String, Integer> mapAmounts = Modifications.getModificationMap(itemStack);
@@ -125,7 +126,7 @@ public final class ItemUtils {
             }
         }
         if (!mapLevels.isEmpty()) {
-            lore.add(line());
+            lore.add(ThemeUtils.getLine());
         }
 
         im.setLore(lore);
@@ -195,8 +196,11 @@ public final class ItemUtils {
         return ChatColor.of(ComponentMaterials.getById(s).getColorHex()) + ThemeUtils.toTitleCase(p);
     }
 
-    public static String line() {
-        return ThemeUtils.PASSIVE + StringUtils.repeat("-", 25);
+    public static boolean isMeltable(ItemStack itemStack) {
+        return SlimeTinker.inst().getRecipeManager().meltingRecipes.containsKey(StackUtils.getIDorType(itemStack));
     }
 
+    public static MoltenResult getMoltenResult(ItemStack itemStack) {
+        return SlimeTinker.inst().getRecipeManager().meltingRecipes.get(StackUtils.getIDorType(itemStack));
+    }
 }

@@ -2,8 +2,8 @@ package io.github.sefiraat.slimetinker.items;
 
 import io.github.sefiraat.slimetinker.SlimeTinker;
 import io.github.sefiraat.slimetinker.categories.Categories;
-import io.github.sefiraat.slimetinker.items.recipes.RecipeManager;
 import io.github.sefiraat.slimetinker.items.workstations.smeltery.DummySmeltery;
+import io.github.sefiraat.slimetinker.managers.RecipeManager;
 import io.github.sefiraat.slimetinker.utils.ThemeUtils;
 import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
 import io.github.thebusybiscuit.slimefun4.implementation.items.blocks.UnplaceableBlock;

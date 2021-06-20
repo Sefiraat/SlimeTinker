@@ -1,16 +1,15 @@
 package io.github.sefiraat.slimetinker.items.materials;
 
 import lombok.Data;
-import net.md_5.bungee.api.ChatColor;
 
 @Data
-public class ComponentMaterial {
+public class MaterialDefinition {
 
     private final String id;
-    private final String colorHex;
     private final boolean validToolHead;
     private final boolean validToolBind;
     private final boolean validToolRod;
+
     private final String formNugget;
     private final String formIngot;
     private final String formBlock;
@@ -22,24 +21,22 @@ public class ComponentMaterial {
     private final String formChest;
     private final String formHelm;
 
-    public ComponentMaterial(String id,
-                             String colorHex,
-                             boolean validToolHead,
-                             boolean validToolBind,
-                             boolean validToolRod,
-                             String formNugget,
-                             String formIngot,
-                             String formBlock,
-                             String formOre,
-                             String formGem,
-                             String formDust,
-                             String formBoot,
-                             String formLeg,
-                             String formChest,
-                             String formHelm)
+    public MaterialDefinition(String id,
+                              boolean validToolHead,
+                              boolean validToolBind,
+                              boolean validToolRod,
+                              String formNugget,
+                              String formIngot,
+                              String formBlock,
+                              String formOre,
+                              String formGem,
+                              String formDust,
+                              String formBoot,
+                              String formLeg,
+                              String formChest,
+                              String formHelm)
     {
         this.id = id;
-        this.colorHex = colorHex;
         this.validToolHead = validToolHead;
         this.validToolBind = validToolBind;
         this.validToolRod = validToolRod;
@@ -55,8 +52,5 @@ public class ComponentMaterial {
         this.formHelm = formHelm;
     }
 
-    public ChatColor getColor() {
-        return ChatColor.of(colorHex);
-    }
 
 }

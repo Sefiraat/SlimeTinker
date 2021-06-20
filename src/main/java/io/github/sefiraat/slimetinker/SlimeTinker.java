@@ -12,9 +12,9 @@ import io.github.sefiraat.slimetinker.items.Parts;
 import io.github.sefiraat.slimetinker.items.Props;
 import io.github.sefiraat.slimetinker.items.Tools;
 import io.github.sefiraat.slimetinker.items.Workstations;
-import io.github.sefiraat.slimetinker.items.recipes.RecipeManager;
 import io.github.sefiraat.slimetinker.listeners.ListenerManager;
-import io.github.sefiraat.slimetinker.runnables.RunnableManager;
+import io.github.sefiraat.slimetinker.managers.RecipeManager;
+import io.github.sefiraat.slimetinker.managers.RunnableManager;
 import io.github.sefiraat.slimetinker.utils.Keys;
 import lombok.Getter;
 import org.jetbrains.annotations.NotNull;
@@ -49,9 +49,6 @@ public class SlimeTinker extends AbstractAddon {
         getLogger().info("           Created by Sefiraat          ");
         getLogger().info("########################################");
 
-        recipeManager = new RecipeManager();
-        runnableManager = new RunnableManager();
-
         Categories.set(this);
         Materials.set(this);
         Alloys.set(this);
@@ -62,6 +59,9 @@ public class SlimeTinker extends AbstractAddon {
         Tools.set(this);
         Mods.set(this);
         Workstations.set(this);
+
+        recipeManager = new RecipeManager();
+        runnableManager = new RunnableManager();
 
         new ListenerManager();
 

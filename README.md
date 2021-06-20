@@ -19,3 +19,8 @@ SlimeTinker is a Slimefun4 addon that tries it's best to recreate the amazing Ti
 
 ## Suggestions?
 SlimeTinker has a LOT of properties and effects and I simply do not have enough ideas to flesh out all of it. So I really would welcome any and all suggestions in the Slimefun Addon Community Discord (be sure to stick to the slimetinker channel!). If you have ideas, please use this [invite](https://discord.gg/J4KurMDCKU)
+
+## Credits
+Big thanks to [Riley](https://github.com/Mooy1) for the great InfinityLib which sped things up greatly. Another big thanks to [Martin](https://github.com/martinbrom) who helped us out with ideas and direction. Thanks to [Boomer](https://www.youtube.com/channel/UC2ZmER18YBRYube-62-JVpA) for testing, feeding back and breaking things for me! 
+
+Finaly a very big thanks to the mct.tantrum.org Minecraft server for fostering the initial ideas, testing and generally being awesome!

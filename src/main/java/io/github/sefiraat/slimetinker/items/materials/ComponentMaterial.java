@@ -1,7 +1,10 @@
 package io.github.sefiraat.slimetinker.items.materials;
 
+import io.github.sefiraat.slimetinker.events.EventFriend;
 import lombok.Data;
 import net.md_5.bungee.api.ChatColor;
+
+import java.util.function.Consumer;
 
 @Data
 public class ComponentMaterial {
@@ -21,6 +24,8 @@ public class ComponentMaterial {
     private final String formLeg;
     private final String formChest;
     private final String formHelm;
+    private boolean eventTick = false;
+    private Consumer<EventFriend> eventTickConsumer;
 
     public ComponentMaterial(String id,
                              String colorHex,

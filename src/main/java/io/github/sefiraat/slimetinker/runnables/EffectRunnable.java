@@ -1,6 +1,9 @@
 package io.github.sefiraat.slimetinker.runnables;
 
 import io.github.sefiraat.slimetinker.SlimeTinker;
+import io.github.sefiraat.slimetinker.events.EventFriend;
+import io.github.sefiraat.slimetinker.items.ComponentMaterials;
+import io.github.sefiraat.slimetinker.items.materials.ComponentMaterial;
 import io.github.sefiraat.slimetinker.items.templates.ToolTemplate;
 import io.github.sefiraat.slimetinker.modifiers.Modifications;
 import io.github.sefiraat.slimetinker.utils.GeneralUtils;
@@ -55,9 +58,26 @@ public class EffectRunnable extends BukkitRunnable {
         String matPropertyBinding = ItemUtils.getToolBindingMaterial(c);
         String matPropertyRod = ItemUtils.getToolRodMaterial(c);
 
-        if (matPropertyRod.equals(IDStrings.GOLD)) { // ALL THE GLITTERS
-            propRodGold(potionEffects);
+        // Experimenting here for the new consumer methods
+
+        EventFriend friend = new EventFriend();
+
+        for (Map.Entry<String, ComponentMaterial> mat : ComponentMaterials.getMap().entrySet()) {
+            if (mat.getValue().isEventTick()) {
+                mat.getValue().getEventTickConsumer().accept(friend);
+            }
         }
+
+        for (Map.Entry<PotionEffectType, Integer> entry : friend.getPotionEffects().entrySet()) {
+            player.addPotionEffect(new PotionEffect(entry.getKey(), SlimeTinker.RUNNABLE_TICK_RATE + 5, entry.getValue(), false, true, true));
+        }
+
+        // Test finished
+
+
+        //if (matPropertyRod.equals(IDStrings.GOLD)) { // ALL THE GLITTERS
+        //    propRodGold(potionEffects);
+        //}
 
         if (matPropertyBinding.equals(IDStrings.VINEGREEN)) { // ATTRACTION
             propBindVinegreen(player);
@@ -159,10 +179,6 @@ public class EffectRunnable extends BukkitRunnable {
             propBindString(potionEffects);
         }
 
-    }
-
-    private void propRodGold(Map<PotionEffectType, Integer> potionEffects) {
-        increaseEffect(PotionEffectType.GLOWING, potionEffects);
     }
 
     private void propBindVinegreen(Player player) {

@@ -1,6 +1,7 @@
 package io.github.sefiraat.slimetinker.listeners;
 
 import io.github.sefiraat.slimetinker.SlimeTinker;
+import io.github.sefiraat.slimetinker.events.EventFriend;
 import io.github.sefiraat.slimetinker.items.templates.ToolTemplate;
 import io.github.sefiraat.slimetinker.modifiers.Modifications;
 import io.github.sefiraat.slimetinker.utils.BlockUtils;
@@ -68,7 +69,7 @@ public class BlockBreakListener implements Listener {
         Collection<ItemStack> drops = block.getDrops(heldItem);
         Collection<ItemStack> addDrops = new ArrayList<>();
         Collection<ItemStack> removeDrops = new ArrayList<>();
-        EventResult eventResult = new EventResult();
+        EventFriend eventFriend = new EventFriend();
 
         propertyChecks(heldItem, block, drops, addDrops, removeDrops);
         modChecks(heldItem, block, addDrops);
@@ -84,7 +85,7 @@ public class BlockBreakListener implements Listener {
             }
         }
         if (shouldGrantExp(heldItem, event.getBlock())) { // Should grant exp (checks tool / material validity and the crop state)
-            Experience.addToolExp(heldItem, (int) Math.ceil(1 * eventResult.getToolExpMod()), event.getPlayer(), true);
+            Experience.addToolExp(heldItem, (int) Math.ceil(1 * eventFriend.getToolExpMod()), event.getPlayer(), true);
         }
 
     }

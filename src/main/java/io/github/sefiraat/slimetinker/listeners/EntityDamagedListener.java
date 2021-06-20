@@ -1,5 +1,6 @@
 package io.github.sefiraat.slimetinker.listeners;
 
+import io.github.sefiraat.slimetinker.events.EventFriend;
 import io.github.sefiraat.slimetinker.items.templates.ToolTemplate;
 import io.github.sefiraat.slimetinker.modifiers.Modifications;
 import io.github.sefiraat.slimetinker.utils.Experience;
@@ -73,19 +74,19 @@ public class EntityDamagedListener implements Listener {
         String matPropertyRod = ItemUtils.getToolRodMaterial(c);
         int toolLevel = Experience.getToolLevel(c);
 
-        EventResult eventResult = new EventResult();
+        EventFriend eventFriend = new EventFriend();
 
-        if (cancelIfBroken(heldItem) && !propHeadDuralium(eventResult, matPropertyHead)) {
+        if (cancelIfBroken(heldItem) && !propHeadDuralium(eventFriend, matPropertyHead)) {
             player.sendMessage(ThemeUtils.WARNING + "Your weapon is broken, you should really repair it!");
             event.setCancelled(true);
             return;
         }
 
-        propertyChecks(event, eventResult, matPropertyHead, matPropertyBinding, matPropertyRod, toolLevel);
-        modChecks(event, heldItem, eventResult);
+        propertyChecks(event, eventFriend, matPropertyHead, matPropertyBinding, matPropertyRod, toolLevel);
+        modChecks(event, heldItem, eventFriend);
 
 
-        Experience.addToolExp(heldItem, (int) Math.ceil(event.getDamage() * eventResult.getToolExpMod()), player, false);
+        Experience.addToolExp(heldItem, (int) Math.ceil(event.getDamage() * eventFriend.getToolExpMod()), player, false);
 
     }
 
@@ -95,18 +96,18 @@ public class EntityDamagedListener implements Listener {
         return damageable.getDamage() == itemStack.getType().getMaxDurability() - 1;
     }
 
-    private void propertyChecks(EntityDamageByEntityEvent event, EventResult eventResult, String matPropertyHead, String matPropertyBinding, String matPropertyRod, int toolLevel) {
+    private void propertyChecks(EntityDamageByEntityEvent event, EventFriend eventFriend, String matPropertyHead, String matPropertyBinding, String matPropertyRod, int toolLevel) {
 
         if (matPropertyHead.equals(IDStrings.ALUBRASS)) { // ABRA
             propHeadAluBrass(event);
         }
 
         if (matPropertyHead.equals(IDStrings.COPPER)) { // BRAINS NOT BRAWN
-            propHeadCopper(eventResult);
+            propHeadCopper(eventFriend);
         }
 
         if ((matPropertyHead.equals(IDStrings.COBALT) && matPropertyRod.equals(IDStrings.NICKEL) || (matPropertyHead.equals(IDStrings.NICKEL) && matPropertyRod.equals(IDStrings.COBALT)))) { // CHARGED
-            propCharged(event, eventResult);
+            propCharged(event, eventFriend);
         }
 
         if (matPropertyHead.equals(IDStrings.MAGNESIUM)) { // FLAMMABLE
@@ -114,11 +115,11 @@ public class EntityDamagedListener implements Listener {
         }
 
         if (matPropertyHead.equals(IDStrings.GOLD)) { // GOLDEN VEIL
-            propHeadGold(eventResult);
+            propHeadGold(eventFriend);
         }
 
         if (matPropertyHead.equals(IDStrings.TIN)) { // MALLEABLE
-            propHeadTin(eventResult);
+            propHeadTin(eventFriend);
         }
 
         if (matPropertyHead.equals(IDStrings.LEAD)) { // POISONOUS
@@ -130,11 +131,11 @@ public class EntityDamagedListener implements Listener {
         }
 
         if (matPropertyHead.equals(IDStrings.BRASS)) { // STIFF
-            propHeadBrass(eventResult);
+            propHeadBrass(eventFriend);
         }
 
         if (matPropertyRod.equals(IDStrings.ALUBRASS)) { // STUDIOUS
-            propRodAlubrass(eventResult);
+            propRodAlubrass(eventFriend);
         }
 
         if (matPropertyHead.equals(IDStrings.HARD)) { // TUFFSTUFF
@@ -142,7 +143,7 @@ public class EntityDamagedListener implements Listener {
         }
 
         if (matPropertyHead.equals(IDStrings.DAMSTEEL)) { // VAMPIRISM
-            propHeadDamsteel((Player) event.getDamager(), eventResult);
+            propHeadDamsteel((Player) event.getDamager(), eventFriend);
         }
 
     }
@@ -162,16 +163,16 @@ public class EntityDamagedListener implements Listener {
         }
     }
 
-    private void propHeadCopper(EventResult eventResult) {
-        eventResult.setDamageMod(eventResult.getDamageMod() - 0.5);
-        eventResult.setToolExpMod(eventResult.getToolExpMod() + 1);
+    private void propHeadCopper(EventFriend eventFriend) {
+        eventFriend.setDamageMod(eventFriend.getDamageMod() - 0.5);
+        eventFriend.setToolExpMod(eventFriend.getToolExpMod() + 1);
     }
 
-    private void propCharged(EntityDamageByEntityEvent event, EventResult eventResult) {
+    private void propCharged(EntityDamageByEntityEvent event, EventFriend eventFriend) {
         LivingEntity e = (LivingEntity) event.getEntity();
         int rnd = ThreadLocalRandom.current().nextInt(1,6);
         if (rnd == 1) {
-            eventResult.setDamageMod(eventResult.getDamageMod() * 3);
+            eventFriend.setDamageMod(eventFriend.getDamageMod() * 3);
             Particle.DustOptions dustOptions = new Particle.DustOptions(Color.YELLOW, 5);
             e.getWorld().spawnParticle(Particle.REDSTONE, e.getLocation(), 50, 1, 1, 1, 0.5, dustOptions, true);
             PotionEffect potionEffect = new PotionEffect(PotionEffectType.SLOW, 40,99);
@@ -179,10 +180,10 @@ public class EntityDamagedListener implements Listener {
         }
     }
 
-    private boolean propHeadDuralium(EventResult eventResult, String matPropertyHead) {
+    private boolean propHeadDuralium(EventFriend eventFriend, String matPropertyHead) {
         if (matPropertyHead.equals(IDStrings.DURALIUM)) {
-            eventResult.setDamageMod(eventResult.getDamageMod() - 0.5);
-            eventResult.setToolExpMod(0);
+            eventFriend.setDamageMod(eventFriend.getDamageMod() - 0.5);
+            eventFriend.setToolExpMod(0);
             return true;
         }
         return false;
@@ -196,12 +197,12 @@ public class EntityDamagedListener implements Listener {
         }
     }
 
-    private void propHeadGold(EventResult eventResult) {
-        eventResult.setDamageMod(eventResult.getDamageMod() - 1);
+    private void propHeadGold(EventFriend eventFriend) {
+        eventFriend.setDamageMod(eventFriend.getDamageMod() - 1);
     }
 
-    private void propHeadTin(EventResult eventResult) {
-        eventResult.setDamageMod(eventResult.getDamageMod() - 0.5);
+    private void propHeadTin(EventFriend eventFriend) {
+        eventFriend.setDamageMod(eventFriend.getDamageMod() - 0.5);
     }
 
     private void propHeadLead(EntityDamageByEntityEvent event) {
@@ -218,13 +219,13 @@ public class EntityDamagedListener implements Listener {
         e.getWorld().spawnParticle(Particle.REDSTONE, e.getLocation(), 50, 1.5, 1.5, 1.5, 1, dustOptions);
     }
 
-    private void propHeadBrass(EventResult eventResult) {
-        eventResult.setDamageMod(eventResult.getDamageMod() + 0.5);
+    private void propHeadBrass(EventFriend eventFriend) {
+        eventFriend.setDamageMod(eventFriend.getDamageMod() + 0.5);
     }
 
-    private void propRodAlubrass(EventResult eventResult) {
-        eventResult.setDamageMod(eventResult.getDamageMod() - 0.5);
-        eventResult.setToolExpMod(eventResult.getToolExpMod() + 0.5);
+    private void propRodAlubrass(EventFriend eventFriend) {
+        eventFriend.setDamageMod(eventFriend.getDamageMod() - 0.5);
+        eventFriend.setToolExpMod(eventFriend.getToolExpMod() + 0.5);
     }
 
     private void propHeadHard(LivingEntity e) {
@@ -233,11 +234,11 @@ public class EntityDamagedListener implements Listener {
         e.addPotionEffect(potionEffect);
     }
 
-    private void propHeadDamsteel(Player player, EventResult eventResult) {
+    private void propHeadDamsteel(Player player, EventFriend eventFriend) {
         if (GeneralUtils.day(player.getWorld())) {
-            eventResult.setDamageMod(eventResult.getDamageMod() - 0.5);
+            eventFriend.setDamageMod(eventFriend.getDamageMod() - 0.5);
         } else {
-            eventResult.setDamageMod(eventResult.getDamageMod() + 0.5);
+            eventFriend.setDamageMod(eventFriend.getDamageMod() + 0.5);
         }
         int rnd = ThreadLocalRandom.current().nextInt(1, 4);
         if (rnd == 1) {
@@ -245,12 +246,12 @@ public class EntityDamagedListener implements Listener {
         }
     }
 
-    private void modChecks(EntityDamageByEntityEvent event, ItemStack heldItem, EventResult eventResult) { // Player damaging entity
+    private void modChecks(EntityDamageByEntityEvent event, ItemStack heldItem, EventFriend eventFriend) { // Player damaging entity
 
         Map<String, Integer> modLevels = Modifications.getAllModLevels(heldItem);
 
         if (modLevels.containsKey(Material.QUARTZ.toString())) { // QUARTZ
-            modCheckQuartz(modLevels.get(Material.QUARTZ.toString()), eventResult);
+            modCheckQuartz(modLevels.get(Material.QUARTZ.toString()), eventFriend);
         }
 
     }
@@ -265,8 +266,8 @@ public class EntityDamagedListener implements Listener {
 
     }
 
-    private void modCheckQuartz(int level, EventResult eventResult) {
-        eventResult.setDamageMod(eventResult.getDamageMod() + (level * 0.2));
+    private void modCheckQuartz(int level, EventFriend eventFriend) {
+        eventFriend.setDamageMod(eventFriend.getDamageMod() + (level * 0.2));
     }
 
     private void modCheckDiamond(EntityDamageByEntityEvent event, int level) {

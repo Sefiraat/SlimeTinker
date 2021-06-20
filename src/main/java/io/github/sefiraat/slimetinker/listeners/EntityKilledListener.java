@@ -1,5 +1,6 @@
 package io.github.sefiraat.slimetinker.listeners;
 
+import io.github.sefiraat.slimetinker.events.EventFriend;
 import io.github.sefiraat.slimetinker.items.templates.ToolTemplate;
 import io.github.sefiraat.slimetinker.modifiers.Modifications;
 import io.github.sefiraat.slimetinker.utils.IDStrings;
@@ -83,26 +84,26 @@ public class EntityKilledListener implements Listener {
         String matPropertyBinding = ItemUtils.getToolBindingMaterial(c);
         String matPropertyRod = ItemUtils.getToolRodMaterial(c);
 
-        EventResult eventResult = new EventResult();
+        EventFriend eventFriend = new EventFriend();
 
-        propertyChecks(event, eventResult, matPropertyHead, matPropertyBinding, matPropertyRod);
+        propertyChecks(event, eventFriend, matPropertyHead, matPropertyBinding, matPropertyRod);
         modChecks(event, heldItem);
 
-        event.setDroppedExp((int) Math.ceil(event.getDroppedExp() * eventResult.getPlayerExpMod()));
+        event.setDroppedExp((int) Math.ceil(event.getDroppedExp() * eventFriend.getPlayerExpMod()));
 
 
     }
 
-    private void propertyChecks(EntityDeathEvent event, EventResult eventResult, String matPropertyHead, String matPropertyBinding, String matPropertyRod) {
+    private void propertyChecks(EntityDeathEvent event, EventFriend eventFriend, String matPropertyHead, String matPropertyBinding, String matPropertyRod) {
 
         if (matPropertyRod.equals(IDStrings.ALUBRASS)) { // STUDIOUS
-            propRodAlubrass(eventResult);
+            propRodAlubrass(eventFriend);
         }
 
     }
 
-    private void propRodAlubrass(EventResult eventResult) {
-        eventResult.setPlayerExpMod(eventResult.getPlayerExpMod() + 0.5);
+    private void propRodAlubrass(EventFriend eventFriend) {
+        eventFriend.setPlayerExpMod(eventFriend.getPlayerExpMod() + 0.5);
     }
 
 

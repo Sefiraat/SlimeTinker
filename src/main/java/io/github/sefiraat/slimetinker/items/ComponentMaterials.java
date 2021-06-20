@@ -1,5 +1,6 @@
 package io.github.sefiraat.slimetinker.items;
 
+import io.github.sefiraat.slimetinker.events.EventsTick;
 import io.github.sefiraat.slimetinker.items.materials.ComponentMaterial;
 import io.github.sefiraat.slimetinker.utils.IDStrings;
 import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
@@ -1015,6 +1016,15 @@ public final class ComponentMaterials {
                         ));
 
         // endregion
+
+        // region Event comsumers
+
+        // Gold - Rod - All that Glitters
+        map.get(IDStrings.GOLD).setEventTick(true);
+        map.get(IDStrings.GOLD).setEventTickConsumer(EventsTick::rodGold);
+
+        // endregion
+
     }
 
     public static ComponentMaterial getById(String id) {

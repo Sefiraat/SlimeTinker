@@ -2,6 +2,10 @@ package io.github.sefiraat.slimetinker.utils;
 
 public final class IDStrings {
 
+    private IDStrings() {
+        throw new IllegalStateException("Utility class");
+    }
+
     public static final String IRON = "IRON";
     public static final String GOLD = "GOLD";
     public static final String COPPER = "COPPER";

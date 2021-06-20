@@ -16,7 +16,6 @@ import org.bukkit.persistence.PersistentDataType;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -101,9 +100,9 @@ public final class ItemUtils {
         lore.add(line());
 
         // Material properties
-        lore.add(formatPropertyName(matHead, Properties.PROP_MAP_HEAD.get(matHead)));
-        lore.add(formatPropertyName(matBind, Properties.PROP_MAP_BIND.get(matBind)));
-        lore.add(formatPropertyName(matRod, Properties.PROP_MAP_ROD.get(matRod)));
+        lore.add(formatPropertyName(matHead, Properties.getPROP_MAP_HEAD().get(matHead)));
+        lore.add(formatPropertyName(matBind, Properties.getPROP_MAP_BIND().get(matBind)));
+        lore.add(formatPropertyName(matRod, Properties.getPROP_MAP_ROD().get(matRod)));
         lore.add(line());
 
         // Exp / Leveling / Mod Slot information
@@ -112,17 +111,17 @@ public final class ItemUtils {
         lore.add(line());
 
         // Active Mods
-        LinkedHashMap<String, Integer> mapAmounts = Modifications.getModificationMap(itemStack);
+        Map<String, Integer> mapAmounts = Modifications.getModificationMap(itemStack);
         Map<String, Integer> mapLevels = Modifications.getAllModLevels(itemStack);
 
         for (Map.Entry<String, Integer> entry : mapLevels.entrySet()) {
             int level = entry.getValue();
-            Mod mod = Modifications.MODIFICATION_DEFINITIONS.get(entry.getKey());
+            Mod mod = Modifications.getMODIFICATION_DEFINITIONS().get(entry.getKey());
             if (mod.getRequirementMap().containsKey(level + 1)) {
                 String amountRequired = String.valueOf(mod.getRequirementMap().get(level + 1));
-                lore.add(ThemeUtils.CLICK_INFO + ThemeUtils.toTitleCase(entry.getKey().toString()) + " Level " + entry.getValue() + ThemeUtils.PASSIVE + " - (" + mapAmounts.get(entry.getKey()) + "/" + amountRequired + ")");
+                lore.add(ThemeUtils.CLICK_INFO + ThemeUtils.toTitleCase(entry.getKey()) + " Level " + entry.getValue() + ThemeUtils.PASSIVE + " - (" + mapAmounts.get(entry.getKey()) + "/" + amountRequired + ")");
             } else {
-                lore.add(ThemeUtils.CLICK_INFO + ThemeUtils.toTitleCase(entry.getKey().toString()) + " Level " + entry.getValue() + ThemeUtils.PASSIVE + " - (MAX)");
+                lore.add(ThemeUtils.CLICK_INFO + ThemeUtils.toTitleCase(entry.getKey()) + " Level " + entry.getValue() + ThemeUtils.PASSIVE + " - (MAX)");
             }
         }
         if (!mapLevels.isEmpty()) {

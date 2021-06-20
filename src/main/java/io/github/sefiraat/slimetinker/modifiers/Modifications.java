@@ -3,6 +3,7 @@ package io.github.sefiraat.slimetinker.modifiers;
 import io.github.mooy1.infinitylib.items.StackUtils;
 import io.github.sefiraat.slimetinker.SlimeTinker;
 import io.github.sefiraat.slimetinker.items.Materials;
+import lombok.Getter;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -12,6 +13,7 @@ import org.bukkit.persistence.PersistentDataType;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 
 public class Modifications {
@@ -20,14 +22,22 @@ public class Modifications {
         throw new IllegalStateException("Utility class");
     }
 
-    public static final LinkedList<String> MODIFICAION_LIST = new LinkedList<>();
-    public static final Map<String, Mod> MODIFICATION_DEFINITIONS = new HashMap<>();
-    public static final Map<Integer, Integer> MOD_MAP_REDSTONE = new HashMap<>();
-    public static final Map<Integer, Integer> MOD_MAP_LAPIS = new HashMap<>();
-    public static final Map<Integer, Integer> MOD_MAP_QUARTZ = new HashMap<>();
-    public static final Map<Integer, Integer> MOD_MAP_DIAMOND = new HashMap<>();
-    public static final Map<Integer, Integer> MOD_MAP_EMERALD = new HashMap<>();
-    public static final Map<Integer, Integer> MOD_MAP_PLATE = new HashMap<>();
+    @Getter
+    protected static final List<String> MODIFICAION_LIST = new LinkedList<>();
+    @Getter
+    protected static final Map<String, Mod> MODIFICATION_DEFINITIONS = new HashMap<>();
+    @Getter
+    protected static final Map<Integer, Integer> MOD_MAP_REDSTONE = new HashMap<>();
+    @Getter
+    protected static final Map<Integer, Integer> MOD_MAP_LAPIS = new HashMap<>();
+    @Getter
+    protected static final Map<Integer, Integer> MOD_MAP_QUARTZ = new HashMap<>();
+    @Getter
+    protected static final Map<Integer, Integer> MOD_MAP_DIAMOND = new HashMap<>();
+    @Getter
+    protected static final Map<Integer, Integer> MOD_MAP_EMERALD = new HashMap<>();
+    @Getter
+    protected static final Map<Integer, Integer> MOD_MAP_PLATE = new HashMap<>();
 
     static {
 
@@ -81,7 +91,7 @@ public class Modifications {
 
     }
 
-    public static void setModificationMap(PersistentDataContainer c, LinkedHashMap<String, Integer> map) {
+    public static void setModificationMap(PersistentDataContainer c, Map<String, Integer> map) {
         int[] mapArray = new int[MODIFICAION_LIST.size()];
         for (int i = 0; i < MODIFICAION_LIST.size(); i++) {
             mapArray[i] = map.get(MODIFICAION_LIST.get(i));
@@ -89,8 +99,8 @@ public class Modifications {
         c.set(SlimeTinker.inst().getKeys().getToolMods(), PersistentDataType.INTEGER_ARRAY, mapArray);
     }
 
-    public static LinkedHashMap<String, Integer> getModificationMap(ItemStack itemStack) {
-        LinkedHashMap<String, Integer> map = new LinkedHashMap<>();
+    public static Map<String, Integer> getModificationMap(ItemStack itemStack) {
+        Map<String, Integer> map = new LinkedHashMap<>();
         ItemMeta im = itemStack.getItemMeta();
         assert im != null;
         PersistentDataContainer c = im.getPersistentDataContainer();
@@ -114,8 +124,8 @@ public class Modifications {
         return map;
     }
 
-    public static LinkedHashMap<String, Integer> getModificationMap(PersistentDataContainer c) {
-        LinkedHashMap<String, Integer> map = new LinkedHashMap<>();
+    public static Map<String, Integer> getModificationMap(PersistentDataContainer c) {
+        Map<String, Integer> map = new LinkedHashMap<>();
         if (c.has(SlimeTinker.inst().getKeys().getToolMods(), PersistentDataType.INTEGER_ARRAY)) {
             int[] mapArray = c.get(SlimeTinker.inst().getKeys().getToolMods(), PersistentDataType.INTEGER_ARRAY);
             assert mapArray != null;

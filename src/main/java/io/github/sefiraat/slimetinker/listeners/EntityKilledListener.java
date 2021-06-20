@@ -26,7 +26,7 @@ import java.util.Map;
 
 public class EntityKilledListener implements Listener {
 
-    public Map<Player, List<ItemStack>>  heldItems = new HashMap<>();
+    protected Map<Player, List<ItemStack>>  heldItems = new HashMap<>();
 
     @EventHandler
     public void onPlayerDeath(PlayerDeathEvent event) {

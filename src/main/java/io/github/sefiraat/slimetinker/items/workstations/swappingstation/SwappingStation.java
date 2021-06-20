@@ -74,12 +74,7 @@ public class SwappingStation extends AbstractContainer {
         String partMaterial = partC.get(SlimeTinker.inst().getKeys().getPartInfoMaterialType(), PersistentDataType.STRING); // Material ID of part
 
         String toolPartType = toolC.get(SlimeTinker.inst().getKeys().getToolInfoToolType(), PersistentDataType.STRING); // TOOL HEAD TYPE
-
-        SlimeTinker.inst().getLogger().info(partClass);
-        SlimeTinker.inst().getLogger().info(partType);
-        SlimeTinker.inst().getLogger().info(partMaterial);
-        SlimeTinker.inst().getLogger().info("T-- " + toolPartType);
-
+        
         // Item in part slot is NOT a part
         if (partClass == null || (!partClass.equals(IDStrings.HEAD) && !partClass.equals(IDStrings.BINDING) && !partClass.equals(IDStrings.ROD))) {
             player.sendMessage(ThemeUtils.WARNING + "The item in the part slot is not a valid part.");

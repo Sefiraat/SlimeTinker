@@ -16,6 +16,10 @@ import java.util.Map;
 
 public final class Experience {
 
+    private Experience() {
+        throw new IllegalStateException("Utility class");
+    }
+
     public static final double EXP_LEVEL_BASE = 100;
     public static final double EXP_GROWTH = 1.3;
 

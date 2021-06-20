@@ -332,11 +332,11 @@ public class EffectRunnable extends BukkitRunnable {
         }
     }
 
-    private void increaseEffect(PotionEffectType potionEffectType, Map<PotionEffectType, Integer> potionEffects, int Amount) {
+    private void increaseEffect(PotionEffectType potionEffectType, Map<PotionEffectType, Integer> potionEffects, int amount) {
         if (potionEffects.containsKey(potionEffectType)) {
-            potionEffects.put(potionEffectType, potionEffects.get(potionEffectType) + Amount);
+            potionEffects.put(potionEffectType, potionEffects.get(potionEffectType) + amount);
         } else {
-            potionEffects.put(potionEffectType, Amount);
+            potionEffects.put(potionEffectType, amount);
         }
     }
 

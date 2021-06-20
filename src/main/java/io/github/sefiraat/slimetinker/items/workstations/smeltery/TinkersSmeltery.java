@@ -147,10 +147,18 @@ public class TinkersSmeltery extends AbstractContainer {
         Location controllerLoc = blockMenu.getLocation();
         Block b = controllerLoc.getBlock();
         //if (BlockStorage. controllerLoc.getBlock().getRelative(BlockFace.UP))
-        Map<String, Integer>  blockMapXY = new HashMap<>();
-        Map<String, Integer>  blockMapZY = new HashMap<>();
+        Map<String, Integer>  blockMapXY = getBlockMapXY(b);
+        Map<String, Integer>  blockMapZY = getBlockMapZY(b);
 
+        if (!blockMapXY.equals(blockMapMaster) && !blockMapZY.equals(blockMapMaster)) {
+            player.sendMessage(ThemeUtils.WARNING + "This multiblock has not been setup correctly.");
+            blockMenu.close();
+        }
 
+    }
+
+    private Map<String, Integer> getBlockMapXY(Block b) {
+        Map<String, Integer> blockMapXY = new HashMap<>();
         for (int x = -1; x <= 1; x++) {
             for (int y = -1; y <= 1; y++) {
                 String id = BlockStorage.getLocationInfo(b.getRelative(x,y,0).getLocation(),"id");
@@ -163,7 +171,11 @@ public class TinkersSmeltery extends AbstractContainer {
                 }
             }
         }
+        return blockMapXY;
+    }
 
+    private Map<String, Integer> getBlockMapZY(Block b) {
+        Map<String, Integer> blockMapZY = new HashMap<>();
         for (int z = -1; z <= 1; z++) {
             for (int y = -1; y <= 1; y++) {
                 String id = BlockStorage.getLocationInfo(b.getRelative(0,y,z).getLocation(),"id");
@@ -176,12 +188,7 @@ public class TinkersSmeltery extends AbstractContainer {
                 }
             }
         }
-
-        if (!blockMapXY.equals(blockMapMaster) && !blockMapZY.equals(blockMapMaster)) {
-            player.sendMessage(ThemeUtils.WARNING + "This multiblock has not been setup correctly.");
-            blockMenu.close();
-        }
-
+        return blockMapZY;
     }
 
 }

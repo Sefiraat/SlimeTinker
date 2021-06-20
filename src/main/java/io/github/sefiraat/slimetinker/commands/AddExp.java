@@ -9,8 +9,6 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
-// TODO REMOVE BEFORE LIVE
-
 public class AddExp extends AbstractCommand {
 
     public AddExp() {

@@ -2,6 +2,7 @@ package io.github.sefiraat.slimetinker.properties;
 
 import io.github.sefiraat.slimetinker.utils.IDStrings;
 import lombok.Data;
+import lombok.Getter;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -13,9 +14,12 @@ public class Properties {
         throw new IllegalStateException("Utility class");
     }
 
-    public static final Map<String, String> PROP_MAP_HEAD = new HashMap<>();
-    public static final Map<String, String> PROP_MAP_BIND = new HashMap<>();
-    public static final Map<String, String> PROP_MAP_ROD = new HashMap<>();
+    @Getter
+    protected static final Map<String, String> PROP_MAP_HEAD = new HashMap<>();
+    @Getter
+    protected static final Map<String, String> PROP_MAP_BIND = new HashMap<>();
+    @Getter
+    protected static final Map<String, String> PROP_MAP_ROD = new HashMap<>();
 
 
     static {

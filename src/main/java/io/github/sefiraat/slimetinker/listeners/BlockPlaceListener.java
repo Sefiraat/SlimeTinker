@@ -15,10 +15,8 @@ public class BlockPlaceListener implements Listener {
 
     @EventHandler(priority = EventPriority.LOWEST)
     public void onBlockPlace(BlockPlaceEvent event) {
-        if (!event.isCancelled()) {
-            if (!(event.getBlock().getBlockData() instanceof Ageable)) { // Don't want crops to be marked, they are checked when broken against their age
-                event.getBlock().setMetadata(IDStrings.PLACED, new FixedMetadataValue(SlimeTinker.inst(), "y"));
-            }
+        if (!event.isCancelled() && !(event.getBlock().getBlockData() instanceof Ageable)) { // Don't want crops to be marked, they are checked when broken against their age
+            event.getBlock().setMetadata(IDStrings.PLACED, new FixedMetadataValue(SlimeTinker.inst(), "y"));
         }
     }
 

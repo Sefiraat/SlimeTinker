@@ -150,17 +150,17 @@ public class BlockBreakListener implements Listener {
                     break;
                 }
             }
-            if (!addDrops.isEmpty()) {
-                for (ItemStack i : addDrops) {
-                    if (i.isSimilar(((FurnaceRecipe) recipe).getInput())) {
-                        ItemStack ni = recipe.getResult().clone();
-                        ni.setAmount(i.getAmount());
-                        newAddDrops.add(ni);
-                        removeDrops.add(i);
-                        break;
-                    }
+            if (addDrops.isEmpty()) continue;
+            for (ItemStack i : addDrops) {
+                if (i.isSimilar(((FurnaceRecipe) recipe).getInput())) {
+                    ItemStack ni = recipe.getResult().clone();
+                    ni.setAmount(i.getAmount());
+                    newAddDrops.add(ni);
+                    removeDrops.add(i);
+                    break;
                 }
             }
+
         }
         addDrops.clear();
         addDrops.addAll(newAddDrops);

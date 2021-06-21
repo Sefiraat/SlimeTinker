@@ -1,8 +1,10 @@
 package io.github.sefiraat.slimetinker.events;
 
+import io.github.sefiraat.slimetinker.listeners.DurabilityListener;
 import io.github.sefiraat.slimetinker.utils.BlockUtils;
 import io.github.sefiraat.slimetinker.utils.GeneralUtils;
 import io.github.sefiraat.slimetinker.utils.ItemUtils;
+import lombok.experimental.UtilityClass;
 import org.bukkit.Location;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.entity.Entity;
@@ -12,7 +14,8 @@ import org.bukkit.potion.PotionEffectType;
 import java.util.Map;
 import java.util.concurrent.ThreadLocalRandom;
 
-public class TickEvents {
+@UtilityClass
+public final class TickEvents {
 
     public static void rodGold(TickEventFriend friend) {
         increaseEffect(PotionEffectType.GLOWING, friend.getPotionEffects());
@@ -138,6 +141,12 @@ public class TickEvents {
 
     public static void rodCorbronze(TickEventFriend friend) {
         increaseEffect(PotionEffectType.CONFUSION, friend.getPotionEffects());
+    }
+
+    public static void headDuralium(TickEventFriend friend) {
+        if (ItemUtils.isToolBroken(friend.getHeldItem())) {
+            increaseEffect(PotionEffectType.SLOW_DIGGING, friend.getPotionEffects());
+        }
     }
 
     public static void bindString(TickEventFriend friend) {

@@ -3,6 +3,7 @@ package io.github.sefiraat.slimetinker.utils;
 import io.github.sefiraat.slimetinker.SlimeTinker;
 import io.github.sefiraat.slimetinker.items.Tools;
 import io.github.sefiraat.slimetinker.modifiers.Modifications;
+import lombok.experimental.UtilityClass;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
@@ -14,11 +15,8 @@ import org.bukkit.persistence.PersistentDataType;
 
 import java.util.Map;
 
+@UtilityClass
 public final class Experience {
-
-    private Experience() {
-        throw new IllegalStateException("Utility class");
-    }
 
     public static final double EXP_LEVEL_BASE = 100;
     public static final double EXP_GROWTH = 1.3;

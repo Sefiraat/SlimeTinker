@@ -1,10 +1,9 @@
 package io.github.sefiraat.slimetinker.utils;
 
-public final class SkullTextures {
+import lombok.experimental.UtilityClass;
 
-    private SkullTextures() {
-        throw new IllegalStateException("Utility class");
-    }
+@UtilityClass
+public final class SkullTextures {
 
     public static final String CAT_MAIN = "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYjRhZTU1ZDI5MGZiOGQzOTg2M2IzODU2Y2JmZmRlZTNiOTA2ZDkxNjY3NzVmNDgwMzE2NzU4OWY3NDVhMTg3ZCJ9fX0=";
     public static final String CAT_MATERIALS = "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYTg2Y2Q1MjljOWRjNTQ4ODRmNTRmMzdhZWNhMzBmNThhYTk5M2U2YjM1OTFkYTA1MmQ4Nzc1ZjFjNzkzOTAifX19";

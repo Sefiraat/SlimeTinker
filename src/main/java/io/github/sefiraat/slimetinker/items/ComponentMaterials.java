@@ -4,20 +4,19 @@ import io.github.sefiraat.slimetinker.events.BlockBreakEvents;
 import io.github.sefiraat.slimetinker.events.DurabilityEvents;
 import io.github.sefiraat.slimetinker.events.EntityDamageEvents;
 import io.github.sefiraat.slimetinker.events.TickEvents;
+import io.github.sefiraat.slimetinker.items.materials.Alloy;
 import io.github.sefiraat.slimetinker.items.materials.ComponentMaterial;
 import io.github.sefiraat.slimetinker.utils.IDStrings;
 import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
 import lombok.Getter;
+import lombok.experimental.UtilityClass;
 import org.bukkit.Material;
 
 import java.util.HashMap;
 import java.util.Map;
 
+@UtilityClass
 public final class ComponentMaterials {
-
-    private ComponentMaterials() {
-        throw new IllegalStateException("Utility class");
-    }
 
     @Getter
     protected static final Map<String, ComponentMaterial> map = new HashMap<>();
@@ -1038,8 +1037,9 @@ public final class ComponentMaterials {
                                                                                                 // Conductive (Special case - in Experience.java, should be moved out)
         map.get(IDStrings.CRIMSONROOTS).addBindTickEvent(TickEvents::binderCrimsonroot);        // Decay
         map.get(IDStrings.WEEPINGVINES).addBindTickEvent(TickEvents::binderWeepingvine);        // Doom
-        map.get(IDStrings.DURALIUM).addHeadDamageEvent(EntityDamageEvents::headDuralium);       // Durable - Damage
-        map.get(IDStrings.DURALIUM).addHeadBlockBreakEvent(BlockBreakEvents::headDuralium);     // Durable - Block Break
+                                                                                                // Durable - Damage (Special Case - in EntityDamageListener.java - cant move)
+                                                                                                // Durable - Block Break (Special Case - in BlockBreakListener.java - cant move)
+        map.get(IDStrings.DURALIUM).addHeadTickEvent(TickEvents::headDuralium);                 // Durable - Tick
                                                                                                 // Easy Fix (Special case - in RepairBench.java. Will have to stay there)
                                                                                                 // Enchanting (Special case - in Experience.java - could be moved if I raise an event)
         map.get(IDStrings.BILLON).addHeadTickEvent(TickEvents::headBillon);                     // Fast
@@ -1066,7 +1066,7 @@ public final class ComponentMaterials {
                                                                                                 // Reinforced (Special Case - nested within plate mod. Will be moved when mods are changed so consumers)
         map.get(IDStrings.BRONZE).addHeadTickEvent(TickEvents::headBronze);                     // Resistant
         map.get(IDStrings.IRON).addRodTickEvent(TickEvents::rodIron);                           // Sharp I
-        map.get(IDStrings.ALUBRONZE).addRodTickEvent(TickEvents::headAlubronze);                // Sharp II
+        map.get(IDStrings.ALUBRONZE).addHeadTickEvent(TickEvents::headAlubronze);               // Sharp II
         map.get(IDStrings.ALUMINUM).addRodDuraEvent(DurabilityEvents::rodAluminum);             // Soft - Durability
         map.get(IDStrings.ALUMINUM).addRodDamageEvent(EntityDamageEvents::rodAluminum);         // Soft - Damage
         map.get(IDStrings.ALUMINUM).addRodBlockBreakEvent(BlockBreakEvents::rodAluminum);       // Soft - Block Break
@@ -1082,7 +1082,7 @@ public final class ComponentMaterials {
         map.get(IDStrings.CORBRONZE).addRodTickEvent(TickEvents::rodCorbronze);                 // Too Hot to Handle
         map.get(IDStrings.HARD).addHeadDamageEvent(EntityDamageEvents::headHard);               // Tuff Stuff
         map.get(IDStrings.DAMSTEEL).addHeadDamageEvent(EntityDamageEvents::headDamsteel);       // Vampirism
-        map.get(IDStrings.STRING).addBindTickEvent(TickEvents::bindString);                     // Weak
+                                                                                                // Works (Special Case, doesn't do anything, just here for consistency)
 
         // endregion
 

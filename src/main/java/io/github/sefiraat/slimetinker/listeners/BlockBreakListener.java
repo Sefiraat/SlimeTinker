@@ -2,6 +2,8 @@ package io.github.sefiraat.slimetinker.listeners;
 
 import io.github.sefiraat.slimetinker.SlimeTinker;
 import io.github.sefiraat.slimetinker.events.BlockBreakEventFriend;
+import io.github.sefiraat.slimetinker.events.BlockBreakEvents;
+import io.github.sefiraat.slimetinker.events.DurabilityEvents;
 import io.github.sefiraat.slimetinker.items.ComponentMaterials;
 import io.github.sefiraat.slimetinker.items.materials.ComponentMaterial;
 import io.github.sefiraat.slimetinker.items.templates.ToolTemplate;
@@ -18,6 +20,7 @@ import org.bukkit.Particle;
 import org.bukkit.block.Block;
 import org.bukkit.block.data.Ageable;
 import org.bukkit.enchantments.Enchantment;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
@@ -54,10 +57,10 @@ public class BlockBreakListener implements Listener {
         }
 
         // Property and Mod checks, carries around the additional and normal drops
-        Collection<ItemStack> drops = block.getDrops(heldItem);
-        Collection<ItemStack> addDrops = new ArrayList<>();
-        Collection<ItemStack> removeDrops = new ArrayList<>();
         BlockBreakEventFriend friend = new BlockBreakEventFriend(heldItem, event.getPlayer());
+        friend.setDrops(block.getDrops(heldItem));
+        friend.setAddDrops(new ArrayList<>());
+        friend.setRemoveDrops(new ArrayList<>());
 
 
         // Properties
@@ -83,25 +86,30 @@ public class BlockBreakListener implements Listener {
         // Cancel if tool is broken (moved down here as we bypass if the duralium event fires)
         if (cancelIfBroken(heldItem)) {
             if (matPropertyHead.equals(IDStrings.DURALIUM)) { // Run duraluim as it will flag the duraliumCheck meaning we can bypass durability checks
-                ComponentMaterials.getMap().get(matPropertyHead).getBlockBreakConsumerHead().accept(friend);
+                BlockBreakEvents.headDuralium(friend);
+            } else {
+                event.getPlayer().sendMessage(ThemeUtils.WARNING + "Your tool is broken, you should really repair it!");
+                event.setCancelled(true);
+                return;
             }
-            event.getPlayer().sendMessage(ThemeUtils.WARNING + "Your tool is broken, you should really repair it!");
-            event.setCancelled(true);
-            return;
         }
 
         // Mods
-        modChecks(heldItem, block, addDrops);
+        modChecks(heldItem, block, friend.getAddDrops());
 
         // Settle
         event.setDropItems(false);
 
-        for (ItemStack i : addDrops) {
+        for (ItemStack i : friend.getAddDrops()) {
+            SlimeTinker.inst().getLogger().info(" > > " + i.getType().toString());
             block.getWorld().dropItemNaturally(block.getLocation().clone().add(0.5, 0.5, 0.5), i);
         }
-        for (ItemStack i : drops) {
-            if (!removeDrops.contains(i)) {
+        for (ItemStack i : friend.getDrops()) {
+            if (!friend.getRemoveDrops().contains(i)) {
+                SlimeTinker.inst().getLogger().info(" > > (drop) " + i.getType().toString());
                 block.getWorld().dropItemNaturally(block.getLocation().clone().add(0.5, 0.5, 0.5), i);
+            } else {
+                SlimeTinker.inst().getLogger().info(" > > (removed) " + i.getType().toString());
             }
         }
         if (shouldGrantExp(heldItem, event.getBlock())) { // Should grant exp (checks tool / material validity and the crop state)
@@ -113,8 +121,7 @@ public class BlockBreakListener implements Listener {
     private boolean cancelIfBroken(ItemStack itemStack) {
         Damageable damageable = (Damageable) itemStack.getItemMeta();
         assert damageable != null;
-        // Tool is 'broken'
-        return damageable.getDamage() == itemStack.getType().getMaxDurability() - 1;
+        return damageable.getDamage() == itemStack.getType().getMaxDurability() - 1; // Tool is 'broken'
     }
 
     private boolean shouldGrantExp(ItemStack itemStack, Block block) {

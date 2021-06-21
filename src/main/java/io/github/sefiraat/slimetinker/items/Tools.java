@@ -10,6 +10,7 @@ import io.github.sefiraat.slimetinker.utils.SkullTextures;
 import io.github.sefiraat.slimetinker.utils.ThemeUtils;
 import io.github.thebusybiscuit.slimefun4.implementation.items.blocks.UnplaceableBlock;
 import lombok.Getter;
+import lombok.experimental.UtilityClass;
 import me.mrCookieSlime.Slimefun.api.SlimefunItemStack;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
@@ -18,11 +19,8 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+@UtilityClass
 public final class Tools {
-
-    private Tools() {
-        throw new IllegalStateException("Utility class");
-    }
 
     public static final String DESC_ERROR = "Error";
     public static final int LEVEL_NETHERITE = 10;

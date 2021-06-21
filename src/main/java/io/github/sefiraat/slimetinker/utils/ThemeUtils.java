@@ -1,6 +1,7 @@
 package io.github.sefiraat.slimetinker.utils;
 
 import io.github.sefiraat.slimetinker.items.BaseItem;
+import lombok.experimental.UtilityClass;
 import me.mrCookieSlime.Slimefun.api.SlimefunItemStack;
 import net.md_5.bungee.api.ChatColor;
 import org.apache.commons.lang.StringUtils;
@@ -10,11 +11,8 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.List;
 
+@UtilityClass
 public final class ThemeUtils {
-
-    private ThemeUtils() {
-        throw new IllegalStateException("Utility class");
-    }
 
     public static final String PREFIX = "" + ChatColor.GRAY + "[Slime Tinker] ";
     public static final String SUFFIX = "" + ChatColor.GRAY + "";

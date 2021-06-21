@@ -3,23 +3,19 @@ package io.github.sefiraat.slimetinker.properties;
 import io.github.sefiraat.slimetinker.utils.IDStrings;
 import lombok.Data;
 import lombok.Getter;
+import lombok.experimental.UtilityClass;
 
 import java.util.HashMap;
 import java.util.Map;
 
-@Data
-public class Properties {
-
-    private Properties() {
-        throw new IllegalStateException("Utility class");
-    }
+public final class Properties {
 
     @Getter
-    protected static final Map<String, String> PROP_MAP_HEAD = new HashMap<>();
+    static final Map<String, String> PROP_MAP_HEAD = new HashMap<>();
     @Getter
-    protected static final Map<String, String> PROP_MAP_BIND = new HashMap<>();
+    static final Map<String, String> PROP_MAP_BIND = new HashMap<>();
     @Getter
-    protected static final Map<String, String> PROP_MAP_ROD = new HashMap<>();
+    static final Map<String, String> PROP_MAP_ROD = new HashMap<>();
 
 
     static {
@@ -72,7 +68,7 @@ public class Properties {
         PROP_MAP_ROD.put(IDStrings.COBALT, "Charged (B)");
         PROP_MAP_ROD.put(IDStrings.REINFORCED, "Reinforced");
 
-        PROP_MAP_BIND.put(IDStrings.STRING, "Weak");
+        PROP_MAP_BIND.put(IDStrings.STRING, "Works");
         PROP_MAP_BIND.put(IDStrings.VINE, "Growth");
         PROP_MAP_BIND.put(IDStrings.CRIMSONROOTS, "Decay");
         PROP_MAP_BIND.put(IDStrings.WARPEDROOTS, "Refreshing");

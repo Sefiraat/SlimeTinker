@@ -1,9 +1,11 @@
 package io.github.sefiraat.slimetinker.utils;
 
+import lombok.experimental.UtilityClass;
 import org.bukkit.Location;
 import org.bukkit.entity.LivingEntity;
 
-public class EntityUtils {
+@UtilityClass
+public final class EntityUtils {
 
 
     public static void push(LivingEntity pushed, Location loc) {

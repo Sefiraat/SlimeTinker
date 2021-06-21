@@ -1,6 +1,7 @@
 package io.github.sefiraat.slimetinker.events;
 
 import io.github.sefiraat.slimetinker.utils.GeneralUtils;
+import lombok.experimental.UtilityClass;
 import org.bukkit.Color;
 import org.bukkit.Effect;
 import org.bukkit.Location;
@@ -17,7 +18,8 @@ import java.util.concurrent.ThreadLocalRandom;
 
 import static io.github.sefiraat.slimetinker.utils.EntityUtils.push;
 
-public class EntityDamageEvents {
+@UtilityClass
+public final class EntityDamageEvents {
 
     public static void headAluBrass(EntityDamageEventFriend friend) {
         int rnd = ThreadLocalRandom.current().nextInt(1,4);

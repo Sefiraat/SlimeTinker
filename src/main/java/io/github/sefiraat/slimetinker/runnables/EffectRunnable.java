@@ -6,6 +6,7 @@ import io.github.sefiraat.slimetinker.items.ComponentMaterials;
 import io.github.sefiraat.slimetinker.items.materials.ComponentMaterial;
 import io.github.sefiraat.slimetinker.items.templates.ToolTemplate;
 import io.github.sefiraat.slimetinker.modifiers.Modifications;
+import io.github.sefiraat.slimetinker.utils.IDStrings;
 import io.github.sefiraat.slimetinker.utils.ItemUtils;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -24,12 +25,12 @@ public class EffectRunnable extends BukkitRunnable {
     @Override
     public void run() {
         for (Player player : SlimeTinker.inst().getServer().getOnlinePlayers()) {
+
             ItemStack heldItem = player.getInventory().getItemInMainHand();
-            if (!ToolTemplate.isTool(heldItem) || ItemUtils.isToolBroken(heldItem)) { // Either not a ST Tool or it is one, but broken
+
+            if (!ToolTemplate.isTool(heldItem)) {
                 return;
             }
-
-            // todo remove
             Map<PotionEffectType, Integer> potionEffects = new HashMap<>();
             TickEventFriend friend = new TickEventFriend(heldItem, player);
 
@@ -40,6 +41,13 @@ public class EffectRunnable extends BukkitRunnable {
             String matPropertyHead = ItemUtils.getToolHeadMaterial(c);
             String matPropertyBinding = ItemUtils.getToolBindingMaterial(c);
             String matPropertyRod = ItemUtils.getToolRodMaterial(c);
+
+            if (ItemUtils.isToolBroken(heldItem)) {
+                if (matPropertyHead.equals(IDStrings.DURALIUM)) {
+                    player.addPotionEffect(new PotionEffect(PotionEffectType.SLOW_DIGGING, SlimeTinker.RUNNABLE_TICK_RATE + 5, 0, false, true, true));
+                }
+            }
+
 
             for (Map.Entry<String, ComponentMaterial> mat : ComponentMaterials.getMap().entrySet()) {
                 if (mat.getValue().isEventTickHead() && matPropertyHead.equals(mat.getKey())) {

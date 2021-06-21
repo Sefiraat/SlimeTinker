@@ -70,7 +70,7 @@ public class SlimeTinker extends AbstractAddon {
         recipeManager = new RecipeManager();
         runnableManager = new RunnableManager();
 
-        new ListenerManager();
+        new ListenerManager(this, this.getServer().getPluginManager());
 
     }
 

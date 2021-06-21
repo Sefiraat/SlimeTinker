@@ -1,6 +1,7 @@
 package io.github.sefiraat.slimetinker.listeners;
 
 import io.github.mooy1.infinitylib.items.StackUtils;
+import io.github.sefiraat.slimetinker.SlimeTinker;
 import io.github.sefiraat.slimetinker.events.DurabilityEventFriend;
 import io.github.sefiraat.slimetinker.items.ComponentMaterials;
 import io.github.sefiraat.slimetinker.items.Materials;
@@ -59,8 +60,8 @@ public class DurabilityListener implements Listener {
 
         // Settle
         Damageable damageable = (Damageable) im;
-
         event.setDamage((int) Math.ceil(event.getDamage() * friend.getDurabilityMod())); // Modify the damage taken
+
         if ((damageable.getDamage() + event.getDamage()) >= event.getItem().getType().getMaxDurability()) { // This will break the tool, lets stop that!
             damageable.setDamage(event.getItem().getType().getMaxDurability() - 1);
             damagedItem.setItemMeta(im);

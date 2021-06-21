@@ -11,7 +11,7 @@ public class DurabilityEventFriend {
     private final ItemStack heldItem;
     private final Player player;
     private final PlayerItemDamageEvent event;
-    private double durabilityMod;
+    private double durabilityMod = 1;
 
     public DurabilityEventFriend(ItemStack heldItem, Player player, PlayerItemDamageEvent event) {
 

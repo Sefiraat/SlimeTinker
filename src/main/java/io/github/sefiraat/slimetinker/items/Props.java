@@ -7,15 +7,13 @@ import io.github.sefiraat.slimetinker.utils.SkullTextures;
 import io.github.sefiraat.slimetinker.utils.ThemeUtils;
 import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
 import io.github.thebusybiscuit.slimefun4.implementation.items.blocks.UnplaceableBlock;
+import lombok.experimental.UtilityClass;
 import me.mrCookieSlime.Slimefun.api.SlimefunItemStack;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
-public class Props {
-
-    private Props() {
-        throw new IllegalStateException("Utility class");
-    }
+@UtilityClass
+public final class Props {
 
     // region Dummy parts
     // Used to display the 'head' item in Property explanation recipes only

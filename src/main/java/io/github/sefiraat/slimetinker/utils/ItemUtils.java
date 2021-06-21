@@ -7,6 +7,7 @@ import io.github.sefiraat.slimetinker.items.recipes.MoltenResult;
 import io.github.sefiraat.slimetinker.modifiers.Mod;
 import io.github.sefiraat.slimetinker.modifiers.Modifications;
 import io.github.sefiraat.slimetinker.properties.Properties;
+import lombok.experimental.UtilityClass;
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.SlimefunItem;
 import net.md_5.bungee.api.ChatColor;
 import org.bukkit.inventory.ItemStack;
@@ -20,12 +21,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+@UtilityClass
 public final class ItemUtils {
-
-    private ItemUtils() {
-        throw new IllegalStateException("Utility class");
-    }
-
 
     public static void incrementRepair(ItemStack itemStack) {
         ItemMeta im = itemStack.getItemMeta();

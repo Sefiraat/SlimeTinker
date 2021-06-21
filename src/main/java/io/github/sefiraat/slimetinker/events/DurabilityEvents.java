@@ -1,12 +1,14 @@
 package io.github.sefiraat.slimetinker.events;
 
 import io.github.sefiraat.slimetinker.utils.ItemUtils;
+import lombok.experimental.UtilityClass;
 import org.bukkit.inventory.meta.Damageable;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.concurrent.ThreadLocalRandom;
 
-public class DurabilityEvents {
+@UtilityClass
+public final class DurabilityEvents {
 
     public static void rodAluBronze(DurabilityEventFriend friend) {
         friend.setDurabilityMod(friend.getDurabilityMod() + 1);

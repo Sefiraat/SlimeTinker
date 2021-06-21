@@ -3,17 +3,15 @@ package io.github.sefiraat.slimetinker.items.recipes;
 import io.github.sefiraat.slimetinker.items.materials.Alloy;
 import io.github.sefiraat.slimetinker.utils.IDStrings;
 import lombok.Getter;
+import lombok.experimental.UtilityClass;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@UtilityClass
 public final class Alloys {
-
-    private Alloys() {
-        throw new IllegalStateException("Utility class");
-    }
 
     protected static final Map<String, Integer> RECIPE_STEEL = new HashMap<>();
     protected static final Map<String, Integer> RECIPE_DAM_STEEL = new HashMap<>();

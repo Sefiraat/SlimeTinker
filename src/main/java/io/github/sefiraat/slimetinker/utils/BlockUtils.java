@@ -1,14 +1,12 @@
 package io.github.sefiraat.slimetinker.utils;
 
+import lombok.experimental.UtilityClass;
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.block.Block;
 
+@UtilityClass
 public final class BlockUtils {
-
-    private BlockUtils() {
-        throw new IllegalStateException("Utility class");
-    }
 
     public static boolean isPlaced(Block block) {
         return block.hasMetadata(IDStrings.PLACED);

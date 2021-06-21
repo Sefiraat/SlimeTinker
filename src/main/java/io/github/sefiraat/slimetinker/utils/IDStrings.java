@@ -1,10 +1,9 @@
 package io.github.sefiraat.slimetinker.utils;
 
-public final class IDStrings {
+import lombok.experimental.UtilityClass;
 
-    private IDStrings() {
-        throw new IllegalStateException("Utility class");
-    }
+@UtilityClass
+public final class IDStrings {
 
     // Vanilla + Core SF
     public static final String IRON = "IRON";

@@ -528,8 +528,6 @@ public class Props {
 
     // endregion
 
-
-
     public static void set(SlimeTinker p) {
         // Dummies for the recipe book
         new UnplaceableBlock(Categories.PROPERTIES, PROP_ABRA, DummySmelteryProp.TYPE, propRecipe(PROP_HEAD, SlimefunItems.ALUMINUM_BRASS_INGOT)).register(p);

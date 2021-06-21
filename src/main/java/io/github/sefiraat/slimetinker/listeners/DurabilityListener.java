@@ -1,8 +1,10 @@
 package io.github.sefiraat.slimetinker.listeners;
 
 import io.github.mooy1.infinitylib.items.StackUtils;
-import io.github.sefiraat.slimetinker.events.EventFriend;
+import io.github.sefiraat.slimetinker.events.DurabilityEventFriend;
+import io.github.sefiraat.slimetinker.items.ComponentMaterials;
 import io.github.sefiraat.slimetinker.items.Materials;
+import io.github.sefiraat.slimetinker.items.materials.ComponentMaterial;
 import io.github.sefiraat.slimetinker.items.templates.ToolTemplate;
 import io.github.sefiraat.slimetinker.modifiers.Modifications;
 import io.github.sefiraat.slimetinker.utils.IDStrings;
@@ -29,15 +31,36 @@ public class DurabilityListener implements Listener {
             return;
         }
 
+        // Properties
         ItemMeta im = event.getItem().getItemMeta();
+        assert im != null;
+        PersistentDataContainer c = im.getPersistentDataContainer();
+        String matPropertyHead = ItemUtils.getToolHeadMaterial(c);
+        String matPropertyBinding = ItemUtils.getToolBindingMaterial(c);
+        String matPropertyRod = ItemUtils.getToolRodMaterial(c);
+
+        DurabilityEventFriend friend = new DurabilityEventFriend(event.getItem(), event.getPlayer(), event);
+
+        for (Map.Entry<String, ComponentMaterial> mat : ComponentMaterials.getMap().entrySet()) {
+            if (mat.getValue().isEventDurabilityHead() && matPropertyHead.equals(mat.getKey())) {
+                mat.getValue().getDurabilityConsumerHead().accept(friend);
+            }
+            if (mat.getValue().isEventDurabilityBind() && matPropertyBinding.equals(mat.getKey())) {
+                mat.getValue().getDurabilityConsumerBind().accept(friend);
+            }
+            if (mat.getValue().isEventDurabilityRod() && matPropertyRod.equals(mat.getKey())) {
+                mat.getValue().getDurabilityConsumerRod().accept(friend);
+            }
+        }
+
+        // Mods
+        modChecks(damagedItem, event);
+
+
+        // Settle
         Damageable damageable = (Damageable) im;
-        assert damageable != null;
-        EventFriend eventFriend = new EventFriend();
 
-        propertyChecks(damagedItem, eventFriend, event);
-        modChecks(damagedItem, eventFriend, event);
-
-        event.setDamage((int) Math.ceil(event.getDamage() * eventFriend.getDurabilityMod())); // Modify the damage taken
+        event.setDamage((int) Math.ceil(event.getDamage() * friend.getDurabilityMod())); // Modify the damage taken
         if ((damageable.getDamage() + event.getDamage()) >= event.getItem().getType().getMaxDurability()) { // This will break the tool, lets stop that!
             damageable.setDamage(event.getItem().getType().getMaxDurability() - 1);
             damagedItem.setItemMeta(im);
@@ -57,9 +80,6 @@ public class DurabilityListener implements Listener {
         ItemStack newItem = damagedItem.clone();
         ItemMeta im = newItem.getItemMeta();
         assert im != null;
-        PersistentDataContainer c = im.getPersistentDataContainer();
-        String matPropertyHead = ItemUtils.getToolHeadMaterial(c);
-        String matPropertyRod = ItemUtils.getToolRodMaterial(c);
 
         Damageable damageable = (Damageable) im;
         damageable.setDamage(damagedItem.getType().getMaxDurability() - 1);
@@ -67,66 +87,7 @@ public class DurabilityListener implements Listener {
 
     }
 
-    private void propertyChecks(ItemStack damagedItem, EventFriend eventFriend, PlayerItemDamageEvent event) {
-
-        ItemMeta im = damagedItem.getItemMeta();
-        assert im != null;
-        PersistentDataContainer c = im.getPersistentDataContainer();
-        String matPropertyHead = ItemUtils.getToolHeadMaterial(c);
-        String matPropertyBinding = ItemUtils.getToolBindingMaterial(c);
-        String matPropertyRod = ItemUtils.getToolRodMaterial(c);
-
-        if (matPropertyRod.equals(IDStrings.ALUBRONZE)) { // BRITTLE
-            propHeadAluBronze(eventFriend);
-        }
-
-        if (matPropertyHead.equals(IDStrings.SOLDER)) { // HIDDEN
-            propHeadSolder(damagedItem, event);
-        }
-
-        if (matPropertyHead.equals(IDStrings.ALUMINUM)) { // RECYCLABLE
-            propHeadAluminum(damagedItem, event);
-        }
-
-        if (matPropertyRod.equals(IDStrings.ALUMINUM)) { // SOFT
-            propRodAluminum(eventFriend);
-        }
-
-        if (matPropertyHead.equals(IDStrings.REINFORCED) || matPropertyRod.equals(IDStrings.HARD)) { // Explosive pair
-            propExplosive(eventFriend);
-        }
-
-    }
-
-    private void propHeadAluBronze(EventFriend eventFriend) {
-        eventFriend.setDurabilityMod(eventFriend.getDurabilityMod() + 1);
-    }
-
-    private void propHeadSolder(ItemStack itemStack, PlayerItemDamageEvent event) {
-        ItemMeta im = itemStack.getItemMeta();
-        assert im != null;
-        Damageable damageable = (Damageable) im;
-        damageable.setDamage(itemStack.getType().getMaxDurability() - 1);
-        itemStack.setItemMeta(im);
-        event.setCancelled(true);
-    }
-
-    private void propHeadAluminum(ItemStack itemStack, PlayerItemDamageEvent event) {
-        if (ThreadLocalRandom.current().nextInt(1,4) == 1) {
-            ItemUtils.incrementRepair(itemStack, 1);
-            event.setCancelled(true);
-        }
-    }
-
-    private void propRodAluminum(EventFriend eventFriend) {
-        eventFriend.setDurabilityMod(eventFriend.getDurabilityMod() + 1);
-    }
-
-    private void propExplosive(EventFriend eventFriend) {
-        eventFriend.setDurabilityMod(eventFriend.getDurabilityMod() + 17);
-    }
-
-    private void modChecks(ItemStack damagedItem, EventFriend eventFriend, PlayerItemDamageEvent event) {
+    private void modChecks(ItemStack damagedItem, PlayerItemDamageEvent event) {
 
         Map<String, Integer> modLevels = Modifications.getAllModLevels(damagedItem);
 

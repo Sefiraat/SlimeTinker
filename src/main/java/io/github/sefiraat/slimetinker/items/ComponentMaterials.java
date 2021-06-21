@@ -1,6 +1,8 @@
 package io.github.sefiraat.slimetinker.items;
 
-import io.github.sefiraat.slimetinker.events.EventsTick;
+import io.github.sefiraat.slimetinker.events.BlockBreakEvents;
+import io.github.sefiraat.slimetinker.events.EntityDamageEvents;
+import io.github.sefiraat.slimetinker.events.TickEvents;
 import io.github.sefiraat.slimetinker.items.materials.ComponentMaterial;
 import io.github.sefiraat.slimetinker.utils.IDStrings;
 import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
@@ -1017,11 +1019,13 @@ public final class ComponentMaterials {
 
         // endregion
 
-        // region Event comsumers
+        // region Event Consumers
 
-        // Gold - Rod - All that Glitters
-        map.get(IDStrings.GOLD).setEventTick(true);
-        map.get(IDStrings.GOLD).setEventTickConsumer(EventsTick::rodGold);
+        map.get(IDStrings.ALUBRASS).addHeadDamageEvent(EntityDamageEvents::headAluBrass);       // Abra
+        map.get(IDStrings.GOLD).addRodTickEvent(TickEvents::rodGold);                           // All that glitters
+        map.get(IDStrings.VINEGREEN).addBindTickEvent(TickEvents::binderVinegreen);             // Attraction
+        map.get(IDStrings.COPPER).addHeadDamageEvent(EntityDamageEvents::headCopper);           // Brains not brawn - Damage
+        map.get(IDStrings.COPPER).addHeadBlockBreakEvent(BlockBreakEvents::headCopper);         // Brains not brawn - Block Break
 
         // endregion
 

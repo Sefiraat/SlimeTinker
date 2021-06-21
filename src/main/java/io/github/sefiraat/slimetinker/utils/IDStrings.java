@@ -31,6 +31,12 @@ public final class IDStrings {
     public static final String NICKEL = "NICKEL";
     public static final String COBALT = "COBALT";
     public static final String REINFORCED = "REINFORCED_ALLOY";
+    public static final String STRING = "STRING";
+    public static final String VINE = "VINE";
+    public static final String CRIMSONROOTS = "CRIMSON_ROOT";
+    public static final String WARPEDROOTS = "WARPED_ROOT";
+    public static final String WEEPINGVINES = "WEEPING_VINE";
+    public static final String TWISTEDVINES = "TWISTED_VINE";
 
     // Infinity Expac
     public static final String VOID = "VOID";
@@ -55,12 +61,6 @@ public final class IDStrings {
     public static final String SINGIRON = "IRON_SINGULARITY";
     public static final String SINGINFINITY = "INFINITY_SINGULARITY";
 
-    public static final String STRING = "STRING";
-    public static final String VINE = "VINE";
-    public static final String ROOTRED = "CRIMSON_ROOT";
-    public static final String ROOTGREEN = "WARPED_ROOT";
-    public static final String VINERED = "WEEPING_VINE";
-    public static final String VINEGREEN = "TWISTED_VINE";
 
     public static final String HEAD = "HEAD";
     public static final String BINDING = "BINDING";

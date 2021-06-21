@@ -49,12 +49,6 @@ public class BlockBreakListener implements Listener {
             return;
         }
 
-        if (cancelIfBroken(heldItem)) {
-            event.getPlayer().sendMessage(ThemeUtils.WARNING + "Your tool is broken, you should really repair it!");
-            event.setCancelled(true);
-            return;
-        }
-
         if (BlockUtils.isPlaced(block)) {
             return;
         }
@@ -74,7 +68,6 @@ public class BlockBreakListener implements Listener {
         String matPropertyBinding = ItemUtils.getToolBindingMaterial(c);
         String matPropertyRod = ItemUtils.getToolRodMaterial(c);
 
-
         for (Map.Entry<String, ComponentMaterial> mat : ComponentMaterials.getMap().entrySet()) {
             if (mat.getValue().isEventBlockBreakHead() && matPropertyHead.equals(mat.getKey())) {
                 mat.getValue().getBlockBreakConsumerHead().accept(friend);
@@ -85,6 +78,16 @@ public class BlockBreakListener implements Listener {
             if (mat.getValue().isEventBlockBreakRod() && matPropertyRod.equals(mat.getKey())) {
                 mat.getValue().getBlockBreakConsumerBind().accept(friend);
             }
+        }
+
+        // Cancel if tool is broken (moved down here as we bypass if the duralium event fires)
+        if (cancelIfBroken(heldItem)) {
+            if (matPropertyHead.equals(IDStrings.DURALIUM)) { // Run duraluim as it will flag the duraliumCheck meaning we can bypass durability checks
+                ComponentMaterials.getMap().get(matPropertyHead).getBlockBreakConsumerHead().accept(friend);
+            }
+            event.getPlayer().sendMessage(ThemeUtils.WARNING + "Your tool is broken, you should really repair it!");
+            event.setCancelled(true);
+            return;
         }
 
         // Mods

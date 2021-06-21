@@ -1,6 +1,7 @@
 package io.github.sefiraat.slimetinker.items;
 
 import io.github.sefiraat.slimetinker.events.BlockBreakEvents;
+import io.github.sefiraat.slimetinker.events.DurabilityEvents;
 import io.github.sefiraat.slimetinker.events.EntityDamageEvents;
 import io.github.sefiraat.slimetinker.events.TickEvents;
 import io.github.sefiraat.slimetinker.items.materials.ComponentMaterial;
@@ -517,10 +518,10 @@ public final class ComponentMaterials {
                                 null,
                                 null
                         ));
-        map.put(IDStrings.ROOTRED,
+        map.put(IDStrings.CRIMSONROOTS,
                 new ComponentMaterial
                         (
-                                IDStrings.ROOTRED,
+                                IDStrings.CRIMSONROOTS,
                                 "#b5365e",
                                 false,
                                 true,
@@ -536,10 +537,10 @@ public final class ComponentMaterials {
                                 null,
                                 null
                         ));
-        map.put(IDStrings.ROOTGREEN,
+        map.put(IDStrings.WARPEDROOTS,
                 new ComponentMaterial
                         (
-                                IDStrings.ROOTGREEN,
+                                IDStrings.WARPEDROOTS,
                                 "#36b549",
                                 false,
                                 true,
@@ -555,10 +556,10 @@ public final class ComponentMaterials {
                                 null,
                                 null
                         ));
-        map.put(IDStrings.VINERED,
+        map.put(IDStrings.WEEPINGVINES,
                 new ComponentMaterial
                         (
-                                IDStrings.VINERED,
+                                IDStrings.WEEPINGVINES,
                                 "#9c091d",
                                 false,
                                 true,
@@ -574,10 +575,10 @@ public final class ComponentMaterials {
                                 null,
                                 null
                         ));
-        map.put(IDStrings.VINEGREEN,
+        map.put(IDStrings.TWISTEDVINES,
                 new ComponentMaterial
                         (
-                                IDStrings.VINEGREEN,
+                                IDStrings.TWISTEDVINES,
                                 "#1b8045",
                                 false,
                                 true,
@@ -1021,11 +1022,73 @@ public final class ComponentMaterials {
 
         // region Event Consumers
 
+        // region Vanilla + Core SF
         map.get(IDStrings.ALUBRASS).addHeadDamageEvent(EntityDamageEvents::headAluBrass);       // Abra
         map.get(IDStrings.GOLD).addRodTickEvent(TickEvents::rodGold);                           // All that glitters
-        map.get(IDStrings.VINEGREEN).addBindTickEvent(TickEvents::binderVinegreen);             // Attraction
+        map.get(IDStrings.TWISTEDVINES).addBindTickEvent(TickEvents::binderTwistingvine);       // Attraction
         map.get(IDStrings.COPPER).addHeadDamageEvent(EntityDamageEvents::headCopper);           // Brains not brawn - Damage
         map.get(IDStrings.COPPER).addHeadBlockBreakEvent(BlockBreakEvents::headCopper);         // Brains not brawn - Block Break
+        map.get(IDStrings.ALUBRONZE).addRodDuraEvent(DurabilityEvents::rodAluBronze);           // Brittle
+        map.get(IDStrings.REINFORCED).addHeadDuraEvent(DurabilityEvents::explosive);            // Bulky (explosive)
+        map.get(IDStrings.TIN).addRodTickEvent(TickEvents::rodTin);                             // Can
+        map.get(IDStrings.NICKEL).addHeadDamageEvent(EntityDamageEvents::charged);              // Charged A - Head
+        map.get(IDStrings.NICKEL).addRodDamageEvent(EntityDamageEvents::charged);               // Charged A - Rod
+        map.get(IDStrings.COBALT).addHeadDamageEvent(EntityDamageEvents::charged);              // Charged A - Head
+        map.get(IDStrings.COBALT).addRodDamageEvent(EntityDamageEvents::charged);               // Charged A - Rod
+                                                                                                // Conductive (Special case - in Experience.java, should be moved out)
+        map.get(IDStrings.CRIMSONROOTS).addBindTickEvent(TickEvents::binderCrimsonroot);        // Decay
+        map.get(IDStrings.WEEPINGVINES).addBindTickEvent(TickEvents::binderWeepingvine);        // Doom
+        map.get(IDStrings.DURALIUM).addHeadDamageEvent(EntityDamageEvents::headDuralium);       // Durable - Damage
+        map.get(IDStrings.DURALIUM).addHeadBlockBreakEvent(BlockBreakEvents::headDuralium);     // Durable - Block Break
+                                                                                                // Easy Fix (Special case - in RepairBench.java. Will have to stay there)
+                                                                                                // Enchanting (Special case - in Experience.java - could be moved if I raise an event)
+        map.get(IDStrings.BILLON).addHeadTickEvent(TickEvents::headBillon);                     // Fast
+        map.get(IDStrings.MAGNESIUM).addHeadDamageEvent(EntityDamageEvents::headMagnesium);     // Flammable
+        map.get(IDStrings.CORBRONZE).addHeadBlockBreakEvent(BlockBreakEvents::headCorbronze);   // Flaming Hot
+                                                                                                // Fused (Special Case - in EntityKilledListener.java and DropItemListener.java - likely wont move
+        map.get(IDStrings.GOLD).addHeadDamageEvent(EntityDamageEvents::headGold);               // Golden Veil - Damage
+        map.get(IDStrings.GOLD).addHeadTickEvent(TickEvents::headGold);                         // Golden Veil - Tick
+        map.get(IDStrings.ZINC).addHeadTickEvent(TickEvents::headZinc);                         // Graceful
+        map.get(IDStrings.VINE).addBindTickEvent(TickEvents::binderVine);                       // Growth
+        map.get(IDStrings.HARD).addRodDuraEvent(DurabilityEvents::explosive);                   // Heavy (explosive)
+        map.get(IDStrings.SOLDER).addHeadDuraEvent(DurabilityEvents::headSolder);               // Hidden - Durability
+        map.get(IDStrings.SOLDER).addHeadTickEvent(TickEvents::headSolder);                     // Hidden - Tick
+        map.get(IDStrings.BRONZE).addRodTickEvent(TickEvents::rodBronze);                       // Ingheights
+        map.get(IDStrings.LEAD).addRodTickEvent(TickEvents::rodLead);                           // Leech
+        map.get(IDStrings.MAGNESIUM).addRodTickEvent(TickEvents::rodMagnesium);                 // Magnetisium
+        map.get(IDStrings.TIN).addHeadDamageEvent(EntityDamageEvents::headTin);                 // Malleable - Damage
+        map.get(IDStrings.TIN).addHeadTickEvent(TickEvents::headTin);                           // Malleable - Tick
+        map.get(IDStrings.DAMSTEEL).addRodTickEvent(TickEvents::rodDamsteel);                   // Night Stalker
+        map.get(IDStrings.BRASS).addRodTickEvent(TickEvents::rodBrass);                         // Oxygenated
+        map.get(IDStrings.LEAD).addHeadDamageEvent(EntityDamageEvents::headLead);               // Poisonous
+        map.get(IDStrings.ALUMINUM).addHeadDuraEvent(DurabilityEvents::headAluminum);           // Recycleable
+        map.get(IDStrings.WARPEDROOTS).addBindTickEvent(TickEvents::bindWarpedroot);            // Refreshing
+                                                                                                // Reinforced (Special Case - nested within plate mod. Will be moved when mods are changed so consumers)
+        map.get(IDStrings.BRONZE).addHeadTickEvent(TickEvents::headBronze);                     // Resistant
+        map.get(IDStrings.IRON).addRodTickEvent(TickEvents::rodIron);                           // Sharp I
+        map.get(IDStrings.ALUBRONZE).addRodTickEvent(TickEvents::headAlubronze);                // Sharp II
+        map.get(IDStrings.ALUMINUM).addRodDuraEvent(DurabilityEvents::rodAluminum);             // Soft - Durability
+        map.get(IDStrings.ALUMINUM).addRodDamageEvent(EntityDamageEvents::rodAluminum);         // Soft - Damage
+        map.get(IDStrings.ALUMINUM).addRodBlockBreakEvent(BlockBreakEvents::rodAluminum);       // Soft - Block Break
+        map.get(IDStrings.SILVER).addRodTickEvent(TickEvents::rodSilver);                       // Soft Touch
+        map.get(IDStrings.BILLON).addRodTickEvent(TickEvents::rodBillon);                       // Springs
+                                                                                                // Stability (Special Case, doesn't do anything, just here for consistency)
+        map.get(IDStrings.STEEL).addHeadDamageEvent(EntityDamageEvents::headSteel);             // Stainless
+        map.get(IDStrings.BRASS).addHeadDamageEvent(EntityDamageEvents::headBrass);             // Stiff - Damage
+        map.get(IDStrings.BRASS).addHeadTickEvent(TickEvents::headBrass);                       // Stiff - Tick
+        map.get(IDStrings.ALUBRASS).addRodDamageEvent(EntityDamageEvents::rodAlubrass);         // Studious - Damage
+        map.get(IDStrings.ALUBRASS).addRodBlockBreakEvent(BlockBreakEvents::rodAluBrass);       // Studious - Block Break
+        map.get(IDStrings.ZINC).addRodTickEvent(TickEvents::rodZinc);                           // Super Light Weight
+        map.get(IDStrings.CORBRONZE).addRodTickEvent(TickEvents::rodCorbronze);                 // Too Hot to Handle
+        map.get(IDStrings.HARD).addHeadDamageEvent(EntityDamageEvents::headHard);               // Tuff Stuff
+        map.get(IDStrings.DAMSTEEL).addHeadDamageEvent(EntityDamageEvents::headDamsteel);       // Vampirism
+        map.get(IDStrings.STRING).addBindTickEvent(TickEvents::bindString);                     // Weak
+
+        // endregion
+
+        // region Infinity Expac
+
+        // endregion
 
         // endregion
 

@@ -74,10 +74,10 @@ public class Properties {
 
         PROP_MAP_BIND.put(IDStrings.STRING, "Weak");
         PROP_MAP_BIND.put(IDStrings.VINE, "Growth");
-        PROP_MAP_BIND.put(IDStrings.ROOTRED, "Decay");
-        PROP_MAP_BIND.put(IDStrings.ROOTGREEN, "Refreshing");
-        PROP_MAP_BIND.put(IDStrings.VINERED, "Doom");
-        PROP_MAP_BIND.put(IDStrings.VINEGREEN, "Attraction");
+        PROP_MAP_BIND.put(IDStrings.CRIMSONROOTS, "Decay");
+        PROP_MAP_BIND.put(IDStrings.WARPEDROOTS, "Refreshing");
+        PROP_MAP_BIND.put(IDStrings.WEEPINGVINES, "Doom");
+        PROP_MAP_BIND.put(IDStrings.TWISTEDVINES, "Attraction");
 
     }
 

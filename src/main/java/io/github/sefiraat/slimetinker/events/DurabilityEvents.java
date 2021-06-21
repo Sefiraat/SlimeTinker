@@ -8,7 +8,7 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class DurabilityEvents {
 
-    public static void headAluBronze(DurabilityEventFriend friend) {
+    public static void rodAluBronze(DurabilityEventFriend friend) {
         friend.setDurabilityMod(friend.getDurabilityMod() + 1);
     }
 

@@ -11,7 +11,7 @@ import java.util.Iterator;
 
 public class BlockBreakEvents {
 
-    private void propHeadCorbronze(BlockBreakEventFriend friend) {
+    public static void headCorbronze(BlockBreakEventFriend friend) {
         Collection<ItemStack> newAddDrops = new ArrayList<>();
 
         Iterator<Recipe> recipeIterator = Bukkit.recipeIterator();
@@ -45,6 +45,20 @@ public class BlockBreakEvents {
 
     public static void headCopper(BlockBreakEventFriend friend) {
         friend.setToolExpMod(friend.getToolExpMod() + 1);
+    }
+
+    public static void rodAluBrass(BlockBreakEventFriend friend) {
+        friend.setToolExpMod(friend.getToolExpMod() + 0.5);
+        friend.setPlayerExpMod(friend.getPlayerExpMod() + 0.5);
+    }
+
+    public static void rodAluminum(BlockBreakEventFriend friend) {
+        friend.setToolExpMod(friend.getToolExpMod() + 0.5);
+    }
+
+    public static void headDuralium(BlockBreakEventFriend friend) {
+        friend.setToolExpMod(0);
+        friend.setDuraliumCheck(true);
     }
 
 }

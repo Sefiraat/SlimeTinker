@@ -330,10 +330,10 @@ public final class Parts {
 
         binderMap.put(binderString.getId(), IDStrings.STRING);
         binderMap.put(binderVine.getId(), IDStrings.VINE);
-        binderMap.put(binderRootRed.getId(), IDStrings.ROOTRED);
-        binderMap.put(binderRootGreen.getId(), IDStrings.ROOTGREEN);
-        binderMap.put(binderVineRed.getId(), IDStrings.VINERED);
-        binderMap.put(binderVineGreen.getId(), IDStrings.VINEGREEN);
+        binderMap.put(binderRootRed.getId(), IDStrings.CRIMSONROOTS);
+        binderMap.put(binderRootGreen.getId(), IDStrings.WARPEDROOTS);
+        binderMap.put(binderVineRed.getId(), IDStrings.WEEPINGVINES);
+        binderMap.put(binderVineGreen.getId(), IDStrings.TWISTEDVINES);
 
     }
 

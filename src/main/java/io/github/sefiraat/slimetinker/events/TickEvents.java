@@ -18,7 +18,7 @@ public class TickEvents {
         increaseEffect(PotionEffectType.GLOWING, friend.getPotionEffects());
     }
 
-    public static void binderVinegreen(TickEventFriend friend) {
+    public static void binderTwistingvine(TickEventFriend friend) {
         for (Entity entity : friend.getPlayer().getNearbyEntities(5,5,5)) {
             if (entity instanceof Item) {
                 Location eLoc = entity.getLocation();
@@ -32,7 +32,7 @@ public class TickEvents {
         increaseEffect(PotionEffectType.SATURATION, friend.getPotionEffects());
     }
 
-    public static void binderRootred(TickEventFriend friend) {
+    public static void binderCrimsonroot(TickEventFriend friend) {
         if (!GeneralUtils.day(friend.getPlayer().getWorld())) {
             int rnd = ThreadLocalRandom.current().nextInt(1,5);
             if (rnd == 1) {
@@ -41,7 +41,7 @@ public class TickEvents {
         }
     }
 
-    public static void binderVinered(TickEventFriend friend) {
+    public static void binderWeepingvine(TickEventFriend friend) {
         increaseEffect(PotionEffectType.BAD_OMEN, friend.getPotionEffects());
     }
 
@@ -99,7 +99,7 @@ public class TickEvents {
         increaseEffect(PotionEffectType.WATER_BREATHING, friend.getPotionEffects());
     }
 
-    public static void rindRootgreen(TickEventFriend friend) {
+    public static void bindWarpedroot(TickEventFriend friend) {
         int rnd = ThreadLocalRandom.current().nextInt(1,5);
         if (rnd == 1) {
             friend.getPlayer().setHealth(Math.min(friend.getPlayer().getHealth() + 1, friend.getPlayer().getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue()));

@@ -39,16 +39,12 @@ public class EntityDamageEvents {
         friend.setToolExpMod(friend.getToolExpMod() + 1);
     }
 
+    public static void rodAluminum(EntityDamageEventFriend friend) {
+        friend.setToolExpMod(friend.getToolExpMod() + 0.5);
+    }
+
     public static void charged(EntityDamageEventFriend friend) {
-        LivingEntity e = (LivingEntity) friend.getDamagedEntity();
-        int rnd = ThreadLocalRandom.current().nextInt(1,6);
-        if (rnd == 1) {
-            friend.setDamageMod(friend.getDamageMod() * 3);
-            Particle.DustOptions dustOptions = new Particle.DustOptions(Color.YELLOW, 5);
-            e.getWorld().spawnParticle(Particle.REDSTONE, e.getLocation(), 50, 1, 1, 1, 0.5, dustOptions, true);
-            PotionEffect potionEffect = new PotionEffect(PotionEffectType.SLOW, 40,99);
-            e.addPotionEffect(potionEffect);
-        }
+        friend.setCharged(friend.getCharged() + 1);
     }
 
     public static void headDuralium(EntityDamageEventFriend friend) {

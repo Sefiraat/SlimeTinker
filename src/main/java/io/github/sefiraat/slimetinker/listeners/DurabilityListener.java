@@ -1,10 +1,9 @@
 package io.github.sefiraat.slimetinker.listeners;
 
 import io.github.mooy1.infinitylib.items.StackUtils;
-import io.github.sefiraat.slimetinker.SlimeTinker;
 import io.github.sefiraat.slimetinker.events.DurabilityEventFriend;
-import io.github.sefiraat.slimetinker.items.ComponentMaterials;
 import io.github.sefiraat.slimetinker.items.Materials;
+import io.github.sefiraat.slimetinker.items.componentmaterials.CMManager;
 import io.github.sefiraat.slimetinker.items.materials.ComponentMaterial;
 import io.github.sefiraat.slimetinker.items.templates.ToolTemplate;
 import io.github.sefiraat.slimetinker.modifiers.Modifications;
@@ -42,7 +41,7 @@ public class DurabilityListener implements Listener {
 
         DurabilityEventFriend friend = new DurabilityEventFriend(event.getItem(), event.getPlayer(), event);
 
-        for (Map.Entry<String, ComponentMaterial> mat : ComponentMaterials.getMap().entrySet()) {
+        for (Map.Entry<String, ComponentMaterial> mat : CMManager.getMAP().entrySet()) {
             if (mat.getValue().isEventDurabilityHead() && matPropertyHead.equals(mat.getKey())) {
                 mat.getValue().getDurabilityConsumerHead().accept(friend);
             }

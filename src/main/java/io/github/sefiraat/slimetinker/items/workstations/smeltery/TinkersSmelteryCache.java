@@ -2,7 +2,7 @@ package io.github.sefiraat.slimetinker.items.workstations.smeltery;
 
 import io.github.mooy1.infinitylib.items.StackUtils;
 import io.github.sefiraat.slimetinker.SlimeTinker;
-import io.github.sefiraat.slimetinker.items.ComponentMaterials;
+import io.github.sefiraat.slimetinker.items.componentmaterials.CMManager;
 import io.github.sefiraat.slimetinker.items.materials.Alloy;
 import io.github.sefiraat.slimetinker.items.materials.ComponentMaterial;
 import io.github.sefiraat.slimetinker.items.recipes.Alloys;
@@ -74,6 +74,7 @@ public final class TinkersSmelteryCache extends AbstractCache {
                 input.setAmount(input.getAmount() - 1);
                 blockMenu.pushItem(new ItemStack(Material.LAVA_BUCKET), TinkersSmeltery.OUTPUT_SLOT);
             }
+            return;
         }
 
         MoltenResult result = ItemUtils.getMoltenResult(input);
@@ -254,7 +255,7 @@ public final class TinkersSmelteryCache extends AbstractCache {
         }
 
         String metalID = first.get();
-        ComponentMaterial componentMaterial = ComponentMaterials.getById(metalID);
+        ComponentMaterial componentMaterial = CMManager.getById(metalID);
 
         // Cast valid, but this cast and metal combination doesn't work
         if (!result.getOutputs().containsKey(componentMaterial)) {

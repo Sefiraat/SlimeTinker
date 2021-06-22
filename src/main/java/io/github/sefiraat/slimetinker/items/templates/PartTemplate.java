@@ -1,7 +1,7 @@
 package io.github.sefiraat.slimetinker.items.templates;
 
 import io.github.sefiraat.slimetinker.SlimeTinker;
-import io.github.sefiraat.slimetinker.items.ComponentMaterials;
+import io.github.sefiraat.slimetinker.items.componentmaterials.CMManager;
 import io.github.sefiraat.slimetinker.utils.ThemeUtils;
 import io.github.thebusybiscuit.slimefun4.implementation.items.blocks.UnplaceableBlock;
 import lombok.Getter;
@@ -25,7 +25,7 @@ public class PartTemplate extends UnplaceableBlock {
 
     private final String name;
 
-    public String getName(String material) { return ChatColor.of(ComponentMaterials.getById(material).getColorHex()) + ThemeUtils.toTitleCase(material) + ThemeUtils.ITEM_PART + " " + name;
+    public String getName(String material) { return ChatColor.of(CMManager.getById(material).getColorHex()) + ThemeUtils.toTitleCase(material) + ThemeUtils.ITEM_PART + " " + name;
     }
 
     public List<String> getLore(String material) {
@@ -35,7 +35,7 @@ public class PartTemplate extends UnplaceableBlock {
         list.add(ThemeUtils.PASSIVE + "be made into something greater at the");
         list.add(ThemeUtils.PASSIVE + "Tinker's table.");
         list.add("");
-        list.add(ThemeUtils.CLICK_INFO + "Material : " + ChatColor.of(ComponentMaterials.getById(material).getColorHex()) + ThemeUtils.toTitleCase(material));
+        list.add(ThemeUtils.CLICK_INFO + "Material : " + ChatColor.of(CMManager.getById(material).getColorHex()) + ThemeUtils.toTitleCase(material));
         return list;
     }
 

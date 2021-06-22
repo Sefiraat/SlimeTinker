@@ -38,4 +38,26 @@ public final class DurabilityEvents {
         friend.setDurabilityMod(friend.getDurabilityMod() + 17);
     }
 
+    public static void headSingInfinity(DurabilityEventFriend friend) {
+        friend.setDurabilityMod(0);
+    }
+
+    public static void headMythril(DurabilityEventFriend friend) {
+        friend.setDurabilityMod(friend.getDurabilityMod() + 0.5);
+    }
+
+    public static void headInfinity(DurabilityEventFriend friend) {
+        friend.setDurabilityMod(0);
+    }
+
+    public static void headSingAluminum(DurabilityEventFriend friend) {
+        if (ThreadLocalRandom.current().nextInt(1,4) == 1) {
+            ItemUtils.incrementRepair(friend.getHeldItem(), 2);
+            friend.getEvent().setCancelled(true);
+        }
+    }
+
+    public static void rodSingAluminum(DurabilityEventFriend friend) {
+        friend.setDurabilityMod(friend.getDurabilityMod() + 1);
+    }
 }

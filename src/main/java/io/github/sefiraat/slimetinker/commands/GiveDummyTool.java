@@ -21,7 +21,7 @@ public class GiveDummyTool extends AbstractCommand {
 
         Player player = (Player) commandSender;
         ToolDefinition tool = new ToolDefinition(IDStrings.HEAD, strings[1], strings[2], strings[3], strings[4]);
-        if (tool.getHeadMaterial().equals(IDStrings.REINFORCED) || tool.getRodMaterial().equals(IDStrings.HARD)) { // Reinforced Head/ Hard Rod tools are explosive
+        if (tool.getHeadMaterial().equals(IDStrings.REINFORCED) || tool.getRodMaterial().equals(IDStrings.HARD) || tool.getHeadMaterial().equals(IDStrings.SINGINFINITY)) { // Reinforced Head/ Hard Rod tools are explosive
             player.getInventory().addItem(Tools.EXP_SHOVEL.getStack(tool));
         } else {
             player.getInventory().addItem(Tools.SHOVEL.getStack(tool));

@@ -12,6 +12,7 @@ public class ListenerManager {
     private final BlockPlaceListener blockPlaceListener = new BlockPlaceListener();
     private final EntityDamagedListener entityDamagedListener  = new EntityDamagedListener();
     private final EntityKilledListener entityKilledListener = new EntityKilledListener();
+    private final PlayerDamagedListener playerDamagedListener = new PlayerDamagedListener();
 
     public ListenerManager(SlimeTinker plugin, PluginManager manager) {
         manager.registerEvents(durabilityListener, plugin);
@@ -19,6 +20,7 @@ public class ListenerManager {
         manager.registerEvents(blockPlaceListener, plugin);
         manager.registerEvents(entityDamagedListener, plugin);
         manager.registerEvents(entityKilledListener, plugin);
+        manager.registerEvents(playerDamagedListener, plugin);
     }
 
 }

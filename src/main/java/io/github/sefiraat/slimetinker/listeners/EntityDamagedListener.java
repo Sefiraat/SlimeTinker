@@ -1,7 +1,8 @@
 package io.github.sefiraat.slimetinker.listeners;
 
 import io.github.sefiraat.slimetinker.events.EntityDamageEventFriend;
-import io.github.sefiraat.slimetinker.items.ComponentMaterials;
+import io.github.sefiraat.slimetinker.events.EntityDamageEvents;
+import io.github.sefiraat.slimetinker.items.componentmaterials.CMManager;
 import io.github.sefiraat.slimetinker.items.materials.ComponentMaterial;
 import io.github.sefiraat.slimetinker.items.templates.ToolTemplate;
 import io.github.sefiraat.slimetinker.modifiers.Modifications;
@@ -12,7 +13,6 @@ import io.github.sefiraat.slimetinker.utils.ThemeUtils;
 import org.bukkit.Color;
 import org.bukkit.Material;
 import org.bukkit.Particle;
-import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -29,24 +29,6 @@ import java.util.Map;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class EntityDamagedListener implements Listener {
-
-    @EventHandler
-    public void onPlayerDamaged(EntityDamageByEntityEvent event) { // When player is damaged, for Diamond mod
-
-        if (!(event.getEntity() instanceof Player) || !(event.getDamager() instanceof LivingEntity)) {
-            return;
-        }
-
-        Player player = (Player) event.getEntity();
-        ItemStack heldItem = player.getInventory().getItemInMainHand();
-
-        if (!ToolTemplate.isTool(heldItem)) { // Not a Tinker's tool, so we don't care
-            return;
-        }
-
-        modChecks(event, heldItem);
-
-    }
 
     @EventHandler
     public void onEntityDamaged(EntityDamageByEntityEvent event) {
@@ -73,7 +55,7 @@ public class EntityDamagedListener implements Listener {
 
         EntityDamageEventFriend friend = new EntityDamageEventFriend(heldItem, player, event.getEntity(), toolLevel);
 
-        for (Map.Entry<String, ComponentMaterial> mat : ComponentMaterials.getMap().entrySet()) {
+        for (Map.Entry<String, ComponentMaterial> mat : CMManager.getMAP().entrySet()) {
             if (mat.getValue().isEventEntityDamagedHead() && matPropertyHead.equals(mat.getKey())) {
                 mat.getValue().getEntityDamagedConsumerHead().accept(friend);
             }
@@ -85,11 +67,10 @@ public class EntityDamagedListener implements Listener {
             }
         }
 
-
         // Cancel if tool is broken (moved down here as we bypass if the duralium event fires)
         if (cancelIfBroken(heldItem)) {
-            if (matPropertyHead.equals(IDStrings.DURALIUM)) { // Run duraluim as it will flag the duraliumCheck meaning we can bypass durability checks
-                ComponentMaterials.getMap().get(matPropertyHead).getEntityDamagedConsumerHead().accept(friend);
+            if (matPropertyHead.equals(IDStrings.DURALIUM) || matPropertyRod.equals(IDStrings.TITANIUM)) { // Run duraluim as it will flag the duraliumCheck meaning we can bypass durability checks
+                EntityDamageEvents.headDuralium(friend);
             }
             if (!friend.isDuraliumCheck()) {
                 player.sendMessage(ThemeUtils.WARNING + "Your weapon is broken, you should really repair it!");
@@ -136,30 +117,11 @@ public class EntityDamagedListener implements Listener {
 
     }
 
-    private void modChecks(EntityDamageByEntityEvent event, ItemStack heldItem) { // Entity Damaging player
 
-        Map<String, Integer> modLevels = Modifications.getAllModLevels(heldItem);
-
-        if (modLevels.containsKey(Material.DIAMOND.toString())) { // DIAMOND
-            modCheckDiamond(event, modLevels.get(Material.DIAMOND.toString()));
-        }
-
-    }
 
     private void modCheckQuartz(int level, EntityDamageEventFriend friend) {
         friend.setDamageMod(friend.getDamageMod() + (level * 0.2));
     }
 
-    private void modCheckDiamond(EntityDamageByEntityEvent event, int level) {
-        int rnd = ThreadLocalRandom.current().nextInt(1,11);
-        if (rnd <= (level)) {
-            Entity e = event.getDamager();
-            LivingEntity l = (LivingEntity) e;
-            Particle.DustOptions dustOptions = new Particle.DustOptions(Color.TEAL, 1);
-            e.getWorld().spawnParticle(Particle.REDSTONE, e.getLocation(), 50, 1.5, 1.5, 1.5, 1, dustOptions);
-            l.damage(event.getDamage());
-            event.setCancelled(true);
-        }
-    }
 
 }

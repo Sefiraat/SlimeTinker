@@ -1,7 +1,7 @@
 package io.github.sefiraat.slimetinker.listeners;
 
 import io.github.sefiraat.slimetinker.events.EntityDamageEventFriend;
-import io.github.sefiraat.slimetinker.items.ComponentMaterials;
+import io.github.sefiraat.slimetinker.items.componentmaterials.CMManager;
 import io.github.sefiraat.slimetinker.items.materials.ComponentMaterial;
 import io.github.sefiraat.slimetinker.items.templates.ToolTemplate;
 import io.github.sefiraat.slimetinker.modifiers.Modifications;
@@ -90,7 +90,7 @@ public class EntityKilledListener implements Listener {
 
         EntityDamageEventFriend friend = new EntityDamageEventFriend(heldItem, player, dyingEntity, toolLevel);
 
-        for (Map.Entry<String, ComponentMaterial> mat : ComponentMaterials.getMap().entrySet()) {
+        for (Map.Entry<String, ComponentMaterial> mat : CMManager.getMAP().entrySet()) {
             if (mat.getValue().isEventEntityDamagedHead() && matPropertyHead.equals(mat.getKey())) {
                 mat.getValue().getEntityDamagedConsumerHead().accept(friend);
             }
@@ -107,6 +107,10 @@ public class EntityKilledListener implements Listener {
 
         // Settle
         event.setDroppedExp((int) Math.ceil(event.getDroppedExp() * friend.getPlayerExpMod()));
+        if (event.getDroppedExp() > 0 && friend.isMetalCheck()) {
+            Experience.addToolExp(heldItem, (int) Math.ceil(event.getDroppedExp() / 10D), player, true);
+            event.setDroppedExp(0);
+        }
 
 
     }

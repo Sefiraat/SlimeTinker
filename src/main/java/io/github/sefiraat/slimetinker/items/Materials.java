@@ -23,7 +23,7 @@ public final class Materials {
     public static final SlimefunItemStack NUGGET_CAST_COPPER =
             ThemeUtils.themedItemStack(
                     "NUGGET_CAST_COPPER",
-                    Material.IRON_NUGGET,
+                    Material.ACACIA_BUTTON,
                     ThemeUtils.ThemeItemType.CRAFTING,
                     "Copper Nugget",
                     "A nugget made from solid copper"
@@ -86,7 +86,7 @@ public final class Materials {
     public static final SlimefunItemStack NUGGET_CAST_COAL =
             ThemeUtils.themedItemStack(
                     "NUGGET_CAST_COAL",
-                    Material.INK_SAC,
+                    Material.POLISHED_BLACKSTONE_BUTTON,
                     ThemeUtils.ThemeItemType.CRAFTING,
                     "Coal Nugget",
                     "A nugget made from liquifacted coal"
@@ -122,7 +122,7 @@ public final class Materials {
     public static final SlimefunItemStack NUGGET_CAST_BRONZE =
            ThemeUtils.themedItemStack(
                    "NUGGET_CAST_BRONZE",
-                   Material.IRON_NUGGET,
+                   Material.ACACIA_BUTTON,
                    ThemeUtils.ThemeItemType.CRAFTING,
                    "Bronze Nugget",
                    "A nugget made from bronze"
@@ -131,7 +131,7 @@ public final class Materials {
     public static final SlimefunItemStack NUGGET_CAST_ALU_BRONZE =
           ThemeUtils.themedItemStack(
                   "NUGGET_CAST_ALU_BRONZE",
-                  Material.IRON_NUGGET,
+                  Material.GOLD_NUGGET,
                   ThemeUtils.ThemeItemType.CRAFTING,
                   "Aluminum Bronze Nugget",
                   "A nugget made from aluminum bronze"
@@ -149,7 +149,7 @@ public final class Materials {
     public static final SlimefunItemStack NUGGET_CAST_COR_BRONZE =
             ThemeUtils.themedItemStack(
                     "NUGGET_CAST_COR_BRONZE",
-                    Material.IRON_NUGGET,
+                    Material.GOLD_NUGGET,
                     ThemeUtils.ThemeItemType.CRAFTING,
                     "Corinthian Bronze Nugget",
                     "A nugget made from corinthian bronze"
@@ -176,7 +176,7 @@ public final class Materials {
     public static final SlimefunItemStack NUGGET_CAST_BRASS =
             ThemeUtils.themedItemStack(
                     "NUGGET_CAST_BRASS",
-                    Material.IRON_NUGGET,
+                    Material.GOLD_NUGGET,
                     ThemeUtils.ThemeItemType.CRAFTING,
                     "Brass Nugget",
                     "A nugget made from brass"
@@ -185,7 +185,7 @@ public final class Materials {
     public static final SlimefunItemStack NUGGET_CAST_ALU_BRASS =
             ThemeUtils.themedItemStack(
                     "NUGGET_CAST_ALU_BRASS",
-                    Material.IRON_NUGGET,
+                    Material.GOLD_INGOT,
                     ThemeUtils.ThemeItemType.CRAFTING,
                     "Aluminum Brass Nugget",
                     "A nugget made from aluminum brass"
@@ -449,7 +449,7 @@ public final class Materials {
     public static final SlimefunItemStack SEARED_TANK =
             ThemeUtils.themedItemStack(
                     "SEARED_TANK",
-                    Material.BLACKSTONE_WALL,
+                    Material.RED_NETHER_BRICK_WALL,
                     ThemeUtils.ThemeItemType.CRAFTING,
                     "Seared Tank",
                     ThemeUtils.PASSIVE + "Used in building the smeltery."
@@ -488,7 +488,7 @@ public final class Materials {
     public static final SlimefunItemStack NUGGET_CAST_MAGSTEEL =
             ThemeUtils.themedItemStack(
                     "NUGGET_CAST_MAGSTEEL",
-                    Material.IRON_NUGGET,
+                    Material.ACACIA_BUTTON,
                     ThemeUtils.ThemeItemType.CRAFTING,
                     "MagSteel Nugget",
                     "A nugget made from solid MagSteel"
@@ -512,7 +512,7 @@ public final class Materials {
     public static final SlimefunItemStack NUGGET_CAST_ADAMANTITE =
             ThemeUtils.themedItemStack(
                     "NUGGET_CAST_ADAMANTITE",
-                    Material.IRON_NUGGET,
+                    Material.ACACIA_BUTTON,
                     ThemeUtils.ThemeItemType.CRAFTING,
                     "Adamantite Nugget",
                     "A nugget made from solid Adamantite"
@@ -520,7 +520,7 @@ public final class Materials {
     public static final SlimefunItemStack NUGGET_CAST_MAGNONIUM =
             ThemeUtils.themedItemStack(
                     "NUGGET_CAST_MAGNONIUM",
-                    Material.PURPLE_DYE,
+                    Material.CRIMSON_BUTTON,
                     ThemeUtils.ThemeItemType.CRAFTING,
                     "Magnonium Nugget",
                     "A nugget made from solid Magnonium"

@@ -2,7 +2,7 @@ package io.github.sefiraat.slimetinker.runnables;
 
 import io.github.sefiraat.slimetinker.SlimeTinker;
 import io.github.sefiraat.slimetinker.events.TickEventFriend;
-import io.github.sefiraat.slimetinker.items.ComponentMaterials;
+import io.github.sefiraat.slimetinker.items.componentmaterials.CMManager;
 import io.github.sefiraat.slimetinker.items.materials.ComponentMaterial;
 import io.github.sefiraat.slimetinker.items.templates.ToolTemplate;
 import io.github.sefiraat.slimetinker.modifiers.Modifications;
@@ -42,14 +42,7 @@ public class EffectRunnable extends BukkitRunnable {
             String matPropertyBinding = ItemUtils.getToolBindingMaterial(c);
             String matPropertyRod = ItemUtils.getToolRodMaterial(c);
 
-            if (ItemUtils.isToolBroken(heldItem)) {
-                if (matPropertyHead.equals(IDStrings.DURALIUM)) {
-                    player.addPotionEffect(new PotionEffect(PotionEffectType.SLOW_DIGGING, SlimeTinker.RUNNABLE_TICK_RATE + 5, 0, false, true, true));
-                }
-            }
-
-
-            for (Map.Entry<String, ComponentMaterial> mat : ComponentMaterials.getMap().entrySet()) {
+            for (Map.Entry<String, ComponentMaterial> mat : CMManager.getMAP().entrySet()) {
                 if (mat.getValue().isEventTickHead() && matPropertyHead.equals(mat.getKey())) {
                     mat.getValue().getTickConsumerHead().accept(friend);
                 }

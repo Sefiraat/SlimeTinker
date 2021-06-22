@@ -2,7 +2,7 @@ package io.github.sefiraat.slimetinker.utils;
 
 import io.github.mooy1.infinitylib.items.StackUtils;
 import io.github.sefiraat.slimetinker.SlimeTinker;
-import io.github.sefiraat.slimetinker.items.ComponentMaterials;
+import io.github.sefiraat.slimetinker.items.componentmaterials.CMManager;
 import io.github.sefiraat.slimetinker.items.recipes.MoltenResult;
 import io.github.sefiraat.slimetinker.modifiers.Mod;
 import io.github.sefiraat.slimetinker.modifiers.Modifications;
@@ -143,9 +143,9 @@ public final class ItemUtils {
         String toolType = getToolTypeName(c);
 
         String name =
-                        ChatColor.of(ComponentMaterials.getById(matHead).getColorHex()) + ThemeUtils.toTitleCase(matHead) + "-" +
-                        ChatColor.of(ComponentMaterials.getById(matBind).getColorHex()) + ThemeUtils.toTitleCase(matBind) + "-" +
-                        ChatColor.of(ComponentMaterials.getById(matRod).getColorHex()) + ThemeUtils.toTitleCase(matRod) + " " +
+                        ChatColor.of(CMManager.getById(matHead).getColorHex()) + ThemeUtils.toTitleCase(matHead) + "-" +
+                        ChatColor.of(CMManager.getById(matBind).getColorHex()) + ThemeUtils.toTitleCase(matBind) + "-" +
+                        ChatColor.of(CMManager.getById(matRod).getColorHex()) + ThemeUtils.toTitleCase(matRod) + " " +
                         ChatColor.WHITE + ThemeUtils.toTitleCase(toolType);
 
 
@@ -186,11 +186,11 @@ public final class ItemUtils {
     }
 
     public static String formatMaterialName(String s) {
-        return ChatColor.of(ComponentMaterials.getById(s).getColorHex()) + ThemeUtils.toTitleCase(s);
+        return ChatColor.of(CMManager.getById(s).getColorHex()) + ThemeUtils.toTitleCase(s);
     }
 
     public static String formatPropertyName(String s, String p) {
-        return ChatColor.of(ComponentMaterials.getById(s).getColorHex()) + ThemeUtils.toTitleCase(p);
+        return ChatColor.of(CMManager.getById(s).getColorHex()) + ThemeUtils.toTitleCase(p);
     }
 
     public static boolean isMeltable(ItemStack itemStack) {

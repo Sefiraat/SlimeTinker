@@ -17,6 +17,7 @@ public class EntityDamageEventFriend {
     private double toolExpMod = 1;
     private double playerExpMod = 1;
     private boolean duraliumCheck = false;
+    private boolean metalCheck = false;
     private int charged = 0;
 
     public EntityDamageEventFriend(ItemStack heldItem, Player player, Entity damagedEntity, int toolLevel) {

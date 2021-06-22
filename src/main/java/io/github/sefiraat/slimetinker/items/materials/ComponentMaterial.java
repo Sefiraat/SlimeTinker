@@ -3,6 +3,7 @@ package io.github.sefiraat.slimetinker.items.materials;
 import io.github.sefiraat.slimetinker.events.BlockBreakEventFriend;
 import io.github.sefiraat.slimetinker.events.DurabilityEventFriend;
 import io.github.sefiraat.slimetinker.events.EntityDamageEventFriend;
+import io.github.sefiraat.slimetinker.events.PlayerDamagedEventFriend;
 import io.github.sefiraat.slimetinker.events.TickEventFriend;
 import lombok.Data;
 import net.md_5.bungee.api.ChatColor;
@@ -36,6 +37,8 @@ public class ComponentMaterial {
     private Consumer<DurabilityEventFriend> durabilityConsumerHead;
     private boolean eventBlockBreakHead = false;
     private Consumer<BlockBreakEventFriend> blockBreakConsumerHead;
+    private boolean eventPlayerDamagedHead = false;
+    private Consumer<PlayerDamagedEventFriend> playerDamagedConsumerHead;
 
     private boolean eventTickBind = false;
     private Consumer<TickEventFriend> tickConsumerBind;
@@ -45,6 +48,8 @@ public class ComponentMaterial {
     private Consumer<DurabilityEventFriend> durabilityConsumerBind;
     private boolean eventBlockBreakBind = false;
     private Consumer<BlockBreakEventFriend> blockBreakConsumerBind;
+    private boolean eventPlayerDamagedBind = false;
+    private Consumer<PlayerDamagedEventFriend> playerDamagedConsumerBind;
 
     private boolean eventTickRod = false;
     private Consumer<TickEventFriend> tickConsumerRod;
@@ -54,6 +59,8 @@ public class ComponentMaterial {
     private Consumer<DurabilityEventFriend> durabilityConsumerRod;
     private boolean eventBlockBreakRod = false;
     private Consumer<BlockBreakEventFriend> blockBreakConsumerRod;
+    private boolean eventPlayerDamagedRod = false;
+    private Consumer<PlayerDamagedEventFriend> playerDamagedConsumerRod;
     
     public ComponentMaterial(String id,
                              String colorHex,
@@ -108,6 +115,10 @@ public class ComponentMaterial {
         eventBlockBreakHead = true;
         blockBreakConsumerHead = consumer;
     }
+    public void addHeadPlayerDamagedEvent(Consumer<PlayerDamagedEventFriend> consumer) {
+        eventPlayerDamagedHead = true;
+        playerDamagedConsumerHead = consumer;
+    }
 
     public void addBindTickEvent(Consumer<TickEventFriend> consumer) {
         eventTickBind = true;
@@ -125,6 +136,10 @@ public class ComponentMaterial {
         eventBlockBreakBind = true;
         blockBreakConsumerBind = consumer;
     }
+    public void addBindPlayerDamagedEvent(Consumer<PlayerDamagedEventFriend> consumer) {
+        eventPlayerDamagedBind = true;
+        playerDamagedConsumerBind = consumer;
+    }
 
     public void addRodTickEvent(Consumer<TickEventFriend> consumer) {
         eventTickRod = true;
@@ -141,6 +156,10 @@ public class ComponentMaterial {
     public void addRodBlockBreakEvent(Consumer<BlockBreakEventFriend> consumer) {
         eventBlockBreakRod = true;
         blockBreakConsumerRod = consumer;
+    }
+    public void addRodPlayerDamagedEvent(Consumer<PlayerDamagedEventFriend> consumer) {
+        eventPlayerDamagedRod = true;
+        playerDamagedConsumerRod = consumer;
     }
 
 }

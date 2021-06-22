@@ -29,7 +29,7 @@ import java.util.List;
 public class SlimeTinker extends AbstractAddon {
 
 
-    public static final int RUNNABLE_TICK_RATE = 60;
+    public static final int RUNNABLE_TICK_RATE = 40;
 
     private static SlimeTinker instance;
     public static SlimeTinker inst() {
@@ -38,7 +38,6 @@ public class SlimeTinker extends AbstractAddon {
 
     @Getter
     private RecipeManager recipeManager;
-
     @Getter
     private RunnableManager runnableManager;
 
@@ -85,15 +84,11 @@ public class SlimeTinker extends AbstractAddon {
         return new Metrics(this,11748);
     }
 
-
-
     @Nonnull
     @Override
     protected List<AbstractCommand> setupSubCommands() {
         return Arrays.asList(new GiveDummyTool(), new AddExp());
     }
-
-
 
     @Override
     protected @NotNull String getGithubPath() {

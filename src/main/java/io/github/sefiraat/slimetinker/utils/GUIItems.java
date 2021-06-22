@@ -1,6 +1,6 @@
 package io.github.sefiraat.slimetinker.utils;
 
-import io.github.sefiraat.slimetinker.items.ComponentMaterials;
+import io.github.sefiraat.slimetinker.items.componentmaterials.CMManager;
 import me.mrCookieSlime.Slimefun.cscorelib2.item.CustomItem;
 import me.mrCookieSlime.Slimefun.cscorelib2.skull.SkullItem;
 import net.md_5.bungee.api.ChatColor;
@@ -131,7 +131,7 @@ public final class GUIItems {
         if (map != null) {
             for (Map.Entry<String, Integer> e : map.entrySet()) {
                 String name =
-                        ChatColor.of(ComponentMaterials.getById(e.getKey()).getColorHex()) +
+                        ChatColor.of(CMManager.getById(e.getKey()).getColorHex()) +
                         ThemeUtils.toTitleCase(e.getKey());
                 String amount = e.getValue().toString();
                 meta.add(ThemeUtils.CLICK_INFO + name + ": " + ChatColor.WHITE + amount + " units.");

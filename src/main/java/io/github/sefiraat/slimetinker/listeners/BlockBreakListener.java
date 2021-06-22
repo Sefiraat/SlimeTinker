@@ -3,8 +3,7 @@ package io.github.sefiraat.slimetinker.listeners;
 import io.github.sefiraat.slimetinker.SlimeTinker;
 import io.github.sefiraat.slimetinker.events.BlockBreakEventFriend;
 import io.github.sefiraat.slimetinker.events.BlockBreakEvents;
-import io.github.sefiraat.slimetinker.events.DurabilityEvents;
-import io.github.sefiraat.slimetinker.items.ComponentMaterials;
+import io.github.sefiraat.slimetinker.items.componentmaterials.CMManager;
 import io.github.sefiraat.slimetinker.items.materials.ComponentMaterial;
 import io.github.sefiraat.slimetinker.items.templates.ToolTemplate;
 import io.github.sefiraat.slimetinker.modifiers.Modifications;
@@ -20,7 +19,6 @@ import org.bukkit.Particle;
 import org.bukkit.block.Block;
 import org.bukkit.block.data.Ageable;
 import org.bukkit.enchantments.Enchantment;
-import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
@@ -36,7 +34,6 @@ import java.util.List;
 import java.util.Map;
 
 public class BlockBreakListener implements Listener {
-
 
     @EventHandler
     public void onBlockBreak(BlockBreakEvent event) {
@@ -57,11 +54,10 @@ public class BlockBreakListener implements Listener {
         }
 
         // Property and Mod checks, carries around the additional and normal drops
-        BlockBreakEventFriend friend = new BlockBreakEventFriend(heldItem, event.getPlayer());
-        friend.setDrops(block.getDrops(heldItem));
-        friend.setAddDrops(new ArrayList<>());
-        friend.setRemoveDrops(new ArrayList<>());
-
+        BlockBreakEventFriend friend = new BlockBreakEventFriend(heldItem, event.getPlayer(), block);
+        friend.setDrops(block.getDrops(heldItem)); // Stores the event drops. All may not be dropped
+        friend.setAddDrops(new ArrayList<>()); // Additional drops or substitutions for items from the main collection
+        friend.setRemoveDrops(new ArrayList<>()); // Items to remove from the main collection if moved/reformed into the additional
 
         // Properties
         ItemMeta im = heldItem.getItemMeta();
@@ -71,7 +67,18 @@ public class BlockBreakListener implements Listener {
         String matPropertyBinding = ItemUtils.getToolBindingMaterial(c);
         String matPropertyRod = ItemUtils.getToolRodMaterial(c);
 
-        for (Map.Entry<String, ComponentMaterial> mat : ComponentMaterials.getMap().entrySet()) {
+        // Cancel if tool is broken (moved down here as we bypass if the duralium event fires)
+        if (cancelIfBroken(heldItem)) {
+            if (matPropertyHead.equals(IDStrings.DURALIUM) || matPropertyRod.equals(IDStrings.TITANIUM)) { // Run duraluim as it will flag the duraliumCheck meaning we can bypass durability checks
+                BlockBreakEvents.headDuralium(friend);
+            } else {
+                event.getPlayer().sendMessage(ThemeUtils.WARNING + "Your tool is broken, you should really repair it!");
+                event.setCancelled(true);
+                return;
+            }
+        }
+
+        for (Map.Entry<String, ComponentMaterial> mat : CMManager.getMAP().entrySet()) {
             if (mat.getValue().isEventBlockBreakHead() && matPropertyHead.equals(mat.getKey())) {
                 mat.getValue().getBlockBreakConsumerHead().accept(friend);
             }
@@ -79,18 +86,7 @@ public class BlockBreakListener implements Listener {
                 mat.getValue().getBlockBreakConsumerBind().accept(friend);
             }
             if (mat.getValue().isEventBlockBreakRod() && matPropertyRod.equals(mat.getKey())) {
-                mat.getValue().getBlockBreakConsumerBind().accept(friend);
-            }
-        }
-
-        // Cancel if tool is broken (moved down here as we bypass if the duralium event fires)
-        if (cancelIfBroken(heldItem)) {
-            if (matPropertyHead.equals(IDStrings.DURALIUM)) { // Run duraluim as it will flag the duraliumCheck meaning we can bypass durability checks
-                BlockBreakEvents.headDuralium(friend);
-            } else {
-                event.getPlayer().sendMessage(ThemeUtils.WARNING + "Your tool is broken, you should really repair it!");
-                event.setCancelled(true);
-                return;
+                mat.getValue().getBlockBreakConsumerRod().accept(friend);
             }
         }
 
@@ -100,20 +96,23 @@ public class BlockBreakListener implements Listener {
         // Settle
         event.setDropItems(false);
 
-        for (ItemStack i : friend.getAddDrops()) {
-            SlimeTinker.inst().getLogger().info(" > > " + i.getType().toString());
-            block.getWorld().dropItemNaturally(block.getLocation().clone().add(0.5, 0.5, 0.5), i);
-        }
-        for (ItemStack i : friend.getDrops()) {
+        for (ItemStack i : friend.getDrops()) { // Drop items in original collection not flagged for removal
             if (!friend.getRemoveDrops().contains(i)) {
-                SlimeTinker.inst().getLogger().info(" > > (drop) " + i.getType().toString());
                 block.getWorld().dropItemNaturally(block.getLocation().clone().add(0.5, 0.5, 0.5), i);
-            } else {
-                SlimeTinker.inst().getLogger().info(" > > (removed) " + i.getType().toString());
             }
         }
+
+        for (ItemStack i : friend.getAddDrops()) { // Then the additional items collection - no removals
+            block.getWorld().dropItemNaturally(block.getLocation().clone().add(0.5, 0.5, 0.5), i);
+        }
+
         if (shouldGrantExp(heldItem, event.getBlock())) { // Should grant exp (checks tool / material validity and the crop state)
             Experience.addToolExp(heldItem, (int) Math.ceil(1 * friend.getToolExpMod()), event.getPlayer(), true);
+        }
+
+        if (event.getExpToDrop() > 0 && friend.isMetalCheck()) { // todo Get outta dodge with this one
+            Experience.addToolExp(heldItem, (int) Math.ceil(event.getExpToDrop() / 10D), event.getPlayer(), true);
+            event.setExpToDrop(0);
         }
 
     }

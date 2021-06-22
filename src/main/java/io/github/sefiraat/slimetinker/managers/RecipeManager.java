@@ -2,9 +2,9 @@ package io.github.sefiraat.slimetinker.managers;
 
 import io.github.mooy1.infinitylib.items.StackUtils;
 import io.github.sefiraat.slimetinker.items.Casts;
-import io.github.sefiraat.slimetinker.items.ComponentMaterials;
 import io.github.sefiraat.slimetinker.items.Dies;
 import io.github.sefiraat.slimetinker.items.Parts;
+import io.github.sefiraat.slimetinker.items.componentmaterials.CMManager;
 import io.github.sefiraat.slimetinker.items.materials.ComponentMaterial;
 import io.github.sefiraat.slimetinker.items.recipes.CastResult;
 import io.github.sefiraat.slimetinker.items.recipes.MoltenResult;
@@ -81,9 +81,9 @@ public class RecipeManager {
 
     public RecipeManager() {
 
-        // Set up all the ComponentMaterials
+        // Set up all the CMCore
 
-        for (Map.Entry<String, ComponentMaterial> entry : ComponentMaterials.getMap().entrySet()) {
+        for (Map.Entry<String, ComponentMaterial> entry : CMManager.getMAP().entrySet()) {
 
             // Tools and Kits (referenced through dummy)
             if (entry.getValue().isValidToolRod()) MAP_CAST_TOOLROD.put(entry.getValue(), Parts.TOOL_ROD.getStack(entry.getKey(), ROD, null));
@@ -156,17 +156,17 @@ public class RecipeManager {
 
         // Set up the dies for creating casts
 
-        MAP_DIE_NUGGET.put(ComponentMaterials.getById(GOLD), Casts.CAST_NUGGET);
-        MAP_DIE_INGOT.put(ComponentMaterials.getById(GOLD), Casts.CAST_INGOT);
-        MAP_DIE_BLOCK.put(ComponentMaterials.getById(GOLD), Casts.CAST_BLOCK);
-        MAP_DIE_GEM.put(ComponentMaterials.getById(GOLD), Casts.CAST_GEM);
-        MAP_DIE_REPAIRKIT.put(ComponentMaterials.getById(GOLD), Casts.CAST_REPAIRKIT);
-        MAP_DIE_SHOVELHEAD.put(ComponentMaterials.getById(BRASS), Casts.CAST_SHOVELHEAD);
-        MAP_DIE_PICKAXEHEAD.put(ComponentMaterials.getById(BRASS), Casts.CAST_PICKAXEHEAD);
-        MAP_DIE_AXEHEAD.put(ComponentMaterials.getById(BRASS), Casts.CAST_AXEHEAD);
-        MAP_DIE_HOEHEAD.put(ComponentMaterials.getById(BRASS), Casts.CAST_HOEHEAD);
-        MAP_DIE_SWORDBLADE.put(ComponentMaterials.getById(BRASS), Casts.CAST_SWORDBLADE);
-        MAP_DIE_TOOLROD.put(ComponentMaterials.getById(BRASS), Casts.CAST_TOOLROD);
+        MAP_DIE_NUGGET.put(CMManager.getById(GOLD), Casts.CAST_NUGGET);
+        MAP_DIE_INGOT.put(CMManager.getById(GOLD), Casts.CAST_INGOT);
+        MAP_DIE_BLOCK.put(CMManager.getById(GOLD), Casts.CAST_BLOCK);
+        MAP_DIE_GEM.put(CMManager.getById(GOLD), Casts.CAST_GEM);
+        MAP_DIE_REPAIRKIT.put(CMManager.getById(GOLD), Casts.CAST_REPAIRKIT);
+        MAP_DIE_SHOVELHEAD.put(CMManager.getById(BRASS), Casts.CAST_SHOVELHEAD);
+        MAP_DIE_PICKAXEHEAD.put(CMManager.getById(BRASS), Casts.CAST_PICKAXEHEAD);
+        MAP_DIE_AXEHEAD.put(CMManager.getById(BRASS), Casts.CAST_AXEHEAD);
+        MAP_DIE_HOEHEAD.put(CMManager.getById(BRASS), Casts.CAST_HOEHEAD);
+        MAP_DIE_SWORDBLADE.put(CMManager.getById(BRASS), Casts.CAST_SWORDBLADE);
+        MAP_DIE_TOOLROD.put(CMManager.getById(BRASS), Casts.CAST_TOOLROD);
 
         // Recipes for creating casts from dies
 

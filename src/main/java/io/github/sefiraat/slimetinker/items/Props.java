@@ -4,6 +4,7 @@ import com.sun.org.apache.bcel.internal.generic.BREAKPOINT;
 import io.github.sefiraat.slimetinker.SlimeTinker;
 import io.github.sefiraat.slimetinker.categories.Categories;
 import io.github.sefiraat.slimetinker.items.workstations.smeltery.DummySmelteryProp;
+import io.github.sefiraat.slimetinker.managers.SupportedPluginsManager;
 import io.github.sefiraat.slimetinker.utils.IDStrings;
 import io.github.sefiraat.slimetinker.utils.SkullTextures;
 import io.github.sefiraat.slimetinker.utils.ThemeUtils;
@@ -954,96 +955,101 @@ public final class Props {
     // endregion
 
     public static void set(SlimeTinker p) {
-        // Dummies for the recipe book
+        // Core SF + Vanilla
         new UnplaceableBlock(Categories.PROPERTIES, PROP_ABRA, DummySmelteryProp.TYPE, propRecipe(PROP_HEAD, SlimefunItems.ALUMINUM_BRASS_INGOT)).register(p);
-        new UnplaceableBlock(Categories.PROPERTIES, PROP_ADAMANT, DummySmelteryProp.TYPE, propRecipe(PROP_ROD, SlimefunItem.getByID(IDStrings.ADAMANTITE).getItem())).register(p);
         new UnplaceableBlock(Categories.PROPERTIES, PROP_ALLTHATGLITTERS, DummySmelteryProp.TYPE, propRecipe(PROP_ROD, new ItemStack(Material.GOLD_INGOT))).register(p);
-        new UnplaceableBlock(Categories.PROPERTIES, PROP_ALLTHATGLITTERS2, DummySmelteryProp.TYPE, propRecipe(PROP_ROD, SlimefunItem.getByID(IDStrings.SINGGOLD).getItem())).register(p);
         new UnplaceableBlock(Categories.PROPERTIES, PROP_ATTRACTION, DummySmelteryProp.TYPE, propRecipe(PROP_BINDING, new ItemStack(Material.TWISTING_VINES))).register(p);
         new UnplaceableBlock(Categories.PROPERTIES, PROP_BRAINSNOTBRAWN, DummySmelteryProp.TYPE, propRecipe(PROP_HEAD, SlimefunItems.COPPER_INGOT)).register(p);
-        new UnplaceableBlock(Categories.PROPERTIES, PROP_BRAINSNOTBRAWN2, DummySmelteryProp.TYPE, propRecipe(PROP_HEAD, SlimefunItem.getByID(IDStrings.SINGCOPPER).getItem())).register(p);
-        new UnplaceableBlock(Categories.PROPERTIES, PROP_BREAKPOINT, DummySmelteryProp.TYPE, propRecipe(PROP_HEAD, SlimefunItem.getByID(IDStrings.SINGINFINITY).getItem())).register(p);
         new UnplaceableBlock(Categories.PROPERTIES, PROP_BRITTLE, DummySmelteryProp.TYPE, propRecipe(PROP_ROD, SlimefunItems.ALUMINUM_BRONZE_INGOT)).register(p);
         new UnplaceableBlock(Categories.PROPERTIES, PROP_BULKY, DummySmelteryProp.TYPE, propRecipe(PROP_HEAD, SlimefunItems.REINFORCED_ALLOY_INGOT)).register(p);
         new UnplaceableBlock(Categories.PROPERTIES, PROP_CAN, DummySmelteryProp.TYPE, propRecipe(PROP_ROD, SlimefunItems.TIN_INGOT)).register(p);
-        new UnplaceableBlock(Categories.PROPERTIES, PROP_CAN2, DummySmelteryProp.TYPE, propRecipe(PROP_ROD, SlimefunItem.getByID(IDStrings.SINGTIN).getItem())).register(p);
         new UnplaceableBlock(Categories.PROPERTIES, PROP_CHARGEDA, DummySmelteryProp.TYPE, propRecipe(PROP_HEADROD, SlimefunItems.NICKEL_INGOT)).register(p);
         new UnplaceableBlock(Categories.PROPERTIES, PROP_CHARGEDB, DummySmelteryProp.TYPE, propRecipe(PROP_HEADROD, SlimefunItems.COBALT_INGOT)).register(p);
-        new UnplaceableBlock(Categories.PROPERTIES, PROP_CLEANCUT, DummySmelteryProp.TYPE, propRecipe(PROP_HEAD, SlimefunItem.getByID(IDStrings.METAL).getItem())).register(p);
-        new UnplaceableBlock(Categories.PROPERTIES, PROP_CONCEPTUALDEFENCE, DummySmelteryProp.TYPE, propRecipe(PROP_ROD, SlimefunItem.getByID("INFINITE_INGOT").getItem())).register(p);
         new UnplaceableBlock(Categories.PROPERTIES, PROP_CONDUCTIVE, DummySmelteryProp.TYPE, propRecipe(PROP_ROD, SlimefunItems.COPPER_INGOT)).register(p);
-        new UnplaceableBlock(Categories.PROPERTIES, PROP_CONDUCTIVE2, DummySmelteryProp.TYPE, propRecipe(PROP_ROD, SlimefunItem.getByID(IDStrings.SINGCOPPER).getItem())).register(p);
-        new UnplaceableBlock(Categories.PROPERTIES, PROP_CONDUCTOR, DummySmelteryProp.TYPE, propRecipe(PROP_ROD, SlimefunItem.getByID(IDStrings.METAL).getItem())).register(p);
         new UnplaceableBlock(Categories.PROPERTIES, PROP_DECAY, DummySmelteryProp.TYPE, propRecipe(PROP_BINDING, new ItemStack(Material.CRIMSON_ROOTS))).register(p);
         new UnplaceableBlock(Categories.PROPERTIES, PROP_DOOM, DummySmelteryProp.TYPE, propRecipe(PROP_BINDING, new ItemStack(Material.WEEPING_VINES))).register(p);
         new UnplaceableBlock(Categories.PROPERTIES, PROP_DURABLE, DummySmelteryProp.TYPE, propRecipe(PROP_HEAD, SlimefunItems.DURALUMIN_INGOT)).register(p);
-        new UnplaceableBlock(Categories.PROPERTIES, PROP_DURABLE_CO, DummySmelteryProp.TYPE, propRecipe(PROP_ROD, SlimefunItem.getByID(IDStrings.TITANIUM).getItem())).register(p);
-        new UnplaceableBlock(Categories.PROPERTIES, PROP_EARTHSHAKER, DummySmelteryProp.TYPE, propRecipe(PROP_HEAD, SlimefunItem.getByID(IDStrings.EARTH).getItem())).register(p);
         new UnplaceableBlock(Categories.PROPERTIES, PROP_EASYFIX, DummySmelteryProp.TYPE, propRecipe(PROP_ROD, SlimefunItems.DURALUMIN_INGOT)).register(p);
-        new UnplaceableBlock(Categories.PROPERTIES, PROP_ELVENSPEED, DummySmelteryProp.TYPE, propRecipe(PROP_HEAD, SlimefunItem.getByID(IDStrings.MYTHRIL).getItem())).register(p);
         new UnplaceableBlock(Categories.PROPERTIES, PROP_ENCHANTING, DummySmelteryProp.TYPE, propRecipe(PROP_HEAD, SlimefunItems.SILVER_INGOT)).register(p);
-        new UnplaceableBlock(Categories.PROPERTIES, PROP_ENCHANTING2, DummySmelteryProp.TYPE, propRecipe(PROP_HEAD, SlimefunItem.getByID(IDStrings.SINGSILVER).getItem())).register(p);
         new UnplaceableBlock(Categories.PROPERTIES, PROP_FAST, DummySmelteryProp.TYPE, propRecipe(PROP_HEAD, SlimefunItems.BILLON_INGOT)).register(p);
-        new UnplaceableBlock(Categories.PROPERTIES, PROP_FEARTHEVOID, DummySmelteryProp.TYPE, propRecipe(PROP_ROD, SlimefunItem.getByID("VOID_INGOT").getItem())).register(p);
         new UnplaceableBlock(Categories.PROPERTIES, PROP_FLAMABLE, DummySmelteryProp.TYPE, propRecipe(PROP_HEAD, SlimefunItems.MAGNESIUM_INGOT)).register(p);
-        new UnplaceableBlock(Categories.PROPERTIES, PROP_FLAMABLE2, DummySmelteryProp.TYPE, propRecipe(PROP_HEAD, SlimefunItem.getByID(IDStrings.SINGMAGNESIUM).getItem())).register(p);
-        new UnplaceableBlock(Categories.PROPERTIES, PROP_FLAMABLE_CO, DummySmelteryProp.TYPE, propRecipe(PROP_ROD, SlimefunItem.getByID(IDStrings.MAGNONIUM).getItem())).register(p);
         new UnplaceableBlock(Categories.PROPERTIES, PROP_FLAMINGHOT, DummySmelteryProp.TYPE, propRecipe(PROP_HEAD, SlimefunItems.CORINTHIAN_BRONZE_INGOT)).register(p);
-        new UnplaceableBlock(Categories.PROPERTIES, PROP_FLAMINGHOT_CO, DummySmelteryProp.TYPE, propRecipe(PROP_ROD, SlimefunItem.getByID(IDStrings.MAGNONIUM).getItem())).register(p);
         new UnplaceableBlock(Categories.PROPERTIES, PROP_FUSED, DummySmelteryProp.TYPE, propRecipe(PROP_ROD, SlimefunItems.SOLDER_INGOT)).register(p);
         new UnplaceableBlock(Categories.PROPERTIES, PROP_GOLDENVEIL, DummySmelteryProp.TYPE, propRecipe(PROP_HEAD, new ItemStack(Material.GOLD_INGOT))).register(p);
-        new UnplaceableBlock(Categories.PROPERTIES, PROP_GOLDENVEIL2, DummySmelteryProp.TYPE, propRecipe(PROP_HEAD, SlimefunItem.getByID(IDStrings.SINGGOLD).getItem())).register(p);
         new UnplaceableBlock(Categories.PROPERTIES, PROP_GRACEFUL, DummySmelteryProp.TYPE, propRecipe(PROP_HEAD, SlimefunItems.ZINC_INGOT)).register(p);
-        new UnplaceableBlock(Categories.PROPERTIES, PROP_GRACEFUL2, DummySmelteryProp.TYPE, propRecipe(PROP_HEAD, SlimefunItem.getByID(IDStrings.SINGZINC).getItem())).register(p);
-        new UnplaceableBlock(Categories.PROPERTIES, PROP_GRINDER, DummySmelteryProp.TYPE, propRecipe(PROP_ROD, SlimefunItem.getByID(IDStrings.EARTH).getItem())).register(p);
         new UnplaceableBlock(Categories.PROPERTIES, PROP_GROWTH, DummySmelteryProp.TYPE, propRecipe(PROP_BINDING, new ItemStack(Material.VINE))).register(p);
         new UnplaceableBlock(Categories.PROPERTIES, PROP_HEAVY, DummySmelteryProp.TYPE, propRecipe(PROP_ROD, SlimefunItems.HARDENED_METAL_INGOT)).register(p);
         new UnplaceableBlock(Categories.PROPERTIES, PROP_HIDDEN, DummySmelteryProp.TYPE, propRecipe(PROP_HEAD, SlimefunItems.SOLDER_INGOT)).register(p);
-        new UnplaceableBlock(Categories.PROPERTIES, PROP_INFINITE, DummySmelteryProp.TYPE, propRecipe(PROP_HEAD, SlimefunItem.getByID("INFINITE_INGOT").getItem())).register(p);
         new UnplaceableBlock(Categories.PROPERTIES, PROP_INGHEIGHTS, DummySmelteryProp.TYPE, propRecipe(PROP_ROD, SlimefunItems.BRONZE_INGOT)).register(p);
         new UnplaceableBlock(Categories.PROPERTIES, PROP_LEECH, DummySmelteryProp.TYPE, propRecipe(PROP_ROD, SlimefunItems.LEAD_INGOT)).register(p);
-        new UnplaceableBlock(Categories.PROPERTIES, PROP_LEECH2, DummySmelteryProp.TYPE, propRecipe(PROP_ROD, SlimefunItem.getByID(IDStrings.SINGLEAD).getItem())).register(p);
-        new UnplaceableBlock(Categories.PROPERTIES, PROP_MAGNANIMOUS, DummySmelteryProp.TYPE, propRecipe(PROP_HEAD, SlimefunItem.getByID(IDStrings.MAGNONIUM).getItem())).register(p);
         new UnplaceableBlock(Categories.PROPERTIES, PROP_MAGNETESIUM, DummySmelteryProp.TYPE, propRecipe(PROP_ROD, SlimefunItems.MAGNESIUM_INGOT)).register(p);
-        new UnplaceableBlock(Categories.PROPERTIES, PROP_MAGNETESIUM2, DummySmelteryProp.TYPE, propRecipe(PROP_ROD, SlimefunItem.getByID(IDStrings.SINGMAGNESIUM).getItem())).register(p);
         new UnplaceableBlock(Categories.PROPERTIES, PROP_MALLEABLE, DummySmelteryProp.TYPE, propRecipe(PROP_HEAD, SlimefunItems.TIN_INGOT)).register(p);
-        new UnplaceableBlock(Categories.PROPERTIES, PROP_MALLEABLE2, DummySmelteryProp.TYPE, propRecipe(PROP_HEAD, SlimefunItem.getByID(IDStrings.SINGTIN).getItem())).register(p);
-        new UnplaceableBlock(Categories.PROPERTIES, PROP_MERCHANTSVEIL, DummySmelteryProp.TYPE, propRecipe(PROP_ROD, SlimefunItem.getByID(IDStrings.FORTUNE).getItem())).register(p);
-        new UnplaceableBlock(Categories.PROPERTIES, PROP_MYSTIC, DummySmelteryProp.TYPE, propRecipe(PROP_HEAD, SlimefunItem.getByID(IDStrings.ADAMANTITE).getItem())).register(p);
         new UnplaceableBlock(Categories.PROPERTIES, PROP_NIGHTSTALKER, DummySmelteryProp.TYPE, propRecipe(PROP_ROD, SlimefunItems.DAMASCUS_STEEL_INGOT)).register(p);
         new UnplaceableBlock(Categories.PROPERTIES, PROP_OXYGENATED, DummySmelteryProp.TYPE, propRecipe(PROP_ROD, SlimefunItems.BRASS_INGOT)).register(p);
         new UnplaceableBlock(Categories.PROPERTIES, PROP_POISONOUS, DummySmelteryProp.TYPE, propRecipe(PROP_HEAD, SlimefunItems.LEAD_INGOT)).register(p);
-        new UnplaceableBlock(Categories.PROPERTIES, PROP_POISONOUS2, DummySmelteryProp.TYPE, propRecipe(PROP_HEAD, SlimefunItem.getByID(IDStrings.SINGLEAD).getItem())).register(p);
-        new UnplaceableBlock(Categories.PROPERTIES, PROP_REALLYSTAINLESS, DummySmelteryProp.TYPE, propRecipe(PROP_HEAD, SlimefunItem.getByID(IDStrings.MAGSTEEL).getItem())).register(p);
         new UnplaceableBlock(Categories.PROPERTIES, PROP_RECYCLABLE, DummySmelteryProp.TYPE, propRecipe(PROP_HEAD, SlimefunItems.ALUMINUM_INGOT)).register(p);
-        new UnplaceableBlock(Categories.PROPERTIES, PROP_RECYCLABLE2, DummySmelteryProp.TYPE, propRecipe(PROP_HEAD, SlimefunItem.getByID(IDStrings.SINGALUMINUM).getItem())).register(p);
         new UnplaceableBlock(Categories.PROPERTIES, PROP_REFRESHING, DummySmelteryProp.TYPE, propRecipe(PROP_BINDING, new ItemStack(Material.WARPED_ROOTS))).register(p);
         new UnplaceableBlock(Categories.PROPERTIES, PROP_REINFORCED, DummySmelteryProp.TYPE, propRecipe(PROP_ROD, SlimefunItems.REINFORCED_ALLOY_INGOT)).register(p);
-        new UnplaceableBlock(Categories.PROPERTIES, PROP_REINFORCED_CO, DummySmelteryProp.TYPE, propRecipe(PROP_ROD, SlimefunItem.getByID(IDStrings.TITANIUM).getItem())).register(p);
         new UnplaceableBlock(Categories.PROPERTIES, PROP_RESISTANT, DummySmelteryProp.TYPE, propRecipe(PROP_HEAD, SlimefunItems.BRONZE_INGOT)).register(p);
-        new UnplaceableBlock(Categories.PROPERTIES, PROP_SECRETSREVEALED, DummySmelteryProp.TYPE, propRecipe(PROP_ROD, SlimefunItem.getByID(IDStrings.MAGIC).getItem())).register(p);
         new UnplaceableBlock(Categories.PROPERTIES, PROP_SHARP1, DummySmelteryProp.TYPE, propRecipe(PROP_ROD, new ItemStack(Material.IRON_INGOT))).register(p);
-        new UnplaceableBlock(Categories.PROPERTIES, PROP_SHARP12, DummySmelteryProp.TYPE, propRecipe(PROP_ROD, SlimefunItem.getByID(IDStrings.SINGIRON).getItem())).register(p);
         new UnplaceableBlock(Categories.PROPERTIES, PROP_SHARP2, DummySmelteryProp.TYPE, propRecipe(PROP_HEAD, SlimefunItems.ALUMINUM_BRONZE_INGOT)).register(p);
         new UnplaceableBlock(Categories.PROPERTIES, PROP_SOFT, DummySmelteryProp.TYPE, propRecipe(PROP_ROD, SlimefunItems.ALUMINUM_INGOT)).register(p);
-        new UnplaceableBlock(Categories.PROPERTIES, PROP_SOFT2, DummySmelteryProp.TYPE, propRecipe(PROP_ROD, SlimefunItem.getByID(IDStrings.SINGALUMINUM).getItem())).register(p);
         new UnplaceableBlock(Categories.PROPERTIES, PROP_SOFTTOUCH, DummySmelteryProp.TYPE, propRecipe(PROP_ROD, SlimefunItems.SILVER_INGOT)).register(p);
-        new UnplaceableBlock(Categories.PROPERTIES, PROP_SOFTTOUCH2, DummySmelteryProp.TYPE, propRecipe(PROP_ROD, SlimefunItem.getByID(IDStrings.SINGSILVER).getItem())).register(p);
         new UnplaceableBlock(Categories.PROPERTIES, PROP_SPRINGS, DummySmelteryProp.TYPE, propRecipe(PROP_ROD, SlimefunItems.BILLON_INGOT)).register(p);
         new UnplaceableBlock(Categories.PROPERTIES, PROP_STABILITY, DummySmelteryProp.TYPE, propRecipe(PROP_HEAD, new ItemStack(Material.IRON_INGOT))).register(p);
-        new UnplaceableBlock(Categories.PROPERTIES, PROP_STABILITY2, DummySmelteryProp.TYPE, propRecipe(PROP_HEAD, SlimefunItem.getByID(IDStrings.SINGIRON).getItem())).register(p);
         new UnplaceableBlock(Categories.PROPERTIES, PROP_STAINLESS, DummySmelteryProp.TYPE, propRecipe(PROP_HEAD, SlimefunItems.STEEL_INGOT)).register(p);
         new UnplaceableBlock(Categories.PROPERTIES, PROP_STIFF, DummySmelteryProp.TYPE, propRecipe(PROP_HEAD, SlimefunItems.BRASS_INGOT)).register(p);
-        new UnplaceableBlock(Categories.PROPERTIES, PROP_STINGOFGONDOLIN, DummySmelteryProp.TYPE, propRecipe(PROP_ROD, SlimefunItem.getByID(IDStrings.MYTHRIL).getItem())).register(p);
         new UnplaceableBlock(Categories.PROPERTIES, PROP_STUDIOUS, DummySmelteryProp.TYPE, propRecipe(PROP_ROD, SlimefunItems.ALUMINUM_BRASS_INGOT)).register(p);
         new UnplaceableBlock(Categories.PROPERTIES, PROP_SUPERLIGHTWEIGHT, DummySmelteryProp.TYPE, propRecipe(PROP_ROD, SlimefunItems.ZINC_INGOT)).register(p);
-        new UnplaceableBlock(Categories.PROPERTIES, PROP_SUPERLIGHTWEIGHT2, DummySmelteryProp.TYPE, propRecipe(PROP_ROD, SlimefunItem.getByID(IDStrings.SINGZINC).getItem())).register(p);
-        new UnplaceableBlock(Categories.PROPERTIES, PROP_TRICKS, DummySmelteryProp.TYPE, propRecipe(PROP_HEAD, SlimefunItem.getByID(IDStrings.MAGIC).getItem())).register(p);
         new UnplaceableBlock(Categories.PROPERTIES, PROP_TUFFSTUFF, DummySmelteryProp.TYPE, propRecipe(PROP_HEAD, SlimefunItems.HARDENED_METAL_INGOT)).register(p);
         new UnplaceableBlock(Categories.PROPERTIES, PROP_VAMPIRISM, DummySmelteryProp.TYPE, propRecipe(PROP_HEAD, SlimefunItems.DAMASCUS_STEEL_INGOT)).register(p);
-        new UnplaceableBlock(Categories.PROPERTIES, PROP_VOIDMINER, DummySmelteryProp.TYPE, propRecipe(PROP_HEAD, SlimefunItem.getByID("VOID_INGOT").getItem())).register(p);
         new UnplaceableBlock(Categories.PROPERTIES, PROP_WORKS, DummySmelteryProp.TYPE, propRecipe(PROP_HEAD, new ItemStack(Material.STRING))).register(p);
+
+        // Infinity
+        if (SupportedPluginsManager.INFINITY_EXPANSION) {
+            new UnplaceableBlock(Categories.PROPERTIES, PROP_ALLTHATGLITTERS2, DummySmelteryProp.TYPE, propRecipe(PROP_ROD, SlimefunItem.getByID(IDStrings.SINGGOLD).getItem())).register(p);
+            new UnplaceableBlock(Categories.PROPERTIES, PROP_ADAMANT, DummySmelteryProp.TYPE, propRecipe(PROP_ROD, SlimefunItem.getByID(IDStrings.ADAMANTITE).getItem())).register(p);
+            new UnplaceableBlock(Categories.PROPERTIES, PROP_BRAINSNOTBRAWN2, DummySmelteryProp.TYPE, propRecipe(PROP_HEAD, SlimefunItem.getByID(IDStrings.SINGCOPPER).getItem())).register(p);
+            new UnplaceableBlock(Categories.PROPERTIES, PROP_BREAKPOINT, DummySmelteryProp.TYPE, propRecipe(PROP_HEAD, SlimefunItem.getByID(IDStrings.SINGINFINITY).getItem())).register(p);
+            new UnplaceableBlock(Categories.PROPERTIES, PROP_CAN2, DummySmelteryProp.TYPE, propRecipe(PROP_ROD, SlimefunItem.getByID(IDStrings.SINGTIN).getItem())).register(p);
+            new UnplaceableBlock(Categories.PROPERTIES, PROP_CLEANCUT, DummySmelteryProp.TYPE, propRecipe(PROP_HEAD, SlimefunItem.getByID(IDStrings.METAL).getItem())).register(p);
+            new UnplaceableBlock(Categories.PROPERTIES, PROP_CONCEPTUALDEFENCE, DummySmelteryProp.TYPE, propRecipe(PROP_ROD, SlimefunItem.getByID("INFINITE_INGOT").getItem())).register(p);
+            new UnplaceableBlock(Categories.PROPERTIES, PROP_CONDUCTIVE2, DummySmelteryProp.TYPE, propRecipe(PROP_ROD, SlimefunItem.getByID(IDStrings.SINGCOPPER).getItem())).register(p);
+            new UnplaceableBlock(Categories.PROPERTIES, PROP_CONDUCTOR, DummySmelteryProp.TYPE, propRecipe(PROP_ROD, SlimefunItem.getByID(IDStrings.METAL).getItem())).register(p);
+            new UnplaceableBlock(Categories.PROPERTIES, PROP_DURABLE_CO, DummySmelteryProp.TYPE, propRecipe(PROP_ROD, SlimefunItem.getByID(IDStrings.TITANIUM).getItem())).register(p);
+            new UnplaceableBlock(Categories.PROPERTIES, PROP_EARTHSHAKER, DummySmelteryProp.TYPE, propRecipe(PROP_HEAD, SlimefunItem.getByID(IDStrings.EARTH).getItem())).register(p);
+            new UnplaceableBlock(Categories.PROPERTIES, PROP_ELVENSPEED, DummySmelteryProp.TYPE, propRecipe(PROP_HEAD, SlimefunItem.getByID(IDStrings.MYTHRIL).getItem())).register(p);
+            new UnplaceableBlock(Categories.PROPERTIES, PROP_ENCHANTING2, DummySmelteryProp.TYPE, propRecipe(PROP_HEAD, SlimefunItem.getByID(IDStrings.SINGSILVER).getItem())).register(p);
+            new UnplaceableBlock(Categories.PROPERTIES, PROP_FEARTHEVOID, DummySmelteryProp.TYPE, propRecipe(PROP_ROD, SlimefunItem.getByID("VOID_INGOT").getItem())).register(p);
+            new UnplaceableBlock(Categories.PROPERTIES, PROP_FLAMABLE2, DummySmelteryProp.TYPE, propRecipe(PROP_HEAD, SlimefunItem.getByID(IDStrings.SINGMAGNESIUM).getItem())).register(p);
+            new UnplaceableBlock(Categories.PROPERTIES, PROP_FLAMABLE_CO, DummySmelteryProp.TYPE, propRecipe(PROP_ROD, SlimefunItem.getByID(IDStrings.MAGNONIUM).getItem())).register(p);
+            new UnplaceableBlock(Categories.PROPERTIES, PROP_FLAMINGHOT_CO, DummySmelteryProp.TYPE, propRecipe(PROP_ROD, SlimefunItem.getByID(IDStrings.MAGNONIUM).getItem())).register(p);
+            new UnplaceableBlock(Categories.PROPERTIES, PROP_GOLDENVEIL2, DummySmelteryProp.TYPE, propRecipe(PROP_HEAD, SlimefunItem.getByID(IDStrings.SINGGOLD).getItem())).register(p);
+            new UnplaceableBlock(Categories.PROPERTIES, PROP_GRACEFUL2, DummySmelteryProp.TYPE, propRecipe(PROP_HEAD, SlimefunItem.getByID(IDStrings.SINGZINC).getItem())).register(p);
+            new UnplaceableBlock(Categories.PROPERTIES, PROP_GRINDER, DummySmelteryProp.TYPE, propRecipe(PROP_ROD, SlimefunItem.getByID(IDStrings.EARTH).getItem())).register(p);
+            new UnplaceableBlock(Categories.PROPERTIES, PROP_INFINITE, DummySmelteryProp.TYPE, propRecipe(PROP_HEAD, SlimefunItem.getByID("INFINITE_INGOT").getItem())).register(p);
+            new UnplaceableBlock(Categories.PROPERTIES, PROP_LEECH2, DummySmelteryProp.TYPE, propRecipe(PROP_ROD, SlimefunItem.getByID(IDStrings.SINGLEAD).getItem())).register(p);
+            new UnplaceableBlock(Categories.PROPERTIES, PROP_MAGNANIMOUS, DummySmelteryProp.TYPE, propRecipe(PROP_HEAD, SlimefunItem.getByID(IDStrings.MAGNONIUM).getItem())).register(p);
+            new UnplaceableBlock(Categories.PROPERTIES, PROP_MAGNETESIUM2, DummySmelteryProp.TYPE, propRecipe(PROP_ROD, SlimefunItem.getByID(IDStrings.SINGMAGNESIUM).getItem())).register(p);
+            new UnplaceableBlock(Categories.PROPERTIES, PROP_MALLEABLE2, DummySmelteryProp.TYPE, propRecipe(PROP_HEAD, SlimefunItem.getByID(IDStrings.SINGTIN).getItem())).register(p);
+            new UnplaceableBlock(Categories.PROPERTIES, PROP_MERCHANTSVEIL, DummySmelteryProp.TYPE, propRecipe(PROP_ROD, SlimefunItem.getByID(IDStrings.FORTUNE).getItem())).register(p);
+            new UnplaceableBlock(Categories.PROPERTIES, PROP_MYSTIC, DummySmelteryProp.TYPE, propRecipe(PROP_HEAD, SlimefunItem.getByID(IDStrings.ADAMANTITE).getItem())).register(p);
+            new UnplaceableBlock(Categories.PROPERTIES, PROP_POISONOUS2, DummySmelteryProp.TYPE, propRecipe(PROP_HEAD, SlimefunItem.getByID(IDStrings.SINGLEAD).getItem())).register(p);
+            new UnplaceableBlock(Categories.PROPERTIES, PROP_REALLYSTAINLESS, DummySmelteryProp.TYPE, propRecipe(PROP_HEAD, SlimefunItem.getByID(IDStrings.MAGSTEEL).getItem())).register(p);
+            new UnplaceableBlock(Categories.PROPERTIES, PROP_RECYCLABLE2, DummySmelteryProp.TYPE, propRecipe(PROP_HEAD, SlimefunItem.getByID(IDStrings.SINGALUMINUM).getItem())).register(p);
+            new UnplaceableBlock(Categories.PROPERTIES, PROP_REINFORCED_CO, DummySmelteryProp.TYPE, propRecipe(PROP_ROD, SlimefunItem.getByID(IDStrings.TITANIUM).getItem())).register(p);
+            new UnplaceableBlock(Categories.PROPERTIES, PROP_SECRETSREVEALED, DummySmelteryProp.TYPE, propRecipe(PROP_ROD, SlimefunItem.getByID(IDStrings.MAGIC).getItem())).register(p);
+            new UnplaceableBlock(Categories.PROPERTIES, PROP_SHARP12, DummySmelteryProp.TYPE, propRecipe(PROP_ROD, SlimefunItem.getByID(IDStrings.SINGIRON).getItem())).register(p);
+            new UnplaceableBlock(Categories.PROPERTIES, PROP_SOFT2, DummySmelteryProp.TYPE, propRecipe(PROP_ROD, SlimefunItem.getByID(IDStrings.SINGALUMINUM).getItem())).register(p);
+            new UnplaceableBlock(Categories.PROPERTIES, PROP_SOFTTOUCH2, DummySmelteryProp.TYPE, propRecipe(PROP_ROD, SlimefunItem.getByID(IDStrings.SINGSILVER).getItem())).register(p);
+            new UnplaceableBlock(Categories.PROPERTIES, PROP_STABILITY2, DummySmelteryProp.TYPE, propRecipe(PROP_HEAD, SlimefunItem.getByID(IDStrings.SINGIRON).getItem())).register(p);
+            new UnplaceableBlock(Categories.PROPERTIES, PROP_STINGOFGONDOLIN, DummySmelteryProp.TYPE, propRecipe(PROP_ROD, SlimefunItem.getByID(IDStrings.MYTHRIL).getItem())).register(p);
+            new UnplaceableBlock(Categories.PROPERTIES, PROP_SUPERLIGHTWEIGHT2, DummySmelteryProp.TYPE, propRecipe(PROP_ROD, SlimefunItem.getByID(IDStrings.SINGZINC).getItem())).register(p);
+            new UnplaceableBlock(Categories.PROPERTIES, PROP_TRICKS, DummySmelteryProp.TYPE, propRecipe(PROP_HEAD, SlimefunItem.getByID(IDStrings.MAGIC).getItem())).register(p);
+            new UnplaceableBlock(Categories.PROPERTIES, PROP_VOIDMINER, DummySmelteryProp.TYPE, propRecipe(PROP_HEAD, SlimefunItem.getByID("VOID_INGOT").getItem())).register(p);
+        }
+
     }
 
-
 }
+

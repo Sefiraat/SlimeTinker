@@ -41,6 +41,7 @@ public final class ThemeUtils {
     public static final ChatColor ITEM_MOD = ChatColor.of("#bf307f");
     public static final ChatColor ITEM_PROP = ChatColor.of("#bf307f");
     public static final ChatColor ITEM_MULTIBLOCK = ChatColor.of("#3295a8");
+    public static final ChatColor ADD_INFINITY = ChatColor.of("#7ecee0");
 
     public static final String LORE_TYPE_CRAFT = ITEM_TYPEDESC + "Crafting Material";
     public static final String LORE_TYPE_MACHINE = ITEM_TYPEDESC + "Machine";

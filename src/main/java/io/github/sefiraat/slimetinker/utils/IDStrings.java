@@ -39,11 +39,11 @@ public final class IDStrings {
 
     // Infinity Expac
     public static final String VOID = "VOID";
-    public static final String INFINITY = "INFINITY";
-    public static final String FORTUNE = "SOLIDIFIED_FORTUNE";
-    public static final String MAGIC = "SOLIDIFIED_MAGIC";
-    public static final String EARTH = "SOLIDIFIED_EARTH";
-    public static final String METAL = "SOLIDIFIED_METAL";
+    public static final String INFINITY = "INFINITE";
+    public static final String FORTUNE = "FORTUNE_SINGULARITY";
+    public static final String MAGIC = "MAGIC_SINGULARITY";
+    public static final String EARTH = "EARTH_SINGULARITY";
+    public static final String METAL = "METAL_SINGULARITY";
     public static final String MAGSTEEL = "MAGSTEEL";
     public static final String TITANIUM = "TITANIUM";
     public static final String MYTHRIL = "MYTHRIL";

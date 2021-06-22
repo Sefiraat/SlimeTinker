@@ -1,6 +1,7 @@
 package io.github.sefiraat.slimetinker.listeners;
 
 import io.github.sefiraat.slimetinker.utils.IDStrings;
+import lombok.Getter;
 import org.bukkit.Material;
 
 import java.util.EnumMap;
@@ -11,6 +12,7 @@ public final class BlockMap {
         throw new IllegalStateException("Utility class");
     }
 
+    @Getter
     protected static final EnumMap<Material, String> materialMap = new EnumMap<>(Material.class);
 
     static {

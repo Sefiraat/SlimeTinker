@@ -1,19 +1,18 @@
 package io.github.sefiraat.slimetinker.utils;
 
 import io.github.sefiraat.slimetinker.items.BaseItem;
+import lombok.experimental.UtilityClass;
 import me.mrCookieSlime.Slimefun.api.SlimefunItemStack;
 import net.md_5.bungee.api.ChatColor;
+import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.WordUtils;
 import org.bukkit.Material;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.List;
 
+@UtilityClass
 public final class ThemeUtils {
-
-    private ThemeUtils() {
-        throw new IllegalStateException("Utility class");
-    }
 
     public static final String PREFIX = "" + ChatColor.GRAY + "[Slime Tinker] ";
     public static final String SUFFIX = "" + ChatColor.GRAY + "";
@@ -42,6 +41,7 @@ public final class ThemeUtils {
     public static final ChatColor ITEM_MOD = ChatColor.of("#bf307f");
     public static final ChatColor ITEM_PROP = ChatColor.of("#bf307f");
     public static final ChatColor ITEM_MULTIBLOCK = ChatColor.of("#3295a8");
+    public static final ChatColor ADD_INFINITY = ChatColor.of("#7ecee0");
 
     public static final String LORE_TYPE_CRAFT = ITEM_TYPEDESC + "Crafting Material";
     public static final String LORE_TYPE_MACHINE = ITEM_TYPEDESC + "Machine";
@@ -137,6 +137,10 @@ public final class ThemeUtils {
     public static String toTitleCase(String string) {
         final char[] delimiters = { ' ', '_' };
         return WordUtils.capitalizeFully(string, delimiters).replace("_"," ");
+    }
+
+    public static String getLine() {
+        return PASSIVE + StringUtils.repeat("-", 25);
     }
 
     public enum ThemeItemType {

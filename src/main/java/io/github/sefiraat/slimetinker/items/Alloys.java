@@ -7,15 +7,13 @@ import io.github.sefiraat.slimetinker.utils.SkullTextures;
 import io.github.sefiraat.slimetinker.utils.ThemeUtils;
 import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
 import io.github.thebusybiscuit.slimefun4.implementation.items.blocks.UnplaceableBlock;
+import lombok.experimental.UtilityClass;
 import me.mrCookieSlime.Slimefun.api.SlimefunItemStack;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
+@UtilityClass
 public final class Alloys {
-
-    private Alloys() {
-        throw new IllegalStateException("Utility class");
-    }
 
     protected static final ItemStack[] RECIPE_ALLOY_STEEL = new ItemStack[] {
             new ItemStack(Material.IRON_INGOT, 2),   new ItemStack(Material.COAL), null,

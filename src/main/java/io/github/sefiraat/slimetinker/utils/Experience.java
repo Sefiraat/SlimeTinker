@@ -3,6 +3,7 @@ package io.github.sefiraat.slimetinker.utils;
 import io.github.sefiraat.slimetinker.SlimeTinker;
 import io.github.sefiraat.slimetinker.items.Tools;
 import io.github.sefiraat.slimetinker.modifiers.Modifications;
+import lombok.experimental.UtilityClass;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
@@ -13,7 +14,9 @@ import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
 
 import java.util.Map;
+import java.util.concurrent.ThreadLocalRandom;
 
+@UtilityClass
 public final class Experience {
 
     public static final double EXP_LEVEL_BASE = 100;
@@ -37,9 +40,8 @@ public final class Experience {
         String matPropertyBinding = ItemUtils.getToolBindingMaterial(c);
         String matPropertyRod = ItemUtils.getToolRodMaterial(c);
 
-        if (matPropertyRod.equals(IDStrings.COPPER)) { // Conductive
-           player.giveExp(amount);
-           return;
+        if (copperChecks(matPropertyRod, player, amount)) {
+            return;
         }
 
         // Add the EXP given
@@ -71,15 +73,7 @@ public final class Experience {
             promoteMaterial(itemStack, level, player);
             player.sendMessage(ThemeUtils.SUCCESS + "Your Tinker's tool has leveled up! +1 Modifier Slot");
 
-            if (matPropertyHead.equals(IDStrings.SILVER)) { // ENCHANTING
-                Enchantment randEnchant = Enchantment.values()[(int) (Math.random()*Enchantment.values().length)];
-                if (im.hasEnchant(randEnchant)) {
-                    im.addEnchant(randEnchant, itemStack.getEnchantmentLevel(randEnchant) + 1, true);
-                } else {
-                    im.addEnchant(randEnchant, 1, true);
-                }
-                player.sendMessage(ThemeUtils.SUCCESS + "It also gained a random enchantment! Hope it's good :>");
-            }
+            silverChecks(matPropertyHead, im, itemStack, player);
 
         } else {
             newExp = currentExp + amount;
@@ -138,6 +132,38 @@ public final class Experience {
             player.sendMessage(ThemeUtils.SUCCESS + "Your tool has been promoted!");
         }
 
+    }
+
+    private static boolean copperChecks(String matPropertyRod, Player player, int amount) {
+        if (matPropertyRod.equals(IDStrings.COPPER)) { // Conductive
+            player.giveExp(amount);
+            return true;
+        }
+        if (matPropertyRod.equals(IDStrings.SINGCOPPER)) { // Conductive II
+            player.giveExp((int) Math.ceil(amount * 1.5));
+            return true;
+        }
+        return false;
+    }
+
+    private static void silverChecks(String matPropertyHead, ItemMeta im, ItemStack itemStack, Player player) {
+        int number = 1;
+        if (matPropertyHead.equals(IDStrings.SINGSILVER)) { // ENCHANTING II
+            number = 3;
+        }
+        int count = 0;
+        if (matPropertyHead.equals(IDStrings.SILVER) || matPropertyHead.equals(IDStrings.SINGSILVER)) { // Enchanting + Enchanting II
+            for (int i = 0; i < ThreadLocalRandom.current().nextInt(1, number); i++) {
+                Enchantment randEnchant = Enchantment.values()[(int) (Math.random()*Enchantment.values().length)];
+                if (im.hasEnchant(randEnchant)) {
+                    im.addEnchant(randEnchant, itemStack.getEnchantmentLevel(randEnchant) + 1, true);
+                } else {
+                    im.addEnchant(randEnchant, 1, true);
+                }
+                count++;
+            }
+            player.sendMessage(ThemeUtils.SUCCESS + "It also gained [" + count + "] random enchantment(s)! Hope it's good :>");
+        }
     }
 
 

@@ -5,15 +5,13 @@ import io.github.sefiraat.slimetinker.categories.Categories;
 import io.github.sefiraat.slimetinker.items.workstations.modificationstation.DummyModificationStation;
 import io.github.sefiraat.slimetinker.utils.ThemeUtils;
 import io.github.thebusybiscuit.slimefun4.implementation.items.blocks.UnplaceableBlock;
+import lombok.experimental.UtilityClass;
 import me.mrCookieSlime.Slimefun.api.SlimefunItemStack;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
+@UtilityClass
 public final class Mods {
-
-    private Mods() {
-        throw new IllegalStateException("Utility class");
-    }
 
     public static final SlimefunItemStack MOD_REDSTONE_DUMMY =
             ThemeUtils.themedItemStack(

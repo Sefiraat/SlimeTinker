@@ -1,7 +1,11 @@
 package io.github.sefiraat.slimetinker.listeners;
 
+import io.github.sefiraat.slimetinker.events.EntityDamageEventFriend;
+import io.github.sefiraat.slimetinker.items.componentmaterials.CMManager;
+import io.github.sefiraat.slimetinker.items.materials.ComponentMaterial;
 import io.github.sefiraat.slimetinker.items.templates.ToolTemplate;
 import io.github.sefiraat.slimetinker.modifiers.Modifications;
+import io.github.sefiraat.slimetinker.utils.Experience;
 import io.github.sefiraat.slimetinker.utils.IDStrings;
 import io.github.sefiraat.slimetinker.utils.ItemUtils;
 import org.bukkit.Color;
@@ -26,7 +30,7 @@ import java.util.Map;
 
 public class EntityKilledListener implements Listener {
 
-    public Map<Player, List<ItemStack>>  heldItems = new HashMap<>();
+    protected Map<Player, List<ItemStack>>  heldItems = new HashMap<>();
 
     @EventHandler
     public void onPlayerDeath(PlayerDeathEvent event) {
@@ -75,42 +79,41 @@ public class EntityKilledListener implements Listener {
             return;
         }
 
+        // Properties
         ItemMeta im = heldItem.getItemMeta();
         assert im != null;
         PersistentDataContainer c = im.getPersistentDataContainer();
-
         String matPropertyHead = ItemUtils.getToolHeadMaterial(c);
         String matPropertyBinding = ItemUtils.getToolBindingMaterial(c);
         String matPropertyRod = ItemUtils.getToolRodMaterial(c);
+        int toolLevel = Experience.getToolLevel(c);
 
-        EventResult eventResult = new EventResult();
+        EntityDamageEventFriend friend = new EntityDamageEventFriend(heldItem, player, dyingEntity, toolLevel);
 
-        propertyChecks(event, eventResult, matPropertyHead, matPropertyBinding, matPropertyRod);
-        modChecks(event, heldItem);
-
-        event.setDroppedExp((int) Math.ceil(event.getDroppedExp() * eventResult.getPlayerExpMod()));
-
-
-    }
-
-    private void propertyChecks(EntityDeathEvent event, EventResult eventResult, String matPropertyHead, String matPropertyBinding, String matPropertyRod) {
-
-        if (matPropertyRod.equals(IDStrings.ALUBRASS)) { // STUDIOUS
-            propRodAlubrass(eventResult);
+        for (Map.Entry<String, ComponentMaterial> mat : CMManager.getMAP().entrySet()) {
+            if (mat.getValue().isEventEntityDamagedHead() && matPropertyHead.equals(mat.getKey())) {
+                mat.getValue().getEntityDamagedConsumerHead().accept(friend);
+            }
+            if (mat.getValue().isEventEntityDamagedBind() && matPropertyBinding.equals(mat.getKey())) {
+                mat.getValue().getEntityDamagedConsumerBind().accept(friend);
+            }
+            if (mat.getValue().isEventEntityDamagedRod() && matPropertyRod.equals(mat.getKey())) {
+                mat.getValue().getEntityDamagedConsumerRod().accept(friend);
+            }
         }
 
+        // Mods
+        modChecks(event, heldItem);
+
+        // Settle
+        event.setDroppedExp((int) Math.ceil(event.getDroppedExp() * friend.getPlayerExpMod()));
+        if (event.getDroppedExp() > 0 && friend.isMetalCheck()) {
+            Experience.addToolExp(heldItem, (int) Math.ceil(event.getDroppedExp() / 10D), player, true);
+            event.setDroppedExp(0);
+        }
+
+
     }
-
-    private void propRodAlubrass(EventResult eventResult) {
-        eventResult.setPlayerExpMod(eventResult.getPlayerExpMod() + 0.5);
-    }
-
-
-
-
-
-
-
 
     private void modChecks(EntityDeathEvent event, ItemStack heldItem) {
         modCheckLapis(event, heldItem);

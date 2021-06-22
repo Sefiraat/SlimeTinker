@@ -5,58 +5,25 @@ import io.github.sefiraat.slimetinker.categories.Categories;
 import io.github.sefiraat.slimetinker.items.workstations.smeltery.DummySmeltery;
 import io.github.sefiraat.slimetinker.items.workstations.smeltery.TinkersSmeltery;
 import io.github.sefiraat.slimetinker.items.workstations.workbench.Workbench;
-import io.github.sefiraat.slimetinker.utils.SkullTextures;
+import io.github.sefiraat.slimetinker.managers.SupportedPluginsManager;
 import io.github.sefiraat.slimetinker.utils.ThemeUtils;
 import io.github.thebusybiscuit.slimefun4.implementation.items.blocks.UnplaceableBlock;
+import lombok.experimental.UtilityClass;
 import me.mrCookieSlime.Slimefun.Lists.RecipeType;
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.SlimefunItem;
 import me.mrCookieSlime.Slimefun.api.SlimefunItemStack;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
+@UtilityClass
 public final class Materials {
 
-    private Materials() {
-        throw new IllegalStateException("Utility class");
-    }
-
-    // region Molten Bucketed Metals
-
-    // Molten Iron
-    public static final SlimefunItemStack MOLTEN_IRON =
-            ThemeUtils.themedItemStack(
-                    "MOLTEN_IRON",
-                    SkullTextures.BUCKET_WHITE,
-                    ThemeUtils.ThemeItemType.MOLTEN_METAL,
-                    "Molten Iron",
-                    "A bucket of Molten Iron.",
-                    "How on earth are you holding this?"
-            );
-
-    // Molten Gold
-    public static final SlimefunItemStack MOLTEN_GOLD =
-            ThemeUtils.themedItemStack(
-                    "MOLTEN_GOLD",
-                    SkullTextures.BUCKET_YELLOW,
-                    ThemeUtils.ThemeItemType.MOLTEN_METAL,
-                    "Molten Gold",
-                    "A bucket of Molten Gold.",
-                    "Costly, be careful not to spill it!"
-            );
-
-    // endregion
-
-
-
-
-
-
-    // region Custom Cast Nuggets
-
+    // region Vanilla + Core SF
+    // region Nuggets
     public static final SlimefunItemStack NUGGET_CAST_COPPER =
             ThemeUtils.themedItemStack(
                     "NUGGET_CAST_COPPER",
-                    Material.IRON_NUGGET,
+                    Material.ACACIA_BUTTON,
                     ThemeUtils.ThemeItemType.CRAFTING,
                     "Copper Nugget",
                     "A nugget made from solid copper"
@@ -119,7 +86,7 @@ public final class Materials {
     public static final SlimefunItemStack NUGGET_CAST_COAL =
             ThemeUtils.themedItemStack(
                     "NUGGET_CAST_COAL",
-                    Material.INK_SAC,
+                    Material.POLISHED_BLACKSTONE_BUTTON,
                     ThemeUtils.ThemeItemType.CRAFTING,
                     "Coal Nugget",
                     "A nugget made from liquifacted coal"
@@ -155,7 +122,7 @@ public final class Materials {
     public static final SlimefunItemStack NUGGET_CAST_BRONZE =
            ThemeUtils.themedItemStack(
                    "NUGGET_CAST_BRONZE",
-                   Material.IRON_NUGGET,
+                   Material.ACACIA_BUTTON,
                    ThemeUtils.ThemeItemType.CRAFTING,
                    "Bronze Nugget",
                    "A nugget made from bronze"
@@ -164,7 +131,7 @@ public final class Materials {
     public static final SlimefunItemStack NUGGET_CAST_ALU_BRONZE =
           ThemeUtils.themedItemStack(
                   "NUGGET_CAST_ALU_BRONZE",
-                  Material.IRON_NUGGET,
+                  Material.GOLD_NUGGET,
                   ThemeUtils.ThemeItemType.CRAFTING,
                   "Aluminum Bronze Nugget",
                   "A nugget made from aluminum bronze"
@@ -182,7 +149,7 @@ public final class Materials {
     public static final SlimefunItemStack NUGGET_CAST_COR_BRONZE =
             ThemeUtils.themedItemStack(
                     "NUGGET_CAST_COR_BRONZE",
-                    Material.IRON_NUGGET,
+                    Material.GOLD_NUGGET,
                     ThemeUtils.ThemeItemType.CRAFTING,
                     "Corinthian Bronze Nugget",
                     "A nugget made from corinthian bronze"
@@ -209,7 +176,7 @@ public final class Materials {
     public static final SlimefunItemStack NUGGET_CAST_BRASS =
             ThemeUtils.themedItemStack(
                     "NUGGET_CAST_BRASS",
-                    Material.IRON_NUGGET,
+                    Material.GOLD_NUGGET,
                     ThemeUtils.ThemeItemType.CRAFTING,
                     "Brass Nugget",
                     "A nugget made from brass"
@@ -218,7 +185,7 @@ public final class Materials {
     public static final SlimefunItemStack NUGGET_CAST_ALU_BRASS =
             ThemeUtils.themedItemStack(
                     "NUGGET_CAST_ALU_BRASS",
-                    Material.IRON_NUGGET,
+                    Material.GOLD_INGOT,
                     ThemeUtils.ThemeItemType.CRAFTING,
                     "Aluminum Brass Nugget",
                     "A nugget made from aluminum brass"
@@ -250,11 +217,8 @@ public final class Materials {
                     "Reinforced Alloy Nugget",
                     "A nugget made from reinforced alloy"
             );
-
     // endregion
-
-    // region Custom Cast Blocks
-        
+    // region Blocks
     public static final SlimefunItemStack BLOCK_CAST_COPPER =
             ThemeUtils.themedItemStack(
                     "BLOCK_CAST_COPPER",
@@ -442,7 +406,8 @@ public final class Materials {
                     "Reinforced Alloy Block",
                     "A block made from reinforced alloy"
             );
-
+    // endregion
+    // region Crafts
     public static final SlimefunItemStack MOD_PLATE =
             ThemeUtils.themedItemStack(
                     "MOD_PLATE",
@@ -484,7 +449,7 @@ public final class Materials {
     public static final SlimefunItemStack SEARED_TANK =
             ThemeUtils.themedItemStack(
                     "SEARED_TANK",
-                    Material.BLACKSTONE_WALL,
+                    Material.RED_NETHER_BRICK_WALL,
                     ThemeUtils.ThemeItemType.CRAFTING,
                     "Seared Tank",
                     ThemeUtils.PASSIVE + "Used in building the smeltery."
@@ -507,6 +472,119 @@ public final class Materials {
                     "Seared Brick Block",
                     ThemeUtils.PASSIVE + "Used in building the smeltery."
             );
+    // endregion
+    // endregion
+
+    // region Infinity Expac
+    // region Nuggets
+    public static final SlimefunItemStack NUGGET_CAST_INFINITY =
+            ThemeUtils.themedItemStack(
+                    "NUGGET_CAST_INFINITY",
+                    Material.IRON_NUGGET,
+                    ThemeUtils.ThemeItemType.CRAFTING,
+                    "Infinity Nugget",
+                    "A nugget made from solid infinity... yup!"
+            );
+    public static final SlimefunItemStack NUGGET_CAST_MAGSTEEL =
+            ThemeUtils.themedItemStack(
+                    "NUGGET_CAST_MAGSTEEL",
+                    Material.ACACIA_BUTTON,
+                    ThemeUtils.ThemeItemType.CRAFTING,
+                    "MagSteel Nugget",
+                    "A nugget made from solid MagSteel"
+            );
+    public static final SlimefunItemStack NUGGET_CAST_TITANIUM =
+            ThemeUtils.themedItemStack(
+                    "NUGGET_CAST_TITANIUM",
+                    Material.IRON_NUGGET,
+                    ThemeUtils.ThemeItemType.CRAFTING,
+                    "Titanium Nugget",
+                    "A nugget made from solid Titanium"
+            );
+    public static final SlimefunItemStack NUGGET_CAST_MYTHRIL =
+            ThemeUtils.themedItemStack(
+                    "NUGGET_CAST_MYTHRIL",
+                    Material.IRON_NUGGET,
+                    ThemeUtils.ThemeItemType.CRAFTING,
+                    "Mythril Nugget",
+                    "A nugget made from solid Mythril"
+            );
+    public static final SlimefunItemStack NUGGET_CAST_ADAMANTITE =
+            ThemeUtils.themedItemStack(
+                    "NUGGET_CAST_ADAMANTITE",
+                    Material.ACACIA_BUTTON,
+                    ThemeUtils.ThemeItemType.CRAFTING,
+                    "Adamantite Nugget",
+                    "A nugget made from solid Adamantite"
+            );
+    public static final SlimefunItemStack NUGGET_CAST_MAGNONIUM =
+            ThemeUtils.themedItemStack(
+                    "NUGGET_CAST_MAGNONIUM",
+                    Material.CRIMSON_BUTTON,
+                    ThemeUtils.ThemeItemType.CRAFTING,
+                    "Magnonium Nugget",
+                    "A nugget made from solid Magnonium"
+            );
+    // endregion
+    // region Blocks
+    public static final SlimefunItemStack BLOCK_CAST_VOID =
+            ThemeUtils.themedItemStack(
+                    "BLOCK_CAST_VOID",
+                    Material.NETHERITE_BLOCK,
+                    ThemeUtils.ThemeItemType.CRAFTING,
+                    "Void Block",
+                    "A block made from ... void?"
+            );
+    public static final SlimefunItemStack BLOCK_CAST_INFINITY =
+            ThemeUtils.themedItemStack(
+                    "BLOCK_CAST_INFINITY",
+                    Material.IRON_BLOCK,
+                    ThemeUtils.ThemeItemType.CRAFTING,
+                    "Infinity Block",
+                    "A block made from *sigh* infinity."
+            );
+    public static final SlimefunItemStack BLOCK_CAST_MAGSTEEL =
+            ThemeUtils.themedItemStack(
+                    "BLOCK_CAST_MAGSTEEL",
+                    Material.TERRACOTTA,
+                    ThemeUtils.ThemeItemType.CRAFTING,
+                    "MagSteel Block",
+                    "A block made from MagSteel."
+            );
+    public static final SlimefunItemStack BLOCK_CAST_TITANIUM =
+            ThemeUtils.themedItemStack(
+                    "BLOCK_CAST_TITANIUM",
+                    Material.IRON_BLOCK,
+                    ThemeUtils.ThemeItemType.CRAFTING,
+                    "Titanium Block",
+                    "A block made from Titanium."
+            );
+    public static final SlimefunItemStack BLOCK_CAST_MYTHRIL =
+            ThemeUtils.themedItemStack(
+                    "BLOCK_CAST_MYTHRIL",
+                    Material.IRON_BLOCK,
+                    ThemeUtils.ThemeItemType.CRAFTING,
+                    "Mythril Block",
+                    "A block made from Mythril."
+            );
+    public static final SlimefunItemStack BLOCK_CAST_ADAMANTITE =
+            ThemeUtils.themedItemStack(
+                    "BLOCK_CAST_ADAMANTITE",
+                    Material.TERRACOTTA,
+                    ThemeUtils.ThemeItemType.CRAFTING,
+                    "Adamanitite Block",
+                    "A block made from Adamanitite."
+            );
+    public static final SlimefunItemStack BLOCK_CAST_MAGNONIUM =
+            ThemeUtils.themedItemStack(
+                    "BLOCK_CAST_MAGNONIUM",
+                    Material.PURPLE_TERRACOTTA,
+                    ThemeUtils.ThemeItemType.CRAFTING,
+                    "Magnonium Block",
+                    "A block made from Magnonium."
+            );
+    // endregion
+    // endregion
 
     protected static final ItemStack[] RECIPE_GROUT = new ItemStack[] {
             new ItemStack(Material.CLAY), new ItemStack(Material.SAND),  new ItemStack(Material.SAND),
@@ -552,12 +630,9 @@ public final class Materials {
 
 
 
-
-
-    // endregion
-
     public static void set(SlimeTinker p) {
 
+        // Vanilla + Core SF + Tinker's General
         new UnplaceableBlock(Categories.MATERIALS, GROUT, Workbench.TYPE, RECIPE_GROUT).register(p);
         new UnplaceableBlock(Categories.MATERIALS, SEARED_BRICK, RecipeType.SMELTERY, RECIPE_SEARED_BRICK).register(p);
         new TinkersSmeltery(Categories.MATERIALS, SMELTERY_CONTROLLER, Workbench.TYPE, RECIPE_SMELTERY_CONTROLLER).register(p);
@@ -631,6 +706,30 @@ public final class Materials {
         new UnplaceableBlock(Categories.MATERIALS, BLOCK_CAST_REINFORCED, DummySmeltery.TYPE, Parts.getDummyCastRecipe(Casts.CAST_BLOCK)).register(p);
 
         new UnplaceableBlock(Categories.MATERIALS, NUGGET_CAST_COAL, DummySmeltery.TYPE, Parts.getDummyCastRecipe(Casts.CAST_NUGGET)).register(p);
+
+        // Infinity Expac
+        if (SupportedPluginsManager.INFINITY_EXPANSION) {
+            new UnplaceableBlock(Categories.MATERIALS, BLOCK_CAST_VOID, DummySmeltery.TYPE, Parts.getDummyCastRecipe(Casts.CAST_BLOCK)).register(p);
+
+            new UnplaceableBlock(Categories.MATERIALS, NUGGET_CAST_INFINITY, DummySmeltery.TYPE, Parts.getDummyCastRecipe(Casts.CAST_NUGGET)).register(p);
+            new UnplaceableBlock(Categories.MATERIALS, BLOCK_CAST_INFINITY, DummySmeltery.TYPE, Parts.getDummyCastRecipe(Casts.CAST_BLOCK)).register(p);
+
+            new UnplaceableBlock(Categories.MATERIALS, NUGGET_CAST_MAGSTEEL, DummySmeltery.TYPE, Parts.getDummyCastRecipe(Casts.CAST_NUGGET)).register(p);
+            new UnplaceableBlock(Categories.MATERIALS, BLOCK_CAST_MAGSTEEL, DummySmeltery.TYPE, Parts.getDummyCastRecipe(Casts.CAST_BLOCK)).register(p);
+
+            new UnplaceableBlock(Categories.MATERIALS, NUGGET_CAST_TITANIUM, DummySmeltery.TYPE, Parts.getDummyCastRecipe(Casts.CAST_NUGGET)).register(p);
+            new UnplaceableBlock(Categories.MATERIALS, BLOCK_CAST_TITANIUM, DummySmeltery.TYPE, Parts.getDummyCastRecipe(Casts.CAST_BLOCK)).register(p);
+
+            new UnplaceableBlock(Categories.MATERIALS, NUGGET_CAST_MYTHRIL, DummySmeltery.TYPE, Parts.getDummyCastRecipe(Casts.CAST_NUGGET)).register(p);
+            new UnplaceableBlock(Categories.MATERIALS, BLOCK_CAST_MYTHRIL, DummySmeltery.TYPE, Parts.getDummyCastRecipe(Casts.CAST_BLOCK)).register(p);
+
+            new UnplaceableBlock(Categories.MATERIALS, NUGGET_CAST_ADAMANTITE, DummySmeltery.TYPE, Parts.getDummyCastRecipe(Casts.CAST_NUGGET)).register(p);
+            new UnplaceableBlock(Categories.MATERIALS, BLOCK_CAST_ADAMANTITE, DummySmeltery.TYPE, Parts.getDummyCastRecipe(Casts.CAST_BLOCK)).register(p);
+
+            new UnplaceableBlock(Categories.MATERIALS, NUGGET_CAST_MAGNONIUM, DummySmeltery.TYPE, Parts.getDummyCastRecipe(Casts.CAST_NUGGET)).register(p);
+            new UnplaceableBlock(Categories.MATERIALS, BLOCK_CAST_MAGNONIUM, DummySmeltery.TYPE, Parts.getDummyCastRecipe(Casts.CAST_BLOCK)).register(p);
+
+        }
 
 
     }

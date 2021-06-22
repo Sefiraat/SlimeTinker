@@ -1,7 +1,11 @@
 package io.github.sefiraat.slimetinker.utils;
 
+import lombok.experimental.UtilityClass;
+
+@UtilityClass
 public final class IDStrings {
 
+    // Vanilla + Core SF
     public static final String IRON = "IRON";
     public static final String GOLD = "GOLD";
     public static final String COPPER = "COPPER";
@@ -26,13 +30,36 @@ public final class IDStrings {
     public static final String NICKEL = "NICKEL";
     public static final String COBALT = "COBALT";
     public static final String REINFORCED = "REINFORCED_ALLOY";
-
     public static final String STRING = "STRING";
     public static final String VINE = "VINE";
-    public static final String ROOTRED = "CRIMSON_ROOT";
-    public static final String ROOTGREEN = "WARPED_ROOT";
-    public static final String VINERED = "WEEPING_VINE";
-    public static final String VINEGREEN = "TWISTED_VINE";
+    public static final String CRIMSONROOTS = "CRIMSON_ROOT";
+    public static final String WARPEDROOTS = "WARPED_ROOT";
+    public static final String WEEPINGVINES = "WEEPING_VINE";
+    public static final String TWISTEDVINES = "TWISTED_VINE";
+
+    // Infinity Expac
+    public static final String VOID = "VOID";
+    public static final String INFINITY = "INFINITE";
+    public static final String FORTUNE = "FORTUNE_SINGULARITY";
+    public static final String MAGIC = "MAGIC_SINGULARITY";
+    public static final String EARTH = "EARTH_SINGULARITY";
+    public static final String METAL = "METAL_SINGULARITY";
+    public static final String MAGSTEEL = "MAGSTEEL";
+    public static final String TITANIUM = "TITANIUM";
+    public static final String MYTHRIL = "MYTHRIL";
+    public static final String ADAMANTITE = "ADAMANTITE";
+    public static final String MAGNONIUM = "MAGNONIUM";
+    public static final String SINGCOPPER = "COPPER_SINGULARITY";
+    public static final String SINGZINC = "ZINC_SINGULARITY";
+    public static final String SINGTIN = "TIN_SINGULARITY";
+    public static final String SINGALUMINUM = "ALUMINUM_SINGULARITY";
+    public static final String SINGSILVER = "SILVER_SINGULARITY";
+    public static final String SINGMAGNESIUM = "MAGNESIUM_SINGULARITY";
+    public static final String SINGLEAD = "LEAD_SINGULARITY";
+    public static final String SINGGOLD = "GOLD_SINGULARITY";
+    public static final String SINGIRON = "IRON_SINGULARITY";
+    public static final String SINGINFINITY = "INFINITY_SINGULARITY";
+
 
     public static final String HEAD = "HEAD";
     public static final String BINDING = "BINDING";

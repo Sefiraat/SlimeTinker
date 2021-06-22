@@ -6,7 +6,9 @@ website: https://github.com/Sefiraat/SlimeTinker
 version: ${project.version}
 api-version: 1.16
 depend:
-- Slimefun
+  - Slimefun
+softdepend:
+  - InfinityExpansion
 
 commands:
   slimetinker:

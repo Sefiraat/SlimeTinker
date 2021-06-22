@@ -1,6 +1,10 @@
 package io.github.sefiraat.slimetinker.listeners;
 
 import io.github.sefiraat.slimetinker.SlimeTinker;
+import io.github.sefiraat.slimetinker.events.BlockBreakEventFriend;
+import io.github.sefiraat.slimetinker.events.BlockBreakEvents;
+import io.github.sefiraat.slimetinker.items.componentmaterials.CMManager;
+import io.github.sefiraat.slimetinker.items.materials.ComponentMaterial;
 import io.github.sefiraat.slimetinker.items.templates.ToolTemplate;
 import io.github.sefiraat.slimetinker.modifiers.Modifications;
 import io.github.sefiraat.slimetinker.utils.BlockUtils;
@@ -8,7 +12,6 @@ import io.github.sefiraat.slimetinker.utils.Experience;
 import io.github.sefiraat.slimetinker.utils.IDStrings;
 import io.github.sefiraat.slimetinker.utils.ItemUtils;
 import io.github.sefiraat.slimetinker.utils.ThemeUtils;
-import org.bukkit.Bukkit;
 import org.bukkit.Color;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -19,9 +22,7 @@ import org.bukkit.enchantments.Enchantment;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
-import org.bukkit.inventory.FurnaceRecipe;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.Recipe;
 import org.bukkit.inventory.meta.Damageable;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataContainer;
@@ -29,12 +30,10 @@ import org.bukkit.persistence.PersistentDataType;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
 public class BlockBreakListener implements Listener {
-
 
     @EventHandler
     public void onBlockBreak(BlockBreakEvent event) {
@@ -50,41 +49,70 @@ public class BlockBreakListener implements Listener {
             return;
         }
 
-        if (cancelIfBroken(heldItem)) {
-            event.getPlayer().sendMessage(ThemeUtils.WARNING + "Your tool is broken, you should really repair it!");
-            event.setCancelled(true);
-            return;
-        }
-
         if (BlockUtils.isPlaced(block)) {
             return;
         }
 
-        // pre-flight, some tools stop block breaking
-
-
-
         // Property and Mod checks, carries around the additional and normal drops
-        Collection<ItemStack> drops = block.getDrops(heldItem);
-        Collection<ItemStack> addDrops = new ArrayList<>();
-        Collection<ItemStack> removeDrops = new ArrayList<>();
-        EventResult eventResult = new EventResult();
+        BlockBreakEventFriend friend = new BlockBreakEventFriend(heldItem, event.getPlayer(), block);
+        friend.setDrops(block.getDrops(heldItem)); // Stores the event drops. All may not be dropped
+        friend.setAddDrops(new ArrayList<>()); // Additional drops or substitutions for items from the main collection
+        friend.setRemoveDrops(new ArrayList<>()); // Items to remove from the main collection if moved/reformed into the additional
 
-        propertyChecks(heldItem, block, drops, addDrops, removeDrops);
-        modChecks(heldItem, block, addDrops);
+        // Properties
+        ItemMeta im = heldItem.getItemMeta();
+        assert im != null;
+        PersistentDataContainer c = im.getPersistentDataContainer();
+        String matPropertyHead = ItemUtils.getToolHeadMaterial(c);
+        String matPropertyBinding = ItemUtils.getToolBindingMaterial(c);
+        String matPropertyRod = ItemUtils.getToolRodMaterial(c);
 
+        // Cancel if tool is broken (moved down here as we bypass if the duralium event fires)
+        if (cancelIfBroken(heldItem)) {
+            if (matPropertyHead.equals(IDStrings.DURALIUM) || matPropertyRod.equals(IDStrings.TITANIUM)) { // Run duraluim as it will flag the duraliumCheck meaning we can bypass durability checks
+                BlockBreakEvents.headDuralium(friend);
+            } else {
+                event.getPlayer().sendMessage(ThemeUtils.WARNING + "Your tool is broken, you should really repair it!");
+                event.setCancelled(true);
+                return;
+            }
+        }
+
+        for (Map.Entry<String, ComponentMaterial> mat : CMManager.getMAP().entrySet()) {
+            if (mat.getValue().isEventBlockBreakHead() && matPropertyHead.equals(mat.getKey())) {
+                mat.getValue().getBlockBreakConsumerHead().accept(friend);
+            }
+            if (mat.getValue().isEventBlockBreakBind() && matPropertyBinding.equals(mat.getKey())) {
+                mat.getValue().getBlockBreakConsumerBind().accept(friend);
+            }
+            if (mat.getValue().isEventBlockBreakRod() && matPropertyRod.equals(mat.getKey())) {
+                mat.getValue().getBlockBreakConsumerRod().accept(friend);
+            }
+        }
+
+        // Mods
+        modChecks(heldItem, block, friend.getAddDrops());
+
+        // Settle
         event.setDropItems(false);
 
-        for (ItemStack i : addDrops) {
-            block.getWorld().dropItemNaturally(block.getLocation().clone().add(0.5, 0.5, 0.5), i);
-        }
-        for (ItemStack i : drops) {
-            if (!removeDrops.contains(i)) {
+        for (ItemStack i : friend.getDrops()) { // Drop items in original collection not flagged for removal
+            if (!friend.getRemoveDrops().contains(i)) {
                 block.getWorld().dropItemNaturally(block.getLocation().clone().add(0.5, 0.5, 0.5), i);
             }
         }
+
+        for (ItemStack i : friend.getAddDrops()) { // Then the additional items collection - no removals
+            block.getWorld().dropItemNaturally(block.getLocation().clone().add(0.5, 0.5, 0.5), i);
+        }
+
         if (shouldGrantExp(heldItem, event.getBlock())) { // Should grant exp (checks tool / material validity and the crop state)
-            Experience.addToolExp(heldItem, (int) Math.ceil(1 * eventResult.getToolExpMod()), event.getPlayer(), true);
+            Experience.addToolExp(heldItem, (int) Math.ceil(1 * friend.getToolExpMod()), event.getPlayer(), true);
+        }
+
+        if (event.getExpToDrop() > 0 && friend.isMetalCheck()) { // todo Get outta dodge with this one
+            Experience.addToolExp(heldItem, (int) Math.ceil(event.getExpToDrop() / 10D), event.getPlayer(), true);
+            event.setExpToDrop(0);
         }
 
     }
@@ -92,8 +120,7 @@ public class BlockBreakListener implements Listener {
     private boolean cancelIfBroken(ItemStack itemStack) {
         Damageable damageable = (Damageable) itemStack.getItemMeta();
         assert damageable != null;
-        // Tool is 'broken'
-        return damageable.getDamage() == itemStack.getType().getMaxDurability() - 1;
+        return damageable.getDamage() == itemStack.getType().getMaxDurability() - 1; // Tool is 'broken'
     }
 
     private boolean shouldGrantExp(ItemStack itemStack, Block block) {
@@ -118,61 +145,6 @@ public class BlockBreakListener implements Listener {
         return BlockMap.materialMap.get(block.getType()).equals(toolType);
 
     }
-
-    private void propertyChecks(ItemStack heldItem, Block block, Collection<ItemStack> drops, Collection<ItemStack> addDrops, Collection<ItemStack> removeDrops) {
-
-        ItemMeta im = heldItem.getItemMeta();
-        assert im != null;
-        PersistentDataContainer c = im.getPersistentDataContainer();
-        String matPropertyHead = ItemUtils.getToolHeadMaterial(c);
-        String matPropertyBinding = ItemUtils.getToolBindingMaterial(c);
-        String matPropertyRod = ItemUtils.getToolRodMaterial(c);
-
-        if (matPropertyHead.equals(IDStrings.CORBRONZE)) {
-            propHeadCorbronze(drops, addDrops, removeDrops);
-        }
-
-    }
-
-    private void propHeadCorbronze(Collection<ItemStack> drops, Collection<ItemStack> addDrops, Collection<ItemStack> removeDrops) {
-        Collection<ItemStack> newAddDrops = new ArrayList<>();
-
-        Iterator<Recipe> iter = Bukkit.recipeIterator();
-        while (iter.hasNext()) {
-            Recipe recipe = iter.next();
-            if (!(recipe instanceof FurnaceRecipe)) continue;
-            for (ItemStack i : drops) {
-                if (i.isSimilar(((FurnaceRecipe) recipe).getInput())) {
-                    ItemStack ni = recipe.getResult().clone();
-                    ni.setAmount(i.getAmount());
-                    newAddDrops.add(ni);
-                    removeDrops.add(i);
-                    break;
-                }
-            }
-            if (!addDrops.isEmpty()) {
-                for (ItemStack i : addDrops) {
-                    if (i.isSimilar(((FurnaceRecipe) recipe).getInput())) {
-                        ItemStack ni = recipe.getResult().clone();
-                        ni.setAmount(i.getAmount());
-                        newAddDrops.add(ni);
-                        removeDrops.add(i);
-                        break;
-                    }
-                }
-            }
-        }
-        addDrops.clear();
-        addDrops.addAll(newAddDrops);
-    }
-
-
-
-
-
-
-
-
 
     private void modChecks(ItemStack heldItem, Block block, Collection<ItemStack> addDrops) {
         modCheckLapis(heldItem, block, addDrops);

@@ -1,7 +1,7 @@
 package io.github.sefiraat.slimetinker.items.templates;
 
 import io.github.sefiraat.slimetinker.SlimeTinker;
-import io.github.sefiraat.slimetinker.items.ComponentMaterials;
+import io.github.sefiraat.slimetinker.items.componentmaterials.CMManager;
 import io.github.sefiraat.slimetinker.utils.IDStrings;
 import io.github.sefiraat.slimetinker.utils.ThemeUtils;
 import io.github.thebusybiscuit.slimefun4.implementation.items.blocks.UnplaceableBlock;
@@ -28,7 +28,7 @@ public class RepairkitTemplate extends UnplaceableBlock {
     private final String name;
 
     public String getName(String material) {
-        return ChatColor.of(ComponentMaterials.getById(material).getColorHex()) + ThemeUtils.toTitleCase(material) + ThemeUtils.ITEM_PART + " " + name;
+        return ChatColor.of(CMManager.getById(material).getColorHex()) + ThemeUtils.toTitleCase(material) + ThemeUtils.ITEM_PART + " " + name;
     }
 
     public List<String> getLore(String material) {
@@ -37,7 +37,7 @@ public class RepairkitTemplate extends UnplaceableBlock {
         list.add(ThemeUtils.PASSIVE + "A repair kit. Used in the Repair Bench");
         list.add(ThemeUtils.PASSIVE + "to mend tools with a matching head-metal.");
         list.add("");
-        list.add(ThemeUtils.CLICK_INFO + "Material : " + ChatColor.of(ComponentMaterials.getById(material).getColorHex()) + ThemeUtils.toTitleCase(material));
+        list.add(ThemeUtils.CLICK_INFO + "Material : " + ChatColor.of(CMManager.getById(material).getColorHex()) + ThemeUtils.toTitleCase(material));
         return list;
     }
 

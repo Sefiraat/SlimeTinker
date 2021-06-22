@@ -1,13 +1,15 @@
 package io.github.sefiraat.slimetinker.utils;
 
+import io.github.mooy1.infinitylib.items.StackUtils;
 import io.github.sefiraat.slimetinker.SlimeTinker;
-import io.github.sefiraat.slimetinker.items.ComponentMaterials;
+import io.github.sefiraat.slimetinker.items.componentmaterials.CMManager;
+import io.github.sefiraat.slimetinker.items.recipes.MoltenResult;
 import io.github.sefiraat.slimetinker.modifiers.Mod;
 import io.github.sefiraat.slimetinker.modifiers.Modifications;
 import io.github.sefiraat.slimetinker.properties.Properties;
+import lombok.experimental.UtilityClass;
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.SlimefunItem;
 import net.md_5.bungee.api.ChatColor;
-import org.apache.commons.lang.StringUtils;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.Damageable;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -16,16 +18,11 @@ import org.bukkit.persistence.PersistentDataType;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+@UtilityClass
 public final class ItemUtils {
-
-    private ItemUtils() {
-        throw new IllegalStateException("Utility class");
-    }
-
 
     public static void incrementRepair(ItemStack itemStack) {
         ItemMeta im = itemStack.getItemMeta();
@@ -94,39 +91,39 @@ public final class ItemUtils {
         String matRod = getToolRodMaterial(c);
 
         // General Material information
-        lore.add(line());
+        lore.add(ThemeUtils.getLine());
         lore.add(ThemeUtils.CLICK_INFO + "H: " + formatMaterialName(matHead));
         lore.add(ThemeUtils.CLICK_INFO + "B: " + formatMaterialName(matBind));
         lore.add(ThemeUtils.CLICK_INFO + "R: " + formatMaterialName(matRod));
-        lore.add(line());
+        lore.add(ThemeUtils.getLine());
 
         // Material properties
-        lore.add(formatPropertyName(matHead, Properties.PROP_MAP_HEAD.get(matHead)));
-        lore.add(formatPropertyName(matBind, Properties.PROP_MAP_BIND.get(matBind)));
-        lore.add(formatPropertyName(matRod, Properties.PROP_MAP_ROD.get(matRod)));
-        lore.add(line());
+        lore.add(formatPropertyName(matHead, Properties.getPROP_MAP_HEAD().get(matHead)));
+        lore.add(formatPropertyName(matBind, Properties.getPROP_MAP_BIND().get(matBind)));
+        lore.add(formatPropertyName(matRod, Properties.getPROP_MAP_ROD().get(matRod)));
+        lore.add(ThemeUtils.getLine());
 
         // Exp / Leveling / Mod Slot information
         lore.add(Experience.getLoreExp(c));
         lore.add(Experience.getLoreModSlots(c));
-        lore.add(line());
+        lore.add(ThemeUtils.getLine());
 
         // Active Mods
-        LinkedHashMap<String, Integer> mapAmounts = Modifications.getModificationMap(itemStack);
+        Map<String, Integer> mapAmounts = Modifications.getModificationMap(itemStack);
         Map<String, Integer> mapLevels = Modifications.getAllModLevels(itemStack);
 
         for (Map.Entry<String, Integer> entry : mapLevels.entrySet()) {
             int level = entry.getValue();
-            Mod mod = Modifications.MODIFICATION_DEFINITIONS.get(entry.getKey());
+            Mod mod = Modifications.getMODIFICATION_DEFINITIONS().get(entry.getKey());
             if (mod.getRequirementMap().containsKey(level + 1)) {
                 String amountRequired = String.valueOf(mod.getRequirementMap().get(level + 1));
-                lore.add(ThemeUtils.CLICK_INFO + ThemeUtils.toTitleCase(entry.getKey().toString()) + " Level " + entry.getValue() + ThemeUtils.PASSIVE + " - (" + mapAmounts.get(entry.getKey()) + "/" + amountRequired + ")");
+                lore.add(ThemeUtils.CLICK_INFO + ThemeUtils.toTitleCase(entry.getKey()) + " Level " + entry.getValue() + ThemeUtils.PASSIVE + " - (" + mapAmounts.get(entry.getKey()) + "/" + amountRequired + ")");
             } else {
-                lore.add(ThemeUtils.CLICK_INFO + ThemeUtils.toTitleCase(entry.getKey().toString()) + " Level " + entry.getValue() + ThemeUtils.PASSIVE + " - (MAX)");
+                lore.add(ThemeUtils.CLICK_INFO + ThemeUtils.toTitleCase(entry.getKey()) + " Level " + entry.getValue() + ThemeUtils.PASSIVE + " - (MAX)");
             }
         }
         if (!mapLevels.isEmpty()) {
-            lore.add(line());
+            lore.add(ThemeUtils.getLine());
         }
 
         im.setLore(lore);
@@ -146,9 +143,9 @@ public final class ItemUtils {
         String toolType = getToolTypeName(c);
 
         String name =
-                        ChatColor.of(ComponentMaterials.getById(matHead).getColorHex()) + ThemeUtils.toTitleCase(matHead) + "-" +
-                        ChatColor.of(ComponentMaterials.getById(matBind).getColorHex()) + ThemeUtils.toTitleCase(matBind) + "-" +
-                        ChatColor.of(ComponentMaterials.getById(matRod).getColorHex()) + ThemeUtils.toTitleCase(matRod) + " " +
+                        ChatColor.of(CMManager.getById(matHead).getColorHex()) + ThemeUtils.toTitleCase(matHead) + "-" +
+                        ChatColor.of(CMManager.getById(matBind).getColorHex()) + ThemeUtils.toTitleCase(matBind) + "-" +
+                        ChatColor.of(CMManager.getById(matRod).getColorHex()) + ThemeUtils.toTitleCase(matRod) + " " +
                         ChatColor.WHITE + ThemeUtils.toTitleCase(toolType);
 
 
@@ -189,15 +186,18 @@ public final class ItemUtils {
     }
 
     public static String formatMaterialName(String s) {
-        return ChatColor.of(ComponentMaterials.getById(s).getColorHex()) + ThemeUtils.toTitleCase(s);
+        return ChatColor.of(CMManager.getById(s).getColorHex()) + ThemeUtils.toTitleCase(s);
     }
 
     public static String formatPropertyName(String s, String p) {
-        return ChatColor.of(ComponentMaterials.getById(s).getColorHex()) + ThemeUtils.toTitleCase(p);
+        return ChatColor.of(CMManager.getById(s).getColorHex()) + ThemeUtils.toTitleCase(p);
     }
 
-    public static String line() {
-        return ThemeUtils.PASSIVE + StringUtils.repeat("-", 25);
+    public static boolean isMeltable(ItemStack itemStack) {
+        return SlimeTinker.inst().getRecipeManager().meltingRecipes.containsKey(StackUtils.getIDorType(itemStack));
     }
 
+    public static MoltenResult getMoltenResult(ItemStack itemStack) {
+        return SlimeTinker.inst().getRecipeManager().meltingRecipes.get(StackUtils.getIDorType(itemStack));
+    }
 }

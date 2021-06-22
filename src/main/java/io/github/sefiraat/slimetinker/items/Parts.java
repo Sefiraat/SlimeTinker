@@ -12,6 +12,7 @@ import io.github.sefiraat.slimetinker.utils.SkullTextures;
 import io.github.sefiraat.slimetinker.utils.ThemeUtils;
 import io.github.thebusybiscuit.slimefun4.implementation.items.blocks.UnplaceableBlock;
 import lombok.Getter;
+import lombok.experimental.UtilityClass;
 import me.mrCookieSlime.Slimefun.api.SlimefunItemStack;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
@@ -19,13 +20,10 @@ import org.bukkit.inventory.ItemStack;
 import java.util.HashMap;
 import java.util.Map;
 
+@UtilityClass
 public final class Parts {
 
     public static final String DESC_ERROR = "Error";
-
-    private Parts() {
-        throw new IllegalStateException("Utility class");
-    }
 
     protected static ItemStack[] getDummyCastRecipe(ItemStack cast) {
         return new ItemStack[]{
@@ -330,10 +328,10 @@ public final class Parts {
 
         binderMap.put(binderString.getId(), IDStrings.STRING);
         binderMap.put(binderVine.getId(), IDStrings.VINE);
-        binderMap.put(binderRootRed.getId(), IDStrings.ROOTRED);
-        binderMap.put(binderRootGreen.getId(), IDStrings.ROOTGREEN);
-        binderMap.put(binderVineRed.getId(), IDStrings.VINERED);
-        binderMap.put(binderVineGreen.getId(), IDStrings.VINEGREEN);
+        binderMap.put(binderRootRed.getId(), IDStrings.CRIMSONROOTS);
+        binderMap.put(binderRootGreen.getId(), IDStrings.WARPEDROOTS);
+        binderMap.put(binderVineRed.getId(), IDStrings.WEEPINGVINES);
+        binderMap.put(binderVineGreen.getId(), IDStrings.TWISTEDVINES);
 
     }
 

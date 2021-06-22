@@ -43,7 +43,6 @@ public class Keys {
     private final NamespacedKey toolModLevelEmerald = new NamespacedKey(SlimeTinker.inst(), "ST_mod_level_emerald");
     private final NamespacedKey toolModLevelObsidian = new NamespacedKey(SlimeTinker.inst(), "ST_mod_level_obsidian");
 
-
     // Workstations
     private final NamespacedKey wsDummySmeltery = new NamespacedKey(SlimeTinker.inst(), "dummy-smeltery");
     private final NamespacedKey wsDummySmelteryA = new NamespacedKey(SlimeTinker.inst(), "dummy-smeltery-alloy");

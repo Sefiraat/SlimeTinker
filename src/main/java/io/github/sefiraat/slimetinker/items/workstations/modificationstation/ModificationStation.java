@@ -26,7 +26,7 @@ import org.bukkit.persistence.PersistentDataContainer;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nonnull;
-import java.util.LinkedHashMap;
+import java.util.Map;
 
 public class ModificationStation extends AbstractContainer {
 
@@ -58,7 +58,7 @@ public class ModificationStation extends AbstractContainer {
         }
 
         // No modifier!
-        if (modItem == null || !Modifications.MODIFICAION_LIST.contains(StackUtils.getIDorType(modItem))) {
+        if (modItem == null || !Modifications.getMODIFICAION_LIST().contains(StackUtils.getIDorType(modItem))) {
             player.sendMessage(ThemeUtils.WARNING + "Input a valid modifier into the second slot.");
             return false;
         }
@@ -67,9 +67,9 @@ public class ModificationStation extends AbstractContainer {
         assert im != null;
         PersistentDataContainer c = im.getPersistentDataContainer();
 
-        LinkedHashMap<String, Integer> modMap = Modifications.getModificationMap(c);
+        Map<String, Integer> modMap = Modifications.getModificationMap(c);
 
-        Mod mod = Modifications.MODIFICATION_DEFINITIONS.get(StackUtils.getIDorType(modItem)); // The definition of the mod being created/updated
+        Mod mod = Modifications.getMODIFICATION_DEFINITIONS().get(StackUtils.getIDorType(modItem)); // The definition of the mod being created/updated
         int modSlots = Experience.getToolModifierSlots(tool.getItemMeta().getPersistentDataContainer()); // Number of free modification slots on the tool
         int currentAmount = modMap.get(StackUtils.getIDorType(modItem)); // The current value of that material loaded into the tool (not the level)
         int currentLevel = Modifications.getModLevel(mod, tool); // The current level of this mod (or 0)

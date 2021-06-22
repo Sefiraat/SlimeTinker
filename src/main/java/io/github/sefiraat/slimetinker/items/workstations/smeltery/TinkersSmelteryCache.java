@@ -2,13 +2,14 @@ package io.github.sefiraat.slimetinker.items.workstations.smeltery;
 
 import io.github.mooy1.infinitylib.items.StackUtils;
 import io.github.sefiraat.slimetinker.SlimeTinker;
-import io.github.sefiraat.slimetinker.items.ComponentMaterials;
+import io.github.sefiraat.slimetinker.items.componentmaterials.CMManager;
 import io.github.sefiraat.slimetinker.items.materials.Alloy;
 import io.github.sefiraat.slimetinker.items.materials.ComponentMaterial;
 import io.github.sefiraat.slimetinker.items.recipes.Alloys;
 import io.github.sefiraat.slimetinker.items.recipes.CastResult;
 import io.github.sefiraat.slimetinker.items.recipes.MoltenResult;
 import io.github.sefiraat.slimetinker.utils.GUIItems;
+import io.github.sefiraat.slimetinker.utils.ItemUtils;
 import io.github.sefiraat.slimetinker.utils.ThemeUtils;
 import lombok.Getter;
 import lombok.Setter;
@@ -73,12 +74,13 @@ public final class TinkersSmelteryCache extends AbstractCache {
                 input.setAmount(input.getAmount() - 1);
                 blockMenu.pushItem(new ItemStack(Material.LAVA_BUCKET), TinkersSmeltery.OUTPUT_SLOT);
             }
+            return;
         }
 
-        MoltenResult result = SlimeTinker.inst().getRecipeManager().getResult(input);
+        MoltenResult result = ItemUtils.getMoltenResult(input);
 
         // Item doesn't melt OR not enough lava
-        if (!canMelt(input, result)) {
+        if (result == null || !canMelt(input, result)) {
             return;
         }
 
@@ -90,7 +92,7 @@ public final class TinkersSmelteryCache extends AbstractCache {
     }
 
     private boolean canMelt(ItemStack itemStack, MoltenResult result) {
-        return SlimeTinker.inst().getRecipeManager().isMeltable(itemStack) && levelLava >= result.getAmount();
+        return ItemUtils.isMeltable(itemStack) && levelLava >= result.getAmount();
     }
 
     private boolean canFit(int incoming) {
@@ -253,7 +255,7 @@ public final class TinkersSmelteryCache extends AbstractCache {
         }
 
         String metalID = first.get();
-        ComponentMaterial componentMaterial = ComponentMaterials.getById(metalID);
+        ComponentMaterial componentMaterial = CMManager.getById(metalID);
 
         // Cast valid, but this cast and metal combination doesn't work
         if (!result.getOutputs().containsKey(componentMaterial)) {

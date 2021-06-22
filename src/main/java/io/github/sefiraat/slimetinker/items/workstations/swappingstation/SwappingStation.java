@@ -7,6 +7,7 @@ import io.github.sefiraat.slimetinker.utils.GUIItems;
 import io.github.sefiraat.slimetinker.utils.IDStrings;
 import io.github.sefiraat.slimetinker.utils.ItemUtils;
 import io.github.sefiraat.slimetinker.utils.ThemeUtils;
+import io.github.thebusybiscuit.slimefun4.implementation.SlimefunPlugin;
 import me.mrCookieSlime.Slimefun.Lists.RecipeType;
 import me.mrCookieSlime.Slimefun.Objects.Category;
 import me.mrCookieSlime.Slimefun.api.SlimefunItemStack;
@@ -15,6 +16,7 @@ import me.mrCookieSlime.Slimefun.api.inventory.BlockMenuPreset;
 import me.mrCookieSlime.Slimefun.api.inventory.DirtyChestMenu;
 import me.mrCookieSlime.Slimefun.api.item_transport.ItemTransportFlow;
 import org.bukkit.Location;
+import org.bukkit.NamespacedKey;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.event.block.BlockBreakEvent;
@@ -74,14 +76,9 @@ public class SwappingStation extends AbstractContainer {
         String partMaterial = partC.get(SlimeTinker.inst().getKeys().getPartInfoMaterialType(), PersistentDataType.STRING); // Material ID of part
 
         String toolPartType = toolC.get(SlimeTinker.inst().getKeys().getToolInfoToolType(), PersistentDataType.STRING); // TOOL HEAD TYPE
-
-        SlimeTinker.inst().getLogger().info(partClass);
-        SlimeTinker.inst().getLogger().info(partType);
-        SlimeTinker.inst().getLogger().info(partMaterial);
-        SlimeTinker.inst().getLogger().info("T-- " + toolPartType);
-
+        
         // Item in part slot is NOT a part
-        if (partClass == null || (!partClass.equals(IDStrings.HEAD) && !partClass.equals(IDStrings.BINDING) && !partClass.equals(IDStrings.ROD))) {
+        if (partClass == null) {
             player.sendMessage(ThemeUtils.WARNING + "The item in the part slot is not a valid part.");
             return false;
         }
@@ -94,10 +91,42 @@ public class SwappingStation extends AbstractContainer {
             return false;
         }
 
-        ItemStack newTool = tool.clone();
+        ItemStack newTool = tool.clone(); // What will be the tool after crafting
+
         ItemMeta newToolMeta = newTool.getItemMeta();
         assert newToolMeta != null;
         PersistentDataContainer newToolC = newToolMeta.getPersistentDataContainer();
+
+        String swappedMaterial = null;
+
+        switch (partClass) {
+            case IDStrings.HEAD:
+                swappedMaterial = ItemUtils.getToolHeadMaterial(newToolC);
+                break;
+            case IDStrings.BINDING:
+                swappedMaterial = ItemUtils.getToolBindingMaterial(newToolC);
+                break;
+            default:
+                swappedMaterial = ItemUtils.getToolRodMaterial(newToolC);
+        }
+
+        if (isExplosivePart(partMaterial, partClass)) { // New part will be explosive
+            if (!isToolExplosive(newToolC)) { // Current tool is NOT explosive - we have to add it
+                assert SlimefunPlugin.instance() != null;
+                NamespacedKey sfIDKey = new NamespacedKey(SlimefunPlugin.instance(), "slimefun_item");
+                String sID = newToolC.get(sfIDKey, PersistentDataType.STRING);
+                newToolC.set(sfIDKey, PersistentDataType.STRING, sID + "_EXP");
+            }
+        } else { // Incoming part is NOT explosive
+            if (isExplosivePart(swappedMaterial, partClass)) { // But the tool is, needs to be removed
+                assert SlimefunPlugin.instance() != null;
+                NamespacedKey sfIDKey = new NamespacedKey(SlimefunPlugin.instance(), "slimefun_item");
+                String sID = newToolC.get(sfIDKey, PersistentDataType.STRING);
+                assert sID != null;
+                sID = sID.replace("_EXP","");
+                newToolC.set(sfIDKey, PersistentDataType.STRING, sID);
+            }
+        }
 
         switch (partClass) {
             case IDStrings.HEAD:
@@ -153,6 +182,22 @@ public class SwappingStation extends AbstractContainer {
     protected void onNewInstance(@Nonnull BlockMenu blockMenu, @Nonnull Block b) {
         super.onNewInstance(blockMenu, b);
         blockMenu.addMenuClickHandler(CRAFT_BUTTON, (player, i, itemStack, clickAction) -> craft(blockMenu, player));
+    }
+
+    private boolean isExplosivePart(String material, String part) {
+        return (
+                (material.equals(IDStrings.REINFORCED) && part.equals(IDStrings.HEAD)) ||
+                (material.equals(IDStrings.HARD) && part.equals(IDStrings.ROD)) ||
+                (material.equals(IDStrings.SINGINFINITY) && part.equals(IDStrings.HEAD))
+        );
+    }
+
+    private boolean isToolExplosive(PersistentDataContainer c) {
+        assert SlimefunPlugin.instance() != null;
+        NamespacedKey sfIDKey = new NamespacedKey(SlimefunPlugin.instance(), "slimefun_item");
+        String sID = c.get(sfIDKey, PersistentDataType.STRING);
+        assert sID != null;
+        return sID.contains("_EXP");
     }
 
 }

@@ -15,9 +15,9 @@ import io.github.sefiraat.slimetinker.items.Parts;
 import io.github.sefiraat.slimetinker.items.Props;
 import io.github.sefiraat.slimetinker.items.Tools;
 import io.github.sefiraat.slimetinker.items.Workstations;
-import io.github.sefiraat.slimetinker.items.recipes.RecipeManager;
 import io.github.sefiraat.slimetinker.listeners.ListenerManager;
-import io.github.sefiraat.slimetinker.runnables.RunnableManager;
+import io.github.sefiraat.slimetinker.managers.RecipeManager;
+import io.github.sefiraat.slimetinker.managers.RunnableManager;
 import io.github.sefiraat.slimetinker.utils.Keys;
 import lombok.Getter;
 import org.jetbrains.annotations.NotNull;
@@ -29,7 +29,7 @@ import java.util.List;
 public class SlimeTinker extends AbstractAddon {
 
 
-    public static final int RUNNABLE_TICK_RATE = 60;
+    public static final int RUNNABLE_TICK_RATE = 40;
 
     private static SlimeTinker instance;
     public static SlimeTinker inst() {
@@ -38,7 +38,6 @@ public class SlimeTinker extends AbstractAddon {
 
     @Getter
     private RecipeManager recipeManager;
-
     @Getter
     private RunnableManager runnableManager;
 
@@ -56,9 +55,6 @@ public class SlimeTinker extends AbstractAddon {
         getLogger().info("           Created by Sefiraat          ");
         getLogger().info("########################################");
 
-        recipeManager = new RecipeManager();
-        runnableManager = new RunnableManager();
-
         Categories.set(this);
         Materials.set(this);
         Alloys.set(this);
@@ -70,7 +66,10 @@ public class SlimeTinker extends AbstractAddon {
         Mods.set(this);
         Workstations.set(this);
 
-        new ListenerManager();
+        recipeManager = new RecipeManager();
+        runnableManager = new RunnableManager();
+
+        new ListenerManager(this, this.getServer().getPluginManager());
 
     }
 
@@ -85,15 +84,11 @@ public class SlimeTinker extends AbstractAddon {
         return new Metrics(this,11748);
     }
 
-
-    /*
     @Nonnull
     @Override
     protected List<AbstractCommand> setupSubCommands() {
         return Arrays.asList(new GiveDummyTool(), new AddExp());
     }
-    */
-
 
     @Override
     protected @NotNull String getGithubPath() {

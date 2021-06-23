@@ -16,13 +16,13 @@ import org.bukkit.inventory.ItemStack;
 public final class Alloys {
 
     protected static final ItemStack[] RECIPE_ALLOY_STEEL = new ItemStack[] {
-            new ItemStack(Material.IRON_INGOT, 2),   new ItemStack(Material.COAL), null,
+            new ItemStack(Material.IRON_INGOT, 2),   new ItemStack(Material.COAL, 8), null,
             null,                                           null,               null,
             null,                                           null,               null
     };
 
     protected static final ItemStack[] RECIPE_ALLOY_DAM_STEEL = new ItemStack[] {
-            SlimefunItems.STEEL_INGOT,   new ItemStack(Material.IRON_INGOT, 2), new ItemStack(Material.COAL),
+            SlimefunItems.STEEL_INGOT,   new ItemStack(Material.IRON_INGOT, 2), new ItemStack(Material.COAL, 8),
             null,                                           null,               null,
             null,                                           null,               null
     };
@@ -47,7 +47,7 @@ public final class Alloys {
 
     protected static final ItemStack[] RECIPE_ALLOY_HARD_METAL = new ItemStack[] {
             SlimefunItems.ALUMINUM_BRASS_INGOT,   SlimefunItems.DURALUMIN_INGOT, SlimefunItems.DAMASCUS_STEEL_INGOT,
-            new ItemStack(Material.COAL, 4),         null,               null,
+            new ItemStack(Material.COAL, 32),         null,               null,
             null,                                           null,               null
     };
 

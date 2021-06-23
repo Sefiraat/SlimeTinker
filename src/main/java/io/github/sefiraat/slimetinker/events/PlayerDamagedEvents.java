@@ -1,6 +1,5 @@
 package io.github.sefiraat.slimetinker.events;
 
-import io.github.sefiraat.slimetinker.SlimeTinker;
 import lombok.experimental.UtilityClass;
 import org.bukkit.event.entity.EntityDamageEvent;
 

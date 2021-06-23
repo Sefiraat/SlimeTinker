@@ -1,6 +1,5 @@
 package io.github.sefiraat.slimetinker.items;
 
-import com.sun.org.apache.bcel.internal.generic.BREAKPOINT;
 import io.github.sefiraat.slimetinker.SlimeTinker;
 import io.github.sefiraat.slimetinker.categories.Categories;
 import io.github.sefiraat.slimetinker.items.workstations.smeltery.DummySmelteryProp;

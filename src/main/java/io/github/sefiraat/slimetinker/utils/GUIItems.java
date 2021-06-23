@@ -51,6 +51,14 @@ public final class GUIItems {
         );
     }
 
+    public static CustomItem menuPreview() {
+        return new CustomItem(
+                Material.LIME_STAINED_GLASS_PANE,
+                ChatColor.GREEN + "Preview",
+                " "
+        );
+    }
+
     public static CustomItem menuBackgroundPreview() {
         return new CustomItem(
                 Material.LIME_STAINED_GLASS_PANE,

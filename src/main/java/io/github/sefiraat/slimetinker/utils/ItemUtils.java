@@ -194,10 +194,10 @@ public final class ItemUtils {
     }
 
     public static boolean isMeltable(ItemStack itemStack) {
-        return SlimeTinker.inst().getRecipeManager().meltingRecipes.containsKey(StackUtils.getIDorType(itemStack));
+        return SlimeTinker.inst().getCmManager().meltingRecipes.containsKey(StackUtils.getIDorType(itemStack));
     }
 
     public static MoltenResult getMoltenResult(ItemStack itemStack) {
-        return SlimeTinker.inst().getRecipeManager().meltingRecipes.get(StackUtils.getIDorType(itemStack));
+        return SlimeTinker.inst().getCmManager().meltingRecipes.get(StackUtils.getIDorType(itemStack));
     }
 }

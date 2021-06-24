@@ -2,10 +2,9 @@ package io.github.sefiraat.slimetinker.items.workstations.smeltery;
 
 import io.github.mooy1.infinitylib.items.StackUtils;
 import io.github.sefiraat.slimetinker.SlimeTinker;
+import io.github.sefiraat.slimetinker.items.componentmaterials.CMAlloy;
 import io.github.sefiraat.slimetinker.items.componentmaterials.factories.CMManager;
-import io.github.sefiraat.slimetinker.items.materials.Alloy;
 import io.github.sefiraat.slimetinker.items.componentmaterials.ComponentMaterial;
-import io.github.sefiraat.slimetinker.items.recipes.Alloys;
 import io.github.sefiraat.slimetinker.items.recipes.CastResult;
 import io.github.sefiraat.slimetinker.items.recipes.MoltenResult;
 import io.github.sefiraat.slimetinker.utils.GUIItems;
@@ -211,12 +210,12 @@ public final class TinkersSmelteryCache extends AbstractCache {
 
     private boolean clickAlloy() {
 
-        for (Alloy alloy : Alloys.getALLOY_LIST()) {
-            if (!alloy.getRecipe().keySet().equals(tankContent.keySet())) {
+        for (CMAlloy alloy : CMManager.getAlloys()) {
+            if (!alloy.getAlloyMap().keySet().equals(tankContent.keySet())) {
                 continue;
             }
             int maxPossible = 0;
-            for (Map.Entry<String, Integer> entry : alloy.getRecipe().entrySet()) {
+            for (Map.Entry<String, Integer> entry : alloy.getAlloyMap().entrySet()) {
                 int tankAmount = tankContent.get(entry.getKey());
                 int requiredAmount = entry.getValue();
                 if (tankAmount < requiredAmount) {
@@ -227,10 +226,10 @@ public final class TinkersSmelteryCache extends AbstractCache {
                     maxPossible = possible;
                 }
             }
-            for (Map.Entry<String, Integer> entry : alloy.getRecipe().entrySet()) {
+            for (Map.Entry<String, Integer> entry : alloy.getAlloyMap().entrySet()) {
                 removeMetal(entry.getKey(), entry.getValue() * maxPossible);
             }
-            addMetal(alloy.getName(), maxPossible);
+            addMetal(alloy.getLiquidID(), maxPossible);
         }
         return false;
     }
@@ -240,12 +239,12 @@ public final class TinkersSmelteryCache extends AbstractCache {
         ItemStack inputItem = blockMenu.getItemInSlot(TinkersSmeltery.CAST_SLOT);
 
         // Cast item is null or not a cast
-        if (inputItem == null || !SlimeTinker.inst().getRecipeManager().castingRecipes.containsKey(StackUtils.getIDorType(inputItem))) {
+        if (inputItem == null || !SlimeTinker.inst().getCmManager().castingRecipes.containsKey(StackUtils.getIDorType(inputItem))) {
             player.sendMessage(ThemeUtils.WARNING + "Please input a valid cast before trying to pour metals.");
             return false;
         }
 
-        CastResult result = SlimeTinker.inst().getRecipeManager().castingRecipes.get(StackUtils.getIDorType(inputItem));
+        CastResult result = SlimeTinker.inst().getCmManager().castingRecipes.get(StackUtils.getIDorType(inputItem));
         Optional<String> first = tankContent.keySet().stream().findFirst();
 
         // No metals in the tank - cant pour

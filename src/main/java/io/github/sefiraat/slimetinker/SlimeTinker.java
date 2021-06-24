@@ -14,8 +14,8 @@ import io.github.sefiraat.slimetinker.items.Parts;
 import io.github.sefiraat.slimetinker.items.Props;
 import io.github.sefiraat.slimetinker.items.Tools;
 import io.github.sefiraat.slimetinker.items.Workstations;
+import io.github.sefiraat.slimetinker.items.componentmaterials.factories.CMManager;
 import io.github.sefiraat.slimetinker.listeners.ListenerManager;
-import io.github.sefiraat.slimetinker.managers.RecipeManager;
 import io.github.sefiraat.slimetinker.managers.RunnableManager;
 import io.github.sefiraat.slimetinker.utils.Keys;
 import lombok.Getter;
@@ -36,9 +36,9 @@ public class SlimeTinker extends AbstractAddon {
     }
 
     @Getter
-    private RecipeManager recipeManager;
-    @Getter
     private RunnableManager runnableManager;
+    @Getter
+    private CMManager cmManager;
 
     @Getter
     private Keys keys;
@@ -64,7 +64,7 @@ public class SlimeTinker extends AbstractAddon {
         Mods.set(this);
         Workstations.set(this);
 
-        recipeManager = new RecipeManager();
+        cmManager = new CMManager();
         runnableManager = new RunnableManager();
 
         new ListenerManager(this, this.getServer().getPluginManager());

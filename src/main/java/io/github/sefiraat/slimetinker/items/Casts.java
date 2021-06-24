@@ -2,8 +2,8 @@ package io.github.sefiraat.slimetinker.items;
 
 import io.github.sefiraat.slimetinker.SlimeTinker;
 import io.github.sefiraat.slimetinker.categories.Categories;
+import io.github.sefiraat.slimetinker.items.componentmaterials.factories.CMManager;
 import io.github.sefiraat.slimetinker.items.workstations.smeltery.DummySmeltery;
-import io.github.sefiraat.slimetinker.managers.RecipeManager;
 import io.github.sefiraat.slimetinker.utils.ThemeUtils;
 import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
 import io.github.thebusybiscuit.slimefun4.implementation.items.blocks.UnplaceableBlock;
@@ -95,7 +95,7 @@ public final class Casts {
                     "Cast: Metal Nugget",
                     ThemeUtils.PASSIVE + CAST_DESC,
                     "",
-                    ThemeUtils.CLICK_INFO + INPUT_DESC + ChatColor.WHITE + RecipeManager.AMOUNT_NUGGET + UNIT_DESC,
+                    ThemeUtils.CLICK_INFO + INPUT_DESC + ChatColor.WHITE + CMManager.AMOUNT_NUGGET + UNIT_DESC,
                     ThemeUtils.CLICK_INFO + OUTPUT_DESC + ChatColor.WHITE + "1 Nugget"
             );
 
@@ -107,7 +107,7 @@ public final class Casts {
                     "Cast: Metal Block",
                     ThemeUtils.PASSIVE + CAST_DESC,
                     "",
-                    ThemeUtils.CLICK_INFO + INPUT_DESC + ChatColor.WHITE + RecipeManager.AMOUNT_BLOCK + UNIT_DESC,
+                    ThemeUtils.CLICK_INFO + INPUT_DESC + ChatColor.WHITE + CMManager.AMOUNT_BLOCK + UNIT_DESC,
                     ThemeUtils.CLICK_INFO + OUTPUT_DESC + ChatColor.WHITE + "1 Block"
             );
 
@@ -119,7 +119,7 @@ public final class Casts {
                     "Cast: Metal Ingot",
                     ThemeUtils.PASSIVE + CAST_DESC,
                     "",
-                    ThemeUtils.CLICK_INFO + INPUT_DESC + ChatColor.WHITE + RecipeManager.AMOUNT_INGOT + UNIT_DESC,
+                    ThemeUtils.CLICK_INFO + INPUT_DESC + ChatColor.WHITE + CMManager.AMOUNT_INGOT + UNIT_DESC,
                     ThemeUtils.CLICK_INFO + OUTPUT_DESC + ChatColor.WHITE + "1 Block"
             );
 
@@ -131,7 +131,7 @@ public final class Casts {
                     "Cast: Gem",
                     ThemeUtils.PASSIVE + "A cast for non-metallic liquids.",
                     "",
-                    ThemeUtils.CLICK_INFO + INPUT_DESC + ChatColor.WHITE + RecipeManager.AMOUNT_GEM + UNIT_DESC,
+                    ThemeUtils.CLICK_INFO + INPUT_DESC + ChatColor.WHITE + CMManager.AMOUNT_GEM + UNIT_DESC,
                     ThemeUtils.CLICK_INFO + OUTPUT_DESC + ChatColor.WHITE + "1 Gem"
             );
 
@@ -143,7 +143,7 @@ public final class Casts {
                     "Cast: Shovel Head",
                     ThemeUtils.PASSIVE + CAST_DESC,
                     "",
-                    ThemeUtils.CLICK_INFO + INPUT_DESC + ChatColor.WHITE + RecipeManager.AMOUNT_SHOVELHEAD + UNIT_DESC,
+                    ThemeUtils.CLICK_INFO + INPUT_DESC + ChatColor.WHITE + CMManager.AMOUNT_SHOVELHEAD + UNIT_DESC,
                     ThemeUtils.CLICK_INFO + OUTPUT_DESC + ChatColor.WHITE + "1 Shovel Head"
             );
 
@@ -155,7 +155,7 @@ public final class Casts {
                     "Cast: Pickaxe Head",
                     ThemeUtils.PASSIVE + CAST_DESC,
                     "",
-                    ThemeUtils.CLICK_INFO + INPUT_DESC + ChatColor.WHITE + RecipeManager.AMOUNT_PICKAXEHEAD + UNIT_DESC,
+                    ThemeUtils.CLICK_INFO + INPUT_DESC + ChatColor.WHITE + CMManager.AMOUNT_PICKAXEHEAD + UNIT_DESC,
                     ThemeUtils.CLICK_INFO + OUTPUT_DESC + ChatColor.WHITE + "1 Pickaxe Head"
             );
 
@@ -167,7 +167,7 @@ public final class Casts {
                     "Cast: Axe Head",
                     ThemeUtils.PASSIVE + CAST_DESC,
                     "",
-                    ThemeUtils.CLICK_INFO + INPUT_DESC + ChatColor.WHITE + RecipeManager.AMOUNT_AXEHEAD + UNIT_DESC,
+                    ThemeUtils.CLICK_INFO + INPUT_DESC + ChatColor.WHITE + CMManager.AMOUNT_AXEHEAD + UNIT_DESC,
                     ThemeUtils.CLICK_INFO + OUTPUT_DESC + ChatColor.WHITE + "1 Axe Head"
             );
 
@@ -179,7 +179,7 @@ public final class Casts {
                     "Cast: Hoe Head",
                     ThemeUtils.PASSIVE + CAST_DESC,
                     "",
-                    ThemeUtils.CLICK_INFO + INPUT_DESC + ChatColor.WHITE + RecipeManager.AMOUNT_HOEHEAD + UNIT_DESC,
+                    ThemeUtils.CLICK_INFO + INPUT_DESC + ChatColor.WHITE + CMManager.AMOUNT_HOEHEAD + UNIT_DESC,
                     ThemeUtils.CLICK_INFO + OUTPUT_DESC + ChatColor.WHITE + "1 Hoe Head"
             );
 
@@ -191,7 +191,7 @@ public final class Casts {
                     "Cast: Sword Blade",
                     ThemeUtils.PASSIVE + CAST_DESC,
                     "",
-                    ThemeUtils.CLICK_INFO + INPUT_DESC + ChatColor.WHITE + RecipeManager.AMOUNT_SWORDBLADE + UNIT_DESC,
+                    ThemeUtils.CLICK_INFO + INPUT_DESC + ChatColor.WHITE + CMManager.AMOUNT_SWORDBLADE + UNIT_DESC,
                     ThemeUtils.CLICK_INFO + OUTPUT_DESC + ChatColor.WHITE + "1 Sword Blade"
             );
 
@@ -203,7 +203,7 @@ public final class Casts {
                     "Cast: Tool Rod",
                     ThemeUtils.PASSIVE + CAST_DESC,
                     "",
-                    ThemeUtils.CLICK_INFO + INPUT_DESC + ChatColor.WHITE + RecipeManager.AMOUNT_TOOLROD + UNIT_DESC,
+                    ThemeUtils.CLICK_INFO + INPUT_DESC + ChatColor.WHITE + CMManager.AMOUNT_TOOLROD + UNIT_DESC,
                     ThemeUtils.CLICK_INFO + OUTPUT_DESC + ChatColor.WHITE + "1 Tool Rod"
             );
 
@@ -215,7 +215,7 @@ public final class Casts {
                     "Cast: Repair Kit",
                     ThemeUtils.PASSIVE + CAST_DESC,
                     "",
-                    ThemeUtils.CLICK_INFO + INPUT_DESC + ChatColor.WHITE + RecipeManager.AMOUNT_KIT + UNIT_DESC,
+                    ThemeUtils.CLICK_INFO + INPUT_DESC + ChatColor.WHITE + CMManager.AMOUNT_KIT + UNIT_DESC,
                     ThemeUtils.CLICK_INFO + OUTPUT_DESC + ChatColor.WHITE + "1 Repair Kit"
             );
 

@@ -1,10 +1,9 @@
 package io.github.sefiraat.slimetinker.listeners;
 
 import io.github.sefiraat.slimetinker.SlimeTinker;
-import io.github.sefiraat.slimetinker.events.BlockBreakEventFriend;
+import io.github.sefiraat.slimetinker.events.EventFriend;
 import io.github.sefiraat.slimetinker.events.BlockBreakEvents;
 import io.github.sefiraat.slimetinker.items.componentmaterials.factories.CMManager;
-import io.github.sefiraat.slimetinker.items.componentmaterials.ComponentMaterial;
 import io.github.sefiraat.slimetinker.items.templates.ToolTemplate;
 import io.github.sefiraat.slimetinker.modifiers.Modifications;
 import io.github.sefiraat.slimetinker.utils.BlockUtils;
@@ -12,6 +11,8 @@ import io.github.sefiraat.slimetinker.utils.Experience;
 import io.github.sefiraat.slimetinker.utils.IDStrings;
 import io.github.sefiraat.slimetinker.utils.ItemUtils;
 import io.github.sefiraat.slimetinker.utils.ThemeUtils;
+import io.github.sefiraat.slimetinker.utils.enums.TraitEventType;
+import io.github.sefiraat.slimetinker.utils.enums.TraitPartType;
 import org.bukkit.Color;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -54,7 +55,10 @@ public class BlockBreakListener implements Listener {
         }
 
         // Property and Mod checks, carries around the additional and normal drops
-        BlockBreakEventFriend friend = new BlockBreakEventFriend(heldItem, event.getPlayer(), block);
+        EventFriend friend = new EventFriend();
+        friend.setHeldItem(heldItem);
+        friend.setPlayer(event.getPlayer());
+        friend.setBlock(block);
         friend.setDrops(block.getDrops(heldItem)); // Stores the event drops. All may not be dropped
         friend.setAddDrops(new ArrayList<>()); // Additional drops or substitutions for items from the main collection
         friend.setRemoveDrops(new ArrayList<>()); // Items to remove from the main collection if moved/reformed into the additional
@@ -78,17 +82,10 @@ public class BlockBreakListener implements Listener {
             }
         }
 
-        for (Map.Entry<String, ComponentMaterial> mat : CMManager.getMAP().entrySet()) {
-            if (mat.getValue().isEventBlockBreakHead() && matPropertyHead.equals(mat.getKey())) {
-                mat.getValue().getBlockBreakConsumerHead().accept(friend);
-            }
-            if (mat.getValue().isEventBlockBreakBind() && matPropertyBinding.equals(mat.getKey())) {
-                mat.getValue().getBlockBreakConsumerBind().accept(friend);
-            }
-            if (mat.getValue().isEventBlockBreakRod() && matPropertyRod.equals(mat.getKey())) {
-                mat.getValue().getBlockBreakConsumerRod().accept(friend);
-            }
-        }
+        TraitEventType traitEventType = TraitEventType.BLOCK_BREAK;
+        CMManager.getMAP().get(matPropertyHead).runEvent(traitEventType, TraitPartType.HEAD, friend);
+        CMManager.getMAP().get(matPropertyBinding).runEvent(traitEventType, TraitPartType.BINDER, friend);
+        CMManager.getMAP().get(matPropertyRod).runEvent(traitEventType, TraitPartType.ROD, friend);
 
         // Mods
         modChecks(heldItem, block, friend.getAddDrops());

@@ -55,7 +55,7 @@ public final class ThemeUtils {
     public static final String LORE_TOOL = ITEM_TYPEDESC + "Tinker's Tool";
     public static final String LORE_INFO = ITEM_TYPEDESC + "Info";
     public static final String LORE_MOD = ITEM_TYPEDESC + "Modification";
-    public static final String LORE_PROP = ITEM_TYPEDESC + "Material Property";
+    public static final String LORE_PROP = ITEM_TYPEDESC + "Material Trait";
     public static final String LORE_MULTIBLOCK = ITEM_TYPEDESC + "Mutliblock";
 
     public static SlimefunItemStack themedItemStack(String id, String skull, ThemeItemType type, String name, String... loreLines) {

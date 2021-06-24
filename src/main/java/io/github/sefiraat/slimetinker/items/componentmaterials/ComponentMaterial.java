@@ -1,16 +1,17 @@
 package io.github.sefiraat.slimetinker.items.componentmaterials;
 
-import io.github.sefiraat.slimetinker.events.BlockBreakEventFriend;
-import io.github.sefiraat.slimetinker.events.DurabilityEventFriend;
-import io.github.sefiraat.slimetinker.events.EntityDamageEventFriend;
-import io.github.sefiraat.slimetinker.events.PlayerDamagedEventFriend;
-import io.github.sefiraat.slimetinker.events.TickEventFriend;
+import io.github.sefiraat.slimetinker.SlimeTinker;
+import io.github.sefiraat.slimetinker.events.EventFriend;
+import io.github.sefiraat.slimetinker.utils.enums.TraitEventType;
+import io.github.sefiraat.slimetinker.utils.enums.TraitPartType;
 import lombok.Data;
-import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.SlimefunItem;
+import lombok.Getter;
 import me.mrCookieSlime.Slimefun.api.SlimefunItemStack;
 import net.md_5.bungee.api.ChatColor;
 
 import javax.annotation.Nullable;
+import java.util.EnumMap;
+import java.util.Map;
 import java.util.function.Consumer;
 
 @Data
@@ -22,40 +23,8 @@ public class ComponentMaterial {
     private final CMForms cmForms;
     private final CMLiquid cmLiquid;
     private final CMAlloy cmAlloy;
-    
-    private boolean eventTickHead = false;
-    private Consumer<TickEventFriend> tickConsumerHead;
-    private boolean eventEntityDamagedHead = false;
-    private Consumer<EntityDamageEventFriend> entityDamagedConsumerHead;
-    private boolean eventDurabilityHead = false;
-    private Consumer<DurabilityEventFriend> durabilityConsumerHead;
-    private boolean eventBlockBreakHead = false;
-    private Consumer<BlockBreakEventFriend> blockBreakConsumerHead;
-    private boolean eventPlayerDamagedHead = false;
-    private Consumer<PlayerDamagedEventFriend> playerDamagedConsumerHead;
+    private final Map<TraitEventType, Map<TraitPartType, Consumer<EventFriend>>> events = new EnumMap<>(TraitEventType.class);
 
-    private boolean eventTickBind = false;
-    private Consumer<TickEventFriend> tickConsumerBind;
-    private boolean eventEntityDamagedBind = false;
-    private Consumer<EntityDamageEventFriend> entityDamagedConsumerBind;
-    private boolean eventDurabilityBind = false;
-    private Consumer<DurabilityEventFriend> durabilityConsumerBind;
-    private boolean eventBlockBreakBind = false;
-    private Consumer<BlockBreakEventFriend> blockBreakConsumerBind;
-    private boolean eventPlayerDamagedBind = false;
-    private Consumer<PlayerDamagedEventFriend> playerDamagedConsumerBind;
-
-    private boolean eventTickRod = false;
-    private Consumer<TickEventFriend> tickConsumerRod;
-    private boolean eventEntityDamagedRod = false;
-    private Consumer<EntityDamageEventFriend> entityDamagedConsumerRod;
-    private boolean eventDurabilityRod = false;
-    private Consumer<DurabilityEventFriend> durabilityConsumerRod;
-    private boolean eventBlockBreakRod = false;
-    private Consumer<BlockBreakEventFriend> blockBreakConsumerRod;
-    private boolean eventPlayerDamagedRod = false;
-    private Consumer<PlayerDamagedEventFriend> playerDamagedConsumerRod;
-    
     public ComponentMaterial(String id,
                              String colorHex,
                              CMToolMakeup cmToolMakeup,
@@ -73,69 +42,6 @@ public class ComponentMaterial {
 
     public ChatColor getColor() {
         return ChatColor.of(colorHex);
-    }
-    
-    public void addHeadTickEvent(Consumer<TickEventFriend> consumer) {
-        eventTickHead = true;
-        tickConsumerHead = consumer;
-    }    
-    public void addHeadDamageEvent(Consumer<EntityDamageEventFriend> consumer) {
-        eventEntityDamagedHead = true;
-        entityDamagedConsumerHead = consumer;
-    }    
-    public void addHeadDuraEvent(Consumer<DurabilityEventFriend> consumer) {
-        eventDurabilityHead = true;
-        durabilityConsumerHead = consumer;
-    }    
-    public void addHeadBlockBreakEvent(Consumer<BlockBreakEventFriend> consumer) {
-        eventBlockBreakHead = true;
-        blockBreakConsumerHead = consumer;
-    }
-    public void addHeadPlayerDamagedEvent(Consumer<PlayerDamagedEventFriend> consumer) {
-        eventPlayerDamagedHead = true;
-        playerDamagedConsumerHead = consumer;
-    }
-
-    public void addBindTickEvent(Consumer<TickEventFriend> consumer) {
-        eventTickBind = true;
-        tickConsumerBind = consumer;
-    }
-    public void addBindDamageEvent(Consumer<EntityDamageEventFriend> consumer) {
-        eventEntityDamagedBind = true;
-        entityDamagedConsumerBind = consumer;
-    }
-    public void addBindDuraEvent(Consumer<DurabilityEventFriend> consumer) {
-        eventDurabilityBind = true;
-        durabilityConsumerBind = consumer;
-    }
-    public void addBindBlockBreakEvent(Consumer<BlockBreakEventFriend> consumer) {
-        eventBlockBreakBind = true;
-        blockBreakConsumerBind = consumer;
-    }
-    public void addBindPlayerDamagedEvent(Consumer<PlayerDamagedEventFriend> consumer) {
-        eventPlayerDamagedBind = true;
-        playerDamagedConsumerBind = consumer;
-    }
-
-    public void addRodTickEvent(Consumer<TickEventFriend> consumer) {
-        eventTickRod = true;
-        tickConsumerRod = consumer;
-    }
-    public void addRodDamageEvent(Consumer<EntityDamageEventFriend> consumer) {
-        eventEntityDamagedRod = true;
-        entityDamagedConsumerRod = consumer;
-    }
-    public void addRodDuraEvent(Consumer<DurabilityEventFriend> consumer) {
-        eventDurabilityRod = true;
-        durabilityConsumerRod = consumer;
-    }
-    public void addRodBlockBreakEvent(Consumer<BlockBreakEventFriend> consumer) {
-        eventBlockBreakRod = true;
-        blockBreakConsumerRod = consumer;
-    }
-    public void addRodPlayerDamagedEvent(Consumer<PlayerDamagedEventFriend> consumer) {
-        eventPlayerDamagedRod = true;
-        playerDamagedConsumerRod = consumer;
     }
 
     public boolean isValidToolHead() {
@@ -192,6 +98,41 @@ public class ComponentMaterial {
 
     public SlimefunItemStack getLiquidItemStack(int amount) {
         return new SlimefunItemStack(cmLiquid.getItemStack(), amount);
+    }
+
+    /**
+     *
+     * Runs an event based on the type of event the listener is requesting and the tool part.
+     * If an event does not exist, nothing happens.
+     *
+     * @param type "The type of event that will be triggered. Different events can fire based on the listener (tick event) raising
+     * @param part "The tool part to be tested against this material type"
+     * @param friend "The EventFriend to be carried through the events to the settle phase"
+     */
+    public void runEvent(TraitEventType type, TraitPartType part, EventFriend friend) {
+        if(!events.containsKey(type)) {
+            SlimeTinker.inst().getLogger().info("No events of that type");
+            return;
+        }
+        SlimeTinker.inst().getLogger().info("Events of type found, checking part");
+        Map<TraitPartType, Consumer<EventFriend>> map = events.get(type);
+        if (!map.containsKey(part)) {
+            SlimeTinker.inst().getLogger().info("No events of that part");
+            return;
+        }
+        SlimeTinker.inst().getLogger().info("Running event");
+        map.get(part).accept(friend);
+    }
+
+    public void addEvent(TraitEventType eventType, TraitPartType partType, Consumer<EventFriend> consumer) {
+        Map<TraitPartType, Consumer<EventFriend>> map;
+        if (events.containsKey(eventType)) {
+            map = events.get(eventType);
+        } else {
+            map = new EnumMap<>(TraitPartType.class);
+        }
+        map.put(partType, consumer);
+        events.put(eventType, map);
     }
 
 }

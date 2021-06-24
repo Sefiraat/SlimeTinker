@@ -35,7 +35,7 @@ public final class Categories {
     ));
     public static final SubCategory PROPERTIES = new SubCategory(SlimeTinker.inst().getKeys().getCategoryProperties(), MAIN, new CustomItem(
             SkullItem.fromBase64(SkullTextures.CAT_PROPERTIES),
-            ThemeUtils.MAIN + "Metal Props"
+            ThemeUtils.MAIN + "Metal Traits"
     ));
     public static final SubCategory CASTS = new SubCategory(SlimeTinker.inst().getKeys().getCategoryCasts(), MAIN, new CustomItem(
             SkullItem.fromBase64(SkullTextures.CAT_CASTS),

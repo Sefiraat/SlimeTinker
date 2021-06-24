@@ -21,7 +21,7 @@ import static io.github.sefiraat.slimetinker.utils.EntityUtils.push;
 @UtilityClass
 public final class EntityDamageEvents {
 
-    public static void headAluBrass(EntityDamageEventFriend friend) {
+    public static void headAluBrass(EventFriend friend) {
         int rnd = ThreadLocalRandom.current().nextInt(1,4);
         if (rnd == 1) {
             int rndX = ThreadLocalRandom.current().nextInt(-25,26);
@@ -36,26 +36,26 @@ public final class EntityDamageEvents {
         }
     }
 
-    public static void headCopper(EntityDamageEventFriend friend) {
+    public static void headCopper(EventFriend friend) {
         friend.setDamageMod(friend.getDamageMod() - 0.5);
         friend.setToolExpMod(friend.getToolExpMod() + 1);
     }
 
-    public static void rodAluminum(EntityDamageEventFriend friend) {
+    public static void rodAluminum(EventFriend friend) {
         friend.setToolExpMod(friend.getToolExpMod() + 0.5);
     }
 
-    public static void charged(EntityDamageEventFriend friend) {
+    public static void charged(EventFriend friend) {
         friend.setCharged(friend.getCharged() + 1);
     }
 
-    public static void headDuralium(EntityDamageEventFriend friend) {
+    public static void headDuralium(EventFriend friend) {
         friend.setDamageMod(friend.getDamageMod() - 0.5);
         friend.setToolExpMod(0);
         friend.setDuraliumCheck(true);
     }
 
-    public static void headMagnesium(EntityDamageEventFriend friend) {
+    public static void headMagnesium(EventFriend friend) {
         LivingEntity e = (LivingEntity) friend.getDamagedEntity();
         int rnd = ThreadLocalRandom.current().nextInt(1, 100);
         if (rnd < (friend.getToolLevel() * 5)) {
@@ -63,15 +63,15 @@ public final class EntityDamageEvents {
         }
     }
 
-    public static void headGold(EntityDamageEventFriend friend) {
+    public static void headGold(EventFriend friend) {
         friend.setDamageMod(friend.getDamageMod() - 1);
     }
 
-    public static void headTin(EntityDamageEventFriend friend) {
+    public static void headTin(EventFriend friend) {
         friend.setDamageMod(friend.getDamageMod() - 0.5);
     }
 
-    public static void headLead(EntityDamageEventFriend friend) {
+    public static void headLead(EventFriend friend) {
         LivingEntity e = (LivingEntity) friend.getDamagedEntity();
         int rnd = ThreadLocalRandom.current().nextInt(1, 5);
         if (rnd == 1) {
@@ -79,22 +79,22 @@ public final class EntityDamageEvents {
         }
     }
 
-    public static void headSteel(EntityDamageEventFriend friend) {
+    public static void headSteel(EventFriend friend) {
         Entity e = friend.getDamagedEntity();
         Particle.DustOptions dustOptions = new Particle.DustOptions(Color.RED, 5);
         e.getWorld().spawnParticle(Particle.REDSTONE, e.getLocation(), 50, 1.5, 1.5, 1.5, 1, dustOptions);
     }
 
-    public static void headBrass(EntityDamageEventFriend friend) {
+    public static void headBrass(EventFriend friend) {
         friend.setDamageMod(friend.getDamageMod() + 0.5);
     }
 
-    public static void rodAlubrass(EntityDamageEventFriend friend) {
+    public static void rodAlubrass(EventFriend friend) {
         friend.setDamageMod(friend.getDamageMod() - 0.5);
         friend.setToolExpMod(friend.getToolExpMod() + 0.5);
     }
 
-    public static void headHard(EntityDamageEventFriend friend) {
+    public static void headHard(EventFriend friend) {
         LivingEntity e = (LivingEntity) friend.getDamagedEntity();
         push(e, friend.getPlayer().getLocation(), 3);
         PotionEffect potionEffect = new PotionEffect(PotionEffectType.SLOW, 100,3);
@@ -103,7 +103,7 @@ public final class EntityDamageEvents {
         e.getWorld().spawnParticle(Particle.REDSTONE, e.getLocation(), 25, 1, 1, 1, 1, dustOptions);
     }
 
-    public static void headDamsteel(EntityDamageEventFriend friend) {
+    public static void headDamsteel(EventFriend friend) {
         Player p = friend.getPlayer();
         if (GeneralUtils.day(p.getWorld())) {
             friend.setDamageMod(friend.getDamageMod() - 0.5);
@@ -116,25 +116,25 @@ public final class EntityDamageEvents {
         }
     }
 
-    public static void headSingCopper(EntityDamageEventFriend friend) {
+    public static void headSingCopper(EventFriend friend) {
         friend.setDamageMod(friend.getDamageMod() - 0.5);
         friend.setToolExpMod(friend.getToolExpMod() + 2);
     }
 
-    public static void headSingInfinity(EntityDamageEventFriend friend) {
+    public static void headSingInfinity(EventFriend friend) {
         friend.setDamageMod(friend.getDamageMod() + 2);
         friend.setToolExpMod(friend.getToolExpMod() + 2);
     }
 
-    public static void headMetal(EntityDamageEventFriend friend) {
+    public static void headMetal(EventFriend friend) {
         friend.setDamageMod(friend.getDamageMod() + 1);
     }
 
-    public static void rodMetal(EntityDamageEventFriend friend) {
+    public static void rodMetal(EventFriend friend) {
         friend.setMetalCheck(true);
     }
 
-    public static void headEarth(EntityDamageEventFriend friend) {
+    public static void headEarth(EventFriend friend) {
         LivingEntity e = (LivingEntity) friend.getDamagedEntity();
         push(e, friend.getPlayer().getLocation(), 7);
         PotionEffect potionEffect = new PotionEffect(PotionEffectType.SLOW, 100,3);
@@ -143,7 +143,7 @@ public final class EntityDamageEvents {
         e.getWorld().spawnParticle(Particle.REDSTONE, e.getLocation(), 25, 1, 1, 1, 1, dustOptions);
     }
 
-    public static void rodVoid(EntityDamageEventFriend friend) {
+    public static void rodVoid(EventFriend friend) {
         if (friend.getPlayer().getWorld().getName().equalsIgnoreCase("world_the_end")) {
             friend.setDamageMod(friend.getDamageMod() + 2);
         } else {
@@ -151,7 +151,7 @@ public final class EntityDamageEvents {
         }
     }
 
-    public static void headSingMagnesium(EntityDamageEventFriend friend) {
+    public static void headSingMagnesium(EventFriend friend) {
         LivingEntity e = (LivingEntity) friend.getDamagedEntity();
         int rnd = ThreadLocalRandom.current().nextInt(1, 100);
         if (rnd < (friend.getToolLevel() * 10)) {
@@ -160,19 +160,19 @@ public final class EntityDamageEvents {
         }
     }
 
-    public static void headSingGold(EntityDamageEventFriend friend) {
+    public static void headSingGold(EventFriend friend) {
         friend.setDamageMod(friend.getDamageMod() + 0.5);
     }
 
-    public static void headSingTin(EntityDamageEventFriend friend) {
+    public static void headSingTin(EventFriend friend) {
         friend.setDamageMod(friend.getDamageMod() - 0.5);
     }
 
-    public static void headAdamantite(EntityDamageEventFriend friend) {
+    public static void headAdamantite(EventFriend friend) {
         friend.setPlayerExpMod(friend.getPlayerExpMod() + 0.5);
     }
 
-    public static void headSingLead(EntityDamageEventFriend friend) {
+    public static void headSingLead(EventFriend friend) {
         LivingEntity e = (LivingEntity) friend.getDamagedEntity();
         int rnd = ThreadLocalRandom.current().nextInt(1, 3);
         if (rnd == 1) {
@@ -180,7 +180,7 @@ public final class EntityDamageEvents {
         }
     }
 
-    public static void headMagSteel(EntityDamageEventFriend friend) {
+    public static void headMagSteel(EventFriend friend) {
         Entity e = friend.getDamagedEntity();
         Particle.DustOptions dustOptions = new Particle.DustOptions(Color.fromRGB(200,50,50), 5);
         e.getWorld().spawnParticle(Particle.REDSTONE, e.getLocation(), 30, 3, 3, 3, 1, dustOptions);
@@ -190,7 +190,7 @@ public final class EntityDamageEvents {
         e.getWorld().spawnParticle(Particle.REDSTONE, e.getLocation(), 30, 3, 3, 3, 1, dustOptions3);
     }
 
-    public static void rodSingAluminum(EntityDamageEventFriend friend) {
+    public static void rodSingAluminum(EventFriend friend) {
         friend.setToolExpMod(friend.getToolExpMod() + 1);
     }
 }

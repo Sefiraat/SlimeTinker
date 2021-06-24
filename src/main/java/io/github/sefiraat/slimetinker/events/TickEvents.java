@@ -25,11 +25,11 @@ import static io.github.sefiraat.slimetinker.utils.EntityUtils.increaseEffect;
 @UtilityClass
 public final class TickEvents {
 
-    public static void rodGold(TickEventFriend friend) {
+    public static void rodGold(EventFriend friend) {
         increaseEffect(PotionEffectType.GLOWING, friend.getPotionEffects());
     }
 
-    public static void binderTwistingvine(TickEventFriend friend) {
+    public static void binderTwistingvine(EventFriend friend) {
         for (Entity entity : friend.getPlayer().getNearbyEntities(5,5,5)) {
             if (entity instanceof Item) {
                 Location eLoc = entity.getLocation();
@@ -39,11 +39,11 @@ public final class TickEvents {
         }
     }
 
-    public static void rodTin(TickEventFriend friend) {
+    public static void rodTin(EventFriend friend) {
         increaseEffect(PotionEffectType.SATURATION, friend.getPotionEffects());
     }
 
-    public static void binderCrimsonroot(TickEventFriend friend) {
+    public static void binderCrimsonroot(EventFriend friend) {
         if (!GeneralUtils.day(friend.getPlayer().getWorld())) {
             int rnd = ThreadLocalRandom.current().nextInt(1,5);
             if (rnd == 1) {
@@ -52,23 +52,23 @@ public final class TickEvents {
         }
     }
 
-    public static void binderWeepingvine(TickEventFriend friend) {
+    public static void binderWeepingvine(EventFriend friend) {
         increaseEffect(PotionEffectType.BAD_OMEN, friend.getPotionEffects());
     }
 
-    public static void headBillon(TickEventFriend friend) {
+    public static void headBillon(EventFriend friend) {
         increaseEffect(PotionEffectType.FAST_DIGGING, friend.getPotionEffects());
     }
 
-    public static void headGold(TickEventFriend friend) {
+    public static void headGold(EventFriend friend) {
         increaseEffect(PotionEffectType.INVISIBILITY, friend.getPotionEffects());
     }
 
-    public static void headZinc(TickEventFriend friend) {
+    public static void headZinc(EventFriend friend) {
         increaseEffect(PotionEffectType.DOLPHINS_GRACE, friend.getPotionEffects());
     }
 
-    public static void binderVine(TickEventFriend friend) {
+    public static void binderVine(EventFriend friend) {
         if (GeneralUtils.day(friend.getPlayer().getWorld())) {
             int rnd = ThreadLocalRandom.current().nextInt(1,5);
             if (rnd == 1) {
@@ -77,20 +77,20 @@ public final class TickEvents {
         }
     }
 
-    public static void headSolder(TickEventFriend friend) {
+    public static void headSolder(EventFriend friend) {
         increaseEffect(PotionEffectType.INVISIBILITY, friend.getPotionEffects());
     }
 
-    public static void rodBronze(TickEventFriend friend) {
+    public static void rodBronze(EventFriend friend) {
         increaseEffect(PotionEffectType.WITHER, friend.getPotionEffects());
     }
 
-    public static void rodLead(TickEventFriend friend) {
+    public static void rodLead(EventFriend friend) {
         increaseEffect(PotionEffectType.HEALTH_BOOST, friend.getPotionEffects(), 2);
         increaseEffect(PotionEffectType.HUNGER, friend.getPotionEffects());
     }
 
-    public static void rodMagnesium(TickEventFriend friend) {
+    public static void rodMagnesium(EventFriend friend) {
         for (Entity entity : friend.getPlayer().getNearbyEntities(10,10,10)) {
             if (entity instanceof Item && ThreadLocalRandom.current().nextInt(1,3) == 1) {
                 entity.teleport(friend.getPlayer().getLocation());
@@ -98,99 +98,99 @@ public final class TickEvents {
         }
     }
 
-    public static void headTin(TickEventFriend friend) {
+    public static void headTin(EventFriend friend) {
         increaseEffect(PotionEffectType.LUCK, friend.getPotionEffects());
     }
 
-    public static void rodDamsteel(TickEventFriend friend) {
+    public static void rodDamsteel(EventFriend friend) {
         increaseEffect(PotionEffectType.NIGHT_VISION, friend.getPotionEffects());
     }
 
-    public static void rodBrass(TickEventFriend friend) {
+    public static void rodBrass(EventFriend friend) {
         increaseEffect(PotionEffectType.WATER_BREATHING, friend.getPotionEffects());
     }
 
-    public static void bindWarpedroot(TickEventFriend friend) {
+    public static void bindWarpedroot(EventFriend friend) {
         int rnd = ThreadLocalRandom.current().nextInt(1,5);
         if (rnd == 1) {
             friend.getPlayer().setHealth(Math.min(friend.getPlayer().getHealth() + 1, friend.getPlayer().getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue()));
         }
     }
 
-    public static void headBronze(TickEventFriend friend) {
+    public static void headBronze(EventFriend friend) {
         increaseEffect(PotionEffectType.FIRE_RESISTANCE, friend.getPotionEffects());
     }
 
-    public static void rodIron(TickEventFriend friend) {
+    public static void rodIron(EventFriend friend) {
         increaseEffect(PotionEffectType.INCREASE_DAMAGE, friend.getPotionEffects());
     }
 
-    public static void headAlubronze(TickEventFriend friend) {
+    public static void headAlubronze(EventFriend friend) {
         increaseEffect(PotionEffectType.INCREASE_DAMAGE, friend.getPotionEffects());
     }
 
-    public static void rodSilver(TickEventFriend friend) {
+    public static void rodSilver(EventFriend friend) {
         increaseEffect(PotionEffectType.SLOW_FALLING, friend.getPotionEffects(), 2);
     }
 
-    public static void rodBillon(TickEventFriend friend) {
+    public static void rodBillon(EventFriend friend) {
         increaseEffect(PotionEffectType.JUMP, friend.getPotionEffects(), 3);
     }
 
-    public static void headBrass(TickEventFriend friend) {
+    public static void headBrass(EventFriend friend) {
         increaseEffect(PotionEffectType.UNLUCK, friend.getPotionEffects(), 2);
     }
 
-    public static void rodZinc(TickEventFriend friend) {
+    public static void rodZinc(EventFriend friend) {
         if (!friend.getPlayer().isSneaking()) {
             increaseEffect(PotionEffectType.LEVITATION, friend.getPotionEffects(), 1);
         }
     }
 
-    public static void rodCorbronze(TickEventFriend friend) {
+    public static void rodCorbronze(EventFriend friend) {
         increaseEffect(PotionEffectType.CONFUSION, friend.getPotionEffects());
     }
 
-    public static void headDuralium(TickEventFriend friend) {
+    public static void headDuralium(EventFriend friend) {
         if (ItemUtils.isToolBroken(friend.getHeldItem())) {
             increaseEffect(PotionEffectType.SLOW_DIGGING, friend.getPotionEffects());
         }
     }
 
-    public static void bindString(TickEventFriend friend) {
+    public static void bindString(EventFriend friend) {
         increaseEffect(PotionEffectType.WEAKNESS, friend.getPotionEffects());
     }
 
-    public static void rodSingGold(TickEventFriend friend) {
+    public static void rodSingGold(EventFriend friend) {
         increaseEffect(PotionEffectType.GLOWING, friend.getPotionEffects());
     }
 
-    public static void rodSingTin(TickEventFriend friend) {
+    public static void rodSingTin(EventFriend friend) {
         increaseEffect(PotionEffectType.SATURATION, friend.getPotionEffects(), 2);
     }
 
-    public static void headMetal(TickEventFriend friend) {
+    public static void headMetal(EventFriend friend) {
         increaseEffect(PotionEffectType.FAST_DIGGING, friend.getPotionEffects(), 1);
     }
 
-    public static void headMythril(TickEventFriend friend) {
+    public static void headMythril(EventFriend friend) {
         increaseEffect(PotionEffectType.FAST_DIGGING, friend.getPotionEffects(), 1);
         increaseEffect(PotionEffectType.SPEED, friend.getPotionEffects());
     }
 
-    public static void headSingGold(TickEventFriend friend) {
+    public static void headSingGold(EventFriend friend) {
         increaseEffect(PotionEffectType.INVISIBILITY, friend.getPotionEffects(), 1);
     }
 
-    public static void headSingZinc(TickEventFriend friend) {
+    public static void headSingZinc(EventFriend friend) {
         increaseEffect(PotionEffectType.DOLPHINS_GRACE, friend.getPotionEffects(), 1);
     }
 
-    public static void rodSingLead(TickEventFriend friend) {
+    public static void rodSingLead(EventFriend friend) {
         increaseEffect(PotionEffectType.HEALTH_BOOST, friend.getPotionEffects(), 1);
     }
 
-    public static void rodSingMagnesium(TickEventFriend friend) {
+    public static void rodSingMagnesium(EventFriend friend) {
         for (Entity entity : friend.getPlayer().getNearbyEntities(10,10,10)) {
             if (entity instanceof Item) {
                 Location eLoc = entity.getLocation();
@@ -200,16 +200,16 @@ public final class TickEvents {
         }
     }
 
-    public static void headSingTin(TickEventFriend friend) {
+    public static void headSingTin(EventFriend friend) {
         increaseEffect(PotionEffectType.LUCK, friend.getPotionEffects(), 1);
         increaseEffect(PotionEffectType.SPEED, friend.getPotionEffects(), 1);
     }
 
-    public static void rodFortune(TickEventFriend friend) {
+    public static void rodFortune(EventFriend friend) {
         increaseEffect(PotionEffectType.INVISIBILITY, friend.getPotionEffects(), 2);
     }
 
-    public static void rodMagic(TickEventFriend friend) {
+    public static void rodMagic(EventFriend friend) {
         for (Entity entity : friend.getPlayer().getNearbyEntities(10,10,10)) {
             if (entity instanceof LivingEntity) {
                 LivingEntity l = (LivingEntity) entity;
@@ -218,11 +218,11 @@ public final class TickEvents {
         }
     }
 
-    public static void rodSingIron(TickEventFriend friend) {
+    public static void rodSingIron(EventFriend friend) {
         increaseEffect(PotionEffectType.INCREASE_DAMAGE, friend.getPotionEffects(), 1);
     }
 
-    public static void rodMythril(TickEventFriend friend) {
+    public static void rodMythril(EventFriend friend) {
         for (Entity entity : friend.getPlayer().getNearbyEntities(5,5,5)) {
             if (entity instanceof Monster && (entity.getType() != EntityType.WITHER && entity.getType() != EntityType.ENDER_DRAGON)) {
                 Monster l = (Monster) entity;
@@ -231,13 +231,13 @@ public final class TickEvents {
         }
     }
 
-    public static void rodSingZinc(TickEventFriend friend) {
+    public static void rodSingZinc(EventFriend friend) {
         if (friend.getPlayer().isSneaking()) {
             increaseEffect(PotionEffectType.LEVITATION, friend.getPotionEffects(), 1);
         }
     }
 
-    public static void headMagic(TickEventFriend friend) {
+    public static void headMagic(EventFriend friend) {
         for (Entity entity : friend.getPlayer().getNearbyEntities(5,5,5)) {
             int rnd = ThreadLocalRandom.current().nextInt(1, 10);
             if (entity instanceof LivingEntity) {

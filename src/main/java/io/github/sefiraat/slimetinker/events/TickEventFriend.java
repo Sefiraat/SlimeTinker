@@ -11,14 +11,4 @@ import java.util.Map;
 @Data
 public class TickEventFriend {
 
-    private final ItemStack heldItem;
-    private final Player player;
-    private final Map<PotionEffectType, Integer> potionEffects = new HashMap<>();
-
-    public TickEventFriend(ItemStack heldItem, Player player) {
-
-        this.heldItem = heldItem;
-        this.player = player;
-    }
-
 }

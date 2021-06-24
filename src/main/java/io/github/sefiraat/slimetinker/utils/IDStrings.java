@@ -36,6 +36,7 @@ public final class IDStrings {
     public static final String WARPEDROOTS = "WARPED_ROOT";
     public static final String WEEPINGVINES = "WEEPING_VINE";
     public static final String TWISTEDVINES = "TWISTED_VINE";
+    public static final String SLIME = "SLIME";
 
     // Infinity Expac
     public static final String VOID = "VOID";
@@ -60,7 +61,15 @@ public final class IDStrings {
     public static final String SINGIRON = "IRON_SINGULARITY";
     public static final String SINGINFINITY = "INFINITY_SINGULARITY";
 
-
+    // Slimefun Warefare
+    public static final String SLIMESTEEL = "SLIME_STEEL";
+    public static final String REINFORCEDSLIMESTEEL = "REINFORCED_SLIME_STEEL";
+    public static final String OSMIUMSUPERALLOY = "OSMIUM_SUPERALLOY";
+    public static final String OSMIUM = "OSMIUM";
+    public static final String SEGGANESSON = "SEGGANESSON";
+    public static final String UNPATENTABILUM = "UNPATENTABILUM";
+    
+    // Other
     public static final String HEAD = "HEAD";
     public static final String BINDING = "BINDING";
     public static final String ROD = "ROD";

@@ -34,7 +34,7 @@ public final class Alloys {
     static {
 
         RECIPE_STEEL.put(IDStrings.IRON, 2);
-        RECIPE_STEEL.put(IDStrings.COAL, 1);
+        RECIPE_STEEL.put(IDStrings.COAL, 4);
 
         RECIPE_DAM_STEEL.put(IDStrings.STEEL, 1);
         RECIPE_DAM_STEEL.put(IDStrings.IRON, 2);

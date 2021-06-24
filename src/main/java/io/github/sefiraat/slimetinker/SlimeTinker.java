@@ -6,7 +6,6 @@ import io.github.mooy1.infinitylib.commands.AbstractCommand;
 import io.github.sefiraat.slimetinker.categories.Categories;
 import io.github.sefiraat.slimetinker.commands.AddExp;
 import io.github.sefiraat.slimetinker.commands.GiveDummyTool;
-import io.github.sefiraat.slimetinker.items.Alloys;
 import io.github.sefiraat.slimetinker.items.Casts;
 import io.github.sefiraat.slimetinker.items.Dies;
 import io.github.sefiraat.slimetinker.items.Materials;
@@ -57,7 +56,6 @@ public class SlimeTinker extends AbstractAddon {
 
         Categories.set(this);
         Materials.set(this);
-        Alloys.set(this);
         Props.set(this);
         Dies.set(this);
         Casts.set(this);

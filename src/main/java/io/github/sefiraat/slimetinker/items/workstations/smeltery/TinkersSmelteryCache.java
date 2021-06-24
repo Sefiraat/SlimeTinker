@@ -2,9 +2,9 @@ package io.github.sefiraat.slimetinker.items.workstations.smeltery;
 
 import io.github.mooy1.infinitylib.items.StackUtils;
 import io.github.sefiraat.slimetinker.SlimeTinker;
-import io.github.sefiraat.slimetinker.items.componentmaterials.CMManager;
+import io.github.sefiraat.slimetinker.items.componentmaterials.factories.CMManager;
 import io.github.sefiraat.slimetinker.items.materials.Alloy;
-import io.github.sefiraat.slimetinker.items.materials.ComponentMaterial;
+import io.github.sefiraat.slimetinker.items.componentmaterials.ComponentMaterial;
 import io.github.sefiraat.slimetinker.items.recipes.Alloys;
 import io.github.sefiraat.slimetinker.items.recipes.CastResult;
 import io.github.sefiraat.slimetinker.items.recipes.MoltenResult;

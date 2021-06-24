@@ -1,4 +1,4 @@
-package io.github.sefiraat.slimetinker.items.materials;
+package io.github.sefiraat.slimetinker.items.componentmaterials;
 
 import io.github.sefiraat.slimetinker.events.BlockBreakEventFriend;
 import io.github.sefiraat.slimetinker.events.DurabilityEventFriend;
@@ -6,8 +6,11 @@ import io.github.sefiraat.slimetinker.events.EntityDamageEventFriend;
 import io.github.sefiraat.slimetinker.events.PlayerDamagedEventFriend;
 import io.github.sefiraat.slimetinker.events.TickEventFriend;
 import lombok.Data;
+import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.SlimefunItem;
+import me.mrCookieSlime.Slimefun.api.SlimefunItemStack;
 import net.md_5.bungee.api.ChatColor;
 
+import javax.annotation.Nullable;
 import java.util.function.Consumer;
 
 @Data
@@ -15,19 +18,10 @@ public class ComponentMaterial {
 
     private final String id;
     private final String colorHex;
-    private final boolean validToolHead;
-    private final boolean validToolBind;
-    private final boolean validToolRod;
-    private final String formNugget;
-    private final String formIngot;
-    private final String formBlock;
-    private final String formOre;
-    private final String formGem;
-    private final String formDust;
-    private final String formBoot;
-    private final String formLeg;
-    private final String formChest;
-    private final String formHelm;
+    private final CMToolMakeup cmToolMakeup;
+    private final CMForms cmForms;
+    private final CMLiquid cmLiquid;
+    private final CMAlloy cmAlloy;
     
     private boolean eventTickHead = false;
     private Consumer<TickEventFriend> tickConsumerHead;
@@ -64,35 +58,17 @@ public class ComponentMaterial {
     
     public ComponentMaterial(String id,
                              String colorHex,
-                             boolean validToolHead,
-                             boolean validToolBind,
-                             boolean validToolRod,
-                             String formNugget,
-                             String formIngot,
-                             String formBlock,
-                             String formOre,
-                             String formGem,
-                             String formDust,
-                             String formBoot,
-                             String formLeg,
-                             String formChest,
-                             String formHelm)
+                             CMToolMakeup cmToolMakeup,
+                             CMForms cmForms,
+                             @Nullable CMLiquid cmLiquid,
+                             @Nullable CMAlloy cmAlloy)
     {
         this.id = id;
         this.colorHex = colorHex;
-        this.validToolHead = validToolHead;
-        this.validToolBind = validToolBind;
-        this.validToolRod = validToolRod;
-        this.formNugget = formNugget;
-        this.formIngot = formIngot;
-        this.formBlock = formBlock;
-        this.formOre = formOre;
-        this.formGem = formGem;
-        this.formDust = formDust;
-        this.formBoot = formBoot;
-        this.formLeg = formLeg;
-        this.formChest = formChest;
-        this.formHelm = formHelm;
+        this.cmToolMakeup = cmToolMakeup;
+        this.cmForms = cmForms;
+        this.cmLiquid = cmLiquid;
+        this.cmAlloy = cmAlloy;
     }
 
     public ChatColor getColor() {
@@ -160,6 +136,62 @@ public class ComponentMaterial {
     public void addRodPlayerDamagedEvent(Consumer<PlayerDamagedEventFriend> consumer) {
         eventPlayerDamagedRod = true;
         playerDamagedConsumerRod = consumer;
+    }
+
+    public boolean isValidToolHead() {
+        return cmToolMakeup.isValidHead();
+    }
+
+    public boolean isValidToolBinder() {
+        return cmToolMakeup.isValidBinder();
+    }
+
+    public boolean isValidToolRod() {
+        return cmToolMakeup.isValidRod();
+    }
+
+    public String getFormNugget() {
+        return cmForms.getFormNugget();
+    }
+
+    public String getFormIngot() {
+        return cmForms.getFormIngot();
+    }
+
+    public String getFormBlock() {
+        return cmForms.getFormBlock();
+    }
+
+    public String getFormOre() {
+        return cmForms.getFormOre();
+    }
+
+    public String getFormGem() {
+        return cmForms.getFormGem();
+    }
+
+    public String getFormDust() {
+        return cmForms.getFormDust();
+    }
+
+    public String getFormBoot() {
+        return cmForms.getFormBoot();
+    }
+
+    public String getFormLeg() {
+        return cmForms.getFormLeg();
+    }
+
+    public String getFormChest() {
+        return cmForms.getFormChest();
+    }
+
+    public String getFormHelm() {
+        return cmForms.getFormHelm();
+    }
+
+    public SlimefunItemStack getLiquidItemStack(int amount) {
+        return new SlimefunItemStack(cmLiquid.getItemStack(), amount);
     }
 
 }

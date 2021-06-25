@@ -1,13 +1,14 @@
 package io.github.sefiraat.slimetinker.listeners;
 
-import io.github.sefiraat.slimetinker.events.EntityDamageEventFriend;
-import io.github.sefiraat.slimetinker.items.componentmaterials.CMManager;
-import io.github.sefiraat.slimetinker.items.materials.ComponentMaterial;
+import io.github.sefiraat.slimetinker.events.EventFriend;
+import io.github.sefiraat.slimetinker.items.componentmaterials.factories.CMManager;
 import io.github.sefiraat.slimetinker.items.templates.ToolTemplate;
 import io.github.sefiraat.slimetinker.modifiers.Modifications;
 import io.github.sefiraat.slimetinker.utils.Experience;
 import io.github.sefiraat.slimetinker.utils.IDStrings;
 import io.github.sefiraat.slimetinker.utils.ItemUtils;
+import io.github.sefiraat.slimetinker.utils.enums.TraitEventType;
+import io.github.sefiraat.slimetinker.utils.enums.TraitPartType;
 import org.bukkit.Color;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -39,11 +40,22 @@ public class EntityKilledListener implements Listener {
         if (heldItems.containsKey(p)) {
             list.addAll(heldItems.get(p));
         }
+
         for (ItemStack i : event.getDrops()) {
-            if (!ToolTemplate.isTool(i) || !ItemUtils.getToolRodMaterial(i.getItemMeta().getPersistentDataContainer()).equals(IDStrings.SOLDER)) {
+
+            if (!ToolTemplate.isTool(i)) {
                 continue;
             }
-            list.add(i);
+
+            PersistentDataContainer c = i.getItemMeta().getPersistentDataContainer();
+            String headMaterial = ItemUtils.getToolHeadMaterial(c);
+            String bindMaterial = ItemUtils.getToolBindingMaterial(c);
+            String rodMaterial = ItemUtils.getToolRodMaterial(c);
+
+            if (rodMaterial.equals(IDStrings.SOLDER) || rodMaterial.equals(IDStrings.UNPATENTABLIUM)) {
+                list.add(i);
+            }
+
         }
         for (ItemStack i : list) {
             event.getDrops().remove(i);
@@ -88,19 +100,17 @@ public class EntityKilledListener implements Listener {
         String matPropertyRod = ItemUtils.getToolRodMaterial(c);
         int toolLevel = Experience.getToolLevel(c);
 
-        EntityDamageEventFriend friend = new EntityDamageEventFriend(heldItem, player, dyingEntity, toolLevel);
+        EventFriend friend = new EventFriend();
 
-        for (Map.Entry<String, ComponentMaterial> mat : CMManager.getMAP().entrySet()) {
-            if (mat.getValue().isEventEntityDamagedHead() && matPropertyHead.equals(mat.getKey())) {
-                mat.getValue().getEntityDamagedConsumerHead().accept(friend);
-            }
-            if (mat.getValue().isEventEntityDamagedBind() && matPropertyBinding.equals(mat.getKey())) {
-                mat.getValue().getEntityDamagedConsumerBind().accept(friend);
-            }
-            if (mat.getValue().isEventEntityDamagedRod() && matPropertyRod.equals(mat.getKey())) {
-                mat.getValue().getEntityDamagedConsumerRod().accept(friend);
-            }
-        }
+        friend.setHeldItem(heldItem);
+        friend.setPlayer(player);
+        friend.setDamagedEntity(dyingEntity);
+        friend.setToolLevel(toolLevel);
+
+        TraitEventType traitEventType = TraitEventType.ENTITY_DAMAGED;
+        CMManager.getMAP().get(matPropertyHead).runEvent(traitEventType, TraitPartType.HEAD, friend);
+        CMManager.getMAP().get(matPropertyBinding).runEvent(traitEventType, TraitPartType.BINDER, friend);
+        CMManager.getMAP().get(matPropertyRod).runEvent(traitEventType, TraitPartType.ROD, friend);
 
         // Mods
         modChecks(event, heldItem);

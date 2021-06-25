@@ -42,6 +42,9 @@ public final class ThemeUtils {
     public static final ChatColor ITEM_PROP = ChatColor.of("#bf307f");
     public static final ChatColor ITEM_MULTIBLOCK = ChatColor.of("#3295a8");
     public static final ChatColor ADD_INFINITY = ChatColor.of("#7ecee0");
+    public static final ChatColor ADD_SLIMEFUN_WARFARE = ChatColor.of("#c1db4d");
+    public static final ChatColor ADD_DYNATECH = ChatColor.of("#60d1cd");
+    public static final ChatColor ADD_LITEXPANSION = ChatColor.of("#8a8a8a");
 
     public static final String LORE_TYPE_CRAFT = ITEM_TYPEDESC + "Crafting Material";
     public static final String LORE_TYPE_MACHINE = ITEM_TYPEDESC + "Machine";
@@ -55,7 +58,7 @@ public final class ThemeUtils {
     public static final String LORE_TOOL = ITEM_TYPEDESC + "Tinker's Tool";
     public static final String LORE_INFO = ITEM_TYPEDESC + "Info";
     public static final String LORE_MOD = ITEM_TYPEDESC + "Modification";
-    public static final String LORE_PROP = ITEM_TYPEDESC + "Material Property";
+    public static final String LORE_PROP = ITEM_TYPEDESC + "Material Trait";
     public static final String LORE_MULTIBLOCK = ITEM_TYPEDESC + "Mutliblock";
 
     public static SlimefunItemStack themedItemStack(String id, String skull, ThemeItemType type, String name, String... loreLines) {
@@ -78,6 +81,44 @@ public final class ThemeUtils {
     }
 
     public static SlimefunItemStack themedItemStack(String id, Material material, ThemeItemType type, String name, String... loreLines) {
+        BaseItem itemStack = new BaseItem(
+                id,
+                material,
+                itemTypeColor(type) + name,
+                ""
+        );
+        ItemMeta im = itemStack.getItemMeta();
+        List<String> lore = im.getLore();
+        for (String s : loreLines) {
+            lore.add(ThemeUtils.PASSIVE + s);
+        }
+        lore.add("");
+        lore.add(itemTypeDescriptor(type));
+        im.setLore(lore);
+        itemStack.setItemMeta(im);
+        return itemStack;
+    }
+
+    public static SlimefunItemStack themedItemStack(String id, String skull, ThemeItemType type, String name, List<String> loreLines) {
+        BaseItem itemStack = new BaseItem(
+                id,
+                skull,
+                itemTypeColor(type) + name,
+                ""
+        );
+        ItemMeta im = itemStack.getItemMeta();
+        List<String> lore = im.getLore();
+        for (String s : loreLines) {
+            lore.add(ThemeUtils.PASSIVE + s);
+        }
+        lore.add("");
+        lore.add(itemTypeDescriptor(type));
+        im.setLore(lore);
+        itemStack.setItemMeta(im);
+        return itemStack;
+    }
+
+    public static SlimefunItemStack themedItemStack(String id, Material material, ThemeItemType type, String name, List<String> loreLines) {
         BaseItem itemStack = new BaseItem(
                 id,
                 material,

@@ -1,12 +1,13 @@
 package io.github.sefiraat.slimetinker.runnables;
 
 import io.github.sefiraat.slimetinker.SlimeTinker;
-import io.github.sefiraat.slimetinker.events.TickEventFriend;
-import io.github.sefiraat.slimetinker.items.componentmaterials.CMManager;
-import io.github.sefiraat.slimetinker.items.materials.ComponentMaterial;
+import io.github.sefiraat.slimetinker.events.EventFriend;
+import io.github.sefiraat.slimetinker.items.componentmaterials.factories.CMManager;
 import io.github.sefiraat.slimetinker.items.templates.ToolTemplate;
 import io.github.sefiraat.slimetinker.modifiers.Modifications;
 import io.github.sefiraat.slimetinker.utils.ItemUtils;
+import io.github.sefiraat.slimetinker.utils.enums.TraitEventType;
+import io.github.sefiraat.slimetinker.utils.enums.TraitPartType;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -31,7 +32,10 @@ public class EffectRunnable extends BukkitRunnable {
                 return;
             }
             Map<PotionEffectType, Integer> potionEffects = new HashMap<>();
-            TickEventFriend friend = new TickEventFriend(heldItem, player);
+            EventFriend friend = new EventFriend();
+
+            friend.setHeldItem(heldItem);
+            friend.setPlayer(player);
 
             // Properties
             ItemMeta im = heldItem.getItemMeta();
@@ -41,17 +45,10 @@ public class EffectRunnable extends BukkitRunnable {
             String matPropertyBinding = ItemUtils.getToolBindingMaterial(c);
             String matPropertyRod = ItemUtils.getToolRodMaterial(c);
 
-            for (Map.Entry<String, ComponentMaterial> mat : CMManager.getMAP().entrySet()) {
-                if (mat.getValue().isEventTickHead() && matPropertyHead.equals(mat.getKey())) {
-                    mat.getValue().getTickConsumerHead().accept(friend);
-                }
-                if (mat.getValue().isEventTickBind() && matPropertyBinding.equals(mat.getKey())) {
-                    mat.getValue().getTickConsumerBind().accept(friend);
-                }
-                if (mat.getValue().isEventTickRod() && matPropertyRod.equals(mat.getKey())) {
-                    mat.getValue().getTickConsumerRod().accept(friend);
-                }
-            }
+            TraitEventType traitEventType = TraitEventType.TICK;
+            CMManager.getMAP().get(matPropertyHead).runEvent(traitEventType, TraitPartType.HEAD, friend);
+            CMManager.getMAP().get(matPropertyBinding).runEvent(traitEventType, TraitPartType.BINDER, friend);
+            CMManager.getMAP().get(matPropertyRod).runEvent(traitEventType, TraitPartType.ROD, friend);
 
             // Mods
             checkModifications(heldItem, player, potionEffects);

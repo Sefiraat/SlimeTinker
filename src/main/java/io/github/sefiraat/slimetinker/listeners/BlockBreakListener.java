@@ -1,10 +1,9 @@
 package io.github.sefiraat.slimetinker.listeners;
 
 import io.github.sefiraat.slimetinker.SlimeTinker;
-import io.github.sefiraat.slimetinker.events.BlockBreakEventFriend;
 import io.github.sefiraat.slimetinker.events.BlockBreakEvents;
-import io.github.sefiraat.slimetinker.items.componentmaterials.CMManager;
-import io.github.sefiraat.slimetinker.items.materials.ComponentMaterial;
+import io.github.sefiraat.slimetinker.events.EventFriend;
+import io.github.sefiraat.slimetinker.items.componentmaterials.factories.CMManager;
 import io.github.sefiraat.slimetinker.items.templates.ToolTemplate;
 import io.github.sefiraat.slimetinker.modifiers.Modifications;
 import io.github.sefiraat.slimetinker.utils.BlockUtils;
@@ -12,6 +11,8 @@ import io.github.sefiraat.slimetinker.utils.Experience;
 import io.github.sefiraat.slimetinker.utils.IDStrings;
 import io.github.sefiraat.slimetinker.utils.ItemUtils;
 import io.github.sefiraat.slimetinker.utils.ThemeUtils;
+import io.github.sefiraat.slimetinker.utils.enums.TraitEventType;
+import io.github.sefiraat.slimetinker.utils.enums.TraitPartType;
 import org.bukkit.Color;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -19,6 +20,7 @@ import org.bukkit.Particle;
 import org.bukkit.block.Block;
 import org.bukkit.block.data.Ageable;
 import org.bukkit.enchantments.Enchantment;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
@@ -42,6 +44,7 @@ public class BlockBreakListener implements Listener {
             return;
         }
 
+        Player p = event.getPlayer();
         ItemStack heldItem = event.getPlayer().getInventory().getItemInMainHand();
         Block block = event.getBlock();
 
@@ -54,7 +57,10 @@ public class BlockBreakListener implements Listener {
         }
 
         // Property and Mod checks, carries around the additional and normal drops
-        BlockBreakEventFriend friend = new BlockBreakEventFriend(heldItem, event.getPlayer(), block);
+        EventFriend friend = new EventFriend();
+        friend.setHeldItem(heldItem);
+        friend.setPlayer(p);
+        friend.setBlock(block);
         friend.setDrops(block.getDrops(heldItem)); // Stores the event drops. All may not be dropped
         friend.setAddDrops(new ArrayList<>()); // Additional drops or substitutions for items from the main collection
         friend.setRemoveDrops(new ArrayList<>()); // Items to remove from the main collection if moved/reformed into the additional
@@ -78,17 +84,10 @@ public class BlockBreakListener implements Listener {
             }
         }
 
-        for (Map.Entry<String, ComponentMaterial> mat : CMManager.getMAP().entrySet()) {
-            if (mat.getValue().isEventBlockBreakHead() && matPropertyHead.equals(mat.getKey())) {
-                mat.getValue().getBlockBreakConsumerHead().accept(friend);
-            }
-            if (mat.getValue().isEventBlockBreakBind() && matPropertyBinding.equals(mat.getKey())) {
-                mat.getValue().getBlockBreakConsumerBind().accept(friend);
-            }
-            if (mat.getValue().isEventBlockBreakRod() && matPropertyRod.equals(mat.getKey())) {
-                mat.getValue().getBlockBreakConsumerRod().accept(friend);
-            }
-        }
+        TraitEventType traitEventType = TraitEventType.BLOCK_BREAK;
+        CMManager.getMAP().get(matPropertyHead).runEvent(traitEventType, TraitPartType.HEAD, friend);
+        CMManager.getMAP().get(matPropertyBinding).runEvent(traitEventType, TraitPartType.BINDER, friend);
+        CMManager.getMAP().get(matPropertyRod).runEvent(traitEventType, TraitPartType.ROD, friend);
 
         // Mods
         modChecks(heldItem, block, friend.getAddDrops());
@@ -97,12 +96,27 @@ public class BlockBreakListener implements Listener {
         event.setDropItems(false);
 
         for (ItemStack i : friend.getDrops()) { // Drop items in original collection not flagged for removal
-            if (!friend.getRemoveDrops().contains(i)) {
-                block.getWorld().dropItemNaturally(block.getLocation().clone().add(0.5, 0.5, 0.5), i);
+            if (friend.getRemoveDrops().contains(i)) {
+                continue;
             }
+            if (friend.isBlocksIntoInv()) {
+                Map<Integer, ItemStack> remainingItems = p.getInventory().addItem(i);
+                for (ItemStack i2 : remainingItems.values()) {
+                    block.getWorld().dropItemNaturally(block.getLocation().clone().add(0.5, 0.5, 0.5), i2);
+                }
+                continue;
+            }
+            block.getWorld().dropItemNaturally(block.getLocation().clone().add(0.5, 0.5, 0.5), i);
         }
 
         for (ItemStack i : friend.getAddDrops()) { // Then the additional items collection - no removals
+            if (friend.isBlocksIntoInv()) {
+                Map<Integer, ItemStack> remainingItems = p.getInventory().addItem(i);
+                for (ItemStack i2 : remainingItems.values()) {
+                    block.getWorld().dropItemNaturally(block.getLocation().clone().add(0.5, 0.5, 0.5), i2);
+                }
+                continue;
+            }
             block.getWorld().dropItemNaturally(block.getLocation().clone().add(0.5, 0.5, 0.5), i);
         }
 

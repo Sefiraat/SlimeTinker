@@ -11,6 +11,7 @@ public class Keys {
     private final NamespacedKey categoryMain = new NamespacedKey(SlimeTinker.inst(), "slime-tinker");
     private final NamespacedKey categoryWorkstations = new NamespacedKey(SlimeTinker.inst(), "slime-tinker-workstations");
     private final NamespacedKey categoryMaterials = new NamespacedKey(SlimeTinker.inst(), "slime-tinker-materials");
+    private final NamespacedKey categoryMolten = new NamespacedKey(SlimeTinker.inst(), "slime-tinker-molten");
     private final NamespacedKey categoryAlloys = new NamespacedKey(SlimeTinker.inst(), "slime-tinker-alloys");
     private final NamespacedKey categoryProperties = new NamespacedKey(SlimeTinker.inst(), "slime-tinker-properties");
     private final NamespacedKey categoryCasts = new NamespacedKey(SlimeTinker.inst(), "slime-tinker-casts");
@@ -45,6 +46,7 @@ public class Keys {
 
     // Workstations
     private final NamespacedKey wsDummySmeltery = new NamespacedKey(SlimeTinker.inst(), "dummy-smeltery");
+    private final NamespacedKey wsDummySmelteryM = new NamespacedKey(SlimeTinker.inst(), "dummy-smeltery-molten");
     private final NamespacedKey wsDummySmelteryA = new NamespacedKey(SlimeTinker.inst(), "dummy-smeltery-alloy");
     private final NamespacedKey wsDummyTable = new NamespacedKey(SlimeTinker.inst(), "dummy-table");
     private final NamespacedKey wsDummyWorkbench = new NamespacedKey(SlimeTinker.inst(), "dummy-workbench");

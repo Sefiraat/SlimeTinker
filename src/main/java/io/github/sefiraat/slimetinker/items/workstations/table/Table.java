@@ -105,7 +105,12 @@ public class Table extends AbstractContainer {
                 rod.getItemMeta().getPersistentDataContainer().get(SlimeTinker.inst().getKeys().getPartInfoMaterialType(), PersistentDataType.STRING)
         );
 
-        if (toolDefinition.getHeadMaterial().equals(IDStrings.REINFORCED) || toolDefinition.getRodMaterial().equals(IDStrings.HARD) || toolDefinition.getHeadMaterial().equals(IDStrings.SINGINFINITY) ) { // Reinforced Head/Hard Rod tools are explosive
+        if (
+                toolDefinition.getHeadMaterial().equals(IDStrings.REINFORCED) ||
+                toolDefinition.getRodMaterial().equals(IDStrings.HARD) ||
+                toolDefinition.getHeadMaterial().equals(IDStrings.SINGINFINITY) ||
+                toolDefinition.getHeadMaterial().equals(IDStrings.OSMIUM)
+        ) { // Reinforced Head/Hard Rod tools are explosive
             switch (toolDefinition.getPartType()) {
                 case IDStrings.SHOVEL:
                     itemStack = Tools.EXP_SHOVEL.getStack(toolDefinition);

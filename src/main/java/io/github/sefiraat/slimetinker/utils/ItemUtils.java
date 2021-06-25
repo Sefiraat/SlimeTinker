@@ -2,11 +2,11 @@ package io.github.sefiraat.slimetinker.utils;
 
 import io.github.mooy1.infinitylib.items.StackUtils;
 import io.github.sefiraat.slimetinker.SlimeTinker;
-import io.github.sefiraat.slimetinker.items.componentmaterials.CMManager;
-import io.github.sefiraat.slimetinker.items.recipes.MoltenResult;
+import io.github.sefiraat.slimetinker.items.componentmaterials.factories.CMManager;
+import io.github.sefiraat.slimetinker.items.componentmaterials.recipes.MoltenResult;
 import io.github.sefiraat.slimetinker.modifiers.Mod;
 import io.github.sefiraat.slimetinker.modifiers.Modifications;
-import io.github.sefiraat.slimetinker.properties.Properties;
+import io.github.sefiraat.slimetinker.utils.enums.TraitPartType;
 import lombok.experimental.UtilityClass;
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.SlimefunItem;
 import net.md_5.bungee.api.ChatColor;
@@ -98,9 +98,9 @@ public final class ItemUtils {
         lore.add(ThemeUtils.getLine());
 
         // Material properties
-        lore.add(formatPropertyName(matHead, Properties.getPROP_MAP_HEAD().get(matHead)));
-        lore.add(formatPropertyName(matBind, Properties.getPROP_MAP_BIND().get(matBind)));
-        lore.add(formatPropertyName(matRod, Properties.getPROP_MAP_ROD().get(matRod)));
+        lore.add(formatPropertyName(matHead, CMManager.getTraitName(matHead, TraitPartType.HEAD)));
+        lore.add(formatPropertyName(matBind, CMManager.getTraitName(matBind, TraitPartType.BINDER)));
+        lore.add(formatPropertyName(matRod, CMManager.getTraitName(matRod, TraitPartType.ROD)));
         lore.add(ThemeUtils.getLine());
 
         // Exp / Leveling / Mod Slot information
@@ -161,6 +161,18 @@ public final class ItemUtils {
         return damageable.getDamage() == itemStack.getType().getMaxDurability() - 1;
     }
 
+    public static void damageTool(ItemStack itemStack, int amount) {
+        ItemMeta im = itemStack.getItemMeta();
+        Damageable damageable = (Damageable) im;
+        assert damageable != null;
+        if ((damageable.getDamage() + amount) >= itemStack.getType().getMaxDurability()) { // This will break the tool, lets stop that!
+            damageable.setDamage(itemStack.getType().getMaxDurability() - 1);
+        } else {
+            damageable.setDamage(damageable.getDamage() + amount);
+        }
+        itemStack.setItemMeta(im);
+    }
+
     public static String getToolHeadMaterial(PersistentDataContainer c) {
         String s = c.get(SlimeTinker.inst().getKeys().getToolInfoHeadMaterial(), PersistentDataType.STRING);
         assert s != null;
@@ -190,14 +202,14 @@ public final class ItemUtils {
     }
 
     public static String formatPropertyName(String s, String p) {
-        return ChatColor.of(CMManager.getById(s).getColorHex()) + ThemeUtils.toTitleCase(p);
+        return CMManager.getColorById(s) + p;
     }
 
     public static boolean isMeltable(ItemStack itemStack) {
-        return SlimeTinker.inst().getRecipeManager().meltingRecipes.containsKey(StackUtils.getIDorType(itemStack));
+        return SlimeTinker.inst().getCmManager().meltingRecipes.containsKey(StackUtils.getIDorType(itemStack));
     }
 
     public static MoltenResult getMoltenResult(ItemStack itemStack) {
-        return SlimeTinker.inst().getRecipeManager().meltingRecipes.get(StackUtils.getIDorType(itemStack));
+        return SlimeTinker.inst().getCmManager().meltingRecipes.get(StackUtils.getIDorType(itemStack));
     }
 }

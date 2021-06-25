@@ -1,14 +1,15 @@
 package io.github.sefiraat.slimetinker.listeners;
 
 import io.github.mooy1.infinitylib.items.StackUtils;
-import io.github.sefiraat.slimetinker.events.DurabilityEventFriend;
+import io.github.sefiraat.slimetinker.events.EventFriend;
 import io.github.sefiraat.slimetinker.items.Materials;
-import io.github.sefiraat.slimetinker.items.componentmaterials.CMManager;
-import io.github.sefiraat.slimetinker.items.materials.ComponentMaterial;
+import io.github.sefiraat.slimetinker.items.componentmaterials.factories.CMManager;
 import io.github.sefiraat.slimetinker.items.templates.ToolTemplate;
 import io.github.sefiraat.slimetinker.modifiers.Modifications;
 import io.github.sefiraat.slimetinker.utils.IDStrings;
 import io.github.sefiraat.slimetinker.utils.ItemUtils;
+import io.github.sefiraat.slimetinker.utils.enums.TraitEventType;
+import io.github.sefiraat.slimetinker.utils.enums.TraitPartType;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerItemBreakEvent;
@@ -39,25 +40,25 @@ public class DurabilityListener implements Listener {
         String matPropertyBinding = ItemUtils.getToolBindingMaterial(c);
         String matPropertyRod = ItemUtils.getToolRodMaterial(c);
 
-        DurabilityEventFriend friend = new DurabilityEventFriend(event.getItem(), event.getPlayer(), event);
+        EventFriend friend = new EventFriend();
 
-        for (Map.Entry<String, ComponentMaterial> mat : CMManager.getMAP().entrySet()) {
-            if (mat.getValue().isEventDurabilityHead() && matPropertyHead.equals(mat.getKey())) {
-                mat.getValue().getDurabilityConsumerHead().accept(friend);
-            }
-            if (mat.getValue().isEventDurabilityBind() && matPropertyBinding.equals(mat.getKey())) {
-                mat.getValue().getDurabilityConsumerBind().accept(friend);
-            }
-            if (mat.getValue().isEventDurabilityRod() && matPropertyRod.equals(mat.getKey())) {
-                mat.getValue().getDurabilityConsumerRod().accept(friend);
-            }
-        }
+        friend.setHeldItem(event.getItem());
+        friend.setPlayer(event.getPlayer());
+
+        TraitEventType traitEventType = TraitEventType.DURABILITY;
+        CMManager.getMAP().get(matPropertyHead).runEvent(traitEventType, TraitPartType.HEAD, friend);
+        CMManager.getMAP().get(matPropertyBinding).runEvent(traitEventType, TraitPartType.BINDER, friend);
+        CMManager.getMAP().get(matPropertyRod).runEvent(traitEventType, TraitPartType.ROD, friend);
 
         // Mods
         modChecks(damagedItem, event);
 
 
         // Settle
+        if (friend.isCancelEvent()) {
+            event.setCancelled(true);
+        }
+
         Damageable damageable = (Damageable) im;
         event.setDamage((int) Math.ceil(event.getDamage() * friend.getDurabilityMod())); // Modify the damage taken
 

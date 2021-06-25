@@ -1,6 +1,7 @@
 package io.github.sefiraat.slimetinker.events;
 
 import io.github.sefiraat.slimetinker.listeners.BlockMap;
+import io.github.sefiraat.slimetinker.utils.GeneralUtils;
 import io.github.sefiraat.slimetinker.utils.ItemUtils;
 import lombok.experimental.UtilityClass;
 import org.bukkit.Bukkit;
@@ -23,7 +24,7 @@ import java.util.concurrent.ThreadLocalRandom;
 @UtilityClass
 public final class BlockBreakEvents {
 
-    public static void headCorbronze(BlockBreakEventFriend friend) {
+    public static void headCorbronze(EventFriend friend) {
         Collection<ItemStack> newDrops = new ArrayList<>(friend.getAddDrops());
 
         Iterator<Recipe> recipeIterator = Bukkit.recipeIterator();
@@ -56,37 +57,37 @@ public final class BlockBreakEvents {
         friend.setAddDrops(newDrops);
     }
 
-    public static void headCopper(BlockBreakEventFriend friend) {
+    public static void headCopper(EventFriend friend) {
         friend.setToolExpMod(friend.getToolExpMod() + 1);
     }
 
-    public static void rodAluBrass(BlockBreakEventFriend friend) {
+    public static void rodAluBrass(EventFriend friend) {
         friend.setToolExpMod(friend.getToolExpMod() + 0.5);
         friend.setPlayerExpMod(friend.getPlayerExpMod() + 0.5);
     }
 
-    public static void rodAluminum(BlockBreakEventFriend friend) {
+    public static void rodAluminum(EventFriend friend) {
         friend.setToolExpMod(friend.getToolExpMod() + 0.5);
     }
 
-    public static void headDuralium(BlockBreakEventFriend friend) {
+    public static void headDuralium(EventFriend friend) {
         friend.setToolExpMod(0);
         friend.setDuraliumCheck(true);
     }
 
-    public static void headSingCopper(BlockBreakEventFriend friend) {
+    public static void headSingCopper(EventFriend friend) {
         friend.setToolExpMod(friend.getToolExpMod() + 2);
     }
 
-    public static void headSingInfinity(BlockBreakEventFriend friend) {
+    public static void headSingInfinity(EventFriend friend) {
         friend.setToolExpMod(friend.getToolExpMod() + 2);
     }
 
-    public static void rodMetal(BlockBreakEventFriend friend) {
+    public static void rodMetal(EventFriend friend) {
         friend.setMetalCheck(true);
     }
 
-    public static void headFortune(BlockBreakEventFriend friend) {
+    public static void headFortune(EventFriend friend) {
         Collection<ItemStack> c = new ArrayList<>(friend.getAddDrops());
 
         for (ItemStack i : friend.getDrops()) {
@@ -102,7 +103,7 @@ public final class BlockBreakEvents {
         friend.getBlock().getWorld().spawnParticle(Particle.REDSTONE, friend.getBlock().getLocation(), 10, 0.2, 0.2, 0.2, 0.5, dustOptions);
     }
 
-    public static void rodEarth(BlockBreakEventFriend friend) {
+    public static void rodEarth(EventFriend friend) {
         Collection<ItemStack> c = new ArrayList<>(friend.getAddDrops());
         for (ItemStack i : friend.getDrops()) {
             Material m = null;
@@ -155,21 +156,21 @@ public final class BlockBreakEvents {
         friend.setAddDrops(c);
     }
 
-    public static void headMagnonium(BlockBreakEventFriend friend) {
+    public static void headMagnonium(EventFriend friend) {
         if (ThreadLocalRandom.current().nextInt(1,6) == 1) {
             friend.getPlayer().dropItem(true);
         }
     }
 
-    public static void headAdamantite(BlockBreakEventFriend friend) {
+    public static void headAdamantite(EventFriend friend) {
         friend.setPlayerExpMod(friend.getPlayerExpMod() + 1);
     }
 
-    public static void rodSingAluminum(BlockBreakEventFriend friend) {
+    public static void rodSingAluminum(EventFriend friend) {
         friend.setToolExpMod(friend.getToolExpMod() + 1);
     }
 
-    public static void headVoid(BlockBreakEventFriend friend) {
+    public static void headVoid(EventFriend friend) {
         ItemMeta im = friend.getHeldItem().getItemMeta();
         assert im != null;
         PersistentDataContainer c = im.getPersistentDataContainer();
@@ -201,5 +202,20 @@ public final class BlockBreakEvents {
                 friend.getBlock().getWorld().spawnParticle(Particle.REDSTONE, friend.getBlock().getLocation(), 10, 0.2, 0.2, 0.2, 0.5, dustOptions);
             }
         }
+    }
+
+    public static void headUnpatentabilum(EventFriend friend) {
+        if (GeneralUtils.day(friend.getPlayer().getWorld())) {
+            friend.setPlayerExpMod(friend.getPlayerExpMod() + 1);
+            friend.setToolExpMod(friend.getToolExpMod() + 1);
+        }
+    }
+
+    public static void headReinforcedSlimesteel(EventFriend friend) {
+        friend.setBlocksIntoInv(true);
+    }
+
+    public static void bindSilicon(EventFriend friend) {
+        friend.setToolExpMod(friend.getToolExpMod() + (friend.getToolExpMod() * (friend.getToolLevel() * 0.05)));
     }
 }

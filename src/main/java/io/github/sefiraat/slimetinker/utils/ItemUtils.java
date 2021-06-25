@@ -161,6 +161,18 @@ public final class ItemUtils {
         return damageable.getDamage() == itemStack.getType().getMaxDurability() - 1;
     }
 
+    public static void damageTool(ItemStack itemStack, int amount) {
+        ItemMeta im = itemStack.getItemMeta();
+        Damageable damageable = (Damageable) im;
+        assert damageable != null;
+        if ((damageable.getDamage() + amount) >= itemStack.getType().getMaxDurability()) { // This will break the tool, lets stop that!
+            damageable.setDamage(itemStack.getType().getMaxDurability() - 1);
+        } else {
+            damageable.setDamage(damageable.getDamage() + amount);
+        }
+        itemStack.setItemMeta(im);
+    }
+
     public static String getToolHeadMaterial(PersistentDataContainer c) {
         String s = c.get(SlimeTinker.inst().getKeys().getToolInfoHeadMaterial(), PersistentDataType.STRING);
         assert s != null;

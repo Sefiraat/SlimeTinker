@@ -10,9 +10,11 @@ import io.github.sefiraat.slimetinker.items.workstations.workbench.Workbench;
 import io.github.sefiraat.slimetinker.utils.IDStrings;
 import io.github.sefiraat.slimetinker.utils.SkullTextures;
 import io.github.sefiraat.slimetinker.utils.ThemeUtils;
+import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
 import io.github.thebusybiscuit.slimefun4.implementation.items.blocks.UnplaceableBlock;
 import lombok.Getter;
 import lombok.experimental.UtilityClass;
+import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.SlimefunItem;
 import me.mrCookieSlime.Slimefun.api.SlimefunItemStack;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
@@ -81,6 +83,18 @@ public final class Parts {
             new ItemStack(Material.SLIME_BALL), null,                                   new ItemStack(Material.SLIME_BALL),
             null,                                   new ItemStack(Material.SLIME_BALL), null,
             new ItemStack(Material.SLIME_BALL), null,                                   new ItemStack(Material.SLIME_BALL)
+    };
+
+    protected static final ItemStack[] RECIPE_BINDER_SLIMESTEEL = new ItemStack[] {
+            SlimefunItem.getByID("SLIMESTEEL_INGOT").getItem(), null,                                               SlimefunItem.getByID("SLIMESTEEL_INGOT").getItem(),
+            null,                                               SlimefunItem.getByID("SLIMESTEEL_INGOT").getItem(), null,
+            SlimefunItem.getByID("SLIMESTEEL_INGOT").getItem(), null,                                               SlimefunItem.getByID("SLIMESTEEL_INGOT").getItem()
+    };
+
+    protected static final ItemStack[] RECIPE_BINDER_SILICON = new ItemStack[] {
+            SlimefunItems.SILICON,  null,                   SlimefunItems.SILICON,
+            null,                   SlimefunItems.SILICON,  null,
+            SlimefunItems.SILICON,  null,                   SlimefunItems.SILICON
     };
 
     public static final SlimefunItemStack PART_SHOVEL_HEAD_DUMMY =
@@ -281,6 +295,24 @@ public final class Parts {
                     ThemeUtils.PASSIVE + "A binding made of lovely goo."
             );
 
+    public static final SlimefunItemStack PART_BINDING_SLIMESTEEL =
+            ThemeUtils.themedItemStack(
+                    "PART_BINDING_SLIMESTEEL",
+                    SkullTextures.PART_BINDING,
+                    ThemeUtils.ThemeItemType.PART,
+                    "Slimesteel Binding",
+                    ThemeUtils.PASSIVE + "A binding made of an elastic metal."
+            );
+
+    public static final SlimefunItemStack PART_BINDING_SILICON =
+            ThemeUtils.themedItemStack(
+                    "PART_BINDING_SILICON",
+                    SkullTextures.PART_BINDING,
+                    ThemeUtils.ThemeItemType.PART,
+                    "SIlicon Binding",
+                    ThemeUtils.PASSIVE + "A binding made of a silicon."
+            );
+
     public static final SlimefunItemStack PART_BINDING_GENERAL_DISPLAY =
             ThemeUtils.themedItemStack(
                     "PART_BINDING_GENERAL_DISPLAY",
@@ -349,6 +381,12 @@ public final class Parts {
         PartTemplate binderSlime = new PartTemplate(Categories.DUMMY, PART_BINDING_SLIME, Workbench.TYPE, RECIPE_BINDER_SLIME, "Slime Binder");
         binderSlime.setHidden(true);
         binderSlime.register(p);
+        PartTemplate binderSlimesteel = new PartTemplate(Categories.DUMMY, PART_BINDING_SLIMESTEEL, Workbench.TYPE, RECIPE_BINDER_SLIMESTEEL, "Slimesteel Binder");
+        binderSlimesteel.setHidden(true);
+        binderSlimesteel.register(p);
+        PartTemplate binderSilicon = new PartTemplate(Categories.DUMMY, PART_BINDING_SILICON, Workbench.TYPE, RECIPE_BINDER_SILICON, "Silicon Binder");
+        binderSilicon.setHidden(true);
+        binderSilicon.register(p);
 
         binderMap.put(binderString.getId(), IDStrings.STRING);
         binderMap.put(binderVine.getId(), IDStrings.VINE);
@@ -357,6 +395,8 @@ public final class Parts {
         binderMap.put(binderVineRed.getId(), IDStrings.WEEPINGVINES);
         binderMap.put(binderVineGreen.getId(), IDStrings.TWISTEDVINES);
         binderMap.put(binderSlime.getId(), IDStrings.SLIME);
+        binderMap.put(binderSlimesteel.getId(), IDStrings.SLIMESTEEL);
+        binderMap.put(binderSilicon.getId(), IDStrings.SILICON);
 
     }
 

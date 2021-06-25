@@ -1,6 +1,5 @@
 package io.github.sefiraat.slimetinker.items.componentmaterials;
 
-import io.github.sefiraat.slimetinker.SlimeTinker;
 import io.github.sefiraat.slimetinker.events.EventFriend;
 import io.github.sefiraat.slimetinker.utils.enums.TraitEventType;
 import io.github.sefiraat.slimetinker.utils.enums.TraitPartType;
@@ -26,7 +25,7 @@ public class ComponentMaterial {
     private final CMAlloy cmAlloy;
     @Nullable
     private final CMTraits cmTraits;
-    private final Map<TraitEventType, Map<TraitPartType, Consumer<EventFriend>>> CMEventMap = new EnumMap<>(TraitEventType.class);
+    private final Map<TraitEventType, Map<TraitPartType, Consumer<EventFriend>>> cmEventMap = new EnumMap<>(TraitEventType.class);
 
     public ComponentMaterial(String id,
                              String colorHex,
@@ -110,15 +109,15 @@ public class ComponentMaterial {
      * Runs an event based on the type of event the listener is requesting and the tool part.
      * If an event does not exist, nothing happens.
      *
-     * @param type "The type of event that will be triggered. Different CMEventMap can fire based on the listener (tick event) raising
+     * @param type "The type of event that will be triggered. Different cmEventMap can fire based on the listener (tick event) raising
      * @param part "The tool part to be tested against this material type"
-     * @param friend "The EventFriend to be carried through the CMEventMap to the settle phase"
+     * @param friend "The EventFriend to be carried through the cmEventMap to the settle phase"
      */
     public void runEvent(TraitEventType type, TraitPartType part, EventFriend friend) {
-        if(!CMEventMap.containsKey(type)) {
+        if(!cmEventMap.containsKey(type)) {
             return;
         }
-        Map<TraitPartType, Consumer<EventFriend>> map = CMEventMap.get(type);
+        Map<TraitPartType, Consumer<EventFriend>> map = cmEventMap.get(type);
         if (!map.containsKey(part)) {
             return;
         }
@@ -127,13 +126,13 @@ public class ComponentMaterial {
 
     public void addEvent(TraitEventType eventType, TraitPartType partType, Consumer<EventFriend> consumer) {
         Map<TraitPartType, Consumer<EventFriend>> map;
-        if (CMEventMap.containsKey(eventType)) {
-            map = CMEventMap.get(eventType);
+        if (cmEventMap.containsKey(eventType)) {
+            map = cmEventMap.get(eventType);
         } else {
             map = new EnumMap<>(TraitPartType.class);
         }
         map.put(partType, consumer);
-        CMEventMap.put(eventType, map);
+        cmEventMap.put(eventType, map);
     }
 
 }

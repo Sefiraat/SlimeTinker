@@ -60,6 +60,7 @@ public class EntityDamagedListener implements Listener {
         friend.setPlayer(player);
         friend.setDamagedEntity(event.getEntity());
         friend.setToolLevel(toolLevel);
+        friend.setInitialDamage(event.getDamage());
 
         TraitEventType traitEventType = TraitEventType.ENTITY_DAMAGED;
         CMManager.getMAP().get(matPropertyHead).runEvent(traitEventType, TraitPartType.HEAD, friend);
@@ -83,8 +84,18 @@ public class EntityDamagedListener implements Listener {
 
         // Settle
 
+        LivingEntity e = (LivingEntity) friend.getDamagedEntity();
+
+        if (friend.getSegganesson() == 10) {
+            event.setDamage(event.getDamage() + friend.getSegganessonDamage());
+            friend.setSegganesson(0);
+            friend.setSegganessonDamage(0);
+            Particle.DustOptions dustOptions = new Particle.DustOptions(Color.fromRGB(50, 120, 200), 5);
+            e.getWorld().spawnParticle(Particle.REDSTONE, e.getLocation(), 50, 1, 1, 1, 0.5, dustOptions, true);
+        }
+
         if (friend.getCharged() >= 2) { // Special case for Charged - event is dependant on two materials, consumers up a value to trigger this
-            LivingEntity e = (LivingEntity) friend.getDamagedEntity();
+
             int rnd = ThreadLocalRandom.current().nextInt(1,6);
             if (rnd == 1) {
                 friend.setDamageMod(friend.getDamageMod() * 3);

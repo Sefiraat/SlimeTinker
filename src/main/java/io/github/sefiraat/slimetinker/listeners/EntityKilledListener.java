@@ -40,11 +40,22 @@ public class EntityKilledListener implements Listener {
         if (heldItems.containsKey(p)) {
             list.addAll(heldItems.get(p));
         }
+
         for (ItemStack i : event.getDrops()) {
-            if (!ToolTemplate.isTool(i) || !ItemUtils.getToolRodMaterial(i.getItemMeta().getPersistentDataContainer()).equals(IDStrings.SOLDER)) {
+
+            if (!ToolTemplate.isTool(i)) {
                 continue;
             }
-            list.add(i);
+
+            PersistentDataContainer c = i.getItemMeta().getPersistentDataContainer();
+            String headMaterial = ItemUtils.getToolHeadMaterial(c);
+            String bindMaterial = ItemUtils.getToolBindingMaterial(c);
+            String rodMaterial = ItemUtils.getToolRodMaterial(c);
+
+            if (rodMaterial.equals(IDStrings.SOLDER) || rodMaterial.equals(IDStrings.UNPATENTABLIUM)) {
+                list.add(i);
+            }
+
         }
         for (ItemStack i : list) {
             event.getDrops().remove(i);

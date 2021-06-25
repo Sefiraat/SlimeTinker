@@ -98,6 +98,9 @@ public class CMManager {
         if (SupportedPluginsManager.INFINITY_EXPANSION) {
             MAP.putAll(CMInfinity.getMap());
         }
+        if (SupportedPluginsManager.SLIMEFUN_WARFARE) {
+            MAP.putAll(CMSlimefunWarfare.getMap());
+        }
 
         // Add melting recipes
         for (Map.Entry<String, ComponentMaterial> entry : MAP.entrySet()) {

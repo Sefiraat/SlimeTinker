@@ -20,6 +20,7 @@ public class EventFriend {
     private Block block;
     private Entity damagedEntity;
     private EntityDamageEvent.DamageCause cause;
+    private double initialDamage = 0;
 
     private int toolLevel;
 
@@ -38,9 +39,8 @@ public class EventFriend {
     private boolean metalCheck = false;
     private boolean cancelEvent = false;
     private int charged = 0;
-
-    public EventFriend() {
-
-    }
+    private int segganesson = 0;
+    private double segganessonDamage = 0;
+    private boolean blocksIntoInv = false;
 
 }

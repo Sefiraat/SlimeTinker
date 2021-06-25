@@ -1,16 +1,19 @@
 package io.github.sefiraat.slimetinker.events;
 
+import io.github.sefiraat.slimetinker.SlimeTinker;
 import io.github.sefiraat.slimetinker.utils.GeneralUtils;
 import lombok.experimental.UtilityClass;
 import org.bukkit.Color;
 import org.bukkit.Effect;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.NamespacedKey;
 import org.bukkit.Particle;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
+import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
@@ -192,5 +195,39 @@ public final class EntityDamageEvents {
 
     public static void rodSingAluminum(EventFriend friend) {
         friend.setToolExpMod(friend.getToolExpMod() + 1);
+    }
+
+    public static void headSegganesson(EventFriend friend) {
+        friend.setSegganesson(friend.getSegganesson() + 1);
+        friend.setSegganessonDamage(friend.getSegganessonDamage() + friend.getInitialDamage());
+    }
+
+    public static void headOsmiumsuperalloy(EventFriend friend) {
+        int rnd = ThreadLocalRandom.current().nextInt(1, 4);
+        if (rnd == 1) {
+            friend.setDamageMod(friend.getDamageMod() + 2);
+        } else {
+            friend.setDamageMod(friend.getDamageMod() + 1);
+        }
+    }
+
+    public static void rodOsmium(EventFriend friend) {
+        LivingEntity e = (LivingEntity) friend.getDamagedEntity();
+        e.getPersistentDataContainer().set(new NamespacedKey(SlimeTinker.inst(), "ST_STOP_TELEPORT"), PersistentDataType.STRING,"Y");
+        e.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 100, 5, true, true));
+    }
+
+    public static void headUnpatentabilum(EventFriend friend) {
+        if (GeneralUtils.day(friend.getPlayer().getWorld())) {
+            friend.setPlayerExpMod(friend.getPlayerExpMod() + 1);
+            friend.setToolExpMod(friend.getToolExpMod() + 1);
+        }
+    }
+
+    public static void rodRedstoneAlloy(EventFriend friend) {
+        int rnd = ThreadLocalRandom.current().nextInt(1, 3);
+        if (rnd == 1) {
+            friend.getDamagedEntity().getWorld().strikeLightning(friend.getDamagedEntity().getLocation());
+        }
     }
 }

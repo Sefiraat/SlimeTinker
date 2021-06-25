@@ -217,6 +217,24 @@ public final class Materials {
                     "Reinforced Alloy Nugget",
                     "A nugget made from reinforced alloy"
             );
+
+    public static final SlimefunItemStack NUGGET_CAST_FERROSILICON =
+            ThemeUtils.themedItemStack(
+                    "NUGGET_CAST_FERROSILICON",
+                    Material.IRON_NUGGET,
+                    ThemeUtils.ThemeItemType.CRAFTING,
+                    "Ferrosilicon Nugget",
+                    "A nugget made from ferrosilicon"
+            );
+
+    public static final SlimefunItemStack NUGGET_CAST_REDSTONE_ALLOY =
+            ThemeUtils.themedItemStack(
+                    "NUGGET_CAST_REDSTONE_ALLOY",
+                    Material.ACACIA_BUTTON,
+                    ThemeUtils.ThemeItemType.CRAFTING,
+                    "Redstone Alloy Nugget",
+                    "A nugget made from redstone alloy"
+            );
     // endregion
     // region Blocks
     public static final SlimefunItemStack BLOCK_CAST_COPPER =
@@ -406,6 +424,24 @@ public final class Materials {
                     "Reinforced Alloy Block",
                     "A block made from reinforced alloy"
             );
+
+    public static final SlimefunItemStack BLOCK_CAST_FERROSILICON =
+            ThemeUtils.themedItemStack(
+                    "BLOCK_CAST_FERROSILICON",
+                    Material.IRON_BLOCK,
+                    ThemeUtils.ThemeItemType.CRAFTING,
+                    "Ferrosilicon Block",
+                    "A block made from ferrosilicon"
+            );
+
+    public static final SlimefunItemStack BLOCK_CAST_REDSTONE_ALLOY =
+            ThemeUtils.themedItemStack(
+                    "BLOCK_CAST_REDSTONE_ALLOY",
+                    Material.IRON_BLOCK,
+                    ThemeUtils.ThemeItemType.CRAFTING,
+                    "Redstone Alloy Block",
+                    "A block made from redstone alloy"
+            );
     // endregion
     // region Crafts
     public static final SlimefunItemStack MOD_PLATE =
@@ -586,6 +622,95 @@ public final class Materials {
     // endregion
     // endregion
 
+    // region SFWarfare
+    // region Nuggets
+    public static final SlimefunItemStack NUGGET_CAST_SLIMESTEEL =
+            ThemeUtils.themedItemStack(
+                    "NUGGET_CAST_SLIMESTEEL",
+                    Material.IRON_NUGGET,
+                    ThemeUtils.ThemeItemType.CRAFTING,
+                    "Slimesteel Nugget",
+                    "A nugget of slimesteel"
+            );
+    public static final SlimefunItemStack NUGGET_CAST_REINFORCED_SLIMESTEEL =
+            ThemeUtils.themedItemStack(
+                    "NUGGET_CAST_REINFORCED_SLIMESTEEL",
+                    Material.IRON_NUGGET,
+                    ThemeUtils.ThemeItemType.CRAFTING,
+                    "Reinforced Slimesteel Nugget",
+                    "A nugget of reinforced slimesteel"
+            );
+    public static final SlimefunItemStack NUGGET_CAST_OSMIUM =
+            ThemeUtils.themedItemStack(
+                    "NUGGET_CAST_OSMIUM",
+                    Material.WARPED_BUTTON,
+                    ThemeUtils.ThemeItemType.CRAFTING,
+                    "Osmium Nugget",
+                    "A nugget of osmium"
+            );
+    public static final SlimefunItemStack NUGGET_CAST_OSMIUM_SUPER_ALLOY =
+            ThemeUtils.themedItemStack(
+                    "NUGGET_CAST_OSMIUM_SUPER_ALLOY",
+                    Material.WARPED_BUTTON,
+                    ThemeUtils.ThemeItemType.CRAFTING,
+                    "Osmium Superalloy Nugget",
+                    "A nugget of osmium superalloy"
+            );
+    public static final SlimefunItemStack NUGGET_CAST_UNPATENTABILUM =
+            ThemeUtils.themedItemStack(
+                    "NUGGET_CAST_UNPATENTABILUM",
+                    Material.IRON_BLOCK,
+                    ThemeUtils.ThemeItemType.CRAFTING,
+                    "Unpatentabilum Nugget",
+                    "A nugget of unpatentabilum"
+            );
+
+    // endregion
+    // region Blocks
+    public static final SlimefunItemStack BLOCK_CAST_SLIMESTEEL =
+            ThemeUtils.themedItemStack(
+                    "BLOCK_CAST_SLIMESTEEL",
+                    Material.SLIME_BLOCK,
+                    ThemeUtils.ThemeItemType.CRAFTING,
+                    "Slimesteel Block",
+                    "A block of slimesteel"
+            );
+    public static final SlimefunItemStack BLOCK_CAST_REINFORCED_SLIMESTEEL =
+            ThemeUtils.themedItemStack(
+                    "BLOCK_CAST_REINFORCED_SLIMESTEEL",
+                    Material.SLIME_BLOCK,
+                    ThemeUtils.ThemeItemType.CRAFTING,
+                    "Reinforced Slimesteel Block",
+                    "A block of reinforced slimesteel"
+            );
+    public static final SlimefunItemStack BLOCK_CAST_OSMIUM =
+            ThemeUtils.themedItemStack(
+                    "BLOCK_CAST_OSMIUM",
+                    Material.LIGHT_BLUE_TERRACOTTA,
+                    ThemeUtils.ThemeItemType.CRAFTING,
+                    "Osmium Block",
+                    "A block of osmium"
+            );
+    public static final SlimefunItemStack BLOCK_CAST_OSMIUM_SUPER_ALLOY =
+            ThemeUtils.themedItemStack(
+                    "BLOCK_CAST_OSMIUM_SUPER_ALLOY",
+                    Material.BLUE_TERRACOTTA,
+                    ThemeUtils.ThemeItemType.CRAFTING,
+                    "Osmium Superalloy Block",
+                    "A block of osmium superalloy"
+            );
+    public static final SlimefunItemStack BLOCK_CAST_UNPATENTABILUM =
+            ThemeUtils.themedItemStack(
+                    "BLOCK_CAST_UNPATENTABILUM",
+                    Material.IRON_BLOCK,
+                    ThemeUtils.ThemeItemType.CRAFTING,
+                    "Unpatentabilum Block",
+                    "A block of unpatentabilum"
+            );
+
+    // endregion
+    // endregion
+
     protected static final ItemStack[] RECIPE_GROUT = new ItemStack[] {
             new ItemStack(Material.CLAY), new ItemStack(Material.SAND),  new ItemStack(Material.SAND),
             new ItemStack(Material.SAND), new ItemStack(Material.SAND), new ItemStack(Material.GRAVEL),
@@ -705,6 +830,12 @@ public final class Materials {
         new UnplaceableBlock(Categories.MATERIALS, NUGGET_CAST_REINFORCED, DummySmeltery.TYPE, Parts.getDummyCastRecipe(Casts.CAST_NUGGET)).register(p);
         new UnplaceableBlock(Categories.MATERIALS, BLOCK_CAST_REINFORCED, DummySmeltery.TYPE, Parts.getDummyCastRecipe(Casts.CAST_BLOCK)).register(p);
 
+        new UnplaceableBlock(Categories.MATERIALS, NUGGET_CAST_FERROSILICON, DummySmeltery.TYPE, Parts.getDummyCastRecipe(Casts.CAST_NUGGET)).register(p);
+        new UnplaceableBlock(Categories.MATERIALS, BLOCK_CAST_FERROSILICON, DummySmeltery.TYPE, Parts.getDummyCastRecipe(Casts.CAST_BLOCK)).register(p);
+
+        new UnplaceableBlock(Categories.MATERIALS, NUGGET_CAST_REDSTONE_ALLOY, DummySmeltery.TYPE, Parts.getDummyCastRecipe(Casts.CAST_NUGGET)).register(p);
+        new UnplaceableBlock(Categories.MATERIALS, BLOCK_CAST_REDSTONE_ALLOY, DummySmeltery.TYPE, Parts.getDummyCastRecipe(Casts.CAST_BLOCK)).register(p);
+
         new UnplaceableBlock(Categories.MATERIALS, NUGGET_CAST_COAL, DummySmeltery.TYPE, Parts.getDummyCastRecipe(Casts.CAST_NUGGET)).register(p);
 
         // Infinity Expac
@@ -728,6 +859,24 @@ public final class Materials {
 
             new UnplaceableBlock(Categories.MATERIALS, NUGGET_CAST_MAGNONIUM, DummySmeltery.TYPE, Parts.getDummyCastRecipe(Casts.CAST_NUGGET)).register(p);
             new UnplaceableBlock(Categories.MATERIALS, BLOCK_CAST_MAGNONIUM, DummySmeltery.TYPE, Parts.getDummyCastRecipe(Casts.CAST_BLOCK)).register(p);
+        }
+
+        // SFWarfare
+        if (SupportedPluginsManager.SLIMEFUN_WARFARE) {
+            new UnplaceableBlock(Categories.MATERIALS, NUGGET_CAST_SLIMESTEEL, DummySmeltery.TYPE, Parts.getDummyCastRecipe(Casts.CAST_NUGGET)).register(p);
+            new UnplaceableBlock(Categories.MATERIALS, BLOCK_CAST_SLIMESTEEL, DummySmeltery.TYPE, Parts.getDummyCastRecipe(Casts.CAST_BLOCK)).register(p);
+
+            new UnplaceableBlock(Categories.MATERIALS, NUGGET_CAST_REINFORCED_SLIMESTEEL, DummySmeltery.TYPE, Parts.getDummyCastRecipe(Casts.CAST_NUGGET)).register(p);
+            new UnplaceableBlock(Categories.MATERIALS, BLOCK_CAST_REINFORCED_SLIMESTEEL, DummySmeltery.TYPE, Parts.getDummyCastRecipe(Casts.CAST_BLOCK)).register(p);
+
+            new UnplaceableBlock(Categories.MATERIALS, NUGGET_CAST_OSMIUM, DummySmeltery.TYPE, Parts.getDummyCastRecipe(Casts.CAST_NUGGET)).register(p);
+            new UnplaceableBlock(Categories.MATERIALS, BLOCK_CAST_OSMIUM, DummySmeltery.TYPE, Parts.getDummyCastRecipe(Casts.CAST_BLOCK)).register(p);
+
+            new UnplaceableBlock(Categories.MATERIALS, NUGGET_CAST_OSMIUM_SUPER_ALLOY, DummySmeltery.TYPE, Parts.getDummyCastRecipe(Casts.CAST_NUGGET)).register(p);
+            new UnplaceableBlock(Categories.MATERIALS, BLOCK_CAST_OSMIUM_SUPER_ALLOY, DummySmeltery.TYPE, Parts.getDummyCastRecipe(Casts.CAST_BLOCK)).register(p);
+
+            new UnplaceableBlock(Categories.MATERIALS, NUGGET_CAST_UNPATENTABILUM, DummySmeltery.TYPE, Parts.getDummyCastRecipe(Casts.CAST_NUGGET)).register(p);
+            new UnplaceableBlock(Categories.MATERIALS, BLOCK_CAST_UNPATENTABILUM, DummySmeltery.TYPE, Parts.getDummyCastRecipe(Casts.CAST_BLOCK)).register(p);
 
         }
 

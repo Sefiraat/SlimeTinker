@@ -271,4 +271,17 @@ public final class TickEvents {
             }
         }
     }
+
+    public static void rodSegganesson(EventFriend friend) {
+        increaseEffect(PotionEffectType.BLINDNESS, friend.getPotionEffects(), 1);
+        increaseEffect(PotionEffectType.SPEED, friend.getPotionEffects(), 5);
+    }
+
+    public static void bindSlimesteel(EventFriend friend) {
+        increaseEffect(PotionEffectType.JUMP, friend.getPotionEffects(), 1);
+    }
+
+    public static void headOsmiumsuperalloy(EventFriend friend) {
+        increaseEffect(PotionEffectType.SLOW_DIGGING, friend.getPotionEffects());
+    }
 }

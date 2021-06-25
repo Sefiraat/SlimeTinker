@@ -56,6 +56,7 @@ public class PlayerDamagedListener implements Listener {
         friend.setPlayer(player);
         friend.setToolLevel(toolLevel);
         friend.setCause(event.getCause());
+        friend.setInitialDamage(event.getDamage());
 
         TraitEventType traitEventType = TraitEventType.PLAYER_DAMAGED;
         CMManager.getMAP().get(matPropertyHead).runEvent(traitEventType, TraitPartType.HEAD, friend);

@@ -3,6 +3,7 @@ package io.github.sefiraat.slimetinker.items.componentmaterials.factories;
 import io.github.sefiraat.slimetinker.events.BlockBreakEvents;
 import io.github.sefiraat.slimetinker.events.DurabilityEvents;
 import io.github.sefiraat.slimetinker.events.EntityDamageEvents;
+import io.github.sefiraat.slimetinker.events.PlayerDamagedEvents;
 import io.github.sefiraat.slimetinker.events.TickEvents;
 import io.github.sefiraat.slimetinker.items.Materials;
 import io.github.sefiraat.slimetinker.items.componentmaterials.CMAlloy;
@@ -1426,6 +1427,238 @@ public final class CMCore {
                                         null
                                 )
                         ));
+        map.put(IDStrings.SLIME,
+                new ComponentMaterial
+                        (
+                                IDStrings.SLIME,
+                                "#29e01f",
+                                new CMToolMakeup(false, true, false),
+                                new CMForms(
+                                    null,
+                                    null,
+                                    Material.SLIME_BLOCK.toString(),
+                                    null,
+                                    Material.SLIME_BALL.toString(),
+                                    null,
+                                    null,
+                                    null,
+                                    null,
+                                    null
+                                ),
+                                new CMLiquid(
+                                        IDStrings.SLIME,
+                                        SkullTextures.ALLOY_GREEN,
+                                        new ItemStack(Material.SLIME_BALL)
+                                ),
+                                null,
+                                new CMTraits(
+                                        IDStrings.SLIME,
+                                        null,
+                                        new CMTrait(
+                                                "Bouncy",
+                                                SkullTextures.PROPERTIES_CORE,
+                                                SupportedPluginsManager.CORE_NOTE,
+                                                CMTraits.PROP_BINDING,
+                                                new ItemStack(Material.SLIME_BALL),
+                                                "Fall damage is halved."
+                                        ),
+                                        null
+                                )
+                        ));
+        map.put(IDStrings.REDSTONE,
+                new ComponentMaterial
+                        (
+                                IDStrings.REDSTONE,
+                                "#c4082e",
+                                new CMToolMakeup(false, false, false),
+                                new CMForms(
+                                    null,
+                                    null,
+                                    Material.REDSTONE_BLOCK.toString(),
+                                    Material.REDSTONE_ORE.toString(),
+                                    Material.REDSTONE.toString(),
+                                    null,
+                                    null,
+                                    null,
+                                    null,
+                                    null
+                                ),
+                                new CMLiquid(
+                                        IDStrings.REDSTONE,
+                                        SkullTextures.ALLOY_RED,
+                                        new ItemStack(Material.REDSTONE)
+                                ),
+                                null,
+                                new CMTraits(
+                                        IDStrings.REDSTONE,
+                                        null,
+                                        null,
+                                        null
+                                )
+                        ));
+
+        map.put(IDStrings.SILICON,
+                new ComponentMaterial
+                        (
+                                IDStrings.SILICON,
+                                "#f2f2f2",
+                                new CMToolMakeup(false, true, false),
+                                new CMForms(
+                                        null,
+                                        Material.QUARTZ.toString(),
+                                        Material.QUARTZ_BLOCK.toString(),
+                                        Material.NETHER_QUARTZ_ORE.toString(),
+                                        SlimefunItems.SILICON.getItemId(),
+                                        null,
+                                        null,
+                                        null,
+                                        null,
+                                        null
+                                ),
+                                new CMLiquid(
+                                        IDStrings.SILICON,
+                                        SkullTextures.ALLOY_SILVER,
+                                        SlimefunItems.SILICON
+                                ),
+                                null,
+                                new CMTraits(
+                                        IDStrings.SILICON,
+                                        null,
+                                        new CMTrait(
+                                                "Slow Learner",
+                                                SkullTextures.PROPERTIES_CORE,
+                                                SupportedPluginsManager.CORE_NOTE,
+                                                CMTraits.PROP_BINDING,
+                                                SlimefunItems.SILICON,
+                                                "Tool exp gain when breaking blocks is",
+                                                "increased by (Tool Level x 5%)"
+                                        ),
+                                        null
+                                )
+                        ));
+        map.put(IDStrings.FERROSILICON,
+                new ComponentMaterial
+                        (
+                                IDStrings.FERROSILICON,
+                                "#f2f2f2",
+                                new CMToolMakeup(true, false, false),
+                                new CMForms(
+                                        Materials.NUGGET_CAST_FERROSILICON.getItemId(),
+                                        SlimefunItems.FERROSILICON.getItemId(),
+                                        Materials.BLOCK_CAST_FERROSILICON.getItemId(),
+                                        null,
+                                        null,
+                                        null,
+                                        null,
+                                        null,
+                                        null,
+                                        null
+                                ),
+                                new CMLiquid(
+                                        IDStrings.FERROSILICON,
+                                        SkullTextures.ALLOY_SILVER,
+                                        SlimefunItems.FERROSILICON
+                                ),
+                                new CMAlloy(
+                                        IDStrings.FERROSILICON,
+                                        SkullTextures.ALLOY_SILVER,
+                                        Arrays.asList(
+                                                map.get(IDStrings.IRON).getLiquidItemStack(2),
+                                                map.get(IDStrings.SILICON).getLiquidItemStack(1)
+
+                                        )
+                                ),
+                                new CMTraits(
+                                        IDStrings.FERROSILICON,
+                                        new CMTrait(
+                                                "Hydrogen",
+                                                SkullTextures.PROPERTIES_CORE,
+                                                SupportedPluginsManager.CORE_NOTE,
+                                                CMTraits.PROP_HEAD,
+                                                SlimefunItems.FERROSILICON,
+                                                "Float away from danger."
+                                                ),
+                                        null,
+                                        null
+                                )
+                        ));
+        map.put(IDStrings.REDSTONEALLOY,
+                new ComponentMaterial
+                        (
+                                IDStrings.REDSTONEALLOY,
+                                "#700d21",
+                                new CMToolMakeup(false, false, true),
+                                new CMForms(
+                                    Materials.NUGGET_CAST_REDSTONE_ALLOY.getItemId(),
+                                    SlimefunItems.REDSTONE_ALLOY.getItemId(),
+                                    Materials.BLOCK_CAST_REDSTONE_ALLOY.getItemId(),
+                                    null,
+                                    null,
+                                    null,
+                                    null,
+                                    null,
+                                    null,
+                                    null
+                                ),
+                                new CMLiquid(
+                                        IDStrings.REDSTONEALLOY,
+                                        SkullTextures.ALLOY_RED,
+                                        SlimefunItems.REDSTONE_ALLOY
+                                ),
+                                new CMAlloy(
+                                        IDStrings.REDSTONEALLOY,
+                                        SkullTextures.ALLOY_RED,
+                                        Arrays.asList(
+                                                map.get(IDStrings.REDSTONE).getLiquidItemStack(10),
+                                                map.get(IDStrings.FERROSILICON).getLiquidItemStack(1),
+                                                map.get(IDStrings.HARD).getLiquidItemStack(1)
+                                        )
+                                ),
+                                new CMTraits(
+                                        IDStrings.REDSTONEALLOY,
+                                        null,
+                                        null,
+                                        new CMTrait(
+                                                "Lightning Rod",
+                                                SkullTextures.PROPERTIES_CORE,
+                                                SupportedPluginsManager.CORE_NOTE,
+                                                CMTraits.PROP_ROD,
+                                                SlimefunItems.REDSTONE_ALLOY,
+                                                "A chance to strike hit mobs with lightning."
+                                        )
+                                )
+                        ));
+        map.put(IDStrings.DIAMOND,
+                new ComponentMaterial
+                        (
+                                IDStrings.DIAMOND,
+                                "#5fdde8",
+                                new CMToolMakeup(false, false, false),
+                                new CMForms(
+                                    null,
+                                    null,
+                                    Material.DIAMOND_BLOCK.toString(),
+                                    Material.DIAMOND_ORE.toString(),
+                                    Material.DIAMOND.toString(),
+                                    null,
+                                    null,
+                                    null,
+                                    null,
+                                    null
+                                ),
+                                new CMLiquid(
+                                        IDStrings.DIAMOND,
+                                        SkullTextures.ALLOY_BLUE,
+                                        new ItemStack(Material.DIAMOND)
+                                ),
+                                null,
+                                new CMTraits(
+                                        IDStrings.DIAMOND,
+                                        null,
+                                        null,
+                                        null
+                                )
+                        ));
 
         map.get(IDStrings.ALUBRASS).addEvent(TraitEventType.ENTITY_DAMAGED, TraitPartType.HEAD, EntityDamageEvents::headAluBrass);          // Abra
         map.get(IDStrings.GOLD).addEvent(TraitEventType.TICK, TraitPartType.ROD, TickEvents::rodGold);                                      // All that glitters
@@ -1458,8 +1691,10 @@ public final class CMCore {
         map.get(IDStrings.HARD).addEvent(TraitEventType.DURABILITY, TraitPartType.ROD, DurabilityEvents::explosive);                        // Heavy (explosive)
         map.get(IDStrings.SOLDER).addEvent(TraitEventType.DURABILITY, TraitPartType.HEAD, DurabilityEvents::headSolder);                    // Hidden - Durability
         map.get(IDStrings.SOLDER).addEvent(TraitEventType.TICK, TraitPartType.HEAD, TickEvents::headSolder);                                // Hidden - Tick
+        map.get(IDStrings.FERROSILICON).addEvent(TraitEventType.PLAYER_DAMAGED, TraitPartType.HEAD, PlayerDamagedEvents::headFerrosilicon); // Hydrogen
         map.get(IDStrings.BRONZE).addEvent(TraitEventType.TICK, TraitPartType.ROD, TickEvents::rodBronze);                                  // Ingheights
         map.get(IDStrings.LEAD).addEvent(TraitEventType.TICK, TraitPartType.ROD, TickEvents::rodLead);                                      // Leech
+        map.get(IDStrings.REDSTONEALLOY).addEvent(TraitEventType.ENTITY_DAMAGED, TraitPartType.ROD, EntityDamageEvents::rodRedstoneAlloy);  // Lightning Rod
         map.get(IDStrings.MAGNESIUM).addEvent(TraitEventType.TICK, TraitPartType.ROD, TickEvents::rodMagnesium);                            // Magnetisium
         map.get(IDStrings.TIN).addEvent(TraitEventType.ENTITY_DAMAGED, TraitPartType.HEAD, EntityDamageEvents::headTin);                    // Malleable - Damage
         map.get(IDStrings.TIN).addEvent(TraitEventType.TICK, TraitPartType.HEAD, TickEvents::headTin);                                      // Malleable - Tick
@@ -1472,6 +1707,8 @@ public final class CMCore {
         map.get(IDStrings.BRONZE).addEvent(TraitEventType.TICK, TraitPartType.HEAD, TickEvents::headBronze);                                // Resistant
         map.get(IDStrings.IRON).addEvent(TraitEventType.TICK, TraitPartType.ROD, TickEvents::rodIron);                                      // Sharp I
         map.get(IDStrings.ALUBRONZE).addEvent(TraitEventType.TICK, TraitPartType.HEAD, TickEvents::headAlubronze);                          // Sharp II
+        map.get(IDStrings.SILICON).addEvent(TraitEventType.BLOCK_BREAK, TraitPartType.BINDER, BlockBreakEvents::bindSilicon);               // Slow Learner
+        map.get(IDStrings.SLIME).addEvent(TraitEventType.PLAYER_DAMAGED, TraitPartType.BINDER, PlayerDamagedEvents::bindSlime);             // Slimey
         map.get(IDStrings.ALUMINUM).addEvent(TraitEventType.DURABILITY, TraitPartType.ROD, DurabilityEvents::rodAluminum);                  // Soft - Durability
         map.get(IDStrings.ALUMINUM).addEvent(TraitEventType.ENTITY_DAMAGED, TraitPartType.ROD, EntityDamageEvents::rodAluminum);            // Soft - Damage
         map.get(IDStrings.ALUMINUM).addEvent(TraitEventType.BLOCK_BREAK, TraitPartType.ROD, BlockBreakEvents::rodAluminum);                 // Soft - Block Break

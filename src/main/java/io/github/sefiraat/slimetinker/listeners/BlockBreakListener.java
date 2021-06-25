@@ -20,6 +20,7 @@ import org.bukkit.Particle;
 import org.bukkit.block.Block;
 import org.bukkit.block.data.Ageable;
 import org.bukkit.enchantments.Enchantment;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
@@ -43,6 +44,7 @@ public class BlockBreakListener implements Listener {
             return;
         }
 
+        Player p = event.getPlayer();
         ItemStack heldItem = event.getPlayer().getInventory().getItemInMainHand();
         Block block = event.getBlock();
 
@@ -57,7 +59,7 @@ public class BlockBreakListener implements Listener {
         // Property and Mod checks, carries around the additional and normal drops
         EventFriend friend = new EventFriend();
         friend.setHeldItem(heldItem);
-        friend.setPlayer(event.getPlayer());
+        friend.setPlayer(p);
         friend.setBlock(block);
         friend.setDrops(block.getDrops(heldItem)); // Stores the event drops. All may not be dropped
         friend.setAddDrops(new ArrayList<>()); // Additional drops or substitutions for items from the main collection
@@ -94,12 +96,27 @@ public class BlockBreakListener implements Listener {
         event.setDropItems(false);
 
         for (ItemStack i : friend.getDrops()) { // Drop items in original collection not flagged for removal
-            if (!friend.getRemoveDrops().contains(i)) {
-                block.getWorld().dropItemNaturally(block.getLocation().clone().add(0.5, 0.5, 0.5), i);
+            if (friend.getRemoveDrops().contains(i)) {
+                continue;
             }
+            if (friend.isBlocksIntoInv()) {
+                Map<Integer, ItemStack> remainingItems = p.getInventory().addItem(i);
+                for (ItemStack i2 : remainingItems.values()) {
+                    block.getWorld().dropItemNaturally(block.getLocation().clone().add(0.5, 0.5, 0.5), i2);
+                }
+                continue;
+            }
+            block.getWorld().dropItemNaturally(block.getLocation().clone().add(0.5, 0.5, 0.5), i);
         }
 
         for (ItemStack i : friend.getAddDrops()) { // Then the additional items collection - no removals
+            if (friend.isBlocksIntoInv()) {
+                Map<Integer, ItemStack> remainingItems = p.getInventory().addItem(i);
+                for (ItemStack i2 : remainingItems.values()) {
+                    block.getWorld().dropItemNaturally(block.getLocation().clone().add(0.5, 0.5, 0.5), i2);
+                }
+                continue;
+            }
             block.getWorld().dropItemNaturally(block.getLocation().clone().add(0.5, 0.5, 0.5), i);
         }
 

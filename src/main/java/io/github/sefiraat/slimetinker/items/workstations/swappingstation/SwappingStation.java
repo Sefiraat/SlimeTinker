@@ -188,7 +188,8 @@ public class SwappingStation extends AbstractContainer {
         return (
                 (material.equals(IDStrings.REINFORCED) && part.equals(IDStrings.HEAD)) ||
                 (material.equals(IDStrings.HARD) && part.equals(IDStrings.ROD)) ||
-                (material.equals(IDStrings.SINGINFINITY) && part.equals(IDStrings.HEAD))
+                (material.equals(IDStrings.SINGINFINITY) && part.equals(IDStrings.HEAD)) ||
+                (material.equals(IDStrings.OSMIUM) && part.equals(IDStrings.HEAD))
         );
     }
 

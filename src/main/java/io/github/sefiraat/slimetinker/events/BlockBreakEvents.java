@@ -1,6 +1,7 @@
 package io.github.sefiraat.slimetinker.events;
 
 import io.github.sefiraat.slimetinker.listeners.BlockMap;
+import io.github.sefiraat.slimetinker.utils.GeneralUtils;
 import io.github.sefiraat.slimetinker.utils.ItemUtils;
 import lombok.experimental.UtilityClass;
 import org.bukkit.Bukkit;
@@ -201,5 +202,20 @@ public final class BlockBreakEvents {
                 friend.getBlock().getWorld().spawnParticle(Particle.REDSTONE, friend.getBlock().getLocation(), 10, 0.2, 0.2, 0.2, 0.5, dustOptions);
             }
         }
+    }
+
+    public static void headUnpatentabilum(EventFriend friend) {
+        if (GeneralUtils.day(friend.getPlayer().getWorld())) {
+            friend.setPlayerExpMod(friend.getPlayerExpMod() + 1);
+            friend.setToolExpMod(friend.getToolExpMod() + 1);
+        }
+    }
+
+    public static void headReinforcedSlimesteel(EventFriend friend) {
+        friend.setBlocksIntoInv(true);
+    }
+
+    public static void bindSilicon(EventFriend friend) {
+        friend.setToolExpMod(friend.getToolExpMod() + (friend.getToolExpMod() * (friend.getToolLevel() * 0.05)));
     }
 }

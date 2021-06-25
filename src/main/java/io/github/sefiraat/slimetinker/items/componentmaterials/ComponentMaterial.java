@@ -5,7 +5,6 @@ import io.github.sefiraat.slimetinker.events.EventFriend;
 import io.github.sefiraat.slimetinker.utils.enums.TraitEventType;
 import io.github.sefiraat.slimetinker.utils.enums.TraitPartType;
 import lombok.Data;
-import lombok.Getter;
 import me.mrCookieSlime.Slimefun.api.SlimefunItemStack;
 import net.md_5.bungee.api.ChatColor;
 
@@ -21,16 +20,21 @@ public class ComponentMaterial {
     private final String colorHex;
     private final CMToolMakeup cmToolMakeup;
     private final CMForms cmForms;
+    @Nullable
     private final CMLiquid cmLiquid;
+    @Nullable
     private final CMAlloy cmAlloy;
-    private final Map<TraitEventType, Map<TraitPartType, Consumer<EventFriend>>> events = new EnumMap<>(TraitEventType.class);
+    @Nullable
+    private final CMTraits cmTraits;
+    private final Map<TraitEventType, Map<TraitPartType, Consumer<EventFriend>>> CMEventMap = new EnumMap<>(TraitEventType.class);
 
     public ComponentMaterial(String id,
                              String colorHex,
                              CMToolMakeup cmToolMakeup,
                              CMForms cmForms,
                              @Nullable CMLiquid cmLiquid,
-                             @Nullable CMAlloy cmAlloy)
+                             @Nullable CMAlloy cmAlloy,
+                             @Nullable CMTraits cmTraits)
     {
         this.id = id;
         this.colorHex = colorHex;
@@ -38,6 +42,7 @@ public class ComponentMaterial {
         this.cmForms = cmForms;
         this.cmLiquid = cmLiquid;
         this.cmAlloy = cmAlloy;
+        this.cmTraits = cmTraits;
     }
 
     public ChatColor getColor() {
@@ -105,34 +110,30 @@ public class ComponentMaterial {
      * Runs an event based on the type of event the listener is requesting and the tool part.
      * If an event does not exist, nothing happens.
      *
-     * @param type "The type of event that will be triggered. Different events can fire based on the listener (tick event) raising
+     * @param type "The type of event that will be triggered. Different CMEventMap can fire based on the listener (tick event) raising
      * @param part "The tool part to be tested against this material type"
-     * @param friend "The EventFriend to be carried through the events to the settle phase"
+     * @param friend "The EventFriend to be carried through the CMEventMap to the settle phase"
      */
     public void runEvent(TraitEventType type, TraitPartType part, EventFriend friend) {
-        if(!events.containsKey(type)) {
-            SlimeTinker.inst().getLogger().info("No events of that type");
+        if(!CMEventMap.containsKey(type)) {
             return;
         }
-        SlimeTinker.inst().getLogger().info("Events of type found, checking part");
-        Map<TraitPartType, Consumer<EventFriend>> map = events.get(type);
+        Map<TraitPartType, Consumer<EventFriend>> map = CMEventMap.get(type);
         if (!map.containsKey(part)) {
-            SlimeTinker.inst().getLogger().info("No events of that part");
             return;
         }
-        SlimeTinker.inst().getLogger().info("Running event");
         map.get(part).accept(friend);
     }
 
     public void addEvent(TraitEventType eventType, TraitPartType partType, Consumer<EventFriend> consumer) {
         Map<TraitPartType, Consumer<EventFriend>> map;
-        if (events.containsKey(eventType)) {
-            map = events.get(eventType);
+        if (CMEventMap.containsKey(eventType)) {
+            map = CMEventMap.get(eventType);
         } else {
             map = new EnumMap<>(TraitPartType.class);
         }
         map.put(partType, consumer);
-        events.put(eventType, map);
+        CMEventMap.put(eventType, map);
     }
 
 }

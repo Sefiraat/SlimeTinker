@@ -9,7 +9,10 @@ import io.github.sefiraat.slimetinker.items.componentmaterials.CMAlloy;
 import io.github.sefiraat.slimetinker.items.componentmaterials.CMForms;
 import io.github.sefiraat.slimetinker.items.componentmaterials.CMLiquid;
 import io.github.sefiraat.slimetinker.items.componentmaterials.CMToolMakeup;
+import io.github.sefiraat.slimetinker.items.componentmaterials.CMTrait;
+import io.github.sefiraat.slimetinker.items.componentmaterials.CMTraits;
 import io.github.sefiraat.slimetinker.items.componentmaterials.ComponentMaterial;
+import io.github.sefiraat.slimetinker.managers.SupportedPluginsManager;
 import io.github.sefiraat.slimetinker.utils.IDStrings;
 import io.github.sefiraat.slimetinker.utils.SkullTextures;
 import io.github.sefiraat.slimetinker.utils.enums.TraitEventType;
@@ -54,7 +57,28 @@ public final class CMCore {
                                         SkullTextures.ALLOY_SILVER,
                                         new ItemStack(Material.IRON_INGOT)
                                 ),
-                                null
+                                null,
+                                new CMTraits(
+                                        IDStrings.IRON,
+                                        new CMTrait(
+                                                "Stability",
+                                                SkullTextures.PROPERTIES_CORE,
+                                                SupportedPluginsManager.CORE_NOTE,
+                                                CMTraits.PROP_HEAD,
+                                                new ItemStack(Material.IRON_INGOT),
+                                                "Does... nothing!"
+                                        ),
+                                        null,
+                                        new CMTrait(
+                                                "Sharp 1",
+                                                SkullTextures.PROPERTIES_CORE,
+                                                SupportedPluginsManager.CORE_NOTE,
+                                                CMTraits.PROP_ROD,
+                                                new ItemStack(Material.IRON_INGOT),
+                                                "Gives increased damage, stacks with",
+                                                "mods and other properties."
+                                        )
+                                )
                         ));
         map.put(IDStrings.GOLD,
                 new ComponentMaterial
@@ -79,7 +103,28 @@ public final class CMCore {
                                         SkullTextures.ALLOY_RED,
                                         new ItemStack(Material.GOLD_INGOT)
                                 ),
-                                null
+                                null,
+                                new CMTraits(
+                                        IDStrings.GOLD,
+                                        new CMTrait(
+                                                "Golden Veil",
+                                                SkullTextures.PROPERTIES_CORE,
+                                                SupportedPluginsManager.CORE_NOTE,
+                                                CMTraits.PROP_HEAD,
+                                                new ItemStack(Material.GOLD_INGOT),
+                                                "Makes the player invisible. If used on",
+                                                "a weapon, -100% damage."
+                                        ),
+                                        null,
+                                        new CMTrait(
+                                                "All that Glitters",
+                                                SkullTextures.PROPERTIES_CORE,
+                                                SupportedPluginsManager.CORE_NOTE,
+                                                CMTraits.PROP_ROD,
+                                                new ItemStack(Material.GOLD_INGOT),
+                                                "Makes you all shiny..."
+                                        )
+                                )
                         ));
         map.put(IDStrings.COPPER,
                 new ComponentMaterial
@@ -104,7 +149,28 @@ public final class CMCore {
                                         SkullTextures.ALLOY_BROWN,
                                         SlimefunItems.COPPER_DUST.getItem().getItem()
                                 ),
-                                null
+                                null,
+                                new CMTraits(
+                                        IDStrings.COPPER,
+                                        new CMTrait(
+                                                "Brains, Not Brawn",
+                                                SkullTextures.PROPERTIES_CORE,
+                                                SupportedPluginsManager.CORE_NOTE,
+                                                CMTraits.PROP_HEAD,
+                                                SlimefunItems.COPPER_INGOT,
+                                                "Tool exp gain is doubled. Damage",
+                                                "dealt is halved."
+                                        ),
+                                        null,
+                                        new CMTrait(
+                                                "Conductive",
+                                                SkullTextures.PROPERTIES_CORE,
+                                                SupportedPluginsManager.CORE_NOTE,
+                                                CMTraits.PROP_ROD,
+                                                SlimefunItems.COPPER_INGOT,
+                                                "All tool exp is converted to player exp."
+                                        )
+                                )
                         ));
         map.put(IDStrings.LEAD,
                 new ComponentMaterial
@@ -129,7 +195,27 @@ public final class CMCore {
                                         SkullTextures.ALLOY_PURPLE,
                                         SlimefunItems.LEAD_DUST.getItem().getItem()
                                 ),
-                                null
+                                null,
+                                new CMTraits(
+                                        IDStrings.LEAD,
+                                        new CMTrait(
+                                                "Poisonous",
+                                                SkullTextures.PROPERTIES_CORE,
+                                                SupportedPluginsManager.CORE_NOTE,
+                                                CMTraits.PROP_HEAD,
+                                                SlimefunItems.LEAD_INGOT,
+                                                "25% chance to afflict poison on hit."
+                                        ),
+                                        null,
+                                        new CMTrait(
+                                                "Leech",
+                                                SkullTextures.PROPERTIES_CORE,
+                                                SupportedPluginsManager.CORE_NOTE,
+                                                CMTraits.PROP_ROD,
+                                                SlimefunItems.LEAD_INGOT,
+                                                "Bonus health, but drains your energy."
+                                        )
+                                )
                         ));
         map.put(IDStrings.SILVER,
                 new ComponentMaterial
@@ -154,7 +240,29 @@ public final class CMCore {
                                         SkullTextures.ALLOY_SILVER,
                                         SlimefunItems.SILVER_DUST.getItem().getItem()
                                 ),
-                                null
+                                null,
+                                new CMTraits(
+                                        IDStrings.SILVER,
+                                        new CMTrait(
+                                                "Enchanting",
+                                                SkullTextures.PROPERTIES_CORE,
+                                                SupportedPluginsManager.CORE_NOTE,
+                                                CMTraits.PROP_HEAD,
+                                                SlimefunItems.SILVER_INGOT,
+                                                "Tool exp gain is halved. Tools add a",
+                                                "random vanilla enchant when leveling. May or",
+                                                "may not match the tool type."
+                                        ),
+                                        null,
+                                        new CMTrait(
+                                                "Soft Touch",
+                                                SkullTextures.PROPERTIES_CORE,
+                                                SupportedPluginsManager.CORE_NOTE,
+                                                CMTraits.PROP_ROD,
+                                                SlimefunItems.SILVER_INGOT,
+                                                "You feel lighter."
+                                        )
+                                )
                         ));
         map.put(IDStrings.ALUMINUM,
                 new ComponentMaterial
@@ -179,7 +287,27 @@ public final class CMCore {
                                         SkullTextures.ALLOY_SILVER,
                                         SlimefunItems.ALUMINUM_DUST.getItem().getItem()
                                 ),
-                                null
+                                null,
+                                new CMTraits(
+                                        IDStrings.ALUMINUM,
+                                        new CMTrait(
+                                                "Recyclable",
+                                                SkullTextures.PROPERTIES_CORE,
+                                                SupportedPluginsManager.CORE_NOTE,
+                                                CMTraits.PROP_HEAD,
+                                                SlimefunItems.ALUMINUM_INGOT,
+                                                "Chance to restore durability on hit/block break"
+                                        ),
+                                        null,
+                                        new CMTrait(
+                                                "Soft",
+                                                SkullTextures.PROPERTIES_CORE,
+                                                SupportedPluginsManager.CORE_NOTE,
+                                                CMTraits.PROP_ROD,
+                                                SlimefunItems.ALUMINUM_INGOT,
+                                                "Durability loss +100%, tool EXP +50%."
+                                        )
+                                )
                         ));
         map.put(IDStrings.TIN,
                 new ComponentMaterial
@@ -204,7 +332,27 @@ public final class CMCore {
                                         SkullTextures.ALLOY_BLUE_PALE,
                                         SlimefunItems.TIN_DUST.getItem().getItem()
                                 ),
-                                null
+                                null,
+                                new CMTraits(
+                                        IDStrings.TIN,
+                                        new CMTrait(
+                                                "Malleable",
+                                                SkullTextures.PROPERTIES_CORE,
+                                                SupportedPluginsManager.CORE_NOTE,
+                                                CMTraits.PROP_HEAD,
+                                                SlimefunItems.TIN_INGOT,
+                                                "Deal 50% less damage but gain luck."
+                                        ),
+                                        null,
+                                        new CMTrait(
+                                                "Can",
+                                                SkullTextures.PROPERTIES_CORE,
+                                                SupportedPluginsManager.CORE_NOTE,
+                                                CMTraits.PROP_ROD,
+                                                SlimefunItems.TIN_INGOT,
+                                                "Your hunger just fades away"
+                                        )
+                                )
                         ));
         map.put(IDStrings.ZINC,
                 new ComponentMaterial
@@ -229,7 +377,27 @@ public final class CMCore {
                                         SkullTextures.ALLOY_SILVER,
                                         SlimefunItems.ZINC_DUST.getItem().getItem()
                                 ),
-                                null
+                                null,
+                                new CMTraits(
+                                        IDStrings.ZINC,
+                                        new CMTrait(
+                                                "Graceful",
+                                                SkullTextures.PROPERTIES_CORE,
+                                                SupportedPluginsManager.CORE_NOTE,
+                                                CMTraits.PROP_HEAD,
+                                                SlimefunItems.ZINC_INGOT,
+                                                "DOLPHIN POWERS, ACTIVATE!"
+                                        ),
+                                        null,
+                                        new CMTrait(
+                                                "Super Lightweight",
+                                                SkullTextures.PROPERTIES_CORE,
+                                                SupportedPluginsManager.CORE_NOTE,
+                                                CMTraits.PROP_ROD,
+                                                SlimefunItems.ZINC_INGOT,
+                                                "Makes you lighter than air when not sneaking."
+                                        )
+                                )
                         ));
         map.put(IDStrings.MAGNESIUM,
                 new ComponentMaterial
@@ -254,7 +422,29 @@ public final class CMCore {
                                         SkullTextures.ALLOY_PINK,
                                         SlimefunItems.MAGNESIUM_DUST.getItem().getItem()
                                 ),
-                                null
+                                null,
+                                new CMTraits(
+                                        IDStrings.MAGNESIUM,
+                                        new CMTrait(
+                                                "Flammable",
+                                                SkullTextures.PROPERTIES_CORE,
+                                                SupportedPluginsManager.CORE_NOTE,
+                                                CMTraits.PROP_HEAD,
+                                                SlimefunItems.MAGNESIUM_INGOT,
+                                                "Has a (Tool level x 5)% chance to",
+                                                "set your enemies ablaze."
+                                        ),
+                                        null,
+                                        new CMTrait(
+                                                "Magnetesium",
+                                                SkullTextures.PROPERTIES_CORE,
+                                                SupportedPluginsManager.CORE_NOTE,
+                                                CMTraits.PROP_ROD,
+                                                SlimefunItems.MAGNESIUM_INGOT,
+                                                "Random items are drawn to you from",
+                                                "within a 5 block range"
+                                        )
+                                )
                         ));
         map.put(IDStrings.COAL,
                 new ComponentMaterial
@@ -279,6 +469,7 @@ public final class CMCore {
                                         SkullTextures.ALLOY_BROWN,
                                         new ItemStack(Material.COAL)
                                 ),
+                                null,
                                 null
                         ));
         map.put(IDStrings.STEEL,
@@ -310,6 +501,27 @@ public final class CMCore {
                                         Arrays.asList(
                                                 map.get(IDStrings.IRON).getLiquidItemStack(2),
                                                 map.get(IDStrings.COAL).getLiquidItemStack(4)
+                                        )
+                                ),
+                                new CMTraits(
+                                        IDStrings.STEEL,
+                                        new CMTrait(
+                                                "Stainless",
+                                                SkullTextures.PROPERTIES_CORE,
+                                                SupportedPluginsManager.CORE_NOTE,
+                                                CMTraits.PROP_HEAD,
+                                                SlimefunItems.STEEL_INGOT,
+                                                "The tool/weapon repels blood."
+                                        ),
+                                        null,
+                                        new CMTrait(
+                                                "Lightweight",
+                                                SkullTextures.PROPERTIES_CORE,
+                                                SupportedPluginsManager.CORE_NOTE,
+                                                CMTraits.PROP_ROD,
+                                                SlimefunItems.STEEL_INGOT,
+                                                "Random items are drawn to you from",
+                                                "within a 5 block range"
                                         )
                                 )
                         ));
@@ -344,6 +556,27 @@ public final class CMCore {
                                                 map.get(IDStrings.IRON).getLiquidItemStack(2),
                                                 map.get(IDStrings.COAL).getLiquidItemStack(8)
                                         )
+                                ),
+                                new CMTraits(
+                                        IDStrings.DAMSTEEL,
+                                        new CMTrait(
+                                                "Vampirism",
+                                                SkullTextures.PROPERTIES_CORE,
+                                                SupportedPluginsManager.CORE_NOTE,
+                                                CMTraits.PROP_HEAD,
+                                                SlimefunItems.DAMASCUS_STEEL_INGOT,
+                                                "Chance to heal by damage given.",
+                                                "Damage dealt varies by time of day."
+                                        ),
+                                        null,
+                                        new CMTrait(
+                                                "Nightstalker",
+                                                SkullTextures.PROPERTIES_CORE,
+                                                SupportedPluginsManager.CORE_NOTE,
+                                                CMTraits.PROP_ROD,
+                                                SlimefunItems.DAMASCUS_STEEL_INGOT,
+                                                "Gives night vision."
+                                        )
                                 )
                         ));
         map.put(IDStrings.DURALIUM,
@@ -375,6 +608,27 @@ public final class CMCore {
                                         Arrays.asList(
                                                 map.get(IDStrings.ALUMINUM).getLiquidItemStack(2),
                                                 map.get(IDStrings.COPPER).getLiquidItemStack(1)
+                                        )
+                                ),
+                                new CMTraits(
+                                        IDStrings.DURALIUM,
+                                        new CMTrait(
+                                                "Durable",
+                                                SkullTextures.PROPERTIES_CORE,
+                                                SupportedPluginsManager.CORE_NOTE,
+                                                CMTraits.PROP_HEAD,
+                                                SlimefunItems.DURALUMIN_INGOT,
+                                                "Ignores being broken but damage 50%,",
+                                                "mining will be slower and 0 exp."
+                                        ),
+                                        null,
+                                        new CMTrait(
+                                                "Easy Fix",
+                                                SkullTextures.PROPERTIES_CORE,
+                                                SupportedPluginsManager.CORE_NOTE,
+                                                CMTraits.PROP_ROD,
+                                                SlimefunItems.DURALUMIN_INGOT,
+                                                "Only 1 kit is needed to fully repair."
                                         )
                                 )
                         ));
@@ -408,6 +662,26 @@ public final class CMCore {
                                                 map.get(IDStrings.COPPER).getLiquidItemStack(2),
                                                 map.get(IDStrings.TIN).getLiquidItemStack(1)
                                         )
+                                ),
+                                new CMTraits(
+                                        IDStrings.BRONZE,
+                                        new CMTrait(
+                                                "Resistance",
+                                                SkullTextures.PROPERTIES_CORE,
+                                                SupportedPluginsManager.CORE_NOTE,
+                                                CMTraits.PROP_HEAD,
+                                                SlimefunItems.BRONZE_INGOT,
+                                                "Gives fire resistance while held."
+                                        ),
+                                        null,
+                                        new CMTrait(
+                                                "Ingheights",
+                                                SkullTextures.PROPERTIES_CORE,
+                                                SupportedPluginsManager.CORE_NOTE,
+                                                CMTraits.PROP_ROD,
+                                                SlimefunItems.BRONZE_INGOT,
+                                                "Something is wrong with this tool."
+                                        )
                                 )
                         ));
         map.put(IDStrings.ALUBRONZE,
@@ -439,6 +713,27 @@ public final class CMCore {
                                         Arrays.asList(
                                                 map.get(IDStrings.ALUMINUM).getLiquidItemStack(2),
                                                 map.get(IDStrings.BRONZE).getLiquidItemStack(1)
+                                        )
+                                ),
+                                new CMTraits(
+                                        IDStrings.ALUBRONZE,
+                                        new CMTrait(
+                                                "Sharp 2",
+                                                SkullTextures.PROPERTIES_CORE,
+                                                SupportedPluginsManager.CORE_NOTE,
+                                                CMTraits.PROP_HEAD,
+                                                SlimefunItems.ALUMINUM_BRONZE_INGOT,
+                                                "Gives increased damage, stacks with",
+                                                "mods and other properties."
+                                        ),
+                                        null,
+                                        new CMTrait(
+                                                "Brittle",
+                                                SkullTextures.PROPERTIES_CORE,
+                                                SupportedPluginsManager.CORE_NOTE,
+                                                CMTraits.PROP_ROD,
+                                                SlimefunItems.ALUMINUM_BRONZE_INGOT,
+                                                "Durability loss is doubled."
                                         )
                                 )
                         ));
@@ -474,6 +769,27 @@ public final class CMCore {
                                                 map.get(IDStrings.DAMSTEEL).getLiquidItemStack(1),
                                                 map.get(IDStrings.COAL).getLiquidItemStack(32)
                                         )
+                                ),
+                                new CMTraits(
+                                        IDStrings.HARD,
+                                        new CMTrait(
+                                                "Sharp 2",
+                                                SkullTextures.PROPERTIES_CORE,
+                                                SupportedPluginsManager.CORE_NOTE,
+                                                CMTraits.PROP_HEAD,
+                                                SlimefunItems.HARDENED_METAL_INGOT,
+                                                "Knocks back anything hit with a chance",
+                                                "to stun."
+                                        ),
+                                        null,
+                                        new CMTrait(
+                                                "Heavy",
+                                                SkullTextures.PROPERTIES_CORE,
+                                                SupportedPluginsManager.CORE_NOTE,
+                                                CMTraits.PROP_ROD,
+                                                SlimefunItems.HARDENED_METAL_INGOT,
+                                                "Mines in a 3x3 area."
+                                        )
                                 )
                         ));
         map.put(IDStrings.CORBRONZE,
@@ -508,6 +824,26 @@ public final class CMCore {
                                                 map.get(IDStrings.SILVER).getLiquidItemStack(1),
                                                 map.get(IDStrings.COPPER).getLiquidItemStack(1)
                                         )
+                                ),
+                                new CMTraits(
+                                        IDStrings.CORBRONZE,
+                                        new CMTrait(
+                                                "Flaming Hot",
+                                                SkullTextures.PROPERTIES_CORE,
+                                                SupportedPluginsManager.CORE_NOTE,
+                                                CMTraits.PROP_HEAD,
+                                                SlimefunItems.CORINTHIAN_BRONZE_INGOT,
+                                                "Smelts broken blocks when possible."
+                                        ),
+                                        null,
+                                        new CMTrait(
+                                                "Too Hot to Handle",
+                                                SkullTextures.PROPERTIES_CORE,
+                                                SupportedPluginsManager.CORE_NOTE,
+                                                CMTraits.PROP_ROD,
+                                                SlimefunItems.CORINTHIAN_BRONZE_INGOT,
+                                                "?"
+                                        )
                                 )
                         ));
         map.put(IDStrings.SOLDER,
@@ -539,6 +875,27 @@ public final class CMCore {
                                         Arrays.asList(
                                                 map.get(IDStrings.LEAD).getLiquidItemStack(2),
                                                 map.get(IDStrings.TIN).getLiquidItemStack(1)
+                                        )
+                                ),
+                                new CMTraits(
+                                        IDStrings.SOLDER,
+                                        new CMTrait(
+                                                "Hidden",
+                                                SkullTextures.PROPERTIES_CORE,
+                                                SupportedPluginsManager.CORE_NOTE,
+                                                CMTraits.PROP_HEAD,
+                                                SlimefunItems.SOLDER_INGOT,
+                                                "Grants invisibility, breaks instantly."
+                                        ),
+                                        null,
+                                        new CMTrait(
+                                                "Fused",
+                                                SkullTextures.PROPERTIES_CORE,
+                                                SupportedPluginsManager.CORE_NOTE,
+                                                CMTraits.PROP_ROD,
+                                                SlimefunItems.SOLDER_INGOT,
+                                                "Tool cannot be dropped either by the",
+                                                "player or on death."
                                         )
                                 )
                         ));
@@ -572,6 +929,27 @@ public final class CMCore {
                                                 map.get(IDStrings.SILVER).getLiquidItemStack(2),
                                                 map.get(IDStrings.COPPER).getLiquidItemStack(1)
                                         )
+                                ),
+                                new CMTraits(
+                                        IDStrings.BILLON,
+                                        new CMTrait(
+                                                "Fast",
+                                                SkullTextures.PROPERTIES_CORE,
+                                                SupportedPluginsManager.CORE_NOTE,
+                                                CMTraits.PROP_HEAD,
+                                                SlimefunItems.BILLON_INGOT,
+                                                "Move speed increased and haste applied.",
+                                                "Stacks with modifiers."
+                                        ),
+                                        null,
+                                        new CMTrait(
+                                                "Springs",
+                                                SkullTextures.PROPERTIES_CORE,
+                                                SupportedPluginsManager.CORE_NOTE,
+                                                CMTraits.PROP_ROD,
+                                                SlimefunItems.BILLON_INGOT,
+                                                "Makes you jump higher."
+                                        )
                                 )
                         ));
         map.put(IDStrings.BRASS,
@@ -603,6 +981,26 @@ public final class CMCore {
                                         Arrays.asList(
                                                 map.get(IDStrings.COPPER).getLiquidItemStack(2),
                                                 map.get(IDStrings.ZINC).getLiquidItemStack(1)
+                                        )
+                                ),
+                                new CMTraits(
+                                        IDStrings.BRASS,
+                                        new CMTrait(
+                                                "Stiff",
+                                                SkullTextures.PROPERTIES_CORE,
+                                                SupportedPluginsManager.CORE_NOTE,
+                                                CMTraits.PROP_HEAD,
+                                                SlimefunItems.BRASS_INGOT,
+                                                "Damage +50% but makes you unlucky"
+                                        ),
+                                        null,
+                                        new CMTrait(
+                                                "Oxygenated",
+                                                SkullTextures.PROPERTIES_CORE,
+                                                SupportedPluginsManager.CORE_NOTE,
+                                                CMTraits.PROP_ROD,
+                                                SlimefunItems.BRASS_INGOT,
+                                                "Gives water breathing while held."
                                         )
                                 )
                         ));
@@ -636,6 +1034,28 @@ public final class CMCore {
                                                 map.get(IDStrings.BRASS).getLiquidItemStack(1),
                                                 map.get(IDStrings.ALUMINUM).getLiquidItemStack(2)
                                         )
+                                ),
+                                new CMTraits(
+                                        IDStrings.ALUBRASS,
+                                        new CMTrait(
+                                                "Abra",
+                                                SkullTextures.PROPERTIES_CORE,
+                                                SupportedPluginsManager.CORE_NOTE,
+                                                CMTraits.PROP_HEAD,
+                                                SlimefunItems.ALUMINUM_BRASS_INGOT,
+                                                "Any hit mob has a % chance to be",
+                                                "randomly teleported."
+                                        ),
+                                        null,
+                                        new CMTrait(
+                                                "Studious",
+                                                SkullTextures.PROPERTIES_CORE,
+                                                SupportedPluginsManager.CORE_NOTE,
+                                                CMTraits.PROP_ROD,
+                                                SlimefunItems.ALUMINUM_BRASS_INGOT,
+                                                "Tool and Player exp +50% but damage halved",
+                                                "and you are slower to act."
+                                        )
                                 )
                         ));
         map.put(IDStrings.NICKEL,
@@ -667,6 +1087,26 @@ public final class CMCore {
                                         Arrays.asList(
                                                 map.get(IDStrings.IRON).getLiquidItemStack(2),
                                                 map.get(IDStrings.COPPER).getLiquidItemStack(1)
+                                        )
+                                ),
+                                new CMTraits(
+                                        IDStrings.NICKEL,
+                                        new CMTrait(
+                                                "Charged Head -",
+                                                SkullTextures.PROPERTIES_CORE,
+                                                SupportedPluginsManager.CORE_NOTE,
+                                                CMTraits.PROP_HEAD,
+                                                SlimefunItems.NICKEL_INGOT,
+                                                "Doesn't do anything... on it's own..."
+                                        ),
+                                        null,
+                                        new CMTrait(
+                                                "Charged Rod -",
+                                                SkullTextures.PROPERTIES_CORE,
+                                                SupportedPluginsManager.CORE_NOTE,
+                                                CMTraits.PROP_ROD,
+                                                SlimefunItems.NICKEL_INGOT,
+                                                "Doesn't do anything... on it's own..."
                                         )
                                 )
                         ));
@@ -700,6 +1140,26 @@ public final class CMCore {
                                                 map.get(IDStrings.IRON).getLiquidItemStack(1),
                                                 map.get(IDStrings.NICKEL).getLiquidItemStack(1),
                                                 map.get(IDStrings.COPPER).getLiquidItemStack(1)
+                                        )
+                                ),
+                                new CMTraits(
+                                        IDStrings.COBALT,
+                                        new CMTrait(
+                                                "Charged Head +",
+                                                SkullTextures.PROPERTIES_CORE,
+                                                SupportedPluginsManager.CORE_NOTE,
+                                                CMTraits.PROP_HEAD,
+                                                SlimefunItems.COBALT_INGOT,
+                                                "Doesn't do anything... on it's own..."
+                                        ),
+                                        null,
+                                        new CMTrait(
+                                                "Charged Rod +",
+                                                SkullTextures.PROPERTIES_CORE,
+                                                SupportedPluginsManager.CORE_NOTE,
+                                                CMTraits.PROP_ROD,
+                                                SlimefunItems.COBALT_INGOT,
+                                                "Doesn't do anything... on it's own..."
                                         )
                                 )
                         ));
@@ -737,6 +1197,26 @@ public final class CMCore {
                                                 map.get(IDStrings.BILLON).getLiquidItemStack(1),
                                                 map.get(IDStrings.GOLD).getLiquidItemStack(1)
                                         )
+                                ),
+                                new CMTraits(
+                                        IDStrings.REINFORCED,
+                                        new CMTrait(
+                                                "Bulky",
+                                                SkullTextures.PROPERTIES_CORE,
+                                                SupportedPluginsManager.CORE_NOTE,
+                                                CMTraits.PROP_HEAD,
+                                                SlimefunItems.REINFORCED_ALLOY_INGOT,
+                                                "Mines in a 3x3 area"
+                                        ),
+                                        null,
+                                        new CMTrait(
+                                                "Reinforced",
+                                                SkullTextures.PROPERTIES_CORE,
+                                                SupportedPluginsManager.CORE_NOTE,
+                                                CMTraits.PROP_ROD,
+                                                SlimefunItems.REINFORCED_ALLOY_INGOT,
+                                                "Any Plate mod on the tool is counted twice."
+                                        )
                                 )
                         ));
         map.put(IDStrings.STRING,
@@ -758,7 +1238,20 @@ public final class CMCore {
                                     null
                                 ),
                                 null,
-                                null
+                                null,
+                                new CMTraits(
+                                        IDStrings.STRING,
+                                        null,
+                                        new CMTrait(
+                                                "Works",
+                                                SkullTextures.PROPERTIES_CORE,
+                                                SupportedPluginsManager.CORE_NOTE,
+                                                CMTraits.PROP_BINDING,
+                                                new ItemStack(Material.STRING),
+                                                "No special effects."
+                                        ),
+                                        null
+                                )
                         ));
         map.put(IDStrings.VINE,
                 new ComponentMaterial
@@ -779,7 +1272,21 @@ public final class CMCore {
                                     null
                                 ),
                                 null,
-                                null
+                                null,
+                                new CMTraits(
+                                        IDStrings.VINE,
+                                        null,
+                                        new CMTrait(
+                                                "Growth",
+                                                SkullTextures.PROPERTIES_CORE,
+                                                SupportedPluginsManager.CORE_NOTE,
+                                                CMTraits.PROP_BINDING,
+                                                new ItemStack(Material.VINE),
+                                                "Slowly repairs the tool during the day.",
+                                                "Stacks with mods. Must be in hand"
+                                        ),
+                                        null
+                                )
                         ));
         map.put(IDStrings.CRIMSONROOTS,
                 new ComponentMaterial
@@ -800,7 +1307,21 @@ public final class CMCore {
                                     null
                                 ),
                                 null,
-                                null
+                                null,
+                                new CMTraits(
+                                        IDStrings.CRIMSONROOTS,
+                                        null,
+                                        new CMTrait(
+                                                "Decay",
+                                                SkullTextures.PROPERTIES_CORE,
+                                                SupportedPluginsManager.CORE_NOTE,
+                                                CMTraits.PROP_BINDING,
+                                                new ItemStack(Material.CRIMSON_ROOTS),
+                                                "Slowly repairs the tool at night.",
+                                                "Stacks with mods. Must be in hand"
+                                        ),
+                                        null
+                                )
                         ));
         map.put(IDStrings.WARPEDROOTS,
                 new ComponentMaterial
@@ -821,7 +1342,20 @@ public final class CMCore {
                                     null
                                 ),
                                 null,
-                                null
+                                null,
+                                new CMTraits(
+                                        IDStrings.WARPEDROOTS,
+                                        null,
+                                        new CMTrait(
+                                                "Refreshing",
+                                                SkullTextures.PROPERTIES_CORE,
+                                                SupportedPluginsManager.CORE_NOTE,
+                                                CMTraits.PROP_BINDING,
+                                                new ItemStack(Material.WARPED_ROOTS),
+                                                "Slowly heals the holder."
+                                        ),
+                                        null
+                                )
                         ));
         map.put(IDStrings.WEEPINGVINES,
                 new ComponentMaterial
@@ -842,7 +1376,20 @@ public final class CMCore {
                                     null
                                 ),
                                 null,
-                                null
+                                null,
+                                new CMTraits(
+                                        IDStrings.WEEPINGVINES,
+                                        null,
+                                        new CMTrait(
+                                                "Dooom",
+                                                SkullTextures.PROPERTIES_CORE,
+                                                SupportedPluginsManager.CORE_NOTE,
+                                                CMTraits.PROP_BINDING,
+                                                new ItemStack(Material.WEEPING_VINES),
+                                                "I get a bad feeling from this..."
+                                        ),
+                                        null
+                                )
                         ));
         map.put(IDStrings.TWISTEDVINES,
                 new ComponentMaterial
@@ -863,7 +1410,21 @@ public final class CMCore {
                                     null
                                 ),
                                 null,
-                                null
+                                null,
+                                new CMTraits(
+                                        IDStrings.TWISTEDVINES,
+                                        null,
+                                        new CMTrait(
+                                                "Attraction",
+                                                SkullTextures.PROPERTIES_CORE,
+                                                SupportedPluginsManager.CORE_NOTE,
+                                                CMTraits.PROP_BINDING,
+                                                new ItemStack(Material.TWISTING_VINES),
+                                                "All drops are drawn to you within a",
+                                                "5 block range."
+                                        ),
+                                        null
+                                )
                         ));
 
         map.get(IDStrings.ALUBRASS).addEvent(TraitEventType.ENTITY_DAMAGED, TraitPartType.HEAD, EntityDamageEvents::headAluBrass);          // Abra

@@ -46,7 +46,6 @@ public class EffectRunnable extends BukkitRunnable {
             String matPropertyRod = ItemUtils.getToolRodMaterial(c);
 
             TraitEventType traitEventType = TraitEventType.TICK;
-            SlimeTinker.inst().getLogger().info("Running events");
             CMManager.getMAP().get(matPropertyHead).runEvent(traitEventType, TraitPartType.HEAD, friend);
             CMManager.getMAP().get(matPropertyBinding).runEvent(traitEventType, TraitPartType.BINDER, friend);
             CMManager.getMAP().get(matPropertyRod).runEvent(traitEventType, TraitPartType.ROD, friend);

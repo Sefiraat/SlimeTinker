@@ -9,7 +9,9 @@ import io.github.sefiraat.slimetinker.items.componentmaterials.ComponentMaterial
 import io.github.sefiraat.slimetinker.items.componentmaterials.recipes.CastResult;
 import io.github.sefiraat.slimetinker.items.componentmaterials.recipes.MoltenResult;
 import io.github.sefiraat.slimetinker.managers.SupportedPluginsManager;
+import io.github.sefiraat.slimetinker.utils.enums.TraitPartType;
 import lombok.Getter;
+import net.md_5.bungee.api.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
@@ -226,6 +228,20 @@ public class CMManager {
 
     public static ComponentMaterial getById(String id) {
         return MAP.get(id);
+    }
+
+    public static ChatColor getColorById(String id) {
+        return ChatColor.of(MAP.get(id).getColorHex());
+    }
+
+    public static String getTraitName(String id, TraitPartType partType) {
+        if (partType == TraitPartType.HEAD) {
+            return MAP.get(id).getCmTraits().getTraitHead().getTraitName();
+        } else if (partType == TraitPartType.BINDER) {
+            return MAP.get(id).getCmTraits().getTraitBind().getTraitName();
+        } else {
+            return MAP.get(id).getCmTraits().getTraitRod().getTraitName();
+        }
     }
 
     public static List<CMAlloy> getAlloys() {

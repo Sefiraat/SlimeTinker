@@ -6,7 +6,7 @@ import io.github.sefiraat.slimetinker.items.componentmaterials.factories.CMManag
 import io.github.sefiraat.slimetinker.items.componentmaterials.recipes.MoltenResult;
 import io.github.sefiraat.slimetinker.modifiers.Mod;
 import io.github.sefiraat.slimetinker.modifiers.Modifications;
-import io.github.sefiraat.slimetinker.properties.Properties;
+import io.github.sefiraat.slimetinker.utils.enums.TraitPartType;
 import lombok.experimental.UtilityClass;
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.SlimefunItem;
 import net.md_5.bungee.api.ChatColor;
@@ -98,9 +98,9 @@ public final class ItemUtils {
         lore.add(ThemeUtils.getLine());
 
         // Material properties
-        lore.add(formatPropertyName(matHead, Properties.getPROP_MAP_HEAD().get(matHead)));
-        lore.add(formatPropertyName(matBind, Properties.getPROP_MAP_BIND().get(matBind)));
-        lore.add(formatPropertyName(matRod, Properties.getPROP_MAP_ROD().get(matRod)));
+        lore.add(formatPropertyName(matHead, CMManager.getTraitName(matHead, TraitPartType.HEAD)));
+        lore.add(formatPropertyName(matBind, CMManager.getTraitName(matBind, TraitPartType.BINDER)));
+        lore.add(formatPropertyName(matRod, CMManager.getTraitName(matRod, TraitPartType.ROD)));
         lore.add(ThemeUtils.getLine());
 
         // Exp / Leveling / Mod Slot information
@@ -190,7 +190,7 @@ public final class ItemUtils {
     }
 
     public static String formatPropertyName(String s, String p) {
-        return ChatColor.of(CMManager.getById(s).getColorHex()) + ThemeUtils.toTitleCase(p);
+        return CMManager.getColorById(s) + p;
     }
 
     public static boolean isMeltable(ItemStack itemStack) {

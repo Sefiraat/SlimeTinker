@@ -1,6 +1,5 @@
 package io.github.sefiraat.slimetinker.items.componentmaterials.factories;
 
-import io.github.sefiraat.slimetinker.SlimeTinker;
 import io.github.sefiraat.slimetinker.events.BlockBreakEvents;
 import io.github.sefiraat.slimetinker.events.DurabilityEvents;
 import io.github.sefiraat.slimetinker.events.EntityDamageEvents;
@@ -10,17 +9,17 @@ import io.github.sefiraat.slimetinker.items.Materials;
 import io.github.sefiraat.slimetinker.items.componentmaterials.CMForms;
 import io.github.sefiraat.slimetinker.items.componentmaterials.CMLiquid;
 import io.github.sefiraat.slimetinker.items.componentmaterials.CMToolMakeup;
+import io.github.sefiraat.slimetinker.items.componentmaterials.CMTrait;
+import io.github.sefiraat.slimetinker.items.componentmaterials.CMTraits;
 import io.github.sefiraat.slimetinker.items.componentmaterials.ComponentMaterial;
+import io.github.sefiraat.slimetinker.managers.SupportedPluginsManager;
 import io.github.sefiraat.slimetinker.utils.IDStrings;
 import io.github.sefiraat.slimetinker.utils.SkullTextures;
 import io.github.sefiraat.slimetinker.utils.enums.TraitEventType;
 import io.github.sefiraat.slimetinker.utils.enums.TraitPartType;
-import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
 import lombok.Getter;
 import lombok.experimental.UtilityClass;
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.SlimefunItem;
-import org.bukkit.NamespacedKey;
-import org.bukkit.persistence.PersistentDataContainer;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -56,7 +55,27 @@ public final class CMInfinity {
                                         SkullTextures.ALLOY_PURPLE_DEEP,
                                         SlimefunItem.getByID("VOID_INGOT").getItem()
                                 ),
-                                null
+                                null,
+                                new CMTraits(
+                                        IDStrings.VOID,
+                                        new CMTrait(
+                                                "Void Miner",
+                                                SkullTextures.PROPERTIES_INFINITY,
+                                                SupportedPluginsManager.INFINITY_EXPANSION_NOTE,
+                                                CMTraits.PROP_HEAD,
+                                                SlimefunItem.getByID("VOID_INGOT").getItem(),
+                                                "Randomly generates ores while mining/digging."
+                                        ),
+                                        null,
+                                        new CMTrait(
+                                                "Fear the Void",
+                                                SkullTextures.PROPERTIES_INFINITY,
+                                                SupportedPluginsManager.INFINITY_EXPANSION_NOTE,
+                                                CMTraits.PROP_ROD,
+                                                SlimefunItem.getByID("VOID_INGOT").getItem(),
+                                                "Damage +150%. 250% in the End."
+                                        )
+                                )
                         ));
 
         map.put(IDStrings.INFINITY,
@@ -82,7 +101,27 @@ public final class CMInfinity {
                                         SkullTextures.ALLOY_BLUE_PALE,
                                         SlimefunItem.getByID("INFINITE_INGOT").getItem()
                                 ),
-                                null
+                                null,
+                                new CMTraits(
+                                        IDStrings.INFINITY,
+                                        new CMTrait(
+                                                "Infinite",
+                                                SkullTextures.PROPERTIES_INFINITY,
+                                                SupportedPluginsManager.INFINITY_EXPANSION_NOTE,
+                                                CMTraits.PROP_HEAD,
+                                                SlimefunItem.getByID("INFINITE_INGOT").getItem(),
+                                                "This tool will live on forever."
+                                        ),
+                                        null,
+                                        new CMTrait(
+                                                "Conceptual Defence",
+                                                SkullTextures.PROPERTIES_INFINITY,
+                                                SupportedPluginsManager.INFINITY_EXPANSION_NOTE,
+                                                CMTraits.PROP_ROD,
+                                                SlimefunItem.getByID("INFINITE_INGOT").getItem(),
+                                                "All damage is halved (rounded up)."
+                                        )
+                                )
                         ));
 
         map.put(IDStrings.FORTUNE,
@@ -108,7 +147,28 @@ public final class CMInfinity {
                                         SkullTextures.ALLOY_PURPLE,
                                         SlimefunItem.getByID("FORTUNE_SINGULARITY").getItem()
                                 ),
-                                null
+                                null,
+                                new CMTraits(
+                                        IDStrings.FORTUNE,
+                                        new CMTrait(
+                                                "Fortunate",
+                                                SkullTextures.PROPERTIES_INFINITY,
+                                                SupportedPluginsManager.INFINITY_EXPANSION_NOTE,
+                                                CMTraits.PROP_HEAD,
+                                                SlimefunItem.getByID("FORTUNE_SINGULARITY").getItem(),
+                                                "200% drops from fortune. Stacks",
+                                                "with Lapis modifiers."
+                                        ),
+                                        null,
+                                        new CMTrait(
+                                                "Merchant's Veil",
+                                                SkullTextures.PROPERTIES_INFINITY,
+                                                SupportedPluginsManager.INFINITY_EXPANSION_NOTE,
+                                                CMTraits.PROP_ROD,
+                                                SlimefunItem.getByID("FORTUNE_SINGULARITY").getItem(),
+                                                "Invisibility with none of the drawbacks!"
+                                        )
+                                )
                         ));
 
         map.put(IDStrings.MAGIC,
@@ -134,7 +194,27 @@ public final class CMInfinity {
                                         SkullTextures.ALLOY_BLUE,
                                         SlimefunItem.getByID("MAGIC_SINGULARITY").getItem()
                                 ),
-                                null
+                                null,
+                                new CMTraits(
+                                        IDStrings.MAGIC,
+                                        new CMTrait(
+                                                "Tricks",
+                                                SkullTextures.PROPERTIES_INFINITY,
+                                                SupportedPluginsManager.INFINITY_EXPANSION_NOTE,
+                                                CMTraits.PROP_HEAD,
+                                                SlimefunItem.getByID("MAGIC_SINGULARITY").getItem(),
+                                                "Plays nasty tricks on nearby things."
+                                        ),
+                                        null,
+                                        new CMTrait(
+                                                "Secrets Revealed",
+                                                SkullTextures.PROPERTIES_INFINITY,
+                                                SupportedPluginsManager.INFINITY_EXPANSION_NOTE,
+                                                CMTraits.PROP_ROD,
+                                                SlimefunItem.getByID("MAGIC_SINGULARITY").getItem(),
+                                                "Reveals all nearby living (or not!) things."
+                                        )
+                                )
                         ));
 
         map.put(IDStrings.EARTH,
@@ -160,7 +240,29 @@ public final class CMInfinity {
                                         SkullTextures.ALLOY_GREEN,
                                         SlimefunItem.getByID("EARTH_SINGULARITY").getItem()
                                 ),
-                                null
+                                null,
+                                new CMTraits(
+                                        IDStrings.EARTH,
+                                        new CMTrait(
+                                                "Earth Shaker",
+                                                SkullTextures.PROPERTIES_INFINITY,
+                                                SupportedPluginsManager.INFINITY_EXPANSION_NOTE,
+                                                CMTraits.PROP_HEAD,
+                                                SlimefunItem.getByID("EARTH_SINGULARITY").getItem(),
+                                                "Knocks back hit mobs and stuns them",
+                                                "when they land."
+                                        ),
+                                        null,
+                                        new CMTrait(
+                                                "Grinder",
+                                                SkullTextures.PROPERTIES_INFINITY,
+                                                SupportedPluginsManager.INFINITY_EXPANSION_NOTE,
+                                                CMTraits.PROP_ROD,
+                                                SlimefunItem.getByID("EARTH_SINGULARITY").getItem(),
+                                                "Breaking blocks act as if they have",
+                                                "gone through the grinder."
+                                        )
+                                )
                         ));
 
         map.put(IDStrings.METAL,
@@ -186,7 +288,28 @@ public final class CMInfinity {
                                         SkullTextures.ALLOY_SILVER,
                                         SlimefunItem.getByID("METAL_SINGULARITY").getItem()
                                 ),
-                                null
+                                null,
+                                new CMTraits(
+                                        IDStrings.METAL,
+                                        new CMTrait(
+                                                "Clean Cut",
+                                                SkullTextures.PROPERTIES_INFINITY,
+                                                SupportedPluginsManager.INFINITY_EXPANSION_NOTE,
+                                                CMTraits.PROP_HEAD,
+                                                SlimefunItem.getByID("METAL_SINGULARITY").getItem(),
+                                                "Damage +100%. Haste 2"
+                                        ),
+                                        null,
+                                        new CMTrait(
+                                                "Conductor",
+                                                SkullTextures.PROPERTIES_INFINITY,
+                                                SupportedPluginsManager.INFINITY_EXPANSION_NOTE,
+                                                CMTraits.PROP_ROD,
+                                                SlimefunItem.getByID("METAL_SINGULARITY").getItem(),
+                                                "All player exp is converted to tool",
+                                                "exp at a 10 : 1 ratio."
+                                        )
+                                )
                         ));
 
         map.put(IDStrings.MAGSTEEL,
@@ -212,7 +335,28 @@ public final class CMInfinity {
                                         SkullTextures.ALLOY_BROWN,
                                         SlimefunItem.getByID("MAGSTEEL").getItem()
                                 ),
-                                null
+                                null,
+                                new CMTraits(
+                                        IDStrings.MAGSTEEL,
+                                        new CMTrait(
+                                                "Really Stainless",
+                                                SkullTextures.PROPERTIES_INFINITY,
+                                                SupportedPluginsManager.INFINITY_EXPANSION_NOTE,
+                                                CMTraits.PROP_HEAD,
+                                                SlimefunItem.getByID("MAGSTEEL").getItem(),
+                                                "Like Stainless, but.. REALLY."
+                                        ),
+                                        null,
+                                        new CMTrait(
+                                                "Flammable",
+                                                SkullTextures.PROPERTIES_INFINITY,
+                                                SupportedPluginsManager.INFINITY_EXPANSION_NOTE,
+                                                CMTraits.PROP_ROD,
+                                                SlimefunItem.getByID("MAGSTEEL").getItem(),
+                                                "Has a (Tool level x 5)% chance to",
+                                                "set your enemies ablaze."
+                                        )
+                                )
                         ));
 
         map.put(IDStrings.TITANIUM,
@@ -238,7 +382,28 @@ public final class CMInfinity {
                                         SkullTextures.ALLOY_SILVER,
                                         SlimefunItem.getByID("TITANIUM").getItem()
                                 ),
-                                null
+                                null,
+                                new CMTraits(
+                                        IDStrings.TITANIUM,
+                                        new CMTrait(
+                                                "Reinforced",
+                                                SkullTextures.PROPERTIES_INFINITY,
+                                                SupportedPluginsManager.INFINITY_EXPANSION_NOTE,
+                                                CMTraits.PROP_HEAD,
+                                                SlimefunItem.getByID("TITANIUM").getItem(),
+                                                "Any Plate mod on the tool is counted twice."
+                                        ),
+                                        null,
+                                        new CMTrait(
+                                                "Durable",
+                                                SkullTextures.PROPERTIES_INFINITY,
+                                                SupportedPluginsManager.INFINITY_EXPANSION_NOTE,
+                                                CMTraits.PROP_ROD,
+                                                SlimefunItem.getByID("TITANIUM").getItem(),
+                                                "Ignores being broken but damage 50%,",
+                                                "mining will be slower and 0 exp."
+                                        )
+                                )
                         ));
 
         map.put(IDStrings.MYTHRIL,
@@ -264,7 +429,27 @@ public final class CMInfinity {
                                         SkullTextures.ALLOY_BLUE_PALE,
                                         SlimefunItem.getByID("MYTHRIL").getItem()
                                 ),
-                                null
+                                null,
+                                new CMTraits(
+                                        IDStrings.MYTHRIL,
+                                        new CMTrait(
+                                                "Elven Speed",
+                                                SkullTextures.PROPERTIES_INFINITY,
+                                                SupportedPluginsManager.INFINITY_EXPANSION_NOTE,
+                                                CMTraits.PROP_HEAD,
+                                                SlimefunItem.getByID("MYTHRIL").getItem(),
+                                                "Haste 2, Speed 1. Durability loss +50%"
+                                        ),
+                                        null,
+                                        new CMTrait(
+                                                "Sting of Gondolin",
+                                                SkullTextures.PROPERTIES_INFINITY,
+                                                SupportedPluginsManager.INFINITY_EXPANSION_NOTE,
+                                                CMTraits.PROP_ROD,
+                                                SlimefunItem.getByID("MYTHRIL").getItem(),
+                                                "All nearby, hostile, mobs are repelled."
+                                        )
+                                )
                         ));
 
         map.put(IDStrings.ADAMANTITE,
@@ -290,7 +475,27 @@ public final class CMInfinity {
                                         SkullTextures.ALLOY_TAN,
                                         SlimefunItem.getByID("ADAMANTITE").getItem()
                                 ),
-                                null
+                                null,
+                                new CMTraits(
+                                        IDStrings.ADAMANTITE,
+                                        new CMTrait(
+                                                "Mystic",
+                                                SkullTextures.PROPERTIES_INFINITY,
+                                                SupportedPluginsManager.INFINITY_EXPANSION_NOTE,
+                                                CMTraits.PROP_HEAD,
+                                                SlimefunItem.getByID("ADAMANTITE").getItem(),
+                                                "Player Exp + 100% (Mining) +50% (Mobs)"
+                                        ),
+                                        null,
+                                        new CMTrait(
+                                                "Adamant",
+                                                SkullTextures.PROPERTIES_INFINITY,
+                                                SupportedPluginsManager.INFINITY_EXPANSION_NOTE,
+                                                CMTraits.PROP_ROD,
+                                                SlimefunItem.getByID("ADAMANTITE").getItem(),
+                                                "Become immune to all explosions"
+                                        )
+                                )
                         ));
 
         map.put(IDStrings.MAGNONIUM,
@@ -316,7 +521,27 @@ public final class CMInfinity {
                                         SkullTextures.ALLOY_PURPLE,
                                         SlimefunItem.getByID("MAGNONIUM").getItem()
                                 ),
-                                null
+                                null,
+                                new CMTraits(
+                                        IDStrings.MAGNONIUM,
+                                        new CMTrait(
+                                                "Magnanimous",
+                                                SkullTextures.PROPERTIES_INFINITY,
+                                                SupportedPluginsManager.INFINITY_EXPANSION_NOTE,
+                                                CMTraits.PROP_HEAD,
+                                                SlimefunItem.getByID("MAGNONIUM").getItem(),
+                                                "You're just far too kind"
+                                        ),
+                                        null,
+                                        new CMTrait(
+                                                "Flaming Hot",
+                                                SkullTextures.PROPERTIES_INFINITY,
+                                                SupportedPluginsManager.INFINITY_EXPANSION_NOTE,
+                                                CMTraits.PROP_ROD,
+                                                SlimefunItem.getByID("MAGNONIUM").getItem(),
+                                                "Smelts things when possible."
+                                        )
+                                )
                         ));
 
         map.put(IDStrings.SINGIRON,
@@ -342,7 +567,27 @@ public final class CMInfinity {
                                         SkullTextures.ALLOY_SILVER,
                                         SlimefunItem.getByID("IRON_SINGULARITY").getItem()
                                 ),
-                                null
+                                null,
+                                new CMTraits(
+                                        IDStrings.SINGIRON,
+                                        new CMTrait(
+                                                "Stability II",
+                                                SkullTextures.PROPERTIES_INFINITY,
+                                                SupportedPluginsManager.INFINITY_EXPANSION_NOTE,
+                                                CMTraits.PROP_HEAD,
+                                                SlimefunItem.getByID("IRON_SINGULARITY").getItem(),
+                                                "Still does Nothing"
+                                        ),
+                                        null,
+                                        new CMTrait(
+                                                "Sharp 1 II",
+                                                SkullTextures.PROPERTIES_INFINITY,
+                                                SupportedPluginsManager.INFINITY_EXPANSION_NOTE,
+                                                CMTraits.PROP_ROD,
+                                                SlimefunItem.getByID("IRON_SINGULARITY").getItem(),
+                                                "What a bad naming convention. +Damage"
+                                        )
+                                )
                         ));
 
         map.put(IDStrings.SINGGOLD,
@@ -368,7 +613,28 @@ public final class CMInfinity {
                                         SkullTextures.ALLOY_TAN,
                                         SlimefunItem.getByID("GOLD_SINGULARITY").getItem()
                                 ),
-                                null
+                                null,
+                                new CMTraits(
+                                        IDStrings.SINGGOLD,
+                                        new CMTrait(
+                                                "Golden Veil II",
+                                                SkullTextures.PROPERTIES_INFINITY,
+                                                SupportedPluginsManager.INFINITY_EXPANSION_NOTE,
+                                                CMTraits.PROP_HEAD,
+                                                SlimefunItem.getByID("GOLD_SINGULARITY").getItem(),
+                                                "Makes the player invisible. If used on",
+                                                "a weapon, +150% damage."
+                                        ),
+                                        null,
+                                        new CMTrait(
+                                                "All That Glitters II",
+                                                SkullTextures.PROPERTIES_INFINITY,
+                                                SupportedPluginsManager.INFINITY_EXPANSION_NOTE,
+                                                CMTraits.PROP_ROD,
+                                                SlimefunItem.getByID("GOLD_SINGULARITY").getItem(),
+                                                "Makes you shiny AND rainbow...y"
+                                        )
+                                )
                         ));
 
         map.put(IDStrings.SINGCOPPER,
@@ -394,7 +660,28 @@ public final class CMInfinity {
                                         SkullTextures.ALLOY_BROWN,
                                         SlimefunItem.getByID("COPPER_SINGULARITY").getItem()
                                 ),
-                                null
+                                null,
+                                new CMTraits(
+                                        IDStrings.SINGGOLD,
+                                        new CMTrait(
+                                                "Brains, Not Brawn II",
+                                                SkullTextures.PROPERTIES_INFINITY,
+                                                SupportedPluginsManager.INFINITY_EXPANSION_NOTE,
+                                                CMTraits.PROP_HEAD,
+                                                SlimefunItem.getByID("COPPER_SINGULARITY").getItem(),
+                                                "Tool exp +200%, Damage 50%"
+                                        ),
+                                        null,
+                                        new CMTrait(
+                                                "Conductive II",
+                                                SkullTextures.PROPERTIES_INFINITY,
+                                                SupportedPluginsManager.INFINITY_EXPANSION_NOTE,
+                                                CMTraits.PROP_ROD,
+                                                SlimefunItem.getByID("COPPER_SINGULARITY").getItem(),
+                                                "All tool exp is converted to player exp",
+                                                "with a 50% bonus."
+                                        )
+                                )
                         ));
 
         map.put(IDStrings.SINGLEAD,
@@ -420,7 +707,27 @@ public final class CMInfinity {
                                         SkullTextures.ALLOY_PURPLE,
                                         SlimefunItem.getByID("LEAD_SINGULARITY").getItem()
                                 ),
-                                null
+                                null,
+                                new CMTraits(
+                                        IDStrings.SINGLEAD,
+                                        new CMTrait(
+                                                "Poisonous II",
+                                                SkullTextures.PROPERTIES_INFINITY,
+                                                SupportedPluginsManager.INFINITY_EXPANSION_NOTE,
+                                                CMTraits.PROP_HEAD,
+                                                SlimefunItem.getByID("LEAD_SINGULARITY").getItem(),
+                                                "Poisons more frequently and for longer."
+                                        ),
+                                        null,
+                                        new CMTrait(
+                                                "Leech II",
+                                                SkullTextures.PROPERTIES_INFINITY,
+                                                SupportedPluginsManager.INFINITY_EXPANSION_NOTE,
+                                                CMTraits.PROP_ROD,
+                                                SlimefunItem.getByID("LEAD_SINGULARITY").getItem(),
+                                                "Bonus health, but drains your energy."
+                                        )
+                                )
                         ));
 
         map.put(IDStrings.SINGSILVER,
@@ -446,7 +753,29 @@ public final class CMInfinity {
                                         SkullTextures.ALLOY_SILVER,
                                         SlimefunItem.getByID("SILVER_SINGULARITY").getItem()
                                 ),
-                                null
+                                null,
+                                new CMTraits(
+                                        IDStrings.SINGSILVER,
+                                        new CMTrait(
+                                                "Enchanting II",
+                                                SkullTextures.PROPERTIES_INFINITY,
+                                                SupportedPluginsManager.INFINITY_EXPANSION_NOTE,
+                                                CMTraits.PROP_HEAD,
+                                                SlimefunItem.getByID("SILVER_SINGULARITY").getItem(),
+                                                "Poisons more frequently and for longer."
+                                        ),
+                                        null,
+                                        new CMTrait(
+                                                "Soft Touch II",
+                                                SkullTextures.PROPERTIES_INFINITY,
+                                                SupportedPluginsManager.INFINITY_EXPANSION_NOTE,
+                                                CMTraits.PROP_ROD,
+                                                SlimefunItem.getByID("SILVER_SINGULARITY").getItem(),
+                                                "Tool exp gain is halved. Tools add 1-3",
+                                                "randomly selected enchants when leveling",
+                                                "up. These enchants may not be useful!"
+                                        )
+                                )
                         ));
 
         map.put(IDStrings.SINGALUMINUM,
@@ -472,7 +801,27 @@ public final class CMInfinity {
                                         SkullTextures.ALLOY_SILVER,
                                         SlimefunItem.getByID("ALUMINUM_SINGULARITY").getItem()
                                 ),
-                                null
+                                null,
+                                new CMTraits(
+                                        IDStrings.SINGALUMINUM,
+                                        new CMTrait(
+                                                "Recyclable II",
+                                                SkullTextures.PROPERTIES_INFINITY,
+                                                SupportedPluginsManager.INFINITY_EXPANSION_NOTE,
+                                                CMTraits.PROP_HEAD,
+                                                SlimefunItem.getByID("ALUMINUM_SINGULARITY").getItem(),
+                                                "Chance to restore durability on hit/block break"
+                                        ),
+                                        null,
+                                        new CMTrait(
+                                                "Soft II",
+                                                SkullTextures.PROPERTIES_INFINITY,
+                                                SupportedPluginsManager.INFINITY_EXPANSION_NOTE,
+                                                CMTraits.PROP_ROD,
+                                                SlimefunItem.getByID("ALUMINUM_SINGULARITY").getItem(),
+                                                "Durability loss +100%, tool EXP +100%."
+                                        )
+                                )
                         ));
 
         map.put(IDStrings.SINGTIN,
@@ -498,7 +847,28 @@ public final class CMInfinity {
                                         SkullTextures.ALLOY_SILVER,
                                         SlimefunItem.getByID("TIN_SINGULARITY").getItem()
                                 ),
-                                null
+                                null,
+                                new CMTraits(
+                                        IDStrings.SINGTIN,
+                                        new CMTrait(
+                                                "Malleable II",
+                                                SkullTextures.PROPERTIES_INFINITY,
+                                                SupportedPluginsManager.INFINITY_EXPANSION_NOTE,
+                                                CMTraits.PROP_HEAD,
+                                                SlimefunItem.getByID("TIN_SINGULARITY").getItem(),
+                                                "Deal 50% less damage but gain lots of",
+                                                "Luck and Speed."
+                                        ),
+                                        null,
+                                        new CMTrait(
+                                                "Can II",
+                                                SkullTextures.PROPERTIES_INFINITY,
+                                                SupportedPluginsManager.INFINITY_EXPANSION_NOTE,
+                                                CMTraits.PROP_ROD,
+                                                SlimefunItem.getByID("TIN_SINGULARITY").getItem(),
+                                                "No Hunger Loss"
+                                        )
+                                )
                         ));
 
         map.put(IDStrings.SINGZINC,
@@ -524,7 +894,27 @@ public final class CMInfinity {
                                         SkullTextures.ALLOY_SILVER,
                                         SlimefunItem.getByID("ZINC_SINGULARITY").getItem()
                                 ),
-                                null
+                                null,
+                                new CMTraits(
+                                        IDStrings.SINGZINC,
+                                        new CMTrait(
+                                                "Graceful II",
+                                                SkullTextures.PROPERTIES_INFINITY,
+                                                SupportedPluginsManager.INFINITY_EXPANSION_NOTE,
+                                                CMTraits.PROP_HEAD,
+                                                SlimefunItem.getByID("ZINC_SINGULARITY").getItem(),
+                                                "DOLPHIN POWERS, ACTIVATE... MORE!"
+                                        ),
+                                        null,
+                                        new CMTrait(
+                                                "Super Lightweight II",
+                                                SkullTextures.PROPERTIES_INFINITY,
+                                                SupportedPluginsManager.INFINITY_EXPANSION_NOTE,
+                                                CMTraits.PROP_ROD,
+                                                SlimefunItem.getByID("ZINC_SINGULARITY").getItem(),
+                                                "Makes you lighter than air when not sneaking."
+                                        )
+                                )
                         ));
 
         map.put(IDStrings.SINGMAGNESIUM,
@@ -550,7 +940,29 @@ public final class CMInfinity {
                                         SkullTextures.ALLOY_PINK,
                                         SlimefunItem.getByID("MAGNESIUM_SINGULARITY").getItem()
                                 ),
-                                null
+                                null,
+                                new CMTraits(
+                                        IDStrings.SINGMAGNESIUM,
+                                        new CMTrait(
+                                                "Flammable II",
+                                                SkullTextures.PROPERTIES_INFINITY,
+                                                SupportedPluginsManager.INFINITY_EXPANSION_NOTE,
+                                                CMTraits.PROP_HEAD,
+                                                SlimefunItem.getByID("MAGNESIUM_SINGULARITY").getItem(),
+                                                "Has a (Tool level x 10)% chance to",
+                                                "set your enemies ablaze for a longer time."
+                                        ),
+                                        null,
+                                        new CMTrait(
+                                                "Magnetesium II",
+                                                SkullTextures.PROPERTIES_INFINITY,
+                                                SupportedPluginsManager.INFINITY_EXPANSION_NOTE,
+                                                CMTraits.PROP_ROD,
+                                                SlimefunItem.getByID("MAGNESIUM_SINGULARITY").getItem(),
+                                                "Random items are drawn to you from",
+                                                "within a 10 block range"
+                                        )
+                                )
                         ));
 
         map.put(IDStrings.SINGINFINITY,
@@ -576,7 +988,21 @@ public final class CMInfinity {
                                         SkullTextures.ALLOY_BLUE_PALE,
                                         SlimefunItem.getByID("INFINITY_SINGULARITY").getItem()
                                 ),
-                                null
+                                null,
+                                new CMTraits(
+                                        IDStrings.SINGINFINITY,
+                                        new CMTrait(
+                                                "Breakpoint",
+                                                SkullTextures.PROPERTIES_INFINITY,
+                                                SupportedPluginsManager.INFINITY_EXPANSION_NOTE,
+                                                CMTraits.PROP_HEAD,
+                                                SlimefunItem.getByID("INFINITY_SINGULARITY").getItem(),
+                                                "Unbreakable. +200% Damage.",
+                                                "+200% Tool Exp and 3x3 Mining."
+                                        ),
+                                        null,
+                                        null
+                                )
                         ));
 
         map.get(IDStrings.ADAMANTITE).addEvent(TraitEventType.PLAYER_DAMAGED, TraitPartType.ROD, PlayerDamagedEvents::rodAdamantite);           // Adamant

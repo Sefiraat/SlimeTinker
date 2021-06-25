@@ -2,7 +2,6 @@ package io.github.sefiraat.slimetinker.listeners;
 
 import io.github.sefiraat.slimetinker.SlimeTinker;
 import lombok.Data;
-import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.plugin.PluginManager;
 
 @Data

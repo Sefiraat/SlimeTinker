@@ -3,7 +3,6 @@ package io.github.sefiraat.slimetinker.items.componentmaterials;
 import io.github.sefiraat.slimetinker.SlimeTinker;
 import io.github.sefiraat.slimetinker.categories.Categories;
 import io.github.sefiraat.slimetinker.items.workstations.smeltery.DummySmeltery;
-import io.github.sefiraat.slimetinker.utils.SkullTextures;
 import io.github.sefiraat.slimetinker.utils.ThemeUtils;
 import lombok.Getter;
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.SlimefunItem;

@@ -9,6 +9,7 @@ import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.Damageable;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
@@ -126,9 +127,12 @@ public final class Experience {
         if (level > (Tools.LEVEL_NETHERITE + 1)) {
             return;
         }
-        String toolType = itemStack.getItemMeta().getPersistentDataContainer().get(SlimeTinker.inst().getKeys().getToolInfoToolType(), PersistentDataType.STRING);
+        ItemMeta im = itemStack.getItemMeta();
+        assert im != null;
+        String toolType = im.getPersistentDataContainer().get(SlimeTinker.inst().getKeys().getToolInfoToolType(), PersistentDataType.STRING);
         if (Tools.getToolGrowthMap().get(toolType).containsKey(level)) {
             itemStack.setType(Tools.getToolGrowthMap().get(toolType).get(level));
+            ItemUtils.repairTool(itemStack);
             player.sendMessage(ThemeUtils.SUCCESS + "Your tool has been promoted!");
         }
 

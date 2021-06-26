@@ -20,6 +20,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static io.github.sefiraat.slimetinker.utils.IDStrings.AXE;
 import static io.github.sefiraat.slimetinker.utils.IDStrings.BRASS;
 import static io.github.sefiraat.slimetinker.utils.IDStrings.GOLD;
 import static io.github.sefiraat.slimetinker.utils.IDStrings.HEAD;
@@ -109,6 +110,7 @@ public class CMManager {
             if (entry.getValue().isValidToolRod()) MAP_CAST_TOOLROD.put(entry.getValue(), Parts.TOOL_ROD.getStack(entry.getKey(), ROD, null));
             if (entry.getValue().isValidToolHead()) MAP_CAST_SWORDBLADE.put(entry.getValue(), Parts.SWORD_BLADE.getStack(entry.getKey(), HEAD, SWORD));
             if (entry.getValue().isValidToolHead()) MAP_CAST_HOEHEAD.put(entry.getValue(), Parts.HOE_HEAD.getStack(entry.getKey(), HEAD, HOE));
+            if (entry.getValue().isValidToolHead()) MAP_CAST_AXEHEAD.put(entry.getValue(), Parts.AXE_HEAD.getStack(entry.getKey(), HEAD, AXE));
             if (entry.getValue().isValidToolHead()) MAP_CAST_PICKAXEHEAD.put(entry.getValue(), Parts.PICKAXE_HEAD.getStack(entry.getKey(), HEAD, PICKAXE));
             if (entry.getValue().isValidToolHead()) MAP_CAST_SHOVELHEAD.put(entry.getValue(), Parts.SHOVEL_HEAD.getStack(entry.getKey(), HEAD, SHOVEL));
             if (entry.getValue().isValidToolHead()) MAP_CAST_REPAIRKIT.put(entry.getValue(), Parts.REPAIR_KIT.getStack(entry.getKey(), REPAIR)); // We use HEAD here are repair always goes by head material

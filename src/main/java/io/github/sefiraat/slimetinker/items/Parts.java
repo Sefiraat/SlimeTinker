@@ -7,6 +7,7 @@ import io.github.sefiraat.slimetinker.items.templates.RepairkitTemplate;
 import io.github.sefiraat.slimetinker.items.workstations.smeltery.DummySmeltery;
 import io.github.sefiraat.slimetinker.items.workstations.workbench.DummyWorkbench;
 import io.github.sefiraat.slimetinker.items.workstations.workbench.Workbench;
+import io.github.sefiraat.slimetinker.managers.SupportedPluginsManager;
 import io.github.sefiraat.slimetinker.utils.IDStrings;
 import io.github.sefiraat.slimetinker.utils.SkullTextures;
 import io.github.sefiraat.slimetinker.utils.ThemeUtils;
@@ -19,6 +20,7 @@ import me.mrCookieSlime.Slimefun.api.SlimefunItemStack;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
+import javax.annotation.Nullable;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -83,12 +85,6 @@ public final class Parts {
             new ItemStack(Material.SLIME_BALL), null,                                   new ItemStack(Material.SLIME_BALL),
             null,                                   new ItemStack(Material.SLIME_BALL), null,
             new ItemStack(Material.SLIME_BALL), null,                                   new ItemStack(Material.SLIME_BALL)
-    };
-
-    protected static final ItemStack[] RECIPE_BINDER_SLIMESTEEL = new ItemStack[] {
-            SlimefunItem.getByID("SLIMESTEEL_INGOT").getItem(), null,                                               SlimefunItem.getByID("SLIMESTEEL_INGOT").getItem(),
-            null,                                               SlimefunItem.getByID("SLIMESTEEL_INGOT").getItem(), null,
-            SlimefunItem.getByID("SLIMESTEEL_INGOT").getItem(), null,                                               SlimefunItem.getByID("SLIMESTEEL_INGOT").getItem()
     };
 
     protected static final ItemStack[] RECIPE_BINDER_SILICON = new ItemStack[] {
@@ -360,6 +356,8 @@ public final class Parts {
         REPAIR_KIT.register(p);
 
         // Bindings
+
+        // Core Slimefun + Vanilla
         PartTemplate binderString = new PartTemplate(Categories.DUMMY, PART_BINDING_STRING, Workbench.TYPE, RECIPE_BINDER_STRING, "String Binder");
         binderString.setHidden(true);
         binderString.register(p);
@@ -381,9 +379,6 @@ public final class Parts {
         PartTemplate binderSlime = new PartTemplate(Categories.DUMMY, PART_BINDING_SLIME, Workbench.TYPE, RECIPE_BINDER_SLIME, "Slime Binder");
         binderSlime.setHidden(true);
         binderSlime.register(p);
-        PartTemplate binderSlimesteel = new PartTemplate(Categories.DUMMY, PART_BINDING_SLIMESTEEL, Workbench.TYPE, RECIPE_BINDER_SLIMESTEEL, "Slimesteel Binder");
-        binderSlimesteel.setHidden(true);
-        binderSlimesteel.register(p);
         PartTemplate binderSilicon = new PartTemplate(Categories.DUMMY, PART_BINDING_SILICON, Workbench.TYPE, RECIPE_BINDER_SILICON, "Silicon Binder");
         binderSilicon.setHidden(true);
         binderSilicon.register(p);
@@ -395,9 +390,26 @@ public final class Parts {
         binderMap.put(binderVineRed.getId(), IDStrings.WEEPINGVINES);
         binderMap.put(binderVineGreen.getId(), IDStrings.TWISTEDVINES);
         binderMap.put(binderSlime.getId(), IDStrings.SLIME);
-        binderMap.put(binderSlimesteel.getId(), IDStrings.SLIMESTEEL);
         binderMap.put(binderSilicon.getId(), IDStrings.SILICON);
 
+        // Infinity Expac
+        if (SupportedPluginsManager.INFINITY_EXPANSION) {
+
+        }
+
+        // TODO Change all recipes to remove statics and avoid this issue with supported plugins
+        // Slimefun Warfare
+        if (SupportedPluginsManager.SLIMEFUN_WARFARE) {
+            PartTemplate binderSlimesteel = new PartTemplate(Categories.DUMMY, PART_BINDING_SLIMESTEEL, Workbench.TYPE, new ItemStack[] {
+                    SlimefunItem.getByID("SLIMESTEEL_INGOT").getItem(), null,                                               SlimefunItem.getByID("SLIMESTEEL_INGOT").getItem(),
+                    null,                                               SlimefunItem.getByID("SLIMESTEEL_INGOT").getItem(), null,
+                    SlimefunItem.getByID("SLIMESTEEL_INGOT").getItem(), null,                                               SlimefunItem.getByID("SLIMESTEEL_INGOT").getItem()
+            }, "Slimesteel Binder");
+            binderSlimesteel.setHidden(true);
+            binderSlimesteel.register(p);
+
+            binderMap.put(binderSlimesteel.getId(), IDStrings.SLIMESTEEL);
+        }
     }
 
 }

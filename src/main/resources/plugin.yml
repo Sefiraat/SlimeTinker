@@ -9,6 +9,7 @@ depend:
   - Slimefun
 softdepend:
   - InfinityExpansion
+  - SlimefunWarfare
 
 commands:
   slimetinker:

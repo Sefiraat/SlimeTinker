@@ -18,6 +18,8 @@ import java.util.Locale;
 @Getter
 public class CMTrait {
 
+    private CMTraits parent;
+
     private final String traitName;
     private final SlimefunItemStack itemStack;
     private final SlimefunItem item;
@@ -37,6 +39,10 @@ public class CMTrait {
                 );
         this.item = new SlimefunItem(Categories.TRAITS, itemStack, DummySmelteryAlloy.TYPE, CMTraits.propRecipe(partType, material));
         item.register(SlimeTinker.inst());
+    }
+
+    protected void setParent(CMTraits parent) {
+        this.parent = parent;
     }
 
 }

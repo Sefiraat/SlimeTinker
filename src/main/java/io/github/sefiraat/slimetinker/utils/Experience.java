@@ -56,11 +56,11 @@ public final class Experience {
         Map<String, Integer> modLevels = Modifications.getAllModLevels(itemStack);
 
         if (modLevels.containsKey(Material.EMERALD.toString())) { // EMERALD
-            level = modLevels.get(Material.EMERALD.toString());
+            int eLevel = modLevels.get(Material.EMERALD.toString());
             if (tool) {
-                amount = amount + level;
+                amount = amount + eLevel;
             } else {
-                amount = (int) Math.ceil(amount * (level * 0.1));
+                amount = (int) Math.ceil(amount * (eLevel * 0.1));
             }
         }
 
@@ -126,10 +126,14 @@ public final class Experience {
         if (level > (Tools.LEVEL_NETHERITE + 1)) {
             return;
         }
-        String toolType = itemStack.getItemMeta().getPersistentDataContainer().get(SlimeTinker.inst().getKeys().getToolInfoToolType(), PersistentDataType.STRING);
+        ItemMeta im = itemStack.getItemMeta();
+        assert im != null;
+        String toolType = im.getPersistentDataContainer().get(SlimeTinker.inst().getKeys().getToolInfoToolType(), PersistentDataType.STRING);
         if (Tools.getToolGrowthMap().get(toolType).containsKey(level)) {
             itemStack.setType(Tools.getToolGrowthMap().get(toolType).get(level));
+            ItemUtils.repairTool(itemStack);
             player.sendMessage(ThemeUtils.SUCCESS + "Your tool has been promoted!");
+            ItemUtils.repairTool(itemStack);
         }
 
     }
@@ -153,7 +157,7 @@ public final class Experience {
         }
         int count = 0;
         if (matPropertyHead.equals(IDStrings.SILVER) || matPropertyHead.equals(IDStrings.SINGSILVER)) { // Enchanting + Enchanting II
-            for (int i = 0; i < ThreadLocalRandom.current().nextInt(1, number); i++) {
+            for (int i = 0; i < ThreadLocalRandom.current().nextInt(1, number + 1); i++) {
                 Enchantment randEnchant = Enchantment.values()[(int) (Math.random()*Enchantment.values().length)];
                 if (im.hasEnchant(randEnchant)) {
                     im.addEnchant(randEnchant, itemStack.getEnchantmentLevel(randEnchant) + 1, true);

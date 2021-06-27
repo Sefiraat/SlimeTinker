@@ -1,9 +1,6 @@
 package io.github.sefiraat.slimetinker.items.workstations.repairbench;
 
-import io.github.mooy1.infinitylib.items.StackUtils;
 import io.github.mooy1.infinitylib.slimefun.AbstractContainer;
-import io.github.sefiraat.slimetinker.SlimeTinker;
-import io.github.sefiraat.slimetinker.items.Parts;
 import io.github.sefiraat.slimetinker.items.templates.RepairkitTemplate;
 import io.github.sefiraat.slimetinker.items.templates.ToolTemplate;
 import io.github.sefiraat.slimetinker.utils.GUIItems;
@@ -24,7 +21,6 @@ import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.Damageable;
 import org.bukkit.inventory.meta.ItemMeta;
-import org.bukkit.persistence.PersistentDataType;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nonnull;
@@ -39,26 +35,6 @@ public class RepairBench extends AbstractContainer {
 
     public RepairBench(Category category, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(category, item, recipeType, recipe);
-    }
-
-
-    protected boolean validateClass(ItemStack itemStack, String classType) {
-        if (itemStack == null || !itemStack.hasItemMeta()) { // No item
-            return false;
-        }
-        if (!itemStack.getItemMeta().getPersistentDataContainer().has(SlimeTinker.inst().getKeys().getPartInfoClassType(), PersistentDataType.STRING)) { // Not a part
-            return false;
-        }
-        String type = itemStack.getItemMeta().getPersistentDataContainer().get(SlimeTinker.inst().getKeys().getPartInfoClassType(), PersistentDataType.STRING);
-        assert type != null;
-        return type.equals(classType);
-    }
-
-    protected boolean validateBinder(ItemStack itemStack) {
-        if (itemStack == null || !itemStack.hasItemMeta()) { // No item
-            return false;
-        }
-        return Parts.getBinderMap().containsKey(StackUtils.getIDorType(itemStack));
     }
 
     protected boolean craft(BlockMenu blockMenu, Player player) {

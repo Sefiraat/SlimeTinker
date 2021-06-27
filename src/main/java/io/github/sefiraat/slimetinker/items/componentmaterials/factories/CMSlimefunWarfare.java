@@ -6,9 +6,7 @@ import io.github.sefiraat.slimetinker.events.EntityDamageEvents;
 import io.github.sefiraat.slimetinker.events.PlayerDamagedEvents;
 import io.github.sefiraat.slimetinker.events.TickEvents;
 import io.github.sefiraat.slimetinker.items.Materials;
-import io.github.sefiraat.slimetinker.items.componentmaterials.CMAlloy;
 import io.github.sefiraat.slimetinker.items.componentmaterials.CMForms;
-import io.github.sefiraat.slimetinker.items.componentmaterials.CMLiquid;
 import io.github.sefiraat.slimetinker.items.componentmaterials.CMToolMakeup;
 import io.github.sefiraat.slimetinker.items.componentmaterials.CMTrait;
 import io.github.sefiraat.slimetinker.items.componentmaterials.CMTraits;
@@ -38,6 +36,8 @@ public final class CMSlimefunWarfare {
                 new ComponentMaterial
                         (
                                 IDStrings.SEGGANESSON,
+                                SlimefunItem.getByID("SEGGANESSON").getItem(), SkullTextures.ALLOY_BLUE_PALE,
+                                null,
                                 "#4bacbf",
                                 new CMToolMakeup(true, false, true),
                                 new CMForms(
@@ -52,12 +52,6 @@ public final class CMSlimefunWarfare {
                                     null,
                                     null
                                 ),
-                                new CMLiquid(
-                                        IDStrings.SEGGANESSON,
-                                        SkullTextures.ALLOY_BLUE_PALE,
-                                        SlimefunItem.getByID("SEGGANESSON").getItem()
-                                ),
-                                null,
                                 new CMTraits(
                                         IDStrings.SEGGANESSON,
                                         new CMTrait(
@@ -85,6 +79,12 @@ public final class CMSlimefunWarfare {
                 new ComponentMaterial
                         (
                                 IDStrings.SLIMESTEEL,
+                                SlimefunItem.getByID("SLIMESTEEL_INGOT").getItem(),
+                                SkullTextures.ALLOY_GREEN,
+                                Arrays.asList(
+                                        CMCore.getMap().get(IDStrings.STEEL).getLiquidItemStack(1),
+                                        CMCore.getMap().get(IDStrings.SLIME).getLiquidItemStack(1)
+                                ),
                                 "#aed197",
                                 new CMToolMakeup(true, false, true),
                                 new CMForms(
@@ -98,19 +98,6 @@ public final class CMSlimefunWarfare {
                                     null,
                                     null,
                                     null
-                                ),
-                                new CMLiquid(
-                                        IDStrings.SLIMESTEEL,
-                                        SkullTextures.ALLOY_GREEN,
-                                        SlimefunItem.getByID("SLIMESTEEL_INGOT").getItem()
-                                ),
-                                new CMAlloy(
-                                        IDStrings.SLIMESTEEL,
-                                        SkullTextures.ALLOY_GREEN,
-                                        Arrays.asList(
-                                                CMCore.getMap().get(IDStrings.STEEL).getLiquidItemStack(1),
-                                                CMCore.getMap().get(IDStrings.SLIME).getLiquidItemStack(1)
-                                        )
                                 ),
                                 new CMTraits(
                                         IDStrings.SLIMESTEEL,
@@ -131,6 +118,15 @@ public final class CMSlimefunWarfare {
                 new ComponentMaterial
                         (
                                 IDStrings.REINFORCEDSLIMESTEEL,
+                                SlimefunItem.getByID("REINFORCED_SLIMESTEEL_INGOT").getItem(), SkullTextures.ALLOY_GREEN,
+                                Arrays.asList(
+                                        map.get(IDStrings.SLIMESTEEL).getLiquidItemStack(1),
+                                        CMCore.getMap().get(IDStrings.SLIME).getLiquidItemStack(9),
+                                        CMCore.getMap().get(IDStrings.DAMSTEEL).getLiquidItemStack(1),
+                                        CMCore.getMap().get(IDStrings.HARD).getLiquidItemStack(1),
+                                        CMCore.getMap().get(IDStrings.CORBRONZE).getLiquidItemStack(1),
+                                        CMCore.getMap().get(IDStrings.ALUBRONZE).getLiquidItemStack(1)
+                                ),
                                 "#aed197",
                                 new CMToolMakeup(true, false, true),
                                 new CMForms(
@@ -144,23 +140,6 @@ public final class CMSlimefunWarfare {
                                     null,
                                     null,
                                     null
-                                ),
-                                new CMLiquid(
-                                        IDStrings.REINFORCEDSLIMESTEEL,
-                                        SkullTextures.ALLOY_GREEN,
-                                        SlimefunItem.getByID("REINFORCED_SLIMESTEEL_INGOT").getItem()
-                                ),
-                                new CMAlloy(
-                                        IDStrings.REINFORCEDSLIMESTEEL,
-                                        SkullTextures.ALLOY_GREEN,
-                                        Arrays.asList(
-                                                map.get(IDStrings.SLIMESTEEL).getLiquidItemStack(1),
-                                                CMCore.getMap().get(IDStrings.SLIME).getLiquidItemStack(9),
-                                                CMCore.getMap().get(IDStrings.DAMSTEEL).getLiquidItemStack(1),
-                                                CMCore.getMap().get(IDStrings.HARD).getLiquidItemStack(1),
-                                                CMCore.getMap().get(IDStrings.CORBRONZE).getLiquidItemStack(1),
-                                                CMCore.getMap().get(IDStrings.ALUBRONZE).getLiquidItemStack(1)
-                                        )
                                 ),
                                 new CMTraits(
                                         IDStrings.REINFORCEDSLIMESTEEL,
@@ -190,6 +169,9 @@ public final class CMSlimefunWarfare {
                 new ComponentMaterial
                         (
                                 IDStrings.OSMIUM,
+                                SlimefunItem.getByID("OSMIUM_INGOT").getItem(),
+                                SkullTextures.ALLOY_BLUE_PALE,
+                                null,
                                 "#8dd6c0",
                                 new CMToolMakeup(true, false, true),
                                 new CMForms(
@@ -204,12 +186,6 @@ public final class CMSlimefunWarfare {
                                     null,
                                     null
                                 ),
-                                new CMLiquid(
-                                        IDStrings.OSMIUM,
-                                        SkullTextures.ALLOY_BLUE_PALE,
-                                        SlimefunItem.getByID("OSMIUM_INGOT").getItem()
-                                ),
-                                null,
                                 new CMTraits(
                                         IDStrings.OSMIUM,
                                         new CMTrait(
@@ -236,6 +212,14 @@ public final class CMSlimefunWarfare {
                 new ComponentMaterial
                         (
                                 IDStrings.OSMIUMSUPERALLOY,
+                                SlimefunItem.getByID("OSMIUM_SUPERALLOY").getItem(),
+                                SkullTextures.ALLOY_BLUE_PALE,
+                                Arrays.asList(
+                                        map.get(IDStrings.OSMIUM).getLiquidItemStack(2),
+                                        map.get(IDStrings.SEGGANESSON).getLiquidItemStack(1),
+                                        map.get(IDStrings.REINFORCEDSLIMESTEEL).getLiquidItemStack(1),
+                                        CMCore.getMap().get(IDStrings.REINFORCED).getLiquidItemStack(1)
+                                ),
                                 "#8dd6c0",
                                 new CMToolMakeup(true, false, true),
                                 new CMForms(
@@ -250,17 +234,6 @@ public final class CMSlimefunWarfare {
                                     null,
                                     null
                                 ),
-                                new CMLiquid(
-                                        IDStrings.OSMIUMSUPERALLOY,
-                                        SkullTextures.ALLOY_BLUE_PALE,
-                                        SlimefunItem.getByID("OSMIUM_SUPERALLOY").getItem()
-                                ),
-                                new CMAlloy(IDStrings.OSMIUMSUPERALLOY, SkullTextures.ALLOY_BLUE_PALE, Arrays.asList(
-                                        map.get(IDStrings.OSMIUM).getLiquidItemStack(2),
-                                        map.get(IDStrings.SEGGANESSON).getLiquidItemStack(1),
-                                        map.get(IDStrings.REINFORCEDSLIMESTEEL).getLiquidItemStack(1),
-                                        CMCore.getMap().get(IDStrings.REINFORCED).getLiquidItemStack(1)
-                                )),
                                 new CMTraits(
                                         IDStrings.OSMIUMSUPERALLOY,
                                         new CMTrait(
@@ -289,6 +262,9 @@ public final class CMSlimefunWarfare {
                 new ComponentMaterial
                         (
                                 IDStrings.UNPATENTABLIUM,
+                                SlimefunItem.getByID("UNPATENTABLIUM").getItem(),
+                                SkullTextures.ALLOY_BLUE_PALE,
+                                null,
                                 "#8dd6c0",
                                 new CMToolMakeup(true, false, true),
                                 new CMForms(
@@ -303,12 +279,6 @@ public final class CMSlimefunWarfare {
                                     null,
                                     null
                                 ),
-                                new CMLiquid(
-                                        IDStrings.UNPATENTABLIUM,
-                                        SkullTextures.ALLOY_BLUE_PALE,
-                                        SlimefunItem.getByID("UNPATENTABLIUM").getItem()
-                                ),
-                                null,
                                 new CMTraits(
                                         IDStrings.OSMIUMSUPERALLOY,
                                         new CMTrait(

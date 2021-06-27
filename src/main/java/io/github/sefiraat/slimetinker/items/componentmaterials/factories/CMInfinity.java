@@ -6,9 +6,7 @@ import io.github.sefiraat.slimetinker.events.EntityDamageEvents;
 import io.github.sefiraat.slimetinker.events.PlayerDamagedEvents;
 import io.github.sefiraat.slimetinker.events.TickEvents;
 import io.github.sefiraat.slimetinker.items.Materials;
-import io.github.sefiraat.slimetinker.items.componentmaterials.CMAlloy;
 import io.github.sefiraat.slimetinker.items.componentmaterials.CMForms;
-import io.github.sefiraat.slimetinker.items.componentmaterials.CMLiquid;
 import io.github.sefiraat.slimetinker.items.componentmaterials.CMToolMakeup;
 import io.github.sefiraat.slimetinker.items.componentmaterials.CMTrait;
 import io.github.sefiraat.slimetinker.items.componentmaterials.CMTraits;
@@ -38,6 +36,9 @@ public final class CMInfinity {
                 new ComponentMaterial
                         (
                                 IDStrings.VOID,
+                                SlimefunItem.getByID("VOID_INGOT").getItem(),
+                                SkullTextures.ALLOY_PURPLE_DEEP,
+                                null,
                                 "#5c5756",
                                 new CMToolMakeup(true, false, true),
                                 new CMForms(
@@ -52,12 +53,6 @@ public final class CMInfinity {
                                     null,
                                     null
                                 ),
-                                new CMLiquid(
-                                        IDStrings.VOID,
-                                        SkullTextures.ALLOY_PURPLE_DEEP,
-                                        SlimefunItem.getByID("VOID_INGOT").getItem()
-                                ),
-                                null,
                                 new CMTraits(
                                         IDStrings.VOID,
                                         new CMTrait(
@@ -84,6 +79,12 @@ public final class CMInfinity {
                 new ComponentMaterial
                         (
                                 IDStrings.MAGSTEEL,
+                                SlimefunItem.getByID("MAGSTEEL").getItem(),
+                                SkullTextures.ALLOY_BROWN,
+                                Arrays.asList(
+                                        CMCore.getMap().get(IDStrings.MAGNESIUM).getLiquidItemStack(2),
+                                        CMCore.getMap().get(IDStrings.STEEL).getLiquidItemStack(1)
+                                ),
                                 "#730000",
                                 new CMToolMakeup(true, false, true),
                                 new CMForms(
@@ -97,19 +98,6 @@ public final class CMInfinity {
                                     null,
                                     null,
                                     null
-                                ),
-                                new CMLiquid(
-                                        IDStrings.MAGSTEEL,
-                                        SkullTextures.ALLOY_BROWN,
-                                        SlimefunItem.getByID("MAGSTEEL").getItem()
-                                ),
-                                new CMAlloy(
-                                        IDStrings.MAGSTEEL,
-                                        SkullTextures.ALLOY_BROWN,
-                                        Arrays.asList(
-                                                CMCore.getMap().get(IDStrings.MAGNESIUM).getLiquidItemStack(2),
-                                                CMCore.getMap().get(IDStrings.STEEL).getLiquidItemStack(1)
-                                        )
                                 ),
                                 new CMTraits(
                                         IDStrings.MAGSTEEL,
@@ -138,6 +126,13 @@ public final class CMInfinity {
                 new ComponentMaterial
                         (
                                 IDStrings.TITANIUM,
+                                SlimefunItem.getByID("TITANIUM").getItem(),
+                                SkullTextures.ALLOY_SILVER,
+                                Arrays.asList(
+                                        CMCore.getMap().get(IDStrings.REINFORCED).getLiquidItemStack(1),
+                                        CMCore.getMap().get(IDStrings.DAMSTEEL).getLiquidItemStack(1),
+                                        CMCore.getMap().get(IDStrings.HARD).getLiquidItemStack(1)
+                                ),
                                 "#adadad",
                                 new CMToolMakeup(true, false, true),
                                 new CMForms(
@@ -151,20 +146,6 @@ public final class CMInfinity {
                                     null,
                                     null,
                                     null
-                                ),
-                                new CMLiquid(
-                                        IDStrings.TITANIUM,
-                                        SkullTextures.ALLOY_SILVER,
-                                        SlimefunItem.getByID("TITANIUM").getItem()
-                                ),
-                                new CMAlloy(
-                                        IDStrings.TITANIUM,
-                                        SkullTextures.ALLOY_BROWN,
-                                        Arrays.asList(
-                                                CMCore.getMap().get(IDStrings.REINFORCED).getLiquidItemStack(1),
-                                                CMCore.getMap().get(IDStrings.DAMSTEEL).getLiquidItemStack(1),
-                                                CMCore.getMap().get(IDStrings.HARD).getLiquidItemStack(1)
-                                        )
                                 ),
                                 new CMTraits(
                                         IDStrings.TITANIUM,
@@ -193,6 +174,9 @@ public final class CMInfinity {
                 new ComponentMaterial
                         (
                                 IDStrings.SINGIRON,
+                                SlimefunItem.getByID("IRON_SINGULARITY").getItem(),
+                                SkullTextures.ALLOY_SILVER,
+                                null,
                                 "#8c8c8c",
                                 new CMToolMakeup(true, false, true),
                                 new CMForms(
@@ -207,12 +191,6 @@ public final class CMInfinity {
                                     null,
                                     null
                                 ),
-                                new CMLiquid(
-                                        IDStrings.SINGIRON,
-                                        SkullTextures.ALLOY_SILVER,
-                                        SlimefunItem.getByID("IRON_SINGULARITY").getItem()
-                                ),
-                                null,
                                 new CMTraits(
                                         IDStrings.SINGIRON,
                                         new CMTrait(
@@ -239,6 +217,9 @@ public final class CMInfinity {
                 new ComponentMaterial
                         (
                                 IDStrings.SINGGOLD,
+                                SlimefunItem.getByID("GOLD_SINGULARITY").getItem(),
+                                SkullTextures.ALLOY_TAN,
+                                null,
                                 "#ffe138",
                                 new CMToolMakeup(true, false, true),
                                 new CMForms(
@@ -253,12 +234,6 @@ public final class CMInfinity {
                                     null,
                                     null
                                 ),
-                                new CMLiquid(
-                                        IDStrings.SINGGOLD,
-                                        SkullTextures.ALLOY_TAN,
-                                        SlimefunItem.getByID("GOLD_SINGULARITY").getItem()
-                                ),
-                                null,
                                 new CMTraits(
                                         IDStrings.SINGGOLD,
                                         new CMTrait(
@@ -286,6 +261,9 @@ public final class CMInfinity {
                 new ComponentMaterial
                         (
                                 IDStrings.SINGCOPPER,
+                                SlimefunItem.getByID("COPPER_SINGULARITY").getItem(),
+                                SkullTextures.ALLOY_BROWN,
+                                null,
                                 "#c99732",
                                 new CMToolMakeup(true, false, true),
                                 new CMForms(
@@ -300,12 +278,6 @@ public final class CMInfinity {
                                     null,
                                     null
                                 ),
-                                new CMLiquid(
-                                        IDStrings.SINGCOPPER,
-                                        SkullTextures.ALLOY_BROWN,
-                                        SlimefunItem.getByID("COPPER_SINGULARITY").getItem()
-                                ),
-                                null,
                                 new CMTraits(
                                         IDStrings.SINGGOLD,
                                         new CMTrait(
@@ -333,6 +305,9 @@ public final class CMInfinity {
                 new ComponentMaterial
                         (
                                 IDStrings.SINGLEAD,
+                                SlimefunItem.getByID("LEAD_SINGULARITY").getItem(),
+                                SkullTextures.ALLOY_PURPLE,
+                                null,
                                 "#9043ba",
                                 new CMToolMakeup(true, false, true),
                                 new CMForms(
@@ -347,12 +322,6 @@ public final class CMInfinity {
                                     null,
                                     null
                                 ),
-                                new CMLiquid(
-                                        IDStrings.SINGLEAD,
-                                        SkullTextures.ALLOY_PURPLE,
-                                        SlimefunItem.getByID("LEAD_SINGULARITY").getItem()
-                                ),
-                                null,
                                 new CMTraits(
                                         IDStrings.SINGLEAD,
                                         new CMTrait(
@@ -379,6 +348,9 @@ public final class CMInfinity {
                 new ComponentMaterial
                         (
                                 IDStrings.SINGSILVER,
+                                SlimefunItem.getByID("SILVER_SINGULARITY").getItem(),
+                                SkullTextures.ALLOY_SILVER,
+                                null,
                                 "#d4d4d4",
                                 new CMToolMakeup(true, false, true),
                                 new CMForms(
@@ -393,12 +365,6 @@ public final class CMInfinity {
                                     null,
                                     null
                                 ),
-                                new CMLiquid(
-                                        IDStrings.SINGSILVER,
-                                        SkullTextures.ALLOY_SILVER,
-                                        SlimefunItem.getByID("SILVER_SINGULARITY").getItem()
-                                ),
-                                null,
                                 new CMTraits(
                                         IDStrings.SINGSILVER,
                                         new CMTrait(
@@ -427,6 +393,9 @@ public final class CMInfinity {
                 new ComponentMaterial
                         (
                                 IDStrings.SINGALUMINUM,
+                                SlimefunItem.getByID("ALUMINUM_SINGULARITY").getItem(),
+                                SkullTextures.ALLOY_SILVER,
+                                null,
                                 "#b0b0b0",
                                 new CMToolMakeup(true, false, true),
                                 new CMForms(
@@ -441,12 +410,6 @@ public final class CMInfinity {
                                     null,
                                     null
                                 ),
-                                new CMLiquid(
-                                        IDStrings.SINGALUMINUM,
-                                        SkullTextures.ALLOY_SILVER,
-                                        SlimefunItem.getByID("ALUMINUM_SINGULARITY").getItem()
-                                ),
-                                null,
                                 new CMTraits(
                                         IDStrings.SINGALUMINUM,
                                         new CMTrait(
@@ -473,6 +436,9 @@ public final class CMInfinity {
                 new ComponentMaterial
                         (
                                 IDStrings.SINGTIN,
+                                SlimefunItem.getByID("TIN_SINGULARITY").getItem(),
+                                SkullTextures.ALLOY_SILVER,
+                                null,
                                 "#a89b9b",
                                 new CMToolMakeup(true, false, true),
                                 new CMForms(
@@ -487,12 +453,6 @@ public final class CMInfinity {
                                     null,
                                     null
                                 ),
-                                new CMLiquid(
-                                        IDStrings.SINGTIN,
-                                        SkullTextures.ALLOY_SILVER,
-                                        SlimefunItem.getByID("TIN_SINGULARITY").getItem()
-                                ),
-                                null,
                                 new CMTraits(
                                         IDStrings.SINGTIN,
                                         new CMTrait(
@@ -520,7 +480,9 @@ public final class CMInfinity {
                 new ComponentMaterial
                         (
                                 IDStrings.SINGZINC,
-                                "#9ba8a6",
+                                SlimefunItem.getByID("ZINC_SINGULARITY").getItem(),
+                                SkullTextures.ALLOY_SILVER,
+                                null, "#9ba8a6",
                                 new CMToolMakeup(true, false, true),
                                 new CMForms(
                                     null,
@@ -534,12 +496,6 @@ public final class CMInfinity {
                                     null,
                                     null
                                 ),
-                                new CMLiquid(
-                                        IDStrings.SINGZINC,
-                                        SkullTextures.ALLOY_SILVER,
-                                        SlimefunItem.getByID("ZINC_SINGULARITY").getItem()
-                                ),
-                                null,
                                 new CMTraits(
                                         IDStrings.SINGZINC,
                                         new CMTrait(
@@ -566,6 +522,9 @@ public final class CMInfinity {
                 new ComponentMaterial
                         (
                                 IDStrings.SINGMAGNESIUM,
+                                SlimefunItem.getByID("MAGNESIUM_SINGULARITY").getItem(),
+                                SkullTextures.ALLOY_PINK,
+                                null,
                                 "#e8cef5",
                                 new CMToolMakeup(true, false, true),
                                 new CMForms(
@@ -580,12 +539,6 @@ public final class CMInfinity {
                                     null,
                                     null
                                 ),
-                                new CMLiquid(
-                                        IDStrings.SINGMAGNESIUM,
-                                        SkullTextures.ALLOY_PINK,
-                                        SlimefunItem.getByID("MAGNESIUM_SINGULARITY").getItem()
-                                ),
-                                null,
                                 new CMTraits(
                                         IDStrings.SINGMAGNESIUM,
                                         new CMTrait(
@@ -613,6 +566,9 @@ public final class CMInfinity {
                 new ComponentMaterial
                         (
                                 IDStrings.SINGDIAMOND,
+                                SlimefunItem.getByID("DIAMOND_SINGULARITY").getItem(),
+                                SkullTextures.ALLOY_BLUE,
+                                null,
                                 "#e8cef5",
                                 new CMToolMakeup(false, false, false),
                                 new CMForms(
@@ -627,12 +583,6 @@ public final class CMInfinity {
                                     null,
                                     null
                                 ),
-                                new CMLiquid(
-                                        IDStrings.SINGDIAMOND,
-                                        SkullTextures.ALLOY_BLUE,
-                                        SlimefunItem.getByID("DIAMOND_SINGULARITY").getItem()
-                                ),
-                                null,
                                 new CMTraits(
                                         IDStrings.SINGDIAMOND,
                                         null,
@@ -646,6 +596,13 @@ public final class CMInfinity {
                 new ComponentMaterial
                         (
                                 IDStrings.MYTHRIL,
+                                SlimefunItem.getByID("MYTHRIL").getItem(),
+                                SkullTextures.ALLOY_BLUE_PALE,
+                                Arrays.asList(
+                                        CMCore.getMap().get(IDStrings.REINFORCED).getLiquidItemStack(1),
+                                        map.get(IDStrings.SINGIRON).getLiquidItemStack(9),
+                                        CMCore.getMap().get(IDStrings.HARD).getLiquidItemStack(1)
+                                ),
                                 "#4ebdc7",
                                 new CMToolMakeup(true, false, true),
                                 new CMForms(
@@ -659,20 +616,6 @@ public final class CMInfinity {
                                         null,
                                         null,
                                         null
-                                ),
-                                new CMLiquid(
-                                        IDStrings.MYTHRIL,
-                                        SkullTextures.ALLOY_BLUE_PALE,
-                                        SlimefunItem.getByID("MYTHRIL").getItem()
-                                ),
-                                new CMAlloy(
-                                        IDStrings.MYTHRIL,
-                                        SkullTextures.ALLOY_BLUE_PALE,
-                                        Arrays.asList(
-                                                CMCore.getMap().get(IDStrings.REINFORCED).getLiquidItemStack(1),
-                                                map.get(IDStrings.SINGIRON).getLiquidItemStack(9),
-                                                CMCore.getMap().get(IDStrings.HARD).getLiquidItemStack(1)
-                                        )
                                 ),
                                 new CMTraits(
                                         IDStrings.MYTHRIL,
@@ -700,6 +643,13 @@ public final class CMInfinity {
                 new ComponentMaterial
                         (
                                 IDStrings.ADAMANTITE,
+                                SlimefunItem.getByID("ADAMANTITE").getItem(),
+                                SkullTextures.ALLOY_TAN,
+                                Arrays.asList(
+                                        CMCore.getMap().get(IDStrings.REDSTONEALLOY).getLiquidItemStack(1),
+                                        map.get(IDStrings.SINGDIAMOND).getLiquidItemStack(9),
+                                        map.get(IDStrings.MAGSTEEL).getLiquidItemStack(1)
+                                ),
                                 "#c93ec2",
                                 new CMToolMakeup(true, false, true),
                                 new CMForms(
@@ -713,20 +663,6 @@ public final class CMInfinity {
                                         null,
                                         null,
                                         null
-                                ),
-                                new CMLiquid(
-                                        IDStrings.ADAMANTITE,
-                                        SkullTextures.ALLOY_TAN,
-                                        SlimefunItem.getByID("ADAMANTITE").getItem()
-                                ),
-                                new CMAlloy(
-                                        IDStrings.ADAMANTITE,
-                                        SkullTextures.ALLOY_TAN,
-                                        Arrays.asList(
-                                                CMCore.getMap().get(IDStrings.REDSTONEALLOY).getLiquidItemStack(1),
-                                                map.get(IDStrings.SINGDIAMOND).getLiquidItemStack(9),
-                                                map.get(IDStrings.MAGSTEEL).getLiquidItemStack(1)
-                                        )
                                 ),
                                 new CMTraits(
                                         IDStrings.ADAMANTITE,
@@ -754,6 +690,9 @@ public final class CMInfinity {
                 new ComponentMaterial
                         (
                                 IDStrings.MAGNONIUM,
+                                SlimefunItem.getByID("MAGNONIUM").getItem(),
+                                SkullTextures.ALLOY_PURPLE,
+                                null,
                                 "#4a0446",
                                 new CMToolMakeup(true, false, true),
                                 new CMForms(
@@ -768,12 +707,6 @@ public final class CMInfinity {
                                         null,
                                         null
                                 ),
-                                new CMLiquid(
-                                        IDStrings.MAGNONIUM,
-                                        SkullTextures.ALLOY_PURPLE,
-                                        SlimefunItem.getByID("MAGNONIUM").getItem()
-                                ),
-                                null,
                                 new CMTraits(
                                         IDStrings.MAGNONIUM,
                                         new CMTrait(
@@ -801,6 +734,9 @@ public final class CMInfinity {
                 new ComponentMaterial
                         (
                                 IDStrings.FORTUNE,
+                                SlimefunItem.getByID("FORTUNE_SINGULARITY").getItem(),
+                                SkullTextures.ALLOY_PURPLE,
+                                null,
                                 "#f0d541",
                                 new CMToolMakeup(true, false, true),
                                 new CMForms(
@@ -815,12 +751,6 @@ public final class CMInfinity {
                                         null,
                                         null
                                 ),
-                                new CMLiquid(
-                                        IDStrings.FORTUNE,
-                                        SkullTextures.ALLOY_PURPLE,
-                                        SlimefunItem.getByID("FORTUNE_SINGULARITY").getItem()
-                                ),
-                                null,
                                 new CMTraits(
                                         IDStrings.FORTUNE,
                                         new CMTrait(
@@ -848,6 +778,9 @@ public final class CMInfinity {
                 new ComponentMaterial
                         (
                                 IDStrings.MAGIC,
+                                SlimefunItem.getByID("MAGIC_SINGULARITY").getItem(),
+                                SkullTextures.ALLOY_BLUE,
+                                null,
                                 "#c941e8",
                                 new CMToolMakeup(true, false, true),
                                 new CMForms(
@@ -862,12 +795,6 @@ public final class CMInfinity {
                                         null,
                                         null
                                 ),
-                                new CMLiquid(
-                                        IDStrings.MAGIC,
-                                        SkullTextures.ALLOY_BLUE,
-                                        SlimefunItem.getByID("MAGIC_SINGULARITY").getItem()
-                                ),
-                                null,
                                 new CMTraits(
                                         IDStrings.MAGIC,
                                         new CMTrait(
@@ -894,6 +821,9 @@ public final class CMInfinity {
                 new ComponentMaterial
                         (
                                 IDStrings.EARTH,
+                                SlimefunItem.getByID("EARTH_SINGULARITY").getItem(),
+                                SkullTextures.ALLOY_GREEN,
+                                null,
                                 "#44e34f",
                                 new CMToolMakeup(true, false, true),
                                 new CMForms(
@@ -908,12 +838,6 @@ public final class CMInfinity {
                                         null,
                                         null
                                 ),
-                                new CMLiquid(
-                                        IDStrings.EARTH,
-                                        SkullTextures.ALLOY_GREEN,
-                                        SlimefunItem.getByID("EARTH_SINGULARITY").getItem()
-                                ),
-                                null,
                                 new CMTraits(
                                         IDStrings.EARTH,
                                         new CMTrait(
@@ -942,6 +866,9 @@ public final class CMInfinity {
                 new ComponentMaterial
                         (
                                 IDStrings.METAL,
+                                SlimefunItem.getByID("METAL_SINGULARITY").getItem(),
+                                SkullTextures.ALLOY_SILVER,
+                                null,
                                 "#5b615b",
                                 new CMToolMakeup(true, false, true),
                                 new CMForms(
@@ -956,12 +883,6 @@ public final class CMInfinity {
                                         null,
                                         null
                                 ),
-                                new CMLiquid(
-                                        IDStrings.METAL,
-                                        SkullTextures.ALLOY_SILVER,
-                                        SlimefunItem.getByID("METAL_SINGULARITY").getItem()
-                                ),
-                                null,
                                 new CMTraits(
                                         IDStrings.METAL,
                                         new CMTrait(
@@ -990,6 +911,9 @@ public final class CMInfinity {
                 new ComponentMaterial
                         (
                                 IDStrings.INFINITY,
+                                SlimefunItem.getByID("INFINITE_INGOT").getItem(),
+                                SkullTextures.ALLOY_BLUE_PALE,
+                                null,
                                 "#d1ebf0",
                                 new CMToolMakeup(true, false, true),
                                 new CMForms(
@@ -1004,12 +928,6 @@ public final class CMInfinity {
                                         null,
                                         null
                                 ),
-                                new CMLiquid(
-                                        IDStrings.INFINITY,
-                                        SkullTextures.ALLOY_BLUE_PALE,
-                                        SlimefunItem.getByID("INFINITE_INGOT").getItem()
-                                ),
-                                null,
                                 new CMTraits(
                                         IDStrings.INFINITY,
                                         new CMTrait(
@@ -1036,6 +954,9 @@ public final class CMInfinity {
                 new ComponentMaterial
                         (
                                 IDStrings.SINGINFINITY,
+                                SlimefunItem.getByID("INFINITY_SINGULARITY").getItem(),
+                                SkullTextures.ALLOY_BLUE_PALE,
+                                null,
                                 "#e8cef5",
                                 new CMToolMakeup(true, false, false),
                                 new CMForms(
@@ -1050,12 +971,6 @@ public final class CMInfinity {
                                     null,
                                     null
                                 ),
-                                new CMLiquid(
-                                        IDStrings.SINGINFINITY,
-                                        SkullTextures.ALLOY_BLUE_PALE,
-                                        SlimefunItem.getByID("INFINITY_SINGULARITY").getItem()
-                                ),
-                                null,
                                 new CMTraits(
                                         IDStrings.SINGINFINITY,
                                         new CMTrait(

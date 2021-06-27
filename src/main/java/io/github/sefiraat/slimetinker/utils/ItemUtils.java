@@ -10,6 +10,7 @@ import io.github.sefiraat.slimetinker.utils.enums.TraitPartType;
 import lombok.experimental.UtilityClass;
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.SlimefunItem;
 import net.md_5.bungee.api.ChatColor;
+import org.bukkit.entity.Item;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.Damageable;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -170,6 +171,14 @@ public final class ItemUtils {
         } else {
             damageable.setDamage(damageable.getDamage() + amount);
         }
+        itemStack.setItemMeta(im);
+    }
+
+    public static void repairTool(ItemStack itemStack) {
+        ItemMeta im = itemStack.getItemMeta();
+        Damageable d = (Damageable) im;
+        assert d != null;
+        d.setDamage(0);
         itemStack.setItemMeta(im);
     }
 

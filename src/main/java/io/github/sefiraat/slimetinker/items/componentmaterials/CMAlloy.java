@@ -13,33 +13,40 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@Getter
 public class CMAlloy {
 
-    @Getter
-    private final String liquidID;
-    @Getter
-    private final SlimefunItemStack itemStack;
-    @Getter
-    private final SlimefunItem item;
-    @Getter
+    private ComponentMaterial parent;
+    private SlimefunItemStack itemStack;
+    private SlimefunItem item;
     private final Map<String, Integer> alloyMap = new HashMap<>();
+    private final List<SlimefunItemStack> recipe;
 
-    public CMAlloy(String id, String texture, List<SlimefunItemStack> recipe) {
-        this.liquidID = id;
-        String titName = ThemeUtils.toTitleCase(id);
+    public CMAlloy(List<SlimefunItemStack> recipe) {
+        this.recipe = recipe;
+    }
+
+    protected void setupAlloy(ComponentMaterial parent) {
+        this.parent = parent;
+        String titName = ThemeUtils.toTitleCase(parent.getId());
         this.itemStack =
                 ThemeUtils.themedItemStack(
-                        id + "_ALLOY",
-                        texture,
+                        parent.getId() + "_ALLOY",
+                        parent.getLiquidTexture(),
                         ThemeUtils.ThemeItemType.MOLTEN_METAL,
                         "Molten " + titName,
                         ThemeUtils.PASSIVE + "A molten alloy metal of " + titName
                 );
-        this.item = new SlimefunItem(Categories.ALLOYS, itemStack, DummySmelteryAlloy.TYPE, recipe.toArray(new ItemStack[9]));
+        assert parent.getAlloyRecipe() != null;
+        this.item = new SlimefunItem(Categories.ALLOYS, itemStack, DummySmelteryAlloy.TYPE, parent.getAlloyRecipe().toArray(new ItemStack[9]));
         item.register(SlimeTinker.inst());
-        for (SlimefunItemStack i : recipe) {
-            alloyMap.put(i.getItemId(), i.getAmount());
+        for (SlimefunItemStack i : parent.getAlloyRecipe()) {
+            alloyMap.put(i.getItemId().replace("_LIQUID",""), i.getAmount());
         }
+    }
+
+    protected void setParent(ComponentMaterial parent) {
+        this.parent = parent;
     }
 
 }

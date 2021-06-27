@@ -4,6 +4,9 @@ import lombok.Getter;
 
 @Getter
 public class CMForms {
+
+    private ComponentMaterial parent;
+
     private final String formNugget;
     private final String formIngot;
     private final String formBlock;
@@ -27,4 +30,9 @@ public class CMForms {
         this.formChest = formChest;
         this.formHelm = formHelm;
     }
+
+    protected void setParent(ComponentMaterial parent) {
+        this.parent = parent;
+    }
+
 }

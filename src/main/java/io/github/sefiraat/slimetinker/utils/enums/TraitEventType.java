@@ -5,5 +5,6 @@ public enum TraitEventType {
     DURABILITY,
     ENTITY_DAMAGED,
     PLAYER_DAMAGED,
-    TICK
+    TICK,
+    RIGHT_CLICK
 }

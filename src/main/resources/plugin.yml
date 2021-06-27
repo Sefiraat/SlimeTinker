@@ -10,7 +10,7 @@ depend:
 softdepend:
   - InfinityExpansion
   - SlimefunWarfare
-
+  - DynaTech
 commands:
   slimetinker:
     description: /slimetinker

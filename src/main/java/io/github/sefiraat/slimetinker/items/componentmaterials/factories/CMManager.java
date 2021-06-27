@@ -102,6 +102,9 @@ public class CMManager {
         if (SupportedPluginsManager.SLIMEFUN_WARFARE) {
             MAP.putAll(CMSlimefunWarfare.getMap());
         }
+        if (SupportedPluginsManager.DYNATECH) {
+            MAP.putAll(CMDynaTech.getMap());
+        }
 
         // Add melting recipes
         for (Map.Entry<String, ComponentMaterial> entry : MAP.entrySet()) {

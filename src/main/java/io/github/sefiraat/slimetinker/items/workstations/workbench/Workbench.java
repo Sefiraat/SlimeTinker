@@ -9,6 +9,9 @@ import io.github.sefiraat.slimetinker.items.Workstations;
 import io.github.sefiraat.slimetinker.utils.GUIItems;
 import io.github.sefiraat.slimetinker.utils.ThemeUtils;
 import io.github.thebusybiscuit.slimefun4.implementation.SlimefunPlugin;
+import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import me.mrCookieSlime.Slimefun.Lists.RecipeType;
 import me.mrCookieSlime.Slimefun.Objects.Category;
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.SlimefunItem;
@@ -36,16 +39,12 @@ public class Workbench extends AbstractContainer {
     protected static final int OUTPUT_SLOT = 25;
     protected static final int CRAFT_BUTTON = 23;
 
+    @Getter
     private final RecipeMap<ItemStack> craftingRecipes;
 
     public Workbench(Category category, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(category, item, recipeType, recipe);
         this.craftingRecipes = RECIPES;
-        for (SlimefunItem i :SlimefunPlugin.getRegistry().getAllSlimefunItems()) {
-            if (i.getRecipeType() == RecipeType.ENHANCED_CRAFTING_TABLE) {
-                this.craftingRecipes.put(i.getRecipe(), i.getItem());
-            }
-        }
     }
 
     protected boolean craft(BlockMenu blockMenu, Player player) {

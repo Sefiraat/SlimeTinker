@@ -10,6 +10,7 @@ import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.Particle;
 import org.bukkit.attribute.Attribute;
+import org.bukkit.entity.Animals;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
@@ -17,6 +18,7 @@ import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
+import java.awt.*;
 import java.util.concurrent.ThreadLocalRandom;
 
 import static io.github.sefiraat.slimetinker.utils.EntityUtils.push;
@@ -230,4 +232,30 @@ public final class EntityDamageEvents {
             friend.getDamagedEntity().getWorld().strikeLightning(friend.getDamagedEntity().getLocation());
         }
     }
+
+    public static void headStarDust(EventFriend friend) {
+        friend.setDamageMod(friend.getDamageMod() + 0.5);
+        Entity e = friend.getDamagedEntity();
+        Particle.DustOptions dustOptions = new Particle.DustOptions(Color.fromRGB(240,230,100), 5);
+        e.getWorld().spawnParticle(Particle.REDSTONE, e.getLocation(), 60, 3, 3, 3, 1, dustOptions);
+    }
+
+    public static void rodStainlessSteel(EventFriend friend) {
+        if (friend.getDamagedEntity() instanceof Animals) {
+            Player p = friend.getPlayer();
+            p.setFoodLevel(Math.min(p.getFoodLevel() + 1, 20));
+            p.setSaturation(Math.min(p.getSaturation() + 1, p.getFoodLevel()));
+        }
+    }
+
+    public static void headStainlessSteel(EventFriend friend) {
+        Entity e = friend.getDamagedEntity();
+        Particle.DustOptions dustOptions = new Particle.DustOptions(Color.fromRGB(200,50,50), 5);
+        e.getWorld().spawnParticle(Particle.REDSTONE, e.getLocation(), 60, 3, 3, 3, 1, dustOptions);
+        Particle.DustOptions dustOptions2 = new Particle.DustOptions(Color.fromRGB(220,20,75), 5);
+        e.getWorld().spawnParticle(Particle.REDSTONE, e.getLocation(), 60, 3, 3, 3, 1, dustOptions2);
+        Particle.DustOptions dustOptions3 = new Particle.DustOptions(Color.fromRGB(250,75,10), 5);
+        e.getWorld().spawnParticle(Particle.REDSTONE, e.getLocation(), 60, 3, 3, 3, 1, dustOptions3);
+    }
+
 }

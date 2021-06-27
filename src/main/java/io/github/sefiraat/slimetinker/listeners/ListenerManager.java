@@ -15,6 +15,7 @@ public class ListenerManager {
     private final PlayerDamagedListener playerDamagedListener = new PlayerDamagedListener();
     private final DropItemListener dropItemListener = new DropItemListener();
     private final EndermanTeleportListener endermanTeleportListener = new EndermanTeleportListener();
+    private final PlayerInteractListener playerInteractListener = new PlayerInteractListener();
 
     public ListenerManager(SlimeTinker plugin, PluginManager manager) {
         manager.registerEvents(durabilityListener, plugin);
@@ -25,6 +26,7 @@ public class ListenerManager {
         manager.registerEvents(playerDamagedListener, plugin);
         manager.registerEvents(dropItemListener, plugin);
         manager.registerEvents(endermanTeleportListener, plugin);
+        manager.registerEvents(playerInteractListener, plugin);
     }
 
 }

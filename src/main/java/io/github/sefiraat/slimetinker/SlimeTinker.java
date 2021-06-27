@@ -14,10 +14,12 @@ import io.github.sefiraat.slimetinker.items.Parts;
 import io.github.sefiraat.slimetinker.items.Tools;
 import io.github.sefiraat.slimetinker.items.Workstations;
 import io.github.sefiraat.slimetinker.items.componentmaterials.factories.CMManager;
+import io.github.sefiraat.slimetinker.items.workstations.workbench.Workbench;
 import io.github.sefiraat.slimetinker.listeners.ListenerManager;
-import io.github.sefiraat.slimetinker.managers.RunnableManager;
+import io.github.sefiraat.slimetinker.runnables.RunnableManager;
 import io.github.sefiraat.slimetinker.utils.Keys;
 import lombok.Getter;
+import lombok.Setter;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nonnull;
@@ -41,6 +43,9 @@ public class SlimeTinker extends AbstractAddon {
 
     @Getter
     private Keys keys;
+
+    @Getter @Setter
+    private Workbench workbench;
 
     @Override
     public void onAddonEnable() {

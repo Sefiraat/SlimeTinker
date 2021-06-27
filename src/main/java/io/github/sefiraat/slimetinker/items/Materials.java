@@ -711,6 +711,32 @@ public final class Materials {
     // endregion
     // endregion
 
+    // region SFWarfare
+    // region Nuggets
+    public static final SlimefunItemStack NUGGET_CAST_STAINLESSSTEEL =
+            ThemeUtils.themedItemStack(
+                    "NUGGET_CAST_STAINLESSSTEEL",
+                    Material.IRON_NUGGET,
+                    ThemeUtils.ThemeItemType.CRAFTING,
+                    "Stainless Steel Nugget",
+                    "A nugget of stainless steel"
+            );
+
+    // endregion
+    // region Blocks
+    public static final SlimefunItemStack BLOCK_CAST_STAINLESSSTEEL =
+            ThemeUtils.themedItemStack(
+                    "BLOCK_CAST_STAINLESSSTEEL",
+                    Material.IRON_BLOCK,
+                    ThemeUtils.ThemeItemType.CRAFTING,
+                    "Stainless Steel Block",
+                    "A block of stainless"
+            );
+
+
+    // endregion
+    // endregion
+
     protected static final ItemStack[] RECIPE_GROUT = new ItemStack[] {
             new ItemStack(Material.CLAY), new ItemStack(Material.SAND),  new ItemStack(Material.SAND),
             new ItemStack(Material.SAND), new ItemStack(Material.SAND), new ItemStack(Material.GRAVEL),
@@ -877,7 +903,12 @@ public final class Materials {
 
             new UnplaceableBlock(Categories.MATERIALS, NUGGET_CAST_UNPATENTABILUM, DummySmeltery.TYPE, Parts.getDummyCastRecipe(Casts.CAST_NUGGET)).register(p);
             new UnplaceableBlock(Categories.MATERIALS, BLOCK_CAST_UNPATENTABILUM, DummySmeltery.TYPE, Parts.getDummyCastRecipe(Casts.CAST_BLOCK)).register(p);
+        }
 
+        // SFWarfare
+        if (SupportedPluginsManager.DYNATECH) {
+            new UnplaceableBlock(Categories.MATERIALS, NUGGET_CAST_STAINLESSSTEEL, DummySmeltery.TYPE, Parts.getDummyCastRecipe(Casts.CAST_NUGGET)).register(p);
+            new UnplaceableBlock(Categories.MATERIALS, BLOCK_CAST_STAINLESSSTEEL, DummySmeltery.TYPE, Parts.getDummyCastRecipe(Casts.CAST_BLOCK)).register(p);
         }
 
 

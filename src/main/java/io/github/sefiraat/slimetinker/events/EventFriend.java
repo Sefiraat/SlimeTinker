@@ -38,9 +38,15 @@ public class EventFriend {
     private boolean duraliumCheck = false;
     private boolean metalCheck = false;
     private boolean cancelEvent = false;
+
     private int charged = 0;
+
     private int segganesson = 0;
     private double segganessonDamage = 0;
+
+    private int hypercube = 0;
+    private int noClip = 0;
+
     private boolean blocksIntoInv = false;
 
 }

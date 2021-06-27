@@ -15,6 +15,7 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Item;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Monster;
+import org.bukkit.entity.Villager;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
@@ -283,5 +284,17 @@ public final class TickEvents {
 
     public static void headOsmiumsuperalloy(EventFriend friend) {
         increaseEffect(PotionEffectType.SLOW_DIGGING, friend.getPotionEffects());
+    }
+
+    // todo Find a way for 'real' following without NMS??
+    public static void rodStarDust(EventFriend friend) {
+        increaseEffect(PotionEffectType.GLOWING, friend.getPotionEffects());
+        for (Entity e : friend.getPlayer().getNearbyEntities(10,10,10)) {
+            if (e instanceof Villager) {
+                Location eLoc = e.getLocation();
+                Location pLoc = friend.getPlayer().getLocation();
+                e.teleport(BlockUtils.getMid(eLoc.getWorld(), eLoc.getX(), eLoc.getY(), eLoc.getZ(), pLoc.getX(), pLoc.getY(), pLoc.getZ()));
+            }
+        }
     }
 }

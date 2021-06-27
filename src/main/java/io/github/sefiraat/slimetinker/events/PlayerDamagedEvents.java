@@ -47,4 +47,13 @@ public final class PlayerDamagedEvents {
     public static void headFerrosilicon(EventFriend friend) {
         friend.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.LEVITATION, 40, 0, true));
     }
+
+    public static void bindGhostly(EventFriend friend) {
+        if (friend.getCause() == EntityDamageEvent.DamageCause.PROJECTILE) {
+            if (friend.getCause() == EntityDamageEvent.DamageCause.PROJECTILE) {
+                friend.setDamageMod(0);
+            }
+        }
+    }
+
 }

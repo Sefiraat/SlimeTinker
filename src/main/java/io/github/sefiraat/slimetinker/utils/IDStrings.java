@@ -74,7 +74,14 @@ public final class IDStrings {
     public static final String OSMIUM = "OSMIUM";
     public static final String SEGGANESSON = "SEGGANESSON";
     public static final String UNPATENTABLIUM = "UNPATENTABLIUM";
-    
+
+    // DynaTech
+    public static final String STAINLESSSTEEL = "STAINLESS_STEEL";
+    public static final String VEXGEM = "VEX_GEM";
+    public static final String STARDUST = "STAR_DUST";
+    public static final String GHOSTLYESSENCE = "GHOSTLY_ESSENCE";
+    public static final String TESSERACT = "TESSERACTING_MATERIAL";
+
     // Other
     public static final String HEAD = "HEAD";
     public static final String BINDING = "BINDING";

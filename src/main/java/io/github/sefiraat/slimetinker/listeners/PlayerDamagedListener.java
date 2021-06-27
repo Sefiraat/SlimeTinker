@@ -68,6 +68,9 @@ public class PlayerDamagedListener implements Listener {
 
         // Settle
         event.setDamage(event.getDamage() * friend.getDamageMod());
+        if (friend.getDamageMod() == 0) {
+            event.setCancelled(true);
+        }
     }
 
     private void modChecks(EntityDamageEvent event, ItemStack heldItem) { // Entity Damaging player

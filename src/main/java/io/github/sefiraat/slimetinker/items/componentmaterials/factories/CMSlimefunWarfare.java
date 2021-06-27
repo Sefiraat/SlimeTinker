@@ -36,7 +36,8 @@ public final class CMSlimefunWarfare {
                 new ComponentMaterial
                         (
                                 IDStrings.SEGGANESSON,
-                                SlimefunItem.getByID("SEGGANESSON").getItem(), SkullTextures.ALLOY_BLUE_PALE,
+                                SlimefunItem.getByID("SEGGANESSON").getItem(),
+                                SkullTextures.ALLOY_BLUE_PALE,
                                 null,
                                 "#4bacbf",
                                 new CMToolMakeup(true, false, true),

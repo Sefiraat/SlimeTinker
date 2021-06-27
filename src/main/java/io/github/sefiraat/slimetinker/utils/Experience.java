@@ -56,11 +56,11 @@ public final class Experience {
         Map<String, Integer> modLevels = Modifications.getAllModLevels(itemStack);
 
         if (modLevels.containsKey(Material.EMERALD.toString())) { // EMERALD
-            level = modLevels.get(Material.EMERALD.toString());
+            int eLevel = modLevels.get(Material.EMERALD.toString());
             if (tool) {
-                amount = amount + level;
+                amount = amount + eLevel;
             } else {
-                amount = (int) Math.ceil(amount * (level * 0.1));
+                amount = (int) Math.ceil(amount * (eLevel * 0.1));
             }
         }
 

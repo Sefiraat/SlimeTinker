@@ -9,7 +9,6 @@ import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.Damageable;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
@@ -134,6 +133,7 @@ public final class Experience {
             itemStack.setType(Tools.getToolGrowthMap().get(toolType).get(level));
             ItemUtils.repairTool(itemStack);
             player.sendMessage(ThemeUtils.SUCCESS + "Your tool has been promoted!");
+            ItemUtils.repairTool(itemStack);
         }
 
     }
@@ -157,7 +157,7 @@ public final class Experience {
         }
         int count = 0;
         if (matPropertyHead.equals(IDStrings.SILVER) || matPropertyHead.equals(IDStrings.SINGSILVER)) { // Enchanting + Enchanting II
-            for (int i = 0; i < ThreadLocalRandom.current().nextInt(1, number); i++) {
+            for (int i = 0; i < ThreadLocalRandom.current().nextInt(1, number + 1); i++) {
                 Enchantment randEnchant = Enchantment.values()[(int) (Math.random()*Enchantment.values().length)];
                 if (im.hasEnchant(randEnchant)) {
                     im.addEnchant(randEnchant, itemStack.getEnchantmentLevel(randEnchant) + 1, true);

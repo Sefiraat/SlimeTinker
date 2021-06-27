@@ -10,6 +10,8 @@ import org.jetbrains.annotations.Nullable;
 @Getter
 public class CMTraits {
 
+    private ComponentMaterial parent;
+
     private final String materialID;
     @Nullable
     private final CMTrait traitHead;
@@ -68,6 +70,10 @@ public class CMTraits {
                 part, null, stack,
                 null, null, null
         };
+    }
+
+    protected void setParent(ComponentMaterial parent) {
+        this.parent = parent;
     }
 
 }

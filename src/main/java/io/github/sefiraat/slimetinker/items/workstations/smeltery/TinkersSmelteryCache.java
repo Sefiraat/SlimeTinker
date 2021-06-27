@@ -15,6 +15,7 @@ import lombok.Setter;
 import me.mrCookieSlime.CSCoreLibPlugin.Configuration.Config;
 import me.mrCookieSlime.CSCoreLibPlugin.general.Inventory.ClickAction;
 import me.mrCookieSlime.Slimefun.api.BlockStorage;
+import me.mrCookieSlime.Slimefun.api.SlimefunItemStack;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -209,7 +210,6 @@ public final class TinkersSmelteryCache extends AbstractCache {
     }
 
     private boolean clickAlloy() {
-
         for (CMAlloy alloy : CMManager.getAlloys()) {
             if (!alloy.getAlloyMap().keySet().equals(tankContent.keySet())) {
                 continue;
@@ -229,7 +229,7 @@ public final class TinkersSmelteryCache extends AbstractCache {
             for (Map.Entry<String, Integer> entry : alloy.getAlloyMap().entrySet()) {
                 removeMetal(entry.getKey(), entry.getValue() * maxPossible);
             }
-            addMetal(alloy.getLiquidID(), maxPossible);
+            addMetal(alloy.getParent().getId(), maxPossible);
         }
         return false;
     }

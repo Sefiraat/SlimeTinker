@@ -1,14 +1,25 @@
 package io.github.sefiraat.slimetinker.items.componentmaterials;
 
+import io.github.sefiraat.slimetinker.SlimeTinker;
+import io.github.sefiraat.slimetinker.categories.Categories;
 import io.github.sefiraat.slimetinker.events.EventFriend;
+import io.github.sefiraat.slimetinker.items.templates.PartTemplate;
+import io.github.sefiraat.slimetinker.items.workstations.workbench.Workbench;
+import io.github.sefiraat.slimetinker.utils.SkullTextures;
+import io.github.sefiraat.slimetinker.utils.ThemeUtils;
 import io.github.sefiraat.slimetinker.utils.enums.TraitEventType;
 import io.github.sefiraat.slimetinker.utils.enums.TraitPartType;
 import lombok.Data;
 import me.mrCookieSlime.Slimefun.api.SlimefunItemStack;
 import net.md_5.bungee.api.ChatColor;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.persistence.PersistentDataContainer;
+import org.bukkit.persistence.PersistentDataType;
 
 import javax.annotation.Nullable;
 import java.util.EnumMap;
+import java.util.List;
 import java.util.Map;
 import java.util.function.Consumer;
 
@@ -16,6 +27,11 @@ import java.util.function.Consumer;
 public class ComponentMaterial {
 
     private final String id;
+    private final ItemStack representativeStack;
+    @Nullable
+    private final String liquidTexture;
+    @Nullable
+    private final List<SlimefunItemStack> alloyRecipe;
     private final String colorHex;
     private final CMToolMakeup cmToolMakeup;
     private final CMForms cmForms;
@@ -28,20 +44,67 @@ public class ComponentMaterial {
     private final Map<TraitEventType, Map<TraitPartType, Consumer<EventFriend>>> cmEventMap = new EnumMap<>(TraitEventType.class);
 
     public ComponentMaterial(String id,
+                             ItemStack representativeStack,
+                             @Nullable String liquidTexture,
+                             @Nullable List<SlimefunItemStack> alloyRecipe,
                              String colorHex,
                              CMToolMakeup cmToolMakeup,
                              CMForms cmForms,
-                             @Nullable CMLiquid cmLiquid,
-                             @Nullable CMAlloy cmAlloy,
-                             @Nullable CMTraits cmTraits)
-    {
+                             @Nullable CMTraits cmTraits) {
         this.id = id;
+        this.representativeStack = representativeStack;
+        this.liquidTexture = liquidTexture;
+        this.alloyRecipe = alloyRecipe;
         this.colorHex = colorHex;
         this.cmToolMakeup = cmToolMakeup;
         this.cmForms = cmForms;
-        this.cmLiquid = cmLiquid;
-        this.cmAlloy = cmAlloy;
+
+        if (liquidTexture != null) {
+            this.cmLiquid = new CMLiquid(liquidTexture);
+            cmLiquid.setupLiquid(this);
+        } else {
+            this.cmLiquid = null;
+        }
+
+        if (alloyRecipe != null) {
+            this.cmAlloy = new CMAlloy(alloyRecipe);
+            cmAlloy.setupAlloy(this);
+        } else {
+            this.cmAlloy = null;
+        }
+
         this.cmTraits = cmTraits;
+
+        if (this.cmToolMakeup.isValidBinder()) {
+            PartTemplate binder = new PartTemplate(Categories.DUMMY, bindingStack(id), Workbench.TYPE, bindingRecipe(representativeStack), id);
+            binder.setHidden(true);
+            binder.register(SlimeTinker.inst());
+        }
+    }
+
+    public static SlimefunItemStack bindingStack(String name) {
+        String titName = ThemeUtils.toTitleCase(name);
+        SlimefunItemStack i = ThemeUtils.themedItemStack(
+                "PART_BINDING_" + name,
+                SkullTextures.PART_BINDING,
+                ThemeUtils.ThemeItemType.PART,
+                titName + " Binding",
+        ThemeUtils.PASSIVE + "A binding made of " + titName + "."
+        );
+        ItemMeta im = i.getItemMeta();
+        assert im != null;
+        PersistentDataContainer c = im.getPersistentDataContainer();
+        c.set(SlimeTinker.inst().getKeys().getPartInfoMaterialType(), PersistentDataType.STRING, name);
+        i.setItemMeta(im);
+        return i;
+    }
+
+    public static ItemStack[] bindingRecipe(ItemStack i) {
+        return new ItemStack[] {
+            i,      null,   i,
+            null,   i,      null,
+            i,      null,   i
+        };
     }
 
     public ChatColor getColor() {

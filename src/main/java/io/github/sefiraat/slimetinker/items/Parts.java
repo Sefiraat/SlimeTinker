@@ -6,23 +6,14 @@ import io.github.sefiraat.slimetinker.items.templates.PartTemplate;
 import io.github.sefiraat.slimetinker.items.templates.RepairkitTemplate;
 import io.github.sefiraat.slimetinker.items.workstations.smeltery.DummySmeltery;
 import io.github.sefiraat.slimetinker.items.workstations.workbench.DummyWorkbench;
-import io.github.sefiraat.slimetinker.items.workstations.workbench.Workbench;
-import io.github.sefiraat.slimetinker.managers.SupportedPluginsManager;
-import io.github.sefiraat.slimetinker.utils.IDStrings;
 import io.github.sefiraat.slimetinker.utils.SkullTextures;
 import io.github.sefiraat.slimetinker.utils.ThemeUtils;
 import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
 import io.github.thebusybiscuit.slimefun4.implementation.items.blocks.UnplaceableBlock;
-import lombok.Getter;
 import lombok.experimental.UtilityClass;
-import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.SlimefunItem;
 import me.mrCookieSlime.Slimefun.api.SlimefunItemStack;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
-
-import javax.annotation.Nullable;
-import java.util.HashMap;
-import java.util.Map;
 
 @UtilityClass
 public final class Parts {
@@ -330,10 +321,6 @@ public final class Parts {
     public static final PartTemplate TOOL_ROD = new PartTemplate(Categories.DUMMY, PART_TOOL_ROD, DummySmeltery.TYPE, new ItemStack[9], "Tool Rod");
     public static final RepairkitTemplate REPAIR_KIT = new RepairkitTemplate(Categories.DUMMY, PART_REPAIR_KIT, DummySmeltery.TYPE, new ItemStack[9], "Repair Kit");
 
-    // Binders cant store class/mat - need a list to check against
-    @Getter
-    protected static final Map<String, String> binderMap = new HashMap<>();
-
     public static void set(SlimeTinker p) {
 
         // Dummies for the recipe book
@@ -355,61 +342,6 @@ public final class Parts {
         TOOL_ROD.register(p);
         REPAIR_KIT.register(p);
 
-        // Bindings
-
-        // Core Slimefun + Vanilla
-        PartTemplate binderString = new PartTemplate(Categories.DUMMY, PART_BINDING_STRING, Workbench.TYPE, RECIPE_BINDER_STRING, "String Binder");
-        binderString.setHidden(true);
-        binderString.register(p);
-        PartTemplate binderVine = new PartTemplate(Categories.DUMMY, PART_BINDING_VINE, Workbench.TYPE, RECIPE_BINDER_VINE, "Vine Binder");
-        binderVine.setHidden(true);
-        binderVine.register(p);
-        PartTemplate binderRootRed = new PartTemplate(Categories.DUMMY, PART_BINDING_ROOT_RED, Workbench.TYPE, RECIPE_BINDER_ROOT_RED, "Crimson Root Binder");
-        binderRootRed.setHidden(true);
-        binderRootRed.register(p);
-        PartTemplate binderRootGreen = new PartTemplate(Categories.DUMMY, PART_BINDING_ROOT_GREEN, Workbench.TYPE, RECIPE_BINDER_ROOT_GREEN, "Warped Root Binder");
-        binderRootGreen.setHidden(true);
-        binderRootGreen.register(p);
-        PartTemplate binderVineRed = new PartTemplate(Categories.DUMMY, PART_BINDING_VINE_RED, Workbench.TYPE, RECIPE_BINDER_VINE_RED, "Weeping Vine Binder");
-        binderVineRed.setHidden(true);
-        binderVineRed.register(p);
-        PartTemplate binderVineGreen = new PartTemplate(Categories.DUMMY, PART_BINDING_VINE_GREEN, Workbench.TYPE, RECIPE_BINDER_VINE_GREEN, "Twisted Vine Binder");
-        binderVineGreen.setHidden(true);
-        binderVineGreen.register(p);
-        PartTemplate binderSlime = new PartTemplate(Categories.DUMMY, PART_BINDING_SLIME, Workbench.TYPE, RECIPE_BINDER_SLIME, "Slime Binder");
-        binderSlime.setHidden(true);
-        binderSlime.register(p);
-        PartTemplate binderSilicon = new PartTemplate(Categories.DUMMY, PART_BINDING_SILICON, Workbench.TYPE, RECIPE_BINDER_SILICON, "Silicon Binder");
-        binderSilicon.setHidden(true);
-        binderSilicon.register(p);
-
-        binderMap.put(binderString.getId(), IDStrings.STRING);
-        binderMap.put(binderVine.getId(), IDStrings.VINE);
-        binderMap.put(binderRootRed.getId(), IDStrings.CRIMSONROOTS);
-        binderMap.put(binderRootGreen.getId(), IDStrings.WARPEDROOTS);
-        binderMap.put(binderVineRed.getId(), IDStrings.WEEPINGVINES);
-        binderMap.put(binderVineGreen.getId(), IDStrings.TWISTEDVINES);
-        binderMap.put(binderSlime.getId(), IDStrings.SLIME);
-        binderMap.put(binderSilicon.getId(), IDStrings.SILICON);
-
-        // Infinity Expac
-        if (SupportedPluginsManager.INFINITY_EXPANSION) {
-
-        }
-
-        // TODO Change all recipes to remove statics and avoid this issue with supported plugins
-        // Slimefun Warfare
-        if (SupportedPluginsManager.SLIMEFUN_WARFARE) {
-            PartTemplate binderSlimesteel = new PartTemplate(Categories.DUMMY, PART_BINDING_SLIMESTEEL, Workbench.TYPE, new ItemStack[] {
-                    SlimefunItem.getByID("SLIMESTEEL_INGOT").getItem(), null,                                               SlimefunItem.getByID("SLIMESTEEL_INGOT").getItem(),
-                    null,                                               SlimefunItem.getByID("SLIMESTEEL_INGOT").getItem(), null,
-                    SlimefunItem.getByID("SLIMESTEEL_INGOT").getItem(), null,                                               SlimefunItem.getByID("SLIMESTEEL_INGOT").getItem()
-            }, "Slimesteel Binder");
-            binderSlimesteel.setHidden(true);
-            binderSlimesteel.register(p);
-
-            binderMap.put(binderSlimesteel.getId(), IDStrings.SLIMESTEEL);
-        }
     }
 
 }

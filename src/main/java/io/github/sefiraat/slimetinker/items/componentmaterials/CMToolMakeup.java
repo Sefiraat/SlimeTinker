@@ -5,6 +5,8 @@ import lombok.Getter;
 @Getter
 public class CMToolMakeup {
 
+    private ComponentMaterial parent;
+
     private final boolean isValidHead;
     private final boolean isValidBinder;
     private final boolean isValidRod;
@@ -13,6 +15,10 @@ public class CMToolMakeup {
         this.isValidHead = isValidHead;
         this.isValidBinder = isValidBinder;
         this.isValidRod = isValidRod;
+    }
+
+    protected void   setParent(ComponentMaterial parent) {
+        this.parent = parent;
     }
 
 }

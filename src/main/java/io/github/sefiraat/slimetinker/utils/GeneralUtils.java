@@ -1,12 +1,10 @@
 package io.github.sefiraat.slimetinker.utils;
 
 import io.github.sefiraat.slimetinker.SlimeTinker;
-import jdk.internal.joptsimple.internal.Strings;
 import lombok.experimental.UtilityClass;
 import org.bukkit.Location;
 import org.bukkit.World;
 
-import java.util.Arrays;
 import java.util.Objects;
 
 @UtilityClass

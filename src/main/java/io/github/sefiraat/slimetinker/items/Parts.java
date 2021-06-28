@@ -8,7 +8,6 @@ import io.github.sefiraat.slimetinker.items.workstations.smeltery.DummySmeltery;
 import io.github.sefiraat.slimetinker.items.workstations.workbench.DummyWorkbench;
 import io.github.sefiraat.slimetinker.utils.SkullTextures;
 import io.github.sefiraat.slimetinker.utils.ThemeUtils;
-import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
 import io.github.thebusybiscuit.slimefun4.implementation.items.blocks.UnplaceableBlock;
 import lombok.experimental.UtilityClass;
 import me.mrCookieSlime.Slimefun.api.SlimefunItemStack;
@@ -27,62 +26,6 @@ public final class Parts {
                 null, null, null
         };
     }
-
-    protected static ItemStack[] getDummyBindingRecipe(ItemStack binder) {
-        return new ItemStack[]{
-                binder, null,   binder,
-                null,   binder, null,
-                binder, null,   binder
-        };
-    }
-
-    protected static final ItemStack[] RECIPE_BINDER_STRING = new ItemStack[] {
-            new ItemStack(Material.STRING), null,                           new ItemStack(Material.STRING),
-            null,                           new ItemStack(Material.STRING), null,
-            new ItemStack(Material.STRING), null,                           new ItemStack(Material.STRING)
-    };
-
-    protected static final ItemStack[] RECIPE_BINDER_VINE = new ItemStack[] {
-            new ItemStack(Material.VINE), null,                           new ItemStack(Material.VINE),
-            null,                           new ItemStack(Material.VINE), null,
-            new ItemStack(Material.VINE), null,                           new ItemStack(Material.VINE)
-    };
-
-    protected static final ItemStack[] RECIPE_BINDER_ROOT_RED = new ItemStack[] {
-            new ItemStack(Material.CRIMSON_ROOTS),  null,                                   new ItemStack(Material.CRIMSON_ROOTS),
-            null,                                   new ItemStack(Material.CRIMSON_ROOTS),  null,
-            new ItemStack(Material.CRIMSON_ROOTS),  null,                                   new ItemStack(Material.CRIMSON_ROOTS)
-    };
-
-    protected static final ItemStack[] RECIPE_BINDER_ROOT_GREEN = new ItemStack[] {
-            new ItemStack(Material.WARPED_ROOTS),   null,                                   new ItemStack(Material.WARPED_ROOTS),
-            null,                                   new ItemStack(Material.WARPED_ROOTS),   null,
-            new ItemStack(Material.WARPED_ROOTS),   null,                                   new ItemStack(Material.WARPED_ROOTS)
-    };
-
-    protected static final ItemStack[] RECIPE_BINDER_VINE_RED = new ItemStack[] {
-            new ItemStack(Material.WEEPING_VINES),  null,                                   new ItemStack(Material.WEEPING_VINES),
-            null,                                   new ItemStack(Material.WEEPING_VINES),  null,
-            new ItemStack(Material.WEEPING_VINES),  null,                                   new ItemStack(Material.WEEPING_VINES)
-    };
-
-    protected static final ItemStack[] RECIPE_BINDER_VINE_GREEN = new ItemStack[] {
-            new ItemStack(Material.TWISTING_VINES), null,                                   new ItemStack(Material.TWISTING_VINES),
-            null,                                   new ItemStack(Material.TWISTING_VINES), null,
-            new ItemStack(Material.TWISTING_VINES), null,                                   new ItemStack(Material.TWISTING_VINES)
-    };
-
-    protected static final ItemStack[] RECIPE_BINDER_SLIME = new ItemStack[] {
-            new ItemStack(Material.SLIME_BALL), null,                                   new ItemStack(Material.SLIME_BALL),
-            null,                                   new ItemStack(Material.SLIME_BALL), null,
-            new ItemStack(Material.SLIME_BALL), null,                                   new ItemStack(Material.SLIME_BALL)
-    };
-
-    protected static final ItemStack[] RECIPE_BINDER_SILICON = new ItemStack[] {
-            SlimefunItems.SILICON,  null,                   SlimefunItems.SILICON,
-            null,                   SlimefunItems.SILICON,  null,
-            SlimefunItems.SILICON,  null,                   SlimefunItems.SILICON
-    };
 
     public static final SlimefunItemStack PART_SHOVEL_HEAD_DUMMY =
             ThemeUtils.themedItemStack(
@@ -219,87 +162,6 @@ public final class Parts {
                     ThemeUtils.PASSIVE + DESC_ERROR
             );
 
-    public static final SlimefunItemStack PART_BINDING_STRING =
-            ThemeUtils.themedItemStack(
-                    "PART_BINDING_STRING",
-                    SkullTextures.PART_BINDING,
-                    ThemeUtils.ThemeItemType.PART,
-                    "String Binding",
-                    ThemeUtils.PASSIVE + "A binding made of string."
-            );
-
-    public static final SlimefunItemStack PART_BINDING_VINE =
-            ThemeUtils.themedItemStack(
-                    "PART_BINDING_VINE",
-                    SkullTextures.PART_BINDING,
-                    ThemeUtils.ThemeItemType.PART,
-                    "Vine Binding",
-                    ThemeUtils.PASSIVE + "A binding made of vines."
-            );
-
-    public static final SlimefunItemStack PART_BINDING_ROOT_RED =
-            ThemeUtils.themedItemStack(
-                    "PART_BINDING_ROOT_RED",
-                    SkullTextures.PART_BINDING,
-                    ThemeUtils.ThemeItemType.PART,
-                    "Crimson Root Binding",
-                    ThemeUtils.PASSIVE + "A binding made of crimson roots."
-            );
-
-    public static final SlimefunItemStack PART_BINDING_ROOT_GREEN =
-            ThemeUtils.themedItemStack(
-                    "PART_BINDING_ROOT_GREEN",
-                    SkullTextures.PART_BINDING,
-                    ThemeUtils.ThemeItemType.PART,
-                    "Warped Root Binding",
-                    ThemeUtils.PASSIVE + "A binding made of warped roots."
-            );
-
-    public static final SlimefunItemStack PART_BINDING_VINE_RED =
-            ThemeUtils.themedItemStack(
-                    "PART_BINDING_VINE_RED",
-                    SkullTextures.PART_BINDING,
-                    ThemeUtils.ThemeItemType.PART,
-                    "Weeping Vine Binding",
-                    ThemeUtils.PASSIVE + "A binding made of weeping vines."
-            );
-
-    public static final SlimefunItemStack PART_BINDING_VINE_GREEN =
-            ThemeUtils.themedItemStack(
-                    "PART_BINDING_VINE_GREEN",
-                    SkullTextures.PART_BINDING,
-                    ThemeUtils.ThemeItemType.PART,
-                    "Twisted Vine Binding",
-                    ThemeUtils.PASSIVE + "A binding made of twisted vines."
-            );
-
-    public static final SlimefunItemStack PART_BINDING_SLIME =
-            ThemeUtils.themedItemStack(
-                    "PART_BINDING_SLIME",
-                    SkullTextures.PART_BINDING,
-                    ThemeUtils.ThemeItemType.PART,
-                    "Slimy Binding",
-                    ThemeUtils.PASSIVE + "A binding made of lovely goo."
-            );
-
-    public static final SlimefunItemStack PART_BINDING_SLIMESTEEL =
-            ThemeUtils.themedItemStack(
-                    "PART_BINDING_SLIMESTEEL",
-                    SkullTextures.PART_BINDING,
-                    ThemeUtils.ThemeItemType.PART,
-                    "Slimesteel Binding",
-                    ThemeUtils.PASSIVE + "A binding made of an elastic metal."
-            );
-
-    public static final SlimefunItemStack PART_BINDING_SILICON =
-            ThemeUtils.themedItemStack(
-                    "PART_BINDING_SILICON",
-                    SkullTextures.PART_BINDING,
-                    ThemeUtils.ThemeItemType.PART,
-                    "SIlicon Binding",
-                    ThemeUtils.PASSIVE + "A binding made of a silicon."
-            );
-
     public static final SlimefunItemStack PART_BINDING_GENERAL_DISPLAY =
             ThemeUtils.themedItemStack(
                     "PART_BINDING_GENERAL_DISPLAY",
@@ -330,7 +192,11 @@ public final class Parts {
         new UnplaceableBlock(Categories.PARTS, PART_HOE_HEAD_DUMMY, DummySmeltery.TYPE, getDummyCastRecipe(Casts.CAST_HOEHEAD)).register(p);
         new UnplaceableBlock(Categories.PARTS, PART_SWORD_BLADE_DUMMY, DummySmeltery.TYPE, getDummyCastRecipe(Casts.CAST_SWORDBLADE)).register(p);
         new UnplaceableBlock(Categories.PARTS, PART_TOOL_ROD_DUMMY, DummySmeltery.TYPE, getDummyCastRecipe(Casts.CAST_TOOLROD)).register(p);
-        new UnplaceableBlock(Categories.PARTS, PART_BINDING_DUMMY, DummyWorkbench.TYPE, getDummyBindingRecipe(PART_BINDING_GENERAL_DISPLAY)).register(p);
+        new UnplaceableBlock(Categories.PARTS, PART_BINDING_DUMMY, DummyWorkbench.TYPE, new ItemStack[]{
+                PART_BINDING_GENERAL_DISPLAY, null,   PART_BINDING_GENERAL_DISPLAY,
+                null,   PART_BINDING_GENERAL_DISPLAY, null,
+                PART_BINDING_GENERAL_DISPLAY, null,   PART_BINDING_GENERAL_DISPLAY
+        }).register(p);
         new UnplaceableBlock(Categories.PARTS, PART_REPAIR_KIT_DUMMY, DummySmeltery.TYPE, getDummyCastRecipe(Casts.CAST_REPAIRKIT)).register(p);
 
         // Real ones, not in recipe book due to the variations

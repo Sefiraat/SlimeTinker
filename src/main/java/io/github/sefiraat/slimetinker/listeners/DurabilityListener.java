@@ -24,6 +24,7 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class DurabilityListener implements Listener {
 
+    @SuppressWarnings("unused")
     @EventHandler
     public void onItemDamage(PlayerItemDamageEvent event) {
 
@@ -70,6 +71,7 @@ public class DurabilityListener implements Listener {
 
     }
 
+    @SuppressWarnings("unused")
     @EventHandler
     public void onItemBreak(PlayerItemBreakEvent event) { // Covering my bases here for anything else that can break a tool, may not be required?
 

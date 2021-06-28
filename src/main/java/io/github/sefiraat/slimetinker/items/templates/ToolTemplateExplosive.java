@@ -21,9 +21,9 @@ public class ToolTemplateExplosive extends ExplosiveTool {
 
     public String getName(ToolDefinition toolDefinition) {
         return
-                ChatColor.of(CMManager.getById(toolDefinition.getHeadMaterial()).getColorHex()) + ThemeUtils.toTitleCase(toolDefinition.getHeadMaterial()) + "-" +
-                ChatColor.of(CMManager.getById(toolDefinition.getBinderMaterial()).getColorHex()) + ThemeUtils.toTitleCase(toolDefinition.getBinderMaterial()) + "-" +
-                ChatColor.of(CMManager.getById(toolDefinition.getRodMaterial()).getColorHex()) + ThemeUtils.toTitleCase(toolDefinition.getRodMaterial()) + " " +
+                CMManager.getById(toolDefinition.getHeadMaterial()).getColor() + ThemeUtils.toTitleCase(toolDefinition.getHeadMaterial()) + "-" +
+                CMManager.getById(toolDefinition.getBinderMaterial()).getColor() + ThemeUtils.toTitleCase(toolDefinition.getBinderMaterial()) + "-" +
+                CMManager.getById(toolDefinition.getRodMaterial()).getColor() + ThemeUtils.toTitleCase(toolDefinition.getRodMaterial()) + " " +
                 ChatColor.WHITE + ThemeUtils.toTitleCase(toolDefinition.getPartType());
 
     }

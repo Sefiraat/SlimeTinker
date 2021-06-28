@@ -94,7 +94,5 @@ public final class Mods {
         new UnplaceableBlock(Categories.MODIFICATIONS, MOD_EMERALD_DUMMY, DummyModificationStation.TYPE, new ItemStack[9]).register(p);
         new UnplaceableBlock(Categories.MODIFICATIONS, MOD_PLATE_DUMMY, DummyModificationStation.TYPE, new ItemStack[9]).register(p);
 
-        // Real recipes when modifiers are NOT plain itemstacks
-
     }
 }

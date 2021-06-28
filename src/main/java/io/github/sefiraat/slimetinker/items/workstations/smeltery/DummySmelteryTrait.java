@@ -9,9 +9,9 @@ import me.mrCookieSlime.Slimefun.api.SlimefunItemStack;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
-public final class DummySmelteryProp {
+public final class DummySmelteryTrait {
 
-    private DummySmelteryProp() {
+    private DummySmelteryTrait() {
         throw new IllegalStateException("Utility class");
     }
 

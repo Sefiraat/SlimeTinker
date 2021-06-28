@@ -3,8 +3,8 @@ package io.github.sefiraat.slimetinker.items.componentmaterials.factories;
 import io.github.mooy1.infinitylib.items.StackUtils;
 import io.github.sefiraat.slimetinker.items.Casts;
 import io.github.sefiraat.slimetinker.items.Dies;
-import io.github.sefiraat.slimetinker.items.Parts;
 import io.github.sefiraat.slimetinker.items.componentmaterials.CMAlloy;
+import io.github.sefiraat.slimetinker.items.componentmaterials.CMTraits;
 import io.github.sefiraat.slimetinker.items.componentmaterials.ComponentMaterial;
 import io.github.sefiraat.slimetinker.items.componentmaterials.recipes.CastResult;
 import io.github.sefiraat.slimetinker.items.componentmaterials.recipes.MoltenResult;
@@ -20,16 +20,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static io.github.sefiraat.slimetinker.utils.IDStrings.AXE;
 import static io.github.sefiraat.slimetinker.utils.IDStrings.BRASS;
 import static io.github.sefiraat.slimetinker.utils.IDStrings.GOLD;
-import static io.github.sefiraat.slimetinker.utils.IDStrings.HEAD;
-import static io.github.sefiraat.slimetinker.utils.IDStrings.HOE;
-import static io.github.sefiraat.slimetinker.utils.IDStrings.PICKAXE;
-import static io.github.sefiraat.slimetinker.utils.IDStrings.REPAIR;
-import static io.github.sefiraat.slimetinker.utils.IDStrings.ROD;
-import static io.github.sefiraat.slimetinker.utils.IDStrings.SHOVEL;
-import static io.github.sefiraat.slimetinker.utils.IDStrings.SWORD;
 
 public class CMManager {
 
@@ -41,7 +33,6 @@ public class CMManager {
 
     // Calculated
     public static final int AMOUNT_INGOT = AMOUNT_NUGGET * 9;
-    public static final int AMOUNT_BUCKET = AMOUNT_INGOT;
     public static final int AMOUNT_ORE = AMOUNT_INGOT * 2;
     public static final int AMOUNT_BLOCK = AMOUNT_INGOT * 9;
     public static final int AMOUNT_BOOT = AMOUNT_INGOT * 4;
@@ -52,6 +43,7 @@ public class CMManager {
     public static final int AMOUNT_GEM = AMOUNT_INGOT;
     public static final int AMOUNT_CAST = AMOUNT_INGOT * 2;
     public static final int AMOUNT_KIT = AMOUNT_INGOT * 3;
+    public static final int AMOUNT_BUCKET = AMOUNT_BLOCK * 9;
 
     public static final int AMOUNT_SHOVELHEAD = AMOUNT_INGOT;
     public static final int AMOUNT_PICKAXEHEAD = AMOUNT_INGOT * 3;
@@ -77,18 +69,28 @@ public class CMManager {
     protected static final Map<ComponentMaterial, ItemStack> MAP_DIE_REPAIRKIT = new HashMap<>();
 
     // Casts (Items that cast metals and remain)
+    @Getter
     protected static final Map<ComponentMaterial, ItemStack> MAP_CAST_NUGGET = new HashMap<>();
+    @Getter
     protected static final Map<ComponentMaterial, ItemStack> MAP_CAST_INGOT = new HashMap<>();
+    @Getter
     protected static final Map<ComponentMaterial, ItemStack> MAP_CAST_BLOCK = new HashMap<>();
+    @Getter
     protected static final Map<ComponentMaterial, ItemStack> MAP_CAST_GEM = new HashMap<>();
+    @Getter
     protected static final Map<ComponentMaterial, ItemStack> MAP_CAST_SHOVELHEAD = new HashMap<>();
+    @Getter
     protected static final Map<ComponentMaterial, ItemStack> MAP_CAST_PICKAXEHEAD = new HashMap<>();
+    @Getter
     protected static final Map<ComponentMaterial, ItemStack> MAP_CAST_AXEHEAD = new HashMap<>();
+    @Getter
     protected static final Map<ComponentMaterial, ItemStack> MAP_CAST_HOEHEAD = new HashMap<>();
+    @Getter
     protected static final Map<ComponentMaterial, ItemStack> MAP_CAST_SWORDBLADE = new HashMap<>();
+    @Getter
     protected static final Map<ComponentMaterial, ItemStack> MAP_CAST_TOOLROD = new HashMap<>();
+    @Getter
     protected static final Map<ComponentMaterial, ItemStack> MAP_CAST_REPAIRKIT = new HashMap<>();
-
 
     public CMManager() {
 
@@ -105,18 +107,12 @@ public class CMManager {
         if (SupportedPluginsManager.DYNATECH) {
             MAP.putAll(CMDynaTech.getMap());
         }
+        if (SupportedPluginsManager.LITEXPANSION) {
+            MAP.putAll(CMLiteXpansion.getMap());
+        }
 
         // Add melting recipes
         for (Map.Entry<String, ComponentMaterial> entry : MAP.entrySet()) {
-
-            // Tools and Kits (referenced through dummy)
-            if (entry.getValue().isValidToolRod()) MAP_CAST_TOOLROD.put(entry.getValue(), Parts.TOOL_ROD.getStack(entry.getKey(), ROD, null));
-            if (entry.getValue().isValidToolHead()) MAP_CAST_SWORDBLADE.put(entry.getValue(), Parts.SWORD_BLADE.getStack(entry.getKey(), HEAD, SWORD));
-            if (entry.getValue().isValidToolHead()) MAP_CAST_HOEHEAD.put(entry.getValue(), Parts.HOE_HEAD.getStack(entry.getKey(), HEAD, HOE));
-            if (entry.getValue().isValidToolHead()) MAP_CAST_AXEHEAD.put(entry.getValue(), Parts.AXE_HEAD.getStack(entry.getKey(), HEAD, AXE));
-            if (entry.getValue().isValidToolHead()) MAP_CAST_PICKAXEHEAD.put(entry.getValue(), Parts.PICKAXE_HEAD.getStack(entry.getKey(), HEAD, PICKAXE));
-            if (entry.getValue().isValidToolHead()) MAP_CAST_SHOVELHEAD.put(entry.getValue(), Parts.SHOVEL_HEAD.getStack(entry.getKey(), HEAD, SHOVEL));
-            if (entry.getValue().isValidToolHead()) MAP_CAST_REPAIRKIT.put(entry.getValue(), Parts.REPAIR_KIT.getStack(entry.getKey(), REPAIR)); // We use HEAD here are repair always goes by head material
 
             // Gems
             if (entry.getValue().getFormGem() != null) {
@@ -239,16 +235,21 @@ public class CMManager {
     }
 
     public static ChatColor getColorById(String id) {
-        return ChatColor.of(MAP.get(id).getColorHex());
+        return MAP.get(id).getColor();
     }
 
     public static String getTraitName(String id, TraitPartType partType) {
+        CMTraits cmTraits = MAP.get(id).getCmTraits();
+        assert cmTraits != null;
         if (partType == TraitPartType.HEAD) {
-            return MAP.get(id).getCmTraits().getTraitHead().getTraitName();
+            assert cmTraits.getTraitHead() != null;
+            return cmTraits.getTraitHead().getTraitName();
         } else if (partType == TraitPartType.BINDER) {
-            return MAP.get(id).getCmTraits().getTraitBind().getTraitName();
+            assert cmTraits.getTraitBind() != null;
+            return cmTraits.getTraitBind().getTraitName();
         } else {
-            return MAP.get(id).getCmTraits().getTraitRod().getTraitName();
+            assert cmTraits.getTraitRod() != null;
+            return cmTraits.getTraitRod().getTraitName();
         }
     }
 

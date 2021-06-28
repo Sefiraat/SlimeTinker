@@ -40,6 +40,7 @@ public class SwappingStation extends AbstractContainer {
         super(category, item, recipeType, recipe);
     }
 
+    @SuppressWarnings("SameReturnValue")
     protected boolean craft(BlockMenu blockMenu, Player player) {
 
         ItemStack tool = blockMenu.getItemInSlot(INPUT_TOOL);
@@ -97,7 +98,7 @@ public class SwappingStation extends AbstractContainer {
         assert newToolMeta != null;
         PersistentDataContainer newToolC = newToolMeta.getPersistentDataContainer();
 
-        String swappedMaterial = null;
+        String swappedMaterial;
 
         switch (partClass) {
             case IDStrings.HEAD:

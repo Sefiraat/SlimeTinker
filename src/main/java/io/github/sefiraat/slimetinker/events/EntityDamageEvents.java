@@ -13,11 +13,16 @@ import org.bukkit.attribute.Attribute;
 import org.bukkit.entity.Animals;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
+import org.bukkit.entity.Mob;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
+import java.time.Instant;
 import java.util.concurrent.ThreadLocalRandom;
 
 import static io.github.sefiraat.slimetinker.utils.EntityUtils.push;
@@ -203,7 +208,7 @@ public final class EntityDamageEvents {
         friend.setSegganessonDamage(friend.getSegganessonDamage() + friend.getInitialDamage());
     }
 
-    public static void headOsmiumsuperalloy(EventFriend friend) {
+    public static void headOsmiumSuperalloy(EventFriend friend) {
         int rnd = ThreadLocalRandom.current().nextInt(1, 4);
         if (rnd == 1) {
             friend.setDamageMod(friend.getDamageMod() + 2);
@@ -257,4 +262,58 @@ public final class EntityDamageEvents {
         e.getWorld().spawnParticle(Particle.REDSTONE, e.getLocation(), 60, 3, 3, 3, 1, dustOptions3);
     }
 
+    public static void headAdvancedAlloy(EventFriend friend) {
+        for (Entity e : friend.getPlayer().getNearbyEntities(3,3,3)) {
+            if (e instanceof LivingEntity && e != friend.getDamagedEntity()) {
+                ((LivingEntity) e).damage(friend.getInitialDamage());
+                Particle.DustOptions dustOptions3 = new Particle.DustOptions(Color.fromRGB(250,75,10), 5);
+                e.getWorld().spawnParticle(Particle.REDSTONE, e.getLocation(), 20, 3, 3, 3, 1, dustOptions3);
+            }
+        }
+    }
+
+    public static void rodRefinedIron(EventFriend friend) {
+        friend.setDamageMod(friend.getDamageMod() + 0.5);
+        Entity e = friend.getDamagedEntity();
+        Particle.DustOptions dustOptions = new Particle.DustOptions(Color.fromRGB(200,50,50), 5);
+        e.getWorld().spawnParticle(Particle.REDSTONE, e.getLocation(), 30, 3, 3, 3, 1, dustOptions);
+        Particle.DustOptions dustOptions2 = new Particle.DustOptions(Color.fromRGB(50,200,50), 5);
+        e.getWorld().spawnParticle(Particle.REDSTONE, e.getLocation(), 30, 3, 3, 3, 1, dustOptions2);
+        Particle.DustOptions dustOptions3 = new Particle.DustOptions(Color.fromRGB(50,50,200), 5);
+        e.getWorld().spawnParticle(Particle.REDSTONE, e.getLocation(), 30, 3, 3, 3, 1, dustOptions3);
+    }
+
+    public static void headRefinedIron(EventFriend friend) {
+        if (friend.getToolLevel() >= 10) {
+            friend.setDamageMod(friend.getDamageMod() + (friend.getToolLevel() * 0.1));
+        }
+    }
+
+    public static void headScrap(EventFriend friend) {
+        friend.setToolExpMod(0);
+    }
+
+    public static void rodIridium(EventFriend friend) {
+
+        ItemStack i = friend.getHeldItem();
+        ItemMeta im = i.getItemMeta();
+        NamespacedKey key = SlimeTinker.inst().getKeys().getToolCooldownWarp();
+        assert im != null;
+        PersistentDataContainer c = im.getPersistentDataContainer();
+        long time = System.currentTimeMillis();
+
+        if (c.has(key, PersistentDataType.LONG)) {
+            Long cd = c.get(key, PersistentDataType.LONG);
+            assert cd != null;
+            if (cd > time) {
+                return;
+            }
+        }
+
+        friend.getDamagedEntity().teleport(friend.getDamagedEntity().getLocation().clone().setDirection(friend.getPlayer().getLocation().getDirection()));
+
+        Instant cd = Instant.ofEpochMilli(time).plusSeconds(20);
+        c.set(key, PersistentDataType.LONG, cd.toEpochMilli());
+        i.setItemMeta(im);
+    }
 }

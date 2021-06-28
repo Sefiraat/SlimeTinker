@@ -40,6 +40,7 @@ public class ModificationStation extends AbstractContainer {
         super(category, item, recipeType, recipe);
     }
 
+    @SuppressWarnings("SameReturnValue")
     protected boolean craft(BlockMenu blockMenu, Player player) {
 
         ItemStack tool = blockMenu.getItemInSlot(INPUT_TOOL);
@@ -58,7 +59,7 @@ public class ModificationStation extends AbstractContainer {
         }
 
         // No modifier!
-        if (modItem == null || !Modifications.getMODIFICAION_LIST().contains(StackUtils.getIDorType(modItem))) {
+        if (modItem == null || !Modifications.getMODIFICATION_LIST().contains(StackUtils.getIDorType(modItem))) {
             player.sendMessage(ThemeUtils.WARNING + "Input a valid modifier into the second slot.");
             return false;
         }
@@ -91,7 +92,7 @@ public class ModificationStation extends AbstractContainer {
             }
         }  // Or continuing on with a previous mod so we can continue without a free slot
 
-        if (requiredAmount <= modItem.getAmount()) { // We dont need the full amount (or the full amount will level up the tool)
+        if (requiredAmount <= modItem.getAmount()) { // We don't need the full amount (or the full amount will level up the tool)
             leftoverAmount = modItem.getAmount() - requiredAmount; // Remove what we need
             Modifications.setModLevel(mod, c, currentLevel + 1);
             currentAmount = 0;

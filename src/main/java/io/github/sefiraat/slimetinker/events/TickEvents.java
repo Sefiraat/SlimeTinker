@@ -30,7 +30,7 @@ public final class TickEvents {
         increaseEffect(PotionEffectType.GLOWING, friend.getPotionEffects());
     }
 
-    public static void binderTwistingvine(EventFriend friend) {
+    public static void binderTwistingVine(EventFriend friend) {
         for (Entity entity : friend.getPlayer().getNearbyEntities(5,5,5)) {
             if (entity instanceof Item) {
                 Location eLoc = entity.getLocation();
@@ -44,7 +44,7 @@ public final class TickEvents {
         increaseEffect(PotionEffectType.SATURATION, friend.getPotionEffects());
     }
 
-    public static void binderCrimsonroot(EventFriend friend) {
+    public static void binderCrimsonRoot(EventFriend friend) {
         if (!GeneralUtils.day(friend.getPlayer().getWorld())) {
             int rnd = ThreadLocalRandom.current().nextInt(1,5);
             if (rnd == 1) {
@@ -53,7 +53,7 @@ public final class TickEvents {
         }
     }
 
-    public static void binderWeepingvine(EventFriend friend) {
+    public static void binderWeepingVine(EventFriend friend) {
         increaseEffect(PotionEffectType.BAD_OMEN, friend.getPotionEffects());
     }
 
@@ -111,7 +111,7 @@ public final class TickEvents {
         increaseEffect(PotionEffectType.WATER_BREATHING, friend.getPotionEffects());
     }
 
-    public static void bindWarpedroot(EventFriend friend) {
+    public static void bindWarpedRoot(EventFriend friend) {
         int rnd = ThreadLocalRandom.current().nextInt(1,5);
         if (rnd == 1) {
             friend.getPlayer().setHealth(Math.min(friend.getPlayer().getHealth() + 1, friend.getPlayer().getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue()));
@@ -156,10 +156,6 @@ public final class TickEvents {
         if (ItemUtils.isToolBroken(friend.getHeldItem())) {
             increaseEffect(PotionEffectType.SLOW_DIGGING, friend.getPotionEffects());
         }
-    }
-
-    public static void bindString(EventFriend friend) {
-        increaseEffect(PotionEffectType.WEAKNESS, friend.getPotionEffects());
     }
 
     public static void rodSingGold(EventFriend friend) {
@@ -282,7 +278,7 @@ public final class TickEvents {
         increaseEffect(PotionEffectType.JUMP, friend.getPotionEffects(), 1);
     }
 
-    public static void headOsmiumsuperalloy(EventFriend friend) {
+    public static void headOsmiumSuperalloy(EventFriend friend) {
         increaseEffect(PotionEffectType.SLOW_DIGGING, friend.getPotionEffects());
     }
 
@@ -296,5 +292,24 @@ public final class TickEvents {
                 e.teleport(BlockUtils.getMid(eLoc.getWorld(), eLoc.getX(), eLoc.getY(), eLoc.getZ(), pLoc.getX(), pLoc.getY(), pLoc.getZ()));
             }
         }
+    }
+
+    public static void rodRefinedIron(EventFriend friend) {
+        increaseEffect(PotionEffectType.SPEED, friend.getPotionEffects());
+    }
+
+    public static void headMixedMetal(EventFriend friend) {
+        int rnd = ThreadLocalRandom.current().nextInt(1, 4);
+        if (rnd == 1) {
+            increaseEffect(PotionEffectType.SPEED, friend.getPotionEffects());
+        } else if (rnd == 2) {
+            increaseEffect(PotionEffectType.FIRE_RESISTANCE, friend.getPotionEffects());
+        } else if (rnd == 3) {
+            increaseEffect(PotionEffectType.LUCK, friend.getPotionEffects());
+        }
+    }
+
+    public static void bindCarbonMesh(EventFriend friend) {
+        increaseEffect(PotionEffectType.SPEED, friend.getPotionEffects());
     }
 }

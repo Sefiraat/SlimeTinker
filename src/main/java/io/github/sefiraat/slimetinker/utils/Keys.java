@@ -16,6 +16,7 @@ public class Keys {
     private final NamespacedKey categoryProperties = new NamespacedKey(SlimeTinker.inst(), "slime-tinker-properties");
     private final NamespacedKey categoryCasts = new NamespacedKey(SlimeTinker.inst(), "slime-tinker-casts");
     private final NamespacedKey categoryParts = new NamespacedKey(SlimeTinker.inst(), "slime-tinker-parts");
+    private final NamespacedKey categoryPartDict = new NamespacedKey(SlimeTinker.inst(), "slime-tinker-part-dict");
     private final NamespacedKey categoryTools = new NamespacedKey(SlimeTinker.inst(), "slime-tinker-tools");
     private final NamespacedKey categoryModifications = new NamespacedKey(SlimeTinker.inst(), "slime-tinker-modifications");
     private final NamespacedKey categoryDummy = new NamespacedKey(SlimeTinker.inst(), "slime-tinker-dummy");
@@ -46,6 +47,8 @@ public class Keys {
     private final NamespacedKey toolCooldownNoClip = new NamespacedKey(SlimeTinker.inst(), "ST_cd_noclip");
     private final NamespacedKey toolCooldownHypercube = new NamespacedKey(SlimeTinker.inst(), "ST_cd_hypercube");
     private final NamespacedKey toolHypercubeLocation = new NamespacedKey(SlimeTinker.inst(), "ST_loc_hypercube");
+    private final NamespacedKey toolCooldownProtective = new NamespacedKey(SlimeTinker.inst(), "ST_cd_protective");
+    private final NamespacedKey toolCooldownWarp = new NamespacedKey(SlimeTinker.inst(), "ST_cd_warp");
 
     // Workstations
     private final NamespacedKey wsDummySmeltery = new NamespacedKey(SlimeTinker.inst(), "dummy-smeltery");

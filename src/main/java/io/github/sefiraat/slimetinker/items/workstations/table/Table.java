@@ -155,7 +155,7 @@ public class Table extends AbstractContainer {
         return itemStack;
     }
 
-
+    @SuppressWarnings("BooleanMethodIsAlwaysInverted")
     protected boolean validateClass(ItemStack itemStack, String classType) {
         if (itemStack == null || !itemStack.hasItemMeta()) { // No item
             return false;
@@ -168,6 +168,7 @@ public class Table extends AbstractContainer {
         return type.equals(classType);
     }
 
+    @SuppressWarnings("BooleanMethodIsAlwaysInverted")
     protected boolean validateBinder(ItemStack itemStack) {
         if (itemStack == null || !itemStack.hasItemMeta()) { // No item
             return false;
@@ -175,6 +176,7 @@ public class Table extends AbstractContainer {
         return StackUtils.getIDorType(itemStack).startsWith("PART_BINDING_");
     }
 
+    @SuppressWarnings("SameReturnValue")
     protected boolean craft(BlockMenu blockMenu, Player player) {
 
         ItemStack head = blockMenu.getItemInSlot(INPUT_HEAD);

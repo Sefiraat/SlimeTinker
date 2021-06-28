@@ -37,6 +37,7 @@ import java.util.Map;
 
 public class BlockBreakListener implements Listener {
 
+    @SuppressWarnings("unused")
     @EventHandler
     public void onBlockBreak(BlockBreakEvent event) {
 
@@ -75,7 +76,7 @@ public class BlockBreakListener implements Listener {
 
         // Cancel if tool is broken (moved down here as we bypass if the duralium event fires)
         if (cancelIfBroken(heldItem)) {
-            if (matPropertyHead.equals(IDStrings.DURALIUM) || matPropertyRod.equals(IDStrings.TITANIUM)) { // Run duraluim as it will flag the duraliumCheck meaning we can bypass durability checks
+            if (matPropertyHead.equals(IDStrings.DURALIUM) || matPropertyRod.equals(IDStrings.TITANIUM)) { // Run duralium as it will flag the duraliumCheck meaning we can bypass durability checks
                 BlockBreakEvents.headDuralium(friend);
             } else {
                 event.getPlayer().sendMessage(ThemeUtils.WARNING + "Your tool is broken, you should really repair it!");
@@ -102,22 +103,22 @@ public class BlockBreakListener implements Listener {
             if (friend.isBlocksIntoInv()) {
                 Map<Integer, ItemStack> remainingItems = p.getInventory().addItem(i);
                 for (ItemStack i2 : remainingItems.values()) {
-                    block.getWorld().dropItemNaturally(block.getLocation().clone().add(0.5, 0.5, 0.5), i2);
+                    block.getWorld().dropItem(block.getLocation().clone().add(0.5, 0.5, 0.5), i2);
                 }
                 continue;
             }
-            block.getWorld().dropItemNaturally(block.getLocation().clone().add(0.5, 0.5, 0.5), i);
+            block.getWorld().dropItem(block.getLocation().clone().add(0.5, 0.5, 0.5), i);
         }
 
         for (ItemStack i : friend.getAddDrops()) { // Then the additional items collection - no removals
             if (friend.isBlocksIntoInv()) {
                 Map<Integer, ItemStack> remainingItems = p.getInventory().addItem(i);
                 for (ItemStack i2 : remainingItems.values()) {
-                    block.getWorld().dropItemNaturally(block.getLocation().clone().add(0.5, 0.5, 0.5), i2);
+                    block.getWorld().dropItem(block.getLocation().clone().add(0.5, 0.5, 0.5), i2);
                 }
                 continue;
             }
-            block.getWorld().dropItemNaturally(block.getLocation().clone().add(0.5, 0.5, 0.5), i);
+            block.getWorld().dropItem(block.getLocation().clone().add(0.5, 0.5, 0.5), i);
         }
 
         if (shouldGrantExp(heldItem, event.getBlock())) { // Should grant exp (checks tool / material validity and the crop state)
@@ -139,7 +140,12 @@ public class BlockBreakListener implements Listener {
 
     private boolean shouldGrantExp(ItemStack itemStack, Block block) {
 
-        String toolType = itemStack.getItemMeta().getPersistentDataContainer().get(SlimeTinker.inst().getKeys().getToolInfoToolType(), PersistentDataType.STRING);
+        ItemMeta im = itemStack.getItemMeta();
+        assert im != null;
+        PersistentDataContainer c = im.getPersistentDataContainer();
+
+        String toolType = c.get(SlimeTinker.inst().getKeys().getToolInfoToolType(), PersistentDataType.STRING);
+        assert toolType != null;
 
         // Hoe Stuff (Ageable and fully grown only)
         if (block.getBlockData() instanceof Ageable) {
@@ -151,12 +157,12 @@ public class BlockBreakListener implements Listener {
         }
 
         // Block isn't in the block map, so no Exp
-        if (!BlockMap.materialMap.containsKey(block.getType())) {
+        if (!BlockMap.getMaterialMap().containsKey(block.getType())) {
             return false;
         }
 
         // Return toolType matches the stored one from the map
-        return BlockMap.materialMap.get(block.getType()).equals(toolType);
+        return BlockMap.getMaterialMap().get(block.getType()).equals(toolType);
 
     }
 

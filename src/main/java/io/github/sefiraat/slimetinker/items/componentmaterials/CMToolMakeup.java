@@ -17,8 +17,4 @@ public class CMToolMakeup {
         this.isValidRod = isValidRod;
     }
 
-    protected void   setParent(ComponentMaterial parent) {
-        this.parent = parent;
-    }
-
 }

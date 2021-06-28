@@ -1,5 +1,6 @@
 package io.github.sefiraat.slimetinker.items.componentmaterials;
 
+import io.github.sefiraat.slimetinker.managers.SupportedPluginsManager;
 import io.github.sefiraat.slimetinker.utils.SkullTextures;
 import io.github.sefiraat.slimetinker.utils.ThemeUtils;
 import lombok.Getter;
@@ -28,6 +29,21 @@ public class CMTraits {
         this.traitRod = traitRod;
     }
 
+    public void setupTraits(ComponentMaterial parent) {
+        this.parent = parent;
+
+        if (traitHead != null) {
+            traitHead.setupTrait(this, parent);
+        }
+        if (traitBind != null) {
+            traitBind.setupTrait(this, parent);
+        }
+        if (traitRod != null) {
+            traitRod.setupTrait(this, parent);
+        }
+
+    }
+
     public static final SlimefunItemStack PROP_HEAD =
             ThemeUtils.themedItemStack(
                     "PROP_HEAD",
@@ -54,15 +70,6 @@ public class CMTraits {
                     "Part: Tool Rod",
                     ThemeUtils.PASSIVE + "Any 'Tool Rod' item."
             );
-    // Used to display the 'rod' item in Property explanation recipes only
-    public static final SlimefunItemStack PROP_HEADROD =
-            ThemeUtils.themedItemStack(
-                    "PROP_HEADROD",
-                    SkullTextures.PROPERTIES_CORE,
-                    ThemeUtils.ThemeItemType.PART,
-                    "Part: Head and Rod",
-                    ThemeUtils.PASSIVE + "Any 'Head' or 'Tool Rod'."
-            );
 
     protected static ItemStack[] propRecipe(SlimefunItemStack part, ItemStack stack) {
         return new ItemStack[]{
@@ -72,8 +79,19 @@ public class CMTraits {
         };
     }
 
-    protected void setParent(ComponentMaterial parent) {
-        this.parent = parent;
+    protected static String getTraitTexture(String addedBy) {
+        if (addedBy.equals(SupportedPluginsManager.CORE_NOTE)) {
+            return SkullTextures.TRAITS_CORE;
+        } else if (addedBy.equals(SupportedPluginsManager.INFINITY_EXPANSION_NOTE)) {
+            return SkullTextures.TRAITS_INFINITY;
+        } else if (addedBy.equals(SupportedPluginsManager.SLIMEFUN_WARFARE_NOTE)) {
+            return SkullTextures.TRAITS_WARFARE;
+        } else if (addedBy.equals(SupportedPluginsManager.DYNATECH_NOTE)) {
+            return SkullTextures.TRAITS_DYNATECH;
+        } else if (addedBy.equals(SupportedPluginsManager.LITEXPANSION_NOTE)) {
+            return SkullTextures.TRAITS_LITEXPANSION;
+        }
+        return "error";
     }
 
 }

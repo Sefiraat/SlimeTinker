@@ -46,7 +46,7 @@ public final class Categories {
             ThemeUtils.MAIN + "Tool Building Guide"
     ));
     public static final SubCategory TRAITS = new SubCategory(SlimeTinker.inst().getKeys().getCategoryProperties(), MAIN, new CustomItem(
-            SkullItem.fromBase64(SkullTextures.CAT_PROPERTIES),
+            SkullItem.fromBase64(SkullTextures.CAT_TRAITS),
             ThemeUtils.MAIN + "Metal Traits"
     ));
     public static final SubCategory MODIFICATIONS = new SubCategory(SlimeTinker.inst().getKeys().getCategoryModifications(), MAIN, new CustomItem(

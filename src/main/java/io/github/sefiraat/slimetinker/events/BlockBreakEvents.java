@@ -218,4 +218,8 @@ public final class BlockBreakEvents {
     public static void bindSilicon(EventFriend friend) {
         friend.setToolExpMod(friend.getToolExpMod() + (friend.getToolExpMod() * (friend.getToolLevel() * 0.05)));
     }
+
+    public static void headScrap(EventFriend friend) {
+        friend.setToolExpMod(0);
+    }
 }

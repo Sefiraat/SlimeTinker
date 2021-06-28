@@ -293,4 +293,23 @@ public final class TickEvents {
             }
         }
     }
+
+    public static void rodRefinedIron(EventFriend friend) {
+        increaseEffect(PotionEffectType.SPEED, friend.getPotionEffects());
+    }
+
+    public static void headMixedMetal(EventFriend friend) {
+        int rnd = ThreadLocalRandom.current().nextInt(1, 4);
+        if (rnd == 1) {
+            increaseEffect(PotionEffectType.SPEED, friend.getPotionEffects());
+        } else if (rnd == 2) {
+            increaseEffect(PotionEffectType.FIRE_RESISTANCE, friend.getPotionEffects());
+        } else if (rnd == 3) {
+            increaseEffect(PotionEffectType.LUCK, friend.getPotionEffects());
+        }
+    }
+
+    public static void bindCarbonMesh(EventFriend friend) {
+        increaseEffect(PotionEffectType.SPEED, friend.getPotionEffects());
+    }
 }

@@ -181,6 +181,14 @@ public final class ItemUtils {
         itemStack.setItemMeta(im);
     }
 
+    public static void repairTool(ItemStack itemStack, int amount) {
+        ItemMeta im = itemStack.getItemMeta();
+        Damageable d = (Damageable) im;
+        assert d != null;
+        d.setDamage(Math.max(d.getDamage() - amount, 0));
+        itemStack.setItemMeta(im);
+    }
+
     public static String getToolHeadMaterial(PersistentDataContainer c) {
         String s = c.get(SlimeTinker.inst().getKeys().getToolInfoHeadMaterial(), PersistentDataType.STRING);
         assert s != null;

@@ -82,6 +82,17 @@ public final class IDStrings {
     public static final String GHOSTLY_ESSENCE = "GHOSTLY_ESSENCE";
     public static final String TESSERACT = "TESSERACTING_MATERIAL";
 
+    // LiteXpansion
+    public static final String RUBBER = "RUBBER";
+    public static final String REFINED_IRON = "REFINED_IRON";
+    public static final String MIXED_METAL = "MIXED_METAL";
+    public static final String ADVANCED_ALLOY = "ADVANCED_ALLOY";
+    public static final String THORIUM = "THORIUM";
+    public static final String MAG_THOR = "MAG_THOR";
+    public static final String CARBON_MESH = "CARBON_MESH";
+    public static final String SCRAP = "SCRAP";
+    public static final String IRIDIUM = "IRIDIUM";
+
     // Other
     public static final String HEAD = "HEAD";
     public static final String BINDING = "BINDING";

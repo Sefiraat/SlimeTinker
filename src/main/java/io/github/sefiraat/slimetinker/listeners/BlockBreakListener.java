@@ -103,22 +103,22 @@ public class BlockBreakListener implements Listener {
             if (friend.isBlocksIntoInv()) {
                 Map<Integer, ItemStack> remainingItems = p.getInventory().addItem(i);
                 for (ItemStack i2 : remainingItems.values()) {
-                    block.getWorld().dropItemNaturally(block.getLocation().clone().add(0.5, 0.5, 0.5), i2);
+                    block.getWorld().dropItem(block.getLocation().clone().add(0.5, 0.5, 0.5), i2);
                 }
                 continue;
             }
-            block.getWorld().dropItemNaturally(block.getLocation().clone().add(0.5, 0.5, 0.5), i);
+            block.getWorld().dropItem(block.getLocation().clone().add(0.5, 0.5, 0.5), i);
         }
 
         for (ItemStack i : friend.getAddDrops()) { // Then the additional items collection - no removals
             if (friend.isBlocksIntoInv()) {
                 Map<Integer, ItemStack> remainingItems = p.getInventory().addItem(i);
                 for (ItemStack i2 : remainingItems.values()) {
-                    block.getWorld().dropItemNaturally(block.getLocation().clone().add(0.5, 0.5, 0.5), i2);
+                    block.getWorld().dropItem(block.getLocation().clone().add(0.5, 0.5, 0.5), i2);
                 }
                 continue;
             }
-            block.getWorld().dropItemNaturally(block.getLocation().clone().add(0.5, 0.5, 0.5), i);
+            block.getWorld().dropItem(block.getLocation().clone().add(0.5, 0.5, 0.5), i);
         }
 
         if (shouldGrantExp(heldItem, event.getBlock())) { // Should grant exp (checks tool / material validity and the crop state)

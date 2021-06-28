@@ -47,6 +47,8 @@ public class Keys {
     private final NamespacedKey toolCooldownNoClip = new NamespacedKey(SlimeTinker.inst(), "ST_cd_noclip");
     private final NamespacedKey toolCooldownHypercube = new NamespacedKey(SlimeTinker.inst(), "ST_cd_hypercube");
     private final NamespacedKey toolHypercubeLocation = new NamespacedKey(SlimeTinker.inst(), "ST_loc_hypercube");
+    private final NamespacedKey toolCooldownProtective = new NamespacedKey(SlimeTinker.inst(), "ST_cd_protective");
+    private final NamespacedKey toolCooldownWarp = new NamespacedKey(SlimeTinker.inst(), "ST_cd_warp");
 
     // Workstations
     private final NamespacedKey wsDummySmeltery = new NamespacedKey(SlimeTinker.inst(), "dummy-smeltery");

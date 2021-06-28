@@ -33,7 +33,6 @@ public class CMManager {
 
     // Calculated
     public static final int AMOUNT_INGOT = AMOUNT_NUGGET * 9;
-    public static final int AMOUNT_BUCKET = AMOUNT_INGOT;
     public static final int AMOUNT_ORE = AMOUNT_INGOT * 2;
     public static final int AMOUNT_BLOCK = AMOUNT_INGOT * 9;
     public static final int AMOUNT_BOOT = AMOUNT_INGOT * 4;
@@ -44,6 +43,7 @@ public class CMManager {
     public static final int AMOUNT_GEM = AMOUNT_INGOT;
     public static final int AMOUNT_CAST = AMOUNT_INGOT * 2;
     public static final int AMOUNT_KIT = AMOUNT_INGOT * 3;
+    public static final int AMOUNT_BUCKET = AMOUNT_BLOCK * 9;
 
     public static final int AMOUNT_SHOVELHEAD = AMOUNT_INGOT;
     public static final int AMOUNT_PICKAXEHEAD = AMOUNT_INGOT * 3;
@@ -106,6 +106,9 @@ public class CMManager {
         }
         if (SupportedPluginsManager.DYNATECH) {
             MAP.putAll(CMDynaTech.getMap());
+        }
+        if (SupportedPluginsManager.LITEXPANSION) {
+            MAP.putAll(CMLiteXpansion.getMap());
         }
 
         // Add melting recipes

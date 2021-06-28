@@ -1,7 +1,12 @@
 package io.github.sefiraat.slimetinker.events;
 
+import io.github.sefiraat.slimetinker.SlimeTinker;
 import io.github.sefiraat.slimetinker.utils.ItemUtils;
+import io.github.sefiraat.slimetinker.utils.ThemeUtils;
 import lombok.experimental.UtilityClass;
+import org.bukkit.Material;
+import org.bukkit.entity.Item;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.Damageable;
 import org.bukkit.inventory.meta.ItemMeta;
 
@@ -59,5 +64,36 @@ public final class DurabilityEvents {
 
     public static void rodSingAluminum(EventFriend friend) {
         friend.setDurabilityMod(friend.getDurabilityMod() + 1);
+    }
+
+    public static void headAdvancedAlloy(EventFriend friend) {
+        Damageable d = (Damageable) friend.getHeldItem().getItemMeta();
+        assert d != null;
+        if (d.getDamage() < 50) {
+            return;
+        }
+        ItemStack i = new ItemStack(Material.IRON_INGOT, 1);
+        if (friend.getPlayer().getInventory().containsAtLeast(new ItemStack(Material.IRON_INGOT), 1)) {
+            ItemUtils.repairTool(friend.getHeldItem(), 50);
+            friend.getPlayer().getInventory().removeItem(i);
+            friend.getPlayer().sendMessage(ThemeUtils.SUCCESS + "Your tool was repaired with some iron you had lying around!");
+        }
+
+//        Damageable d = (Damageable) friend.getHeldItem().getItemMeta();
+//        assert d != null;
+//        if (d.getDamage() < 50) {
+//            return;
+//        }
+//        ItemStack i = new ItemStack(Material.IRON_INGOT);
+//        for (ItemStack invStack : friend.getPlayer().getInventory().getContents()) {
+//            if (invStack.isSimilar(i)) {
+//                invStack.setAmount(invStack.getAmount() - 1);
+//                ItemUtils.repairTool(friend.getHeldItem(), 50);
+//            }
+//        }
+    }
+
+    public static void headScrap(EventFriend friend) {
+        friend.setDurabilityMod(friend.getDurabilityMod() + 3);
     }
 }

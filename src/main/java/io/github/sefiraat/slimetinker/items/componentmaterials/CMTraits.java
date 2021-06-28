@@ -81,13 +81,15 @@ public class CMTraits {
 
     protected static String getTraitTexture(String addedBy) {
         if (addedBy.equals(SupportedPluginsManager.CORE_NOTE)) {
-            return SkullTextures.PROPERTIES_CORE;
+            return SkullTextures.TRAITS_CORE;
         } else if (addedBy.equals(SupportedPluginsManager.INFINITY_EXPANSION_NOTE)) {
-            return SkullTextures.PROPERTIES_INFINITY;
+            return SkullTextures.TRAITS_INFINITY;
         } else if (addedBy.equals(SupportedPluginsManager.SLIMEFUN_WARFARE_NOTE)) {
-            return SkullTextures.PROPERTIES_WARFARE;
+            return SkullTextures.TRAITS_WARFARE;
         } else if (addedBy.equals(SupportedPluginsManager.DYNATECH_NOTE)) {
-            return SkullTextures.PROPERTIES_DYNATECH;
+            return SkullTextures.TRAITS_DYNATECH;
+        } else if (addedBy.equals(SupportedPluginsManager.LITEXPANSION_NOTE)) {
+            return SkullTextures.TRAITS_LITEXPANSION;
         }
         return "error";
     }

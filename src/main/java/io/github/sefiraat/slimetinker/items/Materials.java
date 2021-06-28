@@ -732,7 +732,7 @@ public final class Materials {
     // endregion
     // endregion
 
-    // region SFWarfare
+    // region DynaTech
     // region Nuggets
     public static final SlimefunItemStack NUGGET_CAST_STAINLESSSTEEL =
             ThemeUtils.themedItemStack(
@@ -752,6 +752,122 @@ public final class Materials {
                     ThemeUtils.ThemeItemType.CRAFTING,
                     "Stainless Steel Block",
                     "A block of stainless"
+            );
+
+
+    // endregion
+    // endregion
+
+    // region DynaTech
+    // region Nuggets
+    public static final SlimefunItemStack NUGGET_CAST_REFINED_IRON =
+            ThemeUtils.themedItemStack(
+                    "NUGGET_CAST_REFINED_IRON",
+                    Material.IRON_NUGGET,
+                    ThemeUtils.ThemeItemType.CRAFTING,
+                    "Refined Iron Nugget",
+                    "A nugget of refined iron"
+            );
+
+    public static final SlimefunItemStack NUGGET_CAST_MIXED_METAL =
+            ThemeUtils.themedItemStack(
+                    "NUGGET_CAST_MIXED_METAL",
+                    Material.IRON_NUGGET,
+                    ThemeUtils.ThemeItemType.CRAFTING,
+                    "Mixed Metal Nugget",
+                    "A nugget of mixed metal"
+            );
+
+    public static final SlimefunItemStack NUGGET_CAST_ADVANCED_ALLOY =
+            ThemeUtils.themedItemStack(
+                    "NUGGET_CAST_ADVANCED_ALLOY",
+                    Material.IRON_NUGGET,
+                    ThemeUtils.ThemeItemType.CRAFTING,
+                    "Advanced Alloy Nugget",
+                    "A nugget of advanced alloy"
+            );
+
+    public static final SlimefunItemStack NUGGET_CAST_MAG_THOR =
+            ThemeUtils.themedItemStack(
+                    "NUGGET_CAST_MAG_THOR",
+                    Material.IRON_NUGGET,
+                    ThemeUtils.ThemeItemType.CRAFTING,
+                    "Mag-Thor Nugget",
+                    "A nugget of mag-thor"
+            );
+
+    public static final SlimefunItemStack NUGGET_CAST_SCRAP =
+            ThemeUtils.themedItemStack(
+                    "NUGGET_CAST_SCRAP",
+                    Material.IRON_NUGGET,
+                    ThemeUtils.ThemeItemType.CRAFTING,
+                    "Scrap Nugget",
+                    "A nugget of scrap"
+            );
+
+    public static final SlimefunItemStack NUGGET_CAST_IRIDIUM =
+            ThemeUtils.themedItemStack(
+                    "NUGGET_CAST_IRIDIUM",
+                    Material.IRON_NUGGET,
+                    ThemeUtils.ThemeItemType.CRAFTING,
+                    "Stainless Steel Nugget",
+                    "A nugget of stainless steel"
+            );
+
+    // endregion
+    // region Blocks
+    public static final SlimefunItemStack BLOCK_CAST_REFINED_IRON =
+            ThemeUtils.themedItemStack(
+                    "BLOCK_CAST_REFINED_IRON",
+                    Material.IRON_BLOCK,
+                    ThemeUtils.ThemeItemType.CRAFTING,
+                    "Refined Iron Block",
+                    "A block of refined iron"
+            );
+
+    public static final SlimefunItemStack BLOCK_CAST_MIXED_METAL =
+            ThemeUtils.themedItemStack(
+                    "BLOCK_CAST_MIXED_METAL",
+                    Material.IRON_BLOCK,
+                    ThemeUtils.ThemeItemType.CRAFTING,
+                    "Mixed Metal Block",
+                    "A block of mixed metal"
+            );
+
+    public static final SlimefunItemStack BLOCK_CAST_ADVANCED_ALLOY =
+            ThemeUtils.themedItemStack(
+                    "BLOCK_CAST_ADVANCED_ALLOY",
+                    Material.IRON_BLOCK,
+                    ThemeUtils.ThemeItemType.CRAFTING,
+                    "Advanced Alloy Block",
+                    "A block of advacned alloy"
+            );
+
+    public static final SlimefunItemStack BLOCK_CAST_MAG_THOR =
+            ThemeUtils.themedItemStack(
+                    "BLOCK_CAST_MAG_THOR",
+                    Material.IRON_BLOCK,
+                    ThemeUtils.ThemeItemType.CRAFTING,
+                    "Mag-Thor Block",
+                    "A block of mag-thor"
+            );
+
+    public static final SlimefunItemStack BLOCK_CAST_SCRAP =
+            ThemeUtils.themedItemStack(
+                    "BLOCK_CAST_SCRAP",
+                    Material.IRON_BLOCK,
+                    ThemeUtils.ThemeItemType.CRAFTING,
+                    "Scrap Block",
+                    "A block of scrap"
+            );
+
+    public static final SlimefunItemStack BLOCK_CAST_IRIDIUM =
+            ThemeUtils.themedItemStack(
+                    "BLOCK_CAST_IRIDIUM",
+                    Material.IRON_BLOCK,
+                    ThemeUtils.ThemeItemType.CRAFTING,
+                    "Iridium Block",
+                    "A block of iridium"
             );
 
 
@@ -926,10 +1042,31 @@ public final class Materials {
             new UnplaceableBlock(Categories.MATERIALS, BLOCK_CAST_UNPATENTABILUM, DummySmeltery.TYPE, Parts.getDummyCastRecipe(Casts.CAST_BLOCK)).register(p);
         }
 
-        // SFWarfare
+        // DynaTech
         if (SupportedPluginsManager.DYNATECH) {
             new UnplaceableBlock(Categories.MATERIALS, NUGGET_CAST_STAINLESSSTEEL, DummySmeltery.TYPE, Parts.getDummyCastRecipe(Casts.CAST_NUGGET)).register(p);
             new UnplaceableBlock(Categories.MATERIALS, BLOCK_CAST_STAINLESSSTEEL, DummySmeltery.TYPE, Parts.getDummyCastRecipe(Casts.CAST_BLOCK)).register(p);
+        }
+
+        // LiteXpansion
+        if (SupportedPluginsManager.LITEXPANSION) {
+            new UnplaceableBlock(Categories.MATERIALS, NUGGET_CAST_REFINED_IRON, DummySmeltery.TYPE, Parts.getDummyCastRecipe(Casts.CAST_NUGGET)).register(p);
+            new UnplaceableBlock(Categories.MATERIALS, BLOCK_CAST_REFINED_IRON, DummySmeltery.TYPE, Parts.getDummyCastRecipe(Casts.CAST_BLOCK)).register(p);
+
+            new UnplaceableBlock(Categories.MATERIALS, NUGGET_CAST_MIXED_METAL, DummySmeltery.TYPE, Parts.getDummyCastRecipe(Casts.CAST_NUGGET)).register(p);
+            new UnplaceableBlock(Categories.MATERIALS, BLOCK_CAST_MIXED_METAL, DummySmeltery.TYPE, Parts.getDummyCastRecipe(Casts.CAST_BLOCK)).register(p);
+
+            new UnplaceableBlock(Categories.MATERIALS, NUGGET_CAST_ADVANCED_ALLOY, DummySmeltery.TYPE, Parts.getDummyCastRecipe(Casts.CAST_NUGGET)).register(p);
+            new UnplaceableBlock(Categories.MATERIALS, BLOCK_CAST_ADVANCED_ALLOY, DummySmeltery.TYPE, Parts.getDummyCastRecipe(Casts.CAST_BLOCK)).register(p);
+
+            new UnplaceableBlock(Categories.MATERIALS, NUGGET_CAST_MAG_THOR, DummySmeltery.TYPE, Parts.getDummyCastRecipe(Casts.CAST_NUGGET)).register(p);
+            new UnplaceableBlock(Categories.MATERIALS, BLOCK_CAST_MAG_THOR, DummySmeltery.TYPE, Parts.getDummyCastRecipe(Casts.CAST_BLOCK)).register(p);
+
+            new UnplaceableBlock(Categories.MATERIALS, NUGGET_CAST_SCRAP, DummySmeltery.TYPE, Parts.getDummyCastRecipe(Casts.CAST_NUGGET)).register(p);
+            new UnplaceableBlock(Categories.MATERIALS, BLOCK_CAST_SCRAP, DummySmeltery.TYPE, Parts.getDummyCastRecipe(Casts.CAST_BLOCK)).register(p);
+
+            new UnplaceableBlock(Categories.MATERIALS, NUGGET_CAST_IRIDIUM, DummySmeltery.TYPE, Parts.getDummyCastRecipe(Casts.CAST_NUGGET)).register(p);
+            new UnplaceableBlock(Categories.MATERIALS, BLOCK_CAST_IRIDIUM, DummySmeltery.TYPE, Parts.getDummyCastRecipe(Casts.CAST_BLOCK)).register(p);
         }
 
 

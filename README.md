@@ -18,7 +18,12 @@ SlimeTinker is a Slimefun4 addon that tries its best to recreate the amazing Tin
 * Armour pieces
 
 ## Suggestions?
-SlimeTinker has a LOT of traits/effects, and I simply do not have enough ideas to flesh out all of it. So I really would welcome any and all suggestions in the Slimefun Addon Community Discord (be sure to stick to the slimetinker channel!). If you have ideas, please use this [invite](https://discord.gg/J4KurMDCKU)
+SlimeTinker has a LOT of traits/effects, and I simply do not have enough ideas to flesh out all of it. So I really would welcome any and all suggestions in the Slimefun Addon Community Discord (be sure to stick to the slimetinker channel!). If you have ideas, or just wanna chat about this addon or any of the addons made by the great members of the addon community, join the Slimefun Addon Community Discord. <br>
+<p align="center">
+  <a href="https://discord.gg/SqD3gg5SAU">
+    <img src="https://discordapp.com/api/guilds/809178621424041997/widget.png?style=banner3" alt="Discord Invite"/>
+  </a>
+</p>
 
 ## Credits
 Big thanks to [Riley](https://github.com/Mooy1) for the great InfinityLib which sped things up greatly. Another big thanks to [Martin](https://github.com/martinbrom) who helped us out with ideas and direction. Thanks to [Boomer](https://www.youtube.com/channel/UC2ZmER18YBRYube-62-JVpA) for testing, feeding back and breaking things for me! 

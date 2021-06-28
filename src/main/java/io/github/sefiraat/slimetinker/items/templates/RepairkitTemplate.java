@@ -1,7 +1,6 @@
 package io.github.sefiraat.slimetinker.items.templates;
 
 import io.github.sefiraat.slimetinker.SlimeTinker;
-import io.github.sefiraat.slimetinker.items.componentmaterials.factories.CMManager;
 import io.github.sefiraat.slimetinker.utils.IDStrings;
 import io.github.sefiraat.slimetinker.utils.ThemeUtils;
 import io.github.thebusybiscuit.slimefun4.implementation.items.blocks.UnplaceableBlock;
@@ -9,6 +8,7 @@ import lombok.Getter;
 import me.mrCookieSlime.Slimefun.Lists.RecipeType;
 import me.mrCookieSlime.Slimefun.Objects.Category;
 import me.mrCookieSlime.Slimefun.api.SlimefunItemStack;
+import net.md_5.bungee.api.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.ItemStack;
@@ -27,27 +27,27 @@ public class RepairkitTemplate extends UnplaceableBlock {
     private final String name;
 
     public String getName(String material) {
-        return CMManager.getById(material).getColor() + ThemeUtils.toTitleCase(material) + ThemeUtils.ITEM_PART + " " + name;
+        return ThemeUtils.toTitleCase(material) + ThemeUtils.ITEM_PART + " " + name;
     }
 
-    public List<String> getLore(String material) {
+    public List<String> getLore(String material, ChatColor color) {
         List<String> list = new ArrayList<>();
         list.add("");
         list.add(ThemeUtils.PASSIVE + "A repair kit. Used in the Repair Bench");
         list.add(ThemeUtils.PASSIVE + "to mend tools with a matching head-metal.");
         list.add("");
-        list.add(ThemeUtils.CLICK_INFO + "Material : " + CMManager.getById(material).getColor() + ThemeUtils.toTitleCase(material));
+        list.add(ThemeUtils.CLICK_INFO + "Material : " + color + ThemeUtils.toTitleCase(material));
         return list;
     }
 
-    public ItemStack getStack(String material, String partClass) {
+    public ItemStack getStack(String material, String partClass, ChatColor color) {
         ItemStack itemStack = this.getItem().clone();
         itemStack.setType(Material.CHEST_MINECART);
         ItemMeta im = itemStack.getItemMeta();
         assert im != null;
         PersistentDataContainer c = im.getPersistentDataContainer();
-        im.setLore(getLore(material));
-        im.setDisplayName(getName(material));
+        im.setLore(getLore(material, color));
+        im.setDisplayName(color + getName(material));
         c.set(SlimeTinker.inst().getKeys().getPartInfoMaterialType(), PersistentDataType.STRING, material);
         c.set(SlimeTinker.inst().getKeys().getPartInfoClassType(), PersistentDataType.STRING, partClass);
         itemStack.setItemMeta(im);

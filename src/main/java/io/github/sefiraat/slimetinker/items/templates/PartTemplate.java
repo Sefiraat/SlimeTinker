@@ -1,13 +1,13 @@
 package io.github.sefiraat.slimetinker.items.templates;
 
 import io.github.sefiraat.slimetinker.SlimeTinker;
-import io.github.sefiraat.slimetinker.items.componentmaterials.factories.CMManager;
 import io.github.sefiraat.slimetinker.utils.ThemeUtils;
 import io.github.thebusybiscuit.slimefun4.implementation.items.blocks.UnplaceableBlock;
 import lombok.Getter;
 import me.mrCookieSlime.Slimefun.Lists.RecipeType;
 import me.mrCookieSlime.Slimefun.Objects.Category;
 import me.mrCookieSlime.Slimefun.api.SlimefunItemStack;
+import net.md_5.bungee.api.ChatColor;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataContainer;
@@ -24,27 +24,27 @@ public class PartTemplate extends UnplaceableBlock {
 
     private final String name;
 
-    public String getName(String material) { return CMManager.getById(material).getColor() + ThemeUtils.toTitleCase(material) + ThemeUtils.ITEM_PART + " " + name;
+    public String getName(String material) { return ThemeUtils.toTitleCase(material) + ThemeUtils.ITEM_PART + " " + name;
     }
 
-    public List<String> getLore(String material) {
+    public List<String> getLore(String material, ChatColor color) {
         List<String> list = new ArrayList<>();
         list.add("");
         list.add(ThemeUtils.PASSIVE + "A tool part. Useless on it's own but can");
         list.add(ThemeUtils.PASSIVE + "be made into something greater at the");
         list.add(ThemeUtils.PASSIVE + "Tinker's table.");
         list.add("");
-        list.add(ThemeUtils.CLICK_INFO + "Material : " + CMManager.getById(material).getColor() + ThemeUtils.toTitleCase(material));
+        list.add(ThemeUtils.CLICK_INFO + "Material : " + color + ThemeUtils.toTitleCase(material));
         return list;
     }
 
-    public ItemStack getStack(String material, String partClass, @Nullable String partType) {
+    public ItemStack getStack(String material, String partClass, @Nullable String partType, ChatColor color) {
         ItemStack itemStack = this.getItem().clone();
         ItemMeta im = itemStack.getItemMeta();
         assert im != null;
         PersistentDataContainer c = im.getPersistentDataContainer();
-        im.setLore(getLore(material));
-        im.setDisplayName(getName(material));
+        im.setLore(getLore(material, color));
+        im.setDisplayName(color + getName(material));
         c.set(SlimeTinker.inst().getKeys().getPartInfoMaterialType(), PersistentDataType.STRING, material);
         c.set(SlimeTinker.inst().getKeys().getPartInfoClassType(), PersistentDataType.STRING, partClass); // Whether the part is HEAD, BINDER or ROD
         if (partType != null) {

@@ -33,25 +33,29 @@ public final class Categories {
             SkullItem.fromBase64(SkullTextures.CAT_ALLOYS),
             ThemeUtils.MAIN + "Alloy Metals"
     ));
-    public static final SubCategory TRAITS = new SubCategory(SlimeTinker.inst().getKeys().getCategoryProperties(), MAIN, new CustomItem(
-            SkullItem.fromBase64(SkullTextures.CAT_PROPERTIES),
-            ThemeUtils.MAIN + "Metal Traits"
-    ));
     public static final SubCategory CASTS = new SubCategory(SlimeTinker.inst().getKeys().getCategoryCasts(), MAIN, new CustomItem(
             SkullItem.fromBase64(SkullTextures.CAT_CASTS),
             ThemeUtils.MAIN + "Casts"
     ));
     public static final SubCategory PARTS = new SubCategory(SlimeTinker.inst().getKeys().getCategoryParts(), MAIN, new CustomItem(
             SkullItem.fromBase64(SkullTextures.CAT_PARTS),
-            ThemeUtils.MAIN + "Parts"
+            ThemeUtils.MAIN + "Part Building Guide"
     ));
     public static final SubCategory TOOLS = new SubCategory(SlimeTinker.inst().getKeys().getCategoryTools(), MAIN, new CustomItem(
             Material.DIAMOND_SWORD,
-            ThemeUtils.MAIN + "Tools"
+            ThemeUtils.MAIN + "Tool Building Guide"
+    ));
+    public static final SubCategory TRAITS = new SubCategory(SlimeTinker.inst().getKeys().getCategoryProperties(), MAIN, new CustomItem(
+            SkullItem.fromBase64(SkullTextures.CAT_PROPERTIES),
+            ThemeUtils.MAIN + "Metal Traits"
     ));
     public static final SubCategory MODIFICATIONS = new SubCategory(SlimeTinker.inst().getKeys().getCategoryModifications(), MAIN, new CustomItem(
             Material.REDSTONE,
             ThemeUtils.MAIN + "Mods"
+    ));
+    public static final SubCategory PART_DICT = new SubCategory(SlimeTinker.inst().getKeys().getCategoryPartDict(), MAIN, new CustomItem(
+            SkullItem.fromBase64(SkullTextures.PART_PICKAXE_HEAD),
+            ThemeUtils.MAIN + "Part Dictionary"
     ));
     public static final DummyCategory DUMMY = new DummyCategory(SlimeTinker.inst().getKeys().getCategoryDummy(), new CustomItem(
             Material.BARRIER,
@@ -64,11 +68,12 @@ public final class Categories {
         MATERIALS.register(p);
         MOLTEN_METALS.register(p);
         ALLOYS.register(p);
-        TRAITS.register(p);
         CASTS.register(p);
         PARTS.register(p);
         TOOLS.register(p);
+        TRAITS.register(p);
         MODIFICATIONS.register(p);
+        PART_DICT.register(p);
     }
 
 }

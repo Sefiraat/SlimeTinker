@@ -16,6 +16,7 @@ public class Keys {
     private final NamespacedKey categoryProperties = new NamespacedKey(SlimeTinker.inst(), "slime-tinker-properties");
     private final NamespacedKey categoryCasts = new NamespacedKey(SlimeTinker.inst(), "slime-tinker-casts");
     private final NamespacedKey categoryParts = new NamespacedKey(SlimeTinker.inst(), "slime-tinker-parts");
+    private final NamespacedKey categoryPartDict = new NamespacedKey(SlimeTinker.inst(), "slime-tinker-part-dict");
     private final NamespacedKey categoryTools = new NamespacedKey(SlimeTinker.inst(), "slime-tinker-tools");
     private final NamespacedKey categoryModifications = new NamespacedKey(SlimeTinker.inst(), "slime-tinker-modifications");
     private final NamespacedKey categoryDummy = new NamespacedKey(SlimeTinker.inst(), "slime-tinker-dummy");

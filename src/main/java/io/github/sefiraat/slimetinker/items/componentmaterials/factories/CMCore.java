@@ -177,7 +177,7 @@ public final class CMCore {
                                     Materials.BLOCK_CAST_LEAD.getItemId(),
                                     null,
                                     null,
-                                    SlimefunItems.COPPER_DUST.getItemId(),
+                                    SlimefunItems.LEAD_DUST.getItemId(),
                                     null,
                                     null,
                                     null,

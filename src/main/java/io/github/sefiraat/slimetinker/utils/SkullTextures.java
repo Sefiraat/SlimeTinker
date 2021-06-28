@@ -2,6 +2,7 @@ package io.github.sefiraat.slimetinker.utils;
 
 import lombok.experimental.UtilityClass;
 
+@SuppressWarnings("SpellCheckingInspection")
 @UtilityClass
 public final class SkullTextures {
 

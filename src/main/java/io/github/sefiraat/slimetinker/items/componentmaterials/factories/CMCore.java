@@ -27,6 +27,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
+@SuppressWarnings("SpellCheckingInspection")
 @UtilityClass
 public final class CMCore {
 
@@ -993,10 +994,10 @@ public final class CMCore {
                                         null
                                 )
                         ));
-        map.put(IDStrings.CRIMSONROOTS,
+        map.put(IDStrings.CRIMSON_ROOTS,
                 new ComponentMaterial
                         (
-                                new CMIdentity(IDStrings.CRIMSONROOTS, new ItemStack(Material.CRIMSON_ROOTS), null, "#b5365e"),
+                                new CMIdentity(IDStrings.CRIMSON_ROOTS, new ItemStack(Material.CRIMSON_ROOTS), null, "#b5365e"),
                                 null,
                                 new CMToolMakeup(false, true, false),
                                 new CMForms(
@@ -1012,7 +1013,7 @@ public final class CMCore {
                                     null
                                 ),
                                 new CMTraits(
-                                        IDStrings.CRIMSONROOTS,
+                                        IDStrings.CRIMSON_ROOTS,
                                         null,
                                         new CMTrait(
                                                 CMTraits.PROP_BINDING,
@@ -1024,10 +1025,10 @@ public final class CMCore {
                                         null
                                 )
                         ));
-        map.put(IDStrings.WARPEDROOTS,
+        map.put(IDStrings.WARPED_ROOTS,
                 new ComponentMaterial
                         (
-                                new CMIdentity(IDStrings.WARPEDROOTS, new ItemStack(Material.WARPED_ROOTS), null, "#36b549"),
+                                new CMIdentity(IDStrings.WARPED_ROOTS, new ItemStack(Material.WARPED_ROOTS), null, "#36b549"),
                                 null,
                                 new CMToolMakeup(false, true, false),
                                 new CMForms(
@@ -1043,7 +1044,7 @@ public final class CMCore {
                                     null
                                 ),
                                 new CMTraits(
-                                        IDStrings.WARPEDROOTS,
+                                        IDStrings.WARPED_ROOTS,
                                         null,
                                         new CMTrait(
                                                 CMTraits.PROP_BINDING,
@@ -1054,10 +1055,10 @@ public final class CMCore {
                                         null
                                 )
                         ));
-        map.put(IDStrings.WEEPINGVINES,
+        map.put(IDStrings.WEEPING_VINES,
                 new ComponentMaterial
                         (
-                                new CMIdentity(IDStrings.WEEPINGVINES, new ItemStack(Material.WEEPING_VINES), null, "#9c091d"),
+                                new CMIdentity(IDStrings.WEEPING_VINES, new ItemStack(Material.WEEPING_VINES), null, "#9c091d"),
                                 null,
                                 new CMToolMakeup(false, true, false),
                                 new CMForms(
@@ -1073,7 +1074,7 @@ public final class CMCore {
                                     null
                                 ),
                                 new CMTraits(
-                                        IDStrings.WEEPINGVINES,
+                                        IDStrings.WEEPING_VINES,
                                         null,
                                         new CMTrait(
                                                 CMTraits.PROP_BINDING,
@@ -1084,10 +1085,10 @@ public final class CMCore {
                                         null
                                 )
                         ));
-        map.put(IDStrings.TWISTEDVINES,
+        map.put(IDStrings.TWISTED_VINES,
                 new ComponentMaterial
                         (
-                                new CMIdentity(IDStrings.TWISTEDVINES, new ItemStack(Material.TWISTING_VINES), null, "#1b8045"),
+                                new CMIdentity(IDStrings.TWISTED_VINES, new ItemStack(Material.TWISTING_VINES), null, "#1b8045"),
                                 null,
                                 new CMToolMakeup(false, true, false),
                                 new CMForms(
@@ -1103,7 +1104,7 @@ public final class CMCore {
                                     null
                                 ),
                                 new CMTraits(
-                                        IDStrings.TWISTEDVINES,
+                                        IDStrings.TWISTED_VINES,
                                         null,
                                         new CMTrait(
                                                 CMTraits.PROP_BINDING,
@@ -1235,10 +1236,10 @@ public final class CMCore {
                                         null
                                 )
                         ));
-        map.put(IDStrings.REDSTONEALLOY,
+        map.put(IDStrings.REDSTONE_ALLOY,
                 new ComponentMaterial
                         (
-                                new CMIdentity(IDStrings.REDSTONEALLOY, SlimefunItems.REDSTONE_ALLOY, SkullTextures.ALLOY_RED, "#700d21"),
+                                new CMIdentity(IDStrings.REDSTONE_ALLOY, SlimefunItems.REDSTONE_ALLOY, SkullTextures.ALLOY_RED, "#700d21"),
                                 Arrays.asList(
                                         map.get(IDStrings.REDSTONE).getLiquidItemStack(10),
                                         map.get(IDStrings.FERROSILICON).getLiquidItemStack(1),
@@ -1258,7 +1259,7 @@ public final class CMCore {
                                     null
                                 ),
                                 new CMTraits(
-                                        IDStrings.REDSTONEALLOY,
+                                        IDStrings.REDSTONE_ALLOY,
                                         null,
                                         null,
                                         new CMTrait(
@@ -1297,7 +1298,7 @@ public final class CMCore {
 
         map.get(IDStrings.ALUBRASS).addEvent(TraitEventType.ENTITY_DAMAGED, TraitPartType.HEAD, EntityDamageEvents::headAluBrass);          // Abra
         map.get(IDStrings.GOLD).addEvent(TraitEventType.TICK, TraitPartType.ROD, TickEvents::rodGold);                                      // All that glitters
-        map.get(IDStrings.TWISTEDVINES).addEvent(TraitEventType.TICK, TraitPartType.BINDER, TickEvents::binderTwistingvine);                // Attraction
+        map.get(IDStrings.TWISTED_VINES).addEvent(TraitEventType.TICK, TraitPartType.BINDER, TickEvents::binderTwistingVine);                // Attraction
         map.get(IDStrings.COPPER).addEvent(TraitEventType.ENTITY_DAMAGED, TraitPartType.HEAD, EntityDamageEvents::headCopper);              // Brains not brawn - Damage
         map.get(IDStrings.COPPER).addEvent(TraitEventType.BLOCK_BREAK, TraitPartType.HEAD, BlockBreakEvents::headCopper);                   // Brains not brawn - Block Break
         map.get(IDStrings.ALUBRONZE).addEvent(TraitEventType.DURABILITY, TraitPartType.ROD, DurabilityEvents::rodAluBronze);                // Brittle
@@ -1308,8 +1309,8 @@ public final class CMCore {
         map.get(IDStrings.COBALT).addEvent(TraitEventType.ENTITY_DAMAGED, TraitPartType.HEAD, EntityDamageEvents::charged);                 // Charged B (Head)
         map.get(IDStrings.COBALT).addEvent(TraitEventType.ENTITY_DAMAGED, TraitPartType.ROD, EntityDamageEvents::charged);                  // Charged B (Rod)
                                                                                                                                             // Conductive (Special case - in Experience.java, should be moved out)
-        map.get(IDStrings.CRIMSONROOTS).addEvent(TraitEventType.TICK, TraitPartType.BINDER, TickEvents::binderCrimsonroot);                 // Decay
-        map.get(IDStrings.WEEPINGVINES).addEvent(TraitEventType.TICK, TraitPartType.BINDER, TickEvents::binderWeepingvine);                 // Doom
+        map.get(IDStrings.CRIMSON_ROOTS).addEvent(TraitEventType.TICK, TraitPartType.BINDER, TickEvents::binderCrimsonRoot);                 // Decay
+        map.get(IDStrings.WEEPING_VINES).addEvent(TraitEventType.TICK, TraitPartType.BINDER, TickEvents::binderWeepingVine);                 // Doom
                                                                                                                                             // Durable - Damage (Special Case - in EntityDamageListener.java - cant move)
                                                                                                                                             // Durable - Block Break (Special Case - in BlockBreakListener.java - cant move)
         map.get(IDStrings.DURALIUM).addEvent(TraitEventType.TICK, TraitPartType.HEAD, TickEvents::headDuralium);                            // Durable - Tick
@@ -1329,7 +1330,7 @@ public final class CMCore {
         map.get(IDStrings.FERROSILICON).addEvent(TraitEventType.PLAYER_DAMAGED, TraitPartType.HEAD, PlayerDamagedEvents::headFerrosilicon); // Hydrogen
         map.get(IDStrings.BRONZE).addEvent(TraitEventType.TICK, TraitPartType.ROD, TickEvents::rodBronze);                                  // Ingheights
         map.get(IDStrings.LEAD).addEvent(TraitEventType.TICK, TraitPartType.ROD, TickEvents::rodLead);                                      // Leech
-        map.get(IDStrings.REDSTONEALLOY).addEvent(TraitEventType.ENTITY_DAMAGED, TraitPartType.ROD, EntityDamageEvents::rodRedstoneAlloy);  // Lightning Rod
+        map.get(IDStrings.REDSTONE_ALLOY).addEvent(TraitEventType.ENTITY_DAMAGED, TraitPartType.ROD, EntityDamageEvents::rodRedstoneAlloy);  // Lightning Rod
         map.get(IDStrings.MAGNESIUM).addEvent(TraitEventType.TICK, TraitPartType.ROD, TickEvents::rodMagnesium);                            // Magnetisium
         map.get(IDStrings.TIN).addEvent(TraitEventType.ENTITY_DAMAGED, TraitPartType.HEAD, EntityDamageEvents::headTin);                    // Malleable - Damage
         map.get(IDStrings.TIN).addEvent(TraitEventType.TICK, TraitPartType.HEAD, TickEvents::headTin);                                      // Malleable - Tick
@@ -1337,7 +1338,7 @@ public final class CMCore {
         map.get(IDStrings.BRASS).addEvent(TraitEventType.TICK, TraitPartType.ROD, TickEvents::rodBrass);                                    // Oxygenated
         map.get(IDStrings.LEAD).addEvent(TraitEventType.ENTITY_DAMAGED, TraitPartType.HEAD, EntityDamageEvents::headLead);                  // Poisonous
         map.get(IDStrings.ALUMINUM).addEvent(TraitEventType.DURABILITY, TraitPartType.HEAD, DurabilityEvents::headAluminum);                // Recycleable
-        map.get(IDStrings.WARPEDROOTS).addEvent(TraitEventType.TICK, TraitPartType.BINDER, TickEvents::bindWarpedroot);                     // Refreshing
+        map.get(IDStrings.WARPED_ROOTS).addEvent(TraitEventType.TICK, TraitPartType.BINDER, TickEvents::bindWarpedRoot);                     // Refreshing
                                                                                                                                             // Reinforced (Special Case - nested within plate mod. Will be moved when mods are changed so consumers)
         map.get(IDStrings.BRONZE).addEvent(TraitEventType.TICK, TraitPartType.HEAD, TickEvents::headBronze);                                // Resistant
         map.get(IDStrings.IRON).addEvent(TraitEventType.TICK, TraitPartType.ROD, TickEvents::rodIron);                                      // Sharp I

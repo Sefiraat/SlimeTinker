@@ -64,6 +64,7 @@ public class EffectRunnable extends BukkitRunnable {
         }
     }
 
+
     private void checkModifications(ItemStack heldItem, Player player, Map<PotionEffectType, Integer> potionEffects) {
 
         Map<String, Integer> modLevels = Modifications.getAllModLevels(heldItem);

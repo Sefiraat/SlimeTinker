@@ -37,7 +37,7 @@ public final class PlayerDamagedEvents {
         }
     }
 
-    public static void headReinforcedslimesteel(EventFriend friend) {
+    public static void headReinforcedSlimesteel(EventFriend friend) {
         if (!ItemUtils.isToolBroken(friend.getHeldItem())) {
             ItemUtils.damageTool(friend.getHeldItem(), (int) friend.getInitialDamage());
             friend.setDamageMod(friend.getDamageMod() / 2);

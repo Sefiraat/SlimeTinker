@@ -4,6 +4,7 @@ import io.github.sefiraat.slimetinker.SlimeTinker;
 import io.github.sefiraat.slimetinker.utils.ThemeUtils;
 import lombok.experimental.UtilityClass;
 
+@SuppressWarnings("SpellCheckingInspection")
 @UtilityClass
 public final class SupportedPluginsManager {
 

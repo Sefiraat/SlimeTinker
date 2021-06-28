@@ -24,7 +24,9 @@ import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.SlimefunItem;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
+@SuppressWarnings("SpellCheckingInspection")
 @UtilityClass
 public final class CMSlimefunWarfare {
 
@@ -36,7 +38,7 @@ public final class CMSlimefunWarfare {
         map.put(IDStrings.SEGGANESSON,
                 new ComponentMaterial
                         (
-                                new CMIdentity(IDStrings.SEGGANESSON, SlimefunItem.getByID("SEGGANESSON").getItem(), SkullTextures.ALLOY_BLUE_PALE, "#4bacbf"),
+                                new CMIdentity(IDStrings.SEGGANESSON, Objects.requireNonNull(SlimefunItem.getByID("SEGGANESSON")).getItem(), SkullTextures.ALLOY_BLUE_PALE, "#4bacbf"),
                                 null,
                                 new CMToolMakeup(true, false, true),
                                 new CMForms(
@@ -73,7 +75,7 @@ public final class CMSlimefunWarfare {
         map.put(IDStrings.SLIMESTEEL,
                 new ComponentMaterial
                         (
-                                new CMIdentity(IDStrings.SLIMESTEEL, SlimefunItem.getByID("SLIMESTEEL_INGOT").getItem(), SkullTextures.ALLOY_GREEN, "#aed197"),
+                                new CMIdentity(IDStrings.SLIMESTEEL, Objects.requireNonNull(SlimefunItem.getByID("SLIMESTEEL_INGOT")).getItem(), SkullTextures.ALLOY_GREEN, "#aed197"),
                                 Arrays.asList(
                                         CMCore.getMap().get(IDStrings.STEEL).getLiquidItemStack(1),
                                         CMCore.getMap().get(IDStrings.SLIME).getLiquidItemStack(1)
@@ -104,10 +106,10 @@ public final class CMSlimefunWarfare {
                                 )
                         ));
 
-        map.put(IDStrings.REINFORCEDSLIMESTEEL,
+        map.put(IDStrings.REINFORCED_SLIMESTEEL,
                 new ComponentMaterial
                         (
-                                new CMIdentity(IDStrings.REINFORCEDSLIMESTEEL, SlimefunItem.getByID("REINFORCED_SLIMESTEEL_INGOT").getItem(), SkullTextures.ALLOY_GREEN, "#aed197"),
+                                new CMIdentity(IDStrings.REINFORCED_SLIMESTEEL, Objects.requireNonNull(SlimefunItem.getByID("REINFORCED_SLIMESTEEL_INGOT")).getItem(), SkullTextures.ALLOY_GREEN, "#aed197"),
                                 Arrays.asList(
                                         map.get(IDStrings.SLIMESTEEL).getLiquidItemStack(1),
                                         CMCore.getMap().get(IDStrings.SLIME).getLiquidItemStack(9),
@@ -130,7 +132,7 @@ public final class CMSlimefunWarfare {
                                     null
                                 ),
                                 new CMTraits(
-                                        IDStrings.REINFORCEDSLIMESTEEL,
+                                        IDStrings.REINFORCED_SLIMESTEEL,
                                         new CMTrait(
                                                 CMTraits.PROP_HEAD,
                                                 SupportedPluginsManager.SLIMEFUN_WARFARE_NOTE,
@@ -152,7 +154,7 @@ public final class CMSlimefunWarfare {
         map.put(IDStrings.OSMIUM,
                 new ComponentMaterial
                         (
-                                new CMIdentity(IDStrings.OSMIUM, SlimefunItem.getByID("OSMIUM_INGOT").getItem(), SkullTextures.ALLOY_BLUE_PALE, "#8dd6c0"),
+                                new CMIdentity(IDStrings.OSMIUM, Objects.requireNonNull(SlimefunItem.getByID("OSMIUM_INGOT")).getItem(), SkullTextures.ALLOY_BLUE_PALE, "#8dd6c0"),
                                 null,
                                 new CMToolMakeup(true, false, true),
                                 new CMForms(
@@ -185,14 +187,14 @@ public final class CMSlimefunWarfare {
                                 )
                         ));
 
-        map.put(IDStrings.OSMIUMSUPERALLOY,
+        map.put(IDStrings.OSMIUM_SUPERALLOY,
                 new ComponentMaterial
                         (
-                                new CMIdentity(IDStrings.OSMIUMSUPERALLOY, SlimefunItem.getByID("OSMIUM_SUPERALLOY").getItem(), SkullTextures.ALLOY_BLUE_PALE, "#8dd6c0"),
+                                new CMIdentity(IDStrings.OSMIUM_SUPERALLOY, Objects.requireNonNull(SlimefunItem.getByID("OSMIUM_SUPERALLOY")).getItem(), SkullTextures.ALLOY_BLUE_PALE, "#8dd6c0"),
                                 Arrays.asList(
                                         map.get(IDStrings.OSMIUM).getLiquidItemStack(2),
                                         map.get(IDStrings.SEGGANESSON).getLiquidItemStack(1),
-                                        map.get(IDStrings.REINFORCEDSLIMESTEEL).getLiquidItemStack(1),
+                                        map.get(IDStrings.REINFORCED_SLIMESTEEL).getLiquidItemStack(1),
                                         CMCore.getMap().get(IDStrings.REINFORCED).getLiquidItemStack(1)
                                 ),
                                 new CMToolMakeup(true, false, true),
@@ -209,7 +211,7 @@ public final class CMSlimefunWarfare {
                                     null
                                 ),
                                 new CMTraits(
-                                        IDStrings.OSMIUMSUPERALLOY,
+                                        IDStrings.OSMIUM_SUPERALLOY,
                                         new CMTrait(
                                                 CMTraits.PROP_HEAD,
                                                 SupportedPluginsManager.SLIMEFUN_WARFARE_NOTE,
@@ -231,7 +233,7 @@ public final class CMSlimefunWarfare {
         map.put(IDStrings.UNPATENTABLIUM,
                 new ComponentMaterial
                         (
-                                new CMIdentity(IDStrings.UNPATENTABLIUM, SlimefunItem.getByID("UNPATENTABLIUM").getItem(), SkullTextures.ALLOY_BLUE_PALE, "#8dd6c0"),
+                                new CMIdentity(IDStrings.UNPATENTABLIUM, Objects.requireNonNull(SlimefunItem.getByID("UNPATENTABLIUM")).getItem(), SkullTextures.ALLOY_BLUE_PALE, "#8dd6c0"),
                                 null,
                                 new CMToolMakeup(true, false, true),
                                 new CMForms(
@@ -247,7 +249,7 @@ public final class CMSlimefunWarfare {
                                     null
                                 ),
                                 new CMTraits(
-                                        IDStrings.OSMIUMSUPERALLOY,
+                                        IDStrings.OSMIUM_SUPERALLOY,
                                         new CMTrait(
                                                 CMTraits.PROP_HEAD,
                                                 SupportedPluginsManager.SLIMEFUN_WARFARE_NOTE,
@@ -269,17 +271,17 @@ public final class CMSlimefunWarfare {
         map.get(IDStrings.SEGGANESSON).addEvent(TraitEventType.TICK, TraitPartType.ROD, TickEvents::rodSegganesson);                                        // Blinding Speed
         map.get(IDStrings.SLIMESTEEL).addEvent(TraitEventType.TICK, TraitPartType.BINDER, TickEvents::bindSlimesteel);                                      // Bouncy II - Tick
         map.get(IDStrings.SLIMESTEEL).addEvent(TraitEventType.PLAYER_DAMAGED, TraitPartType.BINDER, PlayerDamagedEvents::bindSlimesteel);                   // Bouncy II - Damage
-        map.get(IDStrings.OSMIUMSUPERALLOY).addEvent(TraitEventType.ENTITY_DAMAGED, TraitPartType.HEAD, EntityDamageEvents::headOsmiumsuperalloy);          // Brute - Damage
-        map.get(IDStrings.OSMIUMSUPERALLOY).addEvent(TraitEventType.TICK, TraitPartType.HEAD, TickEvents::headOsmiumsuperalloy);                            // Brute - Tick
-        map.get(IDStrings.REINFORCEDSLIMESTEEL).addEvent(TraitEventType.PLAYER_DAMAGED, TraitPartType.ROD, PlayerDamagedEvents::headReinforcedslimesteel);  // Flexibility
+        map.get(IDStrings.OSMIUM_SUPERALLOY).addEvent(TraitEventType.ENTITY_DAMAGED, TraitPartType.HEAD, EntityDamageEvents::headOsmiumSuperalloy);          // Brute - Damage
+        map.get(IDStrings.OSMIUM_SUPERALLOY).addEvent(TraitEventType.TICK, TraitPartType.HEAD, TickEvents::headOsmiumSuperalloy);                            // Brute - Tick
+        map.get(IDStrings.REINFORCED_SLIMESTEEL).addEvent(TraitEventType.PLAYER_DAMAGED, TraitPartType.ROD, PlayerDamagedEvents::headReinforcedSlimesteel);  // Flexibility
         map.get(IDStrings.OSMIUM).addEvent(TraitEventType.DURABILITY, TraitPartType.HEAD, DurabilityEvents::explosive);                                     // Heavy (CO)
         map.get(IDStrings.OSMIUM).addEvent(TraitEventType.ENTITY_DAMAGED, TraitPartType.ROD, EntityDamageEvents::rodOsmium);                                // Heavy Pommel
                                                                                                                                                             // Incorporeal Right (Special case in ItemDrop and PlayerDesth)
         map.get(IDStrings.UNPATENTABLIUM).addEvent(TraitEventType.ENTITY_DAMAGED, TraitPartType.HEAD, EntityDamageEvents::headUnpatentabilum);              // Innovation - Damage
         map.get(IDStrings.UNPATENTABLIUM).addEvent(TraitEventType.BLOCK_BREAK, TraitPartType.HEAD, BlockBreakEvents::headUnpatentabilum);                   // Innovation - Block Break
         map.get(IDStrings.SEGGANESSON).addEvent(TraitEventType.ENTITY_DAMAGED, TraitPartType.HEAD, EntityDamageEvents::headSegganesson);                    // Overcharge
-        map.get(IDStrings.REINFORCEDSLIMESTEEL).addEvent(TraitEventType.BLOCK_BREAK, TraitPartType.HEAD, BlockBreakEvents::headReinforcedSlimesteel);       // Strong and Sticky
-        map.get(IDStrings.OSMIUMSUPERALLOY).addEvent(TraitEventType.ENTITY_DAMAGED, TraitPartType.ROD, EntityDamageEvents::headHard);                       // Tuff Stuff (CO)
+        map.get(IDStrings.REINFORCED_SLIMESTEEL).addEvent(TraitEventType.BLOCK_BREAK, TraitPartType.HEAD, BlockBreakEvents::headReinforcedSlimesteel);       // Strong and Sticky
+        map.get(IDStrings.OSMIUM_SUPERALLOY).addEvent(TraitEventType.ENTITY_DAMAGED, TraitPartType.ROD, EntityDamageEvents::headHard);                       // Tuff Stuff (CO)
 
 
     }

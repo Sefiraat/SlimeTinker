@@ -203,7 +203,7 @@ public final class EntityDamageEvents {
         friend.setSegganessonDamage(friend.getSegganessonDamage() + friend.getInitialDamage());
     }
 
-    public static void headOsmiumsuperalloy(EventFriend friend) {
+    public static void headOsmiumSuperalloy(EventFriend friend) {
         int rnd = ThreadLocalRandom.current().nextInt(1, 4);
         if (rnd == 1) {
             friend.setDamageMod(friend.getDamageMod() + 2);

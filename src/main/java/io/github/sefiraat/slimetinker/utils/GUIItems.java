@@ -91,17 +91,17 @@ public final class GUIItems {
         );
     }
 
-    public static CustomItem menuLavaInfo(int fillPerc, int fillAmt, int fillMax) {
+    public static CustomItem menuLavaInfo(int fillPercent, int fillAmt, int fillMax) {
         ItemStack skull;
-        if (fillPerc >= 95) {
+        if (fillPercent >= 95) {
             skull = SkullItem.fromBase64(SkullTextures.TANK_LAVA_5);
-        } else if (fillPerc >= 75) {
+        } else if (fillPercent >= 75) {
             skull = SkullItem.fromBase64(SkullTextures.TANK_LAVA_4);
-        } else if (fillPerc >= 50) {
+        } else if (fillPercent >= 50) {
             skull = SkullItem.fromBase64(SkullTextures.TANK_LAVA_3);
-        } else if (fillPerc >= 25) {
+        } else if (fillPercent >= 25) {
             skull = SkullItem.fromBase64(SkullTextures.TANK_LAVA_2);
-        } else if (fillPerc > 0) {
+        } else if (fillPercent > 0) {
             skull = SkullItem.fromBase64(SkullTextures.TANK_LAVA_1);
         } else {
             skull = SkullItem.fromBase64(SkullTextures.TANK_EMPTY);
@@ -116,17 +116,17 @@ public final class GUIItems {
         );
     }
 
-    public static CustomItem menuMetalInfo(int fillPerc, int fillAmt, int fillMax, @Nullable Map<String, Integer> map) {
+    public static CustomItem menuMetalInfo(int fillPercent, int fillAmt, int fillMax, @Nullable Map<String, Integer> map) {
         ItemStack skull;
-        if (fillPerc >= 95) {
+        if (fillPercent >= 95) {
             skull = SkullItem.fromBase64(SkullTextures.TANK_METAL_5);
-        } else if (fillPerc >= 75) {
+        } else if (fillPercent >= 75) {
             skull = SkullItem.fromBase64(SkullTextures.TANK_METAL_4);
-        } else if (fillPerc >= 50) {
+        } else if (fillPercent >= 50) {
             skull = SkullItem.fromBase64(SkullTextures.TANK_METAL_3);
-        } else if (fillPerc >= 25) {
+        } else if (fillPercent >= 25) {
             skull = SkullItem.fromBase64(SkullTextures.TANK_METAL_2);
-        } else if (fillPerc > 0) {
+        } else if (fillPercent > 0) {
             skull = SkullItem.fromBase64(SkullTextures.TANK_METAL_1);
         } else {
             skull = SkullItem.fromBase64(SkullTextures.TANK_EMPTY);

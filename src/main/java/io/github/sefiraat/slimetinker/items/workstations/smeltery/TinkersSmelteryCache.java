@@ -130,13 +130,13 @@ public final class TinkersSmelteryCache extends AbstractCache {
 
             int metalLevel = getMetalLevel();
 
-            int lavaPerc = (int) Math.ceil(((float) levelLava * 100) / LAVA_MAX);
-            int metalPerc = (int) Math.ceil(((float) metalLevel * 100) / METALS_MAX);
+            int lavaPercent = (int) Math.ceil(((float) levelLava * 100) / LAVA_MAX);
+            int metalPercent = (int) Math.ceil(((float) metalLevel * 100) / METALS_MAX);
 
-            blockMenu.replaceExistingItem(TinkersSmeltery.LAVA_INFO, GUIItems.menuLavaInfo(lavaPerc, levelLava, LAVA_MAX));
+            blockMenu.replaceExistingItem(TinkersSmeltery.LAVA_INFO, GUIItems.menuLavaInfo(lavaPercent, levelLava, LAVA_MAX));
             blockMenu.addMenuClickHandler(TinkersSmeltery.LAVA_INFO, (player, i, itemStack, clickAction) -> false);
 
-            blockMenu.replaceExistingItem(TinkersSmeltery.METAL_INFO, GUIItems.menuMetalInfo(metalPerc, metalLevel, METALS_MAX, tankContent));
+            blockMenu.replaceExistingItem(TinkersSmeltery.METAL_INFO, GUIItems.menuMetalInfo(metalPercent, metalLevel, METALS_MAX, tankContent));
             blockMenu.addMenuClickHandler(TinkersSmeltery.METAL_INFO, (player, i, itemStack, clickAction) -> clickMetalTank());
 
         }
@@ -175,6 +175,7 @@ public final class TinkersSmelteryCache extends AbstractCache {
         }
     }
 
+    @SuppressWarnings("SameReturnValue")
     private boolean clickPurge(ClickAction clickAction) {
 
         if (tankContent.isEmpty()) {
@@ -208,6 +209,7 @@ public final class TinkersSmelteryCache extends AbstractCache {
 
     }
 
+    @SuppressWarnings("SameReturnValue")
     private boolean clickAlloy() {
         for (CMAlloy alloy : CMManager.getAlloys()) {
             if (!alloy.getAlloyMap().keySet().equals(tankContent.keySet())) {
@@ -233,6 +235,7 @@ public final class TinkersSmelteryCache extends AbstractCache {
         return false;
     }
 
+    @SuppressWarnings("SameReturnValue")
     private boolean clickPour(Player player) {
 
         ItemStack inputItem = blockMenu.getItemInSlot(TinkersSmeltery.CAST_SLOT);
@@ -287,6 +290,7 @@ public final class TinkersSmelteryCache extends AbstractCache {
 
     }
 
+    @SuppressWarnings("SameReturnValue")
     private boolean clickMetalTank() {
         // 0 or 1 metals, wont do anything
         Optional<String> first = tankContent.keySet().stream().findFirst();

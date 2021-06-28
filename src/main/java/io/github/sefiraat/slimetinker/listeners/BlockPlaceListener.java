@@ -12,7 +12,7 @@ import org.bukkit.metadata.FixedMetadataValue;
 
 public class BlockPlaceListener implements Listener {
 
-
+    @SuppressWarnings("unused")
     @EventHandler(priority = EventPriority.LOWEST)
     public void onBlockPlace(BlockPlaceEvent event) {
         if (!event.isCancelled() && !(event.getBlock().getBlockData() instanceof Ageable)) { // Don't want crops to be marked, they are checked when broken against their age
@@ -20,6 +20,7 @@ public class BlockPlaceListener implements Listener {
         }
     }
 
+    @SuppressWarnings("unused")
     @EventHandler(priority = EventPriority.LOWEST)
     public void onBlockPlacerPlace(BlockPlacerPlaceEvent event) {
         if (!event.isCancelled()) {

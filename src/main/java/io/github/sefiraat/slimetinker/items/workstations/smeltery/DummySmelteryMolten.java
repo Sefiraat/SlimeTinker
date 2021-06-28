@@ -22,7 +22,7 @@ public final class DummySmelteryMolten {
             "",
             ThemeUtils.PASSIVE + "Molten metals are made by putting",
             ThemeUtils.PASSIVE + "items made from the metal into the",
-            ThemeUtils.PASSIVE + "Smeltery. Items melts when provided",
+            ThemeUtils.PASSIVE + "Smeltery. Items melt when provided",
             ThemeUtils.PASSIVE + "enough lava as a heat source.",
             "",
             ThemeUtils.LORE_TYPE_MACHINE

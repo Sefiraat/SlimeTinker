@@ -37,6 +37,7 @@ public class RepairBench extends AbstractContainer {
         super(category, item, recipeType, recipe);
     }
 
+    @SuppressWarnings("SameReturnValue")
     protected boolean craft(BlockMenu blockMenu, Player player) {
 
         ItemStack tool = blockMenu.getItemInSlot(INPUT_TOOL);
@@ -90,13 +91,13 @@ public class RepairBench extends AbstractContainer {
         ItemMeta im = itemStack.getItemMeta();
         if (im instanceof Damageable) {
             Damageable damageable = (Damageable) im;
-            int dura;
+            int durability;
             if (fixAll) {
-                dura = 0;
+                durability = 0;
             } else {
-                dura = (Math.max(damageable.getDamage() - Math.floorDiv(itemStack.getType().getMaxDurability(), 3), 0));
+                durability = (Math.max(damageable.getDamage() - Math.floorDiv(itemStack.getType().getMaxDurability(), 3), 0));
             }
-            damageable.setDamage(dura);
+            damageable.setDamage(durability);
         }
         itemStack.setItemMeta(im);
     }

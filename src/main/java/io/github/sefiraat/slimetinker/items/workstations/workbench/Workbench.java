@@ -43,6 +43,7 @@ public class Workbench extends AbstractContainer {
         this.craftingRecipes = RECIPES;
     }
 
+    @SuppressWarnings("SameReturnValue")
     protected boolean craft(BlockMenu blockMenu, Player player) {
 
         ItemStack[] inputs = new ItemStack[9];

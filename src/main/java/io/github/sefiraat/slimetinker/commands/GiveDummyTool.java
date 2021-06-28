@@ -13,11 +13,11 @@ import java.util.List;
 public class GiveDummyTool extends AbstractCommand {
 
     public GiveDummyTool() {
-        super("givetool", "gives tool set", true);
+        super("GiveTool", "gives tool set", true);
     }
 
     @Override
-    public void onExecute(@NotNull CommandSender commandSender, @NotNull String[] strings) {
+    public void onExecute(@NotNull CommandSender commandSender, String @NotNull [] strings) {
 
         Player player = (Player) commandSender;
         ToolDefinition tool = new ToolDefinition(IDStrings.HEAD, strings[1], strings[2], strings[3], strings[4]);
@@ -30,7 +30,7 @@ public class GiveDummyTool extends AbstractCommand {
     }
 
     @Override
-    public void onTab(@NotNull CommandSender commandSender, @NotNull String[] strings, @NotNull List<String> list) {
+    public void onTab(@NotNull CommandSender commandSender, String @NotNull [] strings, @NotNull List<String> list) {
 
     }
 }

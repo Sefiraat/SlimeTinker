@@ -11,6 +11,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.List;
 
+@SuppressWarnings("SpellCheckingInspection")
 @UtilityClass
 public final class ThemeUtils {
 

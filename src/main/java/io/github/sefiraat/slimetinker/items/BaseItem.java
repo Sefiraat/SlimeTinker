@@ -3,7 +3,6 @@ package io.github.sefiraat.slimetinker.items;
 import io.github.thebusybiscuit.slimefun4.core.attributes.NotPlaceable;
 import me.mrCookieSlime.Slimefun.api.SlimefunItemStack;
 import org.bukkit.Material;
-import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
 public class BaseItem extends SlimefunItemStack implements NotPlaceable {
@@ -12,11 +11,6 @@ public class BaseItem extends SlimefunItemStack implements NotPlaceable {
 
     public BaseItem(String id, Material type, String name, String... lore) {
         super(id, type, name, lore);
-        this.id = id;
-    }
-
-    public BaseItem(String id, ItemStack item, String name, String... lore) {
-        super(id, item, name, lore);
         this.id = id;
     }
 

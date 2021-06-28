@@ -13,6 +13,7 @@ import org.bukkit.persistence.PersistentDataContainer;
 public class DropItemListener implements Listener {
 
 
+    @SuppressWarnings("unused")
     @EventHandler
     public void onDropItem(PlayerDropItemEvent event) {
 

@@ -39,6 +39,15 @@ public class ComponentMaterial {
     private final CMTraits cmTraits;
     private final Map<TraitEventType, Map<TraitPartType, Consumer<EventFriend>>> cmEventMap = new EnumMap<>(TraitEventType.class);
 
+
+    /**
+     *
+     * @param cmIdentity Defines the ID, Displayed ItemStack for recipes, SkullTexture for liquids and the Color for theming lore and names
+     * @param alloyRecipe List of material IDs that can be found in the CMMap used to build alloy recipes
+     * @param cmToolMakeup Defines what parts this material can be formed into
+     * @param cmForms Defines the solid forms of metals that can be used for input
+     * @param cmTraits A collection of cmTraits for each potential part
+     */
     public ComponentMaterial(CMIdentity cmIdentity,
                              @Nullable List<SlimefunItemStack> alloyRecipe,
                              CMToolMakeup cmToolMakeup,

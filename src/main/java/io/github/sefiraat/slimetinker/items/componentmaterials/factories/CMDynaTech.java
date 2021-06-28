@@ -23,7 +23,9 @@ import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.SlimefunItem;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
+@SuppressWarnings("SpellCheckingInspection")
 @UtilityClass
 public final class CMDynaTech {
 
@@ -32,10 +34,10 @@ public final class CMDynaTech {
     private static final Map<String, ComponentMaterial> map = new HashMap<>();
 
     static {
-        map.put(IDStrings.STAINLESSSTEEL,
+        map.put(IDStrings.STAINLESS_STEEL,
                 new ComponentMaterial
                         (
-                                new CMIdentity(IDStrings.STAINLESSSTEEL, SlimefunItem.getByID("STAINLESS_STEEL").getItem(), SkullTextures.ALLOY_SILVER, "#d1d1d1"),
+                                new CMIdentity(IDStrings.STAINLESS_STEEL, Objects.requireNonNull(SlimefunItem.getByID("STAINLESS_STEEL")).getItem(), SkullTextures.ALLOY_SILVER, "#d1d1d1"),
                                 Arrays.asList(
                                         CMCore.getMap().get(IDStrings.IRON).getLiquidItemStack(2),
                                         CMCore.getMap().get(IDStrings.ZINC).getLiquidItemStack(1)
@@ -54,7 +56,7 @@ public final class CMDynaTech {
                                     null
                                 ),
                                 new CMTraits(
-                                        IDStrings.STAINLESSSTEEL,
+                                        IDStrings.STAINLESS_STEEL,
                                         new CMTrait(
                                                 CMTraits.PROP_HEAD,
                                                 SupportedPluginsManager.DYNATECH_NOTE,
@@ -71,10 +73,10 @@ public final class CMDynaTech {
                                 )
                         ));
 
-        map.put(IDStrings.VEXGEM,
+        map.put(IDStrings.VEX_GEM,
                 new ComponentMaterial
                         (
-                                new CMIdentity(IDStrings.VEXGEM, SlimefunItem.getByID("VEX_GEM").getItem(), SkullTextures.ALLOY_BLUE, "#38c0c2"),
+                                new CMIdentity(IDStrings.VEX_GEM, Objects.requireNonNull(SlimefunItem.getByID("VEX_GEM")).getItem(), SkullTextures.ALLOY_BLUE, "#38c0c2"),
                                 null,
                                 new CMToolMakeup(false, true, false),
                                 new CMForms(
@@ -90,7 +92,7 @@ public final class CMDynaTech {
                                     null
                                 ),
                                 new CMTraits(
-                                        IDStrings.VEXGEM,
+                                        IDStrings.VEX_GEM,
                                         null,
                                         new CMTrait(
                                                 CMTraits.PROP_BINDING,
@@ -106,15 +108,15 @@ public final class CMDynaTech {
         map.put(IDStrings.STARDUST,
                 new ComponentMaterial
                         (
-                                new CMIdentity(IDStrings.STARDUST, SlimefunItem.getByID("STAR_DUST").getItem(), SkullTextures.ALLOY_SILVER, "#fdff96"),
+                                new CMIdentity(IDStrings.STARDUST, Objects.requireNonNull(SlimefunItem.getByID("STAR_DUST")).getItem(), SkullTextures.ALLOY_SILVER, "#fdff96"),
                                 null,
                                 new CMToolMakeup(true, false, true),
                                 new CMForms(
                                     null,
                                     null,
                                     null,
-                                    SlimefunItem.getByID("STARDUST_METEOR").getId(),
-                                    SlimefunItem.getByID("STAR_DUST").getId(),
+                                    Objects.requireNonNull(SlimefunItem.getByID("STARDUST_METEOR")).getId(),
+                                    Objects.requireNonNull(SlimefunItem.getByID("STAR_DUST")).getId(),
                                     null,
                                     null,
                                     null,
@@ -141,10 +143,10 @@ public final class CMDynaTech {
                                 )
                         ));
 
-        map.put(IDStrings.GHOSTLYESSENCE,
+        map.put(IDStrings.GHOSTLY_ESSENCE,
                 new ComponentMaterial
                         (
-                                new CMIdentity(IDStrings.GHOSTLYESSENCE, SlimefunItem.getByID("GHOSTLY_ESSENCE").getItem(), SkullTextures.ALLOY_BROWN, "#d4ffef"),
+                                new CMIdentity(IDStrings.GHOSTLY_ESSENCE, Objects.requireNonNull(SlimefunItem.getByID("GHOSTLY_ESSENCE")).getItem(), SkullTextures.ALLOY_BROWN, "#d4ffef"),
                                 null,
                                 new CMToolMakeup(false, true, true),
                                 new CMForms(
@@ -153,14 +155,14 @@ public final class CMDynaTech {
                                     null,
                                     null,
                                     null,
-                                    SlimefunItem.getByID("GHOSTLY_ESSENCE").getId(),
+                                    Objects.requireNonNull(SlimefunItem.getByID("GHOSTLY_ESSENCE")).getId(),
                                     null,
                                     null,
                                     null,
                                     null
                                 ),
                                 new CMTraits(
-                                        IDStrings.GHOSTLYESSENCE,
+                                        IDStrings.GHOSTLY_ESSENCE,
                                         null,
                                         new CMTrait(
                                                 CMTraits.PROP_BINDING,
@@ -182,13 +184,13 @@ public final class CMDynaTech {
         map.put(IDStrings.TESSERACT,
                 new ComponentMaterial
                         (
-                                new CMIdentity(IDStrings.TESSERACT, SlimefunItem.getByID("TESSERACTING_OBJ").getItem(), SkullTextures.ALLOY_TAN, "#c7ba9f"),
+                                new CMIdentity(IDStrings.TESSERACT, Objects.requireNonNull(SlimefunItem.getByID("TESSERACTING_OBJ")).getItem(), SkullTextures.ALLOY_TAN, "#c7ba9f"),
                                 null,
                                 new CMToolMakeup(true, false, true),
                                 new CMForms(
                                     null,
                                     null,
-                                    SlimefunItem.getByID("TESSERACTING_OBJ").getId(),
+                                    Objects.requireNonNull(SlimefunItem.getByID("TESSERACTING_OBJ")).getId(),
                                     null,
                                     null,
                                     null,
@@ -213,12 +215,12 @@ public final class CMDynaTech {
                         ));
 
         map.get(IDStrings.STARDUST).addEvent(TraitEventType.ENTITY_DAMAGED, TraitPartType.HEAD, EntityDamageEvents::headStarDust);                    // Bright Fury
-        map.get(IDStrings.STAINLESSSTEEL).addEvent(TraitEventType.ENTITY_DAMAGED, TraitPartType.ROD, EntityDamageEvents::rodStainlessSteel);          // Cutlery
+        map.get(IDStrings.STAINLESS_STEEL).addEvent(TraitEventType.ENTITY_DAMAGED, TraitPartType.ROD, EntityDamageEvents::rodStainlessSteel);          // Cutlery
         map.get(IDStrings.TESSERACT).addEvent(TraitEventType.RIGHT_CLICK, TraitPartType.HEAD, RightClickEvents::headTessMat);                         // HyperCube [A]
-        map.get(IDStrings.GHOSTLYESSENCE).addEvent(TraitEventType.RIGHT_CLICK, TraitPartType.ROD, RightClickEvents::rodGhostly);                      // HyperCube [B]
-        map.get(IDStrings.GHOSTLYESSENCE).addEvent(TraitEventType.PLAYER_DAMAGED, TraitPartType.BINDER, PlayerDamagedEvents::bindGhostly);            // Incorporeal
-        map.get(IDStrings.VEXGEM).addEvent(TraitEventType.RIGHT_CLICK, TraitPartType.BINDER, RightClickEvents::bindVex);                              // NoClip
-        map.get(IDStrings.STAINLESSSTEEL).addEvent(TraitEventType.ENTITY_DAMAGED, TraitPartType.HEAD, EntityDamageEvents::headStainlessSteel);        // Super Dooper Stainless
+        map.get(IDStrings.GHOSTLY_ESSENCE).addEvent(TraitEventType.RIGHT_CLICK, TraitPartType.ROD, RightClickEvents::rodGhostly);                      // HyperCube [B]
+        map.get(IDStrings.GHOSTLY_ESSENCE).addEvent(TraitEventType.PLAYER_DAMAGED, TraitPartType.BINDER, PlayerDamagedEvents::bindGhostly);            // Incorporeal
+        map.get(IDStrings.VEX_GEM).addEvent(TraitEventType.RIGHT_CLICK, TraitPartType.BINDER, RightClickEvents::bindVex);                              // NoClip
+        map.get(IDStrings.STAINLESS_STEEL).addEvent(TraitEventType.ENTITY_DAMAGED, TraitPartType.HEAD, EntityDamageEvents::headStainlessSteel);        // Super Dooper Stainless
         map.get(IDStrings.STARDUST).addEvent(TraitEventType.TICK, TraitPartType.ROD, TickEvents::rodStarDust);                                        // Yvaine
 
     }

@@ -31,6 +31,7 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class EntityDamagedListener implements Listener {
 
+    @SuppressWarnings("unused")
     @EventHandler
     public void onEntityDamaged(EntityDamageByEntityEvent event) {
 
@@ -69,7 +70,7 @@ public class EntityDamagedListener implements Listener {
 
         // Cancel if tool is broken (moved down here as we bypass if the duralium event fires)
         if (cancelIfBroken(heldItem)) {
-            if (matPropertyHead.equals(IDStrings.DURALIUM) || matPropertyRod.equals(IDStrings.TITANIUM)) { // Run duraluim as it will flag the duraliumCheck meaning we can bypass durability checks
+            if (matPropertyHead.equals(IDStrings.DURALIUM) || matPropertyRod.equals(IDStrings.TITANIUM)) { // Run duralium as it will flag the duraliumCheck meaning we can bypass durability checks
                 EntityDamageEvents.headDuralium(friend);
             }
             if (!friend.isDuraliumCheck()) {

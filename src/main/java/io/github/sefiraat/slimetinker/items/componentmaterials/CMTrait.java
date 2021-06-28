@@ -3,7 +3,7 @@ package io.github.sefiraat.slimetinker.items.componentmaterials;
 import io.github.mooy1.infinitylib.items.StackUtils;
 import io.github.sefiraat.slimetinker.SlimeTinker;
 import io.github.sefiraat.slimetinker.categories.Categories;
-import io.github.sefiraat.slimetinker.items.workstations.smeltery.DummySmelteryAlloy;
+import io.github.sefiraat.slimetinker.items.workstations.smeltery.DummySmelteryTrait;
 import io.github.sefiraat.slimetinker.utils.ThemeUtils;
 import lombok.Getter;
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.SlimefunItem;
@@ -49,7 +49,7 @@ public class CMTrait {
                         "Trait : " + traitName,
                         newLore
                 );
-        this.item = new SlimefunItem(Categories.TRAITS, itemStack, DummySmelteryAlloy.TYPE, CMTraits.propRecipe(partType, parentCM.getRepresentativeStack()));
+        this.item = new SlimefunItem(Categories.TRAITS, itemStack, DummySmelteryTrait.TYPE, CMTraits.propRecipe(partType, parentCM.getRepresentativeStack()));
         item.register(SlimeTinker.inst());
 
     }

@@ -23,7 +23,7 @@ public class Modifications {
     }
 
     @Getter
-    protected static final List<String> MODIFICAION_LIST = new LinkedList<>();
+    protected static final List<String> MODIFICATION_LIST = new LinkedList<>();
     @Getter
     protected static final Map<String, Mod> MODIFICATION_DEFINITIONS = new HashMap<>();
     @Getter
@@ -42,12 +42,12 @@ public class Modifications {
     static {
 
         // ALL NEW MODS MUST BE PLACED AFTER EXISTING ONES
-        MODIFICAION_LIST.add(StackUtils.getIDorType(new ItemStack(Material.REDSTONE)));
-        MODIFICAION_LIST.add(StackUtils.getIDorType(new ItemStack(Material.LAPIS_LAZULI)));
-        MODIFICAION_LIST.add(StackUtils.getIDorType(new ItemStack(Material.QUARTZ)));
-        MODIFICAION_LIST.add(StackUtils.getIDorType(new ItemStack(Material.DIAMOND)));
-        MODIFICAION_LIST.add(StackUtils.getIDorType(new ItemStack(Material.EMERALD)));
-        MODIFICAION_LIST.add(StackUtils.getIDorType(Materials.MOD_PLATE));
+        MODIFICATION_LIST.add(StackUtils.getIDorType(new ItemStack(Material.REDSTONE)));
+        MODIFICATION_LIST.add(StackUtils.getIDorType(new ItemStack(Material.LAPIS_LAZULI)));
+        MODIFICATION_LIST.add(StackUtils.getIDorType(new ItemStack(Material.QUARTZ)));
+        MODIFICATION_LIST.add(StackUtils.getIDorType(new ItemStack(Material.DIAMOND)));
+        MODIFICATION_LIST.add(StackUtils.getIDorType(new ItemStack(Material.EMERALD)));
+        MODIFICATION_LIST.add(StackUtils.getIDorType(Materials.MOD_PLATE));
 
         MOD_MAP_REDSTONE.put(1, 128);
         MOD_MAP_REDSTONE.put(2, 256);
@@ -92,9 +92,9 @@ public class Modifications {
     }
 
     public static void setModificationMap(PersistentDataContainer c, Map<String, Integer> map) {
-        int[] mapArray = new int[MODIFICAION_LIST.size()];
-        for (int i = 0; i < MODIFICAION_LIST.size(); i++) {
-            mapArray[i] = map.get(MODIFICAION_LIST.get(i));
+        int[] mapArray = new int[MODIFICATION_LIST.size()];
+        for (int i = 0; i < MODIFICATION_LIST.size(); i++) {
+            mapArray[i] = map.get(MODIFICATION_LIST.get(i));
         }
         c.set(SlimeTinker.inst().getKeys().getToolMods(), PersistentDataType.INTEGER_ARRAY, mapArray);
     }
@@ -107,15 +107,15 @@ public class Modifications {
         if (c.has(SlimeTinker.inst().getKeys().getToolMods(), PersistentDataType.INTEGER_ARRAY)) {
             int[] mapArray = c.get(SlimeTinker.inst().getKeys().getToolMods(), PersistentDataType.INTEGER_ARRAY);
             assert mapArray != null;
-            for (String m : MODIFICAION_LIST) {
-                if ((MODIFICAION_LIST.indexOf(m) + 1) > mapArray.length) {
+            for (String m : MODIFICATION_LIST) {
+                if ((MODIFICATION_LIST.indexOf(m) + 1) > mapArray.length) {
                     map.put(m, 0);
                 } else {
-                    map.put(m, mapArray[MODIFICAION_LIST.indexOf(m)]);
+                    map.put(m, mapArray[MODIFICATION_LIST.indexOf(m)]);
                 }
             }
         } else {
-            for (String m : MODIFICAION_LIST) {
+            for (String m : MODIFICATION_LIST) {
                 map.put(m, 0);
             }
             setModificationMap(c, map);
@@ -129,15 +129,15 @@ public class Modifications {
         if (c.has(SlimeTinker.inst().getKeys().getToolMods(), PersistentDataType.INTEGER_ARRAY)) {
             int[] mapArray = c.get(SlimeTinker.inst().getKeys().getToolMods(), PersistentDataType.INTEGER_ARRAY);
             assert mapArray != null;
-            for (String m : MODIFICAION_LIST) {
-                if ((MODIFICAION_LIST.indexOf(m) + 1) > mapArray.length) {
+            for (String m : MODIFICATION_LIST) {
+                if ((MODIFICATION_LIST.indexOf(m) + 1) > mapArray.length) {
                     map.put(m, 0);
                 } else {
-                    map.put(m, mapArray[MODIFICAION_LIST.indexOf(m)]);
+                    map.put(m, mapArray[MODIFICATION_LIST.indexOf(m)]);
                 }
             }
         } else {
-            for (String m : MODIFICAION_LIST) {
+            for (String m : MODIFICATION_LIST) {
                 map.put(m, 0);
             }
             setModificationMap(c, map);
@@ -159,7 +159,7 @@ public class Modifications {
 
     public static Map<String, Integer> getAllModLevels(ItemStack itemStack) {
         Map<String, Integer> map = new HashMap<>();
-        for (String m : MODIFICAION_LIST) {
+        for (String m : MODIFICATION_LIST) {
             int level = getModLevel(MODIFICATION_DEFINITIONS.get(m), itemStack);
             Integer progress = getModificationMap(itemStack).get(m);
             if (level > 0 || (progress != null && progress > 0)) { // Has level or progress towards level

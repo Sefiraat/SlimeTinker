@@ -32,18 +32,18 @@ public final class IDStrings {
     public static final String REINFORCED = "REINFORCED_ALLOY";
     public static final String STRING = "STRING";
     public static final String VINE = "VINE";
-    public static final String CRIMSONROOTS = "CRIMSON_ROOT";
-    public static final String WARPEDROOTS = "WARPED_ROOT";
-    public static final String WEEPINGVINES = "WEEPING_VINE";
-    public static final String TWISTEDVINES = "TWISTED_VINE";
+    public static final String CRIMSON_ROOTS = "CRIMSON_ROOT";
+    public static final String WARPED_ROOTS = "WARPED_ROOT";
+    public static final String WEEPING_VINES = "WEEPING_VINE";
+    public static final String TWISTED_VINES = "TWISTED_VINE";
     public static final String SLIME = "SLIME";
     public static final String DIAMOND = "DIAMOND";
     public static final String REDSTONE = "REDSTONE";
-    public static final String REDSTONEALLOY = "REDSTONE_ALLOY";
+    public static final String REDSTONE_ALLOY = "REDSTONE_ALLOY";
     public static final String SILICON = "SILICON";
     public static final String FERROSILICON = "FERROSILICON";
 
-    // Infinity Expac
+    // Infinity Expansion
     public static final String VOID = "VOID";
     public static final String INFINITY = "INFINITE";
     public static final String FORTUNE = "FORTUNE_SINGULARITY";
@@ -67,19 +67,19 @@ public final class IDStrings {
     public static final String SINGDIAMOND = "DIAMOND_SINGULARITY";
     public static final String SINGINFINITY = "INFINITY_SINGULARITY";
 
-    // Slimefun Warefare
+    // Slimefun Warfare
     public static final String SLIMESTEEL = "SLIME_STEEL";
-    public static final String REINFORCEDSLIMESTEEL = "REINFORCED_SLIME_STEEL";
-    public static final String OSMIUMSUPERALLOY = "OSMIUM_SUPERALLOY";
+    public static final String REINFORCED_SLIMESTEEL = "REINFORCED_SLIME_STEEL";
+    public static final String OSMIUM_SUPERALLOY = "OSMIUM_SUPERALLOY";
     public static final String OSMIUM = "OSMIUM";
     public static final String SEGGANESSON = "SEGGANESSON";
     public static final String UNPATENTABLIUM = "UNPATENTABLIUM";
 
     // DynaTech
-    public static final String STAINLESSSTEEL = "STAINLESS_STEEL";
-    public static final String VEXGEM = "VEX_GEM";
+    public static final String STAINLESS_STEEL = "STAINLESS_STEEL";
+    public static final String VEX_GEM = "VEX_GEM";
     public static final String STARDUST = "STAR_DUST";
-    public static final String GHOSTLYESSENCE = "GHOSTLY_ESSENCE";
+    public static final String GHOSTLY_ESSENCE = "GHOSTLY_ESSENCE";
     public static final String TESSERACT = "TESSERACTING_MATERIAL";
 
     // Other

@@ -31,11 +31,11 @@ public final class Tools {
     @Getter
     protected static final Map<String, Map<Integer, Material>> toolGrowthMap = new HashMap<>();
 
-    protected static ItemStack[] getDummyToolRecipe(ItemStack i1, ItemStack i2, ItemStack i3) {
+    protected static ItemStack[] getDummyToolRecipe(ItemStack i3) {
         return new ItemStack[]{
-                null,   null,   null,
-                i1,     i2,     i3,
-                null,   null,   null
+                null,                       null,                       null,
+                Parts.PART_TOOL_ROD_DUMMY,  Parts.PART_BINDING_DUMMY,   i3,
+                null,                       null,                       null
         };
     }
 
@@ -210,11 +210,11 @@ public final class Tools {
     public static void set(SlimeTinker p) {
         
         new UnplaceableBlock(Categories.TOOLS, TOOL_INFO, DummyTable.TYPE, new ItemStack[9]).register(p);
-        new UnplaceableBlock(Categories.TOOLS, TOOL_SHOVEL_DUMMY, DummyTable.TYPE, getDummyToolRecipe(Parts.PART_TOOL_ROD_DUMMY, Parts.PART_BINDING_DUMMY, Parts.PART_SHOVEL_HEAD_DUMMY)).register(p);
-        new UnplaceableBlock(Categories.TOOLS, TOOL_PICKAXE_DUMMY, DummyTable.TYPE, getDummyToolRecipe(Parts.PART_TOOL_ROD_DUMMY, Parts.PART_BINDING_DUMMY, Parts.PART_PICKAXE_HEAD_DUMMY)).register(p);
-        new UnplaceableBlock(Categories.TOOLS, TOOL_AXE_DUMMY, DummyTable.TYPE, getDummyToolRecipe(Parts.PART_TOOL_ROD_DUMMY, Parts.PART_BINDING_DUMMY, Parts.PART_AXE_HEAD_DUMMY)).register(p);
-        new UnplaceableBlock(Categories.TOOLS, TOOL_HOE_DUMMY, DummyTable.TYPE, getDummyToolRecipe(Parts.PART_TOOL_ROD_DUMMY, Parts.PART_BINDING_DUMMY, Parts.PART_HOE_HEAD_DUMMY)).register(p);
-        new UnplaceableBlock(Categories.TOOLS, TOOL_SWORD_DUMMY, DummyTable.TYPE, getDummyToolRecipe(Parts.PART_TOOL_ROD_DUMMY, Parts.PART_BINDING_DUMMY, Parts.PART_SWORD_BLADE_DUMMY)).register(p);
+        new UnplaceableBlock(Categories.TOOLS, TOOL_SHOVEL_DUMMY, DummyTable.TYPE, getDummyToolRecipe(Parts.PART_SHOVEL_HEAD_DUMMY)).register(p);
+        new UnplaceableBlock(Categories.TOOLS, TOOL_PICKAXE_DUMMY, DummyTable.TYPE, getDummyToolRecipe(Parts.PART_PICKAXE_HEAD_DUMMY)).register(p);
+        new UnplaceableBlock(Categories.TOOLS, TOOL_AXE_DUMMY, DummyTable.TYPE, getDummyToolRecipe(Parts.PART_AXE_HEAD_DUMMY)).register(p);
+        new UnplaceableBlock(Categories.TOOLS, TOOL_HOE_DUMMY, DummyTable.TYPE, getDummyToolRecipe(Parts.PART_HOE_HEAD_DUMMY)).register(p);
+        new UnplaceableBlock(Categories.TOOLS, TOOL_SWORD_DUMMY, DummyTable.TYPE, getDummyToolRecipe(Parts.PART_SWORD_BLADE_DUMMY)).register(p);
 
         SHOVEL.register(p);
         PICKAXE.register(p);

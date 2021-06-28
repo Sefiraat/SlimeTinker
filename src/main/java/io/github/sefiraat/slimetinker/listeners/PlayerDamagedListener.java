@@ -27,6 +27,7 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class PlayerDamagedListener implements Listener {
 
+    @SuppressWarnings("unused")
     @EventHandler
     public void onPlayerDamaged(EntityDamageEvent event) {
 

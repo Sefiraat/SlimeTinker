@@ -31,8 +31,9 @@ import java.util.Map;
 
 public class EntityKilledListener implements Listener {
 
-    protected Map<Player, List<ItemStack>>  heldItems = new HashMap<>();
+    protected final Map<Player, List<ItemStack>>  heldItems = new HashMap<>();
 
+    @SuppressWarnings("unused")
     @EventHandler
     public void onPlayerDeath(PlayerDeathEvent event) {
         Player p = event.getEntity();
@@ -64,6 +65,7 @@ public class EntityKilledListener implements Listener {
 
     }
 
+    @SuppressWarnings("unused")
     @EventHandler
     public void onPlayerRespawn(PlayerRespawnEvent event) {
         Player p = event.getPlayer();
@@ -75,6 +77,7 @@ public class EntityKilledListener implements Listener {
         heldItems.remove(p);
     }
 
+    @SuppressWarnings("unused")
     @EventHandler
     public void onEntityDeath(EntityDeathEvent event) {
 

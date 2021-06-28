@@ -29,6 +29,7 @@ import java.util.Objects;
 
 public class PlayerInteractListener implements Listener {
 
+    @SuppressWarnings("unused")
     @EventHandler
     public void onEntityDamaged(PlayerInteractEvent event) {
 
@@ -62,7 +63,7 @@ public class PlayerInteractListener implements Listener {
 
         // Cancel if tool is broken (moved down here as we bypass if the duralium event fires)
         if (cancelIfBroken(heldItem)) {
-            if (matPropertyHead.equals(IDStrings.DURALIUM) || matPropertyRod.equals(IDStrings.TITANIUM)) { // Run duraluim as it will flag the duraliumCheck meaning we can bypass durability checks
+            if (matPropertyHead.equals(IDStrings.DURALIUM) || matPropertyRod.equals(IDStrings.TITANIUM)) { // Run duralium as it will flag the duraliumCheck meaning we can bypass durability checks
                 EntityDamageEvents.headDuralium(friend);
             }
             if (!friend.isDuraliumCheck()) {
@@ -99,32 +100,32 @@ public class PlayerInteractListener implements Listener {
         PersistentDataContainer c = im.getPersistentDataContainer();
         long time = System.currentTimeMillis();
 
-        NamespacedKey keycd = SlimeTinker.inst().getKeys().getToolCooldownHypercube();
-        NamespacedKey keyloc = SlimeTinker.inst().getKeys().getToolHypercubeLocation();
+        NamespacedKey keyCd = SlimeTinker.inst().getKeys().getToolCooldownHypercube();
+        NamespacedKey keyLoc = SlimeTinker.inst().getKeys().getToolHypercubeLocation();
 
         if (p.isSneaking()) {
             // Setting location
-            c.set(keyloc, PersistentDataType.STRING, GeneralUtils.serializeLocation(p.getLocation()));
+            c.set(keyLoc, PersistentDataType.STRING, GeneralUtils.serializeLocation(p.getLocation()));
             p.sendMessage(ThemeUtils.SUCCESS + "Location set!");
         } else {
             // Actioning location
-            if (c.has(keycd, PersistentDataType.LONG)) {
-                Long cd = c.get(keycd, PersistentDataType.LONG);
+            if (c.has(keyCd, PersistentDataType.LONG)) {
+                Long cd = c.get(keyCd, PersistentDataType.LONG);
                 assert cd != null;
                 if (cd > time) {
                     p.sendMessage(ThemeUtils.WARNING + "Recall is on cooldown!");
                     return;
                 }
             }
-            SlimeTinker.inst().getLogger().info(c.get(keyloc, PersistentDataType.STRING));
-            if (!c.has(keyloc, PersistentDataType.STRING)) {
+            SlimeTinker.inst().getLogger().info(c.get(keyLoc, PersistentDataType.STRING));
+            if (!c.has(keyLoc, PersistentDataType.STRING)) {
                 p.sendMessage(ThemeUtils.WARNING + "You have not yet set a location to recall to!");
                 return;
             }
-            p.teleport(GeneralUtils.deserializeLocation(Objects.requireNonNull(c.get(keyloc, PersistentDataType.STRING))));
-            p.sendMessage(ThemeUtils.SUCCESS + "Whoooosh!");
+            p.teleport(GeneralUtils.deserializeLocation(Objects.requireNonNull(c.get(keyLoc, PersistentDataType.STRING))));
+            p.sendMessage(ThemeUtils.SUCCESS + "Whoosh!");
             Instant cd = Instant.ofEpochMilli(time).plusSeconds(300);
-            c.set(keycd, PersistentDataType.LONG, cd.toEpochMilli());
+            c.set(keyCd, PersistentDataType.LONG, cd.toEpochMilli());
         }
 
         i.setItemMeta(im);

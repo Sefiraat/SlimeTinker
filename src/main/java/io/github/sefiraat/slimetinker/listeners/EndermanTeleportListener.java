@@ -9,6 +9,7 @@ import org.bukkit.persistence.PersistentDataType;
 
 public class EndermanTeleportListener implements Listener {
 
+    @SuppressWarnings("unused")
     @EventHandler
     public void onEndermanTeleport(EntityTeleportEvent event) {
         if (event.getEntity().getPersistentDataContainer().has(new NamespacedKey(SlimeTinker.inst(), "ST_STOP_TELEPORT"), PersistentDataType.STRING)) {

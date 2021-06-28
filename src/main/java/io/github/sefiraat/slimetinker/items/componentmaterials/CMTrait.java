@@ -8,7 +8,6 @@ import io.github.sefiraat.slimetinker.utils.ThemeUtils;
 import lombok.Getter;
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.SlimefunItem;
 import me.mrCookieSlime.Slimefun.api.SlimefunItemStack;
-import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -19,30 +18,40 @@ import java.util.Locale;
 public class CMTrait {
 
     private CMTraits parent;
+    private ComponentMaterial parentCM;
 
     private final String traitName;
-    private final SlimefunItemStack itemStack;
-    private final SlimefunItem item;
+    private final String[] lore;
+    private final String addedBy;
+    private final SlimefunItemStack partType;
+    private SlimefunItemStack itemStack;
+    private SlimefunItem item;
 
-    public CMTrait(String traitName, String texture, String addedBy, SlimefunItemStack partType, ItemStack material,  String... lore) {
+    public CMTrait(SlimefunItemStack partType, String addedBy, String traitName, String... lore) {
         this.traitName = traitName;
+        this.addedBy = addedBy;
+        this.partType = partType;
+        this.lore = lore;
+    }
+
+    protected void setupTrait(CMTraits parent, ComponentMaterial parentCM) {
+        this.parent = parent;
+        this.parentCM = parentCM;
+
         List<String> newLore = new ArrayList<>(Arrays.asList(lore));
         newLore.add("");
         newLore.add(ThemeUtils.ITEM_TYPEDESC + "Added by: " + addedBy);
         this.itemStack =
                 ThemeUtils.themedItemStack(
-                        traitName.toUpperCase(Locale.ROOT).replace(" ","_") + "_TRAIT_" + StackUtils.getIDorType(material),
-                        texture,
+                        traitName.toUpperCase(Locale.ROOT).replace(" ","_") + "_TRAIT_" + StackUtils.getIDorType(parentCM.getRepresentativeStack()),
+                        CMTraits.getTraitTexture(addedBy),
                         ThemeUtils.ThemeItemType.PROP,
                         "Trait : " + traitName,
                         newLore
                 );
-        this.item = new SlimefunItem(Categories.TRAITS, itemStack, DummySmelteryAlloy.TYPE, CMTraits.propRecipe(partType, material));
+        this.item = new SlimefunItem(Categories.TRAITS, itemStack, DummySmelteryAlloy.TYPE, CMTraits.propRecipe(partType, parentCM.getRepresentativeStack()));
         item.register(SlimeTinker.inst());
-    }
 
-    protected void setParent(CMTraits parent) {
-        this.parent = parent;
     }
 
 }

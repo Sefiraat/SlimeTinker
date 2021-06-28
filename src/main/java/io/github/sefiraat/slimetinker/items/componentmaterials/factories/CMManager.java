@@ -239,7 +239,7 @@ public class CMManager {
     }
 
     public static ChatColor getColorById(String id) {
-        return ChatColor.of(MAP.get(id).getColorHex());
+        return MAP.get(id).getColor();
     }
 
     public static String getTraitName(String id, TraitPartType partType) {

@@ -143,9 +143,9 @@ public final class ItemUtils {
         String toolType = getToolTypeName(c);
 
         String name =
-                        ChatColor.of(CMManager.getById(matHead).getColorHex()) + ThemeUtils.toTitleCase(matHead) + "-" +
-                        ChatColor.of(CMManager.getById(matBind).getColorHex()) + ThemeUtils.toTitleCase(matBind) + "-" +
-                        ChatColor.of(CMManager.getById(matRod).getColorHex()) + ThemeUtils.toTitleCase(matRod) + " " +
+                        CMManager.getById(matHead).getColor() + ThemeUtils.toTitleCase(matHead) + "-" +
+                        CMManager.getById(matBind).getColor() + ThemeUtils.toTitleCase(matBind) + "-" +
+                        CMManager.getById(matRod).getColor() + ThemeUtils.toTitleCase(matRod) + " " +
                         ChatColor.WHITE + ThemeUtils.toTitleCase(toolType);
 
 
@@ -206,7 +206,7 @@ public final class ItemUtils {
     }
 
     public static String formatMaterialName(String s) {
-        return ChatColor.of(CMManager.getById(s).getColorHex()) + ThemeUtils.toTitleCase(s);
+        return CMManager.getById(s).getColor() + ThemeUtils.toTitleCase(s);
     }
 
     public static String formatPropertyName(String s, String p) {

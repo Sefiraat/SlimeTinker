@@ -31,8 +31,4 @@ public class CMForms {
         this.formHelm = formHelm;
     }
 
-    protected void setParent(ComponentMaterial parent) {
-        this.parent = parent;
-    }
-
 }

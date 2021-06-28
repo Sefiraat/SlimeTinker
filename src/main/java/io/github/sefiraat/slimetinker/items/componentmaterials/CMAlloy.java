@@ -45,8 +45,4 @@ public class CMAlloy {
         }
     }
 
-    protected void setParent(ComponentMaterial parent) {
-        this.parent = parent;
-    }
-
 }

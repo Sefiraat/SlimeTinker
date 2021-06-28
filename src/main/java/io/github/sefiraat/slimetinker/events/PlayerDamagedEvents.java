@@ -50,9 +50,7 @@ public final class PlayerDamagedEvents {
 
     public static void bindGhostly(EventFriend friend) {
         if (friend.getCause() == EntityDamageEvent.DamageCause.PROJECTILE) {
-            if (friend.getCause() == EntityDamageEvent.DamageCause.PROJECTILE) {
-                friend.setDamageMod(0);
-            }
+            friend.setDamageMod(0);
         }
     }
 

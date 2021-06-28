@@ -26,13 +26,9 @@ import java.util.function.Consumer;
 @Data
 public class ComponentMaterial {
 
-    private final String id;
-    private final ItemStack representativeStack;
-    @Nullable
-    private final String liquidTexture;
+    private final CMIdentity cmIdentity;
     @Nullable
     private final List<SlimefunItemStack> alloyRecipe;
-    private final String colorHex;
     private final CMToolMakeup cmToolMakeup;
     private final CMForms cmForms;
     @Nullable
@@ -43,24 +39,19 @@ public class ComponentMaterial {
     private final CMTraits cmTraits;
     private final Map<TraitEventType, Map<TraitPartType, Consumer<EventFriend>>> cmEventMap = new EnumMap<>(TraitEventType.class);
 
-    public ComponentMaterial(String id,
-                             ItemStack representativeStack,
-                             @Nullable String liquidTexture,
+    public ComponentMaterial(CMIdentity cmIdentity,
                              @Nullable List<SlimefunItemStack> alloyRecipe,
-                             String colorHex,
                              CMToolMakeup cmToolMakeup,
                              CMForms cmForms,
                              @Nullable CMTraits cmTraits) {
-        this.id = id;
-        this.representativeStack = representativeStack;
-        this.liquidTexture = liquidTexture;
+
+        this.cmIdentity = cmIdentity;
         this.alloyRecipe = alloyRecipe;
-        this.colorHex = colorHex;
         this.cmToolMakeup = cmToolMakeup;
         this.cmForms = cmForms;
 
-        if (liquidTexture != null) {
-            this.cmLiquid = new CMLiquid(liquidTexture);
+        if (cmIdentity.getLiquidTexture()  != null) {
+            this.cmLiquid = new CMLiquid(cmIdentity.getLiquidTexture());
             cmLiquid.setupLiquid(this);
         } else {
             this.cmLiquid = null;
@@ -73,10 +64,15 @@ public class ComponentMaterial {
             this.cmAlloy = null;
         }
 
-        this.cmTraits = cmTraits;
+        if (cmTraits != null) {
+            this.cmTraits = cmTraits;
+            cmTraits.setupTraits(this);
+        } else {
+            this.cmTraits = null;
+        }
 
         if (this.cmToolMakeup.isValidBinder()) {
-            PartTemplate binder = new PartTemplate(Categories.DUMMY, bindingStack(id), Workbench.TYPE, bindingRecipe(representativeStack), id);
+            PartTemplate binder = new PartTemplate(Categories.DUMMY, bindingStack(cmIdentity.getId()), Workbench.TYPE, bindingRecipe(cmIdentity.getRepresentativeStack()), cmIdentity.getId());
             binder.setHidden(true);
             binder.register(SlimeTinker.inst());
         }
@@ -108,7 +104,7 @@ public class ComponentMaterial {
     }
 
     public ChatColor getColor() {
-        return ChatColor.of(colorHex);
+        return ChatColor.of(cmIdentity.getColorHex());
     }
 
     public boolean isValidToolHead() {
@@ -165,6 +161,18 @@ public class ComponentMaterial {
 
     public SlimefunItemStack getLiquidItemStack(int amount) {
         return new SlimefunItemStack(cmLiquid.getItemStack(), amount);
+    }
+
+    public String getId() {
+        return cmIdentity.getId();
+    }
+
+    public String getLiquidTexture() {
+        return cmIdentity.getLiquidTexture();
+    }
+
+    public ItemStack getRepresentativeStack() {
+        return cmIdentity.getRepresentativeStack();
     }
 
     /**

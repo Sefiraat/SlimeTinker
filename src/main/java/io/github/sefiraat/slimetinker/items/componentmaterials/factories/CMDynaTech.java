@@ -6,6 +6,7 @@ import io.github.sefiraat.slimetinker.events.RightClickEvents;
 import io.github.sefiraat.slimetinker.events.TickEvents;
 import io.github.sefiraat.slimetinker.items.Materials;
 import io.github.sefiraat.slimetinker.items.componentmaterials.CMForms;
+import io.github.sefiraat.slimetinker.items.componentmaterials.CMIdentity;
 import io.github.sefiraat.slimetinker.items.componentmaterials.CMToolMakeup;
 import io.github.sefiraat.slimetinker.items.componentmaterials.CMTrait;
 import io.github.sefiraat.slimetinker.items.componentmaterials.CMTraits;
@@ -34,14 +35,11 @@ public final class CMDynaTech {
         map.put(IDStrings.STAINLESSSTEEL,
                 new ComponentMaterial
                         (
-                                IDStrings.STAINLESSSTEEL,
-                                SlimefunItem.getByID("STAINLESS_STEEL").getItem(),
-                                SkullTextures.ALLOY_SILVER,
+                                new CMIdentity(IDStrings.STAINLESSSTEEL, SlimefunItem.getByID("STAINLESS_STEEL").getItem(), SkullTextures.ALLOY_SILVER, "#d1d1d1"),
                                 Arrays.asList(
                                         CMCore.getMap().get(IDStrings.IRON).getLiquidItemStack(2),
                                         CMCore.getMap().get(IDStrings.ZINC).getLiquidItemStack(1)
                                 ),
-                                "#d1d1d1",
                                 new CMToolMakeup(true, false, true),
                                 new CMForms(
                                     Materials.NUGGET_CAST_STAINLESSSTEEL.getItemId(),
@@ -58,20 +56,16 @@ public final class CMDynaTech {
                                 new CMTraits(
                                         IDStrings.STAINLESSSTEEL,
                                         new CMTrait(
-                                                "Super Dooper Stainless",
-                                                SkullTextures.PROPERTIES_DYNATECH,
-                                                SupportedPluginsManager.DYNATECH_NOTE,
                                                 CMTraits.PROP_HEAD,
-                                                SlimefunItem.getByID("STAINLESS_STEEL").getItem(),
+                                                SupportedPluginsManager.DYNATECH_NOTE,
+                                                "Super Dooper Stainless",
                                                 "Like Steel or MagSteel but yet more absurd."
                                         ),
                                         null,
                                         new CMTrait(
-                                                "Cutlery",
-                                                SkullTextures.PROPERTIES_DYNATECH,
-                                                SupportedPluginsManager.DYNATECH_NOTE,
                                                 CMTraits.PROP_ROD,
-                                                SlimefunItem.getByID("STAINLESS_STEEL").getItem(),
+                                                SupportedPluginsManager.DYNATECH_NOTE,
+                                                "Cutlery",
                                                 "Hitting animals will directly feed you. Grim"
                                         )
                                 )
@@ -80,11 +74,8 @@ public final class CMDynaTech {
         map.put(IDStrings.VEXGEM,
                 new ComponentMaterial
                         (
-                                IDStrings.VEXGEM,
-                                SlimefunItem.getByID("VEX_GEM").getItem(),
-                                SkullTextures.ALLOY_BLUE,
+                                new CMIdentity(IDStrings.VEXGEM, SlimefunItem.getByID("VEX_GEM").getItem(), SkullTextures.ALLOY_BLUE, "#38c0c2"),
                                 null,
-                                "#38c0c2",
                                 new CMToolMakeup(false, true, false),
                                 new CMForms(
                                     null,
@@ -102,11 +93,9 @@ public final class CMDynaTech {
                                         IDStrings.VEXGEM,
                                         null,
                                         new CMTrait(
-                                                "NoClip",
-                                                SkullTextures.PROPERTIES_DYNATECH,
-                                                SupportedPluginsManager.DYNATECH_NOTE,
                                                 CMTraits.PROP_BINDING,
-                                                SlimefunItem.getByID("VEX_GEM").getItem(),
+                                                SupportedPluginsManager.DYNATECH_NOTE,
+                                                "NoClip",
                                                 "Right click while holding to randomly teleport.",
                                                 "5 min cooldown."
                                         ),
@@ -117,11 +106,8 @@ public final class CMDynaTech {
         map.put(IDStrings.STARDUST,
                 new ComponentMaterial
                         (
-                                IDStrings.STARDUST,
-                                SlimefunItem.getByID("STAR_DUST").getItem(),
-                                SkullTextures.ALLOY_SILVER,
+                                new CMIdentity(IDStrings.STARDUST, SlimefunItem.getByID("STAR_DUST").getItem(), SkullTextures.ALLOY_SILVER, "#fdff96"),
                                 null,
-                                "#fdff96",
                                 new CMToolMakeup(true, false, true),
                                 new CMForms(
                                     null,
@@ -138,21 +124,17 @@ public final class CMDynaTech {
                                 new CMTraits(
                                         IDStrings.STARDUST,
                                         new CMTrait(
-                                                "Bright Fury",
-                                                SkullTextures.PROPERTIES_DYNATECH,
-                                                SupportedPluginsManager.DYNATECH_NOTE,
                                                 CMTraits.PROP_HEAD,
-                                                SlimefunItem.getByID("STAR_DUST").getItem(),
+                                                SupportedPluginsManager.DYNATECH_NOTE,
+                                                "Bright Fury",
                                                 "Attacks dazzle and blind while being.",
                                                 "50% more powerful."
                                         ),
                                         null,
                                         new CMTrait(
-                                                "Yvaine",
-                                                SkullTextures.PROPERTIES_DYNATECH,
-                                                SupportedPluginsManager.DYNATECH_NOTE,
                                                 CMTraits.PROP_ROD,
-                                                SlimefunItem.getByID("STAR_DUST").getItem(),
+                                                SupportedPluginsManager.DYNATECH_NOTE,
+                                                "Yvaine",
                                                 "Gives an ethereal glow and makes villagers",
                                                 "friendlier to you."
                                         )
@@ -162,11 +144,8 @@ public final class CMDynaTech {
         map.put(IDStrings.GHOSTLYESSENCE,
                 new ComponentMaterial
                         (
-                                IDStrings.GHOSTLYESSENCE,
-                                SlimefunItem.getByID("GHOSTLY_ESSENCE").getItem(),
-                                SkullTextures.ALLOY_BROWN,
+                                new CMIdentity(IDStrings.GHOSTLYESSENCE, SlimefunItem.getByID("GHOSTLY_ESSENCE").getItem(), SkullTextures.ALLOY_BROWN, "#d4ffef"),
                                 null,
-                                "#d4ffef",
                                 new CMToolMakeup(false, true, true),
                                 new CMForms(
                                     null,
@@ -184,19 +163,15 @@ public final class CMDynaTech {
                                         IDStrings.GHOSTLYESSENCE,
                                         null,
                                         new CMTrait(
-                                                "Incorporeal",
-                                                SkullTextures.PROPERTIES_DYNATECH,
-                                                SupportedPluginsManager.DYNATECH_NOTE,
                                                 CMTraits.PROP_BINDING,
-                                                SlimefunItem.getByID("GHOSTLY_ESSENCE").getItem(),
+                                                SupportedPluginsManager.DYNATECH_NOTE,
+                                                "Incorporeal",
                                                 "Projectiles just pass right through you."
                                         ),
                                         new CMTrait(
-                                                "HyperCube [B]",
-                                                SkullTextures.PROPERTIES_DYNATECH,
-                                                SupportedPluginsManager.DYNATECH_NOTE,
                                                 CMTraits.PROP_ROD,
-                                                SlimefunItem.getByID("GHOSTLY_ESSENCE").getItem(),
+                                                SupportedPluginsManager.DYNATECH_NOTE,
+                                                "HyperCube [B]",
                                                 "Only works with both [A] and [B]. Shift + Right",
                                                 "click to store a location. Right click to recall",
                                                 "to that location. 10min CD."
@@ -207,11 +182,8 @@ public final class CMDynaTech {
         map.put(IDStrings.TESSERACT,
                 new ComponentMaterial
                         (
-                                IDStrings.TESSERACT,
-                                SlimefunItem.getByID("TESSERACTING_OBJ").getItem(),
-                                SkullTextures.ALLOY_TAN,
+                                new CMIdentity(IDStrings.TESSERACT, SlimefunItem.getByID("TESSERACTING_OBJ").getItem(), SkullTextures.ALLOY_TAN, "#c7ba9f"),
                                 null,
-                                "#c7ba9f",
                                 new CMToolMakeup(true, false, true),
                                 new CMForms(
                                     null,
@@ -228,11 +200,9 @@ public final class CMDynaTech {
                                 new CMTraits(
                                         IDStrings.TESSERACT,
                                         new CMTrait(
-                                                "HyperCube [A]",
-                                                SkullTextures.PROPERTIES_DYNATECH,
-                                                SupportedPluginsManager.DYNATECH_NOTE,
                                                 CMTraits.PROP_HEAD,
-                                                SlimefunItem.getByID("TESSERACTING_OBJ").getItem(),
+                                                SupportedPluginsManager.DYNATECH_NOTE,
+                                                "HyperCube [A]",
                                                 "Only works with both [A] and [B]. Shift + Right",
                                                 "click to store a location. Right click to recall",
                                                 "to that location. 10min CD."

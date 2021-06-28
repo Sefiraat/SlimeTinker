@@ -31,16 +31,13 @@ public class CMLiquid {
                 "Molten " + titName,
                 ThemeUtils.PASSIVE + "The molten form of " + titName
         );
+
         this.item = new SlimefunItem(Categories.MOLTEN_METALS, itemStack, DummySmeltery.TYPE, new ItemStack[] {
                 null, null,                             null,
                 null, parent.getRepresentativeStack(),  null,
                 null, null,                             null
         });
         item.register(SlimeTinker.inst());
-    }
-
-    protected void setParent(ComponentMaterial parent) {
-        this.parent = parent;
     }
 
 }

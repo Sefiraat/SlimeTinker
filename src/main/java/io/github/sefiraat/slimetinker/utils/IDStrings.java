@@ -105,5 +105,10 @@ public final class IDStrings {
     public static final String HOE = "HOE";
     public static final String SWORD = "SWORD";
 
+    public static final String HELMET = "HELMET";
+    public static final String CHESTPLATE = "CHESTPLATE";
+    public static final String LEGGINGS = "LEGGINGS";
+    public static final String BOOTS = "BOOTS";
+
     public static final String PLACED = "st-placed-block";
 }

@@ -1,7 +1,8 @@
-package io.github.sefiraat.slimetinker.items.componentmaterials;
+package io.github.sefiraat.slimetinker.items.componentmaterials.cmelements;
 
 import io.github.sefiraat.slimetinker.SlimeTinker;
 import io.github.sefiraat.slimetinker.categories.Categories;
+import io.github.sefiraat.slimetinker.items.componentmaterials.ComponentMaterial;
 import io.github.sefiraat.slimetinker.items.workstations.smeltery.DummySmelteryMolten;
 import io.github.sefiraat.slimetinker.utils.ThemeUtils;
 import lombok.Getter;
@@ -21,7 +22,7 @@ public class CMLiquid {
         this.texture = texture;
     }
 
-    protected void setupLiquid(ComponentMaterial parent) {
+    public void setupLiquid(ComponentMaterial parent) {
         this.parent = parent;
         String titName = ThemeUtils.toTitleCase(parent.getId());
         this.itemStack = ThemeUtils.themedItemStack(

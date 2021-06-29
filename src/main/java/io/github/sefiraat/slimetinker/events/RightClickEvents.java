@@ -31,7 +31,7 @@ public final class RightClickEvents {
         Player p = friend.getPlayer();
         ItemStack i = friend.getHeldItem();
         ItemMeta im = i.getItemMeta();
-        NamespacedKey key = SlimeTinker.inst().getKeys().getToolCooldownNoClip();
+        NamespacedKey key = SlimeTinker.inst().getKeys().getTraitsCooldownNoClip();
         assert im != null;
         PersistentDataContainer c = im.getPersistentDataContainer();
         long time = System.currentTimeMillis();

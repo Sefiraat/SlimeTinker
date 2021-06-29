@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 @Getter @AllArgsConstructor
-public class ToolDefinition {
+public class CombinationDefinition {
 
     private final String classType;
     private final String partType;

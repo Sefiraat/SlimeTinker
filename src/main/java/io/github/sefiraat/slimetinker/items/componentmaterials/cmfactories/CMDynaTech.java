@@ -1,15 +1,15 @@
-package io.github.sefiraat.slimetinker.items.componentmaterials.factories;
+package io.github.sefiraat.slimetinker.items.componentmaterials.cmfactories;
 
 import io.github.sefiraat.slimetinker.events.EntityDamageEvents;
 import io.github.sefiraat.slimetinker.events.PlayerDamagedEvents;
 import io.github.sefiraat.slimetinker.events.RightClickEvents;
 import io.github.sefiraat.slimetinker.events.TickEvents;
 import io.github.sefiraat.slimetinker.items.Materials;
-import io.github.sefiraat.slimetinker.items.componentmaterials.CMForms;
-import io.github.sefiraat.slimetinker.items.componentmaterials.CMIdentity;
-import io.github.sefiraat.slimetinker.items.componentmaterials.CMToolMakeup;
-import io.github.sefiraat.slimetinker.items.componentmaterials.CMTrait;
-import io.github.sefiraat.slimetinker.items.componentmaterials.CMTraits;
+import io.github.sefiraat.slimetinker.items.componentmaterials.cmelements.CMForms;
+import io.github.sefiraat.slimetinker.items.componentmaterials.cmelements.CMIdentity;
+import io.github.sefiraat.slimetinker.items.componentmaterials.cmelements.CMToolMakeup;
+import io.github.sefiraat.slimetinker.items.componentmaterials.cmelements.CMTrait;
+import io.github.sefiraat.slimetinker.items.componentmaterials.cmelements.CMTraits;
 import io.github.sefiraat.slimetinker.items.componentmaterials.ComponentMaterial;
 import io.github.sefiraat.slimetinker.managers.SupportedPluginsManager;
 import io.github.sefiraat.slimetinker.utils.IDStrings;

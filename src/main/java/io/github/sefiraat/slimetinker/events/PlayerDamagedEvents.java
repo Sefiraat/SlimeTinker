@@ -89,7 +89,7 @@ public final class PlayerDamagedEvents {
         if (friend.getInitialDamage() >= p.getHealth()) {
             ItemStack i = friend.getHeldItem();
             ItemMeta im = i.getItemMeta();
-            NamespacedKey key = SlimeTinker.inst().getKeys().getToolCooldownProtective();
+            NamespacedKey key = SlimeTinker.inst().getKeys().getTraitsCooldownProtective();
             assert im != null;
             PersistentDataContainer c = im.getPersistentDataContainer();
             long time = System.currentTimeMillis();

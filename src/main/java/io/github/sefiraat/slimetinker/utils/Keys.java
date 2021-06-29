@@ -26,6 +26,19 @@ public class Keys {
     private final NamespacedKey partInfoClassType = new NamespacedKey(SlimeTinker.inst(), "ST_Class");
     private final NamespacedKey partInfoType = new NamespacedKey(SlimeTinker.inst(), "ST_Type");
 
+    // General Information
+    private final NamespacedKey stExpCurrent = new NamespacedKey(SlimeTinker.inst(), "ST_CurrentExp");
+    private final NamespacedKey stExpRequired = new NamespacedKey(SlimeTinker.inst(), "ST_NextLevelExp");
+    private final NamespacedKey stLevel = new NamespacedKey(SlimeTinker.inst(), "ST_Level");
+    private final NamespacedKey stModSlots = new NamespacedKey(SlimeTinker.inst(), "ST_Modifier_Slots");
+    private final NamespacedKey stMods = new NamespacedKey(SlimeTinker.inst(), "ST_Modifier_Map");
+    private final NamespacedKey stModLevelRedstone = new NamespacedKey(SlimeTinker.inst(), "ST_mod_level_redstone");
+    private final NamespacedKey stModLevelLapis = new NamespacedKey(SlimeTinker.inst(), "ST_mod_level_lapis");
+    private final NamespacedKey stModLevelQuartz = new NamespacedKey(SlimeTinker.inst(), "ST_mod_level_quartz");
+    private final NamespacedKey stModLevelDiamond = new NamespacedKey(SlimeTinker.inst(), "ST_mod_level_diamond");
+    private final NamespacedKey stModLevelEmerald = new NamespacedKey(SlimeTinker.inst(), "ST_mod_level_emerald");
+    private final NamespacedKey stModLevelObsidian = new NamespacedKey(SlimeTinker.inst(), "ST_mod_level_obsidian");
+
     // Tool information
     private final NamespacedKey toolInfoIsTool = new NamespacedKey(SlimeTinker.inst(), "ST_Tool");
     private final NamespacedKey toolInfoHeadType = new NamespacedKey(SlimeTinker.inst(), "ST_Type_Head");
@@ -33,22 +46,21 @@ public class Keys {
     private final NamespacedKey toolInfoHeadMaterial = new NamespacedKey(SlimeTinker.inst(), "ST_Material_Head");
     private final NamespacedKey toolInfoBinderMaterial = new NamespacedKey(SlimeTinker.inst(), "ST_Material_Binder");
     private final NamespacedKey toolInfoRodMaterial = new NamespacedKey(SlimeTinker.inst(), "ST_Material_Rod");
-    private final NamespacedKey toolExpCurrent = new NamespacedKey(SlimeTinker.inst(), "ST_CurrentExp");
-    private final NamespacedKey toolExpRequired = new NamespacedKey(SlimeTinker.inst(), "ST_NextLevelExp");
-    private final NamespacedKey toolLevel = new NamespacedKey(SlimeTinker.inst(), "ST_Level");
-    private final NamespacedKey toolModSlots = new NamespacedKey(SlimeTinker.inst(), "ST_Modifier_Slots");
-    private final NamespacedKey toolMods = new NamespacedKey(SlimeTinker.inst(), "ST_Modifier_Map");
-    private final NamespacedKey toolModLevelRedstone = new NamespacedKey(SlimeTinker.inst(), "ST_mod_level_redstone");
-    private final NamespacedKey toolModLevelLapis = new NamespacedKey(SlimeTinker.inst(), "ST_mod_level_lapis");
-    private final NamespacedKey toolModLevelQuartz = new NamespacedKey(SlimeTinker.inst(), "ST_mod_level_quartz");
-    private final NamespacedKey toolModLevelDiamond = new NamespacedKey(SlimeTinker.inst(), "ST_mod_level_diamond");
-    private final NamespacedKey toolModLevelEmerald = new NamespacedKey(SlimeTinker.inst(), "ST_mod_level_emerald");
-    private final NamespacedKey toolModLevelObsidian = new NamespacedKey(SlimeTinker.inst(), "ST_mod_level_obsidian");
-    private final NamespacedKey toolCooldownNoClip = new NamespacedKey(SlimeTinker.inst(), "ST_cd_noclip");
-    private final NamespacedKey toolCooldownHypercube = new NamespacedKey(SlimeTinker.inst(), "ST_cd_hypercube");
-    private final NamespacedKey toolHypercubeLocation = new NamespacedKey(SlimeTinker.inst(), "ST_loc_hypercube");
-    private final NamespacedKey toolCooldownProtective = new NamespacedKey(SlimeTinker.inst(), "ST_cd_protective");
-    private final NamespacedKey toolCooldownWarp = new NamespacedKey(SlimeTinker.inst(), "ST_cd_warp");
+
+    // Armour information
+    private final NamespacedKey armourInfoIsArmour = new NamespacedKey(SlimeTinker.inst(), "ST_Armour");
+    private final NamespacedKey armourInfoHeadType = new NamespacedKey(SlimeTinker.inst(), "ST_Type_Head");
+    private final NamespacedKey armourInfoArmourType = new NamespacedKey(SlimeTinker.inst(), "ST_Armour_Type");
+    private final NamespacedKey armourInfoPlateMaterial = new NamespacedKey(SlimeTinker.inst(), "ST_Material_Plate");
+    private final NamespacedKey armourInfoMailMaterial = new NamespacedKey(SlimeTinker.inst(), "ST_Material_Mail");
+    private final NamespacedKey armourInfoGambesonMaterial = new NamespacedKey(SlimeTinker.inst(), "ST_Material_Gambeson");
+
+    // Trait Keys
+    private final NamespacedKey traitsCooldownNoClip = new NamespacedKey(SlimeTinker.inst(), "ST_cd_noclip");
+    private final NamespacedKey traitsCooldownHypercube = new NamespacedKey(SlimeTinker.inst(), "ST_cd_hypercube");
+    private final NamespacedKey traitsHypercubeLocation = new NamespacedKey(SlimeTinker.inst(), "ST_loc_hypercube");
+    private final NamespacedKey traitsCooldownProtective = new NamespacedKey(SlimeTinker.inst(), "ST_cd_protective");
+    private final NamespacedKey traitsCooldownWarp = new NamespacedKey(SlimeTinker.inst(), "ST_cd_warp");
 
     // Workstations
     private final NamespacedKey wsDummySmeltery = new NamespacedKey(SlimeTinker.inst(), "dummy-smeltery");

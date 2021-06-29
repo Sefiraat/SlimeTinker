@@ -1,4 +1,4 @@
-package io.github.sefiraat.slimetinker.items.componentmaterials;
+package io.github.sefiraat.slimetinker.items.componentmaterials.cmelements;
 
 import lombok.Data;
 import org.bukkit.inventory.ItemStack;

@@ -3,7 +3,7 @@ package io.github.sefiraat.slimetinker.listeners;
 import io.github.sefiraat.slimetinker.SlimeTinker;
 import io.github.sefiraat.slimetinker.events.EntityDamageEvents;
 import io.github.sefiraat.slimetinker.events.EventFriend;
-import io.github.sefiraat.slimetinker.items.componentmaterials.factories.CMManager;
+import io.github.sefiraat.slimetinker.items.componentmaterials.CMManager;
 import io.github.sefiraat.slimetinker.items.templates.ToolTemplate;
 import io.github.sefiraat.slimetinker.utils.Experience;
 import io.github.sefiraat.slimetinker.utils.GeneralUtils;
@@ -100,8 +100,8 @@ public class PlayerInteractListener implements Listener {
         PersistentDataContainer c = im.getPersistentDataContainer();
         long time = System.currentTimeMillis();
 
-        NamespacedKey keyCd = SlimeTinker.inst().getKeys().getToolCooldownHypercube();
-        NamespacedKey keyLoc = SlimeTinker.inst().getKeys().getToolHypercubeLocation();
+        NamespacedKey keyCd = SlimeTinker.inst().getKeys().getTraitsCooldownHypercube();
+        NamespacedKey keyLoc = SlimeTinker.inst().getKeys().getTraitsHypercubeLocation();
 
         if (p.isSneaking()) {
             // Setting location

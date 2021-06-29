@@ -23,10 +23,10 @@ public final class Experience {
     public static final double EXP_GROWTH = 1.3;
 
     public static void setupExpNewTool(PersistentDataContainer c) {
-        c.set(SlimeTinker.inst().getKeys().getToolExpCurrent(), PersistentDataType.INTEGER, 0);
-        c.set(SlimeTinker.inst().getKeys().getToolExpRequired(), PersistentDataType.DOUBLE, EXP_LEVEL_BASE);
-        c.set(SlimeTinker.inst().getKeys().getToolLevel(), PersistentDataType.INTEGER, 0);
-        c.set(SlimeTinker.inst().getKeys().getToolModSlots(), PersistentDataType.INTEGER, 0);
+        c.set(SlimeTinker.inst().getKeys().getStExpCurrent(), PersistentDataType.INTEGER, 0);
+        c.set(SlimeTinker.inst().getKeys().getStExpRequired(), PersistentDataType.DOUBLE, EXP_LEVEL_BASE);
+        c.set(SlimeTinker.inst().getKeys().getStLevel(), PersistentDataType.INTEGER, 0);
+        c.set(SlimeTinker.inst().getKeys().getStModSlots(), PersistentDataType.INTEGER, 0);
     }
 
     public static void addToolExp(ItemStack itemStack, int amount, Player player, boolean tool) {
@@ -45,10 +45,10 @@ public final class Experience {
         }
 
         // Add the EXP given
-        int currentExp = c.get(SlimeTinker.inst().getKeys().getToolExpCurrent(), PersistentDataType.INTEGER);
-        double expRequired = c.get(SlimeTinker.inst().getKeys().getToolExpRequired(), PersistentDataType.DOUBLE);
-        int level = c.get(SlimeTinker.inst().getKeys().getToolLevel(), PersistentDataType.INTEGER);
-        int modSlots = c.get(SlimeTinker.inst().getKeys().getToolModSlots(), PersistentDataType.INTEGER);
+        int currentExp = c.get(SlimeTinker.inst().getKeys().getStExpCurrent(), PersistentDataType.INTEGER);
+        double expRequired = c.get(SlimeTinker.inst().getKeys().getStExpRequired(), PersistentDataType.DOUBLE);
+        int level = c.get(SlimeTinker.inst().getKeys().getStLevel(), PersistentDataType.INTEGER);
+        int modSlots = c.get(SlimeTinker.inst().getKeys().getStModSlots(), PersistentDataType.INTEGER);
         int newExp = 0;
 
         // Emerald mod
@@ -79,10 +79,10 @@ public final class Experience {
             newExp = currentExp + amount;
         }
 
-        c.set(SlimeTinker.inst().getKeys().getToolExpCurrent(), PersistentDataType.INTEGER, newExp);
-        c.set(SlimeTinker.inst().getKeys().getToolExpRequired(), PersistentDataType.DOUBLE, expRequired);
-        c.set(SlimeTinker.inst().getKeys().getToolLevel(), PersistentDataType.INTEGER, level);
-        c.set(SlimeTinker.inst().getKeys().getToolModSlots(), PersistentDataType.INTEGER, modSlots);
+        c.set(SlimeTinker.inst().getKeys().getStExpCurrent(), PersistentDataType.INTEGER, newExp);
+        c.set(SlimeTinker.inst().getKeys().getStExpRequired(), PersistentDataType.DOUBLE, expRequired);
+        c.set(SlimeTinker.inst().getKeys().getStLevel(), PersistentDataType.INTEGER, level);
+        c.set(SlimeTinker.inst().getKeys().getStModSlots(), PersistentDataType.INTEGER, modSlots);
 
         itemStack.setItemMeta(im);
 
@@ -91,23 +91,23 @@ public final class Experience {
     }
 
     public static int getToolExp(PersistentDataContainer c) {
-        return c.get(SlimeTinker.inst().getKeys().getToolExpCurrent(), PersistentDataType.INTEGER);
+        return c.get(SlimeTinker.inst().getKeys().getStExpCurrent(), PersistentDataType.INTEGER);
     }
 
     public static int getToolRequiredExp(PersistentDataContainer c) {
-        return c.get(SlimeTinker.inst().getKeys().getToolExpRequired(), PersistentDataType.DOUBLE).intValue();
+        return c.get(SlimeTinker.inst().getKeys().getStExpRequired(), PersistentDataType.DOUBLE).intValue();
     }
 
     public static int getToolLevel(PersistentDataContainer c) {
-        return c.get(SlimeTinker.inst().getKeys().getToolLevel(), PersistentDataType.INTEGER);
+        return c.get(SlimeTinker.inst().getKeys().getStLevel(), PersistentDataType.INTEGER);
     }
 
     public static int getToolModifierSlots(PersistentDataContainer c) {
-        return c.get(SlimeTinker.inst().getKeys().getToolModSlots(), PersistentDataType.INTEGER);
+        return c.get(SlimeTinker.inst().getKeys().getStModSlots(), PersistentDataType.INTEGER);
     }
 
     public static void setToolModifierSlots(PersistentDataContainer c, int amount) {
-        c.set(SlimeTinker.inst().getKeys().getToolModSlots(), PersistentDataType.INTEGER, amount);
+        c.set(SlimeTinker.inst().getKeys().getStModSlots(), PersistentDataType.INTEGER, amount);
     }
 
     public static String getLoreExp(PersistentDataContainer c) {

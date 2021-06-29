@@ -13,7 +13,6 @@ import org.bukkit.attribute.Attribute;
 import org.bukkit.entity.Animals;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
-import org.bukkit.entity.Mob;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -297,7 +296,7 @@ public final class EntityDamageEvents {
 
         ItemStack i = friend.getHeldItem();
         ItemMeta im = i.getItemMeta();
-        NamespacedKey key = SlimeTinker.inst().getKeys().getToolCooldownWarp();
+        NamespacedKey key = SlimeTinker.inst().getKeys().getTraitsCooldownWarp();
         assert im != null;
         PersistentDataContainer c = im.getPersistentDataContainer();
         long time = System.currentTimeMillis();

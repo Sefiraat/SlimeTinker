@@ -1,8 +1,9 @@
-package io.github.sefiraat.slimetinker.items.componentmaterials;
+package io.github.sefiraat.slimetinker.items.componentmaterials.cmelements;
 
 import io.github.mooy1.infinitylib.items.StackUtils;
 import io.github.sefiraat.slimetinker.SlimeTinker;
 import io.github.sefiraat.slimetinker.categories.Categories;
+import io.github.sefiraat.slimetinker.items.componentmaterials.ComponentMaterial;
 import io.github.sefiraat.slimetinker.items.workstations.smeltery.DummySmelteryTrait;
 import io.github.sefiraat.slimetinker.utils.ThemeUtils;
 import lombok.Getter;

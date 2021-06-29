@@ -1,4 +1,4 @@
-package io.github.sefiraat.slimetinker.items.componentmaterials.recipes;
+package io.github.sefiraat.slimetinker.items.componentmaterials.cmrecipes;
 
 import io.github.sefiraat.slimetinker.items.componentmaterials.ComponentMaterial;
 import lombok.AllArgsConstructor;

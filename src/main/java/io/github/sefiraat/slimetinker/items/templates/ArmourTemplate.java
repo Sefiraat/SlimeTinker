@@ -17,7 +17,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
 
-public class ToolTemplate extends UnplaceableBlock {
+public class ArmourTemplate extends UnplaceableBlock {
 
     public String getName(CombinationDefinition combinationDefinition) {
         return
@@ -30,16 +30,14 @@ public class ToolTemplate extends UnplaceableBlock {
 
     public Material getMaterial(CombinationDefinition combinationDefinition) {
         switch (combinationDefinition.getPartType()) {
-            case IDStrings.SHOVEL:
-                return Material.STONE_SHOVEL;
-            case IDStrings.PICKAXE:
-                return Material.STONE_PICKAXE;
-            case IDStrings.AXE:
-                return Material.STONE_AXE;
-            case IDStrings.HOE:
-                return Material.STONE_HOE;
-            case IDStrings.SWORD:
-                return Material.STONE_SWORD;
+            case IDStrings.HELMET:
+                return Material.LEATHER_HELMET;
+            case IDStrings.CHESTPLATE:
+                return Material.LEATHER_CHESTPLATE;
+            case IDStrings.LEGGINGS:
+                return Material.LEATHER_LEGGINGS;
+            case IDStrings.BOOTS:
+                return Material.LEATHER_BOOTS;
             default:
                 throw new IllegalStateException("Unexpected value: " + combinationDefinition.getClassType());
         }
@@ -66,7 +64,7 @@ public class ToolTemplate extends UnplaceableBlock {
         return itemStack;
     }
 
-    public ToolTemplate(Category category, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
+    public ArmourTemplate(Category category, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(category, item, recipeType, recipe);
     }
 

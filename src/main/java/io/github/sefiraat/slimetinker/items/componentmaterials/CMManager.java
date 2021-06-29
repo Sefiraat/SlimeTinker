@@ -1,13 +1,17 @@
-package io.github.sefiraat.slimetinker.items.componentmaterials.factories;
+package io.github.sefiraat.slimetinker.items.componentmaterials;
 
 import io.github.mooy1.infinitylib.items.StackUtils;
 import io.github.sefiraat.slimetinker.items.Casts;
 import io.github.sefiraat.slimetinker.items.Dies;
-import io.github.sefiraat.slimetinker.items.componentmaterials.CMAlloy;
-import io.github.sefiraat.slimetinker.items.componentmaterials.CMTraits;
-import io.github.sefiraat.slimetinker.items.componentmaterials.ComponentMaterial;
-import io.github.sefiraat.slimetinker.items.componentmaterials.recipes.CastResult;
-import io.github.sefiraat.slimetinker.items.componentmaterials.recipes.MoltenResult;
+import io.github.sefiraat.slimetinker.items.componentmaterials.cmelements.CMAlloy;
+import io.github.sefiraat.slimetinker.items.componentmaterials.cmelements.CMTraits;
+import io.github.sefiraat.slimetinker.items.componentmaterials.cmfactories.CMCore;
+import io.github.sefiraat.slimetinker.items.componentmaterials.cmfactories.CMDynaTech;
+import io.github.sefiraat.slimetinker.items.componentmaterials.cmfactories.CMInfinity;
+import io.github.sefiraat.slimetinker.items.componentmaterials.cmfactories.CMLiteXpansion;
+import io.github.sefiraat.slimetinker.items.componentmaterials.cmfactories.CMSlimefunWarfare;
+import io.github.sefiraat.slimetinker.items.componentmaterials.cmrecipes.CastResult;
+import io.github.sefiraat.slimetinker.items.componentmaterials.cmrecipes.MoltenResult;
 import io.github.sefiraat.slimetinker.managers.SupportedPluginsManager;
 import io.github.sefiraat.slimetinker.utils.enums.TraitPartType;
 import lombok.Getter;
@@ -60,12 +64,20 @@ public class CMManager {
     protected static final Map<ComponentMaterial, ItemStack> MAP_DIE_INGOT = new HashMap<>();
     protected static final Map<ComponentMaterial, ItemStack> MAP_DIE_BLOCK = new HashMap<>();
     protected static final Map<ComponentMaterial, ItemStack> MAP_DIE_GEM = new HashMap<>();
+
     protected static final Map<ComponentMaterial, ItemStack> MAP_DIE_SHOVELHEAD = new HashMap<>();
     protected static final Map<ComponentMaterial, ItemStack> MAP_DIE_PICKAXEHEAD = new HashMap<>();
     protected static final Map<ComponentMaterial, ItemStack> MAP_DIE_AXEHEAD = new HashMap<>();
     protected static final Map<ComponentMaterial, ItemStack> MAP_DIE_HOEHEAD = new HashMap<>();
     protected static final Map<ComponentMaterial, ItemStack> MAP_DIE_SWORDBLADE = new HashMap<>();
     protected static final Map<ComponentMaterial, ItemStack> MAP_DIE_TOOLROD = new HashMap<>();
+
+    protected static final Map<ComponentMaterial, ItemStack> MAP_DIE_ARMOUR_PLATES_HELM = new HashMap<>();
+    protected static final Map<ComponentMaterial, ItemStack> MAP_DIE_ARMOUR_PLATES_CHEST = new HashMap<>();
+    protected static final Map<ComponentMaterial, ItemStack> MAP_DIE_ARMOUR_PLATES_LEGGINGS = new HashMap<>();
+    protected static final Map<ComponentMaterial, ItemStack> MAP_DIE_ARMOUR_PLATES_BOOTS = new HashMap<>();
+    protected static final Map<ComponentMaterial, ItemStack> MAP_DIE_ARMOUR_MAIL = new HashMap<>();
+
     protected static final Map<ComponentMaterial, ItemStack> MAP_DIE_REPAIRKIT = new HashMap<>();
 
     // Casts (Items that cast metals and remain)

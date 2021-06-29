@@ -1,5 +1,6 @@
-package io.github.sefiraat.slimetinker.items.componentmaterials;
+package io.github.sefiraat.slimetinker.items.componentmaterials.cmelements;
 
+import io.github.sefiraat.slimetinker.items.componentmaterials.ComponentMaterial;
 import lombok.Getter;
 
 @Getter

@@ -4,7 +4,7 @@ import io.github.mooy1.infinitylib.items.StackUtils;
 import io.github.mooy1.infinitylib.slimefun.AbstractContainer;
 import io.github.sefiraat.slimetinker.SlimeTinker;
 import io.github.sefiraat.slimetinker.items.Tools;
-import io.github.sefiraat.slimetinker.items.templates.ToolDefinition;
+import io.github.sefiraat.slimetinker.items.templates.CombinationDefinition;
 import io.github.sefiraat.slimetinker.utils.GUIItems;
 import io.github.sefiraat.slimetinker.utils.IDStrings;
 import io.github.sefiraat.slimetinker.utils.ThemeUtils;
@@ -96,7 +96,7 @@ public class Table extends AbstractContainer {
 
         ItemStack itemStack;
 
-        ToolDefinition toolDefinition = new ToolDefinition(
+        CombinationDefinition combinationDefinition = new CombinationDefinition(
                 head.getItemMeta().getPersistentDataContainer().get(SlimeTinker.inst().getKeys().getPartInfoClassType(), PersistentDataType.STRING),
                 head.getItemMeta().getPersistentDataContainer().get(SlimeTinker.inst().getKeys().getPartInfoType(), PersistentDataType.STRING),
                 head.getItemMeta().getPersistentDataContainer().get(SlimeTinker.inst().getKeys().getPartInfoMaterialType(), PersistentDataType.STRING),
@@ -105,49 +105,49 @@ public class Table extends AbstractContainer {
         );
 
         if (
-                toolDefinition.getHeadMaterial().equals(IDStrings.REINFORCED) ||
-                toolDefinition.getRodMaterial().equals(IDStrings.HARD) ||
-                toolDefinition.getHeadMaterial().equals(IDStrings.SINGINFINITY) ||
-                toolDefinition.getHeadMaterial().equals(IDStrings.OSMIUM)
+                combinationDefinition.getHeadMaterial().equals(IDStrings.REINFORCED) ||
+                combinationDefinition.getRodMaterial().equals(IDStrings.HARD) ||
+                combinationDefinition.getHeadMaterial().equals(IDStrings.SINGINFINITY) ||
+                combinationDefinition.getHeadMaterial().equals(IDStrings.OSMIUM)
         ) { // Reinforced Head/Hard Rod tools are explosive
-            switch (toolDefinition.getPartType()) {
+            switch (combinationDefinition.getPartType()) {
                 case IDStrings.SHOVEL:
-                    itemStack = Tools.EXP_SHOVEL.getStack(toolDefinition);
+                    itemStack = Tools.EXP_SHOVEL.getStack(combinationDefinition);
                     break;
                 case IDStrings.PICKAXE:
-                    itemStack = Tools.EXP_PICKAXE.getStack(toolDefinition);
+                    itemStack = Tools.EXP_PICKAXE.getStack(combinationDefinition);
                     break;
                 case IDStrings.AXE:
-                    itemStack = Tools.EXP_AXE.getStack(toolDefinition);
+                    itemStack = Tools.EXP_AXE.getStack(combinationDefinition);
                     break;
                 case IDStrings.HOE:
-                    itemStack = Tools.EXP_HOE.getStack(toolDefinition);
+                    itemStack = Tools.EXP_HOE.getStack(combinationDefinition);
                     break;
                 case IDStrings.SWORD:
-                    itemStack = Tools.EXP_SWORD.getStack(toolDefinition);
+                    itemStack = Tools.EXP_SWORD.getStack(combinationDefinition);
                     break;
                 default:
-                    throw new IllegalStateException("Unexpected value: " + toolDefinition.getClassType());
+                    throw new IllegalStateException("Unexpected value: " + combinationDefinition.getClassType());
             }
         } else {
-            switch (toolDefinition.getPartType()) {
+            switch (combinationDefinition.getPartType()) {
                 case IDStrings.SHOVEL:
-                    itemStack = Tools.SHOVEL.getStack(toolDefinition);
+                    itemStack = Tools.SHOVEL.getStack(combinationDefinition);
                     break;
                 case IDStrings.PICKAXE:
-                    itemStack = Tools.PICKAXE.getStack(toolDefinition);
+                    itemStack = Tools.PICKAXE.getStack(combinationDefinition);
                     break;
                 case IDStrings.AXE:
-                    itemStack = Tools.AXE.getStack(toolDefinition);
+                    itemStack = Tools.AXE.getStack(combinationDefinition);
                     break;
                 case IDStrings.HOE:
-                    itemStack = Tools.HOE.getStack(toolDefinition);
+                    itemStack = Tools.HOE.getStack(combinationDefinition);
                     break;
                 case IDStrings.SWORD:
-                    itemStack = Tools.SWORD.getStack(toolDefinition);
+                    itemStack = Tools.SWORD.getStack(combinationDefinition);
                     break;
                 default:
-                    throw new IllegalStateException("Unexpected value: " + toolDefinition.getClassType());
+                    throw new IllegalStateException("Unexpected value: " + combinationDefinition.getClassType());
             }
 
         }

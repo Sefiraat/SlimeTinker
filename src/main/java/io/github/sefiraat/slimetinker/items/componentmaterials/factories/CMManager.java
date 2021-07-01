@@ -3,6 +3,7 @@ package io.github.sefiraat.slimetinker.items.componentmaterials.factories;
 import io.github.mooy1.infinitylib.items.StackUtils;
 import io.github.sefiraat.slimetinker.items.Casts;
 import io.github.sefiraat.slimetinker.items.Dies;
+import io.github.sefiraat.slimetinker.items.Parts;
 import io.github.sefiraat.slimetinker.items.componentmaterials.CMAlloy;
 import io.github.sefiraat.slimetinker.items.componentmaterials.CMTraits;
 import io.github.sefiraat.slimetinker.items.componentmaterials.ComponentMaterial;
@@ -20,8 +21,16 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static io.github.sefiraat.slimetinker.utils.IDStrings.AXE;
 import static io.github.sefiraat.slimetinker.utils.IDStrings.BRASS;
 import static io.github.sefiraat.slimetinker.utils.IDStrings.GOLD;
+import static io.github.sefiraat.slimetinker.utils.IDStrings.HEAD;
+import static io.github.sefiraat.slimetinker.utils.IDStrings.HOE;
+import static io.github.sefiraat.slimetinker.utils.IDStrings.PICKAXE;
+import static io.github.sefiraat.slimetinker.utils.IDStrings.REPAIR;
+import static io.github.sefiraat.slimetinker.utils.IDStrings.ROD;
+import static io.github.sefiraat.slimetinker.utils.IDStrings.SHOVEL;
+import static io.github.sefiraat.slimetinker.utils.IDStrings.SWORD;
 
 public class CMManager {
 
@@ -113,6 +122,16 @@ public class CMManager {
 
         // Add melting recipes
         for (Map.Entry<String, ComponentMaterial> entry : MAP.entrySet()) {
+
+            // Tools and Kits (referenced through dummy)
+            if (entry.getValue().isValidToolRod()) MAP_CAST_TOOLROD.put(entry.getValue(), Parts.TOOL_ROD.getStack(entry.getKey(), ROD, null, entry.getValue().getColor()));
+            if (entry.getValue().isValidToolHead()) MAP_CAST_SWORDBLADE.put(entry.getValue(), Parts.SWORD_BLADE.getStack(entry.getKey(), HEAD, SWORD, entry.getValue().getColor()));
+            if (entry.getValue().isValidToolHead()) MAP_CAST_HOEHEAD.put(entry.getValue(), Parts.HOE_HEAD.getStack(entry.getKey(), HEAD, HOE, entry.getValue().getColor()));
+            if (entry.getValue().isValidToolHead()) MAP_CAST_AXEHEAD.put(entry.getValue(), Parts.AXE_HEAD.getStack(entry.getKey(), HEAD, AXE, entry.getValue().getColor()));
+            if (entry.getValue().isValidToolHead()) MAP_CAST_PICKAXEHEAD.put(entry.getValue(), Parts.PICKAXE_HEAD.getStack(entry.getKey(), HEAD, PICKAXE, entry.getValue().getColor()));
+            if (entry.getValue().isValidToolHead()) MAP_CAST_SHOVELHEAD.put(entry.getValue(), Parts.SHOVEL_HEAD.getStack(entry.getKey(), HEAD, SHOVEL, entry.getValue().getColor()));
+            if (entry.getValue().isValidToolHead()) MAP_CAST_REPAIRKIT.put(entry.getValue(), Parts.REPAIR_KIT.getStack(entry.getKey(), REPAIR, entry.getValue().getColor())); // We use HEAD here are repair always goes by head material
+
 
             // Gems
             if (entry.getValue().getFormGem() != null) {

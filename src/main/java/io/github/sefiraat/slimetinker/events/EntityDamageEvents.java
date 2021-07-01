@@ -12,6 +12,7 @@ import org.bukkit.Particle;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.entity.Animals;
 import org.bukkit.entity.Entity;
+import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Mob;
 import org.bukkit.entity.Player;
@@ -219,8 +220,10 @@ public final class EntityDamageEvents {
 
     public static void rodOsmium(EventFriend friend) {
         LivingEntity e = (LivingEntity) friend.getDamagedEntity();
-        e.getPersistentDataContainer().set(new NamespacedKey(SlimeTinker.inst(), "ST_STOP_TELEPORT"), PersistentDataType.STRING,"Y");
-        e.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 100, 5, true, true));
+        if (e.getType() == EntityType.ENDERMAN) {
+            e.getPersistentDataContainer().set(new NamespacedKey(SlimeTinker.inst(), "ST_STOP_TELEPORT"), PersistentDataType.STRING,"Y");
+            e.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 100, 5, true, true));
+        }
     }
 
     public static void headUnpatentabilum(EventFriend friend) {

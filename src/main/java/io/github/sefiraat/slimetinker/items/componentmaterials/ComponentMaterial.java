@@ -7,6 +7,7 @@ import io.github.sefiraat.slimetinker.items.Casts;
 import io.github.sefiraat.slimetinker.items.templates.PartTemplate;
 import io.github.sefiraat.slimetinker.items.workstations.smeltery.DummySmeltery;
 import io.github.sefiraat.slimetinker.items.workstations.workbench.Workbench;
+import io.github.sefiraat.slimetinker.utils.IDStrings;
 import io.github.sefiraat.slimetinker.utils.SkullTextures;
 import io.github.sefiraat.slimetinker.utils.ThemeUtils;
 import io.github.sefiraat.slimetinker.utils.enums.TraitEventType;
@@ -141,6 +142,7 @@ public class ComponentMaterial {
         );
     }
 
+    // TODO This is now very disjointed. Needs all wrapping in - to resolve the this == this issue
     public SlimefunItemStack bindingStack(String name) {
         String titName = ThemeUtils.toTitleCase(name);
         SlimefunItemStack i = ThemeUtils.themedItemStack(
@@ -154,6 +156,7 @@ public class ComponentMaterial {
         assert im != null;
         PersistentDataContainer c = im.getPersistentDataContainer();
         c.set(SlimeTinker.inst().getKeys().getPartInfoMaterialType(), PersistentDataType.STRING, name);
+        c.set(SlimeTinker.inst().getKeys().getPartInfoClassType(), PersistentDataType.STRING, IDStrings.BINDING);
         i.setItemMeta(im);
         return i;
     }

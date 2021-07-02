@@ -4,7 +4,6 @@ import io.github.sefiraat.slimetinker.events.BlockBreakEvents;
 import io.github.sefiraat.slimetinker.events.DurabilityEvents;
 import io.github.sefiraat.slimetinker.events.EntityDamageEvents;
 import io.github.sefiraat.slimetinker.events.PlayerDamagedEvents;
-import io.github.sefiraat.slimetinker.events.RightClickEvents;
 import io.github.sefiraat.slimetinker.events.TickEvents;
 import io.github.sefiraat.slimetinker.items.Materials;
 import io.github.sefiraat.slimetinker.items.componentmaterials.CMForms;
@@ -354,8 +353,6 @@ public final class CMLiteXpansion {
                                         )
                                 )
                         ));
-
-
 
         map.get(IDStrings.SCRAP).addEvent(TraitEventType.ENTITY_DAMAGED, TraitPartType.ROD, EntityDamageEvents::headCopper);                            // Brains not brawn - Damage             |
         map.get(IDStrings.SCRAP).addEvent(TraitEventType.BLOCK_BREAK, TraitPartType.ROD, BlockBreakEvents::headCopper);                                 // Brains not brawn - Block Break        | - CO Copper Head

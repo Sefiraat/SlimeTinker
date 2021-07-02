@@ -4,8 +4,6 @@ import io.github.sefiraat.slimetinker.SlimeTinker;
 import io.github.sefiraat.slimetinker.categories.Categories;
 import io.github.sefiraat.slimetinker.events.EventFriend;
 import io.github.sefiraat.slimetinker.items.Casts;
-import io.github.sefiraat.slimetinker.items.Parts;
-import io.github.sefiraat.slimetinker.items.componentmaterials.factories.CMManager;
 import io.github.sefiraat.slimetinker.items.templates.PartTemplate;
 import io.github.sefiraat.slimetinker.items.workstations.smeltery.DummySmeltery;
 import io.github.sefiraat.slimetinker.items.workstations.workbench.Workbench;
@@ -27,15 +25,6 @@ import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Consumer;
-
-import static io.github.sefiraat.slimetinker.utils.IDStrings.AXE;
-import static io.github.sefiraat.slimetinker.utils.IDStrings.HEAD;
-import static io.github.sefiraat.slimetinker.utils.IDStrings.HOE;
-import static io.github.sefiraat.slimetinker.utils.IDStrings.PICKAXE;
-import static io.github.sefiraat.slimetinker.utils.IDStrings.REPAIR;
-import static io.github.sefiraat.slimetinker.utils.IDStrings.ROD;
-import static io.github.sefiraat.slimetinker.utils.IDStrings.SHOVEL;
-import static io.github.sefiraat.slimetinker.utils.IDStrings.SWORD;
 
 @Data
 public class ComponentMaterial {
@@ -109,23 +98,23 @@ public class ComponentMaterial {
         // Heads (and repair kits)
         if (cmToolMakeup.isValidHead()) {
             //CMManager.getMAP_CAST_SWORDBLADE().put(this, Parts.SWORD_BLADE.getStack(cmIdentity.getId(), HEAD, SWORD, getColor()));
-            new PartTemplate(Categories.PART_DICT, headStack(cmIdentity.getId(),  "SWORD", SkullTextures.PART_SWORD_BLADE), DummySmeltery.TYPE, headRecipe(Casts.CAST_SWORDBLADE, getLiquidItemStack(2)), cmIdentity.getId()).register(SlimeTinker.inst());
+            new PartTemplate(Categories.PART_DICT, headStack(cmIdentity.getId(), "SWORD", SkullTextures.PART_SWORD_BLADE), DummySmeltery.TYPE, headRecipe(Casts.CAST_SWORDBLADE, getLiquidItemStack(2)), cmIdentity.getId()).register(SlimeTinker.inst());
         }
         if (cmToolMakeup.isValidHead()) {
             //CMManager.getMAP_CAST_HOEHEAD().put(this, Parts.HOE_HEAD.getStack(cmIdentity.getId(), HEAD, HOE, getColor()));
-            new PartTemplate(Categories.PART_DICT, headStack(cmIdentity.getId(),  "HOE", SkullTextures.PART_HOE_HEAD), DummySmeltery.TYPE, headRecipe(Casts.CAST_HOEHEAD, getLiquidItemStack(1)), cmIdentity.getId()).register(SlimeTinker.inst());
+            new PartTemplate(Categories.PART_DICT, headStack(cmIdentity.getId(), "HOE", SkullTextures.PART_HOE_HEAD), DummySmeltery.TYPE, headRecipe(Casts.CAST_HOEHEAD, getLiquidItemStack(1)), cmIdentity.getId()).register(SlimeTinker.inst());
         }
         if (cmToolMakeup.isValidHead()) {
             //CMManager.getMAP_CAST_AXEHEAD().put(this, Parts.AXE_HEAD.getStack(cmIdentity.getId(), HEAD, AXE, getColor()));
-            new PartTemplate(Categories.PART_DICT, headStack(cmIdentity.getId(),  "AXE", SkullTextures.PART_AXE_HEAD), DummySmeltery.TYPE, headRecipe(Casts.CAST_AXEHEAD, getLiquidItemStack(1)), cmIdentity.getId()).register(SlimeTinker.inst());
+            new PartTemplate(Categories.PART_DICT, headStack(cmIdentity.getId(), "AXE", SkullTextures.PART_AXE_HEAD), DummySmeltery.TYPE, headRecipe(Casts.CAST_AXEHEAD, getLiquidItemStack(1)), cmIdentity.getId()).register(SlimeTinker.inst());
         }
         if (cmToolMakeup.isValidHead()) {
             //CMManager.getMAP_CAST_PICKAXEHEAD().put(this, Parts.PICKAXE_HEAD.getStack(cmIdentity.getId(), HEAD, PICKAXE, getColor()));
-            new PartTemplate(Categories.PART_DICT, headStack(cmIdentity.getId(),  "PICK", SkullTextures.PART_PICKAXE_HEAD), DummySmeltery.TYPE, headRecipe(Casts.CAST_PICKAXEHEAD, getLiquidItemStack(1)), cmIdentity.getId()).register(SlimeTinker.inst());
+            new PartTemplate(Categories.PART_DICT, headStack(cmIdentity.getId(), "PICK", SkullTextures.PART_PICKAXE_HEAD), DummySmeltery.TYPE, headRecipe(Casts.CAST_PICKAXEHEAD, getLiquidItemStack(1)), cmIdentity.getId()).register(SlimeTinker.inst());
         }
         if (cmToolMakeup.isValidHead()) {
             //CMManager.getMAP_CAST_SHOVELHEAD().put(this, Parts.SHOVEL_HEAD.getStack(cmIdentity.getId(), HEAD, SHOVEL, getColor()));
-            new PartTemplate(Categories.PART_DICT, headStack(cmIdentity.getId(),  "SHOVEL", SkullTextures.PART_SHOVEL_HEAD), DummySmeltery.TYPE, headRecipe(Casts.CAST_SHOVELHEAD, getLiquidItemStack(1)), cmIdentity.getId()).register(SlimeTinker.inst());
+            new PartTemplate(Categories.PART_DICT, headStack(cmIdentity.getId(), "SHOVEL", SkullTextures.PART_SHOVEL_HEAD), DummySmeltery.TYPE, headRecipe(Casts.CAST_SHOVELHEAD, getLiquidItemStack(1)), cmIdentity.getId()).register(SlimeTinker.inst());
         }
         if (cmToolMakeup.isValidHead()) {
             //CMManager.getMAP_CAST_REPAIRKIT().put(this, Parts.REPAIR_KIT.getStack(cmIdentity.getId(), REPAIR, getColor()));

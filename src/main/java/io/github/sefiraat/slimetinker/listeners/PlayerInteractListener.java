@@ -33,7 +33,6 @@ public class PlayerInteractListener implements Listener {
     @EventHandler
     public void onEntityDamaged(PlayerInteractEvent event) {
 
-
         Player player = event.getPlayer();
         ItemStack heldItem = player.getInventory().getItemInMainHand();
 

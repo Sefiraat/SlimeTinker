@@ -8,9 +8,13 @@ import io.github.sefiraat.slimetinker.SlimeTinker;
 import io.github.sefiraat.slimetinker.items.Workstations;
 import io.github.sefiraat.slimetinker.utils.GUIItems;
 import io.github.sefiraat.slimetinker.utils.ThemeUtils;
+import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
+import io.github.thebusybiscuit.slimefun4.implementation.SlimefunPlugin;
+import io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils;
 import lombok.Getter;
 import me.mrCookieSlime.Slimefun.Lists.RecipeType;
 import me.mrCookieSlime.Slimefun.Objects.Category;
+import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.SlimefunItem;
 import me.mrCookieSlime.Slimefun.api.SlimefunItemStack;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenuPreset;
@@ -102,6 +106,14 @@ public class Workbench extends AbstractContainer {
     protected void onNewInstance(@Nonnull BlockMenu menu, @Nonnull Block b) {
         super.onNewInstance(menu, b);
         menu.addMenuClickHandler(CRAFT_BUTTON, (player, i, itemStack, clickAction) -> craft(menu, player));
+    }
+
+    public void setupSFRecipes() {
+        for (SlimefunItem i : SlimefunPlugin.getRegistry().getEnabledSlimefunItems()) {
+            if (i.getRecipeType() == RecipeType.ENHANCED_CRAFTING_TABLE) {
+                RECIPES.put(i.getRecipe(), i.getRecipeOutput());
+            }
+        }
     }
 
 }

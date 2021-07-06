@@ -56,24 +56,20 @@ public class Table extends AbstractTickingContainer {
     }
 
     protected void previewCraft(@Nonnull BlockMenu blockMenu) {
-        SlimeTinker.inst().getLogger().info("tick");
         if (blockMenu.hasViewer()) {
             ItemStack head = blockMenu.getItemInSlot(INPUT_HEAD);
             ItemStack binding = blockMenu.getItemInSlot(INPUT_BINDING);
             ItemStack rod = blockMenu.getItemInSlot(INPUT_ROD);
             if (head == null || binding == null || rod == null) { // Missing one or more items
-                SlimeTinker.inst().getLogger().info("null");
                 clearPreview(blockMenu);
                 return;
             }
             if (!validateClass(head, IDStrings.HEAD) || !validateBinder(binding) || !validateClass(rod, IDStrings.ROD)) { // One or more items are not the correct part
-                SlimeTinker.inst().getLogger().info("invalid");
                 clearPreview(blockMenu);
                 return;
             }
 
             // All items are valid, lets preview the item!
-            SlimeTinker.inst().getLogger().info("set tool");
             blockMenu.replaceExistingItem(PREVIEW_SLOT, getTool(head, binding, rod));
         }
     }

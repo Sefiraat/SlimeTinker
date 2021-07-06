@@ -10,11 +10,7 @@ public class FirstTick extends BukkitRunnable {
 
     @Override
     public void run() {
-        for (SlimefunItem i : SlimefunPlugin.getRegistry().getAllSlimefunItems()) {
-            if (i.getRecipeType() == RecipeType.ENHANCED_CRAFTING_TABLE) {
-                SlimeTinker.inst().getWorkbench().getCraftingRecipes().put(i.getRecipe(), i.getItem());
-            }
-        }
+        SlimeTinker.inst().getWorkbench().setupSFRecipes();
     }
 
 }

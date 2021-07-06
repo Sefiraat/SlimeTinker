@@ -23,6 +23,7 @@ import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataType;
 import org.jetbrains.annotations.NotNull;
 
@@ -77,31 +78,31 @@ public class Table extends AbstractContainer {
             }
 
             // All items are valid, lets preview the item!
-            menu.replaceExistingItem(PREVIEW_SLOT, getTool());
-            return;
-
+            menu.replaceExistingItem(PREVIEW_SLOT, getTool(head, binding, rod));
         }
-        clearPreview();
     }
 
     protected void clearPreview() {
         menu.replaceExistingItem(PREVIEW_SLOT, GUIItems.menuPreview());
     }
 
-    protected ItemStack getTool() {
+    protected ItemStack getTool(@Nonnull ItemStack head, @Nonnull ItemStack binding, @Nonnull ItemStack rod) {
 
-        ItemStack head = menu.getItemInSlot(INPUT_HEAD);
-        ItemStack binding = menu.getItemInSlot(INPUT_BINDING);
-        ItemStack rod = menu.getItemInSlot(INPUT_ROD);
-
-        ItemStack itemStack;
+        ItemMeta hm = head.getItemMeta();
+        ItemMeta bm = binding.getItemMeta();
+        ItemMeta rm = rod.getItemMeta();
+        assert hm != null;
+        assert bm != null;
+        assert rm != null;
+        
+        ItemStack tool;
 
         ToolDefinition toolDefinition = new ToolDefinition(
-                head.getItemMeta().getPersistentDataContainer().get(SlimeTinker.inst().getKeys().getPartInfoClassType(), PersistentDataType.STRING),
-                head.getItemMeta().getPersistentDataContainer().get(SlimeTinker.inst().getKeys().getPartInfoType(), PersistentDataType.STRING),
-                head.getItemMeta().getPersistentDataContainer().get(SlimeTinker.inst().getKeys().getPartInfoMaterialType(), PersistentDataType.STRING),
-                binding.getItemMeta().getPersistentDataContainer().get(SlimeTinker.inst().getKeys().getPartInfoMaterialType(), PersistentDataType.STRING),
-                rod.getItemMeta().getPersistentDataContainer().get(SlimeTinker.inst().getKeys().getPartInfoMaterialType(), PersistentDataType.STRING)
+                hm.getPersistentDataContainer().get(SlimeTinker.inst().getKeys().getPartInfoClassType(), PersistentDataType.STRING),
+                hm.getPersistentDataContainer().get(SlimeTinker.inst().getKeys().getPartInfoType(), PersistentDataType.STRING),
+                hm.getPersistentDataContainer().get(SlimeTinker.inst().getKeys().getPartInfoMaterialType(), PersistentDataType.STRING),
+                bm.getPersistentDataContainer().get(SlimeTinker.inst().getKeys().getPartInfoMaterialType(), PersistentDataType.STRING),
+                rm.getPersistentDataContainer().get(SlimeTinker.inst().getKeys().getPartInfoMaterialType(), PersistentDataType.STRING)
         );
 
         if (
@@ -112,19 +113,19 @@ public class Table extends AbstractContainer {
         ) { // Reinforced Head/Hard Rod tools are explosive
             switch (toolDefinition.getPartType()) {
                 case IDStrings.SHOVEL:
-                    itemStack = Tools.EXP_SHOVEL.getStack(toolDefinition);
+                    tool = Tools.EXP_SHOVEL.getStack(toolDefinition);
                     break;
                 case IDStrings.PICKAXE:
-                    itemStack = Tools.EXP_PICKAXE.getStack(toolDefinition);
+                    tool = Tools.EXP_PICKAXE.getStack(toolDefinition);
                     break;
                 case IDStrings.AXE:
-                    itemStack = Tools.EXP_AXE.getStack(toolDefinition);
+                    tool = Tools.EXP_AXE.getStack(toolDefinition);
                     break;
                 case IDStrings.HOE:
-                    itemStack = Tools.EXP_HOE.getStack(toolDefinition);
+                    tool = Tools.EXP_HOE.getStack(toolDefinition);
                     break;
                 case IDStrings.SWORD:
-                    itemStack = Tools.EXP_SWORD.getStack(toolDefinition);
+                    tool = Tools.EXP_SWORD.getStack(toolDefinition);
                     break;
                 default:
                     throw new IllegalStateException("Unexpected value: " + toolDefinition.getClassType());
@@ -132,19 +133,19 @@ public class Table extends AbstractContainer {
         } else {
             switch (toolDefinition.getPartType()) {
                 case IDStrings.SHOVEL:
-                    itemStack = Tools.SHOVEL.getStack(toolDefinition);
+                    tool = Tools.SHOVEL.getStack(toolDefinition);
                     break;
                 case IDStrings.PICKAXE:
-                    itemStack = Tools.PICKAXE.getStack(toolDefinition);
+                    tool = Tools.PICKAXE.getStack(toolDefinition);
                     break;
                 case IDStrings.AXE:
-                    itemStack = Tools.AXE.getStack(toolDefinition);
+                    tool = Tools.AXE.getStack(toolDefinition);
                     break;
                 case IDStrings.HOE:
-                    itemStack = Tools.HOE.getStack(toolDefinition);
+                    tool = Tools.HOE.getStack(toolDefinition);
                     break;
                 case IDStrings.SWORD:
-                    itemStack = Tools.SWORD.getStack(toolDefinition);
+                    tool = Tools.SWORD.getStack(toolDefinition);
                     break;
                 default:
                     throw new IllegalStateException("Unexpected value: " + toolDefinition.getClassType());
@@ -152,7 +153,7 @@ public class Table extends AbstractContainer {
 
         }
 
-        return itemStack;
+        return tool;
     }
 
     @SuppressWarnings("BooleanMethodIsAlwaysInverted")
@@ -192,7 +193,7 @@ public class Table extends AbstractContainer {
             return false;
         }
 
-        blockMenu.pushItem(getTool().clone(), OUTPUT_SLOT);
+        blockMenu.pushItem(getTool(head, binding, rod).clone(), OUTPUT_SLOT);
         blockMenu.getItemInSlot(INPUT_HEAD).setAmount(blockMenu.getItemInSlot(INPUT_HEAD).getAmount() - 1);
         blockMenu.getItemInSlot(INPUT_BINDING).setAmount(blockMenu.getItemInSlot(INPUT_BINDING).getAmount() - 1);
         blockMenu.getItemInSlot(INPUT_ROD).setAmount(blockMenu.getItemInSlot(INPUT_ROD).getAmount() - 1);

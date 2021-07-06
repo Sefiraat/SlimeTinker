@@ -85,14 +85,16 @@ public class PlayerDamagedListener implements Listener {
     }
 
     private void modCheckDiamond(EntityDamageByEntityEvent event, int level) {
-        int rnd = ThreadLocalRandom.current().nextInt(1,11);
-        if (rnd <= (level)) {
-            Entity e = event.getDamager();
-            LivingEntity l = (LivingEntity) e;
-            Particle.DustOptions dustOptions = new Particle.DustOptions(Color.TEAL, 1);
-            e.getWorld().spawnParticle(Particle.REDSTONE, e.getLocation(), 50, 1.5, 1.5, 1.5, 1, dustOptions);
-            l.damage(event.getDamage());
-            event.setCancelled(true);
+        if (event.getDamager() instanceof LivingEntity) {
+            LivingEntity l = (LivingEntity) event.getDamager();
+            int rnd = ThreadLocalRandom.current().nextInt(1,11);
+            if (rnd <= (level)) {
+                Entity e = event.getDamager();
+                Particle.DustOptions dustOptions = new Particle.DustOptions(Color.TEAL, 1);
+                e.getWorld().spawnParticle(Particle.REDSTONE, e.getLocation(), 50, 1.5, 1.5, 1.5, 1, dustOptions);
+                l.damage(event.getDamage());
+                event.setCancelled(true);
+            }
         }
     }
 

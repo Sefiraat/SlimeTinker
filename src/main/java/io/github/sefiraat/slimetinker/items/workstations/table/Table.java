@@ -2,6 +2,7 @@ package io.github.sefiraat.slimetinker.items.workstations.table;
 
 import io.github.mooy1.infinitylib.items.StackUtils;
 import io.github.mooy1.infinitylib.slimefun.AbstractContainer;
+import io.github.mooy1.infinitylib.slimefun.AbstractTickingContainer;
 import io.github.sefiraat.slimetinker.SlimeTinker;
 import io.github.sefiraat.slimetinker.items.Tools;
 import io.github.sefiraat.slimetinker.items.templates.ToolDefinition;
@@ -29,7 +30,7 @@ import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nonnull;
 
-public class Table extends AbstractContainer {
+public class Table extends AbstractTickingContainer {
 
     private static final int[] BACKGROUND_SLOTS = {0,8,9,17,18,26,27,31,35,36,44,45,49,53};
     private static final int[] BACKGROUND_INPUTS = {1,3,5,7,10,12,14,16,19,20,21,22,23,24,25};
@@ -45,45 +46,40 @@ public class Table extends AbstractContainer {
     protected static final int CRAFT_BUTTON = 40;
     protected static final int OUTPUT_SLOT = 42;
 
-    private BlockMenu menu;
-
     public Table(Category category, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(category, item, recipeType, recipe);
-
-        addItemHandler(new BlockTicker() {
-            @Override
-            public boolean isSynchronized() {
-                return true;
-            }
-
-            @Override
-            public void tick(Block block, SlimefunItem item, Config data) {
-                previewCraft();
-            }
-        });
     }
 
-    protected void previewCraft() {
-        if (menu.hasViewer()) {
-            ItemStack head = menu.getItemInSlot(INPUT_HEAD);
-            ItemStack binding = menu.getItemInSlot(INPUT_BINDING);
-            ItemStack rod = menu.getItemInSlot(INPUT_ROD);
+    @Override
+    protected void tick(@NotNull BlockMenu blockMenu, @NotNull Block block) {
+        previewCraft(blockMenu);
+    }
+
+    protected void previewCraft(@Nonnull BlockMenu blockMenu) {
+        SlimeTinker.inst().getLogger().info("tick");
+        if (blockMenu.hasViewer()) {
+            ItemStack head = blockMenu.getItemInSlot(INPUT_HEAD);
+            ItemStack binding = blockMenu.getItemInSlot(INPUT_BINDING);
+            ItemStack rod = blockMenu.getItemInSlot(INPUT_ROD);
             if (head == null || binding == null || rod == null) { // Missing one or more items
-                clearPreview();
+                SlimeTinker.inst().getLogger().info("null");
+                clearPreview(blockMenu);
                 return;
             }
             if (!validateClass(head, IDStrings.HEAD) || !validateBinder(binding) || !validateClass(rod, IDStrings.ROD)) { // One or more items are not the correct part
-                clearPreview();
+                SlimeTinker.inst().getLogger().info("invalid");
+                clearPreview(blockMenu);
                 return;
             }
 
             // All items are valid, lets preview the item!
-            menu.replaceExistingItem(PREVIEW_SLOT, getTool(head, binding, rod));
+            SlimeTinker.inst().getLogger().info("set tool");
+            blockMenu.replaceExistingItem(PREVIEW_SLOT, getTool(head, binding, rod));
         }
     }
 
-    protected void clearPreview() {
-        menu.replaceExistingItem(PREVIEW_SLOT, GUIItems.menuPreview());
+    protected void clearPreview(BlockMenu blockMenu) {
+        blockMenu.replaceExistingItem(PREVIEW_SLOT, GUIItems.menuPreview());
     }
 
     protected ItemStack getTool(@Nonnull ItemStack head, @Nonnull ItemStack binding, @Nonnull ItemStack rod) {
@@ -241,7 +237,6 @@ public class Table extends AbstractContainer {
     @Override
     protected void onNewInstance(@Nonnull BlockMenu blockMenu, @Nonnull Block b) {
         super.onNewInstance(blockMenu, b);
-        this.menu = blockMenu;
         blockMenu.addMenuClickHandler(CRAFT_BUTTON, (player, i, itemStack, clickAction) -> craft(blockMenu, player));
     }
 

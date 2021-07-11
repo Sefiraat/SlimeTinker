@@ -69,8 +69,8 @@ public final class CMDynaTech {
                                                 SupportedPluginsManager.DYNATECH_NOTE,
                                                 "Cutlery",
                                                 "Hitting animals will directly feed you. Grim"
-                                        )
-                                )
+                                        ),
+                                        traitPlates, traitGambeson, traitLinks)
                         ));
 
         map.put(IDStrings.VEX_GEM,
@@ -101,8 +101,8 @@ public final class CMDynaTech {
                                                 "Right click while holding to randomly teleport.",
                                                 "5 min cooldown."
                                         ),
-                                        null
-                                )
+                                        null,
+                                        traitPlates, traitGambeson, traitLinks)
                         ));
 
         map.put(IDStrings.STARDUST,
@@ -139,8 +139,8 @@ public final class CMDynaTech {
                                                 "Yvaine",
                                                 "Gives an ethereal glow and makes villagers",
                                                 "friendlier to you."
-                                        )
-                                )
+                                        ),
+                                        traitPlates, traitGambeson, traitLinks)
                         ));
 
         map.put(IDStrings.GHOSTLY_ESSENCE,
@@ -177,8 +177,8 @@ public final class CMDynaTech {
                                                 "Only works with both [A] and [B]. Shift + Right",
                                                 "click to store a location. Right click to recall",
                                                 "to that location. 10min CD."
-                                        )
-                                )
+                                        ),
+                                        traitPlates, traitGambeson, traitLinks)
                         ));
 
         map.put(IDStrings.TESSERACT,
@@ -210,8 +210,8 @@ public final class CMDynaTech {
                                                 "to that location. 10min CD."
                                         ),
                                         null,
-                                        null
-                                )
+                                        null,
+                                        traitPlates, traitGambeson, traitLinks)
                         ));
 
         map.get(IDStrings.STARDUST).addEvent(TraitEventType.ENTITY_DAMAGED, TraitPartType.HEAD, EntityDamageEvents::headStarDust);                    // Bright Fury

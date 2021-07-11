@@ -62,8 +62,8 @@ public final class CMLiteXpansion {
                                                 "Insulated",
                                                 "Become immune to lightning."
                                         ),
-                                        null
-                                )
+                                        null,
+                                        traitPlates, traitGambeson, traitLinks)
                         ));
 
         map.put(IDStrings.REFINED_IRON,
@@ -99,8 +99,8 @@ public final class CMLiteXpansion {
                                                 "Manners Maketh Man",
                                                 "Speed 1, Damage + 50%. Your fights look",
                                                 "super cool."
-                                        )
-                                )
+                                        ),
+                                        traitPlates, traitGambeson, traitLinks)
                         ));
 
         map.put(IDStrings.MIXED_METAL,
@@ -140,8 +140,8 @@ public final class CMLiteXpansion {
                                                 SupportedPluginsManager.LITEXPANSION_NOTE,
                                                 "Stiff",
                                                 "Double damage. Unlucky!"
-                                        )
-                                )
+                                        ),
+                                        traitPlates, traitGambeson, traitLinks)
                         ));
 
         map.put(IDStrings.ADVANCED_ALLOY,
@@ -178,8 +178,8 @@ public final class CMLiteXpansion {
                                                 "Heavy Duty",
                                                 "When durability gets low, it eats 1 iron",
                                                 "ingot from your inventory to restore some."
-                                        )
-                                )
+                                        ),
+                                        traitPlates, traitGambeson, traitLinks)
                         ));
 
         map.put(IDStrings.THORIUM,
@@ -204,8 +204,8 @@ public final class CMLiteXpansion {
                                         IDStrings.THORIUM,
                                         null,
                                         null,
-                                        null
-                                )
+                                        null,
+                                        traitPlates, traitGambeson, traitLinks)
                         ));
 
         map.put(IDStrings.MAG_THOR,
@@ -246,8 +246,8 @@ public final class CMLiteXpansion {
                                                 "Vampirism",
                                                 "Chance to heal by damage given.",
                                                 "Damage dealt varies by time of day."
-                                        )
-                                )
+                                        ),
+                                        traitPlates, traitGambeson, traitLinks)
                         ));
 
         map.put(IDStrings.CARBON_MESH,
@@ -277,8 +277,8 @@ public final class CMLiteXpansion {
                                                 "Nimble",
                                                 "Speed 1. Take 33% less damage"
                                         ),
-                                        null
-                                )
+                                        null,
+                                        traitPlates, traitGambeson, traitLinks)
                         ));
 
         map.put(IDStrings.SCRAP,
@@ -314,8 +314,8 @@ public final class CMLiteXpansion {
                                                 "Brains, Not Brawn.",
                                                 "Tool exp gain is doubled. Damage",
                                                 "dealt is halved."
-                                        )
-                                )
+                                        ),
+                                        traitPlates, traitGambeson, traitLinks)
                         ));
 
         map.put(IDStrings.IRIDIUM,
@@ -350,8 +350,8 @@ public final class CMLiteXpansion {
                                                 SupportedPluginsManager.LITEXPANSION_NOTE,
                                                 "Warp",
                                                 "Turns your opponent around. 20s CD."
-                                        )
-                                )
+                                        ),
+                                        traitPlates, traitGambeson, traitLinks)
                         ));
 
 

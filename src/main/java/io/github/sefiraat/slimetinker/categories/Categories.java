@@ -45,7 +45,7 @@ public final class Categories {
             Material.DIAMOND_SWORD,
             ThemeUtils.MAIN + "Tool Building Guide"
     ));
-    public static final SubCategory ARMOUR = new SubCategory(SlimeTinker.inst().getKeys().getCategoryTools(), MAIN, new CustomItem(
+    public static final SubCategory ARMOUR = new SubCategory(SlimeTinker.inst().getKeys().getCategoryArmour(), MAIN, new CustomItem(
             Material.DIAMOND_CHESTPLATE,
             ThemeUtils.MAIN + "Armour Building Guide"
     ));

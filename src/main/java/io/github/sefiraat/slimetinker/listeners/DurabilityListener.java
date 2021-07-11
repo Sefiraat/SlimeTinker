@@ -4,7 +4,6 @@ import io.github.mooy1.infinitylib.items.StackUtils;
 import io.github.sefiraat.slimetinker.events.EventFriend;
 import io.github.sefiraat.slimetinker.items.Materials;
 import io.github.sefiraat.slimetinker.items.componentmaterials.CMManager;
-import io.github.sefiraat.slimetinker.items.templates.ToolTemplate;
 import io.github.sefiraat.slimetinker.modifiers.Modifications;
 import io.github.sefiraat.slimetinker.utils.IDStrings;
 import io.github.sefiraat.slimetinker.utils.ItemUtils;
@@ -29,7 +28,7 @@ public class DurabilityListener implements Listener {
     public void onItemDamage(PlayerItemDamageEvent event) {
 
         ItemStack damagedItem = event.getItem();
-        if (!ToolTemplate.isTool(damagedItem)) { // Not a tool, moving on!
+        if (!ItemUtils.isTool(damagedItem)) { // Not a tool, moving on!
             return;
         }
 
@@ -76,7 +75,7 @@ public class DurabilityListener implements Listener {
     public void onItemBreak(PlayerItemBreakEvent event) { // Covering my bases here for anything else that can break a tool, may not be required?
 
         ItemStack damagedItem = event.getBrokenItem();
-        if (!ToolTemplate.isTool(damagedItem)) { // Not a tool, moving on!
+        if (!ItemUtils.isTool(damagedItem)) { // Not a tool, moving on!
             return;
         }
 

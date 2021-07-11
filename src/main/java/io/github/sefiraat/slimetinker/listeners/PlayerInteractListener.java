@@ -4,7 +4,6 @@ import io.github.sefiraat.slimetinker.SlimeTinker;
 import io.github.sefiraat.slimetinker.events.EntityDamageEvents;
 import io.github.sefiraat.slimetinker.events.EventFriend;
 import io.github.sefiraat.slimetinker.items.componentmaterials.CMManager;
-import io.github.sefiraat.slimetinker.items.templates.ToolTemplate;
 import io.github.sefiraat.slimetinker.utils.Experience;
 import io.github.sefiraat.slimetinker.utils.GeneralUtils;
 import io.github.sefiraat.slimetinker.utils.IDStrings;
@@ -37,7 +36,7 @@ public class PlayerInteractListener implements Listener {
         Player player = event.getPlayer();
         ItemStack heldItem = player.getInventory().getItemInMainHand();
 
-        if (!ToolTemplate.isTool(heldItem)) { // Not a Tinker's tool, so we don't care
+        if (!ItemUtils.isTool(heldItem)) { // Not a Tinker's tool, so we don't care
             return;
         }
 

@@ -1,8 +1,8 @@
 package io.github.sefiraat.slimetinker.commands;
 
 import io.github.mooy1.infinitylib.commands.AbstractCommand;
-import io.github.sefiraat.slimetinker.items.templates.ToolTemplate;
 import io.github.sefiraat.slimetinker.utils.Experience;
+import io.github.sefiraat.slimetinker.utils.ItemUtils;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
@@ -20,8 +20,8 @@ public class AddExp extends AbstractCommand {
 
         Player player = (Player) commandSender;
 
-        if (ToolTemplate.isTool(player.getInventory().getItemInMainHand())) {
-            Experience.addToolExp(player.getInventory().getItemInMainHand(), 100, player, false);
+        if (ItemUtils.isTool(player.getInventory().getItemInMainHand())) {
+            Experience.addExp(player.getInventory().getItemInMainHand(), 100, player, false);
         }
 
     }

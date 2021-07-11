@@ -6,7 +6,7 @@ import io.github.sefiraat.slimetinker.items.workstations.modificationstation.Mod
 import io.github.sefiraat.slimetinker.items.workstations.repairbench.RepairBench;
 import io.github.sefiraat.slimetinker.items.workstations.smeltery.DummySmelteryMulti;
 import io.github.sefiraat.slimetinker.items.workstations.swappingstation.SwappingStation;
-import io.github.sefiraat.slimetinker.items.workstations.table.Table;
+import io.github.sefiraat.slimetinker.items.workstations.tooltable.ToolTable;
 import io.github.sefiraat.slimetinker.items.workstations.workbench.Workbench;
 import io.github.sefiraat.slimetinker.utils.ThemeUtils;
 import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
@@ -46,13 +46,13 @@ public final class Workstations {
                     "Enhanced Crafting Table."
             );
 
-    // Table
+    // Tool Table
     public static final SlimefunItemStack TINKERS_TABLE =
             ThemeUtils.themedItemStack(
                     "TINKERS_TABLE",
                     Material.SMITHING_TABLE,
                     ThemeUtils.ThemeItemType.MACHINE,
-                    "Tinker's Table",
+                    "Tinker's Tool Table",
                     "Combines parts into tools."
             );
 
@@ -125,7 +125,7 @@ public final class Workstations {
         p.getWorkbench().register(p);
 
         new UnplaceableBlock(Categories.WORKSTATIONS, TINKERS_SMELTERY_CORE, DummySmelteryMulti.TYPE, RECIPE_TINKERS_SMELTERY_MULTI).register(p);
-        new Table(Categories.WORKSTATIONS, TINKERS_TABLE, Workbench.TYPE, RECIPE_TINKERS_TABLE).register(p);
+        new ToolTable(Categories.WORKSTATIONS, TINKERS_TABLE, Workbench.TYPE, RECIPE_TINKERS_TABLE).register(p);
         new RepairBench(Categories.WORKSTATIONS, TINKERS_REPAIR_BENCH, Workbench.TYPE, RECIPE_TINKERS_REPAIR_BENCH).register(p);
         new SwappingStation(Categories.WORKSTATIONS, TINKERS_SWAPPING_STATION, Workbench.TYPE, RECIPE_TINKERS_SWAPPING_STATION).register(p);
         new ModificationStation(Categories.WORKSTATIONS, TINKERS_MOD_STATION, Workbench.TYPE, RECIPE_TINKERS_MOD_STATION).register(p);

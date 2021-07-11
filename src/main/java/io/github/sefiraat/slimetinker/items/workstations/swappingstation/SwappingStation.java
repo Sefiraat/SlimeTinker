@@ -2,7 +2,6 @@ package io.github.sefiraat.slimetinker.items.workstations.swappingstation;
 
 import io.github.mooy1.infinitylib.slimefun.AbstractContainer;
 import io.github.sefiraat.slimetinker.SlimeTinker;
-import io.github.sefiraat.slimetinker.items.templates.ToolTemplate;
 import io.github.sefiraat.slimetinker.utils.GUIItems;
 import io.github.sefiraat.slimetinker.utils.IDStrings;
 import io.github.sefiraat.slimetinker.utils.ItemUtils;
@@ -53,7 +52,7 @@ public class SwappingStation extends AbstractContainer {
         }
 
         // Still no tool, nice try
-        if (!ToolTemplate.isTool(tool)) {
+        if (!ItemUtils.isTool(tool)) {
             player.sendMessage(ThemeUtils.WARNING + "The item in the first slot isn't a Tinker's tool.");
             return false;
         }
@@ -145,8 +144,8 @@ public class SwappingStation extends AbstractContainer {
 
         newTool.setItemMeta(newToolMeta);
 
-        ItemUtils.rebuildToolLore(newTool);
-        ItemUtils.rebuildToolName(newTool);
+        ItemUtils.rebuildTinkerLore(newTool);
+        ItemUtils.rebuildTinkerName(newTool);
 
         blockMenu.pushItem(newTool, OUTPUT_SLOT);
         blockMenu.getItemInSlot(INPUT_TOOL).setAmount(blockMenu.getItemInSlot(INPUT_TOOL).getAmount() - 1);

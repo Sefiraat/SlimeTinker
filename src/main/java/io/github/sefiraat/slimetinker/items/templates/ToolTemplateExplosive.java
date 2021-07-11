@@ -19,17 +19,17 @@ import org.bukkit.persistence.PersistentDataType;
 
 public class ToolTemplateExplosive extends ExplosiveTool {
 
-    public String getName(CombinationDefinition combinationDefinition) {
+    public String getName(ToolDefinition toolDefinition) {
         return
-                CMManager.getById(combinationDefinition.getHeadMaterial()).getColor() + ThemeUtils.toTitleCase(combinationDefinition.getHeadMaterial()) + "-" +
-                CMManager.getById(combinationDefinition.getBinderMaterial()).getColor() + ThemeUtils.toTitleCase(combinationDefinition.getBinderMaterial()) + "-" +
-                CMManager.getById(combinationDefinition.getRodMaterial()).getColor() + ThemeUtils.toTitleCase(combinationDefinition.getRodMaterial()) + " " +
-                ChatColor.WHITE + ThemeUtils.toTitleCase(combinationDefinition.getPartType());
+                CMManager.getById(toolDefinition.getHeadMaterial()).getColor() + ThemeUtils.toTitleCase(toolDefinition.getHeadMaterial()) + "-" +
+                CMManager.getById(toolDefinition.getBinderMaterial()).getColor() + ThemeUtils.toTitleCase(toolDefinition.getBinderMaterial()) + "-" +
+                CMManager.getById(toolDefinition.getRodMaterial()).getColor() + ThemeUtils.toTitleCase(toolDefinition.getRodMaterial()) + " " +
+                ChatColor.WHITE + ThemeUtils.toTitleCase(toolDefinition.getPartType());
 
     }
 
-    public Material getMaterial(CombinationDefinition combinationDefinition) {
-        switch (combinationDefinition.getPartType()) {
+    public Material getMaterial(ToolDefinition toolDefinition) {
+        switch (toolDefinition.getPartType()) {
             case IDStrings.SHOVEL:
                 return Material.STONE_SHOVEL;
             case IDStrings.PICKAXE:
@@ -41,28 +41,28 @@ public class ToolTemplateExplosive extends ExplosiveTool {
             case IDStrings.SWORD:
                 return Material.STONE_SWORD;
             default:
-                throw new IllegalStateException("Unexpected value: " + combinationDefinition.getClassType());
+                throw new IllegalStateException("Unexpected value: " + toolDefinition.getClassType());
         }
     }
 
-    public ItemStack getStack(CombinationDefinition combinationDefinition) {
+    public ItemStack getStack(ToolDefinition toolDefinition) {
 
         ItemStack itemStack = this.getItem().clone();
 
-        itemStack.setType(getMaterial(combinationDefinition));
+        itemStack.setType(getMaterial(toolDefinition));
         ItemMeta im = itemStack.getItemMeta();
         assert im != null;
         PersistentDataContainer c = im.getPersistentDataContainer();
-        Experience.setupExpNewTool(c);
+        Experience.setupExpNew(c);
         c.set(SlimeTinker.inst().getKeys().getToolInfoIsTool(), PersistentDataType.STRING, "Y");
-        c.set(SlimeTinker.inst().getKeys().getToolInfoHeadType(), PersistentDataType.STRING, combinationDefinition.getClassType());
-        c.set(SlimeTinker.inst().getKeys().getToolInfoToolType(), PersistentDataType.STRING, combinationDefinition.getPartType());
-        c.set(SlimeTinker.inst().getKeys().getToolInfoHeadMaterial(), PersistentDataType.STRING, combinationDefinition.getHeadMaterial());
-        c.set(SlimeTinker.inst().getKeys().getToolInfoBinderMaterial(), PersistentDataType.STRING, combinationDefinition.getBinderMaterial());
-        c.set(SlimeTinker.inst().getKeys().getToolInfoRodMaterial(), PersistentDataType.STRING, combinationDefinition.getRodMaterial());
-        im.setDisplayName(getName(combinationDefinition));
+        c.set(SlimeTinker.inst().getKeys().getToolInfoHeadType(), PersistentDataType.STRING, toolDefinition.getClassType());
+        c.set(SlimeTinker.inst().getKeys().getToolInfoToolType(), PersistentDataType.STRING, toolDefinition.getPartType());
+        c.set(SlimeTinker.inst().getKeys().getToolInfoHeadMaterial(), PersistentDataType.STRING, toolDefinition.getHeadMaterial());
+        c.set(SlimeTinker.inst().getKeys().getToolInfoBinderMaterial(), PersistentDataType.STRING, toolDefinition.getBinderMaterial());
+        c.set(SlimeTinker.inst().getKeys().getToolInfoRodMaterial(), PersistentDataType.STRING, toolDefinition.getRodMaterial());
+        im.setDisplayName(getName(toolDefinition));
         itemStack.setItemMeta(im);
-        ItemUtils.rebuildToolLore(itemStack);
+        ItemUtils.rebuildTinkerLore(itemStack);
         return itemStack;
     }
 

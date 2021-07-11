@@ -21,13 +21,22 @@ public class CMTraits {
     private final CMTrait traitBind;
     @Nullable
     private final CMTrait traitRod;
+    @Nullable
+    private final CMTrait traitPlates;
+    @Nullable
+    private final CMTrait traitGambeson;
+    @Nullable
+    private final CMTrait traitLinks;
 
-    public CMTraits(String materialID, @Nullable CMTrait traitHead, @Nullable CMTrait traitBind, @Nullable CMTrait traitRod) {
+    public CMTraits(String materialID, @Nullable CMTrait traitHead, @Nullable CMTrait traitBind, @Nullable CMTrait traitRod, @Nullable CMTrait traitPlates, @Nullable CMTrait traitGambeson, @Nullable CMTrait traitLinks) {
         this.materialID = materialID;
 
         this.traitHead = traitHead;
         this.traitBind = traitBind;
         this.traitRod = traitRod;
+        this.traitPlates = traitPlates;
+        this.traitGambeson = traitGambeson;
+        this.traitLinks = traitLinks;
     }
 
     public void setupTraits(ComponentMaterial parent) {
@@ -43,6 +52,16 @@ public class CMTraits {
             traitRod.setupTrait(this, parent);
         }
 
+        if (traitPlates != null) {
+            traitPlates.setupTrait(this, parent);
+        }
+        if (traitGambeson != null) {
+            traitGambeson.setupTrait(this, parent);
+        }
+        if (traitLinks != null) {
+            traitLinks.setupTrait(this, parent);
+        }
+
     }
 
     public static final SlimefunItemStack PROP_HEAD =
@@ -53,7 +72,7 @@ public class CMTraits {
                     "Part: Head",
                     ThemeUtils.PASSIVE + "Any 'Head' item (Sword Blade, Axe Head etc.)"
             );
-    // Used to display the 'binding' item in Property explanation recipes only
+
     public static final SlimefunItemStack PROP_BINDING =
             ThemeUtils.themedItemStack(
                     "PROP_BINDING",
@@ -62,7 +81,7 @@ public class CMTraits {
                     "Part: Binder",
                     ThemeUtils.PASSIVE + "Any 'Binder' item."
             );
-    // Used to display the 'rod' item in Property explanation recipes only
+
     public static final SlimefunItemStack PROP_ROD =
             ThemeUtils.themedItemStack(
                     "PROP_ROD",
@@ -70,6 +89,33 @@ public class CMTraits {
                     ThemeUtils.ThemeItemType.PART,
                     "Part: Tool Rod",
                     ThemeUtils.PASSIVE + "Any 'Tool Rod' item."
+            );
+
+    public static final SlimefunItemStack PROP_PLATES =
+            ThemeUtils.themedItemStack(
+                    "PROP_PLATES",
+                    SkullTextures.PART_CHEST_PLATES,
+                    ThemeUtils.ThemeItemType.PART,
+                    "Part: Plates",
+                    ThemeUtils.PASSIVE + "Any 'Plate' item (Helm Plates, Boot Plates etc.)"
+            );
+
+    public static final SlimefunItemStack PROP_GAMBESON =
+            ThemeUtils.themedItemStack(
+                    "PROP_GAMBESON",
+                    SkullTextures.PART_GAMBESON,
+                    ThemeUtils.ThemeItemType.PART,
+                    "Part: Gambeson",
+                    ThemeUtils.PASSIVE + "Any 'Gambeson' item."
+            );
+
+    public static final SlimefunItemStack PROP_LINKS =
+            ThemeUtils.themedItemStack(
+                    "PROP_LINKS",
+                    SkullTextures.PART_LINKS,
+                    ThemeUtils.ThemeItemType.PART,
+                    "Part: Mail Links",
+                    ThemeUtils.PASSIVE + "Any 'Mail Link' item."
             );
 
     protected static ItemStack[] propRecipe(SlimefunItemStack part, ItemStack stack) {

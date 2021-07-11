@@ -18,6 +18,7 @@ public class Keys {
     private final NamespacedKey categoryParts = new NamespacedKey(SlimeTinker.inst(), "slime-tinker-parts");
     private final NamespacedKey categoryPartDict = new NamespacedKey(SlimeTinker.inst(), "slime-tinker-part-dict");
     private final NamespacedKey categoryTools = new NamespacedKey(SlimeTinker.inst(), "slime-tinker-tools");
+    private final NamespacedKey categoryArmour = new NamespacedKey(SlimeTinker.inst(), "slime-tinker-armour");
     private final NamespacedKey categoryModifications = new NamespacedKey(SlimeTinker.inst(), "slime-tinker-modifications");
     private final NamespacedKey categoryDummy = new NamespacedKey(SlimeTinker.inst(), "slime-tinker-dummy");
 
@@ -49,10 +50,10 @@ public class Keys {
 
     // Armour information
     private final NamespacedKey armourInfoIsArmour = new NamespacedKey(SlimeTinker.inst(), "ST_Armour");
-    private final NamespacedKey armourInfoHeadType = new NamespacedKey(SlimeTinker.inst(), "ST_Type_Head");
+    private final NamespacedKey armourInfoPlateType = new NamespacedKey(SlimeTinker.inst(), "ST_Type_Plate");
     private final NamespacedKey armourInfoArmourType = new NamespacedKey(SlimeTinker.inst(), "ST_Armour_Type");
     private final NamespacedKey armourInfoPlateMaterial = new NamespacedKey(SlimeTinker.inst(), "ST_Material_Plate");
-    private final NamespacedKey armourInfoMailMaterial = new NamespacedKey(SlimeTinker.inst(), "ST_Material_Mail");
+    private final NamespacedKey armourInfoLinksMaterial = new NamespacedKey(SlimeTinker.inst(), "ST_Material_Links");
     private final NamespacedKey armourInfoGambesonMaterial = new NamespacedKey(SlimeTinker.inst(), "ST_Material_Gambeson");
 
     // Trait Keys
@@ -66,7 +67,8 @@ public class Keys {
     private final NamespacedKey wsDummySmeltery = new NamespacedKey(SlimeTinker.inst(), "dummy-smeltery");
     private final NamespacedKey wsDummySmelteryM = new NamespacedKey(SlimeTinker.inst(), "dummy-smeltery-molten");
     private final NamespacedKey wsDummySmelteryA = new NamespacedKey(SlimeTinker.inst(), "dummy-smeltery-alloy");
-    private final NamespacedKey wsDummyTable = new NamespacedKey(SlimeTinker.inst(), "dummy-table");
+    private final NamespacedKey wsDummyToolTable = new NamespacedKey(SlimeTinker.inst(), "dummy-table");
+    private final NamespacedKey wsDummyArmourTable = new NamespacedKey(SlimeTinker.inst(), "dummy-table");
     private final NamespacedKey wsDummyWorkbench = new NamespacedKey(SlimeTinker.inst(), "dummy-workbench");
 
 }

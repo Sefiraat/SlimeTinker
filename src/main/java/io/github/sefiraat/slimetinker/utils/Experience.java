@@ -1,7 +1,7 @@
 package io.github.sefiraat.slimetinker.utils;
 
 import io.github.sefiraat.slimetinker.SlimeTinker;
-import io.github.sefiraat.slimetinker.items.Tools;
+import io.github.sefiraat.slimetinker.items.Guide;
 import io.github.sefiraat.slimetinker.modifiers.Modifications;
 import lombok.experimental.UtilityClass;
 import org.bukkit.ChatColor;
@@ -22,14 +22,14 @@ public final class Experience {
     public static final double EXP_LEVEL_BASE = 100;
     public static final double EXP_GROWTH = 1.3;
 
-    public static void setupExpNewTool(PersistentDataContainer c) {
+    public static void setupExpNew(PersistentDataContainer c) {
         c.set(SlimeTinker.inst().getKeys().getStExpCurrent(), PersistentDataType.INTEGER, 0);
         c.set(SlimeTinker.inst().getKeys().getStExpRequired(), PersistentDataType.DOUBLE, EXP_LEVEL_BASE);
         c.set(SlimeTinker.inst().getKeys().getStLevel(), PersistentDataType.INTEGER, 0);
         c.set(SlimeTinker.inst().getKeys().getStModSlots(), PersistentDataType.INTEGER, 0);
     }
 
-    public static void addToolExp(ItemStack itemStack, int amount, Player player, boolean tool) {
+    public static void addExp(ItemStack itemStack, int amount, Player player, boolean tool) {
 
         ItemMeta im = itemStack.getItemMeta();
         assert im != null;
@@ -86,7 +86,7 @@ public final class Experience {
 
         itemStack.setItemMeta(im);
 
-        ItemUtils.rebuildToolLore(itemStack);
+        ItemUtils.rebuildTinkerLore(itemStack);
 
     }
 
@@ -123,14 +123,14 @@ public final class Experience {
 
     private static void promoteMaterial(ItemStack itemStack, int level, Player player) {
         // Already at max promotion
-        if (level > (Tools.LEVEL_NETHERITE + 1)) {
+        if (level > (Guide.LEVEL_TOOLS_NETHERITE + 1)) {
             return;
         }
         ItemMeta im = itemStack.getItemMeta();
         assert im != null;
         String toolType = im.getPersistentDataContainer().get(SlimeTinker.inst().getKeys().getToolInfoToolType(), PersistentDataType.STRING);
-        if (Tools.getToolGrowthMap().get(toolType).containsKey(level)) {
-            itemStack.setType(Tools.getToolGrowthMap().get(toolType).get(level));
+        if (Guide.getGrowthMap().get(toolType).containsKey(level)) {
+            itemStack.setType(Guide.getGrowthMap().get(toolType).get(level));
             ItemUtils.repairTool(itemStack);
             player.sendMessage(ThemeUtils.SUCCESS + "Your tool has been promoted!");
             ItemUtils.repairTool(itemStack);

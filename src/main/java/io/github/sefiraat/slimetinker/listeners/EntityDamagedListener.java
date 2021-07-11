@@ -3,7 +3,6 @@ package io.github.sefiraat.slimetinker.listeners;
 import io.github.sefiraat.slimetinker.events.EntityDamageEvents;
 import io.github.sefiraat.slimetinker.events.EventFriend;
 import io.github.sefiraat.slimetinker.items.componentmaterials.CMManager;
-import io.github.sefiraat.slimetinker.items.templates.ToolTemplate;
 import io.github.sefiraat.slimetinker.modifiers.Modifications;
 import io.github.sefiraat.slimetinker.utils.Experience;
 import io.github.sefiraat.slimetinker.utils.IDStrings;
@@ -42,7 +41,7 @@ public class EntityDamagedListener implements Listener {
         Player player = (Player) event.getDamager();
         ItemStack heldItem = player.getInventory().getItemInMainHand();
 
-        if (!ToolTemplate.isTool(heldItem)) { // Not a Tinker's tool, so we don't care
+        if (!ItemUtils.isTool(heldItem)) { // Not a Tinker's tool, so we don't care
             return;
         }
 
@@ -108,7 +107,7 @@ public class EntityDamagedListener implements Listener {
         }
 
         event.setDamage(event.getDamage() * friend.getDamageMod());
-        Experience.addToolExp(heldItem, (int) Math.ceil(event.getDamage() * friend.getToolExpMod()), player, false);
+        Experience.addExp(heldItem, (int) Math.ceil(event.getDamage() * friend.getToolExpMod()), player, false);
 
     }
 

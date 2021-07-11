@@ -8,10 +8,10 @@ import io.github.sefiraat.slimetinker.commands.AddExp;
 import io.github.sefiraat.slimetinker.commands.GiveDummyTool;
 import io.github.sefiraat.slimetinker.items.Casts;
 import io.github.sefiraat.slimetinker.items.Dies;
+import io.github.sefiraat.slimetinker.items.Guide;
 import io.github.sefiraat.slimetinker.items.Materials;
 import io.github.sefiraat.slimetinker.items.Mods;
 import io.github.sefiraat.slimetinker.items.Parts;
-import io.github.sefiraat.slimetinker.items.Tools;
 import io.github.sefiraat.slimetinker.items.Workstations;
 import io.github.sefiraat.slimetinker.items.componentmaterials.CMManager;
 import io.github.sefiraat.slimetinker.items.workstations.workbench.Workbench;
@@ -63,7 +63,7 @@ public class SlimeTinker extends AbstractAddon {
         Dies.set(this);
         Casts.set(this);
         Parts.set(this);
-        Tools.set(this);
+        Guide.set(this);
         Mods.set(this);
         Workstations.set(this);
 

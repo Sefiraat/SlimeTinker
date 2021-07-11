@@ -79,7 +79,15 @@ public final class ItemUtils {
         return c.get(SlimeTinker.inst().getKeys().getPartInfoMaterialType(), PersistentDataType.STRING);
     }
 
-    public static void rebuildToolLore(ItemStack itemStack) {
+    public static void rebuildTinkerLore(ItemStack itemStack) {
+        if (isTool(itemStack)) {
+            rebuildToolLore(itemStack);
+        } else if (isArmour(itemStack)) {
+            rebuildArmourLore(itemStack);
+        }
+    }
+
+    private static void rebuildToolLore(ItemStack itemStack) {
 
         ItemMeta im = itemStack.getItemMeta();
         assert im != null;
@@ -114,7 +122,7 @@ public final class ItemUtils {
 
         for (Map.Entry<String, Integer> entry : mapLevels.entrySet()) {
             int level = entry.getValue();
-            Mod mod = Modifications.getMODIFICATION_DEFINITIONS().get(entry.getKey());
+            Mod mod = Modifications.getMODIFICATION_DEFINITIONS_TOOL().get(entry.getKey());
             if (mod.getRequirementMap().containsKey(level + 1)) {
                 String amountRequired = String.valueOf(mod.getRequirementMap().get(level + 1));
                 lore.add(ThemeUtils.CLICK_INFO + ThemeUtils.toTitleCase(entry.getKey()) + " Level " + entry.getValue() + ThemeUtils.PASSIVE + " - (" + mapAmounts.get(entry.getKey()) + "/" + amountRequired + ")");
@@ -131,7 +139,67 @@ public final class ItemUtils {
 
     }
 
-    public static void rebuildToolName(ItemStack itemStack) {
+    public static void rebuildArmourLore(ItemStack itemStack) {
+
+        ItemMeta im = itemStack.getItemMeta();
+        assert im != null;
+        PersistentDataContainer c = im.getPersistentDataContainer();
+        List<String> lore = new ArrayList<>();
+
+        String matPlate = getArmourPlateMaterial(c);
+        String matGambeson = getArmourGambesonMaterial(c);
+        String matLinks = getArmourLinksMaterial(c);
+
+        // General Material information
+        lore.add(ThemeUtils.getLine());
+        lore.add(ThemeUtils.CLICK_INFO + "P: " + formatMaterialName(matPlate));
+        lore.add(ThemeUtils.CLICK_INFO + "G: " + formatMaterialName(matGambeson));
+        lore.add(ThemeUtils.CLICK_INFO + "L: " + formatMaterialName(matLinks));
+        lore.add(ThemeUtils.getLine());
+
+        // Material properties
+        lore.add(formatPropertyName(matPlate, CMManager.getTraitName(matPlate, TraitPartType.PLATE)));
+        lore.add(formatPropertyName(matGambeson, CMManager.getTraitName(matGambeson, TraitPartType.GAMBESON)));
+        lore.add(formatPropertyName(matLinks, CMManager.getTraitName(matLinks, TraitPartType.LINKS)));
+        lore.add(ThemeUtils.getLine());
+
+        // Exp / Leveling / Mod Slot information
+        lore.add(Experience.getLoreExp(c));
+        lore.add(Experience.getLoreModSlots(c));
+        lore.add(ThemeUtils.getLine());
+
+        // Active Mods
+        Map<String, Integer> mapAmounts = Modifications.getModificationMap(itemStack);
+        Map<String, Integer> mapLevels = Modifications.getAllModLevels(itemStack);
+
+        for (Map.Entry<String, Integer> entry : mapLevels.entrySet()) {
+            int level = entry.getValue();
+            Mod mod = Modifications.getMODIFICATION_DEFINITIONS_ARMOUR().get(entry.getKey());
+            if (mod.getRequirementMap().containsKey(level + 1)) {
+                String amountRequired = String.valueOf(mod.getRequirementMap().get(level + 1));
+                lore.add(ThemeUtils.CLICK_INFO + ThemeUtils.toTitleCase(entry.getKey()) + " Level " + entry.getValue() + ThemeUtils.PASSIVE + " - (" + mapAmounts.get(entry.getKey()) + "/" + amountRequired + ")");
+            } else {
+                lore.add(ThemeUtils.CLICK_INFO + ThemeUtils.toTitleCase(entry.getKey()) + " Level " + entry.getValue() + ThemeUtils.PASSIVE + " - (MAX)");
+            }
+        }
+        if (!mapLevels.isEmpty()) {
+            lore.add(ThemeUtils.getLine());
+        }
+
+        im.setLore(lore);
+        itemStack.setItemMeta(im);
+
+    }
+
+    public static void rebuildTinkerName(ItemStack itemStack) {
+        if (isTool(itemStack)) {
+            rebuildToolName(itemStack);
+        } else if (isArmour(itemStack)) {
+            rebuildArmourName(itemStack);
+        }
+    }
+
+    private static void rebuildToolName(ItemStack itemStack) {
 
         ItemMeta im = itemStack.getItemMeta();
         assert im != null;
@@ -142,16 +210,37 @@ public final class ItemUtils {
         String matRod = getToolRodMaterial(c);
         String toolType = getToolTypeName(c);
 
-        String name =
-                        CMManager.getById(matHead).getColor() + ThemeUtils.toTitleCase(matHead) + "-" +
-                        CMManager.getById(matBind).getColor() + ThemeUtils.toTitleCase(matBind) + "-" +
-                        CMManager.getById(matRod).getColor() + ThemeUtils.toTitleCase(matRod) + " " +
-                        ChatColor.WHITE + ThemeUtils.toTitleCase(toolType);
+        setName(itemStack, matHead, matBind, matRod, toolType);
 
+    }
+
+    private static void rebuildArmourName(ItemStack itemStack) {
+
+        ItemMeta im = itemStack.getItemMeta();
+        assert im != null;
+        PersistentDataContainer c = im.getPersistentDataContainer();
+
+        String matPlate = getArmourPlateMaterial(c);
+        String matGambeson = getArmourGambesonMaterial(c);
+        String matLinks = getArmourLinksMaterial(c);
+        String armourType = getArmourTypeName(c);
+
+        setName(itemStack, matPlate, matGambeson, matLinks, armourType);
+
+    }
+
+    private static void setName(ItemStack itemStack, String first, String second, String third, String type) {
+        ItemMeta im = itemStack.getItemMeta();
+        assert im != null;
+
+        String name =
+                CMManager.getById(first).getColor() + ThemeUtils.toTitleCase(first) + "-" +
+                        CMManager.getById(second).getColor() + ThemeUtils.toTitleCase(second) + "-" +
+                        CMManager.getById(third).getColor() + ThemeUtils.toTitleCase(third) + " " +
+                        ChatColor.WHITE + ThemeUtils.toTitleCase(type);
 
         im.setDisplayName(name);
         itemStack.setItemMeta(im);
-
     }
 
     public static boolean isToolBroken(ItemStack itemStack) {
@@ -213,6 +302,30 @@ public final class ItemUtils {
         return s;
     }
 
+    public static String getArmourPlateMaterial(PersistentDataContainer c) {
+        String s = c.get(SlimeTinker.inst().getKeys().getArmourInfoPlateMaterial(), PersistentDataType.STRING);
+        assert s != null;
+        return s;
+    }
+
+    public static String getArmourGambesonMaterial(PersistentDataContainer c) {
+        String s =  c.get(SlimeTinker.inst().getKeys().getArmourInfoGambesonMaterial(), PersistentDataType.STRING);
+        assert s != null;
+        return s;
+    }
+
+    public static String getArmourLinksMaterial(PersistentDataContainer c) {
+        String s =  c.get(SlimeTinker.inst().getKeys().getArmourInfoLinksMaterial(), PersistentDataType.STRING);
+        assert s != null;
+        return s;
+    }
+
+    public static String getArmourTypeName(PersistentDataContainer c) {
+        String s = c.get(SlimeTinker.inst().getKeys().getArmourInfoArmourType(), PersistentDataType.STRING);
+        assert s != null;
+        return s;
+    }
+
     public static String formatMaterialName(String s) {
         return CMManager.getById(s).getColor() + ThemeUtils.toTitleCase(s);
     }
@@ -227,5 +340,20 @@ public final class ItemUtils {
 
     public static MoltenResult getMoltenResult(ItemStack itemStack) {
         return SlimeTinker.inst().getCmManager().meltingRecipes.get(StackUtils.getIDorType(itemStack));
+    }
+
+    public static boolean isTool(ItemStack itemStack) {
+        return itemStack.hasItemMeta() &&
+                itemStack.getItemMeta().getPersistentDataContainer().has(
+                        SlimeTinker.inst().getKeys().getToolInfoIsTool(),
+                        PersistentDataType.STRING
+                );
+    }
+    public static boolean isArmour(ItemStack itemStack) {
+        return itemStack.hasItemMeta() &&
+                itemStack.getItemMeta().getPersistentDataContainer().has(
+                        SlimeTinker.inst().getKeys().getArmourInfoIsArmour(),
+                        PersistentDataType.STRING
+                );
     }
 }

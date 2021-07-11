@@ -68,8 +68,8 @@ public final class CMSlimefunWarfare {
                                                 SupportedPluginsManager.SLIMEFUN_WARFARE_NOTE,
                                                 "Blinding Speed",
                                                 "Gain insane speed but with a side effect."
-                                        )
-                                )
+                                        ),
+                                        traitPlates, traitGambeson, traitLinks)
                         ));
 
         map.put(IDStrings.SLIMESTEEL,
@@ -102,8 +102,8 @@ public final class CMSlimefunWarfare {
                                                 "Bouncy II",
                                                 "Fall damage halved with a jump boost."
                                         ),
-                                        null
-                                )
+                                        null,
+                                        traitPlates, traitGambeson, traitLinks)
                         ));
 
         map.put(IDStrings.REINFORCED_SLIMESTEEL,
@@ -147,8 +147,8 @@ public final class CMSlimefunWarfare {
                                                 "Flexibility",
                                                 "Incoming damage reduced and durability is lost",
                                                 "instead. Doesn't work while tool is broken."
-                                        )
-                                )
+                                        ),
+                                        traitPlates, traitGambeson, traitLinks)
                         ));
 
         map.put(IDStrings.OSMIUM,
@@ -183,8 +183,8 @@ public final class CMSlimefunWarfare {
                                                 SupportedPluginsManager.SLIMEFUN_WARFARE_NOTE,
                                                 "Heavy Pommel",
                                                 "Struck mobs are slowed and cannot teleport."
-                                        )
-                                )
+                                        ),
+                                        traitPlates, traitGambeson, traitLinks)
                         ));
 
         map.put(IDStrings.OSMIUM_SUPERALLOY,
@@ -226,8 +226,8 @@ public final class CMSlimefunWarfare {
                                                 SupportedPluginsManager.SLIMEFUN_WARFARE_NOTE,
                                                 "Tuff Stuff",
                                                 "Knocks back anything hit and stuns."
-                                        )
-                                )
+                                        ),
+                                        traitPlates, traitGambeson, traitLinks)
                         ));
 
         map.put(IDStrings.UNPATENTABLIUM,
@@ -264,8 +264,8 @@ public final class CMSlimefunWarfare {
                                                 SupportedPluginsManager.SLIMEFUN_WARFARE_NOTE,
                                                 "Tuff Stuff",
                                                 "Knocks back anything hit and stuns."
-                                        )
-                                )
+                                        ),
+                                        traitPlates, traitGambeson, traitLinks)
                         ));
 
         map.get(IDStrings.SEGGANESSON).addEvent(TraitEventType.TICK, TraitPartType.ROD, TickEvents::rodSegganesson);                                        // Blinding Speed

@@ -81,6 +81,36 @@ public final class Casts {
             null,                                           null,               null
     };
 
+    protected static final ItemStack[] RECIPE_CAST_HELM_PLATE = new ItemStack[] {
+            new SlimefunItemStack(SlimefunItems.BRASS_INGOT, 2),   Dies.DIE_HELM_PLATE,   null,
+            null,                                           null,   null,
+            null,                                           null,   null
+    };
+
+    protected static final ItemStack[] RECIPE_CAST_CHEST_PLATE = new ItemStack[] {
+            new SlimefunItemStack(SlimefunItems.BRASS_INGOT, 2),   Dies.DIE_CHEST_PLATE,   null,
+            null,                                           null,   null,
+            null,                                           null,   null
+    };
+
+    protected static final ItemStack[] RECIPE_CAST_LEG_PLATE = new ItemStack[] {
+            new SlimefunItemStack(SlimefunItems.BRASS_INGOT, 2),   Dies.DIE_LEG_PLATE,   null,
+            null,                                           null,   null,
+            null,                                           null,   null
+    };
+
+    protected static final ItemStack[] RECIPE_CAST_BOOT_PLATE = new ItemStack[] {
+            new SlimefunItemStack(SlimefunItems.BRASS_INGOT, 2),   Dies.DIE_BOOT_PLATE,   null,
+            null,                                           null,   null,
+            null,                                           null,   null
+    };
+
+    protected static final ItemStack[] RECIPE_CAST_MAIL_LINK = new ItemStack[] {
+            new SlimefunItemStack(SlimefunItems.BRASS_INGOT, 2),   Dies.DIE_MAIL_LINK, null,
+            null,                                           null,               null,
+            null,                                           null,               null
+    };
+
     protected static final ItemStack[] RECIPE_CAST_REPAIR_KIT = new ItemStack[] {
             new ItemStack(Material.GOLD_INGOT, 2),   Dies.DIE_REPAIR_KIT, null,
             null,                                           null,               null,
@@ -207,6 +237,66 @@ public final class Casts {
                     ThemeUtils.CLICK_INFO + OUTPUT_DESC + ChatColor.WHITE + "1 Tool Rod"
             );
 
+    public static final SlimefunItemStack CAST_HELM_PLATE =
+            ThemeUtils.themedItemStack(
+                    "CAST_HELM_PLATE",
+                    Material.ORANGE_CARPET,
+                    ThemeUtils.ThemeItemType.CAST,
+                    "Cast: Helmet Plates",
+                    ThemeUtils.PASSIVE + CAST_DESC,
+                    "",
+                    ThemeUtils.CLICK_INFO + INPUT_DESC + ChatColor.WHITE + CMManager.AMOUNT_ARM_HELM + UNIT_DESC,
+                    ThemeUtils.CLICK_INFO + OUTPUT_DESC + ChatColor.WHITE + "1 Set of Helmet Plates"
+            );
+
+    public static final SlimefunItemStack CAST_CHEST_PLATE =
+            ThemeUtils.themedItemStack(
+                    "CAST_CHEST_PLATE",
+                    Material.ORANGE_CARPET,
+                    ThemeUtils.ThemeItemType.CAST,
+                    "Cast: Chestplate Plates",
+                    ThemeUtils.PASSIVE + CAST_DESC,
+                    "",
+                    ThemeUtils.CLICK_INFO + INPUT_DESC + ChatColor.WHITE + CMManager.AMOUNT_ARM_CHEST + UNIT_DESC,
+                    ThemeUtils.CLICK_INFO + OUTPUT_DESC + ChatColor.WHITE + "1 Set of Chestplate plates"
+            );
+
+    public static final SlimefunItemStack CAST_LEG_PLATE =
+            ThemeUtils.themedItemStack(
+                    "CAST_LEG_PLATE",
+                    Material.ORANGE_CARPET,
+                    ThemeUtils.ThemeItemType.CAST,
+                    "Cast: Legging Plates",
+                    ThemeUtils.PASSIVE + CAST_DESC,
+                    "",
+                    ThemeUtils.CLICK_INFO + INPUT_DESC + ChatColor.WHITE + CMManager.AMOUNT_ARM_LEG + UNIT_DESC,
+                    ThemeUtils.CLICK_INFO + OUTPUT_DESC + ChatColor.WHITE + "1 Set of Legging Plates"
+            );
+
+    public static final SlimefunItemStack CAST_BOOT_PLATE =
+            ThemeUtils.themedItemStack(
+                    "CAST_BOOT_PLATE",
+                    Material.ORANGE_CARPET,
+                    ThemeUtils.ThemeItemType.CAST,
+                    "Cast: Boot Plates",
+                    ThemeUtils.PASSIVE + CAST_DESC,
+                    "",
+                    ThemeUtils.CLICK_INFO + INPUT_DESC + ChatColor.WHITE + CMManager.AMOUNT_ARM_BOOT + UNIT_DESC,
+                    ThemeUtils.CLICK_INFO + OUTPUT_DESC + ChatColor.WHITE + "1 Set of Boot Plates"
+            );
+
+    public static final SlimefunItemStack CAST_MAIL_LINK =
+            ThemeUtils.themedItemStack(
+                    "CAST_MAIL_LINK",
+                    Material.ORANGE_CARPET,
+                    ThemeUtils.ThemeItemType.CAST,
+                    "Cast: Mail Links",
+                    ThemeUtils.PASSIVE + CAST_DESC,
+                    "",
+                    ThemeUtils.CLICK_INFO + INPUT_DESC + ChatColor.WHITE + CMManager.AMOUNT_ARM_LINKS + UNIT_DESC,
+                    ThemeUtils.CLICK_INFO + OUTPUT_DESC + ChatColor.WHITE + "1 set of Mail Links"
+            );
+
     public static final SlimefunItemStack CAST_REPAIRKIT =
             ThemeUtils.themedItemStack(
                     "CAST_REPAIRKIT",
@@ -231,6 +321,11 @@ public final class Casts {
         new UnplaceableBlock(Categories.CASTS, CAST_HOEHEAD, DummySmeltery.TYPE, RECIPE_CAST_HOE_HEAD).register(p);
         new UnplaceableBlock(Categories.CASTS, CAST_SWORDBLADE, DummySmeltery.TYPE, RECIPE_CAST_SWORD_BLADE).register(p);
         new UnplaceableBlock(Categories.CASTS, CAST_TOOLROD, DummySmeltery.TYPE, RECIPE_CAST_TOOL_ROD).register(p);
+        new UnplaceableBlock(Categories.CASTS, CAST_HELM_PLATE, DummySmeltery.TYPE, RECIPE_CAST_HELM_PLATE).register(p);
+        new UnplaceableBlock(Categories.CASTS, CAST_CHEST_PLATE, DummySmeltery.TYPE, RECIPE_CAST_CHEST_PLATE).register(p);
+        new UnplaceableBlock(Categories.CASTS, CAST_LEG_PLATE, DummySmeltery.TYPE, RECIPE_CAST_LEG_PLATE).register(p);
+        new UnplaceableBlock(Categories.CASTS, CAST_BOOT_PLATE, DummySmeltery.TYPE, RECIPE_CAST_BOOT_PLATE).register(p);
+        new UnplaceableBlock(Categories.CASTS, CAST_MAIL_LINK, DummySmeltery.TYPE, RECIPE_CAST_MAIL_LINK).register(p);
         new UnplaceableBlock(Categories.CASTS, CAST_REPAIRKIT, DummySmeltery.TYPE, RECIPE_CAST_REPAIR_KIT).register(p);
 
     }

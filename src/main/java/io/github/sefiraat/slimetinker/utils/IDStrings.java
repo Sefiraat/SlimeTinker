@@ -37,6 +37,7 @@ public final class IDStrings {
     public static final String WEEPING_VINES = "WEEPING_VINE";
     public static final String TWISTED_VINES = "TWISTED_VINE";
     public static final String SLIME = "SLIME";
+    public static final String LEATHER = "LEATHER";
     public static final String DIAMOND = "DIAMOND";
     public static final String REDSTONE = "REDSTONE";
     public static final String REDSTONE_ALLOY = "REDSTONE_ALLOY";

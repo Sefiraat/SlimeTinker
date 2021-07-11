@@ -2,7 +2,6 @@ package io.github.sefiraat.slimetinker.listeners;
 
 import io.github.sefiraat.slimetinker.events.EventFriend;
 import io.github.sefiraat.slimetinker.items.componentmaterials.CMManager;
-import io.github.sefiraat.slimetinker.items.templates.ToolTemplate;
 import io.github.sefiraat.slimetinker.modifiers.Modifications;
 import io.github.sefiraat.slimetinker.utils.Experience;
 import io.github.sefiraat.slimetinker.utils.IDStrings;
@@ -44,7 +43,7 @@ public class EntityKilledListener implements Listener {
 
         for (ItemStack i : event.getDrops()) {
 
-            if (!ToolTemplate.isTool(i)) {
+            if (!ItemUtils.isTool(i)) {
                 continue;
             }
 
@@ -90,7 +89,7 @@ public class EntityKilledListener implements Listener {
         Player player = dyingEntity.getKiller();
         ItemStack heldItem = player.getInventory().getItemInMainHand();
 
-        if (!ToolTemplate.isTool(heldItem)) { // Not a Tinker's tool, so we don't care
+        if (!ItemUtils.isTool(heldItem)) { // Not a Tinker's tool, so we don't care
             return;
         }
 
@@ -121,7 +120,7 @@ public class EntityKilledListener implements Listener {
         // Settle
         event.setDroppedExp((int) Math.ceil(event.getDroppedExp() * friend.getPlayerExpMod()));
         if (event.getDroppedExp() > 0 && friend.isMetalCheck()) {
-            Experience.addToolExp(heldItem, (int) Math.ceil(event.getDroppedExp() / 10D), player, true);
+            Experience.addExp(heldItem, (int) Math.ceil(event.getDroppedExp() / 10D), player, true);
             event.setDroppedExp(0);
         }
 

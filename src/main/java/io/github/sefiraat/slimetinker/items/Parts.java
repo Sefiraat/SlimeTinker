@@ -90,6 +90,60 @@ public final class Parts {
                     ThemeUtils.PASSIVE + "A binging to hold parts together."
             );
 
+    public static final SlimefunItemStack PART_HELM_PLATE_DUMMY =
+            ThemeUtils.themedItemStack(
+                    "PART_HELM_PLATE_DUMMY",
+                    SkullTextures.PART_HELM_PLATES,
+                    ThemeUtils.ThemeItemType.CAST,
+                    "Part: Helmet Plates",
+                    ThemeUtils.PASSIVE + "A cast helmet plate set."
+            );
+
+    public static final SlimefunItemStack PART_CHEST_PLATE_DUMMY =
+            ThemeUtils.themedItemStack(
+                    "PART_CHEST_PLATE_DUMMY",
+                    SkullTextures.PART_CHEST_PLATES,
+                    ThemeUtils.ThemeItemType.CAST,
+                    "Part: Chest Plates",
+                    ThemeUtils.PASSIVE + "A cast chest plate set."
+            );
+
+    public static final SlimefunItemStack PART_LEG_PLATE_DUMMY =
+            ThemeUtils.themedItemStack(
+                    "PART_LEG_PLATE_DUMMY",
+                    SkullTextures.PART_LEG_PLATES,
+                    ThemeUtils.ThemeItemType.CAST,
+                    "Part: Leg Plates",
+                    ThemeUtils.PASSIVE + "A cast legging plate set."
+            );
+
+    public static final SlimefunItemStack PART_BOOT_PLATE_DUMMY =
+            ThemeUtils.themedItemStack(
+                    "PART_BOOT_PLATE_DUMMY",
+                    SkullTextures.PART_BOOTS_PLATES,
+                    ThemeUtils.ThemeItemType.CAST,
+                    "Part: Boot Plates",
+                    ThemeUtils.PASSIVE + "A cast legging plate set."
+            );
+
+    public static final SlimefunItemStack PART_MAIL_LINKS_DUMMY =
+            ThemeUtils.themedItemStack(
+                    "PART_MAIL_LINKS_DUMMY",
+                    SkullTextures.PART_LINKS,
+                    ThemeUtils.ThemeItemType.CAST,
+                    "Part: Mail Links",
+                    ThemeUtils.PASSIVE + "A flexible mesh of cast metal links"
+            );
+
+    public static final SlimefunItemStack PART_GAMBESON_DUMMY =
+            ThemeUtils.themedItemStack(
+                    "PART_GAMBESON_DUMMY",
+                    SkullTextures.PART_GAMBESON,
+                    ThemeUtils.ThemeItemType.CAST,
+                    "Part: Gambeson",
+                    ThemeUtils.PASSIVE + "A fabric under-armour garment"
+            );
+
     public static final SlimefunItemStack PART_REPAIR_KIT_DUMMY =
             ThemeUtils.themedItemStack(
                     "PART_REPAIR_KIT_DUMMY",
@@ -173,6 +227,62 @@ public final class Parts {
                     ThemeUtils.PASSIVE + "similar materials."
             );
 
+    public static final SlimefunItemStack PART_HELM_PLATES =
+            ThemeUtils.themedItemStack(
+                    "PART_HELM_PLATES",
+                    SkullTextures.PART_HELM_PLATES,
+                    ThemeUtils.ThemeItemType.PART,
+                    DESC_ERROR,
+                    ThemeUtils.PASSIVE + DESC_ERROR
+            );
+
+    public static final SlimefunItemStack PART_CHEST_PLATES =
+            ThemeUtils.themedItemStack(
+                    "PART_CHEST_PLATES",
+                    SkullTextures.PART_CHEST_PLATES,
+                    ThemeUtils.ThemeItemType.PART,
+                    DESC_ERROR,
+                    ThemeUtils.PASSIVE + DESC_ERROR
+            );
+
+    public static final SlimefunItemStack PART_LEG_PLATES =
+            ThemeUtils.themedItemStack(
+                    "PART_LEG_PLATES",
+                    SkullTextures.PART_LEG_PLATES,
+                    ThemeUtils.ThemeItemType.PART,
+                    DESC_ERROR,
+                    ThemeUtils.PASSIVE + DESC_ERROR
+            );
+
+    public static final SlimefunItemStack PART_BOOTS_PLATES =
+            ThemeUtils.themedItemStack(
+                    "PART_BOOTS_PLATES",
+                    SkullTextures.PART_BOOTS_PLATES,
+                    ThemeUtils.ThemeItemType.PART,
+                    DESC_ERROR,
+                    ThemeUtils.PASSIVE + DESC_ERROR
+            );
+
+    public static final SlimefunItemStack PART_MAIL_LINKS =
+            ThemeUtils.themedItemStack(
+                    "PART_MAIL_LINKS",
+                    SkullTextures.PART_LINKS,
+                    ThemeUtils.ThemeItemType.PART,
+                    DESC_ERROR,
+                    ThemeUtils.PASSIVE + DESC_ERROR
+            );
+
+    public static final SlimefunItemStack PART_GAMBESON_GENERAL_DISPLAY =
+            ThemeUtils.themedItemStack(
+                    "PART_GAMBESON_GENERAL_DISPLAY",
+                    Material.STRING,
+                    ThemeUtils.ThemeItemType.CRAFTING,
+                    "Gambeson Material",
+                    ThemeUtils.PASSIVE + "A material suitable to make a Gambeson.",
+                    ThemeUtils.PASSIVE + "This is not JUST string, experiment with",
+                    ThemeUtils.PASSIVE + "similar materials."
+            );
+
 
     // Statics for Recipes
     public static final PartTemplate SHOVEL_HEAD = new PartTemplate(Categories.DUMMY, PART_SHOVEL_HEAD, DummySmeltery.TYPE, new ItemStack[9],"Shovel Head");
@@ -182,6 +292,11 @@ public final class Parts {
     public static final PartTemplate SWORD_BLADE = new PartTemplate(Categories.DUMMY, PART_SWORD_BLADE, DummySmeltery.TYPE, new ItemStack[9], "Sword Blade");
     public static final PartTemplate TOOL_ROD = new PartTemplate(Categories.DUMMY, PART_TOOL_ROD, DummySmeltery.TYPE, new ItemStack[9], "Tool Rod");
     public static final RepairkitTemplate REPAIR_KIT = new RepairkitTemplate(Categories.DUMMY, PART_REPAIR_KIT, DummySmeltery.TYPE, new ItemStack[9], "Repair Kit");
+
+    public static final PartTemplate HELM_PLATE = new PartTemplate(Categories.DUMMY, PART_HELM_PLATES, DummySmeltery.TYPE, new ItemStack[9],"Helmet Plates");
+    public static final PartTemplate CHEST_PLATE = new PartTemplate(Categories.DUMMY, PART_CHEST_PLATES, DummySmeltery.TYPE, new ItemStack[9], "Chestplate Plates");
+    public static final PartTemplate LEG_PLATE = new PartTemplate(Categories.DUMMY, PART_LEG_PLATES, DummySmeltery.TYPE, new ItemStack[9], "Legging Plates");
+    public static final PartTemplate BOOT_PLATE = new PartTemplate(Categories.DUMMY, PART_BOOTS_PLATES, DummySmeltery.TYPE, new ItemStack[9], "Boot Plates");
 
     public static void set(SlimeTinker p) {
 
@@ -197,6 +312,16 @@ public final class Parts {
                 null,   PART_BINDING_GENERAL_DISPLAY, null,
                 PART_BINDING_GENERAL_DISPLAY, null,   PART_BINDING_GENERAL_DISPLAY
         }).register(p);
+        new UnplaceableBlock(Categories.PARTS, PART_HELM_PLATE_DUMMY, DummySmeltery.TYPE, getDummyCastRecipe(Casts.CAST_HELM_PLATE)).register(p);
+        new UnplaceableBlock(Categories.PARTS, PART_CHEST_PLATE_DUMMY, DummySmeltery.TYPE, getDummyCastRecipe(Casts.CAST_CHEST_PLATE)).register(p);
+        new UnplaceableBlock(Categories.PARTS, PART_LEG_PLATE_DUMMY, DummySmeltery.TYPE, getDummyCastRecipe(Casts.CAST_LEG_PLATE)).register(p);
+        new UnplaceableBlock(Categories.PARTS, PART_BOOT_PLATE_DUMMY, DummySmeltery.TYPE, getDummyCastRecipe(Casts.CAST_BOOT_PLATE)).register(p);
+        new UnplaceableBlock(Categories.PARTS, PART_MAIL_LINKS_DUMMY, DummySmeltery.TYPE, getDummyCastRecipe(Casts.CAST_MAIL_LINK)).register(p);
+        new UnplaceableBlock(Categories.PARTS, PART_GAMBESON_DUMMY, DummyWorkbench.TYPE, new ItemStack[]{
+                null, PART_GAMBESON_GENERAL_DISPLAY,   PART_BINDING_GENERAL_DISPLAY,
+                PART_GAMBESON_GENERAL_DISPLAY,   null, PART_GAMBESON_GENERAL_DISPLAY,
+                PART_BINDING_GENERAL_DISPLAY, PART_GAMBESON_GENERAL_DISPLAY,   null
+        }).register(p);
         new UnplaceableBlock(Categories.PARTS, PART_REPAIR_KIT_DUMMY, DummySmeltery.TYPE, getDummyCastRecipe(Casts.CAST_REPAIRKIT)).register(p);
 
         // Real ones, not in recipe book due to the variations
@@ -206,7 +331,13 @@ public final class Parts {
         HOE_HEAD.register(p);
         SWORD_BLADE.register(p);
         TOOL_ROD.register(p);
+
         REPAIR_KIT.register(p);
+
+        HELM_PLATE.register(p);
+        CHEST_PLATE.register(p);
+        LEG_PLATE.register(p);
+        BOOT_PLATE.register(p);
 
     }
 

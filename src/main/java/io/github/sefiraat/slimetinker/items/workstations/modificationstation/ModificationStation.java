@@ -2,7 +2,6 @@ package io.github.sefiraat.slimetinker.items.workstations.modificationstation;
 
 import io.github.mooy1.infinitylib.items.StackUtils;
 import io.github.mooy1.infinitylib.slimefun.AbstractContainer;
-import io.github.sefiraat.slimetinker.items.templates.ToolTemplate;
 import io.github.sefiraat.slimetinker.modifiers.Mod;
 import io.github.sefiraat.slimetinker.modifiers.Modifications;
 import io.github.sefiraat.slimetinker.utils.Experience;
@@ -53,13 +52,13 @@ public class ModificationStation extends AbstractContainer {
         }
 
         // Still no tool, nice try
-        if (!ToolTemplate.isTool(tool)) {
+        if (!ItemUtils.isTool(tool)) {
             player.sendMessage(ThemeUtils.WARNING + "The item in the first slot isn't a Tinker's tool.");
             return false;
         }
 
         // No modifier!
-        if (modItem == null || !Modifications.getMODIFICATION_LIST().contains(StackUtils.getIDorType(modItem))) {
+        if (modItem == null || !Modifications.getMODIFICATION_LIST_TOOL().contains(StackUtils.getIDorType(modItem))) {
             player.sendMessage(ThemeUtils.WARNING + "Input a valid modifier into the second slot.");
             return false;
         }
@@ -70,7 +69,7 @@ public class ModificationStation extends AbstractContainer {
 
         Map<String, Integer> modMap = Modifications.getModificationMap(c);
 
-        Mod mod = Modifications.getMODIFICATION_DEFINITIONS().get(StackUtils.getIDorType(modItem)); // The definition of the mod being created/updated
+        Mod mod = Modifications.getMODIFICATION_DEFINITIONS_TOOL().get(StackUtils.getIDorType(modItem)); // The definition of the mod being created/updated
         int modSlots = Experience.getToolModifierSlots(tool.getItemMeta().getPersistentDataContainer()); // Number of free modification slots on the tool
         int currentAmount = modMap.get(StackUtils.getIDorType(modItem)); // The current value of that material loaded into the tool (not the level)
         int currentLevel = Modifications.getModLevel(mod, tool); // The current level of this mod (or 0)
@@ -111,7 +110,7 @@ public class ModificationStation extends AbstractContainer {
             return false;
         }
 
-        ItemUtils.rebuildToolLore(newTool);
+        ItemUtils.rebuildTinkerLore(newTool);
         blockMenu.pushItem(newTool, OUTPUT_SLOT);
         tool.setAmount(0);
         modItem.setAmount(leftoverAmount);

@@ -185,7 +185,7 @@ public final class Materials {
     public static final SlimefunItemStack NUGGET_CAST_ALU_BRASS =
             ThemeUtils.themedItemStack(
                     "NUGGET_CAST_ALU_BRASS",
-                    Material.GOLD_INGOT,
+                    Material.GOLD_NUGGET,
                     ThemeUtils.ThemeItemType.CRAFTING,
                     "Aluminum Brass Nugget",
                     "A nugget made from aluminum brass"

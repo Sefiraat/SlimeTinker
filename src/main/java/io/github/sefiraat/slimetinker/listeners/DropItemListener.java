@@ -1,6 +1,5 @@
 package io.github.sefiraat.slimetinker.listeners;
 
-import io.github.sefiraat.slimetinker.items.templates.ToolTemplate;
 import io.github.sefiraat.slimetinker.utils.IDStrings;
 import io.github.sefiraat.slimetinker.utils.ItemUtils;
 import io.github.sefiraat.slimetinker.utils.ThemeUtils;
@@ -19,7 +18,7 @@ public class DropItemListener implements Listener {
 
         ItemStack itemStack = event.getItemDrop().getItemStack();
 
-        if (!ToolTemplate.isTool(itemStack)) {
+        if (!ItemUtils.isTool(itemStack)) {
             return;
         }
 

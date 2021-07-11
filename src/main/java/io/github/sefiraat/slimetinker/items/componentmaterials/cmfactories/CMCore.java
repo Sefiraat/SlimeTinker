@@ -68,8 +68,20 @@ public final class CMCore {
                                                 "Sharp 1",
                                                 "Gives increased damage, stacks with",
                                                 "mods and other properties."
-                                        )
-                                )
+                                        ),
+                                        new CMTrait(
+                                                CMTraits.PROP_PLATES,
+                                                SupportedPluginsManager.CORE_NOTE,
+                                                "Steadfast",
+                                                "33% chance to ignore an explosion"
+                                        ),
+                                        null,
+                                        new CMTrait(
+                                                CMTraits.PROP_LINKS,
+                                                SupportedPluginsManager.CORE_NOTE,
+                                                "Rusty",
+                                                "Armour durability loss +10%. Player Exp gain +10%"
+                                        ))
                         ));
         map.put(IDStrings.GOLD,
                 new ComponentMaterial
@@ -104,8 +116,20 @@ public final class CMCore {
                                                 SupportedPluginsManager.CORE_NOTE,
                                                 "All that Glitters",
                                                 "Makes you all shiny..."
-                                        )
-                                )
+                                        ),
+                                        new CMTrait(
+                                                CMTraits.PROP_PLATES,
+                                                SupportedPluginsManager.CORE_NOTE,
+                                                "Prosperous",
+                                                "1% chance to drop a gold nugget when hit"
+                                        ),
+                                        null,
+                                        new CMTrait(
+                                                CMTraits.PROP_LINKS,
+                                                SupportedPluginsManager.CORE_NOTE,
+                                                "Barter",
+                                                "Piglins love your armour"
+                                        ))
                         ));
         map.put(IDStrings.COPPER,
                 new ComponentMaterial
@@ -140,8 +164,20 @@ public final class CMCore {
                                                 SupportedPluginsManager.CORE_NOTE,
                                                 "Conductive",
                                                 "All tool exp is converted to player exp."
-                                        )
-                                )
+                                        ),
+                                        new CMTrait(
+                                                CMTraits.PROP_PLATES,
+                                                SupportedPluginsManager.CORE_NOTE,
+                                                "Beginner",
+                                                "Damage taken +20%. Armour Exp +20%"
+                                        ),
+                                        null,
+                                        new CMTrait(
+                                                CMTraits.PROP_LINKS,
+                                                SupportedPluginsManager.CORE_NOTE,
+                                                "Tarnished",
+                                                "Outgoing damage reduced by 25%. Armour Exp +20%"
+                                        ))
                         ));
         map.put(IDStrings.LEAD,
                 new ComponentMaterial
@@ -175,8 +211,20 @@ public final class CMCore {
                                                 SupportedPluginsManager.CORE_NOTE,
                                                 "Leech",
                                                 "Bonus health, but drains your energy."
-                                        )
-                                )
+                                        ),
+                                        new CMTrait(
+                                                CMTraits.PROP_PLATES,
+                                                SupportedPluginsManager.CORE_NOTE,
+                                                "Sickly",
+                                                "Lead Armour is not a good idea"
+                                        ),
+                                        null,
+                                        new CMTrait(
+                                                CMTraits.PROP_LINKS,
+                                                SupportedPluginsManager.CORE_NOTE,
+                                                "Sickly",
+                                                "Lead Armour is not a good idea"
+                                        ))
                         ));
         map.put(IDStrings.SILVER,
                 new ComponentMaterial
@@ -212,8 +260,21 @@ public final class CMCore {
                                                 SupportedPluginsManager.CORE_NOTE,
                                                 "Soft Touch",
                                                 "You feel lighter."
-                                        )
-                                )
+                                        ),
+                                        new CMTrait(
+                                                CMTraits.PROP_PLATES,
+                                                SupportedPluginsManager.CORE_NOTE,
+                                                "Conductive",
+                                                "Immune to lightning and even reflect it back!"
+                                        ),
+                                        null,
+                                        new CMTrait(
+                                                CMTraits.PROP_LINKS,
+                                                SupportedPluginsManager.CORE_NOTE,
+                                                "Enchanting",
+                                                "Gains a random enchantment every time this",
+                                                "peice of armour levels up. May not be useful."
+                                        ))
                         ));
         map.put(IDStrings.ALUMINUM,
                 new ComponentMaterial
@@ -247,8 +308,20 @@ public final class CMCore {
                                                 SupportedPluginsManager.CORE_NOTE,
                                                 "Soft",
                                                 "Durability loss +100%, tool EXP +50%."
-                                        )
-                                )
+                                        ),
+                                        new CMTrait(
+                                                CMTraits.PROP_PLATES,
+                                                SupportedPluginsManager.CORE_NOTE,
+                                                "Foil",
+                                                "Damage Taken +25%. Speed + 1"
+                                        ),
+                                        null,
+                                        new CMTrait(
+                                                CMTraits.PROP_LINKS,
+                                                SupportedPluginsManager.CORE_NOTE,
+                                                "Easily Shaped",
+                                                "Repairs only need a single kit."
+                                        ))
                         ));
         map.put(IDStrings.TIN,
                 new ComponentMaterial
@@ -282,8 +355,20 @@ public final class CMCore {
                                                 SupportedPluginsManager.CORE_NOTE,
                                                 "Can",
                                                 "Your hunger just fades away"
-                                        )
-                                )
+                                        ),
+                                        new CMTrait(
+                                                CMTraits.PROP_PLATES,
+                                                SupportedPluginsManager.CORE_NOTE,
+                                                "Non-Corrosive",
+                                                "Immune to poison"
+                                        ),
+                                        null,
+                                        new CMTrait(
+                                                CMTraits.PROP_LINKS,
+                                                SupportedPluginsManager.CORE_NOTE,
+                                                "Boost",
+                                                "When taking heavy damage, gain absorption"
+                                        ))
                         ));
         map.put(IDStrings.ZINC,
                 new ComponentMaterial
@@ -317,8 +402,21 @@ public final class CMCore {
                                                 SupportedPluginsManager.CORE_NOTE,
                                                 "Super Lightweight",
                                                 "Makes you lighter than air when not sneaking."
-                                        )
-                                )
+                                        ),
+                                        new CMTrait(
+                                                CMTraits.PROP_PLATES,
+                                                SupportedPluginsManager.CORE_NOTE,
+                                                "Sneaky",
+                                                "Damage doubled if target is facing away.",
+                                                "Small tolerance"
+                                        ),
+                                        null,
+                                        new CMTrait(
+                                                CMTraits.PROP_LINKS,
+                                                SupportedPluginsManager.CORE_NOTE,
+                                                "Acupuncture",
+                                                "Take no damage from cactus pricks"
+                                        ))
                         ));
         map.put(IDStrings.MAGNESIUM,
                 new ComponentMaterial
@@ -354,15 +452,27 @@ public final class CMCore {
                                                 "Magnetesium",
                                                 "Random items are drawn to you from",
                                                 "within a 5 block range"
-                                        )
-                                )
+                                        ),
+                                        new CMTrait(
+                                                CMTraits.PROP_PLATES,
+                                                SupportedPluginsManager.CORE_NOTE,
+                                                "Light",
+                                                "Damage dealt -25%. Speed + 1"
+                                        ),
+                                        null,
+                                        new CMTrait(
+                                                CMTraits.PROP_LINKS,
+                                                SupportedPluginsManager.CORE_NOTE,
+                                                "MagneSight™",
+                                                "Gain Nightvision."
+                                        ))
                         ));
         map.put(IDStrings.COAL,
                 new ComponentMaterial
                         (
                                 new CMIdentity(IDStrings.COAL, new ItemStack(Material.COAL), SkullTextures.ALLOY_BROWN, "#2d2e2d"),
                                 null,
-                                new CMToolMakeup(true, false, true),
+                                new CMToolMakeup(false, false, false),
                                 new CMForms(
                                     Materials.NUGGET_CAST_COAL.getItemId(),
                                     Material.COAL.toString(),
@@ -418,8 +528,20 @@ public final class CMCore {
                                                 "Lightweight",
                                                 "Random items are drawn to you from",
                                                 "within a 5 block range"
-                                        )
-                                )
+                                        ),
+                                        new CMTrait(
+                                                CMTraits.PROP_PLATES,
+                                                SupportedPluginsManager.CORE_NOTE,
+                                                "Hardy",
+                                                "Explosions do 25% less damage"
+                                        ),
+                                        null,
+                                        new CMTrait(
+                                                CMTraits.PROP_LINKS,
+                                                SupportedPluginsManager.CORE_NOTE,
+                                                "Strong",
+                                                "Health boost + 1"
+                                        ))
                         ));
         map.put(IDStrings.DAMSTEEL,
                 new ComponentMaterial
@@ -458,8 +580,20 @@ public final class CMCore {
                                                 SupportedPluginsManager.CORE_NOTE,
                                                 "Nightstalker",
                                                 "Gives night vision."
-                                        )
-                                )
+                                        ),
+                                        new CMTrait(
+                                                CMTraits.PROP_PLATES,
+                                                SupportedPluginsManager.CORE_NOTE,
+                                                "Compounding",
+                                                "Gain extra health equal to Compounding^2"
+                                        ),
+                                        null,
+                                        new CMTrait(
+                                                CMTraits.PROP_LINKS,
+                                                SupportedPluginsManager.CORE_NOTE,
+                                                "Snroht",
+                                                "Thorns damage is ignored and relfected back"
+                                        ))
                         ));
         map.put(IDStrings.DURALIUM,
                 new ComponentMaterial
@@ -497,8 +631,20 @@ public final class CMCore {
                                                 SupportedPluginsManager.CORE_NOTE,
                                                 "Easy Fix",
                                                 "Only 1 kit is needed to fully repair."
-                                        )
-                                )
+                                        ),
+                                        new CMTrait(
+                                                CMTraits.PROP_PLATES,
+                                                SupportedPluginsManager.CORE_NOTE,
+                                                "Durable",
+                                                "Works when broken but slow + 1"
+                                        ),
+                                        null,
+                                        new CMTrait(
+                                                CMTraits.PROP_LINKS,
+                                                SupportedPluginsManager.CORE_NOTE,
+                                                "Shock Absorbant",
+                                                "10% chance to ignore damage. Not additive"
+                                        ))
                         ));
         map.put(IDStrings.BRONZE,
                 new ComponentMaterial
@@ -535,8 +681,21 @@ public final class CMCore {
                                                 SupportedPluginsManager.CORE_NOTE,
                                                 "Ingheights",
                                                 "Something is wrong with this tool."
-                                        )
-                                )
+                                        ),
+                                        new CMTrait(
+                                                CMTraits.PROP_PLATES,
+                                                SupportedPluginsManager.CORE_NOTE,
+                                                "Farmer",
+                                                "All crop drops 1 extra item. Not effected by fortune.",
+                                                "Does not stack with itself but does with other effects."
+                                        ),
+                                        null,
+                                        new CMTrait(
+                                                CMTraits.PROP_LINKS,
+                                                SupportedPluginsManager.CORE_NOTE,
+                                                "Brittle",
+                                                "Durability loss doubled."
+                                        ))
                         ));
         map.put(IDStrings.ALUBRONZE,
                 new ComponentMaterial
@@ -574,8 +733,20 @@ public final class CMCore {
                                                 SupportedPluginsManager.CORE_NOTE,
                                                 "Brittle",
                                                 "Durability loss is doubled."
-                                        )
-                                )
+                                        ),
+                                        new CMTrait(
+                                                CMTraits.PROP_PLATES,
+                                                SupportedPluginsManager.CORE_NOTE,
+                                                "Beautiful",
+                                                "Chance to grow flowers as you walk."
+                                        ),
+                                        null,
+                                        new CMTrait(
+                                                CMTraits.PROP_LINKS,
+                                                SupportedPluginsManager.CORE_NOTE,
+                                                "Eject!",
+                                                "If damaged when below 1/2 health - Eject!"
+                                        ))
                         ));
         map.put(IDStrings.HARD,
                 new ComponentMaterial
@@ -615,8 +786,20 @@ public final class CMCore {
                                                 SupportedPluginsManager.CORE_NOTE,
                                                 "Heavy",
                                                 "Mines in a 3x3 area."
-                                        )
-                                )
+                                        ),
+                                        new CMTrait(
+                                                CMTraits.PROP_PLATES,
+                                                SupportedPluginsManager.CORE_NOTE,
+                                                "Toughened",
+                                                "50% chance to not lose durability."
+                                        ),
+                                        null,
+                                        new CMTrait(
+                                                CMTraits.PROP_LINKS,
+                                                SupportedPluginsManager.CORE_NOTE,
+                                                "Dwarven Skills",
+                                                "Chance to find rare artifacts while mining."
+                                        ))
                         ));
         map.put(IDStrings.CORBRONZE,
                 new ComponentMaterial
@@ -655,8 +838,20 @@ public final class CMCore {
                                                 SupportedPluginsManager.CORE_NOTE,
                                                 "Too Hot to Handle",
                                                 "?"
-                                        )
-                                )
+                                        ),
+                                        new CMTrait(
+                                                CMTraits.PROP_PLATES,
+                                                SupportedPluginsManager.CORE_NOTE,
+                                                "Superhot",
+                                                "Chance to set nearby entities on fire"
+                                        ),
+                                        null,
+                                        new CMTrait(
+                                                CMTraits.PROP_LINKS,
+                                                SupportedPluginsManager.CORE_NOTE,
+                                                "Warm Blodded",
+                                                "Speed + 2 when hot. Slow + 1 when cold."
+                                        ))
                         ));
         map.put(IDStrings.SOLDER,
                 new ComponentMaterial
@@ -694,8 +889,20 @@ public final class CMCore {
                                                 "Fused",
                                                 "Tool cannot be dropped either by the",
                                                 "player or on death."
-                                        )
-                                )
+                                        ),
+                                        new CMTrait(
+                                                CMTraits.PROP_PLATES,
+                                                SupportedPluginsManager.CORE_NOTE,
+                                                "Soft Landing",
+                                                "Hitting walls no longer hurts"
+                                        ),
+                                        null,
+                                        new CMTrait(
+                                                CMTraits.PROP_LINKS,
+                                                SupportedPluginsManager.CORE_NOTE,
+                                                "Fused",
+                                                "Cannot be dropped on death or on purpose."
+                                        ))
                         ));
         map.put(IDStrings.BILLON,
                 new ComponentMaterial
@@ -733,8 +940,20 @@ public final class CMCore {
                                                 SupportedPluginsManager.CORE_NOTE,
                                                 "Springs",
                                                 "Makes you jump higher."
-                                        )
-                                )
+                                        ),
+                                        new CMTrait(
+                                                CMTraits.PROP_PLATES,
+                                                SupportedPluginsManager.CORE_NOTE,
+                                                "WHM",
+                                                "Your attacks heal instead of harm."
+                                        ),
+                                        null,
+                                        new CMTrait(
+                                                CMTraits.PROP_LINKS,
+                                                SupportedPluginsManager.CORE_NOTE,
+                                                "Heat Conductor",
+                                                "Magma blocks no longer cause damage"
+                                        ))
                         ));
         map.put(IDStrings.BRASS,
                 new ComponentMaterial
@@ -771,8 +990,21 @@ public final class CMCore {
                                                 SupportedPluginsManager.CORE_NOTE,
                                                 "Oxygenated",
                                                 "Gives water breathing while held."
-                                        )
-                                )
+                                        ),
+                                        new CMTrait(
+                                                CMTraits.PROP_PLATES,
+                                                SupportedPluginsManager.CORE_NOTE,
+                                                "Band",
+                                                "Durability loss + 200%. Damage reduced between 1-25%",
+                                                "getting lower as durability drops."
+                                        ),
+                                        null,
+                                        new CMTrait(
+                                                CMTraits.PROP_LINKS,
+                                                SupportedPluginsManager.CORE_NOTE,
+                                                "Scarpaaarr!",
+                                                "When damaged below 1/2 health, gain Speed 3."
+                                        ))
                         ));
         map.put(IDStrings.ALUBRASS,
                 new ComponentMaterial
@@ -811,8 +1043,20 @@ public final class CMCore {
                                                 "Studious",
                                                 "Tool and Player exp +50% but damage halved",
                                                 "and you are slower to act."
-                                        )
-                                )
+                                        ),
+                                        new CMTrait(
+                                                CMTraits.PROP_PLATES,
+                                                SupportedPluginsManager.CORE_NOTE,
+                                                "Magus",
+                                                "Magic Damage -50%"
+                                        ),
+                                        null,
+                                        new CMTrait(
+                                                CMTraits.PROP_LINKS,
+                                                SupportedPluginsManager.CORE_NOTE,
+                                                "Escape",
+                                                "Randomly teleport then hit (10s CD)"
+                                        ))
                         ));
         map.put(IDStrings.NICKEL,
                 new ComponentMaterial
@@ -849,8 +1093,24 @@ public final class CMCore {
                                                 SupportedPluginsManager.CORE_NOTE,
                                                 "Charged Rod -",
                                                 "Doesn't do anything... on it's own..."
-                                        )
-                                )
+                                        ),
+                                        new CMTrait(
+                                                CMTraits.PROP_PLATES,
+                                                SupportedPluginsManager.CORE_NOTE,
+                                                "Magnetic -",
+                                                "Gain 1 Stack of Magnetism and 1 Stack of Negativity.",
+                                                "Magnetism draws in all nearby items.",
+                                                "Range = Magnetism Level - (∆ Positivity/Negativity)"
+                                        ),
+                                        null,
+                                        new CMTrait(
+                                                CMTraits.PROP_LINKS,
+                                                SupportedPluginsManager.CORE_NOTE,
+                                                "Magnetic -",
+                                                "Gain 1 Stack of Magnetism and 1 Stack of Negativity.",
+                                                "Magnetism draws in all nearby items.",
+                                                "Range = Magnetism Level - (∆ Positivity/Negativity)"
+                                        ))
                         ));
         map.put(IDStrings.COBALT,
                 new ComponentMaterial
@@ -888,8 +1148,24 @@ public final class CMCore {
                                                 SupportedPluginsManager.CORE_NOTE,
                                                 "Charged Rod +",
                                                 "Doesn't do anything... on it's own..."
-                                        )
-                                )
+                                        ),
+                                        new CMTrait(
+                                                CMTraits.PROP_PLATES,
+                                                SupportedPluginsManager.CORE_NOTE,
+                                                "Magnetic +",
+                                                "Gain 1 Stack of Magnetism and 1 Stack of Negativity.",
+                                                "Magnetism draws in all nearby items.",
+                                                "Range = Magnetism Level - (∆ Positivity/Negativity)"
+                                        ),
+                                        null,
+                                        new CMTrait(
+                                                CMTraits.PROP_LINKS,
+                                                SupportedPluginsManager.CORE_NOTE,
+                                                "Magnetic +",
+                                                "Gain 1 Stack of Magnetism and 1 Stack of Positivity.",
+                                                "Magnetism draws in all nearby items.",
+                                                "Range = Magnetism Level - (∆ Positivity/Negativity)"
+                                        ))
                         ));
         map.put(IDStrings.REINFORCED,
                 new ComponentMaterial
@@ -930,8 +1206,20 @@ public final class CMCore {
                                                 SupportedPluginsManager.CORE_NOTE,
                                                 "Reinforced",
                                                 "Any Plate mod on the tool is counted twice."
-                                        )
-                                )
+                                        ),
+                                        new CMTrait(
+                                                CMTraits.PROP_PLATES,
+                                                SupportedPluginsManager.CORE_NOTE,
+                                                "Reinforcable",
+                                                "Plate mods count twice."
+                                        ),
+                                        null,
+                                        new CMTrait(
+                                                CMTraits.PROP_LINKS,
+                                                SupportedPluginsManager.CORE_NOTE,
+                                                "Witherproof",
+                                                "Immune to the wither effect."
+                                        ))
                         ));
         map.put(IDStrings.STRING,
                 new ComponentMaterial
@@ -960,8 +1248,15 @@ public final class CMCore {
                                                 "Works",
                                                 "No special effects."
                                         ),
-                                        null
-                                )
+                                        null,
+                                        null,
+                                        new CMTrait(
+                                                CMTraits.PROP_GAMBESON,
+                                                SupportedPluginsManager.CORE_NOTE,
+                                                "Works",
+                                                "No special effects but makes armour quickly."
+                                        ),
+                                        null)
                         ));
         map.put(IDStrings.VINE,
                 new ComponentMaterial
@@ -991,8 +1286,15 @@ public final class CMCore {
                                                 "Slowly repairs the tool during the day.",
                                                 "Stacks with mods. Must be in hand"
                                         ),
-                                        null
-                                )
+                                        null,
+                                        null,
+                                        new CMTrait(
+                                                CMTraits.PROP_GAMBESON,
+                                                SupportedPluginsManager.CORE_NOTE,
+                                                "Growth",
+                                                "Slowly repairs during the day."
+                                        ),
+                                        null)
                         ));
         map.put(IDStrings.CRIMSON_ROOTS,
                 new ComponentMaterial
@@ -1022,8 +1324,15 @@ public final class CMCore {
                                                 "Slowly repairs the tool at night.",
                                                 "Stacks with mods. Must be in hand"
                                         ),
-                                        null
-                                )
+                                        null,
+                                        null,
+                                        new CMTrait(
+                                                CMTraits.PROP_GAMBESON,
+                                                SupportedPluginsManager.CORE_NOTE,
+                                                "Decay",
+                                                "Slowly repairs during night."
+                                        ),
+                                        null)
                         ));
         map.put(IDStrings.WARPED_ROOTS,
                 new ComponentMaterial
@@ -1052,8 +1361,15 @@ public final class CMCore {
                                                 "Refreshing",
                                                 "Slowly heals the holder."
                                         ),
-                                        null
-                                )
+                                        null,
+                                        null,
+                                        new CMTrait(
+                                                CMTraits.PROP_GAMBESON,
+                                                SupportedPluginsManager.CORE_NOTE,
+                                                "Refreshing",
+                                                "Slowly heals the equipping player."
+                                        ),
+                                        null)
                         ));
         map.put(IDStrings.WEEPING_VINES,
                 new ComponentMaterial
@@ -1082,8 +1398,15 @@ public final class CMCore {
                                                 "Dooom",
                                                 "I get a bad feeling from this..."
                                         ),
-                                        null
-                                )
+                                        null,
+                                        null,
+                                        new CMTrait(
+                                                CMTraits.PROP_GAMBESON,
+                                                SupportedPluginsManager.CORE_NOTE,
+                                                "Doom",
+                                                "Gives you bad omen. Hide your villagers!"
+                                        ),
+                                        null)
                         ));
         map.put(IDStrings.TWISTED_VINES,
                 new ComponentMaterial
@@ -1113,8 +1436,15 @@ public final class CMCore {
                                                 "All drops are drawn to you within a",
                                                 "5 block range."
                                         ),
-                                        null
-                                )
+                                        null,
+                                        null,
+                                        new CMTrait(
+                                                CMTraits.PROP_GAMBESON,
+                                                SupportedPluginsManager.CORE_NOTE,
+                                                "Attraction",
+                                                "Nearby drops (5x5 area) are drawn to you."
+                                        ),
+                                        null)
                         ));
         map.put(IDStrings.SLIME,
                 new ComponentMaterial
@@ -1143,8 +1473,15 @@ public final class CMCore {
                                                 "Bouncy",
                                                 "Fall damage is halved."
                                         ),
-                                        null
-                                )
+                                        null,
+                                        null,
+                                        new CMTrait(
+                                                CMTraits.PROP_GAMBESON,
+                                                SupportedPluginsManager.CORE_NOTE,
+                                                "Bouncy",
+                                                "Fall damage -25%"
+                                        ),
+                                        null)
                         ));
         map.put(IDStrings.REDSTONE,
                 new ComponentMaterial
@@ -1168,8 +1505,10 @@ public final class CMCore {
                                         IDStrings.REDSTONE,
                                         null,
                                         null,
-                                        null
-                                )
+                                        null,
+                                        null,
+                                        null,
+                                        null)
                         ));
 
         map.put(IDStrings.SILICON,
@@ -1200,9 +1539,55 @@ public final class CMCore {
                                                 "Tool exp gain when breaking blocks is",
                                                 "increased by (Tool Level x 5%)"
                                         ),
-                                        null
-                                )
+                                        null,
+                                        null,
+                                        new CMTrait(
+                                                CMTraits.PROP_GAMBESON,
+                                                SupportedPluginsManager.CORE_NOTE,
+                                                "Slow Learner",
+                                                "Armour exp gain = (Level * 10%)"
+                                        ),
+                                        null)
                         ));
+
+        map.put(IDStrings.LEATHER,
+                new ComponentMaterial
+                        (
+                                new CMIdentity(IDStrings.LEATHER, new ItemStack(Material.LEATHER), null, "#918056"),
+                                null,
+                                new CMToolMakeup(false, true, false),
+                                new CMForms(
+                                        null,
+                                        null,
+                                        null,
+                                        null,
+                                        null,
+                                        null,
+                                        null,
+                                        null,
+                                        null,
+                                        null
+                                ),
+                                new CMTraits(
+                                        IDStrings.LEATHER,
+                                        null,
+                                        new CMTrait(
+                                                CMTraits.PROP_BINDING,
+                                                SupportedPluginsManager.CORE_NOTE,
+                                                "Thick",
+                                                "Tool exp gain + 50%"
+                                        ),
+                                        null,
+                                        null,
+                                        new CMTrait(
+                                                CMTraits.PROP_GAMBESON,
+                                                SupportedPluginsManager.CORE_NOTE,
+                                                "Thick",
+                                                "Armour exp gain + 50%"
+                                        ),
+                                        null)
+                        ));
+
         map.put(IDStrings.FERROSILICON,
                 new ComponentMaterial
                         (
@@ -1233,8 +1618,21 @@ public final class CMCore {
                                                 "Float away from danger."
                                                 ),
                                         null,
-                                        null
-                                )
+                                        null,
+                                        new CMTrait(
+                                                CMTraits.PROP_PLATES,
+                                                SupportedPluginsManager.CORE_NOTE,
+                                                "Solar Powered",
+                                                "Restores durability during the day time."
+                                        ),
+                                        null,
+                                        new CMTrait(
+                                                CMTraits.PROP_LINKS,
+                                                SupportedPluginsManager.CORE_NOTE,
+                                                "Brightburn",
+                                                "Gives on stack of Burning Bright! With 4 ",
+                                                "stacks, hostile mobs are repelled (not bosses)."
+                                        ))
                         ));
         map.put(IDStrings.REDSTONE_ALLOY,
                 new ComponentMaterial
@@ -1267,8 +1665,20 @@ public final class CMCore {
                                                 SupportedPluginsManager.CORE_NOTE,
                                                 "Lightning Rod",
                                                 "A chance to strike hit mobs with lightning."
-                                        )
-                                )
+                                        ),
+                                        new CMTrait(
+                                                CMTraits.PROP_PLATES,
+                                                SupportedPluginsManager.CORE_NOTE,
+                                                "Powered On",
+                                                "Randomly powers a block within a 5x2x5 range."
+                                        ),
+                                        null,
+                                        new CMTrait(
+                                                CMTraits.PROP_LINKS,
+                                                SupportedPluginsManager.CORE_NOTE,
+                                                "Who needs pressure plates?",
+                                                "The block you stand on is powered."
+                                        ))
                         ));
         map.put(IDStrings.DIAMOND,
                 new ComponentMaterial
@@ -1292,8 +1702,10 @@ public final class CMCore {
                                         IDStrings.DIAMOND,
                                         null,
                                         null,
-                                        null
-                                )
+                                        null,
+                                        null,
+                                        null,
+                                        null)
                         ));
 
         map.get(IDStrings.ALUBRASS).addEvent(TraitEventType.ENTITY_DAMAGED, TraitPartType.HEAD, EntityDamageEvents::headAluBrass);          // Abra

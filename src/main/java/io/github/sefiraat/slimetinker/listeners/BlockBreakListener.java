@@ -4,7 +4,6 @@ import io.github.sefiraat.slimetinker.SlimeTinker;
 import io.github.sefiraat.slimetinker.events.BlockBreakEvents;
 import io.github.sefiraat.slimetinker.events.EventFriend;
 import io.github.sefiraat.slimetinker.items.componentmaterials.CMManager;
-import io.github.sefiraat.slimetinker.items.templates.ToolTemplate;
 import io.github.sefiraat.slimetinker.modifiers.Modifications;
 import io.github.sefiraat.slimetinker.utils.BlockUtils;
 import io.github.sefiraat.slimetinker.utils.Experience;
@@ -49,7 +48,7 @@ public class BlockBreakListener implements Listener {
         ItemStack heldItem = event.getPlayer().getInventory().getItemInMainHand();
         Block block = event.getBlock();
 
-        if (!ToolTemplate.isTool(heldItem)) { // Not a Tinker's tool, so we don't care
+        if (!ItemUtils.isTool(heldItem)) { // Not a Tinker's tool, so we don't care
             return;
         }
 
@@ -122,11 +121,11 @@ public class BlockBreakListener implements Listener {
         }
 
         if (shouldGrantExp(heldItem, event.getBlock())) { // Should grant exp (checks tool / material validity and the crop state)
-            Experience.addToolExp(heldItem, (int) Math.ceil(1 * friend.getToolExpMod()), event.getPlayer(), true);
+            Experience.addExp(heldItem, (int) Math.ceil(1 * friend.getToolExpMod()), event.getPlayer(), true);
         }
 
         if (event.getExpToDrop() > 0 && friend.isMetalCheck()) { // todo Get outta dodge with this one
-            Experience.addToolExp(heldItem, (int) Math.ceil(event.getExpToDrop() / 10D), event.getPlayer(), true);
+            Experience.addExp(heldItem, (int) Math.ceil(event.getExpToDrop() / 10D), event.getPlayer(), true);
             event.setExpToDrop(0);
         }
 

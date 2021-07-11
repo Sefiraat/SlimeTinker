@@ -4,12 +4,12 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 @Getter @AllArgsConstructor
-public class CombinationDefinition {
+public class ArmourDefinition {
 
     private final String classType;
     private final String partType;
-    private final String headMaterial;
-    private final String binderMaterial;
-    private final String rodMaterial;
+    private final String plateMaterial;
+    private final String gambesonMaterial;
+    private final String linksMaterial;
 
 }

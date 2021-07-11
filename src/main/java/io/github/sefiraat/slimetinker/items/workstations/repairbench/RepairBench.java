@@ -2,7 +2,6 @@ package io.github.sefiraat.slimetinker.items.workstations.repairbench;
 
 import io.github.mooy1.infinitylib.slimefun.AbstractContainer;
 import io.github.sefiraat.slimetinker.items.templates.RepairkitTemplate;
-import io.github.sefiraat.slimetinker.items.templates.ToolTemplate;
 import io.github.sefiraat.slimetinker.utils.GUIItems;
 import io.github.sefiraat.slimetinker.utils.IDStrings;
 import io.github.sefiraat.slimetinker.utils.ItemUtils;
@@ -50,7 +49,7 @@ public class RepairBench extends AbstractContainer {
         }
 
         // Still no tool, nice try
-        if (!ToolTemplate.isTool(tool)) {
+        if (!ItemUtils.isTool(tool)) {
             player.sendMessage(ThemeUtils.WARNING + "The item in the first slot isn't a Tinker's tool.");
             return false;
         }

@@ -38,6 +38,7 @@ public final class ThemeUtils {
     public static final ChatColor ITEM_CAST = ChatColor.of("#ffe138");
     public static final ChatColor ITEM_PART = ChatColor.of("#42c8f5");
     public static final ChatColor ITEM_TOOL = ChatColor.of("#c2fc03");
+    public static final ChatColor ITEM_ARMOUR = ChatColor.of("#c2fc03");
     public static final ChatColor ITEM_INFO = ChatColor.of("#21588f");
     public static final ChatColor ITEM_MOD = ChatColor.of("#bf307f");
     public static final ChatColor ITEM_PROP = ChatColor.of("#bf307f");
@@ -57,6 +58,7 @@ public final class ThemeUtils {
     public static final String LORE_CAST = ITEM_TYPEDESC + "Cast";
     public static final String LORE_PART = ITEM_TYPEDESC + "Part";
     public static final String LORE_TOOL = ITEM_TYPEDESC + "Tinker's Tool";
+    public static final String LORE_ARMOUR = ITEM_TYPEDESC + "Tinker's Armour";
     public static final String LORE_INFO = ITEM_TYPEDESC + "Info";
     public static final String LORE_MOD = ITEM_TYPEDESC + "Modification";
     public static final String LORE_PROP = ITEM_TYPEDESC + "Material Trait";
@@ -149,6 +151,7 @@ public final class ThemeUtils {
             case CAST: return ITEM_CAST;
             case PART: return ITEM_PART;
             case TOOL: return ITEM_TOOL;
+            case ARMOUR: return ITEM_ARMOUR;
             case INFO: return ITEM_INFO;
             case MOD: return ITEM_MOD;
             case PROP: return ITEM_PROP;
@@ -168,6 +171,7 @@ public final class ThemeUtils {
             case CAST: return LORE_CAST;
             case PART: return LORE_PART;
             case TOOL: return LORE_TOOL;
+            case ARMOUR: return LORE_ARMOUR;
             case INFO: return LORE_INFO;
             case MOD: return LORE_MOD;
             case PROP: return LORE_PROP;
@@ -196,6 +200,7 @@ public final class ThemeUtils {
         CAST,
         PART,
         TOOL,
+        ARMOUR,
         INFO,
         MOD,
         PROP,

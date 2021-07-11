@@ -67,8 +67,8 @@ public final class CMInfinity {
                                                 SupportedPluginsManager.INFINITY_EXPANSION_NOTE,
                                                 "Fear the Void",
                                                 "Damage +150%. 250% in the End."
-                                        )
-                                )
+                                        ),
+                                        traitPlates, traitGambeson, traitLinks)
                         ));
 
         map.put(IDStrings.MAGSTEEL,
@@ -107,8 +107,8 @@ public final class CMInfinity {
                                                 "Flammable",
                                                 "Has a (Tool level x 5)% chance to",
                                                 "set your enemies ablaze."
-                                        )
-                                )
+                                        ),
+                                        traitPlates, traitGambeson, traitLinks)
                         ));
 
         map.put(IDStrings.TITANIUM,
@@ -148,8 +148,8 @@ public final class CMInfinity {
                                                 "Durable",
                                                 "Ignores being broken but damage 50%,",
                                                 "mining will be slower and 0 exp."
-                                        )
-                                )
+                                        ),
+                                        traitPlates, traitGambeson, traitLinks)
                         ));
 
         map.put(IDStrings.SINGIRON,
@@ -184,8 +184,8 @@ public final class CMInfinity {
                                                 SupportedPluginsManager.INFINITY_EXPANSION_NOTE,
                                                 "Sharp 1 II",
                                                 "What a bad naming convention. +Damage"
-                                        )
-                                )
+                                        ),
+                                        traitPlates, traitGambeson, traitLinks)
                         ));
 
         map.put(IDStrings.SINGGOLD,
@@ -221,8 +221,8 @@ public final class CMInfinity {
                                                 SupportedPluginsManager.INFINITY_EXPANSION_NOTE,
                                                 "All That Glitters II",
                                                 "Makes you shiny AND rainbow...y"
-                                        )
-                                )
+                                        ),
+                                        traitPlates, traitGambeson, traitLinks)
                         ));
 
         map.put(IDStrings.SINGCOPPER,
@@ -258,8 +258,8 @@ public final class CMInfinity {
                                                 "Conductive II",
                                                 "All tool exp is converted to player exp",
                                                 "with a 50% bonus."
-                                        )
-                                )
+                                        ),
+                                        traitPlates, traitGambeson, traitLinks)
                         ));
 
         map.put(IDStrings.SINGLEAD,
@@ -294,8 +294,8 @@ public final class CMInfinity {
                                                 SupportedPluginsManager.INFINITY_EXPANSION_NOTE,
                                                 "Leech II",
                                                 "Bonus health, but drains your energy."
-                                        )
-                                )
+                                        ),
+                                        traitPlates, traitGambeson, traitLinks)
                         ));
 
         map.put(IDStrings.SINGSILVER,
@@ -332,8 +332,8 @@ public final class CMInfinity {
                                                 "Tool exp gain is halved. Tools add 1-3",
                                                 "randomly selected enchants when leveling",
                                                 "up. These enchants may not be useful!"
-                                        )
-                                )
+                                        ),
+                                        traitPlates, traitGambeson, traitLinks)
                         ));
 
         map.put(IDStrings.SINGALUMINUM,
@@ -368,8 +368,8 @@ public final class CMInfinity {
                                                 SupportedPluginsManager.INFINITY_EXPANSION_NOTE,
                                                 "Soft II",
                                                 "Durability loss +100%, tool EXP +100%."
-                                        )
-                                )
+                                        ),
+                                        traitPlates, traitGambeson, traitLinks)
                         ));
 
         map.put(IDStrings.SINGTIN,
@@ -405,8 +405,8 @@ public final class CMInfinity {
                                                 SupportedPluginsManager.INFINITY_EXPANSION_NOTE,
                                                 "Can II",
                                                 "No Hunger Loss"
-                                        )
-                                )
+                                        ),
+                                        traitPlates, traitGambeson, traitLinks)
                         ));
 
         map.put(IDStrings.SINGZINC,
@@ -441,8 +441,8 @@ public final class CMInfinity {
                                                 SupportedPluginsManager.INFINITY_EXPANSION_NOTE,
                                                 "Super Lightweight II",
                                                 "Makes you lighter than air when not sneaking."
-                                        )
-                                )
+                                        ),
+                                        traitPlates, traitGambeson, traitLinks)
                         ));
 
         map.put(IDStrings.SINGMAGNESIUM,
@@ -479,8 +479,8 @@ public final class CMInfinity {
                                                 "Magnetesium II",
                                                 "Random items are drawn to you from",
                                                 "within a 10 block range"
-                                        )
-                                )
+                                        ),
+                                        traitPlates, traitGambeson, traitLinks)
                         ));
         map.put(IDStrings.SINGDIAMOND,
                 new ComponentMaterial
@@ -504,8 +504,8 @@ public final class CMInfinity {
                                         IDStrings.SINGDIAMOND,
                                         null,
                                         null,
-                                        null
-                                )
+                                        null,
+                                        traitPlates, traitGambeson, traitLinks)
                         ));
 
 
@@ -545,8 +545,8 @@ public final class CMInfinity {
                                                 SupportedPluginsManager.INFINITY_EXPANSION_NOTE,
                                                 "Sting of Gondolin",
                                                 "All nearby, hostile, mobs are repelled."
-                                        )
-                                )
+                                        ),
+                                        traitPlates, traitGambeson, traitLinks)
                         ));
 
         map.put(IDStrings.ADAMANTITE,
@@ -585,8 +585,8 @@ public final class CMInfinity {
                                                 SupportedPluginsManager.INFINITY_EXPANSION_NOTE,
                                                 "Adamant",
                                                 "Become immune to all explosions"
-                                        )
-                                )
+                                        ),
+                                        traitPlates, traitGambeson, traitLinks)
                         ));
 
         map.put(IDStrings.MAGNONIUM,
@@ -621,8 +621,8 @@ public final class CMInfinity {
                                                 SupportedPluginsManager.INFINITY_EXPANSION_NOTE,
                                                 "Flaming Hot",
                                                 "Smelts things when possible."
-                                        )
-                                )
+                                        ),
+                                        traitPlates, traitGambeson, traitLinks)
                         ));
 
 
@@ -659,8 +659,8 @@ public final class CMInfinity {
                                                 SupportedPluginsManager.INFINITY_EXPANSION_NOTE,
                                                 "Merchant's Veil",
                                                 "Invisibility with none of the drawbacks!"
-                                        )
-                                )
+                                        ),
+                                        traitPlates, traitGambeson, traitLinks)
                         ));
 
         map.put(IDStrings.MAGIC,
@@ -695,8 +695,8 @@ public final class CMInfinity {
                                                 SupportedPluginsManager.INFINITY_EXPANSION_NOTE,
                                                 "Secrets Revealed",
                                                 "Reveals all nearby living (or not!) things."
-                                        )
-                                )
+                                        ),
+                                        traitPlates, traitGambeson, traitLinks)
                         ));
 
         map.put(IDStrings.EARTH,
@@ -733,8 +733,8 @@ public final class CMInfinity {
                                                 "Grinder",
                                                 "Breaking blocks act as if they have",
                                                 "gone through the grinder."
-                                        )
-                                )
+                                        ),
+                                        traitPlates, traitGambeson, traitLinks)
                         ));
 
         map.put(IDStrings.METAL,
@@ -770,8 +770,8 @@ public final class CMInfinity {
                                                 "Conductor",
                                                 "All player exp is converted to tool",
                                                 "exp at a 10 : 1 ratio."
-                                        )
-                                )
+                                        ),
+                                        traitPlates, traitGambeson, traitLinks)
                         ));
 
 
@@ -807,8 +807,8 @@ public final class CMInfinity {
                                                 SupportedPluginsManager.INFINITY_EXPANSION_NOTE,
                                                 "Conceptual Defence",
                                                 "All damage is halved (rounded up)."
-                                        )
-                                )
+                                        ),
+                                        traitPlates, traitGambeson, traitLinks)
                         ));
 
         map.put(IDStrings.SINGINFINITY,
@@ -839,8 +839,8 @@ public final class CMInfinity {
                                                 "+200% Tool Exp and 3x3 Mining."
                                         ),
                                         null,
-                                        null
-                                )
+                                        null,
+                                        traitPlates, traitGambeson, traitLinks)
                         ));
 
         map.get(IDStrings.ADAMANTITE).addEvent(TraitEventType.PLAYER_DAMAGED, TraitPartType.ROD, PlayerDamagedEvents::rodAdamantite);           // Adamant

@@ -1,4 +1,4 @@
-package io.github.sefiraat.slimetinker.items.workstations.workbench;
+package io.github.sefiraat.slimetinker.items.workstations.armourtable;
 
 import io.github.mooy1.infinitylib.recipes.RecipeMap;
 import io.github.mooy1.infinitylib.recipes.ShapedRecipe;
@@ -9,23 +9,23 @@ import me.mrCookieSlime.Slimefun.api.SlimefunItemStack;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
-public final class DummyWorkbench {
+public final class DummyArmourTable {
 
-    private DummyWorkbench() {
+    private DummyArmourTable() {
         throw new IllegalStateException("Utility class");
     }
 
     public static final SlimefunItemStack STACK = new SlimefunItemStack(
-            "DUMMY_TINKERS_SMELTERY",
-            Material.FLETCHING_TABLE,
-            ThemeUtils.ITEM_MACHINE + "ToolTable",
+            "DUMMY_TINKERS_ARMOUR_TABLE",
+            Material.CHISELED_NETHER_BRICKS,
+            ThemeUtils.ITEM_MACHINE + "Tinker's Armour Table",
             "",
-            ThemeUtils.PASSIVE + "This item is crafted in the workbench.",
+            ThemeUtils.PASSIVE + "This item is made on a Tinker's Armour Table.",
             "",
             ThemeUtils.LORE_TYPE_MACHINE
     );
 
     private static final RecipeMap<ItemStack> RECIPES = new RecipeMap<>(ShapedRecipe::new);
-    public static final RecipeType TYPE = new RecipeType(SlimeTinker.inst().getKeys().getWsDummyWorkbench(), STACK, RECIPES::put);
+    public static final RecipeType TYPE = new RecipeType(SlimeTinker.inst().getKeys().getWsDummyArmourTable(), STACK, RECIPES::put);
 
 }

@@ -42,7 +42,7 @@ public class CMManager {
     public static final int AMOUNT_BOOT = AMOUNT_INGOT * 4;
     public static final int AMOUNT_LEG = AMOUNT_INGOT * 7;
     public static final int AMOUNT_CHEST = AMOUNT_INGOT * 8;
-    public static final int AMOUNT_HEAD = AMOUNT_INGOT * 5;
+    public static final int AMOUNT_HELM = AMOUNT_INGOT * 5;
     public static final int AMOUNT_DUST = AMOUNT_INGOT;
     public static final int AMOUNT_GEM = AMOUNT_INGOT;
     public static final int AMOUNT_CAST = AMOUNT_INGOT * 2;
@@ -55,6 +55,12 @@ public class CMManager {
     public static final int AMOUNT_HOEHEAD = AMOUNT_INGOT * 2;
     public static final int AMOUNT_SWORDBLADE = AMOUNT_INGOT * 2;
     public static final int AMOUNT_TOOLROD = AMOUNT_INGOT;
+
+    public static final int AMOUNT_ARM_HELM = AMOUNT_INGOT * 5;
+    public static final int AMOUNT_ARM_CHEST = AMOUNT_INGOT * 8;
+    public static final int AMOUNT_ARM_LEG = AMOUNT_INGOT * 7;
+    public static final int AMOUNT_ARM_BOOT = AMOUNT_INGOT * 4;
+    public static final int AMOUNT_ARM_LINKS = AMOUNT_INGOT * 2;
 
     public final Map<String, MoltenResult> meltingRecipes = new HashMap<>();
     public final Map<String, CastResult> castingRecipes = new HashMap<>();
@@ -178,7 +184,7 @@ public class CMManager {
 
             // Helm
             if (entry.getValue().getFormHelm() != null) {
-                meltingRecipes.put(entry.getValue().getFormHelm(), new MoltenResult(entry.getValue(), AMOUNT_HEAD));
+                meltingRecipes.put(entry.getValue().getFormHelm(), new MoltenResult(entry.getValue(), AMOUNT_HELM));
             }
 
             // Chest

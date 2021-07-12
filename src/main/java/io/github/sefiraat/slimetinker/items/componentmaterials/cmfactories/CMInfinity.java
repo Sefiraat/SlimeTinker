@@ -40,7 +40,7 @@ public final class CMInfinity {
                         (
                                 new CMIdentity(IDStrings.VOID, Objects.requireNonNull(SlimefunItem.getByID("VOID_INGOT")).getItem(), SkullTextures.ALLOY_PURPLE_DEEP, "#5c5756"),
                                 null,
-                                new CMToolMakeup(true, false, true),
+                                new CMToolMakeup(true, false, true, true, false, true),
                                 new CMForms(
                                     "VOID_BIT",
                                     "VOID_INGOT",
@@ -68,7 +68,20 @@ public final class CMInfinity {
                                                 "Fear the Void",
                                                 "Damage +150%. 250% in the End."
                                         ),
-                                        traitPlates, traitGambeson, traitLinks)
+                                        new CMTrait(
+                                                CMTraits.PROP_PLATES,
+                                                SupportedPluginsManager.INFINITY_EXPANSION_NOTE,
+                                                "Planewalker",
+                                                "The void is no longer your enemy"
+                                        ),
+                                        null,
+                                        new CMTrait(
+                                                CMTraits.PROP_LINKS,
+                                                SupportedPluginsManager.INFINITY_EXPANSION_NOTE,
+                                                "The End",
+                                                "Reduce damage from the Dragon, Endermen and",
+                                                "Shulkers by 10%"
+                                        ))
                         ));
 
         map.put(IDStrings.MAGSTEEL,
@@ -79,7 +92,7 @@ public final class CMInfinity {
                                         CMCore.getMap().get(IDStrings.MAGNESIUM).getLiquidItemStack(2),
                                         CMCore.getMap().get(IDStrings.STEEL).getLiquidItemStack(1)
                                 ),
-                                new CMToolMakeup(true, false, true),
+                                new CMToolMakeup(true, false, true, true, false, true),
                                 new CMForms(
                                     Materials.NUGGET_CAST_MAGSTEEL.getItemId(),
                                     "MAGSTEEL",
@@ -108,7 +121,21 @@ public final class CMInfinity {
                                                 "Has a (Tool level x 5)% chance to",
                                                 "set your enemies ablaze."
                                         ),
-                                        traitPlates, traitGambeson, traitLinks)
+                                        new CMTrait(
+                                                CMTraits.PROP_PLATES,
+                                                SupportedPluginsManager.INFINITY_EXPANSION_NOTE,
+                                                "Infinite Capacity",
+                                                "Everytime you take damage, 10% is stored",
+                                                "up to 5 hearts. Right click to release",
+                                                "the damage on nearby entities"
+                                        ),
+                                        null,
+                                        new CMTrait(
+                                                CMTraits.PROP_LINKS,
+                                                SupportedPluginsManager.INFINITY_EXPANSION_NOTE,
+                                                "Oroborus",
+                                                "20% chance to reflect 50% damage taken."
+                                        ))
                         ));
 
         map.put(IDStrings.TITANIUM,
@@ -120,7 +147,7 @@ public final class CMInfinity {
                                         CMCore.getMap().get(IDStrings.DAMSTEEL).getLiquidItemStack(1),
                                         CMCore.getMap().get(IDStrings.HARD).getLiquidItemStack(1)
                                 ),
-                                new CMToolMakeup(true, false, true),
+                                new CMToolMakeup(true, false, true, true, false, true),
                                 new CMForms(
                                     Materials.NUGGET_CAST_TITANIUM.getItemId(),
                                     "TITANIUM",
@@ -149,7 +176,19 @@ public final class CMInfinity {
                                                 "Ignores being broken but damage 50%,",
                                                 "mining will be slower and 0 exp."
                                         ),
-                                        traitPlates, traitGambeson, traitLinks)
+                                        new CMTrait(
+                                                CMTraits.PROP_PLATES,
+                                                SupportedPluginsManager.INFINITY_EXPANSION_NOTE,
+                                                "Planewalker",
+                                                "The void is no longer your enemy"
+                                        ),
+                                        null,
+                                        new CMTrait(
+                                                CMTraits.PROP_LINKS,
+                                                SupportedPluginsManager.INFINITY_EXPANSION_NOTE,
+                                                "The End",
+                                                "Reduce damage from the Dragon, Endermen and"
+                                        ))
                         ));
 
         map.put(IDStrings.SINGIRON,
@@ -157,7 +196,7 @@ public final class CMInfinity {
                         (
                                 new CMIdentity(IDStrings.SINGIRON, Objects.requireNonNull(SlimefunItem.getByID("IRON_SINGULARITY")).getItem(), SkullTextures.ALLOY_SILVER, "#8c8c8c"),
                                 null,
-                                new CMToolMakeup(true, false, true),
+                                new CMToolMakeup(true, false, true, true, false, true),
                                 new CMForms(
                                     null,
                                     null,
@@ -185,7 +224,19 @@ public final class CMInfinity {
                                                 "Sharp 1 II",
                                                 "What a bad naming convention. +Damage"
                                         ),
-                                        traitPlates, traitGambeson, traitLinks)
+                                        new CMTrait(
+                                                CMTraits.PROP_PLATES,
+                                                SupportedPluginsManager.INFINITY_EXPANSION_NOTE,
+                                                "Steadfast II",
+                                                "Ignore all explosions"
+                                        ),
+                                        null,
+                                        new CMTrait(
+                                                CMTraits.PROP_LINKS,
+                                                SupportedPluginsManager.INFINITY_EXPANSION_NOTE,
+                                                "Rusty II",
+                                                "Armour durability loss +10%. Player Exp gain +20%"
+                                        ))
                         ));
 
         map.put(IDStrings.SINGGOLD,
@@ -193,7 +244,7 @@ public final class CMInfinity {
                         (
                                 new CMIdentity(IDStrings.SINGGOLD, Objects.requireNonNull(SlimefunItem.getByID("GOLD_SINGULARITY")).getItem(), SkullTextures.ALLOY_TAN, "#ffe138"),
                                 null,
-                                new CMToolMakeup(true, false, true),
+                                new CMToolMakeup(true, false, true, true, false, true),
                                 new CMForms(
                                     null,
                                     null,
@@ -222,7 +273,19 @@ public final class CMInfinity {
                                                 "All That Glitters II",
                                                 "Makes you shiny AND rainbow...y"
                                         ),
-                                        traitPlates, traitGambeson, traitLinks)
+                                        new CMTrait(
+                                                CMTraits.PROP_PLATES,
+                                                SupportedPluginsManager.INFINITY_EXPANSION_NOTE,
+                                                "Prosperous II",
+                                                "1% chance to drop 1-4 gold nuggets when hit"
+                                        ),
+                                        null,
+                                        new CMTrait(
+                                                CMTraits.PROP_LINKS,
+                                                SupportedPluginsManager.INFINITY_EXPANSION_NOTE,
+                                                "Barter II",
+                                                "Piglins REALLY like your armour"
+                                        ))
                         ));
 
         map.put(IDStrings.SINGCOPPER,
@@ -230,7 +293,7 @@ public final class CMInfinity {
                         (
                                 new CMIdentity(IDStrings.SINGCOPPER, Objects.requireNonNull(SlimefunItem.getByID("COPPER_SINGULARITY")).getItem(), SkullTextures.ALLOY_BROWN, "#c99732"),
                                 null,
-                                new CMToolMakeup(true, false, true),
+                                new CMToolMakeup(true, false, true, true, false, true),
                                 new CMForms(
                                     null,
                                     null,
@@ -259,7 +322,19 @@ public final class CMInfinity {
                                                 "All tool exp is converted to player exp",
                                                 "with a 50% bonus."
                                         ),
-                                        traitPlates, traitGambeson, traitLinks)
+                                        new CMTrait(
+                                                CMTraits.PROP_PLATES,
+                                                SupportedPluginsManager.INFINITY_EXPANSION_NOTE,
+                                                "Beginner II",
+                                                "Damage Taken +20%. Armour Exp +40%"
+                                        ),
+                                        null,
+                                        new CMTrait(
+                                                CMTraits.PROP_LINKS,
+                                                SupportedPluginsManager.INFINITY_EXPANSION_NOTE,
+                                                "Tarnished II",
+                                                "Outgoing damage reduced by 25%. Armour Exp +40%"
+                                        ))
                         ));
 
         map.put(IDStrings.SINGLEAD,
@@ -267,7 +342,7 @@ public final class CMInfinity {
                         (
                                 new CMIdentity(IDStrings.SINGLEAD, Objects.requireNonNull(SlimefunItem.getByID("LEAD_SINGULARITY")).getItem(), SkullTextures.ALLOY_PURPLE, "#9043ba"),
                                 null,
-                                new CMToolMakeup(true, false, true),
+                                new CMToolMakeup(true, false, true, true, false, true),
                                 new CMForms(
                                     null,
                                     null,
@@ -295,7 +370,19 @@ public final class CMInfinity {
                                                 "Leech II",
                                                 "Bonus health, but drains your energy."
                                         ),
-                                        traitPlates, traitGambeson, traitLinks)
+                                        new CMTrait(
+                                                CMTraits.PROP_PLATES,
+                                                SupportedPluginsManager.INFINITY_EXPANSION_NOTE,
+                                                "Sickly II",
+                                                "Lead armour is a VERY BAD idea"
+                                        ),
+                                        null,
+                                        new CMTrait(
+                                                CMTraits.PROP_LINKS,
+                                                SupportedPluginsManager.INFINITY_EXPANSION_NOTE,
+                                                "Sickly II",
+                                                "Lead armour is a VERY BAD idea"
+                                        ))
                         ));
 
         map.put(IDStrings.SINGSILVER,
@@ -303,7 +390,7 @@ public final class CMInfinity {
                         (
                                 new CMIdentity(IDStrings.SINGSILVER, Objects.requireNonNull(SlimefunItem.getByID("SILVER_SINGULARITY")).getItem(), SkullTextures.ALLOY_SILVER, "#d4d4d4"),
                                 null,
-                                new CMToolMakeup(true, false, true),
+                                new CMToolMakeup(true, false, true, true, false, true),
                                 new CMForms(
                                     null,
                                     null,
@@ -333,7 +420,21 @@ public final class CMInfinity {
                                                 "randomly selected enchants when leveling",
                                                 "up. These enchants may not be useful!"
                                         ),
-                                        traitPlates, traitGambeson, traitLinks)
+                                        new CMTrait(
+                                                CMTraits.PROP_PLATES,
+                                                SupportedPluginsManager.INFINITY_EXPANSION_NOTE,
+                                                "Conductivity II",
+                                                "Chance to summon a tempest when hit.",
+                                                "Lightning damage heals you."
+                                        ),
+                                        null,
+                                        new CMTrait(
+                                                CMTraits.PROP_LINKS,
+                                                SupportedPluginsManager.INFINITY_EXPANSION_NOTE,
+                                                "Enchanting II",
+                                                "Gains 1-3 random enchantments everytime this",
+                                                "peice of armour levels up. May not be useful."
+                                        ))
                         ));
 
         map.put(IDStrings.SINGALUMINUM,
@@ -341,7 +442,7 @@ public final class CMInfinity {
                         (
                                 new CMIdentity(IDStrings.SINGALUMINUM, Objects.requireNonNull(SlimefunItem.getByID("ALUMINUM_SINGULARITY")).getItem(), SkullTextures.ALLOY_SILVER, "#b0b0b0"),
                                 null,
-                                new CMToolMakeup(true, false, true),
+                                new CMToolMakeup(true, false, true, true, false, true),
                                 new CMForms(
                                     null,
                                     null,
@@ -369,7 +470,19 @@ public final class CMInfinity {
                                                 "Soft II",
                                                 "Durability loss +100%, tool EXP +100%."
                                         ),
-                                        traitPlates, traitGambeson, traitLinks)
+                                        new CMTrait(
+                                                CMTraits.PROP_PLATES,
+                                                SupportedPluginsManager.INFINITY_EXPANSION_NOTE,
+                                                "Foil II",
+                                                "Damage Taken +25%. Speed + 2"
+                                        ),
+                                        null,
+                                        new CMTrait(
+                                                CMTraits.PROP_LINKS,
+                                                SupportedPluginsManager.INFINITY_EXPANSION_NOTE,
+                                                "Easily Shaped II",
+                                                "Repairs only need a single kit of ANY metal"
+                                        ))
                         ));
 
         map.put(IDStrings.SINGTIN,
@@ -377,7 +490,7 @@ public final class CMInfinity {
                         (
                                 new CMIdentity(IDStrings.SINGTIN, Objects.requireNonNull(SlimefunItem.getByID("TIN_SINGULARITY")).getItem(), SkullTextures.ALLOY_SILVER, "#a89b9b"),
                                 null,
-                                new CMToolMakeup(true, false, true),
+                                new CMToolMakeup(true, false, true, true, false, true),
                                 new CMForms(
                                     null,
                                     null,
@@ -406,7 +519,19 @@ public final class CMInfinity {
                                                 "Can II",
                                                 "No Hunger Loss"
                                         ),
-                                        traitPlates, traitGambeson, traitLinks)
+                                        new CMTrait(
+                                                CMTraits.PROP_PLATES,
+                                                SupportedPluginsManager.INFINITY_EXPANSION_NOTE,
+                                                "Non-Corrosive II",
+                                                "Poison heals and immune to hunger and weakness."
+                                        ),
+                                        null,
+                                        new CMTrait(
+                                                CMTraits.PROP_LINKS,
+                                                SupportedPluginsManager.INFINITY_EXPANSION_NOTE,
+                                                "Boost II",
+                                                "When taking heavy damage, gain lots of absorption"
+                                        ))
                         ));
 
         map.put(IDStrings.SINGZINC,
@@ -414,7 +539,7 @@ public final class CMInfinity {
                         (
                                 new CMIdentity(IDStrings.SINGZINC, Objects.requireNonNull(SlimefunItem.getByID("ZINC_SINGULARITY")).getItem(), SkullTextures.ALLOY_SILVER, "#9ba8a6"),
                                 null,
-                                new CMToolMakeup(true, false, true),
+                                new CMToolMakeup(true, false, true, true, false, true),
                                 new CMForms(
                                     null,
                                     null,
@@ -442,7 +567,20 @@ public final class CMInfinity {
                                                 "Super Lightweight II",
                                                 "Makes you lighter than air when not sneaking."
                                         ),
-                                        traitPlates, traitGambeson, traitLinks)
+                                        new CMTrait(
+                                                CMTraits.PROP_PLATES,
+                                                SupportedPluginsManager.INFINITY_EXPANSION_NOTE,
+                                                "Sneaky II",
+                                                "Damage doubled if target is facing away.",
+                                                "Large tolerence"
+                                        ),
+                                        null,
+                                        new CMTrait(
+                                                CMTraits.PROP_LINKS,
+                                                SupportedPluginsManager.INFINITY_EXPANSION_NOTE,
+                                                "Acupuncture II",
+                                                "Cactus pricks heal you and removes all effects."
+                                        ))
                         ));
 
         map.put(IDStrings.SINGMAGNESIUM,
@@ -450,7 +588,7 @@ public final class CMInfinity {
                         (
                                 new CMIdentity(IDStrings.SINGMAGNESIUM, Objects.requireNonNull(SlimefunItem.getByID("MAGNESIUM_SINGULARITY")).getItem(), SkullTextures.ALLOY_PINK, "#e8cef5"),
                                 null,
-                                new CMToolMakeup(true, false, true),
+                                new CMToolMakeup(true, false, true, true, false, true),
                                 new CMForms(
                                     null,
                                     null,
@@ -480,14 +618,26 @@ public final class CMInfinity {
                                                 "Random items are drawn to you from",
                                                 "within a 10 block range"
                                         ),
-                                        traitPlates, traitGambeson, traitLinks)
+                                        new CMTrait(
+                                                CMTraits.PROP_PLATES,
+                                                SupportedPluginsManager.INFINITY_EXPANSION_NOTE,
+                                                "Light II",
+                                                "Damage Dealt -25%. Speed + 2"
+                                        ),
+                                        null,
+                                        new CMTrait(
+                                                CMTraits.PROP_LINKS,
+                                                SupportedPluginsManager.INFINITY_EXPANSION_NOTE,
+                                                "MagneSight™ II",
+                                                "Gain night vision and highlight all mobs"
+                                        ))
                         ));
         map.put(IDStrings.SINGDIAMOND,
                 new ComponentMaterial
                         (
                                 new CMIdentity(IDStrings.SINGDIAMOND, Objects.requireNonNull(SlimefunItem.getByID("DIAMOND_SINGULARITY")).getItem(), SkullTextures.ALLOY_BLUE, "#e8cef5"),
                                 null,
-                                new CMToolMakeup(false, false, false),
+                                new CMToolMakeup(false, false, false, false, false, false),
                                 new CMForms(
                                     null,
                                     null,
@@ -505,7 +655,9 @@ public final class CMInfinity {
                                         null,
                                         null,
                                         null,
-                                        traitPlates, traitGambeson, traitLinks)
+                                        null,
+                                        null,
+                                        null)
                         ));
 
 
@@ -518,7 +670,7 @@ public final class CMInfinity {
                                         map.get(IDStrings.SINGIRON).getLiquidItemStack(9),
                                         CMCore.getMap().get(IDStrings.HARD).getLiquidItemStack(1)
                                 ),
-                                new CMToolMakeup(true, false, true),
+                                new CMToolMakeup(true, false, true, true, false, true),
                                 new CMForms(
                                         Materials.NUGGET_CAST_MYTHRIL.getItemId(),
                                         "MYTHRIL",
@@ -546,7 +698,20 @@ public final class CMInfinity {
                                                 "Sting of Gondolin",
                                                 "All nearby, hostile, mobs are repelled."
                                         ),
-                                        traitPlates, traitGambeson, traitLinks)
+                                        new CMTrait(
+                                                CMTraits.PROP_PLATES,
+                                                SupportedPluginsManager.INFINITY_EXPANSION_NOTE,
+                                                "Brightburn",
+                                                "Gives on stack of Burning Bright! With 4 ",
+                                                "stacks, hostile mobs are repelled (not bosses)."
+                                        ),
+                                        null,
+                                        new CMTrait(
+                                                CMTraits.PROP_LINKS,
+                                                SupportedPluginsManager.INFINITY_EXPANSION_NOTE,
+                                                "Call of the Wild",
+                                                "When hit, you sometimes summon a wolf to your aid"
+                                        ))
                         ));
 
         map.put(IDStrings.ADAMANTITE,
@@ -558,7 +723,7 @@ public final class CMInfinity {
                                         map.get(IDStrings.SINGDIAMOND).getLiquidItemStack(9),
                                         map.get(IDStrings.MAGSTEEL).getLiquidItemStack(1)
                                 ),
-                                new CMToolMakeup(true, false, true),
+                                new CMToolMakeup(true, false, true, true, false, true),
                                 new CMForms(
                                         Materials.NUGGET_CAST_ADAMANTITE.getItemId(),
                                         "ADAMANTITE",
@@ -586,7 +751,19 @@ public final class CMInfinity {
                                                 "Adamant",
                                                 "Become immune to all explosions"
                                         ),
-                                        traitPlates, traitGambeson, traitLinks)
+                                        new CMTrait(
+                                                CMTraits.PROP_PLATES,
+                                                SupportedPluginsManager.INFINITY_EXPANSION_NOTE,
+                                                "Deflective",
+                                                "Projectile Damage -25%"
+                                        ),
+                                        null,
+                                        new CMTrait(
+                                                CMTraits.PROP_LINKS,
+                                                SupportedPluginsManager.INFINITY_EXPANSION_NOTE,
+                                                "Experienced",
+                                                "All tool and armour exp +10%"
+                                        ))
                         ));
 
         map.put(IDStrings.MAGNONIUM,
@@ -594,7 +771,7 @@ public final class CMInfinity {
                         (
                                 new CMIdentity(IDStrings.MAGNONIUM, Objects.requireNonNull(SlimefunItem.getByID("MAGNONIUM")).getItem(), SkullTextures.ALLOY_PURPLE, "#4a0446"),
                                 null,
-                                new CMToolMakeup(true, false, true),
+                                new CMToolMakeup(true, false, true, true, false, true),
                                 new CMForms(
                                         Materials.NUGGET_CAST_MAGNONIUM.getItemId(),
                                         "MAGNONIUM",
@@ -622,7 +799,19 @@ public final class CMInfinity {
                                                 "Flaming Hot",
                                                 "Smelts things when possible."
                                         ),
-                                        traitPlates, traitGambeson, traitLinks)
+                                        new CMTrait(
+                                                CMTraits.PROP_PLATES,
+                                                SupportedPluginsManager.INFINITY_EXPANSION_NOTE,
+                                                "Escape",
+                                                "When hit, teleport away randomly (10s CD)."
+                                        ),
+                                        null,
+                                        new CMTrait(
+                                                CMTraits.PROP_LINKS,
+                                                SupportedPluginsManager.INFINITY_EXPANSION_NOTE,
+                                                "Oxygenated",
+                                                "Who needs it!?"
+                                        ))
                         ));
 
 
@@ -631,7 +820,7 @@ public final class CMInfinity {
                         (
                                 new CMIdentity(IDStrings.FORTUNE, Objects.requireNonNull(SlimefunItem.getByID("FORTUNE_SINGULARITY")).getItem(), SkullTextures.ALLOY_PURPLE, "#f0d541"),
                                 null,
-                                new CMToolMakeup(true, false, true),
+                                new CMToolMakeup(true, false, true, true, false, true),
                                 new CMForms(
                                         null,
                                         null,
@@ -660,7 +849,19 @@ public final class CMInfinity {
                                                 "Merchant's Veil",
                                                 "Invisibility with none of the drawbacks!"
                                         ),
-                                        traitPlates, traitGambeson, traitLinks)
+                                        new CMTrait(
+                                                CMTraits.PROP_PLATES,
+                                                SupportedPluginsManager.INFINITY_EXPANSION_NOTE,
+                                                "How Fortunate",
+                                                "0.5% chance to get a gift when hit."
+                                        ),
+                                        null,
+                                        new CMTrait(
+                                                CMTraits.PROP_LINKS,
+                                                SupportedPluginsManager.INFINITY_EXPANSION_NOTE,
+                                                "Beautiful",
+                                                "Plants flowers as you walk."
+                                        ))
                         ));
 
         map.put(IDStrings.MAGIC,
@@ -668,7 +869,7 @@ public final class CMInfinity {
                         (
                                 new CMIdentity(IDStrings.MAGIC, Objects.requireNonNull(SlimefunItem.getByID("MAGIC_SINGULARITY")).getItem(), SkullTextures.ALLOY_BLUE, "#c941e8"),
                                 null,
-                                new CMToolMakeup(true, false, true),
+                                new CMToolMakeup(true, false, true, true, false, true),
                                 new CMForms(
                                         null,
                                         null,
@@ -696,7 +897,20 @@ public final class CMInfinity {
                                                 "Secrets Revealed",
                                                 "Reveals all nearby living (or not!) things."
                                         ),
-                                        traitPlates, traitGambeson, traitLinks)
+                                        new CMTrait(
+                                                CMTraits.PROP_PLATES,
+                                                SupportedPluginsManager.INFINITY_EXPANSION_NOTE,
+                                                "Wizard Robes",
+                                                "Chance, when hit, to create MAGIC"
+                                        ),
+                                        null,
+                                        new CMTrait(
+                                                CMTraits.PROP_LINKS,
+                                                SupportedPluginsManager.INFINITY_EXPANSION_NOTE,
+                                                "Magical Mint",
+                                                "It may still be foul, but the Dragon's",
+                                                "breath will not hurt you."
+                                        ))
                         ));
 
         map.put(IDStrings.EARTH,
@@ -704,7 +918,7 @@ public final class CMInfinity {
                         (
                                 new CMIdentity(IDStrings.EARTH, Objects.requireNonNull(SlimefunItem.getByID("EARTH_SINGULARITY")).getItem(), SkullTextures.ALLOY_GREEN, "#44e34f"),
                                 null,
-                                new CMToolMakeup(true, false, true),
+                                new CMToolMakeup(true, false, true, true, false, true),
                                 new CMForms(
                                         null,
                                         null,
@@ -734,7 +948,20 @@ public final class CMInfinity {
                                                 "Breaking blocks act as if they have",
                                                 "gone through the grinder."
                                         ),
-                                        traitPlates, traitGambeson, traitLinks)
+                                        new CMTrait(
+                                                CMTraits.PROP_PLATES,
+                                                SupportedPluginsManager.INFINITY_EXPANSION_NOTE,
+                                                "Lava Walker",
+                                                "Lava turns into magma blocks beneath your feet."
+                                        ),
+                                        null,
+                                        new CMTrait(
+                                                CMTraits.PROP_LINKS,
+                                                SupportedPluginsManager.INFINITY_EXPANSION_NOTE,
+                                                "It's only natural",
+                                                "Feeds two nearby animals. 5m CD",
+                                                "Cooldown fires regardless of success."
+                                        ))
                         ));
 
         map.put(IDStrings.METAL,
@@ -742,7 +969,7 @@ public final class CMInfinity {
                         (
                                 new CMIdentity(IDStrings.METAL, Objects.requireNonNull(SlimefunItem.getByID("METAL_SINGULARITY")).getItem(), SkullTextures.ALLOY_SILVER, "#5b615b"),
                                 null,
-                                new CMToolMakeup(true, false, true),
+                                new CMToolMakeup(true, false, true, true, false, true),
                                 new CMForms(
                                         null,
                                         null,
@@ -771,7 +998,21 @@ public final class CMInfinity {
                                                 "All player exp is converted to tool",
                                                 "exp at a 10 : 1 ratio."
                                         ),
-                                        traitPlates, traitGambeson, traitLinks)
+                                        new CMTrait(
+                                                CMTraits.PROP_PLATES,
+                                                SupportedPluginsManager.INFINITY_EXPANSION_NOTE,
+                                                "KOTR",
+                                                "Chance, when hit, to summon a Knight",
+                                                "of the Round. (It's a Golem ;))"
+                                        ),
+                                        null,
+                                        new CMTrait(
+                                                CMTraits.PROP_LINKS,
+                                                SupportedPluginsManager.INFINITY_EXPANSION_NOTE,
+                                                "Gleam",
+                                                "Chance when hit to reflect damage and",
+                                                "dazzle attackers."
+                                        ))
                         ));
 
 
@@ -780,7 +1021,7 @@ public final class CMInfinity {
                         (
                                 new CMIdentity(IDStrings.INFINITY, Objects.requireNonNull(SlimefunItem.getByID("INFINITE_INGOT")).getItem(), SkullTextures.ALLOY_BLUE_PALE, "#d1ebf0"),
                                 null,
-                                new CMToolMakeup(true, false, true),
+                                new CMToolMakeup(true, false, true, true, false, true),
                                 new CMForms(
                                         Materials.NUGGET_CAST_INFINITY.getItemId(),
                                         "INFINITE_INGOT",
@@ -808,7 +1049,21 @@ public final class CMInfinity {
                                                 "Conceptual Defence",
                                                 "All damage is halved (rounded up)."
                                         ),
-                                        traitPlates, traitGambeson, traitLinks)
+                                        new CMTrait(
+                                                CMTraits.PROP_PLATES,
+                                                SupportedPluginsManager.CORE_NOTE,
+                                                "Infinite Capacity",
+                                                "Everytime you take damage, 10% is stored",
+                                                "up to 5 hearts. Right click to release",
+                                                "the damage on nearby entities"
+                                        ),
+                                        null,
+                                        new CMTrait(
+                                                CMTraits.PROP_LINKS,
+                                                SupportedPluginsManager.CORE_NOTE,
+                                                "Oroborus",
+                                                "20% chance to reflect 50% damage taken."
+                                        ))
                         ));
 
         map.put(IDStrings.SINGINFINITY,
@@ -816,7 +1071,7 @@ public final class CMInfinity {
                         (
                                 new CMIdentity(IDStrings.SINGINFINITY, Objects.requireNonNull(SlimefunItem.getByID("INFINITY_SINGULARITY")).getItem(), SkullTextures.ALLOY_BLUE_PALE, "#e8cef5"),
                                 null,
-                                new CMToolMakeup(true, false, false),
+                                new CMToolMakeup(true, false, false, true, false, true),
                                 new CMForms(
                                     null,
                                     null,
@@ -840,7 +1095,21 @@ public final class CMInfinity {
                                         ),
                                         null,
                                         null,
-                                        traitPlates, traitGambeson, traitLinks)
+                                        new CMTrait(
+                                                CMTraits.PROP_PLATES,
+                                                SupportedPluginsManager.CORE_NOTE,
+                                                "Infinitly Powerful",
+                                                "Every 300 points of damage taken (before",
+                                                "reductions) will unlock a new, random,",
+                                                "enchantment. No upper limits."
+                                        ),
+                                        null,
+                                        new CMTrait(
+                                                CMTraits.PROP_LINKS,
+                                                SupportedPluginsManager.CORE_NOTE,
+                                                "Infinite Defence",
+                                                "Damage taken set to 0 with 4 peices."
+                                        ))
                         ));
 
         map.get(IDStrings.ADAMANTITE).addEvent(TraitEventType.PLAYER_DAMAGED, TraitPartType.ROD, PlayerDamagedEvents::rodAdamantite);           // Adamant

@@ -44,7 +44,7 @@ public class CMTrait {
         newLore.add(ThemeUtils.ITEM_TYPEDESC + "Added by: " + addedBy);
         this.itemStack =
                 ThemeUtils.themedItemStack(
-                        traitName.toUpperCase(Locale.ROOT).replace(" ","_") + "_TRAIT_" + StackUtils.getIDorType(parentCM.getRepresentativeStack()),
+                        traitName.toUpperCase(Locale.ROOT).replace(" ","_") + "_TRAIT_" + partType.getItemId().toUpperCase(Locale.ROOT) + "_" + StackUtils.getIDorType(parentCM.getRepresentativeStack()),
                         CMTraits.getTraitTexture(addedBy),
                         ThemeUtils.ThemeItemType.PROP,
                         "Trait : " + traitName,

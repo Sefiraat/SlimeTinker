@@ -40,7 +40,7 @@ public final class CMLiteXpansion {
                         (
                                 new CMIdentity(IDStrings.RUBBER, Objects.requireNonNull(SlimefunItem.getByID("RUBBER")).getItem(), SkullTextures.ALLOY_BROWN, "#38414d"),
                                 null,
-                                new CMToolMakeup(false, true, false),
+                                new CMToolMakeup(false, true, false, false, true, false),
                                 new CMForms(
                                         null,
                                         null,
@@ -63,7 +63,14 @@ public final class CMLiteXpansion {
                                                 "Become immune to lightning."
                                         ),
                                         null,
-                                        traitPlates, traitGambeson, traitLinks)
+                                        null,
+                                        new CMTrait(
+                                                CMTraits.PROP_GAMBESON,
+                                                SupportedPluginsManager.LITEXPANSION_NOTE,
+                                                "Sweaty",
+                                                "A rubber liniing is WAY too hot."
+                                        ),
+                                        null)
                         ));
 
         map.put(IDStrings.REFINED_IRON,
@@ -71,7 +78,7 @@ public final class CMLiteXpansion {
                         (
                                 new CMIdentity(IDStrings.REFINED_IRON, Objects.requireNonNull(SlimefunItem.getByID("REFINED_IRON")).getItem(), SkullTextures.ALLOY_SILVER, "#ababab"),
                                 null,
-                                new CMToolMakeup(true, false, true),
+                                new CMToolMakeup(true, false, true, true, false, true),
                                 new CMForms(
                                         Materials.NUGGET_CAST_REFINED_IRON.getItemId(),
                                         Objects.requireNonNull(SlimefunItem.getByID("REFINED_IRON")).getId(),
@@ -100,7 +107,22 @@ public final class CMLiteXpansion {
                                                 "Speed 1, Damage + 50%. Your fights look",
                                                 "super cool."
                                         ),
-                                        traitPlates, traitGambeson, traitLinks)
+                                        new CMTrait(
+                                                CMTraits.PROP_PLATES,
+                                                SupportedPluginsManager.LITEXPANSION_NOTE,
+                                                "Kingsman",
+                                                "On right click, summons a colorful cavelcade",
+                                                "of pure desctruction.",
+                                                "Does nothing if you don't have manners.",
+                                                "Requires 4 peices with Kingsman."
+                                        ),
+                                        null,
+                                        new CMTrait(
+                                                CMTraits.PROP_LINKS,
+                                                SupportedPluginsManager.LITEXPANSION_NOTE,
+                                                "Narrowing",
+                                                "Attackers are blinded."
+                                        ))
                         ));
 
         map.put(IDStrings.MIXED_METAL,
@@ -112,7 +134,7 @@ public final class CMLiteXpansion {
                                         CMCore.getMap().get(IDStrings.BRONZE).getLiquidItemStack(3),
                                         CMCore.getMap().get(IDStrings.TIN).getLiquidItemStack(3)
                                 ),
-                                new CMToolMakeup(true, false, true),
+                                new CMToolMakeup(true, false, true, true, false, true),
                                 new CMForms(
                                         Materials.NUGGET_CAST_MIXED_METAL.getItemId(),
                                         Objects.requireNonNull(SlimefunItem.getByID("MIXED_METAL_INGOT")).getId(),
@@ -141,7 +163,19 @@ public final class CMLiteXpansion {
                                                 "Stiff",
                                                 "Double damage. Unlucky!"
                                         ),
-                                        traitPlates, traitGambeson, traitLinks)
+                                        new CMTrait(
+                                                CMTraits.PROP_PLATES,
+                                                SupportedPluginsManager.LITEXPANSION_NOTE,
+                                                "Experienced",
+                                                "All tool/armour exp + 10%"
+                                        ),
+                                        null,
+                                        new CMTrait(
+                                                CMTraits.PROP_LINKS,
+                                                SupportedPluginsManager.LITEXPANSION_NOTE,
+                                                "Mix it up!",
+                                                "Mixes things up a bit while attacking"
+                                        ))
                         ));
 
         map.put(IDStrings.ADVANCED_ALLOY,
@@ -149,7 +183,7 @@ public final class CMLiteXpansion {
                         (
                                 new CMIdentity(IDStrings.ADVANCED_ALLOY, Objects.requireNonNull(SlimefunItem.getByID("ADVANCED_ALLOY")).getItem(), SkullTextures.ALLOY_BLUE_PALE, "#78aba2"),
                                 null,
-                                new CMToolMakeup(true, false, true),
+                                new CMToolMakeup(true, false, true, true, false, true),
                                 new CMForms(
                                         Materials.NUGGET_CAST_ADVANCED_ALLOY.getItemId(),
                                         Objects.requireNonNull(SlimefunItem.getByID("ADVANCED_ALLOY")).getId(),
@@ -179,7 +213,19 @@ public final class CMLiteXpansion {
                                                 "When durability gets low, it eats 1 iron",
                                                 "ingot from your inventory to restore some."
                                         ),
-                                        traitPlates, traitGambeson, traitLinks)
+                                        new CMTrait(
+                                                CMTraits.PROP_PLATES,
+                                                SupportedPluginsManager.LITEXPANSION_NOTE,
+                                                "Even More Advanced",
+                                                "Advanced modifiers +1 for each piece."
+                                        ),
+                                        null,
+                                        new CMTrait(
+                                                CMTraits.PROP_LINKS,
+                                                SupportedPluginsManager.LITEXPANSION_NOTE,
+                                                "Superhot",
+                                                "Chance to set nearby linving things on fire."
+                                        ))
                         ));
 
         map.put(IDStrings.THORIUM,
@@ -187,7 +233,7 @@ public final class CMLiteXpansion {
                         (
                                 new CMIdentity(IDStrings.THORIUM, Objects.requireNonNull(SlimefunItem.getByID("THORIUM")).getItem(), SkullTextures.ALLOY_GREEN, "#33de4d"),
                                 null,
-                                new CMToolMakeup(false, false, false),
+                                new CMToolMakeup(false, false, false, false, false, false),
                                 new CMForms(
                                         null,
                                         null,
@@ -205,7 +251,9 @@ public final class CMLiteXpansion {
                                         null,
                                         null,
                                         null,
-                                        traitPlates, traitGambeson, traitLinks)
+                                        null,
+                                        null,
+                                        null)
                         ));
 
         map.put(IDStrings.MAG_THOR,
@@ -218,7 +266,7 @@ public final class CMLiteXpansion {
                                         CMCore.getMap().get(IDStrings.MAGNESIUM).getLiquidItemStack(1),
                                         CMCore.getMap().get(IDStrings.ZINC).getLiquidItemStack(1)
                                 ),
-                                new CMToolMakeup(true, false, true),
+                                new CMToolMakeup(true, false, true, true, false, true),
                                 new CMForms(
                                         Materials.NUGGET_CAST_MAG_THOR.getItemId(),
                                         Objects.requireNonNull(SlimefunItem.getByID("MAG_THOR")).getId(),
@@ -247,7 +295,19 @@ public final class CMLiteXpansion {
                                                 "Chance to heal by damage given.",
                                                 "Damage dealt varies by time of day."
                                         ),
-                                        traitPlates, traitGambeson, traitLinks)
+                                        new CMTrait(
+                                                CMTraits.PROP_PLATES,
+                                                SupportedPluginsManager.LITEXPANSION_NOTE,
+                                                "Radioactive Plates",
+                                                "Poisons enemies that attack you."
+                                        ),
+                                        null,
+                                        new CMTrait(
+                                                CMTraits.PROP_LINKS,
+                                                SupportedPluginsManager.LITEXPANSION_NOTE,
+                                                "Building Rage",
+                                                "Chance, when hit, to gain Speed 1 and Haste 1"
+                                        ))
                         ));
 
         map.put(IDStrings.CARBON_MESH,
@@ -255,7 +315,7 @@ public final class CMLiteXpansion {
                         (
                                 new CMIdentity(IDStrings.CARBON_MESH, Objects.requireNonNull(SlimefunItem.getByID("RAW_CARBON_MESH")).getItem(), SkullTextures.ALLOY_BROWN, "#192927"),
                                 null,
-                                new CMToolMakeup(false, true, false),
+                                new CMToolMakeup(false, true, false, true, false, true),
                                 new CMForms(
                                         null,
                                         null,
@@ -278,7 +338,14 @@ public final class CMLiteXpansion {
                                                 "Speed 1. Take 33% less damage"
                                         ),
                                         null,
-                                        traitPlates, traitGambeson, traitLinks)
+                                        null,
+                                        new CMTrait(
+                                                CMTraits.PROP_GAMBESON,
+                                                SupportedPluginsManager.LITEXPANSION_NOTE,
+                                                "Carbon Fibre",
+                                                "Damage -5%, Speed + 1"
+                                        ),
+                                        null)
                         ));
 
         map.put(IDStrings.SCRAP,
@@ -286,7 +353,7 @@ public final class CMLiteXpansion {
                         (
                                 new CMIdentity(IDStrings.SCRAP, Objects.requireNonNull(SlimefunItem.getByID("SCRAP")).getItem(), SkullTextures.ALLOY_BROWN, "#5c451d"),
                                 null,
-                                new CMToolMakeup(true, false, true),
+                                new CMToolMakeup(true, false, true, true, false, true),
                                 new CMForms(
                                         Materials.NUGGET_CAST_SCRAP.getItemId(),
                                         Objects.requireNonNull(SlimefunItem.getByID("SCRAP")).getId(),
@@ -315,7 +382,21 @@ public final class CMLiteXpansion {
                                                 "Tool exp gain is doubled. Damage",
                                                 "dealt is halved."
                                         ),
-                                        traitPlates, traitGambeson, traitLinks)
+                                        new CMTrait(
+                                                CMTraits.PROP_PLATES,
+                                                SupportedPluginsManager.LITEXPANSION_NOTE,
+                                                "Pathetic",
+                                                "Do not wear this armour.",
+                                                "Exp + 400%. 5% chance to die when hit."
+                                        ),
+                                        null,
+                                        new CMTrait(
+                                                CMTraits.PROP_LINKS,
+                                                SupportedPluginsManager.LITEXPANSION_NOTE,
+                                                "Falling Apart",
+                                                "Exp + 200%. Chance for the amrour to",
+                                                "just fall off!"
+                                        ))
                         ));
 
         map.put(IDStrings.IRIDIUM,
@@ -323,7 +404,7 @@ public final class CMLiteXpansion {
                         (
                                 new CMIdentity(IDStrings.IRIDIUM, Objects.requireNonNull(SlimefunItem.getByID("IRIDIUM")).getItem(), SkullTextures.ALLOY_PINK, "#c999c9"),
                                 null,
-                                new CMToolMakeup(true, false, true),
+                                new CMToolMakeup(true, false, true, true, false, true),
                                 new CMForms(
                                         Materials.NUGGET_CAST_IRIDIUM.getItemId(),
                                         Objects.requireNonNull(SlimefunItem.getByID("IRIDIUM")).getId(),
@@ -351,7 +432,20 @@ public final class CMLiteXpansion {
                                                 "Warp",
                                                 "Turns your opponent around. 20s CD."
                                         ),
-                                        traitPlates, traitGambeson, traitLinks)
+                                        new CMTrait(
+                                                CMTraits.PROP_PLATES,
+                                                SupportedPluginsManager.LITEXPANSION_NOTE,
+                                                "Indomitable",
+                                                "10% of all damage is ignored and reflected."
+                                        ),
+                                        null,
+                                        new CMTrait(
+                                                CMTraits.PROP_LINKS,
+                                                SupportedPluginsManager.LITEXPANSION_NOTE,
+                                                "Unconventional Power",
+                                                "Any damage taken is remembered. Right",
+                                                "Click to charge a nearby block."
+                                        ))
                         ));
 
 

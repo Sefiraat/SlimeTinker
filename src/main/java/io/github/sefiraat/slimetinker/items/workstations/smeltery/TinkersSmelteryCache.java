@@ -246,7 +246,6 @@ public final class TinkersSmelteryCache extends AbstractCache {
             return false;
         }
 
-        CastResult result = SlimeTinker.inst().getCmManager().castingRecipes.get(StackUtils.getIDorType(inputItem));
         Optional<String> first = tankContent.keySet().stream().findFirst();
 
         // No metals in the tank - cant pour
@@ -257,6 +256,7 @@ public final class TinkersSmelteryCache extends AbstractCache {
 
         String metalID = first.get();
         ComponentMaterial componentMaterial = CMManager.getById(metalID);
+        CastResult result = SlimeTinker.inst().getCmManager().castingRecipes.get(StackUtils.getIDorType(inputItem));
 
         // Cast valid, but this cast and metal combination doesn't work
         if (!result.getOutputs().containsKey(componentMaterial)) {

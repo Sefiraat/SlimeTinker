@@ -108,6 +108,16 @@ public class CMManager {
     @Getter
     protected static final Map<ComponentMaterial, ItemStack> MAP_CAST_TOOLROD = new HashMap<>();
     @Getter
+    protected static final Map<ComponentMaterial, ItemStack> MAP_CAST_ARMOUR_PLATES_HELM = new HashMap<>();
+    @Getter
+    protected static final Map<ComponentMaterial, ItemStack> MAP_CAST_ARMOUR_PLATES_CHEST = new HashMap<>();
+    @Getter
+    protected static final Map<ComponentMaterial, ItemStack> MAP_CAST_ARMOUR_PLATES_LEGGINGS = new HashMap<>();
+    @Getter
+    protected static final Map<ComponentMaterial, ItemStack> MAP_CAST_ARMOUR_PLATES_BOOTS = new HashMap<>();
+    @Getter
+    protected static final Map<ComponentMaterial, ItemStack> MAP_CAST_ARMOUR_MAIL = new HashMap<>();
+    @Getter
     protected static final Map<ComponentMaterial, ItemStack> MAP_CAST_REPAIRKIT = new HashMap<>();
 
     public CMManager() {
@@ -215,6 +225,11 @@ public class CMManager {
             MAP_DIE_HOEHEAD.put(CMManager.getById(BRASS), Casts.CAST_HOEHEAD);
             MAP_DIE_SWORDBLADE.put(CMManager.getById(BRASS), Casts.CAST_SWORDBLADE);
             MAP_DIE_TOOLROD.put(CMManager.getById(BRASS), Casts.CAST_TOOLROD);
+            MAP_DIE_ARMOUR_PLATES_HELM.put(CMManager.getById(BRASS), Casts.CAST_HELM_PLATE);
+            MAP_DIE_ARMOUR_PLATES_CHEST.put(CMManager.getById(BRASS), Casts.CAST_CHEST_PLATE);
+            MAP_DIE_ARMOUR_PLATES_LEGGINGS.put(CMManager.getById(BRASS), Casts.CAST_LEG_PLATE);
+            MAP_DIE_ARMOUR_PLATES_BOOTS.put(CMManager.getById(BRASS), Casts.CAST_BOOT_PLATE);
+            MAP_DIE_ARMOUR_MAIL.put(CMManager.getById(BRASS), Casts.CAST_MAIL_LINK);
 
             // Recipes for creating casts from dies
 
@@ -229,6 +244,11 @@ public class CMManager {
             castingRecipes.put(Dies.DIE_HOE_HEAD.getItemId(), new CastResult(Dies.DIE_HOE_HEAD.getItemId(), AMOUNT_CAST, MAP_DIE_HOEHEAD, true));
             castingRecipes.put(Dies.DIE_SWORD_BLADE.getItemId(), new CastResult(Dies.DIE_SWORD_BLADE.getItemId(), AMOUNT_CAST, MAP_DIE_SWORDBLADE, true));
             castingRecipes.put(Dies.DIE_TOOL_ROD.getItemId(), new CastResult(Dies.DIE_TOOL_ROD.getItemId(), AMOUNT_CAST, MAP_DIE_TOOLROD, true));
+            castingRecipes.put(Dies.DIE_HELM_PLATE.getItemId(), new CastResult(Dies.DIE_HELM_PLATE.getItemId(), AMOUNT_CAST, MAP_DIE_ARMOUR_PLATES_HELM, true));
+            castingRecipes.put(Dies.DIE_CHEST_PLATE.getItemId(), new CastResult(Dies.DIE_CHEST_PLATE.getItemId(), AMOUNT_CAST, MAP_DIE_ARMOUR_PLATES_CHEST, true));
+            castingRecipes.put(Dies.DIE_LEG_PLATE.getItemId(), new CastResult(Dies.DIE_LEG_PLATE.getItemId(), AMOUNT_CAST, MAP_DIE_ARMOUR_PLATES_LEGGINGS, true));
+            castingRecipes.put(Dies.DIE_BOOT_PLATE.getItemId(), new CastResult(Dies.DIE_BOOT_PLATE.getItemId(), AMOUNT_CAST, MAP_DIE_ARMOUR_PLATES_BOOTS, true));
+            castingRecipes.put(Dies.DIE_MAIL_LINK.getItemId(), new CastResult(Dies.DIE_MAIL_LINK.getItemId(), AMOUNT_CAST, MAP_DIE_ARMOUR_MAIL, true));
 
             // region Casting (Casting Items)
 
@@ -243,6 +263,11 @@ public class CMManager {
             castingRecipes.put(Casts.CAST_HOEHEAD.getItemId(), new CastResult(Casts.CAST_HOEHEAD.getItemId(), AMOUNT_HOEHEAD, MAP_CAST_HOEHEAD, false));
             castingRecipes.put(Casts.CAST_SWORDBLADE.getItemId(), new CastResult(Casts.CAST_SWORDBLADE.getItemId(), AMOUNT_SWORDBLADE, MAP_CAST_SWORDBLADE, false));
             castingRecipes.put(Casts.CAST_TOOLROD.getItemId(), new CastResult(Casts.CAST_TOOLROD.getItemId(), AMOUNT_TOOLROD, MAP_CAST_TOOLROD, false));
+            castingRecipes.put(Casts.CAST_HELM_PLATE.getItemId(), new CastResult(Casts.CAST_HELM_PLATE.getItemId(), AMOUNT_ARM_HELM, MAP_CAST_ARMOUR_PLATES_HELM, false));
+            castingRecipes.put(Casts.CAST_CHEST_PLATE.getItemId(), new CastResult(Casts.CAST_CHEST_PLATE.getItemId(), AMOUNT_ARM_CHEST, MAP_CAST_ARMOUR_PLATES_CHEST, false));
+            castingRecipes.put(Casts.CAST_LEG_PLATE.getItemId(), new CastResult(Casts.CAST_LEG_PLATE.getItemId(), AMOUNT_ARM_LEG, MAP_CAST_ARMOUR_PLATES_LEGGINGS, false));
+            castingRecipes.put(Casts.CAST_BOOT_PLATE.getItemId(), new CastResult(Casts.CAST_BOOT_PLATE.getItemId(), AMOUNT_ARM_BOOT, MAP_CAST_ARMOUR_PLATES_BOOTS, false));
+            castingRecipes.put(Casts.CAST_MAIL_LINK.getItemId(), new CastResult(Casts.CAST_MAIL_LINK.getItemId(), AMOUNT_ARM_LINKS, MAP_CAST_ARMOUR_MAIL, false));
 
         }
 

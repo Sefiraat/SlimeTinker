@@ -42,7 +42,7 @@ public final class CMDynaTech {
                                         CMCore.getMap().get(IDStrings.IRON).getLiquidItemStack(2),
                                         CMCore.getMap().get(IDStrings.ZINC).getLiquidItemStack(1)
                                 ),
-                                new CMToolMakeup(true, false, true),
+                                new CMToolMakeup(true, false, true, true, false, true),
                                 new CMForms(
                                     Materials.NUGGET_CAST_STAINLESSSTEEL.getItemId(),
                                     SlimefunItem.getByID("STAINLESS_STEEL").getId(),
@@ -70,7 +70,19 @@ public final class CMDynaTech {
                                                 "Cutlery",
                                                 "Hitting animals will directly feed you. Grim"
                                         ),
-                                        traitPlates, traitGambeson, traitLinks)
+                                        new CMTrait(
+                                                CMTraits.PROP_PLATES,
+                                                SupportedPluginsManager.DYNATECH_NOTE,
+                                                "The Standard",
+                                                "Damage taken reduced by 5%"
+                                        ),
+                                        null,
+                                        new CMTrait(
+                                                CMTraits.PROP_LINKS,
+                                                SupportedPluginsManager.DYNATECH_NOTE,
+                                                "Water Safe",
+                                                "Gives you water breathing"
+                                        ))
                         ));
 
         map.put(IDStrings.VEX_GEM,
@@ -78,7 +90,7 @@ public final class CMDynaTech {
                         (
                                 new CMIdentity(IDStrings.VEX_GEM, Objects.requireNonNull(SlimefunItem.getByID("VEX_GEM")).getItem(), SkullTextures.ALLOY_BLUE, "#38c0c2"),
                                 null,
-                                new CMToolMakeup(false, true, false),
+                                new CMToolMakeup(false, true, false, false, true, false),
                                 new CMForms(
                                     null,
                                     null,
@@ -102,7 +114,14 @@ public final class CMDynaTech {
                                                 "5 min cooldown."
                                         ),
                                         null,
-                                        traitPlates, traitGambeson, traitLinks)
+                                        null,
+                                        new CMTrait(
+                                                CMTraits.PROP_GAMBESON,
+                                                SupportedPluginsManager.DYNATECH_NOTE,
+                                                "Annoying",
+                                                "Vex gems shouldn't be used like this!"
+                                        ),
+                                        null)
                         ));
 
         map.put(IDStrings.STARDUST,
@@ -110,7 +129,7 @@ public final class CMDynaTech {
                         (
                                 new CMIdentity(IDStrings.STARDUST, Objects.requireNonNull(SlimefunItem.getByID("STAR_DUST")).getItem(), SkullTextures.ALLOY_SILVER, "#fdff96"),
                                 null,
-                                new CMToolMakeup(true, false, true),
+                                new CMToolMakeup(true, false, true, true, false, true),
                                 new CMForms(
                                     null,
                                     null,
@@ -140,7 +159,20 @@ public final class CMDynaTech {
                                                 "Gives an ethereal glow and makes villagers",
                                                 "friendlier to you."
                                         ),
-                                        traitPlates, traitGambeson, traitLinks)
+                                        new CMTrait(
+                                                CMTraits.PROP_PLATES,
+                                                SupportedPluginsManager.DYNATECH_NOTE,
+                                                "Starshine",
+                                                "5% chance to heal 1/2 heart during the night"
+                                        ),
+                                        null,
+                                        new CMTrait(
+                                                CMTraits.PROP_LINKS,
+                                                SupportedPluginsManager.DYNATECH_NOTE,
+                                                "Brightburn",
+                                                "Gives on stack of Burning Bright! With 4 ",
+                                                "stacks, hostile mobs are repelled (not bosses)."
+                                        ))
                         ));
 
         map.put(IDStrings.GHOSTLY_ESSENCE,
@@ -148,7 +180,7 @@ public final class CMDynaTech {
                         (
                                 new CMIdentity(IDStrings.GHOSTLY_ESSENCE, Objects.requireNonNull(SlimefunItem.getByID("GHOSTLY_ESSENCE")).getItem(), SkullTextures.ALLOY_BROWN, "#d4ffef"),
                                 null,
-                                new CMToolMakeup(false, true, true),
+                                new CMToolMakeup(false, true, true, false, true, true),
                                 new CMForms(
                                     null,
                                     null,
@@ -178,7 +210,19 @@ public final class CMDynaTech {
                                                 "click to store a location. Right click to recall",
                                                 "to that location. 10min CD."
                                         ),
-                                        traitPlates, traitGambeson, traitLinks)
+                                        null,
+                                        new CMTrait(
+                                                CMTraits.PROP_GAMBESON,
+                                                SupportedPluginsManager.DYNATECH_NOTE,
+                                                "Ghost in the shell",
+                                                "Slowly damaged all nearby mobs at the cost of durability"
+                                        ),
+                                        new CMTrait(
+                                                CMTraits.PROP_LINKS,
+                                                SupportedPluginsManager.DYNATECH_NOTE,
+                                                "Ghostly",
+                                                "Hover like a ghost"
+                                        ))
                         ));
 
         map.put(IDStrings.TESSERACT,
@@ -186,7 +230,7 @@ public final class CMDynaTech {
                         (
                                 new CMIdentity(IDStrings.TESSERACT, Objects.requireNonNull(SlimefunItem.getByID("TESSERACTING_OBJ")).getItem(), SkullTextures.ALLOY_TAN, "#c7ba9f"),
                                 null,
-                                new CMToolMakeup(true, false, true),
+                                new CMToolMakeup(true, false, true, true, false, true),
                                 new CMForms(
                                     null,
                                     null,
@@ -211,7 +255,23 @@ public final class CMDynaTech {
                                         ),
                                         null,
                                         null,
-                                        traitPlates, traitGambeson, traitLinks)
+                                        new CMTrait(
+                                                CMTraits.PROP_PLATES,
+                                                SupportedPluginsManager.DYNATECH_NOTE,
+                                                "Hyberbolic Tesseration",
+                                                "When in your personal home, you store energy.",
+                                                "Damage taken is removed from this energy pool.",
+                                                "Required 8x pieces to function and caps at 50."
+                                        ),
+                                        null,
+                                        new CMTrait(
+                                                CMTraits.PROP_LINKS,
+                                                SupportedPluginsManager.DYNATECH_NOTE,
+                                                "Hyberbolic Tesseration",
+                                                "When in your personal home, you store energy.",
+                                                "Damage taken is removed from this energy pool.",
+                                                "Required 8x pieces to function and caps at 50."
+                                        ))
                         ));
 
         map.get(IDStrings.STARDUST).addEvent(TraitEventType.ENTITY_DAMAGED, TraitPartType.HEAD, EntityDamageEvents::headStarDust);                    // Bright Fury

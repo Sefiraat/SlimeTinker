@@ -98,7 +98,9 @@ public final class IDStrings {
     public static final String HEAD = "HEAD";
     public static final String BINDING = "BINDING";
     public static final String ROD = "ROD";
-    public static final String REPAIR = "REPAIR";
+    public static final String PLATE = "PLATE";
+    public static final String GAMBESON = "GAMBESON";
+    public static final String LINKS = "LINKS";
 
     public static final String SHOVEL = "SHOVEL";
     public static final String PICKAXE = "PICK";
@@ -110,6 +112,8 @@ public final class IDStrings {
     public static final String CHESTPLATE = "CHESTPLATE";
     public static final String LEGGINGS = "LEGGINGS";
     public static final String BOOTS = "BOOTS";
+
+    public static final String REPAIR = "REPAIR";
 
     public static final String PLACED = "st-placed-block";
 }

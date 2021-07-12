@@ -1,6 +1,7 @@
 package io.github.sefiraat.slimetinker.items.workstations.smeltery;
 
 import io.github.mooy1.infinitylib.slimefun.AbstractContainer;
+import io.github.mooy1.infinitylib.slimefun.AbstractTickingContainer;
 import io.github.sefiraat.slimetinker.items.Materials;
 import io.github.sefiraat.slimetinker.utils.GUIItems;
 import io.github.sefiraat.slimetinker.utils.ThemeUtils;
@@ -26,7 +27,7 @@ import javax.annotation.Nonnull;
 import java.util.HashMap;
 import java.util.Map;
 
-public class TinkersSmeltery extends AbstractContainer {
+public class TinkersSmeltery extends AbstractTickingContainer {
 
     private static final int[] BACKGROUND_SLOTS = {27,29,31,35};
     private static final int[] BACKGROUND_INPUT_SLOTS = {0,1,2,9,11,18,19,20};
@@ -48,22 +49,14 @@ public class TinkersSmeltery extends AbstractContainer {
 
     public TinkersSmeltery(Category category, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(category, item, recipeType, recipe);
+    }
 
-        addItemHandler(new BlockTicker() {
-            @Override
-            public boolean isSynchronized() {
-                return true;
-            }
-
-            @Override
-            public void tick(Block block, SlimefunItem item, Config data) {
-                TinkersSmelteryCache cache = TinkersSmeltery.this.caches.get(block.getLocation());
-                if (cache != null) {
-                    cache.process(false);
-                }
-            }
-        });
-
+    @Override
+    protected void tick(@NotNull BlockMenu blockMenu, @NotNull Block block) {
+        TinkersSmelteryCache cache = TinkersSmeltery.this.caches.get(block.getLocation());
+        if (cache != null) {
+            cache.process(false);
+        }
     }
 
     @Override

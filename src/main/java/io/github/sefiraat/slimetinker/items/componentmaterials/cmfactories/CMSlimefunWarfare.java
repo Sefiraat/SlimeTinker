@@ -40,7 +40,7 @@ public final class CMSlimefunWarfare {
                         (
                                 new CMIdentity(IDStrings.SEGGANESSON, Objects.requireNonNull(SlimefunItem.getByID("SEGGANESSON")).getItem(), SkullTextures.ALLOY_BLUE_PALE, "#4bacbf"),
                                 null,
-                                new CMToolMakeup(true, false, true),
+                                new CMToolMakeup(true, false, true, true, false, true),
                                 new CMForms(
                                     null,
                                     null,
@@ -69,7 +69,21 @@ public final class CMSlimefunWarfare {
                                                 "Blinding Speed",
                                                 "Gain insane speed but with a side effect."
                                         ),
-                                        traitPlates, traitGambeson, traitLinks)
+                                        new CMTrait(
+                                                CMTraits.PROP_PLATES,
+                                                SupportedPluginsManager.SLIMEFUN_WARFARE_NOTE,
+                                                "Gravity",
+                                                "All nearby entities are slowly pulled",
+                                                "towards you"
+                                        ),
+                                        null,
+                                        new CMTrait(
+                                                CMTraits.PROP_LINKS,
+                                                SupportedPluginsManager.SLIMEFUN_WARFARE_NOTE,
+                                                "Soul Siphon",
+                                                "Stores the souls of killed, hostile, mobs.",
+                                                "Damage + 1% per 100 souls. Caps at 100%."
+                                        ))
                         ));
 
         map.put(IDStrings.SLIMESTEEL,
@@ -80,7 +94,7 @@ public final class CMSlimefunWarfare {
                                         CMCore.getMap().get(IDStrings.STEEL).getLiquidItemStack(1),
                                         CMCore.getMap().get(IDStrings.SLIME).getLiquidItemStack(1)
                                 ),
-                                new CMToolMakeup(true, false, true),
+                                new CMToolMakeup(false, true, false, false, true, false),
                                 new CMForms(
                                         Materials.NUGGET_CAST_SLIMESTEEL.getItemId(),
                                     "SLIMESTEEL_INGOT",
@@ -103,7 +117,15 @@ public final class CMSlimefunWarfare {
                                                 "Fall damage halved with a jump boost."
                                         ),
                                         null,
-                                        traitPlates, traitGambeson, traitLinks)
+                                        null,
+                                        new CMTrait(
+                                                CMTraits.PROP_GAMBESON,
+                                                SupportedPluginsManager.SLIMEFUN_WARFARE_NOTE,
+                                                "Moon Bounce",
+                                                "When on boots, fall damamge is ignored.",
+                                                "You also get more bouncy."
+                                        ),
+                                        null)
                         ));
 
         map.put(IDStrings.REINFORCED_SLIMESTEEL,
@@ -118,7 +140,7 @@ public final class CMSlimefunWarfare {
                                         CMCore.getMap().get(IDStrings.CORBRONZE).getLiquidItemStack(1),
                                         CMCore.getMap().get(IDStrings.ALUBRONZE).getLiquidItemStack(1)
                                 ),
-                                new CMToolMakeup(true, false, true),
+                                new CMToolMakeup(true, false, true, true, false, true),
                                 new CMForms(
                                         Materials.NUGGET_CAST_REINFORCED_SLIMESTEEL.getItemId(),
                                     "REINFORCED_SLIMESTEEL_INGOT",
@@ -148,7 +170,19 @@ public final class CMSlimefunWarfare {
                                                 "Incoming damage reduced and durability is lost",
                                                 "instead. Doesn't work while tool is broken."
                                         ),
-                                        traitPlates, traitGambeson, traitLinks)
+                                        new CMTrait(
+                                                CMTraits.PROP_PLATES,
+                                                SupportedPluginsManager.SLIMEFUN_WARFARE_NOTE,
+                                                "Regid Flexibility",
+                                                "Speed and Jump + 1. Damage Taken + 10%"
+                                        ),
+                                        null,
+                                        new CMTrait(
+                                                CMTraits.PROP_LINKS,
+                                                SupportedPluginsManager.SLIMEFUN_WARFARE_NOTE,
+                                                "Deflection",
+                                                "10% chance to ignore projectile damage."
+                                        ))
                         ));
 
         map.put(IDStrings.OSMIUM,
@@ -156,7 +190,7 @@ public final class CMSlimefunWarfare {
                         (
                                 new CMIdentity(IDStrings.OSMIUM, Objects.requireNonNull(SlimefunItem.getByID("OSMIUM_INGOT")).getItem(), SkullTextures.ALLOY_BLUE_PALE, "#8dd6c0"),
                                 null,
-                                new CMToolMakeup(true, false, true),
+                                new CMToolMakeup(true, false, true, true, false, true),
                                 new CMForms(
                                         Materials.NUGGET_CAST_OSMIUM.getItemId(),
                                     "OSMIUM_INGOT",
@@ -184,7 +218,20 @@ public final class CMSlimefunWarfare {
                                                 "Heavy Pommel",
                                                 "Struck mobs are slowed and cannot teleport."
                                         ),
-                                        traitPlates, traitGambeson, traitLinks)
+                                        new CMTrait(
+                                                CMTraits.PROP_PLATES,
+                                                SupportedPluginsManager.SLIMEFUN_WARFARE_NOTE,
+                                                "Increased Mass",
+                                                "Attackers will be knocked back.",
+                                                "Gives you slow when procced"
+                                        ),
+                                        null,
+                                        new CMTrait(
+                                                CMTraits.PROP_LINKS,
+                                                SupportedPluginsManager.SLIMEFUN_WARFARE_NOTE,
+                                                "Draw",
+                                                "5% chance to heal by damage dealt."
+                                        ))
                         ));
 
         map.put(IDStrings.OSMIUM_SUPERALLOY,
@@ -197,7 +244,7 @@ public final class CMSlimefunWarfare {
                                         map.get(IDStrings.REINFORCED_SLIMESTEEL).getLiquidItemStack(1),
                                         CMCore.getMap().get(IDStrings.REINFORCED).getLiquidItemStack(1)
                                 ),
-                                new CMToolMakeup(true, false, true),
+                                new CMToolMakeup(true, false, true, true, false, true),
                                 new CMForms(
                                         Materials.NUGGET_CAST_OSMIUM_SUPER_ALLOY.getItemId(),
                                     "OSMIUM_SUPERALLOY",
@@ -227,7 +274,21 @@ public final class CMSlimefunWarfare {
                                                 "Tuff Stuff",
                                                 "Knocks back anything hit and stuns."
                                         ),
-                                        traitPlates, traitGambeson, traitLinks)
+                                        new CMTrait(
+                                                CMTraits.PROP_PLATES,
+                                                SupportedPluginsManager.SLIMEFUN_WARFARE_NOTE,
+                                                "Tempest",
+                                                "When wearing 4 peices, chance when hit",
+                                                "to summon a tempest."
+                                        ),
+                                        null,
+                                        new CMTrait(
+                                                CMTraits.PROP_LINKS,
+                                                SupportedPluginsManager.SLIMEFUN_WARFARE_NOTE,
+                                                "Partial Decay",
+                                                "Chance to damage random nearby living",
+                                                "things. Will never kill."
+                                        ))
                         ));
 
         map.put(IDStrings.UNPATENTABLIUM,
@@ -235,7 +296,7 @@ public final class CMSlimefunWarfare {
                         (
                                 new CMIdentity(IDStrings.UNPATENTABLIUM, Objects.requireNonNull(SlimefunItem.getByID("UNPATENTABLIUM")).getItem(), SkullTextures.ALLOY_BLUE_PALE, "#8dd6c0"),
                                 null,
-                                new CMToolMakeup(true, false, true),
+                                new CMToolMakeup(true, false, true, true, false, true),
                                 new CMForms(
                                     Materials.NUGGET_CAST_UNPATENTABILUM.getItemId(),
                                     "UNPATENTABLIUM",
@@ -265,7 +326,21 @@ public final class CMSlimefunWarfare {
                                                 "Tuff Stuff",
                                                 "Knocks back anything hit and stuns."
                                         ),
-                                        traitPlates, traitGambeson, traitLinks)
+                                        new CMTrait(
+                                                CMTraits.PROP_PLATES,
+                                                SupportedPluginsManager.SLIMEFUN_WARFARE_NOTE,
+                                                "Intense Gaze",
+                                                "Entities you look at will teleport to you.",
+                                                "Does not work on players or bosses."
+                                        ),
+                                        null,
+                                        new CMTrait(
+                                                CMTraits.PROP_LINKS,
+                                                SupportedPluginsManager.SLIMEFUN_WARFARE_NOTE,
+                                                "KOTR",
+                                                "Chance, when hit, to summon a Knight",
+                                                "of the Round. (It's a Golem ;))"
+                                        ))
                         ));
 
         map.get(IDStrings.SEGGANESSON).addEvent(TraitEventType.TICK, TraitPartType.ROD, TickEvents::rodSegganesson);                                        // Blinding Speed

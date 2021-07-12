@@ -297,6 +297,7 @@ public final class Parts {
     public static final PartTemplate CHEST_PLATE = new PartTemplate(Categories.DUMMY, PART_CHEST_PLATES, DummySmeltery.TYPE, new ItemStack[9], "Chestplate Plates");
     public static final PartTemplate LEG_PLATE = new PartTemplate(Categories.DUMMY, PART_LEG_PLATES, DummySmeltery.TYPE, new ItemStack[9], "Legging Plates");
     public static final PartTemplate BOOT_PLATE = new PartTemplate(Categories.DUMMY, PART_BOOTS_PLATES, DummySmeltery.TYPE, new ItemStack[9], "Boot Plates");
+    public static final PartTemplate MAIL_LINKS = new PartTemplate(Categories.DUMMY, PART_MAIL_LINKS, DummySmeltery.TYPE, new ItemStack[9], "Mail Links");
 
     public static void set(SlimeTinker p) {
 

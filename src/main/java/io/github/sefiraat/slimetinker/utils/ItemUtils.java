@@ -349,6 +349,7 @@ public final class ItemUtils {
                         PersistentDataType.STRING
                 );
     }
+
     public static boolean isArmour(ItemStack itemStack) {
         return itemStack.hasItemMeta() &&
                 itemStack.getItemMeta().getPersistentDataContainer().has(

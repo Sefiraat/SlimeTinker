@@ -53,7 +53,7 @@ public class BlockBreakListener implements Listener {
             return;
         }
 
-        if (BlockUtils.isPlaced(block)) {
+        if (!BlockUtils.isValidBreakEvent(block)) {
             return;
         }
 

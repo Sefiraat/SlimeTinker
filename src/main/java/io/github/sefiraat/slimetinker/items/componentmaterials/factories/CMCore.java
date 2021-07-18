@@ -362,7 +362,7 @@ public final class CMCore {
                         (
                                 new CMIdentity(IDStrings.COAL, new ItemStack(Material.COAL), SkullTextures.ALLOY_BROWN, "#2d2e2d"),
                                 null,
-                                new CMToolMakeup(true, false, true),
+                                new CMToolMakeup(false, false, false),
                                 new CMForms(
                                     Materials.NUGGET_CAST_COAL.getItemId(),
                                     Material.COAL.toString(),

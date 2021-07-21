@@ -3,6 +3,7 @@ package io.github.sefiraat.slimetinker.items.componentmaterials;
 import io.github.mooy1.infinitylib.items.StackUtils;
 import io.github.sefiraat.slimetinker.items.Casts;
 import io.github.sefiraat.slimetinker.items.Dies;
+import io.github.sefiraat.slimetinker.items.Parts;
 import io.github.sefiraat.slimetinker.items.componentmaterials.cmelements.CMAlloy;
 import io.github.sefiraat.slimetinker.items.componentmaterials.cmelements.CMTraits;
 import io.github.sefiraat.slimetinker.items.componentmaterials.cmfactories.CMCore;
@@ -24,8 +25,22 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static io.github.sefiraat.slimetinker.utils.IDStrings.AXE;
+import static io.github.sefiraat.slimetinker.utils.IDStrings.BOOTS;
 import static io.github.sefiraat.slimetinker.utils.IDStrings.BRASS;
+import static io.github.sefiraat.slimetinker.utils.IDStrings.CHESTPLATE;
 import static io.github.sefiraat.slimetinker.utils.IDStrings.GOLD;
+import static io.github.sefiraat.slimetinker.utils.IDStrings.HEAD;
+import static io.github.sefiraat.slimetinker.utils.IDStrings.HELMET;
+import static io.github.sefiraat.slimetinker.utils.IDStrings.HOE;
+import static io.github.sefiraat.slimetinker.utils.IDStrings.LEGGINGS;
+import static io.github.sefiraat.slimetinker.utils.IDStrings.LINKS;
+import static io.github.sefiraat.slimetinker.utils.IDStrings.PICKAXE;
+import static io.github.sefiraat.slimetinker.utils.IDStrings.PLATE;
+import static io.github.sefiraat.slimetinker.utils.IDStrings.REPAIR;
+import static io.github.sefiraat.slimetinker.utils.IDStrings.ROD;
+import static io.github.sefiraat.slimetinker.utils.IDStrings.SHOVEL;
+import static io.github.sefiraat.slimetinker.utils.IDStrings.SWORD;
 
 public class CMManager {
 
@@ -141,75 +156,96 @@ public class CMManager {
 
         // Add melting recipes
         for (Map.Entry<String, ComponentMaterial> entry : MAP.entrySet()) {
+            
+            ComponentMaterial cm = entry.getValue();
+            String id = entry.getKey();
+
+            // Tools, armour and kits (referenced through dummy)
+            if (cm.isValidToolRod()) MAP_CAST_TOOLROD.put(cm, Parts.TOOL_ROD.getStack(id, ROD, null, cm.getColor()));
+            if (cm.isValidToolHead()) MAP_CAST_ARMOUR_MAIL.put(cm, Parts.MAIL_LINKS.getStack(id, LINKS, null, cm.getColor()));
+            
+            if (cm.isValidToolHead()) MAP_CAST_SWORDBLADE.put(cm, Parts.SWORD_BLADE.getStack(id, HEAD, SWORD, cm.getColor()));
+            if (cm.isValidToolHead()) MAP_CAST_HOEHEAD.put(cm, Parts.HOE_HEAD.getStack(id, HEAD, HOE, cm.getColor()));
+            if (cm.isValidToolHead()) MAP_CAST_AXEHEAD.put(cm, Parts.AXE_HEAD.getStack(id, HEAD, AXE, cm.getColor()));
+            if (cm.isValidToolHead()) MAP_CAST_PICKAXEHEAD.put(cm, Parts.PICKAXE_HEAD.getStack(id, HEAD, PICKAXE, cm.getColor()));
+            if (cm.isValidToolHead()) MAP_CAST_SHOVELHEAD.put(cm, Parts.SHOVEL_HEAD.getStack(id, HEAD, SHOVEL, cm.getColor()));
+            
+            if (cm.isValidToolHead()) MAP_CAST_ARMOUR_PLATES_HELM.put(cm, Parts.HELM_PLATE.getStack(id, PLATE, HELMET, cm.getColor()));
+            if (cm.isValidToolHead()) MAP_CAST_ARMOUR_PLATES_CHEST.put(cm, Parts.CHEST_PLATE.getStack(id, PLATE, CHESTPLATE, cm.getColor()));
+            if (cm.isValidToolHead()) MAP_CAST_ARMOUR_PLATES_LEGGINGS.put(cm, Parts.LEG_PLATE.getStack(id, PLATE, LEGGINGS, cm.getColor()));
+            if (cm.isValidToolHead()) MAP_CAST_ARMOUR_PLATES_BOOTS.put(cm, Parts.BOOT_PLATE.getStack(id, PLATE, BOOTS, cm.getColor()));
+            
+            if (cm.isValidToolHead()) MAP_CAST_REPAIRKIT.put(cm, Parts.REPAIR_KIT.getStack(id, REPAIR, cm.getColor())); // We use HEAD here are repair always goes by head material
+
 
             // Gems
-            if (entry.getValue().getFormGem() != null) {
-                ItemStack i = StackUtils.getItemByID(entry.getValue().getFormGem());
+            if (cm.getFormGem() != null) {
+                ItemStack i = StackUtils.getItemByID(cm.getFormGem());
                 if (i == null) {
-                    i = new ItemStack(Material.valueOf(entry.getValue().getFormGem()));
+                    i = new ItemStack(Material.valueOf(cm.getFormGem()));
                 }
-                MAP_CAST_GEM.put(entry.getValue(), i);
-                meltingRecipes.put(entry.getValue().getFormGem(), new MoltenResult(entry.getValue(), AMOUNT_GEM));
+                MAP_CAST_GEM.put(cm, i);
+                meltingRecipes.put(cm.getFormGem(), new MoltenResult(cm, AMOUNT_GEM));
             }
 
             // Blocks
-            if (entry.getValue().getFormBlock() != null) {
-                ItemStack i = StackUtils.getItemByID(entry.getValue().getFormBlock());
+            if (cm.getFormBlock() != null) {
+                ItemStack i = StackUtils.getItemByID(cm.getFormBlock());
                 if (i == null) {
-                    i = new ItemStack(Material.valueOf(entry.getValue().getFormBlock()));
+                    i = new ItemStack(Material.valueOf(cm.getFormBlock()));
                 }
-                MAP_CAST_BLOCK.put(entry.getValue(), i);
-                meltingRecipes.put(entry.getValue().getFormBlock(), new MoltenResult(entry.getValue(), AMOUNT_BLOCK));
+                MAP_CAST_BLOCK.put(cm, i);
+                meltingRecipes.put(cm.getFormBlock(), new MoltenResult(cm, AMOUNT_BLOCK));
             }
 
             // Ingots
-            if (entry.getValue().getFormIngot() != null) {
-                ItemStack i = StackUtils.getItemByID(entry.getValue().getFormIngot());
+            if (cm.getFormIngot() != null) {
+                ItemStack i = StackUtils.getItemByID(cm.getFormIngot());
                 if (i == null) {
-                    i = new ItemStack(Material.valueOf(entry.getValue().getFormIngot()));
+                    i = new ItemStack(Material.valueOf(cm.getFormIngot()));
                 }
-                MAP_CAST_INGOT.put(entry.getValue(), i);
-                meltingRecipes.put(entry.getValue().getFormIngot(), new MoltenResult(entry.getValue(), AMOUNT_INGOT));
+                MAP_CAST_INGOT.put(cm, i);
+                meltingRecipes.put(cm.getFormIngot(), new MoltenResult(cm, AMOUNT_INGOT));
             }
 
             // Nuggets
-            if (entry.getValue().getFormNugget() != null) {
-                ItemStack i = StackUtils.getItemByID(entry.getValue().getFormNugget());
+            if (cm.getFormNugget() != null) {
+                ItemStack i = StackUtils.getItemByID(cm.getFormNugget());
                 if (i == null) {
-                    i = new ItemStack(Material.valueOf(entry.getValue().getFormNugget()));
+                    i = new ItemStack(Material.valueOf(cm.getFormNugget()));
                 }
-                MAP_CAST_NUGGET.put(entry.getValue(), i);
-                meltingRecipes.put(entry.getValue().getFormNugget(), new MoltenResult(entry.getValue(), AMOUNT_NUGGET));
+                MAP_CAST_NUGGET.put(cm, i);
+                meltingRecipes.put(cm.getFormNugget(), new MoltenResult(cm, AMOUNT_NUGGET));
             }
 
             // Ores
-            if (entry.getValue().getFormOre() != null) {
-                meltingRecipes.put(entry.getValue().getFormOre(), new MoltenResult(entry.getValue(), AMOUNT_ORE));
+            if (cm.getFormOre() != null) {
+                meltingRecipes.put(cm.getFormOre(), new MoltenResult(cm, AMOUNT_ORE));
             }
 
             // Dusts
-            if (entry.getValue().getFormDust() != null) {
-                meltingRecipes.put(entry.getValue().getFormDust(), new MoltenResult(entry.getValue(), AMOUNT_DUST));
+            if (cm.getFormDust() != null) {
+                meltingRecipes.put(cm.getFormDust(), new MoltenResult(cm, AMOUNT_DUST));
             }
 
             // Helm
-            if (entry.getValue().getFormHelm() != null) {
-                meltingRecipes.put(entry.getValue().getFormHelm(), new MoltenResult(entry.getValue(), AMOUNT_HELM));
+            if (cm.getFormHelm() != null) {
+                meltingRecipes.put(cm.getFormHelm(), new MoltenResult(cm, AMOUNT_HELM));
             }
 
             // Chest
-            if (entry.getValue().getFormChest() != null) {
-                meltingRecipes.put(entry.getValue().getFormChest(), new MoltenResult(entry.getValue(), AMOUNT_CHEST));
+            if (cm.getFormChest() != null) {
+                meltingRecipes.put(cm.getFormChest(), new MoltenResult(cm, AMOUNT_CHEST));
             }
 
             // Leg
-            if (entry.getValue().getFormLeg() != null) {
-                meltingRecipes.put(entry.getValue().getFormLeg(), new MoltenResult(entry.getValue(), AMOUNT_LEG));
+            if (cm.getFormLeg() != null) {
+                meltingRecipes.put(cm.getFormLeg(), new MoltenResult(cm, AMOUNT_LEG));
             }
 
             // Boot
-            if (entry.getValue().getFormBoot() != null) {
-                meltingRecipes.put(entry.getValue().getFormBoot(), new MoltenResult(entry.getValue(), AMOUNT_BOOT));
+            if (cm.getFormBoot() != null) {
+                meltingRecipes.put(cm.getFormBoot(), new MoltenResult(cm, AMOUNT_BOOT));
             }
 
             // Set up the dies for creating casts

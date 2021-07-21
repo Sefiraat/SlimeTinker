@@ -129,7 +129,7 @@ public final class Dies {
                     "DIE_SWORD_BLADE",
                     SkullTextures.PART_SWORD_BLADE,
                     ThemeUtils.ThemeItemType.CAST,
-                    "Die: Stone Axe Head",
+                    "Die: Stone Sword Head",
                     ThemeUtils.PASSIVE + DIE_DESC
             );
 

@@ -14,6 +14,7 @@ import io.github.sefiraat.slimetinker.items.componentmaterials.cmelements.CMTrai
 import io.github.sefiraat.slimetinker.items.templates.PartTemplate;
 import io.github.sefiraat.slimetinker.items.workstations.smeltery.DummySmeltery;
 import io.github.sefiraat.slimetinker.items.workstations.workbench.Workbench;
+import io.github.sefiraat.slimetinker.utils.IDStrings;
 import io.github.sefiraat.slimetinker.utils.SkullTextures;
 import io.github.sefiraat.slimetinker.utils.ThemeUtils;
 import io.github.sefiraat.slimetinker.utils.enums.TraitEventType;
@@ -23,6 +24,9 @@ import me.mrCookieSlime.Slimefun.api.SlimefunItemStack;
 import net.md_5.bungee.api.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.persistence.PersistentDataContainer;
+import org.bukkit.persistence.PersistentDataType;
 
 import javax.annotation.Nullable;
 import java.util.EnumMap;
@@ -30,20 +34,13 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.Consumer;
 
-import static io.github.sefiraat.slimetinker.utils.IDStrings.AXE;
 import static io.github.sefiraat.slimetinker.utils.IDStrings.BOOTS;
 import static io.github.sefiraat.slimetinker.utils.IDStrings.CHESTPLATE;
-import static io.github.sefiraat.slimetinker.utils.IDStrings.HEAD;
 import static io.github.sefiraat.slimetinker.utils.IDStrings.HELMET;
-import static io.github.sefiraat.slimetinker.utils.IDStrings.HOE;
 import static io.github.sefiraat.slimetinker.utils.IDStrings.LEGGINGS;
 import static io.github.sefiraat.slimetinker.utils.IDStrings.LINKS;
-import static io.github.sefiraat.slimetinker.utils.IDStrings.PICKAXE;
 import static io.github.sefiraat.slimetinker.utils.IDStrings.PLATE;
 import static io.github.sefiraat.slimetinker.utils.IDStrings.REPAIR;
-import static io.github.sefiraat.slimetinker.utils.IDStrings.ROD;
-import static io.github.sefiraat.slimetinker.utils.IDStrings.SHOVEL;
-import static io.github.sefiraat.slimetinker.utils.IDStrings.SWORD;
 
 @Data
 public class ComponentMaterial {
@@ -110,24 +107,24 @@ public class ComponentMaterial {
 
         // Heads (and repair kits)
         if (cmToolMakeup.isValidHead()) {
-            CMManager.getMAP_CAST_SWORDBLADE().put(this, Parts.SWORD_BLADE.getStack(cmIdentity.getId(), HEAD, SWORD, getColor()));
-            new PartTemplate(Categories.PART_DICT, headStack(cmIdentity.getId(),  "SWORD", SkullTextures.PART_SWORD_BLADE), DummySmeltery.TYPE, basicRecipe(Casts.CAST_SWORDBLADE, getLiquidItemStack(CMManager.AMOUNT_SWORDBLADE)), cmIdentity.getId()).register(SlimeTinker.inst());
+            //CMManager.getMAP_CAST_SWORDBLADE().put(this, Parts.SWORD_BLADE.getStack(cmIdentity.getId(), HEAD, SWORD, getColor()));
+            new PartTemplate(Categories.PART_DICT, headStack(cmIdentity.getId(), "SWORD", SkullTextures.PART_SWORD_BLADE), DummySmeltery.TYPE, basicRecipe(Casts.CAST_SWORDBLADE, getLiquidItemStack(2)), cmIdentity.getId()).register(SlimeTinker.inst());
         }
         if (cmToolMakeup.isValidHead()) {
-            CMManager.getMAP_CAST_HOEHEAD().put(this, Parts.HOE_HEAD.getStack(cmIdentity.getId(), HEAD, HOE, getColor()));
-            new PartTemplate(Categories.PART_DICT, headStack(cmIdentity.getId(),  "HOE", SkullTextures.PART_HOE_HEAD), DummySmeltery.TYPE, basicRecipe(Casts.CAST_HOEHEAD, getLiquidItemStack(CMManager.AMOUNT_HOEHEAD)), cmIdentity.getId()).register(SlimeTinker.inst());
+            //CMManager.getMAP_CAST_HOEHEAD().put(this, Parts.HOE_HEAD.getStack(cmIdentity.getId(), HEAD, HOE, getColor()));
+            new PartTemplate(Categories.PART_DICT, headStack(cmIdentity.getId(), "HOE", SkullTextures.PART_HOE_HEAD), DummySmeltery.TYPE, basicRecipe(Casts.CAST_HOEHEAD, getLiquidItemStack(1)), cmIdentity.getId()).register(SlimeTinker.inst());
         }
         if (cmToolMakeup.isValidHead()) {
-            CMManager.getMAP_CAST_AXEHEAD().put(this, Parts.AXE_HEAD.getStack(cmIdentity.getId(), HEAD, AXE, getColor()));
-            new PartTemplate(Categories.PART_DICT, headStack(cmIdentity.getId(),  "AXE", SkullTextures.PART_AXE_HEAD), DummySmeltery.TYPE, basicRecipe(Casts.CAST_AXEHEAD, getLiquidItemStack(CMManager.AMOUNT_AXEHEAD)), cmIdentity.getId()).register(SlimeTinker.inst());
+            //CMManager.getMAP_CAST_AXEHEAD().put(this, Parts.AXE_HEAD.getStack(cmIdentity.getId(), HEAD, AXE, getColor()));
+            new PartTemplate(Categories.PART_DICT, headStack(cmIdentity.getId(), "AXE", SkullTextures.PART_AXE_HEAD), DummySmeltery.TYPE, basicRecipe(Casts.CAST_AXEHEAD, getLiquidItemStack(1)), cmIdentity.getId()).register(SlimeTinker.inst());
         }
         if (cmToolMakeup.isValidHead()) {
-            CMManager.getMAP_CAST_PICKAXEHEAD().put(this, Parts.PICKAXE_HEAD.getStack(cmIdentity.getId(), HEAD, PICKAXE, getColor()));
-            new PartTemplate(Categories.PART_DICT, headStack(cmIdentity.getId(),  "PICK", SkullTextures.PART_PICKAXE_HEAD), DummySmeltery.TYPE, basicRecipe(Casts.CAST_PICKAXEHEAD, getLiquidItemStack(CMManager.AMOUNT_PICKAXEHEAD)), cmIdentity.getId()).register(SlimeTinker.inst());
+            //CMManager.getMAP_CAST_PICKAXEHEAD().put(this, Parts.PICKAXE_HEAD.getStack(cmIdentity.getId(), HEAD, PICKAXE, getColor()));
+            new PartTemplate(Categories.PART_DICT, headStack(cmIdentity.getId(), "PICK", SkullTextures.PART_PICKAXE_HEAD), DummySmeltery.TYPE, basicRecipe(Casts.CAST_PICKAXEHEAD, getLiquidItemStack(1)), cmIdentity.getId()).register(SlimeTinker.inst());
         }
         if (cmToolMakeup.isValidHead()) {
-            CMManager.getMAP_CAST_SHOVELHEAD().put(this, Parts.SHOVEL_HEAD.getStack(cmIdentity.getId(), HEAD, SHOVEL, getColor()));
-            new PartTemplate(Categories.PART_DICT, headStack(cmIdentity.getId(),  "SHOVEL", SkullTextures.PART_SHOVEL_HEAD), DummySmeltery.TYPE, basicRecipe(Casts.CAST_SHOVELHEAD, getLiquidItemStack(CMManager.AMOUNT_SHOVELHEAD)), cmIdentity.getId()).register(SlimeTinker.inst());
+            //CMManager.getMAP_CAST_SHOVELHEAD().put(this, Parts.SHOVEL_HEAD.getStack(cmIdentity.getId(), HEAD, SHOVEL, getColor()));
+            new PartTemplate(Categories.PART_DICT, headStack(cmIdentity.getId(), "SHOVEL", SkullTextures.PART_SHOVEL_HEAD), DummySmeltery.TYPE, basicRecipe(Casts.CAST_SHOVELHEAD, getLiquidItemStack(1)), cmIdentity.getId()).register(SlimeTinker.inst());
         }
 
         // Binders
@@ -139,25 +136,25 @@ public class ComponentMaterial {
 
         // Tool Rods
         if (cmToolMakeup.isValidRod()) {
-            CMManager.getMAP_CAST_TOOLROD().put(this, Parts.TOOL_ROD.getStack(cmIdentity.getId(), ROD, null, getColor()));
-            new PartTemplate(Categories.PART_DICT, rodStack(cmIdentity.getId()), DummySmeltery.TYPE, basicRecipe(Casts.CAST_TOOLROD, getLiquidItemStack(CMManager.AMOUNT_TOOLROD)), cmIdentity.getId()).register(SlimeTinker.inst());
+            //CMManager.getMAP_CAST_TOOLROD().put(this, Parts.TOOL_ROD.getStack(cmIdentity.getId(), ROD, null, getColor()));
+            new PartTemplate(Categories.PART_DICT, rodStack(cmIdentity.getId()), DummySmeltery.TYPE, basicRecipe(Casts.CAST_TOOLROD, getLiquidItemStack(1)), cmIdentity.getId()).register(SlimeTinker.inst());
         }
 
         // Plates
         if (cmToolMakeup.isValidPlates()) {
-            CMManager.MAP_CAST_ARMOUR_PLATES_HELM.put(this, Parts.HELM_PLATE.getStack(cmIdentity.getId(), PLATE, HELMET, getColor()));
+            //CMManager.MAP_CAST_ARMOUR_PLATES_HELM.put(this, Parts.HELM_PLATE.getStack(cmIdentity.getId(), PLATE, HELMET, getColor()));
             new PartTemplate(Categories.PART_DICT, platesStack(cmIdentity.getId(),  "HELMET", SkullTextures.PART_HELM_PLATES), DummySmeltery.TYPE, basicRecipe(Casts.CAST_HELM_PLATE, getLiquidItemStack(CMManager.AMOUNT_ARM_HELM)), cmIdentity.getId()).register(SlimeTinker.inst());
         }
         if (cmToolMakeup.isValidPlates()) {
-            CMManager.MAP_CAST_ARMOUR_PLATES_CHEST.put(this, Parts.CHEST_PLATE.getStack(cmIdentity.getId(), PLATE, CHESTPLATE, getColor()));
+            //CMManager.MAP_CAST_ARMOUR_PLATES_CHEST.put(this, Parts.CHEST_PLATE.getStack(cmIdentity.getId(), PLATE, CHESTPLATE, getColor()));
             new PartTemplate(Categories.PART_DICT, platesStack(cmIdentity.getId(),  "CHESTPLATE", SkullTextures.PART_CHEST_PLATES), DummySmeltery.TYPE, basicRecipe(Casts.CAST_CHEST_PLATE, getLiquidItemStack(CMManager.AMOUNT_ARM_CHEST)), cmIdentity.getId()).register(SlimeTinker.inst());
         }
         if (cmToolMakeup.isValidPlates()) {
-            CMManager.MAP_CAST_ARMOUR_PLATES_LEGGINGS.put(this, Parts.LEG_PLATE.getStack(cmIdentity.getId(), PLATE, LEGGINGS, getColor()));
+            //CMManager.MAP_CAST_ARMOUR_PLATES_LEGGINGS.put(this, Parts.LEG_PLATE.getStack(cmIdentity.getId(), PLATE, LEGGINGS, getColor()));
             new PartTemplate(Categories.PART_DICT, platesStack(cmIdentity.getId(),  "LEGGINGS", SkullTextures.PART_LEG_PLATES), DummySmeltery.TYPE, basicRecipe(Casts.CAST_LEG_PLATE, getLiquidItemStack(CMManager.AMOUNT_ARM_LEG)), cmIdentity.getId()).register(SlimeTinker.inst());
         }
         if (cmToolMakeup.isValidPlates()) {
-            CMManager.MAP_CAST_ARMOUR_PLATES_BOOTS.put(this, Parts.BOOT_PLATE.getStack(cmIdentity.getId(), PLATE, BOOTS, getColor()));
+            //CMManager.MAP_CAST_ARMOUR_PLATES_BOOTS.put(this, Parts.BOOT_PLATE.getStack(cmIdentity.getId(), PLATE, BOOTS, getColor()));
             new PartTemplate(Categories.PART_DICT, platesStack(cmIdentity.getId(),  "BOOTS", SkullTextures.PART_BOOTS_PLATES), DummySmeltery.TYPE, basicRecipe(Casts.CAST_BOOT_PLATE, getLiquidItemStack(CMManager.AMOUNT_ARM_BOOT)), cmIdentity.getId()).register(SlimeTinker.inst());
         }
 
@@ -170,13 +167,13 @@ public class ComponentMaterial {
 
         // Mail Links
         if (cmToolMakeup.isValidLinks()) {
-            CMManager.getMAP_CAST_ARMOUR_MAIL().put(this, Parts.MAIL_LINKS.getStack(cmIdentity.getId(), LINKS, null, getColor()));
+            //CMManager.getMAP_CAST_ARMOUR_MAIL().put(this, Parts.MAIL_LINKS.getStack(cmIdentity.getId(), LINKS, null, getColor()));
             new PartTemplate(Categories.PART_DICT, linksStack(cmIdentity.getId()), DummySmeltery.TYPE, basicRecipe(Casts.CAST_MAIL_LINK, getLiquidItemStack(CMManager.AMOUNT_ARM_LINKS)), cmIdentity.getId()).register(SlimeTinker.inst());
         }
 
         // Repair Kit
         if (cmToolMakeup.isValidHead() || cmToolMakeup.isValidPlates()) {
-            CMManager.getMAP_CAST_REPAIRKIT().put(this, Parts.REPAIR_KIT.getStack(cmIdentity.getId(), REPAIR, getColor()));
+            //CMManager.getMAP_CAST_REPAIRKIT().put(this, Parts.REPAIR_KIT.getStack(cmIdentity.getId(), REPAIR, getColor()));
             new PartTemplate(Categories.PART_DICT, repairStack(cmIdentity.getId()), DummySmeltery.TYPE, basicRecipe(Casts.CAST_REPAIRKIT, getLiquidItemStack(CMManager.AMOUNT_KIT)), cmIdentity.getId()).register(SlimeTinker.inst());
         }
 
@@ -193,15 +190,23 @@ public class ComponentMaterial {
         );
     }
 
+    // TODO This is now very disjointed. Needs all wrapping in - to resolve the this == this issue
     public SlimefunItemStack bindingStack(String name) {
         String titName = ThemeUtils.toTitleCase(name);
-        return ThemeUtils.themedItemStack(
+        SlimefunItemStack i = ThemeUtils.themedItemStack(
                 "PART_BINDING_" + name,
                 SkullTextures.PART_BINDING,
                 ThemeUtils.ThemeItemType.PART,
                 getColor() + titName + ThemeUtils.ITEM_PART +  " Binding",
                 ThemeUtils.PASSIVE + "A binding made of " + titName + "."
         );
+        ItemMeta im = i.getItemMeta();
+        assert im != null;
+        PersistentDataContainer c = im.getPersistentDataContainer();
+        c.set(SlimeTinker.inst().getKeys().getPartInfoMaterialType(), PersistentDataType.STRING, name);
+        c.set(SlimeTinker.inst().getKeys().getPartInfoClassType(), PersistentDataType.STRING, IDStrings.BINDING);
+        i.setItemMeta(im);
+        return i;
     }
 
     public SlimefunItemStack rodStack(String name) {
@@ -226,15 +231,23 @@ public class ComponentMaterial {
         );
     }
 
+    // TODO This is now very disjointed. Needs all wrapping in - to resolve the this == this issue
     public SlimefunItemStack gambesonStack(String name) {
         String titName = ThemeUtils.toTitleCase(name);
-        return ThemeUtils.themedItemStack(
+        SlimefunItemStack i = ThemeUtils.themedItemStack(
                 "PART_GAMBESON_" + name,
                 SkullTextures.PART_GAMBESON,
                 ThemeUtils.ThemeItemType.PART,
                 getColor() + titName + ThemeUtils.ITEM_PART +  " Gambeson",
                 ThemeUtils.PASSIVE + "A gambeson made of " + titName + "."
         );
+        ItemMeta im = i.getItemMeta();
+        assert im != null;
+        PersistentDataContainer c = im.getPersistentDataContainer();
+        c.set(SlimeTinker.inst().getKeys().getPartInfoMaterialType(), PersistentDataType.STRING, name);
+        c.set(SlimeTinker.inst().getKeys().getPartInfoClassType(), PersistentDataType.STRING, IDStrings.GAMBESON);
+        i.setItemMeta(im);
+        return i;
     }
 
     public SlimefunItemStack linksStack(String name) {

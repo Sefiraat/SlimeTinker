@@ -6,12 +6,12 @@ import io.github.sefiraat.slimetinker.events.EntityDamageEvents;
 import io.github.sefiraat.slimetinker.events.PlayerDamagedEvents;
 import io.github.sefiraat.slimetinker.events.TickEvents;
 import io.github.sefiraat.slimetinker.items.Materials;
+import io.github.sefiraat.slimetinker.items.componentmaterials.ComponentMaterial;
 import io.github.sefiraat.slimetinker.items.componentmaterials.cmelements.CMForms;
 import io.github.sefiraat.slimetinker.items.componentmaterials.cmelements.CMIdentity;
 import io.github.sefiraat.slimetinker.items.componentmaterials.cmelements.CMToolMakeup;
 import io.github.sefiraat.slimetinker.items.componentmaterials.cmelements.CMTrait;
 import io.github.sefiraat.slimetinker.items.componentmaterials.cmelements.CMTraits;
-import io.github.sefiraat.slimetinker.items.componentmaterials.ComponentMaterial;
 import io.github.sefiraat.slimetinker.managers.SupportedPluginsManager;
 import io.github.sefiraat.slimetinker.utils.IDStrings;
 import io.github.sefiraat.slimetinker.utils.SkullTextures;
@@ -447,8 +447,6 @@ public final class CMLiteXpansion {
                                                 "Click to charge a nearby block."
                                         ))
                         ));
-
-
 
         map.get(IDStrings.SCRAP).addEvent(TraitEventType.ENTITY_DAMAGED, TraitPartType.ROD, EntityDamageEvents::headCopper);                            // Brains not brawn - Damage             |
         map.get(IDStrings.SCRAP).addEvent(TraitEventType.BLOCK_BREAK, TraitPartType.ROD, BlockBreakEvents::headCopper);                                 // Brains not brawn - Block Break        | - CO Copper Head

@@ -23,6 +23,7 @@ import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataType;
 import org.jetbrains.annotations.NotNull;
 
@@ -64,9 +65,11 @@ public class ArmourTable extends AbstractContainer {
 
     protected void previewCraft() {
         if (menu.hasViewer()) {
+
             ItemStack plates = menu.getItemInSlot(INPUT_PLATES);
             ItemStack gambeson = menu.getItemInSlot(INPUT_GAMBESON);
             ItemStack links = menu.getItemInSlot(INPUT_MAIL_LINK);
+
             if (plates == null || gambeson == null || links == null) { // Missing one or more items
                 clearPreview();
                 return;
@@ -77,7 +80,7 @@ public class ArmourTable extends AbstractContainer {
             }
 
             // All items are valid, lets preview the item!
-            menu.replaceExistingItem(PREVIEW_SLOT, getTool());
+            menu.replaceExistingItem(PREVIEW_SLOT, getTool(plates, gambeson, links));
             return;
 
         }
@@ -88,40 +91,46 @@ public class ArmourTable extends AbstractContainer {
         menu.replaceExistingItem(PREVIEW_SLOT, GUIItems.menuPreview());
     }
 
-    protected ItemStack getTool() {
+    protected ItemStack getTool(ItemStack p, ItemStack g, ItemStack l) {
 
-        ItemStack plates = menu.getItemInSlot(INPUT_PLATES);
-        ItemStack gambeson = menu.getItemInSlot(INPUT_GAMBESON);
-        ItemStack links = menu.getItemInSlot(INPUT_MAIL_LINK);
+        ItemMeta pm = p.getItemMeta();
+        ItemMeta gm = g.getItemMeta();
+        ItemMeta lm = l.getItemMeta();
 
-        ItemStack itemStack;
+        ItemStack armour;
 
         ArmourDefinition armourDefinition = new ArmourDefinition(
-                plates.getItemMeta().getPersistentDataContainer().get(SlimeTinker.inst().getKeys().getPartInfoClassType(), PersistentDataType.STRING),
-                plates.getItemMeta().getPersistentDataContainer().get(SlimeTinker.inst().getKeys().getPartInfoType(), PersistentDataType.STRING),
-                plates.getItemMeta().getPersistentDataContainer().get(SlimeTinker.inst().getKeys().getPartInfoMaterialType(), PersistentDataType.STRING),
-                gambeson.getItemMeta().getPersistentDataContainer().get(SlimeTinker.inst().getKeys().getPartInfoMaterialType(), PersistentDataType.STRING),
-                links.getItemMeta().getPersistentDataContainer().get(SlimeTinker.inst().getKeys().getPartInfoMaterialType(), PersistentDataType.STRING)
+                pm.getPersistentDataContainer().get(SlimeTinker.inst().getKeys().getPartInfoClassType(), PersistentDataType.STRING),
+                pm.getPersistentDataContainer().get(SlimeTinker.inst().getKeys().getPartInfoType(), PersistentDataType.STRING),
+                pm.getPersistentDataContainer().get(SlimeTinker.inst().getKeys().getPartInfoMaterialType(), PersistentDataType.STRING),
+                gm.getPersistentDataContainer().get(SlimeTinker.inst().getKeys().getPartInfoMaterialType(), PersistentDataType.STRING),
+                lm.getPersistentDataContainer().get(SlimeTinker.inst().getKeys().getPartInfoMaterialType(), PersistentDataType.STRING)
         );
+
+        SlimeTinker.inst().getLogger().info(armourDefinition.getClassType());
+        SlimeTinker.inst().getLogger().info(armourDefinition.getGambesonMaterial());
+        SlimeTinker.inst().getLogger().info(armourDefinition.getLinksMaterial());
+        SlimeTinker.inst().getLogger().info(armourDefinition.getPlateMaterial());
+        SlimeTinker.inst().getLogger().info(armourDefinition.getPartType());
 
         switch (armourDefinition.getPartType()) {
             case IDStrings.HELMET:
-                itemStack = Guide.HELM.getStack(armourDefinition);
+                armour = Guide.HELM.getStack(armourDefinition);
                 break;
             case IDStrings.CHESTPLATE:
-                itemStack = Guide.CHEST.getStack(armourDefinition);
+                armour = Guide.CHEST.getStack(armourDefinition);
                 break;
             case IDStrings.LEGGINGS:
-                itemStack = Guide.LEG.getStack(armourDefinition);
+                armour = Guide.LEG.getStack(armourDefinition);
                 break;
             case IDStrings.BOOTS:
-                itemStack = Guide.BOOT.getStack(armourDefinition);
+                armour = Guide.BOOT.getStack(armourDefinition);
                 break;
             default:
                 throw new IllegalStateException("Unexpected value: " + armourDefinition.getClassType());
         }
 
-        return itemStack;
+        return armour;
     }
 
     @SuppressWarnings("BooleanMethodIsAlwaysInverted")
@@ -161,7 +170,7 @@ public class ArmourTable extends AbstractContainer {
             return false;
         }
 
-        blockMenu.pushItem(getTool().clone(), OUTPUT_SLOT);
+        blockMenu.pushItem(getTool(plates, gambeson, links).clone(), OUTPUT_SLOT);
         blockMenu.getItemInSlot(INPUT_PLATES).setAmount(blockMenu.getItemInSlot(INPUT_PLATES).getAmount() - 1);
         blockMenu.getItemInSlot(INPUT_GAMBESON).setAmount(blockMenu.getItemInSlot(INPUT_GAMBESON).getAmount() - 1);
         blockMenu.getItemInSlot(INPUT_MAIL_LINK).setAmount(blockMenu.getItemInSlot(INPUT_MAIL_LINK).getAmount() - 1);

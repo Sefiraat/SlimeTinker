@@ -24,11 +24,9 @@ public class EffectRunnable extends BukkitRunnable {
     @Override
     public void run() {
         for (Player player : SlimeTinker.inst().getServer().getOnlinePlayers()) {
-
             ItemStack heldItem = player.getInventory().getItemInMainHand();
-
             if (!ItemUtils.isTool(heldItem)) {
-                return;
+                continue;
             }
             Map<PotionEffectType, Integer> potionEffects = new HashMap<>();
             EventFriend friend = new EventFriend();

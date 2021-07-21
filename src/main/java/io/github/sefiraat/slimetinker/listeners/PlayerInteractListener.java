@@ -32,7 +32,6 @@ public class PlayerInteractListener implements Listener {
     @EventHandler
     public void onEntityDamaged(PlayerInteractEvent event) {
 
-
         Player player = event.getPlayer();
         ItemStack heldItem = player.getInventory().getItemInMainHand();
 
@@ -116,7 +115,6 @@ public class PlayerInteractListener implements Listener {
                     return;
                 }
             }
-            SlimeTinker.inst().getLogger().info(c.get(keyLoc, PersistentDataType.STRING));
             if (!c.has(keyLoc, PersistentDataType.STRING)) {
                 p.sendMessage(ThemeUtils.WARNING + "You have not yet set a location to recall to!");
                 return;

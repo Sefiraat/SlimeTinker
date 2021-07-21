@@ -252,7 +252,7 @@ public final class GUIItems {
 
     public static CustomItem menuCraftSwap() {
         return new CustomItem(
-                Material.SCAFFOLDING,
+                Material.LOOM,
                 ThemeUtils.GUI_HEAD + "Swap out part",
                 "",
                 ThemeUtils.PASSIVE + "Swap tool parts."

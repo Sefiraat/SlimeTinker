@@ -2,6 +2,7 @@ package io.github.sefiraat.slimetinker.items;
 
 import io.github.sefiraat.slimetinker.SlimeTinker;
 import io.github.sefiraat.slimetinker.categories.Categories;
+import io.github.sefiraat.slimetinker.items.templates.ArmourTemplate;
 import io.github.sefiraat.slimetinker.items.templates.ToolTemplate;
 import io.github.sefiraat.slimetinker.items.templates.ToolTemplateExplosive;
 import io.github.sefiraat.slimetinker.items.workstations.armourtable.DummyArmourTable;
@@ -402,10 +403,10 @@ public final class Guide {
     public static final ToolTemplateExplosive EXP_HOE = new ToolTemplateExplosive(Categories.DUMMY, TOOL_HOE_EXP, DummyToolTable.TYPE, new ItemStack[9]);
     public static final ToolTemplateExplosive EXP_SWORD = new ToolTemplateExplosive(Categories.DUMMY, TOOL_SWORD_EXP, DummyToolTable.TYPE, new ItemStack[9]);
 
-    public static final ToolTemplate HELM = new ToolTemplate(Categories.DUMMY, AMROUR_HELM, DummyToolTable.TYPE, new ItemStack[9]);
-    public static final ToolTemplate CHEST = new ToolTemplate(Categories.DUMMY, ARMOUR_CHESTPLATE, DummyToolTable.TYPE, new ItemStack[9]);
-    public static final ToolTemplate LEG = new ToolTemplate(Categories.DUMMY, ARMOUR_LEGGINGS, DummyToolTable.TYPE, new ItemStack[9]);
-    public static final ToolTemplate BOOT = new ToolTemplate(Categories.DUMMY, ARMOUR_BOOTS, DummyToolTable.TYPE, new ItemStack[9]);
+    public static final ArmourTemplate HELM = new ArmourTemplate(Categories.DUMMY, AMROUR_HELM, DummyToolTable.TYPE, new ItemStack[9]);
+    public static final ArmourTemplate CHEST = new ArmourTemplate(Categories.DUMMY, ARMOUR_CHESTPLATE, DummyToolTable.TYPE, new ItemStack[9]);
+    public static final ArmourTemplate LEG = new ArmourTemplate(Categories.DUMMY, ARMOUR_LEGGINGS, DummyToolTable.TYPE, new ItemStack[9]);
+    public static final ArmourTemplate BOOT = new ArmourTemplate(Categories.DUMMY, ARMOUR_BOOTS, DummyToolTable.TYPE, new ItemStack[9]);
 
     public static void set(SlimeTinker p) {
         

@@ -2,6 +2,7 @@ package io.github.sefiraat.slimetinker.items;
 
 import io.github.sefiraat.slimetinker.SlimeTinker;
 import io.github.sefiraat.slimetinker.categories.Categories;
+import io.github.sefiraat.slimetinker.items.workstations.armourtable.ArmourTable;
 import io.github.sefiraat.slimetinker.items.workstations.modificationstation.ModificationStation;
 import io.github.sefiraat.slimetinker.items.workstations.repairbench.RepairBench;
 import io.github.sefiraat.slimetinker.items.workstations.smeltery.DummySmelteryMulti;
@@ -56,6 +57,16 @@ public final class Workstations {
                     "Combines parts into tools."
             );
 
+    // Armour Table
+    public static final SlimefunItemStack TINKERS_ARMOUR_TABLE =
+            ThemeUtils.themedItemStack(
+                    "TINKERS_ARMOUR_TABLE",
+                    Material.SMITHING_TABLE,
+                    ThemeUtils.ThemeItemType.MACHINE,
+                    "Tinker's Armour Table",
+                    "Combines parts into armour pieces."
+            );
+
     // Repair
     public static final SlimefunItemStack TINKERS_REPAIR_BENCH =
             ThemeUtils.themedItemStack(
@@ -101,6 +112,11 @@ public final class Workstations {
             new ItemStack(Material.OAK_PLANKS),   Workstations.TINKERS_WORKBENCH,   new ItemStack(Material.OAK_PLANKS),
             new ItemStack(Material.OAK_PLANKS),   SlimefunItems.POWER_CRYSTAL,   new ItemStack(Material.OAK_PLANKS)
     };
+    protected static final ItemStack[] RECIPE_TINKERS_ARMOUR_TABLE = new ItemStack[] {
+            Materials.BLOCK_CAST_DAMASCUS_STEEL,   Materials.BLOCK_CAST_DAMASCUS_STEEL,   Materials.BLOCK_CAST_DAMASCUS_STEEL,
+            new ItemStack(Material.OAK_PLANKS),   Workstations.TINKERS_WORKBENCH,   new ItemStack(Material.OAK_PLANKS),
+            new ItemStack(Material.OAK_PLANKS),   SlimefunItems.POWER_CRYSTAL,   new ItemStack(Material.OAK_PLANKS)
+    };
     protected static final ItemStack[] RECIPE_TINKERS_REPAIR_BENCH = new ItemStack[] {
             Materials.BLOCK_CAST_ALUMINUM,   Materials.BLOCK_CAST_ALUMINUM,   Materials.BLOCK_CAST_ALUMINUM,
             new ItemStack(Material.OAK_PLANKS),   Workstations.TINKERS_WORKBENCH,   new ItemStack(Material.OAK_PLANKS),
@@ -126,6 +142,7 @@ public final class Workstations {
 
         new UnplaceableBlock(Categories.WORKSTATIONS, TINKERS_SMELTERY_CORE, DummySmelteryMulti.TYPE, RECIPE_TINKERS_SMELTERY_MULTI).register(p);
         new ToolTable(Categories.WORKSTATIONS, TINKERS_TABLE, Workbench.TYPE, RECIPE_TINKERS_TABLE).register(p);
+        new ArmourTable(Categories.WORKSTATIONS, TINKERS_ARMOUR_TABLE, Workbench.TYPE, RECIPE_TINKERS_ARMOUR_TABLE).register(p);
         new RepairBench(Categories.WORKSTATIONS, TINKERS_REPAIR_BENCH, Workbench.TYPE, RECIPE_TINKERS_REPAIR_BENCH).register(p);
         new SwappingStation(Categories.WORKSTATIONS, TINKERS_SWAPPING_STATION, Workbench.TYPE, RECIPE_TINKERS_SWAPPING_STATION).register(p);
         new ModificationStation(Categories.WORKSTATIONS, TINKERS_MOD_STATION, Workbench.TYPE, RECIPE_TINKERS_MOD_STATION).register(p);

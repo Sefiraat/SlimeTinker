@@ -258,6 +258,14 @@ public final class TinkersSmelteryCache extends AbstractCache {
         ComponentMaterial componentMaterial = CMManager.getById(metalID);
         CastResult result = SlimeTinker.inst().getCmManager().castingRecipes.get(StackUtils.getIDorType(inputItem));
 
+        SlimeTinker.inst().getLogger().info(componentMaterial.getId());
+        SlimeTinker.inst().getLogger().info(result.getId());
+
+        for (Map.Entry<ComponentMaterial, ItemStack> entry : result.getOutputs().entrySet()) {
+            SlimeTinker.inst().getLogger().info("  > " + entry.getKey().getId());
+            SlimeTinker.inst().getLogger().info("  > " + entry.getValue().getItemMeta().getDisplayName());
+        }
+
         // Cast valid, but this cast and metal combination doesn't work
         if (!result.getOutputs().containsKey(componentMaterial)) {
             player.sendMessage(ThemeUtils.WARNING + "The selected metal cannot be shaped into the selected cast.");

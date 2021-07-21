@@ -10,7 +10,6 @@ import lombok.experimental.UtilityClass;
 import me.mrCookieSlime.Slimefun.api.SlimefunItemStack;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
-import sun.awt.image.ImageWatched;
 
 @UtilityClass
 public final class Dies {

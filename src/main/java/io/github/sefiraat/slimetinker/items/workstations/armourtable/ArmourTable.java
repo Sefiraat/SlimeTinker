@@ -4,7 +4,7 @@ import io.github.mooy1.infinitylib.items.StackUtils;
 import io.github.mooy1.infinitylib.slimefun.AbstractContainer;
 import io.github.sefiraat.slimetinker.SlimeTinker;
 import io.github.sefiraat.slimetinker.items.Guide;
-import io.github.sefiraat.slimetinker.items.templates.ToolDefinition;
+import io.github.sefiraat.slimetinker.items.templates.ArmourDefinition;
 import io.github.sefiraat.slimetinker.utils.GUIItems;
 import io.github.sefiraat.slimetinker.utils.IDStrings;
 import io.github.sefiraat.slimetinker.utils.ThemeUtils;
@@ -28,7 +28,7 @@ import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nonnull;
 
-public class ToolTable extends AbstractContainer {
+public class ArmourTable extends AbstractContainer {
 
     private static final int[] BACKGROUND_SLOTS = {0,8,9,17,18,26,27,31,35,36,44,45,49,53};
     private static final int[] BACKGROUND_INPUTS = {1,3,5,7,10,12,14,16,19,20,21,22,23,24,25};
@@ -46,7 +46,7 @@ public class ToolTable extends AbstractContainer {
 
     private BlockMenu menu;
 
-    public ToolTable(Category category, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
+    public ArmourTable(Category category, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(category, item, recipeType, recipe);
 
         addItemHandler(new BlockTicker() {
@@ -71,7 +71,7 @@ public class ToolTable extends AbstractContainer {
                 clearPreview();
                 return;
             }
-            if (!validateClass(plates, IDStrings.HEAD) || !validateBinder(gambeson) || !validateClass(links, IDStrings.ROD)) { // One or more items are not the correct part
+            if (!validate(plates, gambeson, links)) { // One or more items are not the correct part
                 clearPreview();
                 return;
             }
@@ -96,7 +96,7 @@ public class ToolTable extends AbstractContainer {
 
         ItemStack itemStack;
 
-        ToolDefinition toolDefinition = new ToolDefinition(
+        ArmourDefinition armourDefinition = new ArmourDefinition(
                 plates.getItemMeta().getPersistentDataContainer().get(SlimeTinker.inst().getKeys().getPartInfoClassType(), PersistentDataType.STRING),
                 plates.getItemMeta().getPersistentDataContainer().get(SlimeTinker.inst().getKeys().getPartInfoType(), PersistentDataType.STRING),
                 plates.getItemMeta().getPersistentDataContainer().get(SlimeTinker.inst().getKeys().getPartInfoMaterialType(), PersistentDataType.STRING),
@@ -104,52 +104,21 @@ public class ToolTable extends AbstractContainer {
                 links.getItemMeta().getPersistentDataContainer().get(SlimeTinker.inst().getKeys().getPartInfoMaterialType(), PersistentDataType.STRING)
         );
 
-        if (
-                toolDefinition.getHeadMaterial().equals(IDStrings.REINFORCED) ||
-                toolDefinition.getRodMaterial().equals(IDStrings.HARD) ||
-                toolDefinition.getHeadMaterial().equals(IDStrings.SINGINFINITY) ||
-                toolDefinition.getHeadMaterial().equals(IDStrings.OSMIUM)
-        ) { // Reinforced Head/Hard Rod tools are explosive
-            switch (toolDefinition.getPartType()) {
-                case IDStrings.SHOVEL:
-                    itemStack = Guide.EXP_SHOVEL.getStack(toolDefinition);
-                    break;
-                case IDStrings.PICKAXE:
-                    itemStack = Guide.EXP_PICKAXE.getStack(toolDefinition);
-                    break;
-                case IDStrings.AXE:
-                    itemStack = Guide.EXP_AXE.getStack(toolDefinition);
-                    break;
-                case IDStrings.HOE:
-                    itemStack = Guide.EXP_HOE.getStack(toolDefinition);
-                    break;
-                case IDStrings.SWORD:
-                    itemStack = Guide.EXP_SWORD.getStack(toolDefinition);
-                    break;
-                default:
-                    throw new IllegalStateException("Unexpected value: " + toolDefinition.getClassType());
-            }
-        } else {
-            switch (toolDefinition.getPartType()) {
-                case IDStrings.SHOVEL:
-                    itemStack = Guide.SHOVEL.getStack(toolDefinition);
-                    break;
-                case IDStrings.PICKAXE:
-                    itemStack = Guide.PICKAXE.getStack(toolDefinition);
-                    break;
-                case IDStrings.AXE:
-                    itemStack = Guide.AXE.getStack(toolDefinition);
-                    break;
-                case IDStrings.HOE:
-                    itemStack = Guide.HOE.getStack(toolDefinition);
-                    break;
-                case IDStrings.SWORD:
-                    itemStack = Guide.SWORD.getStack(toolDefinition);
-                    break;
-                default:
-                    throw new IllegalStateException("Unexpected value: " + toolDefinition.getClassType());
-            }
-
+        switch (armourDefinition.getPartType()) {
+            case IDStrings.HELMET:
+                itemStack = Guide.HELM.getStack(armourDefinition);
+                break;
+            case IDStrings.CHESTPLATE:
+                itemStack = Guide.CHEST.getStack(armourDefinition);
+                break;
+            case IDStrings.LEGGINGS:
+                itemStack = Guide.LEG.getStack(armourDefinition);
+                break;
+            case IDStrings.BOOTS:
+                itemStack = Guide.BOOT.getStack(armourDefinition);
+                break;
+            default:
+                throw new IllegalStateException("Unexpected value: " + armourDefinition.getClassType());
         }
 
         return itemStack;
@@ -169,25 +138,25 @@ public class ToolTable extends AbstractContainer {
     }
 
     @SuppressWarnings("BooleanMethodIsAlwaysInverted")
-    protected boolean validateBinder(ItemStack itemStack) {
+    protected boolean validateGambeson(ItemStack itemStack) {
         if (itemStack == null || !itemStack.hasItemMeta()) { // No item
             return false;
         }
-        return StackUtils.getIDorType(itemStack).startsWith("PART_BINDING_");
+        return StackUtils.getIDorType(itemStack).startsWith("PART_GAMBESON_");
     }
 
     @SuppressWarnings("SameReturnValue")
     protected boolean craft(BlockMenu blockMenu, Player player) {
 
-        ItemStack head = blockMenu.getItemInSlot(INPUT_PLATES);
-        ItemStack binding = blockMenu.getItemInSlot(INPUT_GAMBESON);
-        ItemStack rod = blockMenu.getItemInSlot(INPUT_MAIL_LINK);
+        ItemStack plates = blockMenu.getItemInSlot(INPUT_PLATES);
+        ItemStack gambeson = blockMenu.getItemInSlot(INPUT_GAMBESON);
+        ItemStack links = blockMenu.getItemInSlot(INPUT_MAIL_LINK);
 
-        if (head == null || binding == null || rod == null) { // Missing one or more items
+        if (plates == null || gambeson == null || links == null) { // Missing one or more items
             player.sendMessage(ThemeUtils.ERROR + "Not all items present");
             return false;
         }
-        if (!validateClass(head, IDStrings.HEAD) || !validateBinder(binding) || !validateClass(rod, IDStrings.ROD)) { // One or more items are not the correct part
+        if (!validate(plates, gambeson, links)) { // One or more items are not the correct part
             player.sendMessage(ThemeUtils.WARNING + "One or more items are either not Tinker's parts or in the wrong slot?");
             return false;
         }
@@ -201,6 +170,10 @@ public class ToolTable extends AbstractContainer {
 
     }
 
+    private boolean validate(ItemStack plates, ItemStack gambeson, ItemStack links) {
+        return validateClass(plates, IDStrings.PLATE) || !validateGambeson(gambeson) || !validateClass(links, IDStrings.LINKS);
+    }
+
     @Override
     protected void setupMenu(BlockMenuPreset blockMenuPreset) {
 
@@ -210,9 +183,9 @@ public class ToolTable extends AbstractContainer {
         blockMenuPreset.drawBackground(GUIItems.menuBackgroundPreview(), BACKGROUND_PREVIEW);
 
         blockMenuPreset.addItem(CRAFT_BUTTON, GUIItems.menuCraftTable());
-        blockMenuPreset.addItem(MARKER_MAIL_LINK, GUIItems.menuMarkerRod());
-        blockMenuPreset.addItem(MARKER_GAMBESON, GUIItems.menuMarkerBinder());
-        blockMenuPreset.addItem(MARKER_PLATES, GUIItems.menuMarkerHead());
+        blockMenuPreset.addItem(MARKER_MAIL_LINK, GUIItems.menuMarkerLinks());
+        blockMenuPreset.addItem(MARKER_GAMBESON, GUIItems.menuMarkerGambeson());
+        blockMenuPreset.addItem(MARKER_PLATES, GUIItems.menuMarkerPlates());
         blockMenuPreset.addItem(PREVIEW_SLOT, GUIItems.menuPreview());
 
         blockMenuPreset.addMenuClickHandler(CRAFT_BUTTON, (player, i, itemStack, clickAction) -> false);

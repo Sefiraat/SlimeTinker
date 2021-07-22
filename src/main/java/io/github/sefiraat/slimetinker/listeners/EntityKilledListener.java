@@ -1,13 +1,11 @@
 package io.github.sefiraat.slimetinker.listeners;
 
-import io.github.sefiraat.slimetinker.events.EventFriend;
-import io.github.sefiraat.slimetinker.items.componentmaterials.CMManager;
+import io.github.sefiraat.slimetinker.events.friend.EventFriend;
+import io.github.sefiraat.slimetinker.events.friend.TraitEventType;
 import io.github.sefiraat.slimetinker.modifiers.Modifications;
 import io.github.sefiraat.slimetinker.utils.Experience;
 import io.github.sefiraat.slimetinker.utils.IDStrings;
 import io.github.sefiraat.slimetinker.utils.ItemUtils;
-import io.github.sefiraat.slimetinker.utils.enums.TraitEventType;
-import io.github.sefiraat.slimetinker.utils.enums.TraitPartType;
 import org.bukkit.Color;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -27,6 +25,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import static io.github.sefiraat.slimetinker.events.friend.EventChannels.checkArmour;
+import static io.github.sefiraat.slimetinker.events.friend.EventChannels.checkTool;
 
 public class EntityKilledListener implements Listener {
 
@@ -93,7 +94,6 @@ public class EntityKilledListener implements Listener {
             return;
         }
 
-        // Properties
         ItemMeta im = heldItem.getItemMeta();
         assert im != null;
         PersistentDataContainer c = im.getPersistentDataContainer();
@@ -108,11 +108,11 @@ public class EntityKilledListener implements Listener {
         friend.setPlayer(player);
         friend.setDamagedEntity(dyingEntity);
         friend.setToolLevel(toolLevel);
+        friend.setEventType(TraitEventType.ENTITY_DAMAGED);
 
-        TraitEventType traitEventType = TraitEventType.ENTITY_DAMAGED;
-        CMManager.getMAP().get(matPropertyHead).runEvent(traitEventType, TraitPartType.HEAD, friend);
-        CMManager.getMAP().get(matPropertyBinding).runEvent(traitEventType, TraitPartType.BINDER, friend);
-        CMManager.getMAP().get(matPropertyRod).runEvent(traitEventType, TraitPartType.ROD, friend);
+        // Properties
+        checkTool(friend);
+        checkArmour(friend);
 
         // Mods
         modChecks(event, heldItem);

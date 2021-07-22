@@ -2,9 +2,10 @@ package io.github.sefiraat.slimetinker.items.componentmaterials;
 
 import io.github.sefiraat.slimetinker.SlimeTinker;
 import io.github.sefiraat.slimetinker.categories.Categories;
-import io.github.sefiraat.slimetinker.events.EventFriend;
+import io.github.sefiraat.slimetinker.events.friend.EventFriend;
+import io.github.sefiraat.slimetinker.events.friend.TraitEventType;
+import io.github.sefiraat.slimetinker.events.friend.TraitPartType;
 import io.github.sefiraat.slimetinker.items.Casts;
-import io.github.sefiraat.slimetinker.items.Parts;
 import io.github.sefiraat.slimetinker.items.componentmaterials.cmelements.CMAlloy;
 import io.github.sefiraat.slimetinker.items.componentmaterials.cmelements.CMForms;
 import io.github.sefiraat.slimetinker.items.componentmaterials.cmelements.CMIdentity;
@@ -17,8 +18,6 @@ import io.github.sefiraat.slimetinker.items.workstations.workbench.Workbench;
 import io.github.sefiraat.slimetinker.utils.IDStrings;
 import io.github.sefiraat.slimetinker.utils.SkullTextures;
 import io.github.sefiraat.slimetinker.utils.ThemeUtils;
-import io.github.sefiraat.slimetinker.utils.enums.TraitEventType;
-import io.github.sefiraat.slimetinker.utils.enums.TraitPartType;
 import lombok.Data;
 import me.mrCookieSlime.Slimefun.api.SlimefunItemStack;
 import net.md_5.bungee.api.ChatColor;
@@ -33,14 +32,6 @@ import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Consumer;
-
-import static io.github.sefiraat.slimetinker.utils.IDStrings.BOOTS;
-import static io.github.sefiraat.slimetinker.utils.IDStrings.CHESTPLATE;
-import static io.github.sefiraat.slimetinker.utils.IDStrings.HELMET;
-import static io.github.sefiraat.slimetinker.utils.IDStrings.LEGGINGS;
-import static io.github.sefiraat.slimetinker.utils.IDStrings.LINKS;
-import static io.github.sefiraat.slimetinker.utils.IDStrings.PLATE;
-import static io.github.sefiraat.slimetinker.utils.IDStrings.REPAIR;
 
 @Data
 public class ComponentMaterial {

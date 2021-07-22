@@ -1,15 +1,13 @@
 package io.github.sefiraat.slimetinker.listeners;
 
 import io.github.sefiraat.slimetinker.events.EntityDamageEvents;
-import io.github.sefiraat.slimetinker.events.EventFriend;
-import io.github.sefiraat.slimetinker.items.componentmaterials.CMManager;
+import io.github.sefiraat.slimetinker.events.friend.EventFriend;
+import io.github.sefiraat.slimetinker.events.friend.TraitEventType;
 import io.github.sefiraat.slimetinker.modifiers.Modifications;
 import io.github.sefiraat.slimetinker.utils.Experience;
 import io.github.sefiraat.slimetinker.utils.IDStrings;
 import io.github.sefiraat.slimetinker.utils.ItemUtils;
 import io.github.sefiraat.slimetinker.utils.ThemeUtils;
-import io.github.sefiraat.slimetinker.utils.enums.TraitEventType;
-import io.github.sefiraat.slimetinker.utils.enums.TraitPartType;
 import org.bukkit.Color;
 import org.bukkit.Material;
 import org.bukkit.Particle;
@@ -27,6 +25,9 @@ import org.bukkit.potion.PotionEffectType;
 
 import java.util.Map;
 import java.util.concurrent.ThreadLocalRandom;
+
+import static io.github.sefiraat.slimetinker.events.friend.EventChannels.checkArmour;
+import static io.github.sefiraat.slimetinker.events.friend.EventChannels.checkTool;
 
 public class EntityDamagedListener implements Listener {
 
@@ -61,11 +62,11 @@ public class EntityDamagedListener implements Listener {
         friend.setDamagedEntity(event.getEntity());
         friend.setToolLevel(toolLevel);
         friend.setInitialDamage(event.getDamage());
+        friend.setEventType(TraitEventType.ENTITY_DAMAGED);
 
-        TraitEventType traitEventType = TraitEventType.ENTITY_DAMAGED;
-        CMManager.getMAP().get(matPropertyHead).runEvent(traitEventType, TraitPartType.HEAD, friend);
-        CMManager.getMAP().get(matPropertyBinding).runEvent(traitEventType, TraitPartType.BINDER, friend);
-        CMManager.getMAP().get(matPropertyRod).runEvent(traitEventType, TraitPartType.ROD, friend);
+        // Properties
+        checkTool(friend);
+        checkArmour(friend);
 
         // Cancel if tool is broken (moved down here as we bypass if the duralium event fires)
         if (cancelIfBroken(heldItem)) {

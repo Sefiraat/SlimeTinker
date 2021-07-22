@@ -1,14 +1,12 @@
 package io.github.sefiraat.slimetinker.listeners;
 
 import io.github.mooy1.infinitylib.items.StackUtils;
-import io.github.sefiraat.slimetinker.events.EventFriend;
+import io.github.sefiraat.slimetinker.events.friend.EventFriend;
+import io.github.sefiraat.slimetinker.events.friend.TraitEventType;
 import io.github.sefiraat.slimetinker.items.Materials;
-import io.github.sefiraat.slimetinker.items.componentmaterials.CMManager;
 import io.github.sefiraat.slimetinker.modifiers.Modifications;
 import io.github.sefiraat.slimetinker.utils.IDStrings;
 import io.github.sefiraat.slimetinker.utils.ItemUtils;
-import io.github.sefiraat.slimetinker.utils.enums.TraitEventType;
-import io.github.sefiraat.slimetinker.utils.enums.TraitPartType;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerItemBreakEvent;
@@ -21,6 +19,9 @@ import org.bukkit.persistence.PersistentDataContainer;
 import java.util.Map;
 import java.util.concurrent.ThreadLocalRandom;
 
+import static io.github.sefiraat.slimetinker.events.friend.EventChannels.checkArmour;
+import static io.github.sefiraat.slimetinker.events.friend.EventChannels.checkTool;
+
 public class DurabilityListener implements Listener {
 
     @SuppressWarnings("unused")
@@ -32,7 +33,6 @@ public class DurabilityListener implements Listener {
             return;
         }
 
-        // Properties
         ItemMeta im = event.getItem().getItemMeta();
         assert im != null;
         PersistentDataContainer c = im.getPersistentDataContainer();
@@ -44,11 +44,11 @@ public class DurabilityListener implements Listener {
 
         friend.setHeldItem(event.getItem());
         friend.setPlayer(event.getPlayer());
+        friend.setEventType(TraitEventType.ENTITY_DAMAGED);
 
-        TraitEventType traitEventType = TraitEventType.DURABILITY;
-        CMManager.getMAP().get(matPropertyHead).runEvent(traitEventType, TraitPartType.HEAD, friend);
-        CMManager.getMAP().get(matPropertyBinding).runEvent(traitEventType, TraitPartType.BINDER, friend);
-        CMManager.getMAP().get(matPropertyRod).runEvent(traitEventType, TraitPartType.ROD, friend);
+        // Properties
+        checkTool(friend);
+        checkArmour(friend);
 
         // Mods
         modChecks(damagedItem, event);

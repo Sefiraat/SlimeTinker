@@ -2,16 +2,14 @@ package io.github.sefiraat.slimetinker.listeners;
 
 import io.github.sefiraat.slimetinker.SlimeTinker;
 import io.github.sefiraat.slimetinker.events.BlockBreakEvents;
-import io.github.sefiraat.slimetinker.events.EventFriend;
-import io.github.sefiraat.slimetinker.items.componentmaterials.CMManager;
+import io.github.sefiraat.slimetinker.events.friend.EventFriend;
+import io.github.sefiraat.slimetinker.events.friend.TraitEventType;
 import io.github.sefiraat.slimetinker.modifiers.Modifications;
 import io.github.sefiraat.slimetinker.utils.BlockUtils;
 import io.github.sefiraat.slimetinker.utils.Experience;
 import io.github.sefiraat.slimetinker.utils.IDStrings;
 import io.github.sefiraat.slimetinker.utils.ItemUtils;
 import io.github.sefiraat.slimetinker.utils.ThemeUtils;
-import io.github.sefiraat.slimetinker.utils.enums.TraitEventType;
-import io.github.sefiraat.slimetinker.utils.enums.TraitPartType;
 import org.bukkit.Color;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -33,6 +31,9 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
+
+import static io.github.sefiraat.slimetinker.events.friend.EventChannels.checkArmour;
+import static io.github.sefiraat.slimetinker.events.friend.EventChannels.checkTool;
 
 public class BlockBreakListener implements Listener {
 
@@ -56,22 +57,22 @@ public class BlockBreakListener implements Listener {
             return;
         }
 
-        // Property and Mod checks, carries around the additional and normal drops
-        EventFriend friend = new EventFriend();
-        friend.setHeldItem(heldItem);
-        friend.setPlayer(p);
-        friend.setBlock(block);
-        friend.setDrops(block.getDrops(heldItem)); // Stores the event drops. All may not be dropped
-        friend.setAddDrops(new ArrayList<>()); // Additional drops or substitutions for items from the main collection
-        friend.setRemoveDrops(new ArrayList<>()); // Items to remove from the main collection if moved/reformed into the additional
-
-        // Properties
         ItemMeta im = heldItem.getItemMeta();
         assert im != null;
         PersistentDataContainer c = im.getPersistentDataContainer();
         String matPropertyHead = ItemUtils.getToolHeadMaterial(c);
         String matPropertyBinding = ItemUtils.getToolBindingMaterial(c);
         String matPropertyRod = ItemUtils.getToolRodMaterial(c);
+
+        EventFriend friend = new EventFriend();
+
+        // Property and Mod checks, carries around the additional and normal drops
+        friend.setHeldItem(heldItem);
+        friend.setPlayer(p);
+        friend.setBlock(block);
+        friend.setDrops(block.getDrops(heldItem)); // Stores the event drops. All may not be dropped
+        friend.setAddDrops(new ArrayList<>()); // Additional drops or substitutions for items from the main collection
+        friend.setRemoveDrops(new ArrayList<>()); // Items to remove from the main collection if moved/reformed into the additional
 
         // Cancel if tool is broken (moved down here as we bypass if the duralium event fires)
         if (cancelIfBroken(heldItem)) {
@@ -84,10 +85,11 @@ public class BlockBreakListener implements Listener {
             }
         }
 
-        TraitEventType traitEventType = TraitEventType.BLOCK_BREAK;
-        CMManager.getMAP().get(matPropertyHead).runEvent(traitEventType, TraitPartType.HEAD, friend);
-        CMManager.getMAP().get(matPropertyBinding).runEvent(traitEventType, TraitPartType.BINDER, friend);
-        CMManager.getMAP().get(matPropertyRod).runEvent(traitEventType, TraitPartType.ROD, friend);
+        friend.setEventType(TraitEventType.ENTITY_DAMAGED);
+
+        // Properties
+        checkTool(friend);
+        checkArmour(friend);
 
         // Mods
         modChecks(heldItem, block, friend.getAddDrops());

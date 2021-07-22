@@ -1,6 +1,7 @@
 package io.github.sefiraat.slimetinker.events;
 
 import io.github.sefiraat.slimetinker.SlimeTinker;
+import io.github.sefiraat.slimetinker.events.friend.EventFriend;
 import io.github.sefiraat.slimetinker.utils.BlockUtils;
 import io.github.sefiraat.slimetinker.utils.EntityUtils;
 import io.github.sefiraat.slimetinker.utils.GeneralUtils;
@@ -312,4 +313,14 @@ public final class TickEvents {
     public static void bindCarbonMesh(EventFriend friend) {
         increaseEffect(PotionEffectType.SPEED, friend.getPotionEffects());
     }
+
+    public static void linksIron(EventFriend friend) {
+        friend.setDamageMod(friend.getDamageMod() - 0.1);
+        friend.setPlayerExpMod(friend.getPlayerExpMod() + 0.1);
+    }
+
+    public static void plateIron(EventFriend friend) {
+        increaseEffect(PotionEffectType.SPEED, friend.getPotionEffects());
+    }
+
 }

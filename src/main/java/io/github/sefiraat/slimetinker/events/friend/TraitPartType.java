@@ -1,4 +1,4 @@
-package io.github.sefiraat.slimetinker.utils.enums;
+package io.github.sefiraat.slimetinker.events.friend;
 
 public enum TraitPartType {
     HEAD,

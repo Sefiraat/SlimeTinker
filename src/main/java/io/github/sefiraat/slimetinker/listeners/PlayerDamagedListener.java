@@ -1,12 +1,12 @@
 package io.github.sefiraat.slimetinker.listeners;
 
-import io.github.sefiraat.slimetinker.events.EventFriend;
+import io.github.sefiraat.slimetinker.events.friend.EventFriend;
+import io.github.sefiraat.slimetinker.events.friend.TraitEventType;
+import io.github.sefiraat.slimetinker.events.friend.TraitPartType;
 import io.github.sefiraat.slimetinker.items.componentmaterials.CMManager;
 import io.github.sefiraat.slimetinker.modifiers.Modifications;
 import io.github.sefiraat.slimetinker.utils.Experience;
 import io.github.sefiraat.slimetinker.utils.ItemUtils;
-import io.github.sefiraat.slimetinker.utils.enums.TraitEventType;
-import io.github.sefiraat.slimetinker.utils.enums.TraitPartType;
 import org.bukkit.Color;
 import org.bukkit.Material;
 import org.bukkit.Particle;
@@ -23,6 +23,9 @@ import org.bukkit.persistence.PersistentDataContainer;
 
 import java.util.Map;
 import java.util.concurrent.ThreadLocalRandom;
+
+import static io.github.sefiraat.slimetinker.events.friend.EventChannels.checkArmour;
+import static io.github.sefiraat.slimetinker.events.friend.EventChannels.checkTool;
 
 public class PlayerDamagedListener implements Listener {
 
@@ -41,7 +44,6 @@ public class PlayerDamagedListener implements Listener {
             return;
         }
 
-        // Properties
         ItemMeta im = heldItem.getItemMeta();
         assert im != null;
         PersistentDataContainer c = im.getPersistentDataContainer();
@@ -57,6 +59,11 @@ public class PlayerDamagedListener implements Listener {
         friend.setToolLevel(toolLevel);
         friend.setCause(event.getCause());
         friend.setInitialDamage(event.getDamage());
+        friend.setEventType(TraitEventType.PLAYER_DAMAGED);
+
+        // Properties
+        checkTool(friend);
+        checkArmour(friend);
 
         TraitEventType traitEventType = TraitEventType.PLAYER_DAMAGED;
         CMManager.getMAP().get(matPropertyHead).runEvent(traitEventType, TraitPartType.HEAD, friend);

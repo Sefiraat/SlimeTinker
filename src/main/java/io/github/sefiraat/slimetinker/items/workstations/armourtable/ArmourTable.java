@@ -7,6 +7,7 @@ import io.github.sefiraat.slimetinker.items.Guide;
 import io.github.sefiraat.slimetinker.items.templates.ArmourDefinition;
 import io.github.sefiraat.slimetinker.utils.GUIItems;
 import io.github.sefiraat.slimetinker.utils.IDStrings;
+import io.github.sefiraat.slimetinker.utils.Keys;
 import io.github.sefiraat.slimetinker.utils.ThemeUtils;
 import me.mrCookieSlime.CSCoreLibPlugin.Configuration.Config;
 import me.mrCookieSlime.Slimefun.Lists.RecipeType;
@@ -18,6 +19,7 @@ import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenuPreset;
 import me.mrCookieSlime.Slimefun.api.inventory.DirtyChestMenu;
 import me.mrCookieSlime.Slimefun.api.item_transport.ItemTransportFlow;
+import me.mrCookieSlime.Slimefun.cscorelib2.data.PersistentDataAPI;
 import org.bukkit.Location;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
@@ -97,14 +99,16 @@ public class ArmourTable extends AbstractContainer {
         ItemMeta gm = g.getItemMeta();
         ItemMeta lm = l.getItemMeta();
 
+        Keys keys = SlimeTinker.inst().getKeys();
+
         ItemStack armour;
 
         ArmourDefinition armourDefinition = new ArmourDefinition(
-                pm.getPersistentDataContainer().get(SlimeTinker.inst().getKeys().getPartInfoClassType(), PersistentDataType.STRING),
-                pm.getPersistentDataContainer().get(SlimeTinker.inst().getKeys().getPartInfoType(), PersistentDataType.STRING),
-                pm.getPersistentDataContainer().get(SlimeTinker.inst().getKeys().getPartInfoMaterialType(), PersistentDataType.STRING),
-                gm.getPersistentDataContainer().get(SlimeTinker.inst().getKeys().getPartInfoMaterialType(), PersistentDataType.STRING),
-                lm.getPersistentDataContainer().get(SlimeTinker.inst().getKeys().getPartInfoMaterialType(), PersistentDataType.STRING)
+                PersistentDataAPI.getString(pm, keys.getPartInfoClassType()),
+                PersistentDataAPI.getString(pm, keys.getPartInfoType()),
+                PersistentDataAPI.getString(pm, keys.getPartInfoMaterialType()),
+                PersistentDataAPI.getString(gm, keys.getPartInfoMaterialType()),
+                PersistentDataAPI.getString(lm, keys.getPartInfoMaterialType())
         );
 
         SlimeTinker.inst().getLogger().info(armourDefinition.getClassType());

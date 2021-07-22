@@ -5,6 +5,8 @@ import io.github.sefiraat.slimetinker.events.DurabilityEvents;
 import io.github.sefiraat.slimetinker.events.EntityDamageEvents;
 import io.github.sefiraat.slimetinker.events.PlayerDamagedEvents;
 import io.github.sefiraat.slimetinker.events.TickEvents;
+import io.github.sefiraat.slimetinker.events.friend.TraitEventType;
+import io.github.sefiraat.slimetinker.events.friend.TraitPartType;
 import io.github.sefiraat.slimetinker.items.Materials;
 import io.github.sefiraat.slimetinker.items.componentmaterials.ComponentMaterial;
 import io.github.sefiraat.slimetinker.items.componentmaterials.cmelements.CMForms;
@@ -15,8 +17,6 @@ import io.github.sefiraat.slimetinker.items.componentmaterials.cmelements.CMTrai
 import io.github.sefiraat.slimetinker.managers.SupportedPluginsManager;
 import io.github.sefiraat.slimetinker.utils.IDStrings;
 import io.github.sefiraat.slimetinker.utils.SkullTextures;
-import io.github.sefiraat.slimetinker.utils.enums.TraitEventType;
-import io.github.sefiraat.slimetinker.utils.enums.TraitPartType;
 import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
 import lombok.Getter;
 import lombok.experimental.UtilityClass;
@@ -1708,7 +1708,13 @@ public final class CMCore {
                                         null)
                         ));
 
-        // Tool Effects
+        setupToolConsumers();
+
+        setupArmourConsumers();
+
+    }
+
+    public static void setupToolConsumers() {
 
         map.get(IDStrings.ALUBRASS).addEvent(TraitEventType.ENTITY_DAMAGED, TraitPartType.HEAD, EntityDamageEvents::headAluBrass);          // Abra
         map.get(IDStrings.GOLD).addEvent(TraitEventType.TICK, TraitPartType.ROD, TickEvents::rodGold);                                      // All that glitters
@@ -1775,10 +1781,14 @@ public final class CMCore {
         map.get(IDStrings.HARD).addEvent(TraitEventType.ENTITY_DAMAGED, TraitPartType.ROD, EntityDamageEvents::headHard);                   // Tuff Stuff
         map.get(IDStrings.DAMSTEEL).addEvent(TraitEventType.ENTITY_DAMAGED, TraitPartType.HEAD, EntityDamageEvents::headDamsteel);          // Vampirism
                                                                                                                                             // Works (Special Case, doesn't do anything, just here for consistency)
-
-        // Armour Effects
-
     }
 
+    public static void setupArmourConsumers() {
+
+        map.get(IDStrings.IRON).addEvent(TraitEventType.TICK, TraitPartType.LINKS, TickEvents::linksIron);                                  // Rusty
+        map.get(IDStrings.IRON).addEvent(TraitEventType.TICK, TraitPartType.PLATE, TickEvents::plateIron);                                  // Steadfast
+                                                                                                                                            // Works
+
+    }
 
 }

@@ -2,14 +2,15 @@ package io.github.sefiraat.slimetinker.utils;
 
 import io.github.mooy1.infinitylib.items.StackUtils;
 import io.github.sefiraat.slimetinker.SlimeTinker;
+import io.github.sefiraat.slimetinker.events.friend.TraitPartType;
 import io.github.sefiraat.slimetinker.items.componentmaterials.CMManager;
 import io.github.sefiraat.slimetinker.items.componentmaterials.cmrecipes.MoltenResult;
 import io.github.sefiraat.slimetinker.modifiers.Mod;
 import io.github.sefiraat.slimetinker.modifiers.Modifications;
-import io.github.sefiraat.slimetinker.utils.enums.TraitPartType;
 import lombok.experimental.UtilityClass;
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.SlimefunItem;
 import net.md_5.bungee.api.ChatColor;
+import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.Damageable;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -343,15 +344,19 @@ public final class ItemUtils {
     }
 
     public static boolean isTool(ItemStack itemStack) {
-        return itemStack.hasItemMeta() &&
+        return  itemStack != null &&
+                itemStack.getType() != Material.AIR &&
+                itemStack.hasItemMeta() &&
                 itemStack.getItemMeta().getPersistentDataContainer().has(
                         SlimeTinker.inst().getKeys().getToolInfoIsTool(),
                         PersistentDataType.STRING
                 );
     }
 
-    public static boolean isArmour(ItemStack itemStack) {
-        return itemStack.hasItemMeta() &&
+    public static boolean isArmour(@Nullable ItemStack itemStack) {
+        return  itemStack != null &&
+                itemStack.getType() != Material.AIR &&
+                itemStack.hasItemMeta() &&
                 itemStack.getItemMeta().getPersistentDataContainer().has(
                         SlimeTinker.inst().getKeys().getArmourInfoIsArmour(),
                         PersistentDataType.STRING

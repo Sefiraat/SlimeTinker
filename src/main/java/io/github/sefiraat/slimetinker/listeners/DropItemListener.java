@@ -27,13 +27,9 @@ public class DropItemListener implements Listener {
         String bindMaterial = ItemUtils.getToolBindingMaterial(c);
         String rodMaterial = ItemUtils.getToolRodMaterial(c);
 
-        if (rodMaterial.equals(IDStrings.SOLDER)) {
+        if (!ItemUtils.canBeDropped(itemStack)) {
             event.setCancelled(true);
-            event.getPlayer().sendMessage(ThemeUtils.WARNING + "This tool is fused.");
-        }
-        if (rodMaterial.equals(IDStrings.UNPATENTABLIUM)) {
-            event.setCancelled(true);
-            event.getPlayer().sendMessage(ThemeUtils.WARNING + "This tool is bound to you by Incorporeal Right");
+            event.getPlayer().sendMessage(ThemeUtils.WARNING + "This tool cannot be dropped.");
         }
 
     }

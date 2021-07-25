@@ -34,6 +34,7 @@ import java.util.Map;
 
 import static io.github.sefiraat.slimetinker.events.friend.EventChannels.checkArmour;
 import static io.github.sefiraat.slimetinker.events.friend.EventChannels.checkTool;
+import static io.github.sefiraat.slimetinker.events.friend.EventChannels.settlePotionEffects;
 
 public class BlockBreakListener implements Listener {
 
@@ -95,6 +96,7 @@ public class BlockBreakListener implements Listener {
         modChecks(heldItem, block, friend.getAddDrops());
 
         // Settle
+        settlePotionEffects(friend);
         event.setDropItems(false);
 
         for (ItemStack i : friend.getDrops()) { // Drop items in original collection not flagged for removal

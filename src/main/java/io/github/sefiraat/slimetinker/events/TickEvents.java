@@ -6,20 +6,34 @@ import io.github.sefiraat.slimetinker.utils.BlockUtils;
 import io.github.sefiraat.slimetinker.utils.EntityUtils;
 import io.github.sefiraat.slimetinker.utils.GeneralUtils;
 import io.github.sefiraat.slimetinker.utils.ItemUtils;
+import io.github.thebusybiscuit.slimefun4.implementation.SlimefunPlugin;
 import lombok.experimental.UtilityClass;
+import me.mrCookieSlime.Slimefun.cscorelib2.protection.ProtectableAction;
 import org.bukkit.Effect;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.attribute.Attribute;
+import org.bukkit.block.Block;
+import org.bukkit.block.BlockFace;
+import org.bukkit.entity.EnderDragon;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Item;
 import org.bukkit.entity.LivingEntity;
+import org.bukkit.entity.Mob;
 import org.bukkit.entity.Monster;
+import org.bukkit.entity.Piglin;
+import org.bukkit.entity.Player;
 import org.bukkit.entity.Villager;
+import org.bukkit.entity.Wither;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 import java.util.concurrent.ThreadLocalRandom;
 
 import static io.github.sefiraat.slimetinker.utils.EntityUtils.increaseEffect;
@@ -154,7 +168,7 @@ public final class TickEvents {
     }
 
     public static void headDuralium(EventFriend friend) {
-        if (ItemUtils.isToolBroken(friend.getHeldItem())) {
+        if (ItemUtils.isTinkersBroken(friend.getHeldItem())) {
             increaseEffect(PotionEffectType.SLOW_DIGGING, friend.getPotionEffects());
         }
     }
@@ -323,4 +337,105 @@ public final class TickEvents {
         increaseEffect(PotionEffectType.SPEED, friend.getPotionEffects());
     }
 
+    public static void gambesonTwistingWines(EventFriend friend) {
+        for (Entity entity : friend.getPlayer().getNearbyEntities(5,5,5)) {
+            if (entity instanceof Item) {
+                Location eLoc = entity.getLocation();
+                Location pLoc = friend.getPlayer().getLocation();
+                entity.teleport(BlockUtils.getMid(eLoc.getWorld(), eLoc.getX(), eLoc.getY(), eLoc.getZ(), pLoc.getX(), pLoc.getY(), pLoc.getZ()));
+            }
+        }
+    }
+
+    public static void linksGold(EventFriend friend) {
+        for (Entity entity : friend.getPlayer().getNearbyEntities(5,5,5)) {
+            if (entity instanceof Piglin) {
+                Piglin p = (Piglin) entity;
+                p.setTarget(null);
+            }
+        }
+    }
+
+    public static void plateAluBronze(EventFriend friend) {
+        int rnd = ThreadLocalRandom.current().nextInt(0,5);
+        if (rnd == 0) {
+            Player player = friend.getPlayer();
+            Set<Block> blocks = new HashSet<>();
+            for (int x = -3; x <= 3; x++) {
+                for (int z = -3; z <= 3; z++) {
+                    for (int y = -1; z <= 1; z++) {
+                        blocks.add(player.getLocation().getBlock().getRelative(x, y, z));
+                    }
+                }
+            }
+            Optional<Block> oBlock = blocks.stream().filter(b -> b.getType() == Material.GRASS_BLOCK).findFirst();
+            if (oBlock.isPresent()) {
+                Block grass = oBlock.get();
+                Block above = grass.getRelative(BlockFace.UP);
+                if (above.getType() == Material.AIR && SlimefunPlugin.getProtectionManager().hasPermission(player, above, ProtectableAction.PLACE_BLOCK)) {
+                    if (ThreadLocalRandom.current().nextInt(0, 101) == 0) {
+                        above.setType(Material.WITHER_ROSE);
+                        return;
+                    }
+                    List<Material> flowers = Arrays.asList(
+                            Material.DANDELION,
+                            Material.POPPY,
+                            Material.BLUE_ORCHID,
+                            Material.ALLIUM,
+                            Material.AZURE_BLUET,
+                            Material.WHITE_TULIP,
+                            Material.ORANGE_TULIP,
+                            Material.PINK_TULIP,
+                            Material.RED_TULIP,
+                            Material.OXEYE_DAISY,
+                            Material.CORNFLOWER,
+                            Material.LILY_OF_THE_VALLEY,
+                            Material.SUNFLOWER
+                    );
+                    above.setType(flowers.get(ThreadLocalRandom.current().nextInt(0,flowers.size())));
+                }
+            }
+        }
+    }
+
+    public static void linksFerrosilicon(EventFriend friend) {
+        friend.setBrightBurn(friend.getBrightBurn() + 1);
+        if (friend.getBrightBurn() >= 4) {
+            for (Entity entity : friend.getPlayer().getNearbyEntities(5,5,5)) {
+                if (entity instanceof Mob && (!(entity instanceof Wither) && !(entity instanceof EnderDragon))) {
+                    EntityUtils.push((LivingEntity) entity, friend.getPlayer().getLocation(), 1);
+                }
+            }
+        }
+    }
+
+    public static void plateDamSteel(EventFriend friend) {
+         friend.getPlayer().getAttribute(Attribute.GENERIC_MAX_HEALTH).setBaseValue(20 + (friend.getCompounding()^2));
+    }
+
+    public static void gambesonCrimsonRoots(EventFriend friend) {
+        if (!GeneralUtils.day(friend.getPlayer().getWorld())) {
+            int rnd = ThreadLocalRandom.current().nextInt(1,5);
+            if (rnd == 1) {
+                ItemUtils.incrementRepair(friend.getActiveStack());
+            }
+        }
+    }
+
+    public static void gambesonWeepingVines(EventFriend friend) {
+        increaseEffect(PotionEffectType.BAD_OMEN, friend.getPotionEffects());
+    }
+
+    public static void platesAluminum(EventFriend friend) {
+        increaseEffect(PotionEffectType.SPEED, friend.getPotionEffects(), 1);
+    }
+
+    public static void gambesonVine(EventFriend friend) {
+        if (GeneralUtils.day(friend.getPlayer().getWorld())) {
+            int rnd = ThreadLocalRandom.current().nextInt(1,5);
+            if (rnd == 1) {
+                ItemUtils.incrementRepair(friend.getActiveStack());
+            }
+        }
+    }
 }

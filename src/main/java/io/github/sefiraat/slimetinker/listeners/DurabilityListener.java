@@ -21,6 +21,7 @@ import java.util.concurrent.ThreadLocalRandom;
 
 import static io.github.sefiraat.slimetinker.events.friend.EventChannels.checkArmour;
 import static io.github.sefiraat.slimetinker.events.friend.EventChannels.checkTool;
+import static io.github.sefiraat.slimetinker.events.friend.EventChannels.settlePotionEffects;
 
 public class DurabilityListener implements Listener {
 
@@ -55,6 +56,7 @@ public class DurabilityListener implements Listener {
 
 
         // Settle
+        settlePotionEffects(friend);
         if (friend.isCancelEvent()) {
             event.setCancelled(true);
         }

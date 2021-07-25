@@ -19,11 +19,7 @@ public final class EntityUtils {
     }
 
     public static void increaseEffect(PotionEffectType potionEffectType, Map<PotionEffectType, Integer> potionEffects) {
-        if (potionEffects.containsKey(potionEffectType)) {
-            potionEffects.put(potionEffectType, potionEffects.get(potionEffectType) + 1);
-        } else {
-            potionEffects.put(potionEffectType, 0);
-        }
+        increaseEffect(potionEffectType, potionEffects, 0);
     }
 
     public static void increaseEffect(PotionEffectType potionEffectType, Map<PotionEffectType, Integer> potionEffects, int amount) {

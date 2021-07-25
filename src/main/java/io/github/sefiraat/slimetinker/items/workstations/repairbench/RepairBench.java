@@ -39,18 +39,18 @@ public class RepairBench extends AbstractContainer {
     @SuppressWarnings("SameReturnValue")
     protected boolean craft(BlockMenu blockMenu, Player player) {
 
-        ItemStack tool = blockMenu.getItemInSlot(INPUT_TOOL);
+        ItemStack item = blockMenu.getItemInSlot(INPUT_TOOL);
         ItemStack kit = blockMenu.getItemInSlot(INPUT_KIT);
 
-        // No tool dummy!
-        if (tool == null) {
-            player.sendMessage(ThemeUtils.WARNING + "Input a tool into the first slot.");
+        // No item dummy!
+        if (item == null) {
+            player.sendMessage(ThemeUtils.WARNING + "Input a item into the first slot.");
             return false;
         }
 
-        // Still no tool, nice try
-        if (!ItemUtils.isTool(tool)) {
-            player.sendMessage(ThemeUtils.WARNING + "The item in the first slot isn't a Tinker's tool.");
+        // Still no item, nice try
+        if (!ItemUtils.isTool(item) && !ItemUtils.isArmour(item)) {
+            player.sendMessage(ThemeUtils.WARNING + "The item in the first slot isn't a Tinker's item.");
             return false;
         }
 
@@ -61,23 +61,24 @@ public class RepairBench extends AbstractContainer {
         }
 
         // All items present, are they correct?
-        String toolMaterial = ItemUtils.getToolMaterial(tool);
+        String toolMaterial = ItemUtils.getToolMaterial(item);
+        String armourMaterial = ItemUtils.getArmourMaterial(item);
         String partMaterial = ItemUtils.getPartMaterial(kit);
 
-        if (!toolMaterial.equals(partMaterial)) {
-            player.sendMessage(ThemeUtils.WARNING + "The kit type does not match the tool material.");
+        if (!toolMaterial.equals(partMaterial) && !armourMaterial.equals(partMaterial)) {
+            player.sendMessage(ThemeUtils.WARNING + "The kit type does not match the item material.");
             return false;
         }
 
-        ItemStack newTool = tool.clone();
+        ItemStack newItem = item.clone();
 
         boolean fixAll = false;
-        if (ItemUtils.getToolRodMaterial(newTool.getItemMeta().getPersistentDataContainer()).equals(IDStrings.DURALIUM)) { // EASY FIX
+        if (ItemUtils.repairBenchEasyFix(newItem)) { // EASY FIX
             fixAll = true;
         }
 
-        repairItemStack(newTool, fixAll);
-        blockMenu.pushItem(newTool, OUTPUT_SLOT);
+        repairItemStack(newItem, fixAll);
+        blockMenu.pushItem(newItem, OUTPUT_SLOT);
         blockMenu.getItemInSlot(INPUT_TOOL).setAmount(blockMenu.getItemInSlot(INPUT_TOOL).getAmount() - 1);
         blockMenu.getItemInSlot(INPUT_KIT).setAmount(blockMenu.getItemInSlot(INPUT_KIT).getAmount() - 1);
 

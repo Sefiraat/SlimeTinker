@@ -6,6 +6,7 @@ import io.github.sefiraat.slimetinker.modifiers.Modifications;
 import io.github.sefiraat.slimetinker.utils.Experience;
 import io.github.sefiraat.slimetinker.utils.IDStrings;
 import io.github.sefiraat.slimetinker.utils.ItemUtils;
+import io.github.sefiraat.slimetinker.utils.ThemeUtils;
 import org.bukkit.Color;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -28,6 +29,7 @@ import java.util.Map;
 
 import static io.github.sefiraat.slimetinker.events.friend.EventChannels.checkArmour;
 import static io.github.sefiraat.slimetinker.events.friend.EventChannels.checkTool;
+import static io.github.sefiraat.slimetinker.events.friend.EventChannels.settlePotionEffects;
 
 public class EntityKilledListener implements Listener {
 
@@ -53,7 +55,8 @@ public class EntityKilledListener implements Listener {
             String bindMaterial = ItemUtils.getToolBindingMaterial(c);
             String rodMaterial = ItemUtils.getToolRodMaterial(c);
 
-            if (rodMaterial.equals(IDStrings.SOLDER) || rodMaterial.equals(IDStrings.UNPATENTABLIUM)) {
+
+            if (!ItemUtils.canBeDropped(i)) {
                 list.add(i);
             }
 
@@ -118,6 +121,7 @@ public class EntityKilledListener implements Listener {
         modChecks(event, heldItem);
 
         // Settle
+        settlePotionEffects(friend);
         event.setDroppedExp((int) Math.ceil(event.getDroppedExp() * friend.getPlayerExpMod()));
         if (event.getDroppedExp() > 0 && friend.isMetalCheck()) {
             Experience.addExp(heldItem, (int) Math.ceil(event.getDroppedExp() / 10D), player, true);

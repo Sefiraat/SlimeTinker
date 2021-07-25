@@ -63,7 +63,7 @@ public class Keys {
     private final NamespacedKey traitsCooldownProtective = new NamespacedKey(SlimeTinker.inst(), "ST_cd_protective");
     private final NamespacedKey traitsCooldownWarp = new NamespacedKey(SlimeTinker.inst(), "ST_cd_warp");
     private final NamespacedKey toolFlagTeleport = new NamespacedKey(SlimeTinker.inst(), "ST_stop_teleport");
-
+    private final NamespacedKey stopEvents = new NamespacedKey(SlimeTinker.inst(), "STOP_EVENTS");
     // Workstations
     private final NamespacedKey wsDummySmeltery = new NamespacedKey(SlimeTinker.inst(), "dummy-smeltery");
     private final NamespacedKey wsDummySmelteryM = new NamespacedKey(SlimeTinker.inst(), "dummy-smeltery-molten");

@@ -70,5 +70,21 @@ public class ToolTemplate extends SlimefunItem {
         super(category, item, recipeType, recipe);
     }
 
+    /**
+     * @deprecated
+     * Moved to {@link ItemUtils#isTool(ItemStack)}
+     * @param itemStack Stack to check
+     * @return true if Tinker's Tool
+     */
+    public static boolean isTool(ItemStack itemStack) {
+        return  itemStack != null &&
+                itemStack.getType() != Material.AIR &&
+                itemStack.hasItemMeta() &&
+                itemStack.getItemMeta().getPersistentDataContainer().has(
+                        SlimeTinker.inst().getKeys().getToolInfoIsTool(),
+                        PersistentDataType.STRING
+                );
+    }
+
 }
 

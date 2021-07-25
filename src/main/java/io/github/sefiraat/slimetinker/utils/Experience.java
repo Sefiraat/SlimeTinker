@@ -151,22 +151,18 @@ public final class Experience {
     }
 
     private static void silverChecks(String matPropertyHead, ItemMeta im, ItemStack itemStack, Player player) {
-        int number = 1;
-        if (matPropertyHead.equals(IDStrings.SINGSILVER)) { // ENCHANTING II
-            number = 3;
-        }
-        int count = 0;
-        if (matPropertyHead.equals(IDStrings.SILVER) || matPropertyHead.equals(IDStrings.SINGSILVER)) { // Enchanting + Enchanting II
-            for (int i = 0; i < ThreadLocalRandom.current().nextInt(1, number + 1); i++) {
+        if (ItemUtils.isEnchanting(itemStack)) {
+            int number = ItemUtils.isEnchanting2(itemStack) ? 3 : 1;
+            int amount = ThreadLocalRandom.current().nextInt(1, number + 1);
+            for (int i = 0; i < amount; i++) {
                 Enchantment randEnchant = Enchantment.values()[(int) (Math.random()*Enchantment.values().length)];
                 if (im.hasEnchant(randEnchant)) {
                     im.addEnchant(randEnchant, itemStack.getEnchantmentLevel(randEnchant) + 1, true);
                 } else {
                     im.addEnchant(randEnchant, 1, true);
                 }
-                count++;
             }
-            player.sendMessage(ThemeUtils.SUCCESS + "It also gained [" + count + "] random enchantment(s)! Hope it's good :>");
+            player.sendMessage(ThemeUtils.SUCCESS + "It also gained [" + amount + "] random enchantment(s)! Hope it's good :>");
         }
     }
 

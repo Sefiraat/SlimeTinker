@@ -78,21 +78,17 @@ public final class DurabilityEvents {
             friend.getPlayer().sendMessage(ThemeUtils.SUCCESS + "Your tool was repaired with some iron you had lying around!");
         }
 
-//        Damageable d = (Damageable) friend.getHeldItem().getItemMeta();
-//        assert d != null;
-//        if (d.getDamage() < 50) {
-//            return;
-//        }
-//        ItemStack i = new ItemStack(Material.IRON_INGOT);
-//        for (ItemStack invStack : friend.getPlayer().getInventory().getContents()) {
-//            if (invStack.isSimilar(i)) {
-//                invStack.setAmount(invStack.getAmount() - 1);
-//                ItemUtils.repairTool(friend.getHeldItem(), 50);
-//            }
-//        }
     }
 
     public static void headScrap(EventFriend friend) {
         friend.setDurabilityMod(friend.getDurabilityMod() + 3);
+    }
+
+    public static void plateBrass(EventFriend friend) {
+        friend.setDurabilityMod(friend.getDurabilityMod() + 3);
+    }
+
+    public static void linksBrass(EventFriend friend) {
+        friend.setDurabilityMod(friend.getDurabilityMod() + 1);
     }
 }

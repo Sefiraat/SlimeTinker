@@ -4,7 +4,11 @@ import io.github.sefiraat.slimetinker.events.friend.EventFriend;
 import io.github.sefiraat.slimetinker.listeners.BlockMap;
 import io.github.sefiraat.slimetinker.utils.GeneralUtils;
 import io.github.sefiraat.slimetinker.utils.ItemUtils;
+import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
+import io.github.thebusybiscuit.slimefun4.implementation.SlimefunPlugin;
+import io.github.thebusybiscuit.slimefun4.utils.tags.SlimefunTag;
 import lombok.experimental.UtilityClass;
+import me.mrCookieSlime.Slimefun.api.SlimefunItemStack;
 import org.bukkit.Bukkit;
 import org.bukkit.Color;
 import org.bukkit.Material;
@@ -17,9 +21,12 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataContainer;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.concurrent.ThreadLocalRandom;
 
 @UtilityClass
@@ -222,5 +229,36 @@ public final class BlockBreakEvents {
 
     public static void headScrap(EventFriend friend) {
         friend.setToolExpMod(0);
+    }
+
+    public static void linksHardened(EventFriend friend) {
+        List<SlimefunItemStack> list = Arrays.asList(
+                SlimefunItems.MAGIC_LUMP_1,
+                SlimefunItems.MAGIC_LUMP_2,
+                SlimefunItems.ENDER_LUMP_1,
+                SlimefunItems.ENDER_LUMP_2,
+                SlimefunItems.PURE_ORE_CLUSTER,
+                SlimefunItems.SIFTED_ORE,
+                SlimefunItems.GILDED_IRON,
+                SlimefunItems.CARBON,
+                SlimefunItems.COMPRESSED_CARBON,
+                SlimefunItems.CARBON_CHUNK
+        );
+        int rnd = ThreadLocalRandom.current().nextInt(0, 10000);
+        if (rnd < list.size()) {
+            friend.getAddDrops().add(list.get(rnd));
+        }
+    }
+
+    public static void platesBronze(EventFriend friend) {
+        Block b = friend.getBlock();
+        if (SlimefunTag.CROPS.isTagged(b.getType())) {
+            Optional<ItemStack> opStack = b.getDrops().stream().findFirst();
+            if (opStack.isPresent()) {
+                ItemStack i = opStack.get();
+                i.setAmount(1);
+                b.getWorld().dropItem(b.getLocation().clone().add(0.5, 0.5, 0.5), i);
+            }
+        }
     }
 }

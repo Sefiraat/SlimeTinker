@@ -27,6 +27,8 @@ import org.bukkit.persistence.PersistentDataType;
 import java.time.Instant;
 import java.util.Objects;
 
+import static io.github.sefiraat.slimetinker.events.friend.EventChannels.settlePotionEffects;
+
 public class PlayerInteractListener implements Listener {
 
     @SuppressWarnings("unused")
@@ -73,6 +75,7 @@ public class PlayerInteractListener implements Listener {
         }
 
         // Settle
+        settlePotionEffects(friend);
         if (friend.getHypercube() == 2) {
             processHyperCube(event);
         }

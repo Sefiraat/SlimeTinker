@@ -26,6 +26,7 @@ import java.util.concurrent.ThreadLocalRandom;
 
 import static io.github.sefiraat.slimetinker.events.friend.EventChannels.checkArmour;
 import static io.github.sefiraat.slimetinker.events.friend.EventChannels.checkTool;
+import static io.github.sefiraat.slimetinker.events.friend.EventChannels.settlePotionEffects;
 
 public class PlayerDamagedListener implements Listener {
 
@@ -74,6 +75,7 @@ public class PlayerDamagedListener implements Listener {
         modChecks(event, heldItem);
 
         // Settle
+        settlePotionEffects(friend);
         event.setDamage(event.getDamage() * friend.getDamageMod());
         if (friend.getDamageMod() == 0) {
             event.setCancelled(true);

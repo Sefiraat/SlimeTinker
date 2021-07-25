@@ -28,6 +28,7 @@ import java.util.concurrent.ThreadLocalRandom;
 
 import static io.github.sefiraat.slimetinker.events.friend.EventChannels.checkArmour;
 import static io.github.sefiraat.slimetinker.events.friend.EventChannels.checkTool;
+import static io.github.sefiraat.slimetinker.events.friend.EventChannels.settlePotionEffects;
 
 public class EntityDamagedListener implements Listener {
 
@@ -84,7 +85,7 @@ public class EntityDamagedListener implements Listener {
         modChecks(event, heldItem, friend);
 
         // Settle
-
+        settlePotionEffects(friend);
         LivingEntity e = (LivingEntity) friend.getDamagedEntity();
 
         if (friend.getSegganesson() == 10) {

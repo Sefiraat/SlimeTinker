@@ -17,8 +17,9 @@ import java.util.Map;
 
 import static io.github.sefiraat.slimetinker.events.friend.EventChannels.checkArmour;
 import static io.github.sefiraat.slimetinker.events.friend.EventChannels.checkTool;
+import static io.github.sefiraat.slimetinker.events.friend.EventChannels.settlePotionEffects;
 
-public class EffectRunnable extends BukkitRunnable {
+public class EffectTick extends BukkitRunnable {
 
     @Override
     public void run() {
@@ -40,9 +41,8 @@ public class EffectRunnable extends BukkitRunnable {
             checkModifications(heldItem, player, potionEffects);
 
             // Settle
-            for (Map.Entry<PotionEffectType, Integer> entry : friend.getPotionEffects().entrySet()) {
-                player.addPotionEffect(new PotionEffect(entry.getKey(), SlimeTinker.RUNNABLE_TICK_RATE + 5, entry.getValue(), false, true, true));
-            }
+            settlePotionEffects(friend);
+
             // TODO remove with modification changes
             for (Map.Entry<PotionEffectType, Integer> entry : potionEffects.entrySet()) {
                 player.addPotionEffect(new PotionEffect(entry.getKey(), SlimeTinker.RUNNABLE_TICK_RATE + 5, entry.getValue(), false, true, true));

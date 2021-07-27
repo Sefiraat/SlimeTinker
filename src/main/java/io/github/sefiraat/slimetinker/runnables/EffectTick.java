@@ -1,6 +1,7 @@
 package io.github.sefiraat.slimetinker.runnables;
 
 import io.github.sefiraat.slimetinker.SlimeTinker;
+import io.github.sefiraat.slimetinker.events.TickEvents;
 import io.github.sefiraat.slimetinker.events.friend.EventFriend;
 import io.github.sefiraat.slimetinker.events.friend.TraitEventType;
 import io.github.sefiraat.slimetinker.modifiers.Modifications;
@@ -40,13 +41,16 @@ public class EffectTick extends BukkitRunnable {
             // Mods
             checkModifications(heldItem, player, potionEffects);
 
-            // Settle
-            settlePotionEffects(friend);
+            // Settle if not cancelled
+            if (!friend.isCancelEvent()) {
+                settlePotionEffects(friend);
+            }
 
             // TODO remove with modification changes
             for (Map.Entry<PotionEffectType, Integer> entry : potionEffects.entrySet()) {
                 player.addPotionEffect(new PotionEffect(entry.getKey(), SlimeTinker.RUNNABLE_TICK_RATE + 5, entry.getValue(), false, true, true));
             }
+            TickEvents.magnetic(friend);
         }
     }
 

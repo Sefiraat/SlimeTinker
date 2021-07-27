@@ -473,4 +473,9 @@ public final class ItemUtils {
                 || getArmourLinksMaterial(itemStack).equals(IDStrings.SOLDER);
     }
 
+    public static boolean isReinforced(ItemStack itemStack) {
+       return getToolRodMaterial(itemStack).equals(IDStrings.REINFORCED)
+              || getArmourPlateMaterial(itemStack).equals(IDStrings.REINFORCED);
+    }
+
 }

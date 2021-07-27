@@ -2,6 +2,7 @@ package io.github.sefiraat.slimetinker.events;
 
 import io.github.sefiraat.slimetinker.SlimeTinker;
 import io.github.sefiraat.slimetinker.events.friend.EventFriend;
+import io.github.sefiraat.slimetinker.utils.GeneralUtils;
 import io.github.sefiraat.slimetinker.utils.ItemUtils;
 import io.github.sefiraat.slimetinker.utils.ThemeUtils;
 import lombok.experimental.UtilityClass;
@@ -14,6 +15,7 @@ import org.bukkit.NamespacedKey;
 import org.bukkit.Particle;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.entity.Entity;
+import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.inventory.ItemStack;
@@ -222,5 +224,52 @@ public final class PlayerDamagedEvents {
 
     public static void platesAluminum(EventFriend friend) {
         friend.setDamageMod(friend.getDamageMod() + 0.5);
+    }
+
+    public static void plateSteel(EventFriend friend) {
+        if (friend.getCause() == EntityDamageEvent.DamageCause.ENTITY_EXPLOSION
+         || friend.getCause() == EntityDamageEvent.DamageCause.BLOCK_EXPLOSION) {
+            friend.setDamageMod(friend.getDamageMod() - 0.25);
+        }
+    }
+
+    public static void linksBillon(EventFriend friend) {
+        if (friend.getCause() == EntityDamageEvent.DamageCause.HOT_FLOOR) {
+            friend.setCancelEvent(true);
+        }
+    }
+
+    public static void linksBrass(EventFriend friend) {
+        Player p = friend.getPlayer();
+        if (p.getHealth() <= (p.getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue() / 2)) {
+            p.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 100, 2));
+        }
+    }
+
+    public static void plateMetal(EventFriend friend) {
+        int rnd = ThreadLocalRandom.current().nextInt(0,30);
+        if (rnd == 0) {
+            Player p = friend.getPlayer();
+            p.getWorld().spawnEntity(p.getLocation().clone().add(1, 0, 1), EntityType.IRON_GOLEM);
+        }
+    }
+
+    public static void plateAluBrass(EventFriend friend) {
+        if (friend.getCause() == EntityDamageEvent.DamageCause.MAGIC) {
+            friend.setDamageMod(friend.getDamageMod() - 0.25);
+        }
+    }
+
+    public static void plateTin(EventFriend friend) {
+        if (friend.getCause() == EntityDamageEvent.DamageCause.POISON) {
+            friend.setCancelEvent(true);
+        }
+    }
+
+    public static void plateGold(EventFriend friend) {
+        if (GeneralUtils.testChance(1, 100)) {
+            Location l = friend.getPlayer().getLocation();
+            l.getWorld().dropItemNaturally(l, new ItemStack(Material.GOLD_NUGGET));
+        }
     }
 }

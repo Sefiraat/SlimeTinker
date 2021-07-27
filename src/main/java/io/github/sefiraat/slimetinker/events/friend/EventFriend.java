@@ -64,6 +64,8 @@ public class EventFriend {
     private int noClip = 0;
     private int brightBurn = 0;
     private int compounding = 0;
+    private int positivity = 0;
+    private int negativity = 0;
 
     private boolean blocksIntoInv = false;
 

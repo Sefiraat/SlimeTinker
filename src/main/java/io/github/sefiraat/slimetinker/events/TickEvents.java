@@ -2,6 +2,7 @@ package io.github.sefiraat.slimetinker.events;
 
 import io.github.sefiraat.slimetinker.SlimeTinker;
 import io.github.sefiraat.slimetinker.events.friend.EventFriend;
+import io.github.sefiraat.slimetinker.runnables.TaskRemovePoweredState;
 import io.github.sefiraat.slimetinker.utils.BlockUtils;
 import io.github.sefiraat.slimetinker.utils.EntityUtils;
 import io.github.sefiraat.slimetinker.utils.GeneralUtils;
@@ -15,6 +16,7 @@ import org.bukkit.Material;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
+import org.bukkit.block.data.Powerable;
 import org.bukkit.entity.EnderDragon;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
@@ -26,6 +28,7 @@ import org.bukkit.entity.Piglin;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Villager;
 import org.bukkit.entity.Wither;
+import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
@@ -436,6 +439,62 @@ public final class TickEvents {
             if (rnd == 1) {
                 ItemUtils.incrementRepair(friend.getActiveStack());
             }
+        }
+    }
+
+    public static void plateMagnesium(EventFriend friend) {
+        increaseEffect(PotionEffectType.SPEED, friend.getPotionEffects(), 2);
+    }
+
+    public static void linksMagnesium(EventFriend friend) {
+        increaseEffect(PotionEffectType.NIGHT_VISION, friend.getPotionEffects());
+    }
+
+    public static void plateCobalt(EventFriend friend) {
+        friend.setNegativity(friend.getNegativity() + 1);
+    }
+
+    public static void linksCobalt(EventFriend friend) {
+        friend.setNegativity(friend.getNegativity() + 1);
+    }
+
+    public static void plateNickel(EventFriend friend) {
+        friend.setPositivity(friend.getPositivity() + 1);
+    }
+
+    public static void linksNickel(EventFriend friend) {
+        friend.setPositivity(friend.getPositivity() + 1);
+    }
+
+    public static void magnetic(EventFriend friend) {
+        int pos = friend.getPositivity();
+        int neg = friend.getNegativity();
+        int range = (pos + neg) - Math.abs(pos - neg);
+        if (range > 0) {
+            for (Entity entity : friend.getPlayer().getNearbyEntities(range,range,range)) {
+                if (entity instanceof Item) {
+                    Location pLoc = friend.getPlayer().getLocation();
+                    entity.teleport(pLoc);
+                }
+            }
+        }
+    }
+
+    public static void plateRedstoneAlloy(EventFriend friend) {
+        if (GeneralUtils.testChance(1, 5)) {
+            Block b = BlockUtils.getRandomBlockInRange(friend.getPlayer().getLocation(), 5, 2, 5, false);
+            if (b instanceof Powerable) {
+                Powerable p = (Powerable) b;
+                p.setPowered(true);
+                TaskRemovePoweredState task = new TaskRemovePoweredState(p);
+                task.runTaskLater(SlimeTinker.inst(), 100);
+            }
+        }
+    }
+
+    public static void gambesonWarpedRoots(EventFriend friend) {
+        if (GeneralUtils.testChance(1, 4)) {
+            friend.getPlayer().setHealth(Math.min(friend.getPlayer().getHealth() + 1, friend.getPlayer().getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue()));
         }
     }
 }

@@ -96,6 +96,12 @@ public class BlockBreakListener implements Listener {
         modChecks(heldItem, block, friend.getAddDrops());
 
         // Settle
+
+        if (friend.isCancelEvent()) {
+            event.setCancelled(true);
+            return;
+        }
+
         settlePotionEffects(friend);
         event.setDropItems(false);
 

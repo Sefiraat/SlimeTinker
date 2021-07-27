@@ -210,12 +210,8 @@ public final class EntityDamageEvents {
     }
 
     public static void headOsmiumSuperalloy(EventFriend friend) {
-        int rnd = ThreadLocalRandom.current().nextInt(1, 4);
-        if (rnd == 1) {
-            friend.setDamageMod(friend.getDamageMod() + 2);
-        } else {
-            friend.setDamageMod(friend.getDamageMod() + 1);
-        }
+        int rnd = ThreadLocalRandom.current().nextInt(0, 10);
+        friend.setDamageMod(rnd == 0 ? friend.getDamageMod() + 2 : friend.getDamageMod() + 0.5);
     }
 
     public static void rodOsmium(EventFriend friend) {
@@ -318,5 +314,9 @@ public final class EntityDamageEvents {
         Instant cd = Instant.ofEpochMilli(time).plusSeconds(20);
         c.set(key, PersistentDataType.LONG, cd.toEpochMilli());
         i.setItemMeta(im);
+    }
+
+    public static void plateMagnesium(EventFriend friend) {
+        friend.setDamageMod(friend.getDamageMod() - 0.25);
     }
 }

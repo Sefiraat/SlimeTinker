@@ -1,7 +1,12 @@
 package io.github.sefiraat.slimetinker.utils;
 
+import io.github.sefiraat.slimetinker.SlimeTinker;
+import io.github.sefiraat.slimetinker.managers.SupportedPluginsManager;
 import lombok.experimental.UtilityClass;
+import me.mrCookieSlime.Slimefun.cscorelib2.data.PersistentDataAPI;
 import org.bukkit.Location;
+import org.bukkit.NamespacedKey;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.util.Vector;
@@ -28,6 +33,14 @@ public final class EntityUtils {
         } else {
             potionEffects.put(potionEffectType, amount);
         }
+    }
+
+    /**
+     * SFW's Training dummy allows damage and exp gain for free, no thanks!
+     * @return True is target is a Training Dummy
+     */
+    public static boolean isTrainingDummy(Entity e) {
+        return e.getCustomName() != null && e.getCustomName().equals("Dummy");
     }
 
 

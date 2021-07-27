@@ -316,8 +316,8 @@ public final class CMSlimefunWarfare {
                                                 SupportedPluginsManager.SLIMEFUN_WARFARE_NOTE,
                                                 "Brute",
                                                 "Slow swinging speed. Hit enemies are stunned",
-                                                "briefly. Damage +100% with an additional 33%",
-                                                "chance to crit for a further +100%"
+                                                "briefly. Damage +50% with an additional 10%",
+                                                "chance to crit for +200% instead"
                                         ),
                                         null,
                                         new CMTrait(

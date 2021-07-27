@@ -5,8 +5,10 @@ import io.github.sefiraat.slimetinker.events.friend.EventFriend;
 import io.github.sefiraat.slimetinker.events.friend.TraitEventType;
 import io.github.sefiraat.slimetinker.items.Materials;
 import io.github.sefiraat.slimetinker.modifiers.Modifications;
+import io.github.sefiraat.slimetinker.utils.GeneralUtils;
 import io.github.sefiraat.slimetinker.utils.IDStrings;
 import io.github.sefiraat.slimetinker.utils.ItemUtils;
+import org.bukkit.entity.Panda;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerItemBreakEvent;
@@ -106,19 +108,15 @@ public class DurabilityListener implements Listener {
         ItemMeta im = damagedItem.getItemMeta();
         assert im != null;
         PersistentDataContainer c = im.getPersistentDataContainer();
-        String matPropertyRod = ItemUtils.getToolRodMaterial(c);
 
-        if (matPropertyRod.equals(IDStrings.REINFORCED)) {
+        if (ItemUtils.isReinforced(damagedItem)) {
             level = level * 2;
         }
 
-        int rnd = ThreadLocalRandom.current().nextInt(1,11);
-
-        if (rnd <= level) {
+        if (GeneralUtils.testChance(level, 10)) {
             event.setCancelled(true);
         }
 
     }
-
 
 }

@@ -77,7 +77,7 @@ public class PlayerDamagedListener implements Listener {
         // Settle
         settlePotionEffects(friend);
         event.setDamage(event.getDamage() * friend.getDamageMod());
-        if (friend.getDamageMod() == 0) {
+        if (friend.getDamageMod() == 0 || friend.isCancelEvent()) {
             event.setCancelled(true);
         }
     }

@@ -11,6 +11,7 @@ softdepend:
   - InfinityExpansion
   - SlimefunWarfare
   - DynaTech
+  - LiteXpansion
 commands:
   slimetinker:
     description: /slimetinker

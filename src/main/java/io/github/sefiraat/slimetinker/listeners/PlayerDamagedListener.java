@@ -39,25 +39,10 @@ public class PlayerDamagedListener implements Listener {
         }
 
         Player player = (Player) event.getEntity();
-        ItemStack heldItem = player.getInventory().getItemInMainHand();
-
-        if (!ItemUtils.isTool(heldItem)) { // Not a Tinker's tool, so we don't care
-            return;
-        }
-
-        ItemMeta im = heldItem.getItemMeta();
-        assert im != null;
-        PersistentDataContainer c = im.getPersistentDataContainer();
-        String matPropertyHead = ItemUtils.getToolHeadMaterial(c);
-        String matPropertyBinding = ItemUtils.getToolBindingMaterial(c);
-        String matPropertyRod = ItemUtils.getToolRodMaterial(c);
-        int toolLevel = Experience.getToolLevel(c);
 
         EventFriend friend = new EventFriend();
 
-        friend.setHeldItem(heldItem);
         friend.setPlayer(player);
-        friend.setToolLevel(toolLevel);
         friend.setCause(event.getCause());
         friend.setInitialDamage(event.getDamage());
         friend.setEventType(TraitEventType.PLAYER_DAMAGED);
@@ -66,13 +51,41 @@ public class PlayerDamagedListener implements Listener {
         checkTool(friend);
         checkArmour(friend);
 
-        TraitEventType traitEventType = TraitEventType.PLAYER_DAMAGED;
-        CMManager.getMAP().get(matPropertyHead).runEvent(traitEventType, TraitPartType.HEAD, friend);
-        CMManager.getMAP().get(matPropertyBinding).runEvent(traitEventType, TraitPartType.BINDER, friend);
-        CMManager.getMAP().get(matPropertyRod).runEvent(traitEventType, TraitPartType.ROD, friend);
+        // Mods
+        modChecks(event, player.getInventory().getItemInMainHand());
+
+        // Settle
+        settlePotionEffects(friend);
+        event.setDamage(event.getDamage() * friend.getDamageMod());
+        if (friend.getDamageMod() == 0 || friend.isCancelEvent()) {
+            event.setCancelled(true);
+        }
+    }
+
+    @SuppressWarnings("unused")
+    @EventHandler
+    public void onPlayerDamagedByEntity(EntityDamageByEntityEvent event) {
+
+        if (!(event.getEntity() instanceof Player)) {
+            return;
+        }
+
+        Player player = (Player) event.getEntity();
+
+        EventFriend friend = new EventFriend();
+
+        friend.setPlayer(player);
+        friend.setDamagingEntity(event.getDamager());
+        friend.setCause(event.getCause());
+        friend.setInitialDamage(event.getDamage());
+        friend.setEventType(TraitEventType.PLAYER_DAMAGED);
+
+        // Properties
+        checkTool(friend);
+        checkArmour(friend);
 
         // Mods
-        modChecks(event, heldItem);
+        modChecks(event, player.getInventory().getItemInMainHand());
 
         // Settle
         settlePotionEffects(friend);

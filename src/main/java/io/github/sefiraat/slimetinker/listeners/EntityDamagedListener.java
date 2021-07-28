@@ -5,7 +5,6 @@ import io.github.sefiraat.slimetinker.events.friend.EventFriend;
 import io.github.sefiraat.slimetinker.events.friend.TraitEventType;
 import io.github.sefiraat.slimetinker.modifiers.Modifications;
 import io.github.sefiraat.slimetinker.utils.EntityUtils;
-import io.github.sefiraat.slimetinker.utils.Experience;
 import io.github.sefiraat.slimetinker.utils.IDStrings;
 import io.github.sefiraat.slimetinker.utils.ItemUtils;
 import io.github.sefiraat.slimetinker.utils.ThemeUtils;
@@ -17,7 +16,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
-import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.Damageable;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -56,14 +54,12 @@ public class EntityDamagedListener implements Listener {
         String matPropertyHead = ItemUtils.getToolHeadMaterial(c);
         String matPropertyBinding = ItemUtils.getToolBindingMaterial(c);
         String matPropertyRod = ItemUtils.getToolRodMaterial(c);
-        int toolLevel = Experience.getToolLevel(c);
+        int toolLevel = ItemUtils.getTinkerLevel(c);
 
         EventFriend friend = new EventFriend();
 
-        friend.setHeldItem(heldItem);
         friend.setPlayer(player);
         friend.setDamagedEntity(event.getEntity());
-        friend.setToolLevel(toolLevel);
         friend.setInitialDamage(event.getDamage());
         friend.setEventType(TraitEventType.ENTITY_DAMAGED);
 
@@ -115,7 +111,6 @@ public class EntityDamagedListener implements Listener {
         }
 
         event.setDamage(event.getDamage() * friend.getDamageMod());
-        Experience.addExp(heldItem, (int) Math.ceil(event.getDamage() * friend.getToolExpMod()), player, false);
 
     }
 

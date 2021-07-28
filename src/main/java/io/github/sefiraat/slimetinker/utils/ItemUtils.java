@@ -19,6 +19,7 @@ import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
 import org.jetbrains.annotations.Nullable;
 
+import javax.annotation.Nonnull;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -127,8 +128,8 @@ public final class ItemUtils {
         lore.add(ThemeUtils.getLine());
 
         // Exp / Leveling / Mod Slot information
-        lore.add(Experience.getLoreExp(c));
-        lore.add(Experience.getLoreModSlots(c));
+        lore.add(getLoreExp(c));
+        lore.add(getLoreModSlots(c));
         lore.add(ThemeUtils.getLine());
 
         // Active Mods
@@ -179,8 +180,8 @@ public final class ItemUtils {
         lore.add(ThemeUtils.getLine());
 
         // Exp / Leveling / Mod Slot information
-        lore.add(Experience.getLoreExp(c));
-        lore.add(Experience.getLoreModSlots(c));
+        lore.add(getLoreExp(c));
+        lore.add(getLoreModSlots(c));
         lore.add(ThemeUtils.getLine());
 
         // Active Mods
@@ -451,31 +452,161 @@ public final class ItemUtils {
     }
 
     public static boolean isEnchanting(ItemStack itemStack) {
-        return getToolHeadMaterial(itemStack).equals(IDStrings.SILVER)
-                || getArmourLinksMaterial(itemStack).equals(IDStrings.SILVER)
-                || getToolHeadMaterial(itemStack).equals(IDStrings.SINGSILVER)
-                || getArmourLinksMaterial(itemStack).equals(IDStrings.SINGSILVER);
+        if (isTool(itemStack)) {
+            return getToolHeadMaterial(itemStack).equals(IDStrings.SILVER)
+                    || getToolHeadMaterial(itemStack).equals(IDStrings.SINGSILVER);
+        } else if (isArmour(itemStack)) {
+            return getArmourLinksMaterial(itemStack).equals(IDStrings.SILVER)
+                    || getArmourLinksMaterial(itemStack).equals(IDStrings.SINGSILVER);
+        } else {
+            return false;
+        }
     }
 
     public static boolean isEnchanting1(ItemStack itemStack) {
-        return getToolHeadMaterial(itemStack).equals(IDStrings.SILVER)
-                || getArmourLinksMaterial(itemStack).equals(IDStrings.SILVER);
+        if (isTool(itemStack)) {
+            return getToolHeadMaterial(itemStack).equals(IDStrings.SILVER);
+        } else if (isArmour(itemStack)) {
+            return getArmourLinksMaterial(itemStack).equals(IDStrings.SILVER);
+        } else {
+            return false;
+        }
     }
 
     public static boolean isEnchanting2(ItemStack itemStack) {
-        return getToolHeadMaterial(itemStack).equals(IDStrings.SINGSILVER)
-                || getArmourLinksMaterial(itemStack).equals(IDStrings.SINGSILVER);
+        if (isTool(itemStack)) {
+            return getToolHeadMaterial(itemStack).equals(IDStrings.SINGSILVER);
+        } else if (isArmour(itemStack)) {
+            return getArmourLinksMaterial(itemStack).equals(IDStrings.SINGSILVER);
+        } else {
+            return false;
+        }
+    }
+
+    public static boolean isConductive(ItemStack itemStack) {
+        if (isTool(itemStack)) {
+            return getToolRodMaterial(itemStack).equals(IDStrings.COPPER)
+                    || getToolRodMaterial(itemStack).equals(IDStrings.SINGCOPPER);
+        } else if (isArmour(itemStack)) {
+            return false;
+        } else {
+            return false;
+        }
+    }
+
+    public static boolean isConductive1(ItemStack itemStack) {
+        if (isTool(itemStack)) {
+            return getToolRodMaterial(itemStack).equals(IDStrings.COPPER);
+        } else if (isArmour(itemStack)) {
+            return false;
+        } else {
+            return false;
+        }
+    }
+
+    public static boolean isConductive2(ItemStack itemStack) {
+        if (isTool(itemStack)) {
+            return getToolRodMaterial(itemStack).equals(IDStrings.SINGCOPPER);
+        } else if (isArmour(itemStack)) {
+            return false;
+        } else {
+            return false;
+        }
     }
 
     public static boolean canBeDropped(ItemStack itemStack) {
-        return getToolRodMaterial(itemStack).equals(IDStrings.SOLDER)
-                || getToolRodMaterial(itemStack).equals(IDStrings.UNPATENTABLIUM)
-                || getArmourLinksMaterial(itemStack).equals(IDStrings.SOLDER);
+        if (isTool(itemStack)) {
+            return getToolRodMaterial(itemStack).equals(IDStrings.SOLDER)
+                    || getToolRodMaterial(itemStack).equals(IDStrings.UNPATENTABLIUM);
+        } else if (isArmour(itemStack)) {
+            return getArmourLinksMaterial(itemStack).equals(IDStrings.SOLDER);
+        } else {
+            return false;
+        }
+
     }
 
     public static boolean isReinforced(ItemStack itemStack) {
-       return getToolRodMaterial(itemStack).equals(IDStrings.REINFORCED)
-              || getArmourPlateMaterial(itemStack).equals(IDStrings.REINFORCED);
+        if (isTool(itemStack)) {
+            return getToolRodMaterial(itemStack).equals(IDStrings.REINFORCED);
+        } else if (isArmour(itemStack)) {
+            return getArmourPlateMaterial(itemStack).equals(IDStrings.REINFORCED);
+        } else {
+            return false;
+        }
     }
 
+    @Nonnull
+    public static Integer getTinkerExp(PersistentDataContainer c) {
+        return c.get(SlimeTinker.inst().getKeys().getStExpCurrent(), PersistentDataType.INTEGER);
+    }
+
+    @Nullable
+    public static Integer getTinkerExp(ItemStack itemStack) {
+        if (itemStack == null) return null;
+        ItemMeta im = itemStack.getItemMeta();
+        Validate.notNull(im, "ItemStack does not have meta");
+        PersistentDataContainer c = im.getPersistentDataContainer();
+        Validate.notNull(c, "ItemStack does not have PDC");
+        return getTinkerExp(c);
+    }
+
+    @Nonnull
+    public static Integer getTinkerRequiredExp(PersistentDataContainer c) {
+        return c.get(SlimeTinker.inst().getKeys().getStExpRequired(), PersistentDataType.DOUBLE).intValue();
+    }
+
+    @Nullable
+    public static Integer getTinkerRequiredExp(ItemStack itemStack) {
+        if (itemStack == null) return null;
+        ItemMeta im = itemStack.getItemMeta();
+        Validate.notNull(im, "ItemStack does not have meta");
+        PersistentDataContainer c = im.getPersistentDataContainer();
+        Validate.notNull(c, "ItemStack does not have PDC");
+        return getTinkerRequiredExp(c);
+    }
+
+    @Nonnull
+    public static Integer getTinkerLevel(PersistentDataContainer c) {
+        return c.get(SlimeTinker.inst().getKeys().getStLevel(), PersistentDataType.INTEGER);
+    }
+
+    @Nullable
+    public static Integer getTinkerLevel(ItemStack itemStack) {
+        if (itemStack == null) return null;
+        ItemMeta im = itemStack.getItemMeta();
+        Validate.notNull(im, "ItemStack does not have meta");
+        PersistentDataContainer c = im.getPersistentDataContainer();
+        Validate.notNull(c, "ItemStack does not have PDC");
+        return getTinkerLevel(c);
+    }
+
+    public static int getTinkerModifierSlots(PersistentDataContainer c) {
+        return c.get(SlimeTinker.inst().getKeys().getStModSlots(), PersistentDataType.INTEGER);
+    }
+
+    @Nullable
+    public static Integer getTinkerModifierSlots(ItemStack itemStack) {
+        if (itemStack == null) return null;
+        ItemMeta im = itemStack.getItemMeta();
+        Validate.notNull(im, "ItemStack does not have meta");
+        PersistentDataContainer c = im.getPersistentDataContainer();
+        Validate.notNull(c, "ItemStack does not have PDC");
+        return getTinkerModifierSlots(c);
+    }
+
+    public static void setTinkerModifierSlots(PersistentDataContainer c, int amount) {
+        c.set(SlimeTinker.inst().getKeys().getStModSlots(), PersistentDataType.INTEGER, amount);
+    }
+
+    public static String getLoreExp(PersistentDataContainer c) {
+        return ThemeUtils.ITEM_TOOL + "Level: " +
+                org.bukkit.ChatColor.WHITE + getTinkerLevel(c) +
+                ThemeUtils.PASSIVE + " (" + getTinkerExp(c) + " / " + getTinkerRequiredExp(c) + ")";
+    }
+
+    public static String getLoreModSlots(PersistentDataContainer c) {
+        return ThemeUtils.ITEM_TOOL + "Modifier Slots: " +
+                org.bukkit.ChatColor.WHITE + getTinkerModifierSlots(c);
+    }
 }

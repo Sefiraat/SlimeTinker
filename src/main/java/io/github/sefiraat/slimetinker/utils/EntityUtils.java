@@ -8,9 +8,11 @@ import org.bukkit.Location;
 import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
+import org.bukkit.entity.Player;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.util.Vector;
 
+import javax.annotation.Nullable;
 import java.util.Map;
 
 @UtilityClass
@@ -41,6 +43,25 @@ public final class EntityUtils {
      */
     public static boolean isTrainingDummy(Entity e) {
         return e.getCustomName() != null && e.getCustomName().equals("Dummy");
+    }
+
+    public static double getFacing(Player p, Entity e) {
+        Vector pd = p.getLocation().getDirection();
+        Vector ed = p.getLocation().getDirection();
+        double x = (pd.getX() * ed.getZ()) - (pd.getZ() * ed.getX());
+        double z = (pd.getX() * ed.getX()) + (pd.getZ() * ed.getZ());
+        double a = Math.atan2(x, z);
+        return (a * 180) / Math.PI;
+    }
+
+    public static boolean isFacingAway(Player p, Entity e) {
+        return isFacingAway(p, e, null);
+    }
+
+    public static boolean isFacingAway(Player p, Entity e, @Nullable Integer tolerance) {
+        double d = getFacing(p, e);
+        Integer val = tolerance == null ? Integer.valueOf(30) : tolerance;
+        return d <= 30 && d >= -30;
     }
 
 

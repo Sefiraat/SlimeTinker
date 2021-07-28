@@ -28,7 +28,6 @@ import org.bukkit.entity.Piglin;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Villager;
 import org.bukkit.entity.Wither;
-import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
@@ -66,7 +65,7 @@ public final class TickEvents {
         if (!GeneralUtils.day(friend.getPlayer().getWorld())) {
             int rnd = ThreadLocalRandom.current().nextInt(1,5);
             if (rnd == 1) {
-                ItemUtils.incrementRepair(friend.getHeldItem());
+                ItemUtils.incrementRepair(friend.getTool());
             }
         }
     }
@@ -91,7 +90,7 @@ public final class TickEvents {
         if (GeneralUtils.day(friend.getPlayer().getWorld())) {
             int rnd = ThreadLocalRandom.current().nextInt(1,5);
             if (rnd == 1) {
-                ItemUtils.incrementRepair(friend.getHeldItem());
+                ItemUtils.incrementRepair(friend.getTool());
             }
         }
     }
@@ -171,7 +170,7 @@ public final class TickEvents {
     }
 
     public static void headDuralium(EventFriend friend) {
-        if (ItemUtils.isTinkersBroken(friend.getHeldItem())) {
+        if (ItemUtils.isTinkersBroken(friend.getTool())) {
             increaseEffect(PotionEffectType.SLOW_DIGGING, friend.getPotionEffects());
         }
     }
@@ -496,5 +495,23 @@ public final class TickEvents {
         if (GeneralUtils.testChance(1, 4)) {
             friend.getPlayer().setHealth(Math.min(friend.getPlayer().getHealth() + 1, friend.getPlayer().getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue()));
         }
+    }
+
+    public static void plateLead(EventFriend friend) {
+        increaseEffect(PotionEffectType.POISON, friend.getPotionEffects(), 1);
+    }
+
+    public static void linksLead(EventFriend friend) {
+        increaseEffect(PotionEffectType.POISON, friend.getPotionEffects(), 1);
+    }
+
+    public static void plateFerrosilicon(EventFriend friend) {
+        if (GeneralUtils.day(friend.getPlayer().getWorld())) {
+            ItemUtils.incrementRepair(friend.getActiveStack());
+        }
+    }
+
+    public static void linksSteel(EventFriend friend) {
+        increaseEffect(PotionEffectType.HEALTH_BOOST, friend.getPotionEffects());
     }
 }

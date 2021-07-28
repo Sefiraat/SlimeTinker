@@ -16,6 +16,7 @@ import org.bukkit.Particle;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
+import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.inventory.ItemStack;
@@ -63,8 +64,8 @@ public final class PlayerDamagedEvents {
     }
 
     public static void headReinforcedSlimesteel(EventFriend friend) {
-        if (!ItemUtils.isTinkersBroken(friend.getHeldItem())) {
-            ItemUtils.damageTool(friend.getHeldItem(), (int) friend.getInitialDamage());
+        if (!ItemUtils.isTinkersBroken(friend.getTool())) {
+            ItemUtils.damageTool(friend.getTool(), (int) friend.getInitialDamage());
             friend.setDamageMod(friend.getDamageMod() / 2);
         }
     }
@@ -100,7 +101,7 @@ public final class PlayerDamagedEvents {
         Player p = friend.getPlayer();
 
         if (friend.getInitialDamage() >= p.getHealth()) {
-            ItemStack i = friend.getHeldItem();
+            ItemStack i = friend.getTool();
             ItemMeta im = i.getItemMeta();
             NamespacedKey key = SlimeTinker.inst().getKeys().getTraitsCooldownProtective();
             assert im != null;
@@ -136,8 +137,8 @@ public final class PlayerDamagedEvents {
     }
 
     public static void plateBrass(EventFriend friend) {
-        Damageable damagable = (Damageable) friend.getHeldItem().getItemMeta();
-        int dmgPerc = (damagable.getDamage() / friend.getHeldItem().getType().getMaxDurability()) * 100;
+        Damageable damagable = (Damageable) friend.getTool().getItemMeta();
+        int dmgPerc = (damagable.getDamage() / friend.getTool().getType().getMaxDurability()) * 100;
         if (dmgPerc <= 0) {
             friend.setDamageMod(friend.getDamageMod() + 0.25);
         } else if (dmgPerc <= 10) {
@@ -270,6 +271,29 @@ public final class PlayerDamagedEvents {
         if (GeneralUtils.testChance(1, 100)) {
             Location l = friend.getPlayer().getLocation();
             l.getWorld().dropItemNaturally(l, new ItemStack(Material.GOLD_NUGGET));
+        }
+    }
+
+    public static void linksDuralium(EventFriend friend) {
+        if (GeneralUtils.testChance(1,10)) {
+            friend.setCancelEvent(true);
+        }
+    }
+
+    public static void linksDamSteel(EventFriend friend) {
+        if (friend.getCause() == EntityDamageEvent.DamageCause.THORNS) {
+            Entity e = friend.getDamagingEntity();
+            if (e instanceof LivingEntity) {
+                LivingEntity l = (LivingEntity) e;
+                friend.setCancelEvent(true);
+                l.damage(friend.getInitialDamage());
+            }
+        }
+    }
+
+    public static void plateSolder(EventFriend friend) {
+        if (friend.getCause() == EntityDamageEvent.DamageCause.FLY_INTO_WALL) {
+            friend.setCancelEvent(true);
         }
     }
 }

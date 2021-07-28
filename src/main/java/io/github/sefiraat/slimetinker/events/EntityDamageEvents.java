@@ -2,6 +2,7 @@ package io.github.sefiraat.slimetinker.events;
 
 import io.github.sefiraat.slimetinker.SlimeTinker;
 import io.github.sefiraat.slimetinker.events.friend.EventFriend;
+import io.github.sefiraat.slimetinker.utils.EntityUtils;
 import io.github.sefiraat.slimetinker.utils.GeneralUtils;
 import lombok.experimental.UtilityClass;
 import org.bukkit.Color;
@@ -15,6 +16,7 @@ import org.bukkit.entity.Animals;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
+import org.bukkit.entity.Panda;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -294,7 +296,7 @@ public final class EntityDamageEvents {
 
     public static void rodIridium(EventFriend friend) {
 
-        ItemStack i = friend.getHeldItem();
+        ItemStack i = friend.getTool();
         ItemMeta im = i.getItemMeta();
         NamespacedKey key = SlimeTinker.inst().getKeys().getTraitsCooldownWarp();
         assert im != null;
@@ -318,5 +320,15 @@ public final class EntityDamageEvents {
 
     public static void plateMagnesium(EventFriend friend) {
         friend.setDamageMod(friend.getDamageMod() - 0.25);
+    }
+
+    public static void gambesonSilicon(EventFriend friend) {
+        friend.incrementExpMod((0.05 * friend.getActiveLevel()));
+    }
+
+    public static void plateZinc(EventFriend friend) {
+        if (EntityUtils.isFacingAway(friend.getPlayer(), friend.getDamagedEntity())) {
+            friend.setDamageMod(friend.getDamageMod() + 1);
+        }
     }
 }

@@ -1,5 +1,6 @@
 package io.github.sefiraat.slimetinker.events.friend;
 
+import io.github.sefiraat.slimetinker.utils.ItemUtils;
 import lombok.Data;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Entity;
@@ -19,7 +20,8 @@ public class EventFriend {
     private ActiveFriendElement activeFriendElement;
     private TraitEventType eventType;
 
-    private ItemStack heldItem;
+    @Nullable
+    private ItemStack tool;
     @Nullable
     private ItemStack helmet;
     @Nullable
@@ -32,10 +34,12 @@ public class EventFriend {
     private Player player;
     private Block block;
     private Entity damagedEntity;
+    /**
+     * The entity doing the damaging (for PlayerDamageEvents)
+     */
+    private Entity damagingEntity;
     private EntityDamageEvent.DamageCause cause;
     private double initialDamage = 0;
-
-    private int toolLevel;
 
     private final Map<PotionEffectType, Integer> potionEffects = new HashMap<>();
 
@@ -124,7 +128,7 @@ public class EventFriend {
     public ItemStack getActiveStack(ActiveFriendElement element) {
         switch (element) {
             case TOOL:
-                return heldItem;
+                return tool;
             case HELMET:
                 return helmet;
             case CHESTPLATE:
@@ -140,6 +144,61 @@ public class EventFriend {
 
     public ItemStack getActiveStack() {
         return getActiveStack(activeFriendElement);
+    }
+
+    public int getActiveLevel(ActiveFriendElement element) {
+        switch (element) {
+            case TOOL:
+                return getToolLevel();
+            case HELMET:
+                return getHelmLevel();
+            case CHESTPLATE:
+                return getChestLevel();
+            case LEGGINGS:
+                return getLegLevel();
+            case BOOTS:
+                return getBootLevel();
+            default:
+                throw new IllegalStateException("Unexpected value: " + element);
+        }
+    }
+
+    public int getActiveLevel() {
+        return getActiveLevel(activeFriendElement);
+    }
+
+    @Nullable
+    public int getToolLevel() {
+        Integer l = ItemUtils.getTinkerLevel(tool);
+        return l == null ? 0 : l;
+    }
+    @Nullable
+    public int getHelmLevel() {
+        Integer l = ItemUtils.getTinkerLevel(helmet);
+        return l == null ? 0 : l;
+    }
+    @Nullable
+    public int getChestLevel() {
+        Integer l = ItemUtils.getTinkerLevel(chestplate);
+        return l == null ? 0 : l;
+    }
+    @Nullable
+    public int getLegLevel() {
+        Integer l = ItemUtils.getTinkerLevel(leggings);
+        return l == null ? 0 : l;
+    }
+    @Nullable
+    public int getBootLevel() {
+        Integer l = ItemUtils.getTinkerLevel(boots);
+        return l == null ? 0 : l;
+    }
+
+
+    public EventFriend() {
+        ItemStack i = player.getInventory().getItemInMainHand();
+        if (ItemUtils.isTool(i)) {
+            tool = i;
+        }
     }
 
 }

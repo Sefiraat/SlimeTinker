@@ -30,7 +30,7 @@ public final class RightClickEvents {
 
     public static void bindVex(EventFriend friend) {
         Player p = friend.getPlayer();
-        ItemStack i = friend.getHeldItem();
+        ItemStack i = friend.getTool();
         ItemMeta im = i.getItemMeta();
         NamespacedKey key = SlimeTinker.inst().getKeys().getTraitsCooldownNoClip();
         assert im != null;

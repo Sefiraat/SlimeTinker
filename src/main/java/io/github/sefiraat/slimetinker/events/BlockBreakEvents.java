@@ -5,7 +5,6 @@ import io.github.sefiraat.slimetinker.listeners.BlockMap;
 import io.github.sefiraat.slimetinker.utils.GeneralUtils;
 import io.github.sefiraat.slimetinker.utils.ItemUtils;
 import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
-import io.github.thebusybiscuit.slimefun4.implementation.SlimefunPlugin;
 import io.github.thebusybiscuit.slimefun4.utils.tags.SlimefunTag;
 import lombok.experimental.UtilityClass;
 import me.mrCookieSlime.Slimefun.api.SlimefunItemStack;
@@ -179,7 +178,7 @@ public final class BlockBreakEvents {
     }
 
     public static void headVoid(EventFriend friend) {
-        ItemMeta im = friend.getHeldItem().getItemMeta();
+        ItemMeta im = friend.getTool().getItemMeta();
         assert im != null;
         PersistentDataContainer c = im.getPersistentDataContainer();
         String toolType = ItemUtils.getToolTypeName(c);

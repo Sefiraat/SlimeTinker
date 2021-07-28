@@ -2,6 +2,7 @@ package io.github.sefiraat.slimetinker.events.friend;
 
 import io.github.sefiraat.slimetinker.SlimeTinker;
 import io.github.sefiraat.slimetinker.items.componentmaterials.CMManager;
+import io.github.sefiraat.slimetinker.utils.Experience;
 import io.github.sefiraat.slimetinker.utils.ItemUtils;
 import org.apache.commons.lang.Validate;
 import org.bukkit.inventory.ItemStack;
@@ -10,6 +11,9 @@ import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
 public class EventChannels {
@@ -22,12 +26,16 @@ public class EventChannels {
 
     public static void checkTool(EventFriend friend) {
 
-        if (!ItemUtils.isTool(friend.getHeldItem())) {
+        ItemStack i = friend.getPlayer().getInventory().getItemInMainHand();
+
+        if (!ItemUtils.isTool(i)) {
             return;
         }
 
+        friend.setTool(i);
         friend.setActiveFriendElement(ActiveFriendElement.TOOL);
-        ItemMeta im = friend.getHeldItem().getItemMeta();
+        Validate.notNull(friend.getTool(), "Tool is null, which isn't possible!");
+        ItemMeta im = friend.getTool().getItemMeta();
         Validate.notNull(im, "No item meta, failed isTool check - grr?");
 
         PersistentDataContainer c = im.getPersistentDataContainer();
@@ -58,7 +66,7 @@ public class EventChannels {
 
         friend.setActiveFriendElement(ActiveFriendElement.HELMET);
         friend.setHelmet(i);
-        checkArmourPiece(friend, i);
+        checkArmourPiece(friend);
 
     }
 
@@ -72,7 +80,7 @@ public class EventChannels {
 
         friend.setActiveFriendElement(ActiveFriendElement.CHESTPLATE);
         friend.setChestplate(i);
-        checkArmourPiece(friend, i);
+        checkArmourPiece(friend);
 
     }
 
@@ -86,7 +94,7 @@ public class EventChannels {
 
         friend.setActiveFriendElement(ActiveFriendElement.LEGGINGS);
         friend.setLeggings(i);
-        checkArmourPiece(friend, i);
+        checkArmourPiece(friend);
 
     }
 
@@ -100,13 +108,14 @@ public class EventChannels {
 
         friend.setActiveFriendElement(ActiveFriendElement.BOOTS);
         friend.setBoots(i);
-        checkArmourPiece(friend, i);
+        checkArmourPiece(friend);
 
     }
 
-    public static void checkArmourPiece(EventFriend friend, ItemStack itemStack) {
+    public static void checkArmourPiece(EventFriend friend) {
 
-        ItemMeta im = itemStack.getItemMeta();
+        ItemStack i = friend.getActiveStack();
+        ItemMeta im = i.getItemMeta();
         Validate.notNull(im, "No item meta, failed isTool check - grr?");
 
         PersistentDataContainer c = im.getPersistentDataContainer();
@@ -117,6 +126,20 @@ public class EventChannels {
         CMManager.getMAP().get(matPropertyHead).runEvent(friend.getEventType(), TraitPartType.PLATE, friend);
         CMManager.getMAP().get(matPropertyBinding).runEvent(friend.getEventType(), TraitPartType.GAMBESON, friend);
         CMManager.getMAP().get(matPropertyRod).runEvent(friend.getEventType(), TraitPartType.LINKS, friend);
+    }
+
+    public static void provideKillExp(EventFriend friend, int baseAmount) {
+
+        ItemStack tool = friend.getTool();
+        ItemStack helm = friend.getHelmet();
+        ItemStack chst = friend.getChestplate();
+        ItemStack legg = friend.getLeggings();
+        ItemStack boot = friend.getBoots();
+
+        if (tool != null) {
+            int amount = (int) (baseAmount * friend.getToolExpMod());
+            Experience.addExp(tool, amount, friend.getPlayer(), false);
+        }
     }
 
 }

@@ -6,7 +6,6 @@ import io.github.sefiraat.slimetinker.events.friend.EventFriend;
 import io.github.sefiraat.slimetinker.events.friend.TraitEventType;
 import io.github.sefiraat.slimetinker.events.friend.TraitPartType;
 import io.github.sefiraat.slimetinker.items.componentmaterials.CMManager;
-import io.github.sefiraat.slimetinker.utils.Experience;
 import io.github.sefiraat.slimetinker.utils.GeneralUtils;
 import io.github.sefiraat.slimetinker.utils.IDStrings;
 import io.github.sefiraat.slimetinker.utils.ItemUtils;
@@ -49,13 +48,11 @@ public class PlayerInteractListener implements Listener {
         String matPropertyHead = ItemUtils.getToolHeadMaterial(c);
         String matPropertyBinding = ItemUtils.getToolBindingMaterial(c);
         String matPropertyRod = ItemUtils.getToolRodMaterial(c);
-        int toolLevel = Experience.getToolLevel(c);
+        int toolLevel = ItemUtils.getTinkerLevel(c);
 
         EventFriend friend = new EventFriend();
 
-        friend.setHeldItem(heldItem);
         friend.setPlayer(player);
-        friend.setToolLevel(toolLevel);
         friend.setEventType(TraitEventType.TICK);
 
         // Properties
@@ -85,11 +82,11 @@ public class PlayerInteractListener implements Listener {
 
     private void checkTool(EventFriend friend) {
 
-        if (!ItemUtils.isTool(friend.getHeldItem())) {
+        if (!ItemUtils.isTool(friend.getTool())) {
             return;
         }
 
-        ItemMeta im = friend.getHeldItem().getItemMeta();
+        ItemMeta im = friend.getTool().getItemMeta();
         Validate.notNull(im, "No item meta, failed isTool check - grr?");
 
         PersistentDataContainer c = im.getPersistentDataContainer();

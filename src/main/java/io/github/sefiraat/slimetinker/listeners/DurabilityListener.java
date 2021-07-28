@@ -45,7 +45,6 @@ public class DurabilityListener implements Listener {
 
         EventFriend friend = new EventFriend();
 
-        friend.setHeldItem(event.getItem());
         friend.setPlayer(event.getPlayer());
         friend.setEventType(TraitEventType.ENTITY_DAMAGED);
 

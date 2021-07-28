@@ -4,7 +4,6 @@ import io.github.mooy1.infinitylib.items.StackUtils;
 import io.github.mooy1.infinitylib.slimefun.AbstractContainer;
 import io.github.sefiraat.slimetinker.modifiers.Mod;
 import io.github.sefiraat.slimetinker.modifiers.Modifications;
-import io.github.sefiraat.slimetinker.utils.Experience;
 import io.github.sefiraat.slimetinker.utils.GUIItems;
 import io.github.sefiraat.slimetinker.utils.ItemUtils;
 import io.github.sefiraat.slimetinker.utils.ThemeUtils;
@@ -70,7 +69,7 @@ public class ModificationStation extends AbstractContainer {
         Map<String, Integer> modMap = Modifications.getModificationMap(c);
 
         Mod mod = Modifications.getMODIFICATION_DEFINITIONS_TOOL().get(StackUtils.getIDorType(modItem)); // The definition of the mod being created/updated
-        int modSlots = Experience.getToolModifierSlots(tool.getItemMeta().getPersistentDataContainer()); // Number of free modification slots on the tool
+        int modSlots = ItemUtils.getTinkerModifierSlots(tool.getItemMeta().getPersistentDataContainer()); // Number of free modification slots on the tool
         int currentAmount = modMap.get(StackUtils.getIDorType(modItem)); // The current value of that material loaded into the tool (not the level)
         int currentLevel = Modifications.getModLevel(mod, tool); // The current level of this mod (or 0)
 
@@ -87,7 +86,7 @@ public class ModificationStation extends AbstractContainer {
                 player.sendMessage(ThemeUtils.WARNING + "You do not have enough free Modification slots for this");
                 return false;
             } else { // Remove mod slot
-                Experience.setToolModifierSlots(c,modSlots - 1);
+                ItemUtils.setTinkerModifierSlots(c,modSlots - 1);
             }
         }  // Or continuing on with a previous mod so we can continue without a free slot
 

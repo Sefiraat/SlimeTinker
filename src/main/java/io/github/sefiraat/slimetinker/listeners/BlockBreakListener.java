@@ -68,7 +68,6 @@ public class BlockBreakListener implements Listener {
         EventFriend friend = new EventFriend();
 
         // Property and Mod checks, carries around the additional and normal drops
-        friend.setHeldItem(heldItem);
         friend.setPlayer(p);
         friend.setBlock(block);
         friend.setDrops(block.getDrops(heldItem)); // Stores the event drops. All may not be dropped

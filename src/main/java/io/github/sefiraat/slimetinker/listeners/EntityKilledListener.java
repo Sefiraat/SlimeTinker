@@ -4,13 +4,12 @@ import io.github.sefiraat.slimetinker.events.friend.EventFriend;
 import io.github.sefiraat.slimetinker.events.friend.TraitEventType;
 import io.github.sefiraat.slimetinker.modifiers.Modifications;
 import io.github.sefiraat.slimetinker.utils.Experience;
-import io.github.sefiraat.slimetinker.utils.IDStrings;
 import io.github.sefiraat.slimetinker.utils.ItemUtils;
-import io.github.sefiraat.slimetinker.utils.ThemeUtils;
 import org.bukkit.Color;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Particle;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -93,24 +92,18 @@ public class EntityKilledListener implements Listener {
         Player player = dyingEntity.getKiller();
         ItemStack heldItem = player.getInventory().getItemInMainHand();
 
-        if (!ItemUtils.isTool(heldItem)) { // Not a Tinker's tool, so we don't care
-            return;
+        if (ItemUtils.isTool(heldItem)) {
+            processTool(heldItem, player, dyingEntity, event);
         }
 
-        ItemMeta im = heldItem.getItemMeta();
-        assert im != null;
-        PersistentDataContainer c = im.getPersistentDataContainer();
-        String matPropertyHead = ItemUtils.getToolHeadMaterial(c);
-        String matPropertyBinding = ItemUtils.getToolBindingMaterial(c);
-        String matPropertyRod = ItemUtils.getToolRodMaterial(c);
-        int toolLevel = Experience.getToolLevel(c);
+    }
+
+    private void processTool(ItemStack heldItem, Player player, Entity dyingEntity, EntityDeathEvent event) {
 
         EventFriend friend = new EventFriend();
 
-        friend.setHeldItem(heldItem);
         friend.setPlayer(player);
         friend.setDamagedEntity(dyingEntity);
-        friend.setToolLevel(toolLevel);
         friend.setEventType(TraitEventType.ENTITY_DAMAGED);
 
         // Properties
@@ -122,13 +115,14 @@ public class EntityKilledListener implements Listener {
 
         // Settle
         settlePotionEffects(friend);
+        int rawExp = event.getDroppedExp();
         event.setDroppedExp((int) Math.ceil(event.getDroppedExp() * friend.getPlayerExpMod()));
         if (event.getDroppedExp() > 0 && friend.isMetalCheck()) {
             Experience.addExp(heldItem, (int) Math.ceil(event.getDroppedExp() / 10D), player, true);
             event.setDroppedExp(0);
         }
 
-
+        Experience.addExp(heldItem, (int) Math.ceil(rawExp * friend.getToolExpMod()), player, false);
     }
 
     private void modChecks(EntityDeathEvent event, ItemStack heldItem) {

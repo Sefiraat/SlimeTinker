@@ -80,7 +80,7 @@ public final class CMSlimefunWarfare {
                                         CMCore.getMap().get(IDStrings.STEEL).getLiquidItemStack(1),
                                         CMCore.getMap().get(IDStrings.SLIME).getLiquidItemStack(1)
                                 ),
-                                new CMToolMakeup(true, false, true),
+                                new CMToolMakeup(false, true, false),
                                 new CMForms(
                                         Materials.NUGGET_CAST_SLIMESTEEL.getItemId(),
                                     "SLIMESTEEL_INGOT",

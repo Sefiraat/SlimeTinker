@@ -260,4 +260,9 @@ public final class BlockBreakEvents {
             }
         }
     }
+
+    public static void linksAdamantite(EventFriend friend) {
+        friend.incrementExpMod(0.1);
+        friend.setPlayerExpMod(friend.getPlayerExpMod() + 0.1);
+    }
 }

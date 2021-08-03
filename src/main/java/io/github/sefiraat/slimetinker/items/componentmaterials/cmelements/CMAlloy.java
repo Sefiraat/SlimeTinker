@@ -9,6 +9,7 @@ import io.github.sefiraat.slimetinker.utils.enums.ThemeItemType;
 import lombok.Getter;
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.SlimefunItem;
 import me.mrCookieSlime.Slimefun.api.SlimefunItemStack;
+import org.apache.commons.lang.Validate;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.HashMap;
@@ -39,8 +40,9 @@ public class CMAlloy {
                         "Molten " + titName,
                         ThemeUtils.PASSIVE + "A molten alloy metal of " + titName
                 );
-        assert parent.getAlloyRecipe() != null;
-        this.item = new SlimefunItem(Categories.ALLOYS, itemStack, DummySmelteryAlloy.TYPE, parent.getAlloyRecipe().toArray(new ItemStack[9]));
+        List<SlimefunItemStack> alloyRecipe = parent.getAlloyRecipe();
+        Validate.notNull(alloyRecipe, "Alloy recipe is null. SefiDumb™");
+        this.item = new SlimefunItem(Categories.ALLOYS, itemStack, DummySmelteryAlloy.TYPE, alloyRecipe.toArray(new ItemStack[9]));
         item.register(SlimeTinker.inst());
         for (SlimefunItemStack i : parent.getAlloyRecipe()) {
             alloyMap.put(i.getItemId().replace("_LIQUID",""), i.getAmount());

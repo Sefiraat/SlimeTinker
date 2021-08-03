@@ -357,4 +357,9 @@ public final class EntityDamageEvents {
     public static void plateSingCopper(EventFriend friend) {
         friend.incrementExpMod(0.4);
     }
+
+    public static void linksAdamantite(EventFriend friend) {
+        friend.incrementExpMod(0.1);
+        friend.setPlayerExpMod(friend.getPlayerExpMod() + 0.1);
+    }
 }

@@ -76,6 +76,7 @@ public class ToolTemplate extends SlimefunItem {
      * @param itemStack Stack to check
      * @return true if Tinker's Tool
      */
+    @Deprecated
     public static boolean isTool(ItemStack itemStack) {
         return  itemStack != null &&
                 itemStack.getType() != Material.AIR &&

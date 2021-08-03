@@ -15,6 +15,7 @@ import org.bukkit.Effect;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.attribute.Attribute;
+import org.bukkit.attribute.AttributeInstance;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.block.data.Powerable;
@@ -413,7 +414,10 @@ public final class TickEvents {
     }
 
     public static void plateDamSteel(EventFriend friend) {
-         friend.getPlayer().getAttribute(Attribute.GENERIC_MAX_HEALTH).setBaseValue(20 + (friend.getCompounding()^2));
+        AttributeInstance a = friend.getPlayer().getAttribute(Attribute.GENERIC_MAX_HEALTH);
+        if (a != null) {
+            a.setBaseValue(20d + (friend.getCompounding()^2));
+        }
     }
 
     public static void gambesonCrimsonRoots(EventFriend friend) {
@@ -553,5 +557,9 @@ public final class TickEvents {
                 p.setTarget(null);
             }
         }
+    }
+
+    public static void plateSingAluminium(EventFriend friend) {
+        increaseEffect(PotionEffectType.SPEED, friend.getPotionEffects(), 1);
     }
 }

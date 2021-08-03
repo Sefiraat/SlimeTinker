@@ -1,5 +1,6 @@
 package io.github.sefiraat.slimetinker.listeners;
 
+import io.github.sefiraat.slimetinker.events.friend.EventChannels;
 import io.github.sefiraat.slimetinker.events.friend.EventFriend;
 import io.github.sefiraat.slimetinker.events.friend.TraitEventType;
 import io.github.sefiraat.slimetinker.modifiers.Modifications;
@@ -9,7 +10,6 @@ import org.bukkit.Color;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Particle;
-import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -54,7 +54,7 @@ public class EntityKilledListener implements Listener {
             String rodMaterial = ItemUtils.getToolRodMaterial(c);
 
 
-            if (!ItemUtils.canBeDropped(i)) {
+            if (ItemUtils.cannotDrop(i)) {
                 list.add(i);
             }
 
@@ -91,14 +91,6 @@ public class EntityKilledListener implements Listener {
         Player player = dyingEntity.getKiller();
         ItemStack heldItem = player.getInventory().getItemInMainHand();
 
-        if (ItemUtils.isTool(heldItem)) {
-            processTool(heldItem, player, dyingEntity, event);
-        }
-
-    }
-
-    private void processTool(ItemStack heldItem, Player player, Entity dyingEntity, EntityDeathEvent event) {
-
         EventFriend friend = new EventFriend();
 
         friend.setPlayer(player);
@@ -119,10 +111,13 @@ public class EntityKilledListener implements Listener {
         if (event.getDroppedExp() > 0 && friend.isMetalCheck()) {
             Experience.addExp(heldItem, (int) Math.ceil(event.getDroppedExp() / 10D), player, true);
             event.setDroppedExp(0);
+        } else {
+            EventChannels.provideKillExp(friend, rawExp);
         }
 
-        Experience.addExp(heldItem, (int) Math.ceil(rawExp * friend.getToolExpMod()), player, false);
+
     }
+
 
     private void modChecks(EntityDeathEvent event, ItemStack heldItem) {
         modCheckLapis(event, heldItem);

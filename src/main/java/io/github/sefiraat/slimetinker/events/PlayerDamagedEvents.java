@@ -361,4 +361,8 @@ public final class PlayerDamagedEvents {
             friend.setDamageMod(friend.getDamageMod() -0.25);
         }
     }
+
+    public static void plateSingAluminium(EventFriend friend) {
+        friend.setDamageMod(friend.getDamageMod() + 0.5);
+    }
 }

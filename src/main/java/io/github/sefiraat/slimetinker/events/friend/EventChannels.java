@@ -4,6 +4,7 @@ import io.github.sefiraat.slimetinker.SlimeTinker;
 import io.github.sefiraat.slimetinker.items.componentmaterials.CMManager;
 import io.github.sefiraat.slimetinker.utils.Experience;
 import io.github.sefiraat.slimetinker.utils.ItemUtils;
+import lombok.experimental.UtilityClass;
 import org.apache.commons.lang.Validate;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -13,6 +14,7 @@ import org.bukkit.potion.PotionEffectType;
 
 import java.util.Map;
 
+@UtilityClass
 public class EventChannels {
 
     public static void settlePotionEffects(EventFriend friend) {
@@ -137,6 +139,27 @@ public class EventChannels {
             int amount = (int) (baseAmount * friend.getToolExpMod());
             Experience.addExp(tool, amount, friend.getPlayer(), false);
         }
+
+        if (helm != null) {
+            int amount = (int) (baseAmount * friend.getHelmExpMod());
+            Experience.addExp(helm, amount, friend.getPlayer(), false);
+        }
+
+        if (chst != null) {
+            int amount = (int) (baseAmount * friend.getChestExpMod());
+            Experience.addExp(chst, amount, friend.getPlayer(), false);
+        }
+
+        if (legg != null) {
+            int amount = (int) (baseAmount * friend.getLeggingsExpMod());
+            Experience.addExp(legg, amount, friend.getPlayer(), false);
+        }
+
+        if (boot != null) {
+            int amount = (int) (baseAmount * friend.getBootsExpMod());
+            Experience.addExp(boot, amount, friend.getPlayer(), false);
+        }
+
     }
 
 }

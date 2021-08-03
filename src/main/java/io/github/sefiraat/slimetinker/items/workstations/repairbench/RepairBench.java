@@ -5,6 +5,7 @@ import io.github.sefiraat.slimetinker.items.templates.RepairkitTemplate;
 import io.github.sefiraat.slimetinker.utils.GUIItems;
 import io.github.sefiraat.slimetinker.utils.ItemUtils;
 import io.github.sefiraat.slimetinker.utils.ThemeUtils;
+import io.github.thebusybiscuit.slimefun4.utils.ChestMenuUtils;
 import me.mrCookieSlime.Slimefun.Lists.RecipeType;
 import me.mrCookieSlime.Slimefun.Objects.Category;
 import me.mrCookieSlime.Slimefun.api.SlimefunItemStack;
@@ -120,7 +121,7 @@ public class RepairBench extends AbstractContainer {
     @Override
     protected void setupMenu(BlockMenuPreset blockMenuPreset) {
 
-        blockMenuPreset.drawBackground(GUIItems.menuBackground(), BACKGROUND_SLOTS);
+        blockMenuPreset.drawBackground(ChestMenuUtils.getBackground(), BACKGROUND_SLOTS);
 
         blockMenuPreset.addItem(CRAFT_BUTTON, GUIItems.menuCraftRepair());
         blockMenuPreset.addMenuClickHandler(CRAFT_BUTTON, (player, i, itemStack, clickAction) -> false);

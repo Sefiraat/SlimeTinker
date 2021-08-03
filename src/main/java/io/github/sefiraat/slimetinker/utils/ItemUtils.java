@@ -414,11 +414,11 @@ public final class ItemUtils {
         return SlimeTinker.inst().getCmManager().meltingRecipes.get(StackUtils.getIDorType(itemStack));
     }
 
-    public boolean doesNotUnequip(ItemStack itemStack) {
+    public boolean doesUnequipWhenBroken(ItemStack itemStack) {
         String plateMat = getArmourPlateMaterial(itemStack);
         String gambesonMat = getArmourGambesonMaterial(itemStack);
         String linksMat = getArmourLinksMaterial(itemStack);
-        return plateMat == IDStrings.DURALIUM;
+        return !plateMat.equals(IDStrings.DURALIUM);
     }
 
     /**
@@ -530,14 +530,14 @@ public final class ItemUtils {
         }
     }
 
-    public static boolean canBeDropped(ItemStack itemStack) {
+    public static boolean cannotDrop(ItemStack itemStack) {
         if (isTool(itemStack)) {
-            return getToolRodMaterial(itemStack).equals(IDStrings.SOLDER)
-                    || getToolRodMaterial(itemStack).equals(IDStrings.UNPATENTABLIUM);
+            return !getToolRodMaterial(itemStack).equals(IDStrings.SOLDER)
+                    && !getToolRodMaterial(itemStack).equals(IDStrings.UNPATENTABLIUM);
         } else if (isArmour(itemStack)) {
-            return getArmourLinksMaterial(itemStack).equals(IDStrings.SOLDER);
+            return !getArmourLinksMaterial(itemStack).equals(IDStrings.SOLDER);
         } else {
-            return false;
+            return true;
         }
 
     }

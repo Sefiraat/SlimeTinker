@@ -201,8 +201,9 @@ public final class Guide {
                     ThemeUtils.PASSIVE + "A helmet formed of three parts.",
                     ThemeUtils.PASSIVE + "Tinker's armour can level up and be",
                     ThemeUtils.PASSIVE + "given extra properties and modifiers.",
-                    ThemeUtils.PASSIVE + "When broken, incoming damage is doubled",
-                    ThemeUtils.PASSIVE + "and has a chance to fall off."
+                    ThemeUtils.PASSIVE + "When broken it's unequipped.",
+                    ThemeUtils.WARNING + "If there's no room in your inventory",
+                    ThemeUtils.WARNING + "then the item drops on the floor"
             );
 
     public static final SlimefunItemStack ARMOUR_CHESTPLATE_DUMMY =
@@ -214,8 +215,9 @@ public final class Guide {
                     ThemeUtils.PASSIVE + "A chestplate formed of three parts.",
                     ThemeUtils.PASSIVE + "Tinker's armour can level up and be",
                     ThemeUtils.PASSIVE + "given extra properties and modifiers.",
-                    ThemeUtils.PASSIVE + "When broken, incoming damage is doubled",
-                    ThemeUtils.PASSIVE + "and has a chance to fall off."
+                    ThemeUtils.PASSIVE + "When broken it's unequipped.",
+                    ThemeUtils.WARNING + "If there's no room in your inventory",
+                    ThemeUtils.WARNING + "then the item drops on the floor"
             );
 
     public static final SlimefunItemStack ARMOUR_LEGGINGS_DUMMY =
@@ -227,8 +229,9 @@ public final class Guide {
                     ThemeUtils.PASSIVE + "A pair of leggings formed of three parts.",
                     ThemeUtils.PASSIVE + "Tinker's armour can level up and be",
                     ThemeUtils.PASSIVE + "given extra properties and modifiers.",
-                    ThemeUtils.PASSIVE + "When broken, incoming damage is doubled",
-                    ThemeUtils.PASSIVE + "and has a chance to fall off."
+                    ThemeUtils.PASSIVE + "When broken it's unequipped.",
+                    ThemeUtils.WARNING + "If there's no room in your inventory",
+                    ThemeUtils.WARNING + "then the item drops on the floor"
             );
 
     public static final SlimefunItemStack ARMOUR_BOOTS_DUMMY =
@@ -240,8 +243,9 @@ public final class Guide {
                     ThemeUtils.PASSIVE + "A pair of boots formed of three parts.",
                     ThemeUtils.PASSIVE + "Tinker's armour can level up and be",
                     ThemeUtils.PASSIVE + "given extra properties and modifiers.",
-                    ThemeUtils.PASSIVE + "When broken, incoming damage is doubled",
-                    ThemeUtils.PASSIVE + "and has a chance to fall off."
+                    ThemeUtils.PASSIVE + "When broken it's unequipped.",
+                    ThemeUtils.WARNING + "If there's no room in your inventory",
+                    ThemeUtils.WARNING + "then the item drops on the floor"
             );
 
     public static final SlimefunItemStack TOOL_AXE =

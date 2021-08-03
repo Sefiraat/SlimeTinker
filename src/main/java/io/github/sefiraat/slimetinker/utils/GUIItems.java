@@ -19,14 +19,6 @@ public final class GUIItems {
         throw new IllegalStateException("Utility class");
     }
 
-    public static CustomItem menuBackground() {
-        return new CustomItem(
-                Material.BLACK_STAINED_GLASS_PANE,
-                " ",
-                " "
-        );
-    }
-
     public static CustomItem menuBackgroundInput() {
         return new CustomItem(
                 Material.LIGHT_BLUE_STAINED_GLASS_PANE,

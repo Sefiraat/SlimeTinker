@@ -168,27 +168,27 @@ public class EventFriend {
     }
 
     @Nullable
-    public int getToolLevel() {
+    public Integer getToolLevel() {
         Integer l = ItemUtils.getTinkerLevel(tool);
         return l == null ? 0 : l;
     }
     @Nullable
-    public int getHelmLevel() {
+    public Integer getHelmLevel() {
         Integer l = ItemUtils.getTinkerLevel(helmet);
         return l == null ? 0 : l;
     }
     @Nullable
-    public int getChestLevel() {
+    public Integer getChestLevel() {
         Integer l = ItemUtils.getTinkerLevel(chestplate);
         return l == null ? 0 : l;
     }
     @Nullable
-    public int getLegLevel() {
+    public Integer getLegLevel() {
         Integer l = ItemUtils.getTinkerLevel(leggings);
         return l == null ? 0 : l;
     }
     @Nullable
-    public int getBootLevel() {
+    public Integer getBootLevel() {
         Integer l = ItemUtils.getTinkerLevel(boots);
         return l == null ? 0 : l;
     }

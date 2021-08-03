@@ -26,7 +26,7 @@ public class DropItemListener implements Listener {
         String bindMaterial = ItemUtils.getToolBindingMaterial(c);
         String rodMaterial = ItemUtils.getToolRodMaterial(c);
 
-        if (!ItemUtils.canBeDropped(itemStack)) {
+        if (ItemUtils.cannotDrop(itemStack)) {
             event.setCancelled(true);
             event.getPlayer().sendMessage(ThemeUtils.WARNING + "This tool cannot be dropped.");
         }

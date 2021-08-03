@@ -7,6 +7,7 @@ import io.github.sefiraat.slimetinker.items.Materials;
 import io.github.sefiraat.slimetinker.modifiers.Modifications;
 import io.github.sefiraat.slimetinker.utils.GeneralUtils;
 import io.github.sefiraat.slimetinker.utils.ItemUtils;
+import org.apache.commons.lang.Validate;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerItemBreakEvent;
@@ -102,8 +103,7 @@ public class DurabilityListener implements Listener {
     private void modCheckPlate(ItemStack damagedItem, int level, PlayerItemDamageEvent event) {
 
         ItemMeta im = damagedItem.getItemMeta();
-        assert im != null;
-        PersistentDataContainer c = im.getPersistentDataContainer();
+        Validate.notNull(im, "Meta is null, mod check failed");
 
         if (ItemUtils.isReinforced(damagedItem)) {
             level = level * 2;

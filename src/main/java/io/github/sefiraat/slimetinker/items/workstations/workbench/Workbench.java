@@ -9,6 +9,7 @@ import io.github.sefiraat.slimetinker.items.Workstations;
 import io.github.sefiraat.slimetinker.utils.GUIItems;
 import io.github.sefiraat.slimetinker.utils.ThemeUtils;
 import io.github.thebusybiscuit.slimefun4.implementation.SlimefunPlugin;
+import io.github.thebusybiscuit.slimefun4.utils.ChestMenuUtils;
 import lombok.Getter;
 import me.mrCookieSlime.Slimefun.Lists.RecipeType;
 import me.mrCookieSlime.Slimefun.Objects.Category;
@@ -77,7 +78,7 @@ public class Workbench extends AbstractContainer {
     @Override
     protected void setupMenu(BlockMenuPreset blockMenuPreset) {
 
-        blockMenuPreset.drawBackground(GUIItems.menuBackground(), BACKGROUND_SLOTS);
+        blockMenuPreset.drawBackground(ChestMenuUtils.getBackground(), BACKGROUND_SLOTS);
 
         blockMenuPreset.addItem(CRAFT_BUTTON, GUIItems.menuCraftWorkbench());
         blockMenuPreset.addMenuClickHandler(CRAFT_BUTTON, (player, i, itemStack, clickAction) -> false);

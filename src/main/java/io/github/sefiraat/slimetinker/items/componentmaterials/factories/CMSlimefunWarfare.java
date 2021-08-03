@@ -80,7 +80,7 @@ public final class CMSlimefunWarfare {
                                         CMCore.getMap().get(IDStrings.STEEL).getLiquidItemStack(1),
                                         CMCore.getMap().get(IDStrings.SLIME).getLiquidItemStack(1)
                                 ),
-                                new CMToolMakeup(true, false, true),
+                                new CMToolMakeup(false, true, false),
                                 new CMForms(
                                         Materials.NUGGET_CAST_SLIMESTEEL.getItemId(),
                                     "SLIMESTEEL_INGOT",
@@ -253,17 +253,15 @@ public final class CMSlimefunWarfare {
                                         new CMTrait(
                                                 CMTraits.PROP_HEAD,
                                                 SupportedPluginsManager.SLIMEFUN_WARFARE_NOTE,
-                                                "Brute",
-                                                "Slow swinging speed. Hit enemies are stunned",
-                                                "briefly. Damage +100% with an additional 33%",
-                                                "chance to crit for a further +100%"
+                                                "Innovation",
+                                                "+100% Tool and Player EXP during the day."
                                         ),
                                         null,
                                         new CMTrait(
                                                 CMTraits.PROP_ROD,
                                                 SupportedPluginsManager.SLIMEFUN_WARFARE_NOTE,
-                                                "Tuff Stuff",
-                                                "Knocks back anything hit and stuns."
+                                                "Incoporeal Right",
+                                                "Tool cannot be dropped or lost on death."
                                         )
                                 )
                         ));

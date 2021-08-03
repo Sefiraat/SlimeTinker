@@ -91,4 +91,8 @@ public final class DurabilityEvents {
     public static void linksBrass(EventFriend friend) {
         friend.setDurabilityMod(friend.getDurabilityMod() + 1);
     }
+
+    public static void plateHardened(EventFriend friend) {
+        friend.setCancelEvent(true);
+    }
 }

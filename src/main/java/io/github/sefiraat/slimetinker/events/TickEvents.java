@@ -2,11 +2,12 @@ package io.github.sefiraat.slimetinker.events;
 
 import io.github.sefiraat.slimetinker.SlimeTinker;
 import io.github.sefiraat.slimetinker.events.friend.EventFriend;
-import io.github.sefiraat.slimetinker.runnables.TaskRemovePoweredState;
+import io.github.sefiraat.slimetinker.runnables.event.RemovePoweredState;
 import io.github.sefiraat.slimetinker.utils.BlockUtils;
 import io.github.sefiraat.slimetinker.utils.EntityUtils;
 import io.github.sefiraat.slimetinker.utils.GeneralUtils;
 import io.github.sefiraat.slimetinker.utils.ItemUtils;
+import io.github.sefiraat.slimetinker.utils.enums.Temperature;
 import io.github.thebusybiscuit.slimefun4.implementation.SlimefunPlugin;
 import lombok.experimental.UtilityClass;
 import me.mrCookieSlime.Slimefun.cscorelib2.protection.ProtectableAction;
@@ -400,7 +401,7 @@ public final class TickEvents {
         }
     }
 
-    public static void linksFerrosilicon(EventFriend friend) {
+    public static void brightBurn(EventFriend friend) {
         friend.setBrightBurn(friend.getBrightBurn() + 1);
         if (friend.getBrightBurn() >= 4) {
             for (Entity entity : friend.getPlayer().getNearbyEntities(5,5,5)) {
@@ -485,8 +486,8 @@ public final class TickEvents {
             if (b instanceof Powerable) {
                 Powerable p = (Powerable) b;
                 p.setPowered(true);
-                TaskRemovePoweredState task = new TaskRemovePoweredState(p);
-                task.runTaskLater(SlimeTinker.inst(), 100);
+                RemovePoweredState task = new RemovePoweredState(p, friend.getPlayer());
+                task.runTaskTimer(SlimeTinker.inst(), 100, 100);
             }
         }
     }
@@ -513,5 +514,44 @@ public final class TickEvents {
 
     public static void linksSteel(EventFriend friend) {
         increaseEffect(PotionEffectType.HEALTH_BOOST, friend.getPotionEffects());
+    }
+
+    public static void plateCorBronze(EventFriend friend) {
+        if (GeneralUtils.testChance(1,5)) {
+            for (Entity entity : friend.getPlayer().getNearbyEntities(2,2,2)) {
+                if (entity instanceof Mob) {
+                    entity.setFireTicks(100);
+                }
+            }
+        }
+    }
+
+    public static void linksCorBronze(EventFriend friend) {
+        Temperature temp = GeneralUtils.getBiomeTemperature(friend.getPlayer().getLocation().getBlock().getBiome());
+        if (temp == Temperature.HOT) {
+            increaseEffect(PotionEffectType.SPEED, friend.getPotionEffects(), 1);
+        } else if (temp == Temperature.COLD) {
+            increaseEffect(PotionEffectType.SLOW, friend.getPotionEffects());
+        }
+    }
+
+    public static void linksRedstoneAlloy(EventFriend friend) {
+        Player player = friend.getPlayer();
+        Block b = player.getLocation().clone().subtract(0, 1, 0).getBlock();
+        if (b instanceof Powerable) {
+            Powerable p = (Powerable) b;
+            p.setPowered(true);
+            RemovePoweredState task = new RemovePoweredState(p, friend.getPlayer());
+            task.runTaskTimer(SlimeTinker.inst(), 100, 100);
+        }
+    }
+
+    public static void linksSingGold(EventFriend friend) {
+        for (Entity entity : friend.getPlayer().getNearbyEntities(5,5,5)) {
+            if (entity instanceof Piglin) {
+                Piglin p = (Piglin) entity;
+                p.setTarget(null);
+            }
+        }
     }
 }

@@ -4,6 +4,7 @@ import io.github.sefiraat.slimetinker.items.componentmaterials.ComponentMaterial
 import io.github.sefiraat.slimetinker.managers.SupportedPluginsManager;
 import io.github.sefiraat.slimetinker.utils.SkullTextures;
 import io.github.sefiraat.slimetinker.utils.ThemeUtils;
+import io.github.sefiraat.slimetinker.utils.enums.ThemeItemType;
 import lombok.Getter;
 import me.mrCookieSlime.Slimefun.api.SlimefunItemStack;
 import org.bukkit.inventory.ItemStack;
@@ -68,7 +69,7 @@ public class CMTraits {
             ThemeUtils.themedItemStack(
                     "PROP_HEAD",
                     SkullTextures.PART_SWORD_BLADE,
-                    ThemeUtils.ThemeItemType.PART,
+                    ThemeItemType.PART,
                     "Part: Head",
                     ThemeUtils.PASSIVE + "Any 'Head' item (Sword Blade, Axe Head etc.)"
             );
@@ -77,7 +78,7 @@ public class CMTraits {
             ThemeUtils.themedItemStack(
                     "PROP_BINDING",
                     SkullTextures.PART_BINDING,
-                    ThemeUtils.ThemeItemType.PART,
+                    ThemeItemType.PART,
                     "Part: Binder",
                     ThemeUtils.PASSIVE + "Any 'Binder' item."
             );
@@ -86,7 +87,7 @@ public class CMTraits {
             ThemeUtils.themedItemStack(
                     "PROP_ROD",
                     SkullTextures.PART_TOOL_ROD,
-                    ThemeUtils.ThemeItemType.PART,
+                    ThemeItemType.PART,
                     "Part: Tool Rod",
                     ThemeUtils.PASSIVE + "Any 'Tool Rod' item."
             );
@@ -95,7 +96,7 @@ public class CMTraits {
             ThemeUtils.themedItemStack(
                     "PROP_PLATES",
                     SkullTextures.PART_CHEST_PLATES,
-                    ThemeUtils.ThemeItemType.PART,
+                    ThemeItemType.PART,
                     "Part: Plates",
                     ThemeUtils.PASSIVE + "Any 'Plate' item (Helm Plates, Boot Plates etc.)"
             );
@@ -104,7 +105,7 @@ public class CMTraits {
             ThemeUtils.themedItemStack(
                     "PROP_GAMBESON",
                     SkullTextures.PART_GAMBESON,
-                    ThemeUtils.ThemeItemType.PART,
+                    ThemeItemType.PART,
                     "Part: Gambeson",
                     ThemeUtils.PASSIVE + "Any 'Gambeson' item."
             );
@@ -113,7 +114,7 @@ public class CMTraits {
             ThemeUtils.themedItemStack(
                     "PROP_LINKS",
                     SkullTextures.PART_LINKS,
-                    ThemeUtils.ThemeItemType.PART,
+                    ThemeItemType.PART,
                     "Part: Mail Links",
                     ThemeUtils.PASSIVE + "Any 'Mail Link' item."
             );

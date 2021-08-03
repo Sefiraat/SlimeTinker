@@ -1,26 +1,12 @@
 package io.github.sefiraat.slimetinker.runnables;
 
 import io.github.sefiraat.slimetinker.SlimeTinker;
-import io.github.sefiraat.slimetinker.events.friend.EventFriend;
-import io.github.sefiraat.slimetinker.events.friend.TraitEventType;
-import io.github.sefiraat.slimetinker.modifiers.Modifications;
 import io.github.sefiraat.slimetinker.utils.ItemUtils;
 import io.github.sefiraat.slimetinker.utils.ThemeUtils;
-import org.bukkit.Material;
-import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.potion.PotionEffect;
-import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
-
-import java.util.HashMap;
-import java.util.Map;
-
-import static io.github.sefiraat.slimetinker.events.friend.EventChannels.checkArmour;
-import static io.github.sefiraat.slimetinker.events.friend.EventChannels.checkTool;
-import static io.github.sefiraat.slimetinker.events.friend.EventChannels.settlePotionEffects;
 
 public class ArmourRemove extends BukkitRunnable {
 

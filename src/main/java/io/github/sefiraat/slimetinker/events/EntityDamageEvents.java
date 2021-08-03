@@ -16,7 +16,6 @@ import org.bukkit.entity.Animals;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
-import org.bukkit.entity.Panda;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -330,5 +329,32 @@ public final class EntityDamageEvents {
         if (EntityUtils.isFacingAway(friend.getPlayer(), friend.getDamagedEntity())) {
             friend.setDamageMod(friend.getDamageMod() + 1);
         }
+    }
+
+    public static void linksCopper(EventFriend friend) {
+        friend.setDamageMod(friend.getDamageMod() - 0.2);
+        friend.incrementExpMod(0.2);
+    }
+
+
+    public static void gambesonLeather(EventFriend friend) {
+        friend.incrementExpMod(0.1);
+    }
+
+    public static void plateBillon(EventFriend friend) {
+        friend.setCancelEvent(true);
+       if (friend.getDamagedEntity() instanceof LivingEntity) {
+           LivingEntity l = (LivingEntity) friend.getDamagedEntity();
+           l.setHealth(Math.max(l.getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue(), l.getHealth() + friend.getInitialDamage()));
+       }
+
+    }
+
+    public static void plateCopper(EventFriend friend) {
+        friend.incrementExpMod(0.2);
+    }
+
+    public static void plateSingCopper(EventFriend friend) {
+        friend.incrementExpMod(0.4);
     }
 }

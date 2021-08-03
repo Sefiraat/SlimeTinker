@@ -5,6 +5,7 @@ import io.github.sefiraat.slimetinker.categories.Categories;
 import io.github.sefiraat.slimetinker.items.workstations.workbench.Workbench;
 import io.github.sefiraat.slimetinker.utils.SkullTextures;
 import io.github.sefiraat.slimetinker.utils.ThemeUtils;
+import io.github.sefiraat.slimetinker.utils.enums.ThemeItemType;
 import io.github.thebusybiscuit.slimefun4.implementation.items.blocks.UnplaceableBlock;
 import lombok.experimental.UtilityClass;
 import me.mrCookieSlime.Slimefun.api.SlimefunItemStack;
@@ -92,7 +93,7 @@ public final class Dies {
             ThemeUtils.themedItemStack(
                     "DIE_SHOVEL_HEAD",
                     SkullTextures.PART_SHOVEL_HEAD,
-                    ThemeUtils.ThemeItemType.CAST,
+                    ThemeItemType.CAST,
                     "Die: Stone Shovel Head",
                     ThemeUtils.PASSIVE + DIE_DESC
             );
@@ -101,7 +102,7 @@ public final class Dies {
             ThemeUtils.themedItemStack(
                     "DIE_PICKAXE_HEAD",
                     SkullTextures.PART_PICKAXE_HEAD,
-                    ThemeUtils.ThemeItemType.CAST,
+                    ThemeItemType.CAST,
                     "Die: Stone Pickaxe Head",
                     ThemeUtils.PASSIVE + DIE_DESC
             );
@@ -110,7 +111,7 @@ public final class Dies {
             ThemeUtils.themedItemStack(
                     "DIE_AXE_HEAD",
                     SkullTextures.PART_AXE_HEAD,
-                    ThemeUtils.ThemeItemType.CAST,
+                    ThemeItemType.CAST,
                     "Die: Stone Axe Head",
                     ThemeUtils.PASSIVE + DIE_DESC
             );
@@ -119,7 +120,7 @@ public final class Dies {
             ThemeUtils.themedItemStack(
                     "DIE_HOE_HEAD",
                     SkullTextures.PART_HOE_HEAD,
-                    ThemeUtils.ThemeItemType.CAST,
+                    ThemeItemType.CAST,
                     "Die: Stone Hoe Head",
                     ThemeUtils.PASSIVE + DIE_DESC
             );
@@ -128,7 +129,7 @@ public final class Dies {
             ThemeUtils.themedItemStack(
                     "DIE_SWORD_BLADE",
                     SkullTextures.PART_SWORD_BLADE,
-                    ThemeUtils.ThemeItemType.CAST,
+                    ThemeItemType.CAST,
                     "Die: Stone Sword Head",
                     ThemeUtils.PASSIVE + DIE_DESC
             );
@@ -137,7 +138,7 @@ public final class Dies {
             ThemeUtils.themedItemStack(
                     "DIE_TOOL_ROD",
                     SkullTextures.PART_TOOL_ROD,
-                    ThemeUtils.ThemeItemType.CAST,
+                    ThemeItemType.CAST,
                     "Die: Tool Rod",
                     ThemeUtils.PASSIVE + DIE_DESC
             );
@@ -146,7 +147,7 @@ public final class Dies {
             ThemeUtils.themedItemStack(
                     "DIE_HELM_PLATE",
                     SkullTextures.PART_HELM_PLATES,
-                    ThemeUtils.ThemeItemType.CAST,
+                    ThemeItemType.CAST,
                     "Die: Stone Helmet Plates",
                     ThemeUtils.PASSIVE + DIE_DESC
             );
@@ -155,7 +156,7 @@ public final class Dies {
             ThemeUtils.themedItemStack(
                     "DIE_CHEST_PLATE",
                     SkullTextures.PART_CHEST_PLATES,
-                    ThemeUtils.ThemeItemType.CAST,
+                    ThemeItemType.CAST,
                     "Die: Stone Chest Plates",
                     ThemeUtils.PASSIVE + DIE_DESC
             );
@@ -164,7 +165,7 @@ public final class Dies {
             ThemeUtils.themedItemStack(
                     "DIE_LEG_PLATE",
                     SkullTextures.PART_LEG_PLATES,
-                    ThemeUtils.ThemeItemType.CAST,
+                    ThemeItemType.CAST,
                     "Die: Stone Leg Plates",
                     ThemeUtils.PASSIVE + DIE_DESC
             );
@@ -173,7 +174,7 @@ public final class Dies {
             ThemeUtils.themedItemStack(
                     "DIE_BOOT_PLATE",
                     SkullTextures.PART_BOOTS_PLATES,
-                    ThemeUtils.ThemeItemType.CAST,
+                    ThemeItemType.CAST,
                     "Die: Stone Boot Plates",
                     ThemeUtils.PASSIVE + DIE_DESC
             );
@@ -182,7 +183,7 @@ public final class Dies {
             ThemeUtils.themedItemStack(
                     "DIE_MAIL_LINK",
                     SkullTextures.PART_LINKS,
-                    ThemeUtils.ThemeItemType.CAST,
+                    ThemeItemType.CAST,
                     "Die: Mail Links",
                     ThemeUtils.PASSIVE + DIE_DESC
             );
@@ -191,7 +192,7 @@ public final class Dies {
             ThemeUtils.themedItemStack(
                     "DIE_REPAIR_KIT",
                     Material.MINECART,
-                    ThemeUtils.ThemeItemType.CAST,
+                    ThemeItemType.CAST,
                     "Die: Repair Kit",
                     ThemeUtils.PASSIVE + DIE_DESC
             );

@@ -9,6 +9,7 @@ import io.github.sefiraat.slimetinker.modifiers.Mod;
 import io.github.sefiraat.slimetinker.modifiers.Modifications;
 import lombok.experimental.UtilityClass;
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.SlimefunItem;
+import me.mrCookieSlime.Slimefun.api.SlimefunItemStack;
 import net.md_5.bungee.api.ChatColor;
 import org.apache.commons.lang.Validate;
 import org.bukkit.Material;
@@ -293,96 +294,104 @@ public final class ItemUtils {
         itemStack.setItemMeta(im);
     }
 
+    @Nullable
     public static String getToolHeadMaterial(PersistentDataContainer c) {
         String s = c.get(SlimeTinker.inst().getKeys().getToolInfoHeadMaterial(), PersistentDataType.STRING);
-        Validate.notNull(s, "No material found for ItemStack, not a Tinker's tool/armour?");
         return s;
     }
 
+    @Nullable
     public static String getToolHeadMaterial(ItemStack itemStack) {
         ItemMeta im = itemStack.getItemMeta();
         Validate.notNull(im, "ItemStack with no meta provided.");
         return getToolHeadMaterial(im.getPersistentDataContainer());
     }
 
+    @Nullable
     public static String getToolBindingMaterial(PersistentDataContainer c) {
         String s =  c.get(SlimeTinker.inst().getKeys().getToolInfoBinderMaterial(), PersistentDataType.STRING);
-        Validate.notNull(s, "No material found for ItemStack, not a Tinker's tool/armour?");
         return s;
     }
 
+    @Nullable
     public static String getToolBindingMaterial(ItemStack itemStack) {
         ItemMeta im = itemStack.getItemMeta();
         Validate.notNull(im, "ItemStack with no meta provided.");
         return getToolHeadMaterial(im.getPersistentDataContainer());
     }
 
+    @Nullable
     public static String getToolRodMaterial(PersistentDataContainer c) {
         String s =  c.get(SlimeTinker.inst().getKeys().getToolInfoRodMaterial(), PersistentDataType.STRING);
-        Validate.notNull(s, "No material found for ItemStack, not a Tinker's tool/armour?");
         return s;
     }
 
+    @Nullable
     public static String getToolRodMaterial(ItemStack itemStack) {
         ItemMeta im = itemStack.getItemMeta();
         Validate.notNull(im, "ItemStack with no meta provided.");
         return getToolHeadMaterial(im.getPersistentDataContainer());
     }
 
+    @Nullable
     public static String getToolTypeName(PersistentDataContainer c) {
         String s = c.get(SlimeTinker.inst().getKeys().getToolInfoToolType(), PersistentDataType.STRING);
-        Validate.notNull(s, "No material found for ItemStack, not a Tinker's tool/armour?");
         return s;
     }
 
+    @Nullable
     public static String getToolTypeName(ItemStack itemStack) {
         ItemMeta im = itemStack.getItemMeta();
         Validate.notNull(im, "ItemStack with no meta provided.");
         return getToolHeadMaterial(im.getPersistentDataContainer());
     }
 
+    @Nullable
     public static String getArmourPlateMaterial(PersistentDataContainer c) {
         String s = c.get(SlimeTinker.inst().getKeys().getArmourInfoPlateMaterial(), PersistentDataType.STRING);
-        Validate.notNull(s, "No material found for ItemStack, not a Tinker's tool/armour?");
         return s;
     }
 
+    @Nullable
     public static String getArmourPlateMaterial(ItemStack itemStack) {
         ItemMeta im = itemStack.getItemMeta();
         Validate.notNull(im, "ItemStack with no meta provided.");
         return getToolHeadMaterial(im.getPersistentDataContainer());
     }
 
+    @Nullable
     public static String getArmourGambesonMaterial(PersistentDataContainer c) {
         String s =  c.get(SlimeTinker.inst().getKeys().getArmourInfoGambesonMaterial(), PersistentDataType.STRING);
-        Validate.notNull(s, "No material found for ItemStack, not a Tinker's tool/armour?");
         return s;
     }
 
+    @Nullable
     public static String getArmourGambesonMaterial(ItemStack itemStack) {
         ItemMeta im = itemStack.getItemMeta();
         Validate.notNull(im, "ItemStack with no meta provided.");
         return getToolHeadMaterial(im.getPersistentDataContainer());
     }
 
+    @Nullable
     public static String getArmourLinksMaterial(PersistentDataContainer c) {
         String s =  c.get(SlimeTinker.inst().getKeys().getArmourInfoLinksMaterial(), PersistentDataType.STRING);
-        Validate.notNull(s, "No material found for ItemStack, not a Tinker's tool/armour?");
         return s;
     }
 
+    @Nullable
     public static String getArmourLinksMaterial(ItemStack itemStack) {
         ItemMeta im = itemStack.getItemMeta();
         Validate.notNull(im, "ItemStack with no meta provided.");
         return getToolHeadMaterial(im.getPersistentDataContainer());
     }
 
+    @Nullable
     public static String getArmourTypeName(PersistentDataContainer c) {
         String s = c.get(SlimeTinker.inst().getKeys().getArmourInfoArmourType(), PersistentDataType.STRING);
-        Validate.notNull(s, "No material found for ItemStack, not a Tinker's tool/armour?");
         return s;
     }
 
+    @Nullable
     public static String getArmourTypeName(ItemStack itemStack) {
         ItemMeta im = itemStack.getItemMeta();
         Validate.notNull(im, "ItemStack with no meta provided.");
@@ -443,12 +452,19 @@ public final class ItemUtils {
     }
 
     public static boolean repairBenchEasyFix(ItemStack itemStack) {
+        return repairBenchEasyFix1(itemStack) || repairBenchEasyFix2(itemStack);
+    }
+
+    public static boolean repairBenchEasyFix1(ItemStack itemStack) {
         if (isTool(itemStack)) {
             return getToolRodMaterial(itemStack).equals(IDStrings.DURALIUM);
         } else if (isArmour(itemStack)) {
             return getArmourLinksMaterial(itemStack).equals(IDStrings.ALUMINUM);
         }
         return false;
+    }
+    public static boolean repairBenchEasyFix2(ItemStack itemStack) {
+        return getArmourLinksMaterial(itemStack).equals(IDStrings.SINGALUMINUM);
     }
 
     public static boolean isEnchanting(ItemStack itemStack) {
@@ -536,6 +552,10 @@ public final class ItemUtils {
         }
     }
 
+    public static boolean isExperienced(ItemStack itemStack) {
+        return getArmourPlateMaterial(itemStack).equals(IDStrings.REINFORCED);
+    }
+
     @Nonnull
     public static Integer getTinkerExp(PersistentDataContainer c) {
         return c.get(SlimeTinker.inst().getKeys().getStExpCurrent(), PersistentDataType.INTEGER);
@@ -609,4 +629,21 @@ public final class ItemUtils {
         return ThemeUtils.ITEM_TOOL + "Modifier Slots: " +
                 org.bukkit.ChatColor.WHITE + getTinkerModifierSlots(c);
     }
+
+    public static boolean rejectCraftingRecipe(SlimefunItemStack i) {
+        return rejectCraftingRecipe(i.getItemId());
+    }
+
+    public static boolean rejectCraftingRecipe(SlimefunItem i) {
+        return rejectCraftingRecipe(i.getId());
+    }
+
+    public static boolean rejectCraftingRecipe(String s) {
+        return isBackpack(s);
+    }
+
+    public static boolean isBackpack(String s) {
+        return s.matches("(.*)BACKPACK(.*)");
+    }
+
 }

@@ -10,6 +10,7 @@ import io.github.sefiraat.slimetinker.items.workstations.swappingstation.Swappin
 import io.github.sefiraat.slimetinker.items.workstations.tooltable.ToolTable;
 import io.github.sefiraat.slimetinker.items.workstations.workbench.Workbench;
 import io.github.sefiraat.slimetinker.utils.ThemeUtils;
+import io.github.sefiraat.slimetinker.utils.enums.ThemeItemType;
 import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
 import io.github.thebusybiscuit.slimefun4.implementation.items.blocks.UnplaceableBlock;
 import lombok.experimental.UtilityClass;
@@ -26,7 +27,7 @@ public final class Workstations {
             ThemeUtils.themedItemStack(
                     "TINKERS_SMELTERY_CORE",
                     Material.CHISELED_POLISHED_BLACKSTONE,
-                    ThemeUtils.ThemeItemType.MACHINE,
+                    ThemeItemType.MACHINE,
                     "Tinker's Smeltery",
                     "Melts down metals into liquids.",
                     "Metals can then be alloyed and",
@@ -39,7 +40,7 @@ public final class Workstations {
             ThemeUtils.themedItemStack(
                     "TINKERS_WORKBENCH",
                     Material.FLETCHING_TABLE,
-                    ThemeUtils.ThemeItemType.MACHINE,
+                    ThemeItemType.MACHINE,
                     "Tinker's Workbench",
                     "Used for crafting various items",
                     "and parts for Tinker's tools and",
@@ -52,7 +53,7 @@ public final class Workstations {
             ThemeUtils.themedItemStack(
                     "TINKERS_TABLE",
                     Material.SMITHING_TABLE,
-                    ThemeUtils.ThemeItemType.MACHINE,
+                    ThemeItemType.MACHINE,
                     "Tinker's Tool Table",
                     "Combines parts into tools."
             );
@@ -62,7 +63,7 @@ public final class Workstations {
             ThemeUtils.themedItemStack(
                     "TINKERS_ARMOUR_TABLE",
                     Material.SMITHING_TABLE,
-                    ThemeUtils.ThemeItemType.MACHINE,
+                    ThemeItemType.MACHINE,
                     "Tinker's Armour Table",
                     "Combines parts into armour pieces."
             );
@@ -72,7 +73,7 @@ public final class Workstations {
             ThemeUtils.themedItemStack(
                     "TINKERS_REPAIR_BENCH",
                     Material.CARTOGRAPHY_TABLE,
-                    ThemeUtils.ThemeItemType.MACHINE,
+                    ThemeItemType.MACHINE,
                     "Tinker's Repair Bench",
                     "Repairs tools and weapons."
             );
@@ -82,7 +83,7 @@ public final class Workstations {
             ThemeUtils.themedItemStack(
                     "TINKERS_SWAPPING_STATION",
                     Material.LOOM,
-                    ThemeUtils.ThemeItemType.MACHINE,
+                    ThemeItemType.MACHINE,
                     "Tinker's Swapping Station",
                     "Swaps parts of tools with new parts."
             );
@@ -92,7 +93,7 @@ public final class Workstations {
             ThemeUtils.themedItemStack(
                     "TINKERS_MOD_STATION",
                     Material.GRINDSTONE,
-                    ThemeUtils.ThemeItemType.MACHINE,
+                    ThemeItemType.MACHINE,
                     "Tinker's Modification Station",
                     "Applies modifications to tools and weapons."
             );

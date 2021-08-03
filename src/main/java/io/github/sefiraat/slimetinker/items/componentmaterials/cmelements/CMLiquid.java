@@ -5,6 +5,7 @@ import io.github.sefiraat.slimetinker.categories.Categories;
 import io.github.sefiraat.slimetinker.items.componentmaterials.ComponentMaterial;
 import io.github.sefiraat.slimetinker.items.workstations.smeltery.DummySmelteryMolten;
 import io.github.sefiraat.slimetinker.utils.ThemeUtils;
+import io.github.sefiraat.slimetinker.utils.enums.ThemeItemType;
 import lombok.Getter;
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.SlimefunItem;
 import me.mrCookieSlime.Slimefun.api.SlimefunItemStack;
@@ -28,7 +29,7 @@ public class CMLiquid {
         this.itemStack = ThemeUtils.themedItemStack(
                 parent.getId() + "_LIQUID",
                 texture,
-                ThemeUtils.ThemeItemType.MOLTEN_METAL,
+                ThemeItemType.MOLTEN_METAL,
                 "Molten " + titName,
                 ThemeUtils.PASSIVE + "The molten form of " + titName
         );

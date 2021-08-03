@@ -18,6 +18,7 @@ import io.github.sefiraat.slimetinker.items.workstations.workbench.Workbench;
 import io.github.sefiraat.slimetinker.utils.IDStrings;
 import io.github.sefiraat.slimetinker.utils.SkullTextures;
 import io.github.sefiraat.slimetinker.utils.ThemeUtils;
+import io.github.sefiraat.slimetinker.utils.enums.ThemeItemType;
 import lombok.Data;
 import me.mrCookieSlime.Slimefun.api.SlimefunItemStack;
 import net.md_5.bungee.api.ChatColor;
@@ -175,7 +176,7 @@ public class ComponentMaterial {
         return ThemeUtils.themedItemStack(
                 "PART_HEAD_" + type + name,
                 skullTexture,
-                ThemeUtils.ThemeItemType.PART,
+                ThemeItemType.PART,
                 getColor() + titName + ThemeUtils.ITEM_PART + " " + ThemeUtils.toTitleCase(type) + " Head",
         ThemeUtils.PASSIVE + "A tool head made of " + titName + "."
         );
@@ -187,7 +188,7 @@ public class ComponentMaterial {
         SlimefunItemStack i = ThemeUtils.themedItemStack(
                 "PART_BINDING_" + name,
                 SkullTextures.PART_BINDING,
-                ThemeUtils.ThemeItemType.PART,
+                ThemeItemType.PART,
                 getColor() + titName + ThemeUtils.ITEM_PART +  " Binding",
                 ThemeUtils.PASSIVE + "A binding made of " + titName + "."
         );
@@ -205,7 +206,7 @@ public class ComponentMaterial {
         return ThemeUtils.themedItemStack(
                 "PART_ROD_" + name,
                 SkullTextures.PART_TOOL_ROD,
-                ThemeUtils.ThemeItemType.PART,
+                ThemeItemType.PART,
                 getColor() + titName + ThemeUtils.ITEM_PART + " Rod",
                 ThemeUtils.PASSIVE + "A tool rod made of " + titName + "."
         );
@@ -216,7 +217,7 @@ public class ComponentMaterial {
         return ThemeUtils.themedItemStack(
                 "PART_PLATES_" + type + name,
                 skullTexture,
-                ThemeUtils.ThemeItemType.PART,
+                ThemeItemType.PART,
                 getColor() + titName + ThemeUtils.ITEM_PART + " " + ThemeUtils.toTitleCase(type) + " Plates",
         ThemeUtils.PASSIVE + "A set of armour plates made of " + titName + "."
         );
@@ -228,7 +229,7 @@ public class ComponentMaterial {
         SlimefunItemStack i = ThemeUtils.themedItemStack(
                 "PART_GAMBESON_" + name,
                 SkullTextures.PART_GAMBESON,
-                ThemeUtils.ThemeItemType.PART,
+                ThemeItemType.PART,
                 getColor() + titName + ThemeUtils.ITEM_PART +  " Gambeson",
                 ThemeUtils.PASSIVE + "A gambeson made of " + titName + "."
         );
@@ -246,7 +247,7 @@ public class ComponentMaterial {
         return ThemeUtils.themedItemStack(
                 "PART_LINKS_" + name,
                 SkullTextures.PART_LINKS,
-                ThemeUtils.ThemeItemType.PART,
+                ThemeItemType.PART,
                 getColor() + titName + ThemeUtils.ITEM_PART + " Mail Links",
                 ThemeUtils.PASSIVE + "A set of mail links made of " + titName + "."
         );
@@ -257,7 +258,7 @@ public class ComponentMaterial {
         return ThemeUtils.themedItemStack(
                 "PART_REPAIR_KIT_" + name,
                 Material.CHEST_MINECART,
-                ThemeUtils.ThemeItemType.PART,
+                ThemeItemType.PART,
                 getColor() + titName + ThemeUtils.ITEM_PART + " Repair Kit",
                 ThemeUtils.PASSIVE + "A kit that is able to repair items",
                 "made out of " + titName + "."

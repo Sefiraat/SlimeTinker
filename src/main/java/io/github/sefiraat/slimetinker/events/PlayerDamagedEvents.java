@@ -2,6 +2,7 @@ package io.github.sefiraat.slimetinker.events;
 
 import io.github.sefiraat.slimetinker.SlimeTinker;
 import io.github.sefiraat.slimetinker.events.friend.EventFriend;
+import io.github.sefiraat.slimetinker.runnables.event.RemoveWolf;
 import io.github.sefiraat.slimetinker.utils.GeneralUtils;
 import io.github.sefiraat.slimetinker.utils.ItemUtils;
 import io.github.sefiraat.slimetinker.utils.ThemeUtils;
@@ -18,6 +19,7 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
+import org.bukkit.entity.Wolf;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.Damageable;
@@ -165,7 +167,6 @@ public final class PlayerDamagedEvents {
     }
 
     public static void plateCopper(EventFriend friend) {
-        friend.incrementExpMod(0.2);
         friend.setDamageMod(friend.getDamageMod() + 0.25);
     }
 
@@ -294,6 +295,70 @@ public final class PlayerDamagedEvents {
     public static void plateSolder(EventFriend friend) {
         if (friend.getCause() == EntityDamageEvent.DamageCause.FLY_INTO_WALL) {
             friend.setCancelEvent(true);
+        }
+    }
+
+    public static void linksReinforced(EventFriend friend) {
+        if (friend.getCause() == EntityDamageEvent.DamageCause.WITHER) {
+            friend.setCancelEvent(true);
+        }
+    }
+
+    public static void linksSingZinc(EventFriend friend) {
+        if (friend.getCause() == EntityDamageEvent.DamageCause.CONTACT) {
+            Player p = friend.getPlayer();
+            friend.setDamageMod(0);
+            p.setHealth(Math.max(p.getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue(), p.getHealth() + friend.getInitialDamage()));
+        }
+    }
+
+    public static void plateSingCopper(EventFriend friend) {
+        friend.setDamageMod(friend.getDamageMod() + 0.5);
+    }
+
+    public static void linksSingTin(EventFriend friend) {
+        increaseEffect(PotionEffectType.ABSORPTION, friend.getPotionEffects(), 1);
+    }
+
+    public static void linksMythril(EventFriend friend) {
+        if (GeneralUtils.testChance(1, 20)) {
+            Player p = friend.getPlayer();
+            Wolf w = (Wolf) p.getWorld().spawnEntity(p.getLocation(), EntityType.WOLF);
+            w.setOwner(p);
+            if (friend.getDamagingEntity() != null) {
+                w.setTarget((LivingEntity) friend.getDamagingEntity());
+            }
+            RemoveWolf task = new RemoveWolf(w);
+            task.runTaskLater(SlimeTinker.inst(), 500);
+        }
+    }
+
+    public static void plateMagSteel(EventFriend friend) {
+        if (GeneralUtils.testChance(5,100)) {
+            friend.setCancelEvent(true);
+            increaseEffect(PotionEffectType.ABSORPTION, friend.getPotionEffects());
+        }
+    }
+
+    public static void plateSingSilver(EventFriend friend) {
+        NamespacedKey key = SlimeTinker.inst().getKeys().getStopEvents();
+        Player player = friend.getPlayer();
+        if (!PersistentDataAPI.hasInt(player, key) && friend.getCause() == EntityDamageEvent.DamageCause.LIGHTNING) {
+            PersistentDataAPI.setInt(player, key, 1);
+            friend.setCancelEvent(true);
+            int rnd = ThreadLocalRandom.current().nextInt(7, 20);
+            for (int i = 0; i <= rnd; i++) {
+                int rndx = ThreadLocalRandom.current().nextInt(-5, 6);
+                int rndz = ThreadLocalRandom.current().nextInt(-5, 6);
+                player.getWorld().strikeLightningEffect(player.getLocation().clone().add(rndx, 0, rndz));
+            }
+            PersistentDataAPI.remove(player, key);
+        }
+    }
+
+    public static void plateAdamantite(EventFriend friend) {
+        if (friend.getCause() == EntityDamageEvent.DamageCause.PROJECTILE) {
+            friend.setDamageMod(friend.getDamageMod() -0.25);
         }
     }
 }

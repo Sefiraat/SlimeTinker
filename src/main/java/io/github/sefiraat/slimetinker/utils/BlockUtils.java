@@ -7,7 +7,6 @@ import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.block.Block;
 import org.bukkit.block.Container;
-import org.bukkit.block.data.Powerable;
 
 import javax.annotation.Nullable;
 import java.util.concurrent.ThreadLocalRandom;

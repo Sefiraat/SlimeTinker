@@ -6,6 +6,7 @@ import io.github.sefiraat.slimetinker.categories.Categories;
 import io.github.sefiraat.slimetinker.items.componentmaterials.ComponentMaterial;
 import io.github.sefiraat.slimetinker.items.workstations.smeltery.DummySmelteryTrait;
 import io.github.sefiraat.slimetinker.utils.ThemeUtils;
+import io.github.sefiraat.slimetinker.utils.enums.ThemeItemType;
 import lombok.Getter;
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.SlimefunItem;
 import me.mrCookieSlime.Slimefun.api.SlimefunItemStack;
@@ -46,7 +47,7 @@ public class CMTrait {
                 ThemeUtils.themedItemStack(
                         traitName.toUpperCase(Locale.ROOT).replace(" ","_") + "_TRAIT_" + partType.getItemId().toUpperCase(Locale.ROOT) + "_" + StackUtils.getIDorType(parentCM.getRepresentativeStack()),
                         CMTraits.getTraitTexture(addedBy),
-                        ThemeUtils.ThemeItemType.PROP,
+                        ThemeItemType.PROP,
                         "Trait : " + traitName,
                         newLore
                 );

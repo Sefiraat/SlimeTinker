@@ -6,9 +6,7 @@ import io.github.sefiraat.slimetinker.events.friend.TraitEventType;
 import io.github.sefiraat.slimetinker.items.Materials;
 import io.github.sefiraat.slimetinker.modifiers.Modifications;
 import io.github.sefiraat.slimetinker.utils.GeneralUtils;
-import io.github.sefiraat.slimetinker.utils.IDStrings;
 import io.github.sefiraat.slimetinker.utils.ItemUtils;
-import org.bukkit.entity.Panda;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerItemBreakEvent;
@@ -19,7 +17,6 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataContainer;
 
 import java.util.Map;
-import java.util.concurrent.ThreadLocalRandom;
 
 import static io.github.sefiraat.slimetinker.events.friend.EventChannels.checkArmour;
 import static io.github.sefiraat.slimetinker.events.friend.EventChannels.checkTool;

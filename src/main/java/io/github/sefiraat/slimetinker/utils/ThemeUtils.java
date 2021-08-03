@@ -1,6 +1,7 @@
 package io.github.sefiraat.slimetinker.utils;
 
 import io.github.sefiraat.slimetinker.items.BaseItem;
+import io.github.sefiraat.slimetinker.utils.enums.ThemeItemType;
 import lombok.experimental.UtilityClass;
 import me.mrCookieSlime.Slimefun.api.SlimefunItemStack;
 import net.md_5.bungee.api.ChatColor;
@@ -187,24 +188,6 @@ public final class ThemeUtils {
 
     public static String getLine() {
         return PASSIVE + StringUtils.repeat("-", 25);
-    }
-
-    public enum ThemeItemType {
-        CRAFTING,
-        MACHINE,
-        CHEST,
-        DROP,
-        BASE,
-        MOLTEN_METAL,
-        LIQUID,
-        CAST,
-        PART,
-        TOOL,
-        ARMOUR,
-        INFO,
-        MOD,
-        PROP,
-        MULT
     }
 
 }

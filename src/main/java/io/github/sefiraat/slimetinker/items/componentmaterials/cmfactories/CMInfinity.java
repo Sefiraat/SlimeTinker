@@ -42,16 +42,16 @@ public final class CMInfinity {
                                 null,
                                 new CMToolMakeup(true, false, true, true, false, true),
                                 new CMForms(
-                                    "VOID_BIT",
-                                    "VOID_INGOT",
-                                    Materials.BLOCK_CAST_VOID.getItemId(),
-                                    null,
-                                    null,
-                                    null,
-                                    null,
-                                    null,
-                                    null,
-                                    null
+                                        "VOID_BIT",
+                                        "VOID_INGOT",
+                                        Materials.BLOCK_CAST_VOID.getItemId(),
+                                        null,
+                                        null,
+                                        null,
+                                        null,
+                                        null,
+                                        null,
+                                        null
                                 ),
                                 new CMTraits(
                                         IDStrings.VOID,
@@ -94,16 +94,16 @@ public final class CMInfinity {
                                 ),
                                 new CMToolMakeup(true, false, true, true, false, true),
                                 new CMForms(
-                                    Materials.NUGGET_CAST_MAGSTEEL.getItemId(),
-                                    "MAGSTEEL",
-                                    Materials.BLOCK_CAST_MAGSTEEL.getItemId(),
-                                    null,
-                                    null,
-                                    null,
-                                    null,
-                                    null,
-                                    null,
-                                    null
+                                        Materials.NUGGET_CAST_MAGSTEEL.getItemId(),
+                                        "MAGSTEEL",
+                                        Materials.BLOCK_CAST_MAGSTEEL.getItemId(),
+                                        null,
+                                        null,
+                                        null,
+                                        null,
+                                        null,
+                                        null,
+                                        null
                                 ),
                                 new CMTraits(
                                         IDStrings.MAGSTEEL,
@@ -149,16 +149,16 @@ public final class CMInfinity {
                                 ),
                                 new CMToolMakeup(true, false, true, true, false, true),
                                 new CMForms(
-                                    Materials.NUGGET_CAST_TITANIUM.getItemId(),
-                                    "TITANIUM",
-                                    Materials.BLOCK_CAST_TITANIUM.getItemId(),
-                                    null,
-                                    null,
-                                    null,
-                                    null,
-                                    null,
-                                    null,
-                                    null
+                                        Materials.NUGGET_CAST_TITANIUM.getItemId(),
+                                        "TITANIUM",
+                                        Materials.BLOCK_CAST_TITANIUM.getItemId(),
+                                        null,
+                                        null,
+                                        null,
+                                        null,
+                                        null,
+                                        null,
+                                        null
                                 ),
                                 new CMTraits(
                                         IDStrings.TITANIUM,
@@ -198,16 +198,16 @@ public final class CMInfinity {
                                 null,
                                 new CMToolMakeup(true, false, true, true, false, true),
                                 new CMForms(
-                                    null,
-                                    null,
-                                    "IRON_SINGULARITY",
-                                    null,
-                                    null,
-                                    null,
-                                    null,
-                                    null,
-                                    null,
-                                    null
+                                        null,
+                                        null,
+                                        "IRON_SINGULARITY",
+                                        null,
+                                        null,
+                                        null,
+                                        null,
+                                        null,
+                                        null,
+                                        null
                                 ),
                                 new CMTraits(
                                         IDStrings.SINGIRON,
@@ -246,16 +246,16 @@ public final class CMInfinity {
                                 null,
                                 new CMToolMakeup(true, false, true, true, false, true),
                                 new CMForms(
-                                    null,
-                                    null,
-                                    "GOLD_SINGULARITY",
-                                    null,
-                                    null,
-                                    null,
-                                    null,
-                                    null,
-                                    null,
-                                    null
+                                        null,
+                                        null,
+                                        "GOLD_SINGULARITY",
+                                        null,
+                                        null,
+                                        null,
+                                        null,
+                                        null,
+                                        null,
+                                        null
                                 ),
                                 new CMTraits(
                                         IDStrings.SINGGOLD,
@@ -295,16 +295,16 @@ public final class CMInfinity {
                                 null,
                                 new CMToolMakeup(true, false, true, true, false, true),
                                 new CMForms(
-                                    null,
-                                    null,
-                                    "COPPER_SINGULARITY",
-                                    null,
-                                    null,
-                                    null,
-                                    null,
-                                    null,
-                                    null,
-                                    null
+                                        null,
+                                        null,
+                                        "COPPER_SINGULARITY",
+                                        null,
+                                        null,
+                                        null,
+                                        null,
+                                        null,
+                                        null,
+                                        null
                                 ),
                                 new CMTraits(
                                         IDStrings.SINGGOLD,
@@ -344,16 +344,16 @@ public final class CMInfinity {
                                 null,
                                 new CMToolMakeup(true, false, true, true, false, true),
                                 new CMForms(
-                                    null,
-                                    null,
-                                    "LEAD_SINGULARITY",
-                                    null,
-                                    null,
-                                    null,
-                                    null,
-                                    null,
-                                    null,
-                                    null
+                                        null,
+                                        null,
+                                        "LEAD_SINGULARITY",
+                                        null,
+                                        null,
+                                        null,
+                                        null,
+                                        null,
+                                        null,
+                                        null
                                 ),
                                 new CMTraits(
                                         IDStrings.SINGLEAD,
@@ -392,16 +392,16 @@ public final class CMInfinity {
                                 null,
                                 new CMToolMakeup(true, false, true, true, false, true),
                                 new CMForms(
-                                    null,
-                                    null,
-                                    "SILVER_SINGULARITY",
-                                    null,
-                                    null,
-                                    null,
-                                    null,
-                                    null,
-                                    null,
-                                    null
+                                        null,
+                                        null,
+                                        "SILVER_SINGULARITY",
+                                        null,
+                                        null,
+                                        null,
+                                        null,
+                                        null,
+                                        null,
+                                        null
                                 ),
                                 new CMTraits(
                                         IDStrings.SINGSILVER,
@@ -444,16 +444,16 @@ public final class CMInfinity {
                                 null,
                                 new CMToolMakeup(true, false, true, true, false, true),
                                 new CMForms(
-                                    null,
-                                    null,
-                                    "ALUMINUM_SINGULARITY",
-                                    null,
-                                    null,
-                                    null,
-                                    null,
-                                    null,
-                                    null,
-                                    null
+                                        null,
+                                        null,
+                                        "ALUMINUM_SINGULARITY",
+                                        null,
+                                        null,
+                                        null,
+                                        null,
+                                        null,
+                                        null,
+                                        null
                                 ),
                                 new CMTraits(
                                         IDStrings.SINGALUMINUM,
@@ -492,16 +492,16 @@ public final class CMInfinity {
                                 null,
                                 new CMToolMakeup(true, false, true, true, false, true),
                                 new CMForms(
-                                    null,
-                                    null,
-                                    "TIN_SINGULARITY",
-                                    null,
-                                    null,
-                                    null,
-                                    null,
-                                    null,
-                                    null,
-                                    null
+                                        null,
+                                        null,
+                                        "TIN_SINGULARITY",
+                                        null,
+                                        null,
+                                        null,
+                                        null,
+                                        null,
+                                        null,
+                                        null
                                 ),
                                 new CMTraits(
                                         IDStrings.SINGTIN,
@@ -541,16 +541,16 @@ public final class CMInfinity {
                                 null,
                                 new CMToolMakeup(true, false, true, true, false, true),
                                 new CMForms(
-                                    null,
-                                    null,
-                                    "ZINC_SINGULARITY",
-                                    null,
-                                    null,
-                                    null,
-                                    null,
-                                    null,
-                                    null,
-                                    null
+                                        null,
+                                        null,
+                                        "ZINC_SINGULARITY",
+                                        null,
+                                        null,
+                                        null,
+                                        null,
+                                        null,
+                                        null,
+                                        null
                                 ),
                                 new CMTraits(
                                         IDStrings.SINGZINC,
@@ -590,16 +590,16 @@ public final class CMInfinity {
                                 null,
                                 new CMToolMakeup(true, false, true, true, false, true),
                                 new CMForms(
-                                    null,
-                                    null,
-                                    "MAGNESIUM_SINGULARITY",
-                                    null,
-                                    null,
-                                    null,
-                                    null,
-                                    null,
-                                    null,
-                                    null
+                                        null,
+                                        null,
+                                        "MAGNESIUM_SINGULARITY",
+                                        null,
+                                        null,
+                                        null,
+                                        null,
+                                        null,
+                                        null,
+                                        null
                                 ),
                                 new CMTraits(
                                         IDStrings.SINGMAGNESIUM,
@@ -639,16 +639,16 @@ public final class CMInfinity {
                                 null,
                                 new CMToolMakeup(false, false, false, false, false, false),
                                 new CMForms(
-                                    null,
-                                    null,
-                                    "DIAMOND_SINGULARITY",
-                                    null,
-                                    null,
-                                    null,
-                                    null,
-                                    null,
-                                    null,
-                                    null
+                                        null,
+                                        null,
+                                        "DIAMOND_SINGULARITY",
+                                        null,
+                                        null,
+                                        null,
+                                        null,
+                                        null,
+                                        null,
+                                        null
                                 ),
                                 new CMTraits(
                                         IDStrings.SINGDIAMOND,
@@ -1073,16 +1073,16 @@ public final class CMInfinity {
                                 null,
                                 new CMToolMakeup(true, false, false, true, false, true),
                                 new CMForms(
-                                    null,
-                                    null,
-                                    "INFINITY_SINGULARITY",
-                                    null,
-                                    null,
-                                    null,
-                                    null,
-                                    null,
-                                    null,
-                                    null
+                                        null,
+                                        null,
+                                        "INFINITY_SINGULARITY",
+                                        null,
+                                        null,
+                                        null,
+                                        null,
+                                        null,
+                                        null,
+                                        null
                                 ),
                                 new CMTraits(
                                         IDStrings.SINGINFINITY,
@@ -1111,6 +1111,13 @@ public final class CMInfinity {
                                                 "Damage taken set to 0 with 4 peices."
                                         ))
                         ));
+
+        setupToolConsumers();
+        setupArmourConsumers();
+
+    }
+
+    public static void setupToolConsumers() {
 
         map.get(IDStrings.ADAMANTITE).addEvent(TraitEventType.PLAYER_DAMAGED, TraitPartType.ROD, PlayerDamagedEvents::rodAdamantite);           // Adamant
         map.get(IDStrings.SINGGOLD).addEvent(TraitEventType.TICK, TraitPartType.ROD, TickEvents::rodSingGold);                                  // All that Glitters II
@@ -1167,6 +1174,26 @@ public final class CMInfinity {
         map.get(IDStrings.MAGIC).addEvent(TraitEventType.TICK, TraitPartType.HEAD, TickEvents::headMagic);                                      // Trick
         map.get(IDStrings.VOID).addEvent(TraitEventType.BLOCK_BREAK, TraitPartType.HEAD, BlockBreakEvents::headVoid);                           // Void Miner
 
+    }
+
+    public static void setupArmourConsumers() {
+        map.get(IDStrings.SINGZINC).addEvent(TraitEventType.PLAYER_DAMAGED, TraitPartType.LINKS, PlayerDamagedEvents::linksSingZinc);           // Acupuncture II
+        map.get(IDStrings.SINGGOLD).addEvent(TraitEventType.TICK, TraitPartType.LINKS, TickEvents::linksSingGold);                              // Barter II
+        map.get(IDStrings.FORTUNE).addEvent(TraitEventType.TICK, TraitPartType.LINKS, TickEvents::plateAluBronze);                              // Beautiful (CO)
+        map.get(IDStrings.SINGCOPPER).addEvent(TraitEventType.PLAYER_DAMAGED, TraitPartType.PLATE, PlayerDamagedEvents::plateSingCopper);       // Beginner II - Damage
+        map.get(IDStrings.SINGCOPPER).addEvent(TraitEventType.ENTITY_DAMAGED, TraitPartType.PLATE, EntityDamageEvents::plateSingCopper);        // Beginner II - Exp
+        map.get(IDStrings.SINGTIN).addEvent(TraitEventType.PLAYER_DAMAGED, TraitPartType.LINKS, PlayerDamagedEvents::linksSingTin);             // Boost II
+        map.get(IDStrings.MYTHRIL).addEvent(TraitEventType.TICK, TraitPartType.PLATE, TickEvents::brightBurn);                                  // Brightburn
+        map.get(IDStrings.MYTHRIL).addEvent(TraitEventType.PLAYER_DAMAGED, TraitPartType.LINKS, PlayerDamagedEvents::linksMythril);             // Building Rage
+        map.get(IDStrings.MYTHRIL).addEvent(TraitEventType.PLAYER_DAMAGED, TraitPartType.LINKS, PlayerDamagedEvents::linksMythril);             // Building Rage
+        map.get(IDStrings.SINGSILVER).addEvent(TraitEventType.PLAYER_DAMAGED, TraitPartType.PLATE, PlayerDamagedEvents::plateSingSilver);       // Conductivity II
+        map.get(IDStrings.MAGSTEEL).addEvent(TraitEventType.PLAYER_DAMAGED, TraitPartType.PLATE, PlayerDamagedEvents::plateMagSteel);           // Defender
+        map.get(IDStrings.ADAMANTITE).addEvent(TraitEventType.PLAYER_DAMAGED, TraitPartType.PLATE, PlayerDamagedEvents::plateAdamantite);       // Deflective
+        map.get(IDStrings.TITANIUM).addEvent(TraitEventType.BLOCK_BREAK, TraitPartType.PLATE, BlockBreakEvents::linksHardened);                 // Dwarven Skills (CO)
+                                                                                                                                                // Easily Shaped II (In RepairBench)
+                                                                                                                                                // Enchanting II (in Experience)
+        map.get(IDStrings.MAGNONIUM).addEvent(TraitEventType.PLAYER_DAMAGED, TraitPartType.PLATE, PlayerDamagedEvents::linksAluBrass);          // Escape (CO)
+        map.get(IDStrings.MAGNONIUM).addEvent(TraitEventType.PLAYER_DAMAGED, TraitPartType.PLATE, PlayerDamagedEvents::linksAluBrass);          // Escape (CO)
     }
 
 }

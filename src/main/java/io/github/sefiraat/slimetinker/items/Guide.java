@@ -10,6 +10,7 @@ import io.github.sefiraat.slimetinker.items.workstations.tooltable.DummyToolTabl
 import io.github.sefiraat.slimetinker.utils.IDStrings;
 import io.github.sefiraat.slimetinker.utils.SkullTextures;
 import io.github.sefiraat.slimetinker.utils.ThemeUtils;
+import io.github.sefiraat.slimetinker.utils.enums.ThemeItemType;
 import io.github.thebusybiscuit.slimefun4.implementation.items.blocks.UnplaceableBlock;
 import lombok.Getter;
 import lombok.experimental.UtilityClass;
@@ -140,7 +141,7 @@ public final class Guide {
             ThemeUtils.themedItemStack(
                     "TOOL_SHOVEL_DUMMY",
                     Material.STONE_SHOVEL,
-                    ThemeUtils.ThemeItemType.TOOL,
+                    ThemeItemType.TOOL,
                     "Tinker's Shovel",
                     ThemeUtils.PASSIVE + "A shovel formed of three parts.",
                     ThemeUtils.PASSIVE + "Tinker's tools can level up and be",
@@ -151,7 +152,7 @@ public final class Guide {
             ThemeUtils.themedItemStack(
                     "TOOL_PICKAXE_DUMMY",
                     Material.STONE_PICKAXE,
-                    ThemeUtils.ThemeItemType.TOOL,
+                    ThemeItemType.TOOL,
                     "Tinker's Pickaxe",
                     ThemeUtils.PASSIVE + "A pickaxe formed of three parts.",
                     ThemeUtils.PASSIVE + "Tinker's tools can level up and be",
@@ -162,7 +163,7 @@ public final class Guide {
             ThemeUtils.themedItemStack(
                     "TOOL_AXE_DUMMY",
                     Material.STONE_AXE,
-                    ThemeUtils.ThemeItemType.TOOL,
+                    ThemeItemType.TOOL,
                     "Tinker's Axe",
                     ThemeUtils.PASSIVE + "An axe formed of three parts.",
                     ThemeUtils.PASSIVE + "Tinker's tools can level up and be",
@@ -173,7 +174,7 @@ public final class Guide {
             ThemeUtils.themedItemStack(
                     "TOOL_HOE_DUMMY",
                     Material.STONE_HOE,
-                    ThemeUtils.ThemeItemType.TOOL,
+                    ThemeItemType.TOOL,
                     "Tinker's Hoe",
                     ThemeUtils.PASSIVE + "A hoe formed of three parts.",
                     ThemeUtils.PASSIVE + "Tinker's tools can level up and be",
@@ -184,7 +185,7 @@ public final class Guide {
             ThemeUtils.themedItemStack(
                     "TOOL_SWORD_DUMMY",
                     Material.STONE_SWORD,
-                    ThemeUtils.ThemeItemType.TOOL,
+                    ThemeItemType.TOOL,
                     "Tinker's Sword",
                     ThemeUtils.PASSIVE + "A sword formed of three parts.",
                     ThemeUtils.PASSIVE + "Tinker's tools can level up and be",
@@ -195,7 +196,7 @@ public final class Guide {
             ThemeUtils.themedItemStack(
                     "ARMOUR_HELMET_DUMMY",
                     Material.LEATHER_HELMET,
-                    ThemeUtils.ThemeItemType.ARMOUR,
+                    ThemeItemType.ARMOUR,
                     "Tinker's Helmet",
                     ThemeUtils.PASSIVE + "A helmet formed of three parts.",
                     ThemeUtils.PASSIVE + "Tinker's armour can level up and be",
@@ -208,7 +209,7 @@ public final class Guide {
             ThemeUtils.themedItemStack(
                     "ARMOUR_CHESTPLATE_DUMMY",
                     Material.LEATHER_CHESTPLATE,
-                    ThemeUtils.ThemeItemType.ARMOUR,
+                    ThemeItemType.ARMOUR,
                     "Tinker's Chestplate",
                     ThemeUtils.PASSIVE + "A chestplate formed of three parts.",
                     ThemeUtils.PASSIVE + "Tinker's armour can level up and be",
@@ -221,7 +222,7 @@ public final class Guide {
             ThemeUtils.themedItemStack(
                     "ARMOUR_LEGGINGS_DUMMY",
                     Material.LEATHER_LEGGINGS,
-                    ThemeUtils.ThemeItemType.ARMOUR,
+                    ThemeItemType.ARMOUR,
                     "Tinker's Leggings",
                     ThemeUtils.PASSIVE + "A pair of leggings formed of three parts.",
                     ThemeUtils.PASSIVE + "Tinker's armour can level up and be",
@@ -234,7 +235,7 @@ public final class Guide {
             ThemeUtils.themedItemStack(
                     "ARMOUR_BOOTS_DUMMY",
                     Material.LEATHER_BOOTS,
-                    ThemeUtils.ThemeItemType.ARMOUR,
+                    ThemeItemType.ARMOUR,
                     "Tinker's Boots",
                     ThemeUtils.PASSIVE + "A pair of boots formed of three parts.",
                     ThemeUtils.PASSIVE + "Tinker's armour can level up and be",
@@ -247,7 +248,7 @@ public final class Guide {
             ThemeUtils.themedItemStack(
                     "TOOL_AXE",
                     SkullTextures.PART_AXE_HEAD,
-                    ThemeUtils.ThemeItemType.PART,
+                    ThemeItemType.PART,
                     DESC_ERROR,
                     ThemeUtils.PASSIVE + DESC_ERROR
             );
@@ -256,7 +257,7 @@ public final class Guide {
             ThemeUtils.themedItemStack(
                     "TOOL_HOE",
                     SkullTextures.PART_HOE_HEAD,
-                    ThemeUtils.ThemeItemType.PART,
+                    ThemeItemType.PART,
                     DESC_ERROR,
                     ThemeUtils.PASSIVE + DESC_ERROR
             );
@@ -265,7 +266,7 @@ public final class Guide {
             ThemeUtils.themedItemStack(
                     "TOOL_PICKAXE",
                     SkullTextures.PART_PICKAXE_HEAD,
-                    ThemeUtils.ThemeItemType.PART,
+                    ThemeItemType.PART,
                     DESC_ERROR,
                     ThemeUtils.PASSIVE + DESC_ERROR
             );
@@ -274,7 +275,7 @@ public final class Guide {
             ThemeUtils.themedItemStack(
                     "TOOL_SHOVEL",
                     SkullTextures.PART_SHOVEL_HEAD,
-                    ThemeUtils.ThemeItemType.PART,
+                    ThemeItemType.PART,
                     DESC_ERROR,
                     ThemeUtils.PASSIVE + DESC_ERROR
             );
@@ -283,7 +284,7 @@ public final class Guide {
             ThemeUtils.themedItemStack(
                     "TOOL_SWORD",
                     SkullTextures.PART_SWORD_BLADE,
-                    ThemeUtils.ThemeItemType.PART,
+                    ThemeItemType.PART,
                     DESC_ERROR,
                     ThemeUtils.PASSIVE + DESC_ERROR
             );
@@ -292,7 +293,7 @@ public final class Guide {
             ThemeUtils.themedItemStack(
                     "TOOL_AXE_EXP",
                     SkullTextures.PART_AXE_HEAD,
-                    ThemeUtils.ThemeItemType.PART,
+                    ThemeItemType.PART,
                     DESC_ERROR,
                     ThemeUtils.PASSIVE + DESC_ERROR
             );
@@ -301,7 +302,7 @@ public final class Guide {
             ThemeUtils.themedItemStack(
                     "TOOL_HOE_EXP",
                     SkullTextures.PART_HOE_HEAD,
-                    ThemeUtils.ThemeItemType.PART,
+                    ThemeItemType.PART,
                     DESC_ERROR,
                     ThemeUtils.PASSIVE + DESC_ERROR
             );
@@ -310,7 +311,7 @@ public final class Guide {
             ThemeUtils.themedItemStack(
                     "TOOL_PICKAXE_EXP",
                     SkullTextures.PART_PICKAXE_HEAD,
-                    ThemeUtils.ThemeItemType.PART,
+                    ThemeItemType.PART,
                     DESC_ERROR,
                     ThemeUtils.PASSIVE + DESC_ERROR
             );
@@ -319,7 +320,7 @@ public final class Guide {
             ThemeUtils.themedItemStack(
                     "TOOL_SHOVEL_EXP",
                     SkullTextures.PART_SHOVEL_HEAD,
-                    ThemeUtils.ThemeItemType.PART,
+                    ThemeItemType.PART,
                     DESC_ERROR,
                     ThemeUtils.PASSIVE + DESC_ERROR
             );
@@ -328,7 +329,7 @@ public final class Guide {
             ThemeUtils.themedItemStack(
                     "TOOL_SWORD_EXP",
                     SkullTextures.PART_SWORD_BLADE,
-                    ThemeUtils.ThemeItemType.PART,
+                    ThemeItemType.PART,
                     DESC_ERROR,
                     ThemeUtils.PASSIVE + DESC_ERROR
             );
@@ -337,7 +338,7 @@ public final class Guide {
             ThemeUtils.themedItemStack(
                     "AMROUR_HELM",
                     SkullTextures.PART_HELM_PLATES,
-                    ThemeUtils.ThemeItemType.PART,
+                    ThemeItemType.PART,
                     DESC_ERROR,
                     ThemeUtils.PASSIVE + DESC_ERROR
             );
@@ -346,7 +347,7 @@ public final class Guide {
             ThemeUtils.themedItemStack(
                     "ARMOUR_CHESTPLATE",
                     SkullTextures.PART_CHEST_PLATES,
-                    ThemeUtils.ThemeItemType.PART,
+                    ThemeItemType.PART,
                     DESC_ERROR,
                     ThemeUtils.PASSIVE + DESC_ERROR
             );
@@ -355,7 +356,7 @@ public final class Guide {
             ThemeUtils.themedItemStack(
                     "ARMOUR_LEGGINGS",
                     SkullTextures.PART_LEG_PLATES,
-                    ThemeUtils.ThemeItemType.PART,
+                    ThemeItemType.PART,
                     DESC_ERROR,
                     ThemeUtils.PASSIVE + DESC_ERROR
             );
@@ -364,7 +365,7 @@ public final class Guide {
             ThemeUtils.themedItemStack(
                     "ARMOUR_BOOTS",
                     SkullTextures.PART_BOOTS_PLATES,
-                    ThemeUtils.ThemeItemType.PART,
+                    ThemeItemType.PART,
                     DESC_ERROR,
                     ThemeUtils.PASSIVE + DESC_ERROR
             );
@@ -373,7 +374,7 @@ public final class Guide {
             ThemeUtils.themedItemStack(
                     "TOOL_INFO",
                     SkullTextures.INFO,
-                    ThemeUtils.ThemeItemType.INFO,
+                    ThemeItemType.INFO,
                     "Tinker's Tools Info",
                     ThemeUtils.PASSIVE + "Tinker's tools start at Stone. As you",
                     ThemeUtils.PASSIVE + "level the tools up, they will promote",
@@ -384,7 +385,7 @@ public final class Guide {
             ThemeUtils.themedItemStack(
                     "ARMOUR_INFO",
                     SkullTextures.INFO,
-                    ThemeUtils.ThemeItemType.INFO,
+                    ThemeItemType.INFO,
                     "Tinker's Armour Info",
                     ThemeUtils.PASSIVE + "Tinker's armour starts at Leather. As you",
                     ThemeUtils.PASSIVE + "level the pieces up, they will promote",

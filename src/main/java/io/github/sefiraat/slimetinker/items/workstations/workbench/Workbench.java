@@ -7,6 +7,7 @@ import io.github.mooy1.infinitylib.slimefun.AbstractContainer;
 import io.github.sefiraat.slimetinker.SlimeTinker;
 import io.github.sefiraat.slimetinker.items.Workstations;
 import io.github.sefiraat.slimetinker.utils.GUIItems;
+import io.github.sefiraat.slimetinker.utils.ItemUtils;
 import io.github.sefiraat.slimetinker.utils.ThemeUtils;
 import io.github.thebusybiscuit.slimefun4.implementation.SlimefunPlugin;
 import lombok.Getter;
@@ -108,7 +109,7 @@ public class Workbench extends AbstractContainer {
 
     public void setupSFRecipes() {
         for (SlimefunItem i : SlimefunPlugin.getRegistry().getEnabledSlimefunItems()) {
-            if (i.getRecipeType() == RecipeType.ENHANCED_CRAFTING_TABLE) {
+            if (i.getRecipeType() == RecipeType.ENHANCED_CRAFTING_TABLE && !ItemUtils.rejectCraftingRecipe(i)) {
                 RECIPES.put(i.getRecipe(), i.getRecipeOutput());
             }
         }

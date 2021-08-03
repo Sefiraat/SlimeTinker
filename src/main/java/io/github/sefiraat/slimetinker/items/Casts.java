@@ -5,6 +5,7 @@ import io.github.sefiraat.slimetinker.categories.Categories;
 import io.github.sefiraat.slimetinker.items.componentmaterials.CMManager;
 import io.github.sefiraat.slimetinker.items.workstations.smeltery.DummySmeltery;
 import io.github.sefiraat.slimetinker.utils.ThemeUtils;
+import io.github.sefiraat.slimetinker.utils.enums.ThemeItemType;
 import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
 import io.github.thebusybiscuit.slimefun4.implementation.items.blocks.UnplaceableBlock;
 import lombok.experimental.UtilityClass;
@@ -121,7 +122,7 @@ public final class Casts {
             ThemeUtils.themedItemStack(
                     "CAST_NUGGET",
                     Material.YELLOW_CARPET,
-                    ThemeUtils.ThemeItemType.CAST,
+                    ThemeItemType.CAST,
                     "Cast: Metal Nugget",
                     ThemeUtils.PASSIVE + CAST_DESC,
                     "",
@@ -133,7 +134,7 @@ public final class Casts {
             ThemeUtils.themedItemStack(
                     "CAST_BLOCK",
                     Material.YELLOW_CARPET,
-                    ThemeUtils.ThemeItemType.CAST,
+                    ThemeItemType.CAST,
                     "Cast: Metal Block",
                     ThemeUtils.PASSIVE + CAST_DESC,
                     "",
@@ -145,7 +146,7 @@ public final class Casts {
             ThemeUtils.themedItemStack(
                     "CAST_INGOT",
                     Material.YELLOW_CARPET,
-                    ThemeUtils.ThemeItemType.CAST,
+                    ThemeItemType.CAST,
                     "Cast: Metal Ingot",
                     ThemeUtils.PASSIVE + CAST_DESC,
                     "",
@@ -157,7 +158,7 @@ public final class Casts {
             ThemeUtils.themedItemStack(
                     "CAST_GEM",
                     Material.YELLOW_CARPET,
-                    ThemeUtils.ThemeItemType.CAST,
+                    ThemeItemType.CAST,
                     "Cast: Gem",
                     ThemeUtils.PASSIVE + "A cast for non-metallic liquids.",
                     "",
@@ -169,7 +170,7 @@ public final class Casts {
             ThemeUtils.themedItemStack(
                     "CAST_SHOVELHEAD",
                     Material.ORANGE_CARPET,
-                    ThemeUtils.ThemeItemType.CAST,
+                    ThemeItemType.CAST,
                     "Cast: Shovel Head",
                     ThemeUtils.PASSIVE + CAST_DESC,
                     "",
@@ -181,7 +182,7 @@ public final class Casts {
             ThemeUtils.themedItemStack(
                     "CAST_PICKAXEHEAD",
                     Material.ORANGE_CARPET,
-                    ThemeUtils.ThemeItemType.CAST,
+                    ThemeItemType.CAST,
                     "Cast: Pickaxe Head",
                     ThemeUtils.PASSIVE + CAST_DESC,
                     "",
@@ -193,7 +194,7 @@ public final class Casts {
             ThemeUtils.themedItemStack(
                     "CAST_AXE_HEAD",
                     Material.ORANGE_CARPET,
-                    ThemeUtils.ThemeItemType.CAST,
+                    ThemeItemType.CAST,
                     "Cast: Axe Head",
                     ThemeUtils.PASSIVE + CAST_DESC,
                     "",
@@ -205,7 +206,7 @@ public final class Casts {
             ThemeUtils.themedItemStack(
                     "CAST_HOEHEAD",
                     Material.ORANGE_CARPET,
-                    ThemeUtils.ThemeItemType.CAST,
+                    ThemeItemType.CAST,
                     "Cast: Hoe Head",
                     ThemeUtils.PASSIVE + CAST_DESC,
                     "",
@@ -217,7 +218,7 @@ public final class Casts {
             ThemeUtils.themedItemStack(
                     "CAST_SWORDBLADE",
                     Material.ORANGE_CARPET,
-                    ThemeUtils.ThemeItemType.CAST,
+                    ThemeItemType.CAST,
                     "Cast: Sword Blade",
                     ThemeUtils.PASSIVE + CAST_DESC,
                     "",
@@ -229,7 +230,7 @@ public final class Casts {
             ThemeUtils.themedItemStack(
                     "CAST_TOOLROD",
                     Material.ORANGE_CARPET,
-                    ThemeUtils.ThemeItemType.CAST,
+                    ThemeItemType.CAST,
                     "Cast: Tool Rod",
                     ThemeUtils.PASSIVE + CAST_DESC,
                     "",
@@ -241,7 +242,7 @@ public final class Casts {
             ThemeUtils.themedItemStack(
                     "CAST_HELM_PLATE",
                     Material.ORANGE_CARPET,
-                    ThemeUtils.ThemeItemType.CAST,
+                    ThemeItemType.CAST,
                     "Cast: Helmet Plates",
                     ThemeUtils.PASSIVE + CAST_DESC,
                     "",
@@ -253,7 +254,7 @@ public final class Casts {
             ThemeUtils.themedItemStack(
                     "CAST_CHEST_PLATE",
                     Material.ORANGE_CARPET,
-                    ThemeUtils.ThemeItemType.CAST,
+                    ThemeItemType.CAST,
                     "Cast: Chestplate Plates",
                     ThemeUtils.PASSIVE + CAST_DESC,
                     "",
@@ -265,7 +266,7 @@ public final class Casts {
             ThemeUtils.themedItemStack(
                     "CAST_LEG_PLATE",
                     Material.ORANGE_CARPET,
-                    ThemeUtils.ThemeItemType.CAST,
+                    ThemeItemType.CAST,
                     "Cast: Legging Plates",
                     ThemeUtils.PASSIVE + CAST_DESC,
                     "",
@@ -277,7 +278,7 @@ public final class Casts {
             ThemeUtils.themedItemStack(
                     "CAST_BOOT_PLATE",
                     Material.ORANGE_CARPET,
-                    ThemeUtils.ThemeItemType.CAST,
+                    ThemeItemType.CAST,
                     "Cast: Boot Plates",
                     ThemeUtils.PASSIVE + CAST_DESC,
                     "",
@@ -289,7 +290,7 @@ public final class Casts {
             ThemeUtils.themedItemStack(
                     "CAST_MAIL_LINK",
                     Material.ORANGE_CARPET,
-                    ThemeUtils.ThemeItemType.CAST,
+                    ThemeItemType.CAST,
                     "Cast: Mail Links",
                     ThemeUtils.PASSIVE + CAST_DESC,
                     "",
@@ -301,7 +302,7 @@ public final class Casts {
             ThemeUtils.themedItemStack(
                     "CAST_REPAIRKIT",
                     Material.YELLOW_CARPET,
-                    ThemeUtils.ThemeItemType.CAST,
+                    ThemeItemType.CAST,
                     "Cast: Repair Kit",
                     ThemeUtils.PASSIVE + CAST_DESC,
                     "",

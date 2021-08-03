@@ -3,7 +3,6 @@ package io.github.sefiraat.slimetinker.items.workstations.repairbench;
 import io.github.mooy1.infinitylib.slimefun.AbstractContainer;
 import io.github.sefiraat.slimetinker.items.templates.RepairkitTemplate;
 import io.github.sefiraat.slimetinker.utils.GUIItems;
-import io.github.sefiraat.slimetinker.utils.IDStrings;
 import io.github.sefiraat.slimetinker.utils.ItemUtils;
 import io.github.sefiraat.slimetinker.utils.ThemeUtils;
 import me.mrCookieSlime.Slimefun.Lists.RecipeType;
@@ -65,25 +64,41 @@ public class RepairBench extends AbstractContainer {
         String armourMaterial = ItemUtils.getArmourMaterial(item);
         String partMaterial = ItemUtils.getPartMaterial(kit);
 
-        if (!toolMaterial.equals(partMaterial) && !armourMaterial.equals(partMaterial)) {
+        if (repairChecks(partMaterial, toolMaterial, armourMaterial, item)) {
+            ItemStack newItem = item.clone();
+
+            boolean fixAll = false;
+            if (ItemUtils.repairBenchEasyFix(newItem)) { // EASY FIX
+                fixAll = true;
+            }
+
+            repairItemStack(newItem, fixAll);
+            blockMenu.pushItem(newItem, OUTPUT_SLOT);
+            blockMenu.getItemInSlot(INPUT_TOOL).setAmount(blockMenu.getItemInSlot(INPUT_TOOL).getAmount() - 1);
+            blockMenu.getItemInSlot(INPUT_KIT).setAmount(blockMenu.getItemInSlot(INPUT_KIT).getAmount() - 1);
+
+        } else {
             player.sendMessage(ThemeUtils.WARNING + "The kit type does not match the item material.");
-            return false;
         }
-
-        ItemStack newItem = item.clone();
-
-        boolean fixAll = false;
-        if (ItemUtils.repairBenchEasyFix(newItem)) { // EASY FIX
-            fixAll = true;
-        }
-
-        repairItemStack(newItem, fixAll);
-        blockMenu.pushItem(newItem, OUTPUT_SLOT);
-        blockMenu.getItemInSlot(INPUT_TOOL).setAmount(blockMenu.getItemInSlot(INPUT_TOOL).getAmount() - 1);
-        blockMenu.getItemInSlot(INPUT_KIT).setAmount(blockMenu.getItemInSlot(INPUT_KIT).getAmount() - 1);
 
         return false;
 
+    }
+
+    private boolean repairChecks(String partMaterial, String toolMaterial, String armourMaterial, ItemStack itemStack) {
+        return checkKit(partMaterial) && (checkTool(partMaterial, toolMaterial) || checkArmour(partMaterial, armourMaterial, itemStack));
+    }
+
+    private boolean checkKit(String partMaterial) {
+        return partMaterial != null;
+    }
+
+    private boolean checkTool(String partMaterial, String toolMaterial) {
+        return toolMaterial != null && toolMaterial.equals(partMaterial);
+    }
+
+    private boolean checkArmour(String partMaterial, String armourMaterial, ItemStack itemStack) {
+        return armourMaterial != null && (armourMaterial.equals(partMaterial) || ItemUtils.repairBenchEasyFix2(itemStack));
     }
 
 

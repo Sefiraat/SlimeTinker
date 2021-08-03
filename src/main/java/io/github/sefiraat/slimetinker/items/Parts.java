@@ -8,6 +8,7 @@ import io.github.sefiraat.slimetinker.items.workstations.smeltery.DummySmeltery;
 import io.github.sefiraat.slimetinker.items.workstations.workbench.DummyWorkbench;
 import io.github.sefiraat.slimetinker.utils.SkullTextures;
 import io.github.sefiraat.slimetinker.utils.ThemeUtils;
+import io.github.sefiraat.slimetinker.utils.enums.ThemeItemType;
 import io.github.thebusybiscuit.slimefun4.implementation.items.blocks.UnplaceableBlock;
 import lombok.experimental.UtilityClass;
 import me.mrCookieSlime.Slimefun.api.SlimefunItemStack;
@@ -31,7 +32,7 @@ public final class Parts {
             ThemeUtils.themedItemStack(
                     "PART_SHOVEL_HEAD_DUMMY",
                     SkullTextures.PART_SHOVEL_HEAD,
-                    ThemeUtils.ThemeItemType.CAST,
+                    ThemeItemType.CAST,
                     "Part: Shovel Head",
                     ThemeUtils.PASSIVE + "A cast shovel head."
             );
@@ -40,7 +41,7 @@ public final class Parts {
             ThemeUtils.themedItemStack(
                     "PART_PICKAXE_HEAD_DUMMY",
                     SkullTextures.PART_PICKAXE_HEAD,
-                    ThemeUtils.ThemeItemType.CAST,
+                    ThemeItemType.CAST,
                     "Part: Pickaxe Head",
                     ThemeUtils.PASSIVE + "A cast pickaxe head."
             );
@@ -49,7 +50,7 @@ public final class Parts {
             ThemeUtils.themedItemStack(
                     "PART_AXE_HEAD_DUMMY",
                     SkullTextures.PART_AXE_HEAD,
-                    ThemeUtils.ThemeItemType.CAST,
+                    ThemeItemType.CAST,
                     "Part: Axe Head",
                     ThemeUtils.PASSIVE + "A cast axe head."
             );
@@ -58,7 +59,7 @@ public final class Parts {
             ThemeUtils.themedItemStack(
                     "PART_HOE_HEAD_DUMMY",
                     SkullTextures.PART_HOE_HEAD,
-                    ThemeUtils.ThemeItemType.CAST,
+                    ThemeItemType.CAST,
                     "Part: Hoe Head",
                     ThemeUtils.PASSIVE + "A cast hoe head."
             );
@@ -67,7 +68,7 @@ public final class Parts {
             ThemeUtils.themedItemStack(
                     "PART_SWORD_BLADE_DUMMY",
                     SkullTextures.PART_SWORD_BLADE,
-                    ThemeUtils.ThemeItemType.CAST,
+                    ThemeItemType.CAST,
                     "Part: Sword Blade",
                     ThemeUtils.PASSIVE + "A cast sword blade."
             );
@@ -76,7 +77,7 @@ public final class Parts {
             ThemeUtils.themedItemStack(
                     "PART_TOOL_ROD_DUMMY",
                     SkullTextures.PART_TOOL_ROD,
-                    ThemeUtils.ThemeItemType.CAST,
+                    ThemeItemType.CAST,
                     "Part: Tool Rod",
                     ThemeUtils.PASSIVE + "A cast tool rod."
             );
@@ -85,7 +86,7 @@ public final class Parts {
             ThemeUtils.themedItemStack(
                     "PART_BINDING_DUMMY",
                     SkullTextures.PART_BINDING,
-                    ThemeUtils.ThemeItemType.CAST,
+                    ThemeItemType.CAST,
                     "Part: Binding",
                     ThemeUtils.PASSIVE + "A binging to hold parts together."
             );
@@ -94,7 +95,7 @@ public final class Parts {
             ThemeUtils.themedItemStack(
                     "PART_HELM_PLATE_DUMMY",
                     SkullTextures.PART_HELM_PLATES,
-                    ThemeUtils.ThemeItemType.CAST,
+                    ThemeItemType.CAST,
                     "Part: Helmet Plates",
                     ThemeUtils.PASSIVE + "A cast helmet plate set."
             );
@@ -103,7 +104,7 @@ public final class Parts {
             ThemeUtils.themedItemStack(
                     "PART_CHEST_PLATE_DUMMY",
                     SkullTextures.PART_CHEST_PLATES,
-                    ThemeUtils.ThemeItemType.CAST,
+                    ThemeItemType.CAST,
                     "Part: Chest Plates",
                     ThemeUtils.PASSIVE + "A cast chest plate set."
             );
@@ -112,7 +113,7 @@ public final class Parts {
             ThemeUtils.themedItemStack(
                     "PART_LEG_PLATE_DUMMY",
                     SkullTextures.PART_LEG_PLATES,
-                    ThemeUtils.ThemeItemType.CAST,
+                    ThemeItemType.CAST,
                     "Part: Leg Plates",
                     ThemeUtils.PASSIVE + "A cast legging plate set."
             );
@@ -121,7 +122,7 @@ public final class Parts {
             ThemeUtils.themedItemStack(
                     "PART_BOOT_PLATE_DUMMY",
                     SkullTextures.PART_BOOTS_PLATES,
-                    ThemeUtils.ThemeItemType.CAST,
+                    ThemeItemType.CAST,
                     "Part: Boot Plates",
                     ThemeUtils.PASSIVE + "A cast legging plate set."
             );
@@ -130,7 +131,7 @@ public final class Parts {
             ThemeUtils.themedItemStack(
                     "PART_MAIL_LINKS_DUMMY",
                     SkullTextures.PART_LINKS,
-                    ThemeUtils.ThemeItemType.CAST,
+                    ThemeItemType.CAST,
                     "Part: Mail Links",
                     ThemeUtils.PASSIVE + "A flexible mesh of cast metal links"
             );
@@ -139,7 +140,7 @@ public final class Parts {
             ThemeUtils.themedItemStack(
                     "PART_GAMBESON_DUMMY",
                     SkullTextures.PART_GAMBESON,
-                    ThemeUtils.ThemeItemType.CAST,
+                    ThemeItemType.CAST,
                     "Part: Gambeson",
                     ThemeUtils.PASSIVE + "A fabric under-armour garment"
             );
@@ -148,7 +149,7 @@ public final class Parts {
             ThemeUtils.themedItemStack(
                     "PART_REPAIR_KIT_DUMMY",
                     Material.CHEST_MINECART,
-                    ThemeUtils.ThemeItemType.CAST,
+                    ThemeItemType.CAST,
                     "Part: Repair Kit",
                     ThemeUtils.PASSIVE + "Repairs broken items in the Repair Bench."
             );
@@ -157,7 +158,7 @@ public final class Parts {
             ThemeUtils.themedItemStack(
                     "PART_AXE_HEAD",
                     SkullTextures.PART_AXE_HEAD,
-                    ThemeUtils.ThemeItemType.PART,
+                    ThemeItemType.PART,
                     DESC_ERROR,
                     ThemeUtils.PASSIVE + DESC_ERROR
             );
@@ -166,7 +167,7 @@ public final class Parts {
             ThemeUtils.themedItemStack(
                     "PART_HOE_HEAD",
                     SkullTextures.PART_HOE_HEAD,
-                    ThemeUtils.ThemeItemType.PART,
+                    ThemeItemType.PART,
                     DESC_ERROR,
                     ThemeUtils.PASSIVE + DESC_ERROR
             );
@@ -175,7 +176,7 @@ public final class Parts {
             ThemeUtils.themedItemStack(
                     "PART_PICKAXE_HEAD",
                     SkullTextures.PART_PICKAXE_HEAD,
-                    ThemeUtils.ThemeItemType.PART,
+                    ThemeItemType.PART,
                     DESC_ERROR,
                     ThemeUtils.PASSIVE + DESC_ERROR
             );
@@ -184,7 +185,7 @@ public final class Parts {
             ThemeUtils.themedItemStack(
                     "PART_SHOVEL_HEAD",
                     SkullTextures.PART_SHOVEL_HEAD,
-                    ThemeUtils.ThemeItemType.PART,
+                    ThemeItemType.PART,
                     DESC_ERROR,
                     ThemeUtils.PASSIVE + DESC_ERROR
             );
@@ -193,7 +194,7 @@ public final class Parts {
             ThemeUtils.themedItemStack(
                     "PART_SWORD_BLADE",
                     SkullTextures.PART_SWORD_BLADE,
-                    ThemeUtils.ThemeItemType.PART,
+                    ThemeItemType.PART,
                     DESC_ERROR,
                     ThemeUtils.PASSIVE + DESC_ERROR
             );
@@ -202,7 +203,7 @@ public final class Parts {
             ThemeUtils.themedItemStack(
                     "PART_TOOL_ROD",
                     SkullTextures.PART_TOOL_ROD,
-                    ThemeUtils.ThemeItemType.PART,
+                    ThemeItemType.PART,
                     DESC_ERROR,
                     ThemeUtils.PASSIVE + DESC_ERROR
             );
@@ -211,7 +212,7 @@ public final class Parts {
             ThemeUtils.themedItemStack(
                     "PART_REPAIR_KIT",
                     Material.CHEST_MINECART,
-                    ThemeUtils.ThemeItemType.PART,
+                    ThemeItemType.PART,
                     DESC_ERROR,
                     ThemeUtils.PASSIVE + DESC_ERROR
             );
@@ -220,7 +221,7 @@ public final class Parts {
             ThemeUtils.themedItemStack(
                     "PART_BINDING_GENERAL_DISPLAY",
                     Material.STRING,
-                    ThemeUtils.ThemeItemType.CRAFTING,
+                    ThemeItemType.CRAFTING,
                     "Binding Material",
                     ThemeUtils.PASSIVE + "A material suitable to make binding from.",
                     ThemeUtils.PASSIVE + "This is not JUST string, experiment with",
@@ -231,7 +232,7 @@ public final class Parts {
             ThemeUtils.themedItemStack(
                     "PART_HELM_PLATES",
                     SkullTextures.PART_HELM_PLATES,
-                    ThemeUtils.ThemeItemType.PART,
+                    ThemeItemType.PART,
                     DESC_ERROR,
                     ThemeUtils.PASSIVE + DESC_ERROR
             );
@@ -240,7 +241,7 @@ public final class Parts {
             ThemeUtils.themedItemStack(
                     "PART_CHEST_PLATES",
                     SkullTextures.PART_CHEST_PLATES,
-                    ThemeUtils.ThemeItemType.PART,
+                    ThemeItemType.PART,
                     DESC_ERROR,
                     ThemeUtils.PASSIVE + DESC_ERROR
             );
@@ -249,7 +250,7 @@ public final class Parts {
             ThemeUtils.themedItemStack(
                     "PART_LEG_PLATES",
                     SkullTextures.PART_LEG_PLATES,
-                    ThemeUtils.ThemeItemType.PART,
+                    ThemeItemType.PART,
                     DESC_ERROR,
                     ThemeUtils.PASSIVE + DESC_ERROR
             );
@@ -258,7 +259,7 @@ public final class Parts {
             ThemeUtils.themedItemStack(
                     "PART_BOOTS_PLATES",
                     SkullTextures.PART_BOOTS_PLATES,
-                    ThemeUtils.ThemeItemType.PART,
+                    ThemeItemType.PART,
                     DESC_ERROR,
                     ThemeUtils.PASSIVE + DESC_ERROR
             );
@@ -267,7 +268,7 @@ public final class Parts {
             ThemeUtils.themedItemStack(
                     "PART_MAIL_LINKS",
                     SkullTextures.PART_LINKS,
-                    ThemeUtils.ThemeItemType.PART,
+                    ThemeItemType.PART,
                     DESC_ERROR,
                     ThemeUtils.PASSIVE + DESC_ERROR
             );
@@ -276,7 +277,7 @@ public final class Parts {
             ThemeUtils.themedItemStack(
                     "PART_GAMBESON_GENERAL_DISPLAY",
                     Material.STRING,
-                    ThemeUtils.ThemeItemType.CRAFTING,
+                    ThemeItemType.CRAFTING,
                     "Gambeson Material",
                     ThemeUtils.PASSIVE + "A material suitable to make a Gambeson.",
                     ThemeUtils.PASSIVE + "This is not JUST string, experiment with",

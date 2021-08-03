@@ -109,20 +109,15 @@ public final class TinkersSmelteryCache extends AbstractCache {
     }
 
     public void kill(Location location) {
-        dropItems(location);
+        drops(location);
         BlockStorage.clearBlockInfo(location);
     }
 
-    public void dropItems(Location location) {
-        if (blockMenu.getItemInSlot(TinkersSmeltery.INPUT_SLOT) != null) {
-            location.getWorld().dropItemNaturally(location, blockMenu.getItemInSlot(TinkersSmeltery.INPUT_SLOT).clone());
-        }
-        if (blockMenu.getItemInSlot(TinkersSmeltery.OUTPUT_SLOT) != null) {
-            location.getWorld().dropItemNaturally(location, blockMenu.getItemInSlot(TinkersSmeltery.OUTPUT_SLOT).clone());
-        }
-        if (blockMenu.getItemInSlot(TinkersSmeltery.CAST_SLOT) != null) {
-            location.getWorld().dropItemNaturally(location, blockMenu.getItemInSlot(TinkersSmeltery.CAST_SLOT).clone());
-        }
+    public void drops(Location location) {
+        blockMenu.dropItems(location, TinkersSmeltery.INPUT_SLOT);
+        blockMenu.dropItems(location, TinkersSmeltery.OUTPUT_SLOT);
+        blockMenu.dropItems(location, TinkersSmeltery.CAST_SLOT);
+        blockMenu.dropItems(location, TinkersSmeltery.CAST_STORE_SLOTS);
     }
 
     public void updateView() {

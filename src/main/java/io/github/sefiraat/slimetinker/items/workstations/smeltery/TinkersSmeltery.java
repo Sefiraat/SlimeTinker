@@ -4,6 +4,7 @@ import io.github.mooy1.infinitylib.slimefun.AbstractTickingContainer;
 import io.github.sefiraat.slimetinker.items.Materials;
 import io.github.sefiraat.slimetinker.utils.GUIItems;
 import io.github.sefiraat.slimetinker.utils.ThemeUtils;
+import io.github.thebusybiscuit.slimefun4.utils.ChestMenuUtils;
 import me.mrCookieSlime.CSCoreLibPlugin.Configuration.Config;
 import me.mrCookieSlime.Slimefun.Lists.RecipeType;
 import me.mrCookieSlime.Slimefun.Objects.Category;
@@ -61,7 +62,7 @@ public class TinkersSmeltery extends AbstractTickingContainer {
 
         blockMenuPreset.setSize(54);
 
-        blockMenuPreset.drawBackground(GUIItems.menuBackground(), BACKGROUND_SLOTS);
+        blockMenuPreset.drawBackground(ChestMenuUtils.getBackground(), BACKGROUND_SLOTS);
         blockMenuPreset.drawBackground(GUIItems.menuBackgroundInput(), BACKGROUND_INPUT_SLOTS);
         blockMenuPreset.drawBackground(GUIItems.menuBackgroundOutput(), BACKGROUND_OUTPUT_SLOTS);
         blockMenuPreset.drawBackground(GUIItems.menuBackgroundCast(), BACKGROUND_CAST_SLOTS);

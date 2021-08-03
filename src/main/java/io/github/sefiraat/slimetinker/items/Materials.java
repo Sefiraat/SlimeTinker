@@ -810,8 +810,8 @@ public final class Materials {
                     "NUGGET_CAST_IRIDIUM",
                     Material.IRON_NUGGET,
                     ThemeUtils.ThemeItemType.CRAFTING,
-                    "Stainless Steel Nugget",
-                    "A nugget of stainless steel"
+                    "Iridium Nugget",
+                    "A nugget of iridium"
             );
 
     // endregion

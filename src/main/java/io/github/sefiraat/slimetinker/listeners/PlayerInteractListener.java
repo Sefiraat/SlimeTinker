@@ -37,23 +37,12 @@ public class PlayerInteractListener implements Listener {
         Player player = event.getPlayer();
         ItemStack heldItem = player.getInventory().getItemInMainHand();
 
-        if (!ItemUtils.isTool(heldItem)) { // Not a Tinker's tool, so we don't care
-            return;
-        }
-
-        // Properties
-        ItemMeta im = heldItem.getItemMeta();
-        assert im != null;
-        PersistentDataContainer c = im.getPersistentDataContainer();
-        String matPropertyHead = ItemUtils.getToolHeadMaterial(c);
-        String matPropertyBinding = ItemUtils.getToolBindingMaterial(c);
-        String matPropertyRod = ItemUtils.getToolRodMaterial(c);
-        int toolLevel = ItemUtils.getTinkerLevel(c);
+        int toolLevel = ItemUtils.getTinkerLevel(heldItem);
 
         EventFriend friend = new EventFriend();
 
         friend.setPlayer(player);
-        friend.setEventType(TraitEventType.TICK);
+        friend.setEventType(TraitEventType.RIGHT_CLICK);
 
         // Properties
         checkTool(friend);
@@ -61,7 +50,7 @@ public class PlayerInteractListener implements Listener {
 
         // Cancel if tool is broken (moved down here as we bypass if the duralium event fires)
         if (cancelIfBroken(heldItem)) {
-            if (matPropertyHead.equals(IDStrings.DURALIUM) || matPropertyRod.equals(IDStrings.TITANIUM)) { // Run duralium as it will flag the duraliumCheck meaning we can bypass durability checks
+            if (ItemUtils.worksWhenBroken(heldItem)) { // Run duralium as it will flag the duraliumCheck meaning we can bypass durability checks
                 EntityDamageEvents.headDuralium(friend);
             }
             if (!friend.isDuraliumCheck()) {
@@ -73,10 +62,6 @@ public class PlayerInteractListener implements Listener {
 
         // Settle
         settlePotionEffects(friend);
-        if (friend.getHypercube() == 2) {
-            processHyperCube(event);
-        }
-
 
     }
 
@@ -180,48 +165,6 @@ public class PlayerInteractListener implements Listener {
         return damageable.getDamage() == itemStack.getType().getMaxDurability() - 1;
     }
 
-    private void processHyperCube(PlayerInteractEvent event) {
 
-        if (event.getAction() != Action.RIGHT_CLICK_AIR && event.getAction() != Action.RIGHT_CLICK_BLOCK) {
-            return;
-        }
-
-        Player p = event.getPlayer();
-        ItemStack i = p.getInventory().getItemInMainHand();
-        ItemMeta im = i.getItemMeta();
-        assert im != null;
-        PersistentDataContainer c = im.getPersistentDataContainer();
-        long time = System.currentTimeMillis();
-
-        NamespacedKey keyCd = SlimeTinker.inst().getKeys().getTraitsCooldownHypercube();
-        NamespacedKey keyLoc = SlimeTinker.inst().getKeys().getTraitsHypercubeLocation();
-
-        if (p.isSneaking()) {
-            // Setting location
-            c.set(keyLoc, PersistentDataType.STRING, GeneralUtils.serializeLocation(p.getLocation()));
-            p.sendMessage(ThemeUtils.SUCCESS + "Location set!");
-        } else {
-            // Actioning location
-            if (c.has(keyCd, PersistentDataType.LONG)) {
-                Long cd = c.get(keyCd, PersistentDataType.LONG);
-                assert cd != null;
-                if (cd > time) {
-                    p.sendMessage(ThemeUtils.WARNING + "Recall is on cooldown!");
-                    return;
-                }
-            }
-            if (!c.has(keyLoc, PersistentDataType.STRING)) {
-                p.sendMessage(ThemeUtils.WARNING + "You have not yet set a location to recall to!");
-                return;
-            }
-            p.teleport(GeneralUtils.deserializeLocation(Objects.requireNonNull(c.get(keyLoc, PersistentDataType.STRING))));
-            p.sendMessage(ThemeUtils.SUCCESS + "Whoosh!");
-            Instant cd = Instant.ofEpochMilli(time).plusSeconds(300);
-            c.set(keyCd, PersistentDataType.LONG, cd.toEpochMilli());
-        }
-
-        i.setItemMeta(im);
-
-    }
 
 }

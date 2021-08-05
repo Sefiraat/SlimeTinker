@@ -30,21 +30,12 @@ public class DurabilityListener implements Listener {
     public void onItemDamage(PlayerItemDamageEvent event) {
 
         ItemStack damagedItem = event.getItem();
-        if (!ItemUtils.isTool(damagedItem)) { // Not a tool, moving on!
-            return;
-        }
-
         ItemMeta im = event.getItem().getItemMeta();
-        assert im != null;
-        PersistentDataContainer c = im.getPersistentDataContainer();
-        String matPropertyHead = ItemUtils.getToolHeadMaterial(c);
-        String matPropertyBinding = ItemUtils.getToolBindingMaterial(c);
-        String matPropertyRod = ItemUtils.getToolRodMaterial(c);
 
         EventFriend friend = new EventFriend();
 
         friend.setPlayer(event.getPlayer());
-        friend.setEventType(TraitEventType.ENTITY_DAMAGED);
+        friend.setEventType(TraitEventType.DURABILITY);
 
         // Properties
         checkTool(friend);

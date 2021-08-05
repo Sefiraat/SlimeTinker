@@ -1,5 +1,6 @@
 package io.github.sefiraat.slimetinker.events;
 
+import io.github.mooy1.infinitylib.persistence.PersistenceUtils;
 import io.github.sefiraat.slimetinker.SlimeTinker;
 import io.github.sefiraat.slimetinker.events.friend.EventFriend;
 import io.github.sefiraat.slimetinker.utils.EntityUtils;
@@ -19,6 +20,8 @@ import org.bukkit.entity.Breedable;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
+import org.bukkit.event.block.Action;
+import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataContainer;
@@ -28,6 +31,7 @@ import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Objects;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.stream.Collectors;
 
@@ -36,6 +40,39 @@ public final class RightClickEvents {
 
     public static void headTessMat(EventFriend friend) {
         friend.setHypercube(friend.getHypercube() + 1);
+
+        if (friend.getHypercube() >= 2) {
+
+            Player p = friend.getPlayer();
+            ItemStack i = friend.getActiveStack();
+            ItemMeta im = i.getItemMeta();
+            String cooldownName = "hypercube";
+
+            NamespacedKey keyLoc = SlimeTinker.inst().getKeys().getTraitsHypercubeLocation();
+
+            if (p.isSneaking()) {
+                // Setting location
+                PersistentDataAPI.setString(im, keyLoc, GeneralUtils.serializeLocation(p.getLocation()));
+                p.sendMessage(ThemeUtils.SUCCESS + "Location set!");
+                i.setItemMeta(im);
+            } else {
+                // Actioning location
+                if (ItemUtils.onCooldown(i, cooldownName)) {
+                    p.sendMessage(ThemeUtils.WARNING + "Recall is on cooldown!");
+                    return;
+                } else if (!PersistentDataAPI.hasString(im, keyLoc)) {
+                    p.sendMessage(ThemeUtils.WARNING + "You have not yet set a location to recall to!");
+                    return;
+                }
+                String sl = PersistentDataAPI.getString(im, keyLoc);
+                Location l = GeneralUtils.deserializeLocation(sl);
+                p.teleport(l);
+                p.sendMessage(ThemeUtils.SUCCESS + "Whoosh!");
+                ItemUtils.setCooldown(i, cooldownName, 300000);
+            }
+
+        }
+
     }
 
     public static void rodGhostly(EventFriend friend) {

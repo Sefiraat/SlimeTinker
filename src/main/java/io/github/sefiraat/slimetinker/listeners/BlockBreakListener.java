@@ -50,33 +50,21 @@ public class BlockBreakListener implements Listener {
         ItemStack heldItem = event.getPlayer().getInventory().getItemInMainHand();
         Block block = event.getBlock();
 
-        if (!ItemUtils.isTool(heldItem)) { // Not a Tinker's tool, so we don't care
-            return;
-        }
-
         if (!BlockUtils.isValidBreakEvent(block)) {
             return;
         }
 
-        ItemMeta im = heldItem.getItemMeta();
-        assert im != null;
-        PersistentDataContainer c = im.getPersistentDataContainer();
-        String matPropertyHead = ItemUtils.getToolHeadMaterial(c);
-        String matPropertyBinding = ItemUtils.getToolBindingMaterial(c);
-        String matPropertyRod = ItemUtils.getToolRodMaterial(c);
-
         EventFriend friend = new EventFriend();
 
-        // Property and Mod checks, carries around the additional and normal drops
         friend.setPlayer(p);
         friend.setBlock(block);
         friend.setDrops(block.getDrops(heldItem)); // Stores the event drops. All may not be dropped
         friend.setAddDrops(new ArrayList<>()); // Additional drops or substitutions for items from the main collection
         friend.setRemoveDrops(new ArrayList<>()); // Items to remove from the main collection if moved/reformed into the additional
 
-        // Cancel if tool is broken (moved down here as we bypass if the duralium event fires)
+        // Cancel if tool is broken. Bypass but run event if works while broken
         if (cancelIfBroken(heldItem)) {
-            if (matPropertyHead.equals(IDStrings.DURALIUM) || matPropertyRod.equals(IDStrings.TITANIUM)) { // Run duralium as it will flag the duraliumCheck meaning we can bypass durability checks
+            if (ItemUtils.worksWhenBroken(heldItem)) {
                 BlockBreakEvents.headDuralium(friend);
             } else {
                 event.getPlayer().sendMessage(ThemeUtils.WARNING + "Your tool is broken, you should really repair it!");
@@ -85,7 +73,7 @@ public class BlockBreakListener implements Listener {
             }
         }
 
-        friend.setEventType(TraitEventType.ENTITY_DAMAGED);
+        friend.setEventType(TraitEventType.BLOCK_BREAK);
 
         // Properties
         checkTool(friend);

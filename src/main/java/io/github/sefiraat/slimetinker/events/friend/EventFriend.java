@@ -61,6 +61,7 @@ public class EventFriend {
     private boolean metalCheck = false;
     private boolean cancelEvent = false;
 
+    // Skill-part counters
     private int charged = 0;
     private int segganesson = 0;
     private double segganessonDamage = 0;
@@ -70,6 +71,7 @@ public class EventFriend {
     private int compounding = 0;
     private int positivity = 0;
     private int negativity = 0;
+    private int hyperbolic = 0;
 
     private boolean blocksIntoInv = false;
 
@@ -146,7 +148,7 @@ public class EventFriend {
         return getActiveStack(activeFriendElement);
     }
 
-    public int getActiveLevel(ActiveFriendElement element) {
+    public Integer getActiveLevel(ActiveFriendElement element) {
         switch (element) {
             case TOOL:
                 return getToolLevel();

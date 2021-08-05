@@ -1,10 +1,10 @@
 package io.github.sefiraat.slimetinker.events;
 
+import com.sun.tools.javac.jvm.Gen;
 import io.github.sefiraat.slimetinker.SlimeTinker;
 import io.github.sefiraat.slimetinker.events.friend.EventFriend;
 import io.github.sefiraat.slimetinker.runnables.event.RemoveMagmaBlock;
 import io.github.sefiraat.slimetinker.runnables.event.RemovePoweredState;
-import io.github.sefiraat.slimetinker.utils.BlockUtils;
 import io.github.sefiraat.slimetinker.utils.EntityUtils;
 import io.github.sefiraat.slimetinker.utils.GeneralUtils;
 import io.github.sefiraat.slimetinker.utils.ItemUtils;
@@ -12,10 +12,14 @@ import io.github.sefiraat.slimetinker.utils.WorldUtils;
 import io.github.sefiraat.slimetinker.utils.enums.Temperature;
 import io.github.thebusybiscuit.slimefun4.implementation.SlimefunPlugin;
 import lombok.experimental.UtilityClass;
+import me.mrCookieSlime.Slimefun.cscorelib2.data.PersistentDataAPI;
 import me.mrCookieSlime.Slimefun.cscorelib2.protection.ProtectableAction;
+import org.apache.commons.lang.Validate;
 import org.bukkit.Effect;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.NamespacedKey;
+import org.bukkit.Particle;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.attribute.AttributeInstance;
 import org.bukkit.block.Block;
@@ -30,12 +34,14 @@ import org.bukkit.entity.Mob;
 import org.bukkit.entity.Monster;
 import org.bukkit.entity.Piglin;
 import org.bukkit.entity.Player;
+import org.bukkit.entity.Vex;
 import org.bukkit.entity.Villager;
 import org.bukkit.entity.Wither;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
@@ -57,7 +63,7 @@ public final class TickEvents {
             if (entity instanceof Item) {
                 Location eLoc = entity.getLocation();
                 Location pLoc = friend.getPlayer().getLocation();
-                entity.teleport(BlockUtils.getMid(eLoc.getWorld(), eLoc.getX(), eLoc.getY(), eLoc.getZ(), pLoc.getX(), pLoc.getY(), pLoc.getZ()));
+                entity.teleport(WorldUtils.getMid(eLoc.getWorld(), eLoc.getX(), eLoc.getY(), eLoc.getZ(), pLoc.getX(), pLoc.getY(), pLoc.getZ()));
             }
         }
     }
@@ -214,7 +220,7 @@ public final class TickEvents {
             if (entity instanceof Item) {
                 Location eLoc = entity.getLocation();
                 Location pLoc = friend.getPlayer().getLocation();
-                entity.teleport(BlockUtils.getMid(eLoc.getWorld(), eLoc.getX(), eLoc.getY(), eLoc.getZ(), pLoc.getX(), pLoc.getY(), pLoc.getZ()));
+                entity.teleport(WorldUtils.getMid(eLoc.getWorld(), eLoc.getX(), eLoc.getY(), eLoc.getZ(), pLoc.getX(), pLoc.getY(), pLoc.getZ()));
             }
         }
     }
@@ -311,7 +317,7 @@ public final class TickEvents {
             if (e instanceof Villager) {
                 Location eLoc = e.getLocation();
                 Location pLoc = friend.getPlayer().getLocation();
-                e.teleport(BlockUtils.getMid(eLoc.getWorld(), eLoc.getX(), eLoc.getY(), eLoc.getZ(), pLoc.getX(), pLoc.getY(), pLoc.getZ()));
+                e.teleport(WorldUtils.getMid(eLoc.getWorld(), eLoc.getX(), eLoc.getY(), eLoc.getZ(), pLoc.getX(), pLoc.getY(), pLoc.getZ()));
             }
         }
     }
@@ -349,7 +355,7 @@ public final class TickEvents {
             if (entity instanceof Item) {
                 Location eLoc = entity.getLocation();
                 Location pLoc = friend.getPlayer().getLocation();
-                entity.teleport(BlockUtils.getMid(eLoc.getWorld(), eLoc.getX(), eLoc.getY(), eLoc.getZ(), pLoc.getX(), pLoc.getY(), pLoc.getZ()));
+                entity.teleport(WorldUtils.getMid(eLoc.getWorld(), eLoc.getX(), eLoc.getY(), eLoc.getZ(), pLoc.getX(), pLoc.getY(), pLoc.getZ()));
             }
         }
     }
@@ -487,7 +493,7 @@ public final class TickEvents {
 
     public static void plateRedstoneAlloy(EventFriend friend) {
         if (GeneralUtils.testChance(1, 5)) {
-            Block b = BlockUtils.getRandomBlockInRange(friend.getPlayer().getLocation(), 5, 2, 5, false);
+            Block b = WorldUtils.getRandomBlockInRange(friend.getPlayer().getLocation(), 5, 2, 5, false);
             if (b instanceof Powerable) {
                 Powerable p = (Powerable) b;
                 p.setPowered(true);
@@ -604,5 +610,56 @@ public final class TickEvents {
 
     public static void plateSingLead(EventFriend friend) {
         increaseEffect(PotionEffectType.POISON, friend.getPotionEffects(), 5);
+    }
+
+    public static void gambesonVex(EventFriend friend) {
+        ItemStack i = friend.getActiveStack();
+        Player p = friend.getPlayer();
+        if (!ItemUtils.onCooldown(i, "annoying")) {
+            Location l = WorldUtils.getRandomLocationInRange(p, 3, 3, 3);
+            Vex v = (Vex) p.getWorld().spawnEntity(l, EntityType.VEX);
+            v.setTarget(p);
+        }
+    }
+
+    public static void gambesonGhostly(EventFriend friend) {
+        ItemStack i = friend.getActiveStack();
+        Player p = friend.getPlayer();
+        if (!ItemUtils.isTinkersBroken(i)) {
+            List<Mob> mobs = EntityUtils.getNearbyEntitiesByType(Mob.class, p, 3, 3, 3);
+            for (Mob m : mobs) {
+                m.damage(1, p);
+                m.getWorld().spawnParticle(Particle.FLASH, m.getLocation(), 1, 0.5, 0.5, 0.5);
+                ItemUtils.damageTinkersItem(i, 1);
+            }
+        }
+    }
+
+    public static void linksGhostly(EventFriend friend) {
+        increaseEffect(PotionEffectType.LEVITATION, friend.getPotionEffects());
+    }
+
+    public static void hyperbolic(EventFriend friend) {
+        friend.setHyperbolic(friend.getHyperbolic() + 1);
+        Player p = friend.getPlayer();
+        if (friend.getHyperbolic() >= 8 && p.getWorld().getName().equals("dimensionalhome")) {
+            ItemStack i = friend.getActiveStack();
+            ItemMeta im = i.getItemMeta();
+            Validate.notNull(im, "Meta is null, herp derp derp");
+            NamespacedKey k = SlimeTinker.inst().getKeys().getArmourHyperbolicStored();
+            int amount = PersistentDataAPI.getInt(im, k, 0);
+            PersistentDataAPI.setInt(im, k, Math.max(amount + 1, 25));
+        }
+    }
+
+    public static void plateStardust(EventFriend friend) {
+        Player p = friend.getPlayer();
+        if (!GeneralUtils.day(p.getWorld()) && GeneralUtils.testChance(5,100)) {
+            p.setHealth(Math.min(p.getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue(), p.getHealth() + 1);
+        }
+    }
+
+    public static void linksStainlessSteel(EventFriend friend) {
+        increaseEffect(PotionEffectType.WATER_BREATHING, friend.getPotionEffects());
     }
 }

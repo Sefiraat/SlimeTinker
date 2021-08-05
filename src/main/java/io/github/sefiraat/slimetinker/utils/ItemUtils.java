@@ -270,14 +270,14 @@ public final class ItemUtils {
 
     public static boolean isTinkersBroken(ItemStack itemStack) {
         Damageable damageable = (Damageable) itemStack.getItemMeta();
-        assert damageable != null;
+        Validate.notNull(damageable, "Damagable is null, this is some BULL YO'");
         return damageable.getDamage() == itemStack.getType().getMaxDurability() - 1;
     }
 
-    public static void damageTool(ItemStack itemStack, int amount) {
+    public static void damageTinkersItem(ItemStack itemStack, int amount) {
         ItemMeta im = itemStack.getItemMeta();
         Damageable damageable = (Damageable) im;
-        assert damageable != null;
+        Validate.notNull(damageable, "Damagable is null, this is some BULL YO'");
         if ((damageable.getDamage() + amount) >= itemStack.getType().getMaxDurability()) { // This will break the tool, lets stop that!
             damageable.setDamage(itemStack.getType().getMaxDurability() - 1);
         } else {
@@ -289,7 +289,7 @@ public final class ItemUtils {
     public static void repairTool(ItemStack itemStack) {
         ItemMeta im = itemStack.getItemMeta();
         Damageable d = (Damageable) im;
-        assert d != null;
+        Validate.notNull(d, "Damagable is null, this is some BULL YO'");
         d.setDamage(0);
         itemStack.setItemMeta(im);
     }
@@ -297,7 +297,7 @@ public final class ItemUtils {
     public static void repairTool(ItemStack itemStack, int amount) {
         ItemMeta im = itemStack.getItemMeta();
         Damageable d = (Damageable) im;
-        assert d != null;
+        Validate.notNull(d, "Damagable is null, this is some BULL YO'");
         d.setDamage(Math.max(d.getDamage() - amount, 0));
         itemStack.setItemMeta(im);
     }
@@ -459,6 +459,16 @@ public final class ItemUtils {
                 );
     }
 
+    public static boolean worksWhenBroken(ItemStack itemStack) {
+        if (isTool(itemStack)) {
+            return
+                    getToolHeadMaterial(itemStack).equals(IDStrings.DURALIUM)
+                    || getToolRodMaterial(itemStack).equals(IDStrings.TITANIUM);
+
+        }
+        return false;
+    }
+
     public static boolean repairBenchEasyFix(ItemStack itemStack) {
         return repairBenchEasyFix1(itemStack) || repairBenchEasyFix2(itemStack);
     }
@@ -471,6 +481,7 @@ public final class ItemUtils {
         }
         return false;
     }
+
     public static boolean repairBenchEasyFix2(ItemStack itemStack) {
         return getArmourLinksMaterial(itemStack).equals(IDStrings.SINGALUMINUM);
     }

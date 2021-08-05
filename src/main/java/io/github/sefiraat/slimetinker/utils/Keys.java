@@ -65,6 +65,7 @@ public class Keys {
     private final NamespacedKey toolFlagTeleport = new NamespacedKey(SlimeTinker.inst(), "ST_stop_teleport");
     private final NamespacedKey armourInfiniteCapacityStored = new NamespacedKey(SlimeTinker.inst(), "ST_infinite_cap_stored");
     private final NamespacedKey armourInfinitlyPowerfulStored = new NamespacedKey(SlimeTinker.inst(), "ST_infinite_pow_stored");
+    private final NamespacedKey armourHyperbolicStored = new NamespacedKey(SlimeTinker.inst(), "ST_hyperbolic_stored");
     private final NamespacedKey stopEvents = new NamespacedKey(SlimeTinker.inst(), "STOP_EVENTS");
 
     // Workstations

@@ -18,7 +18,6 @@ import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.Particle;
 import org.bukkit.attribute.Attribute;
-import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.EnderDragon;
 import org.bukkit.entity.Enderman;
 import org.bukkit.entity.Entity;
@@ -74,7 +73,7 @@ public final class PlayerDamagedEvents {
 
     public static void headReinforcedSlimesteel(EventFriend friend) {
         if (!ItemUtils.isTinkersBroken(friend.getTool())) {
-            ItemUtils.damageTool(friend.getTool(), (int) friend.getInitialDamage());
+            ItemUtils.damageTinkersItem(friend.getTool(), (int) friend.getInitialDamage());
             friend.setDamageMod(friend.getDamageMod() / 2);
         }
     }
@@ -528,4 +527,28 @@ public final class PlayerDamagedEvents {
             friend.setDamageMod(friend.getDamageMod() - 0.1);
         }
     }
+
+    public static void hyperbolic(EventFriend friend) {
+        friend.setHyperbolic(friend.getHyperbolic() + 1);
+        Player p = friend.getPlayer();
+        if (friend.getHyperbolic() >= 8) {
+            ItemStack i = friend.getActiveStack();
+            ItemMeta im = i.getItemMeta();
+            Validate.notNull(im, "Meta is null, herp derp derp");
+            NamespacedKey k = SlimeTinker.inst().getKeys().getArmourHyperbolicStored();
+            int amount = PersistentDataAPI.getInt(im, k, 0);
+            double dmg =  friend.getInitialDamage() * friend.getDamageMod();
+            if (amount >= dmg) {
+                friend.setCancelEvent(true);
+                amount -= dmg;
+            }
+            PersistentDataAPI.setInt(im, k, amount);
+        }
+    }
+
+    public static void plateStainlessSteel(EventFriend friend) {
+        friend.setDamageMod(friend.getDamageMod() - 0.05);
+    }
+
+
 }

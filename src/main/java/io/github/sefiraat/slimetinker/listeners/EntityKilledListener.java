@@ -43,21 +43,9 @@ public class EntityKilledListener implements Listener {
         }
 
         for (ItemStack i : event.getDrops()) {
-
-            if (!ItemUtils.isTool(i)) {
-                continue;
-            }
-
-            PersistentDataContainer c = i.getItemMeta().getPersistentDataContainer();
-            String headMaterial = ItemUtils.getToolHeadMaterial(c);
-            String bindMaterial = ItemUtils.getToolBindingMaterial(c);
-            String rodMaterial = ItemUtils.getToolRodMaterial(c);
-
-
             if (ItemUtils.cannotDrop(i)) {
                 list.add(i);
             }
-
         }
         for (ItemStack i : list) {
             event.getDrops().remove(i);

@@ -1,15 +1,26 @@
 package io.github.sefiraat.slimetinker.utils;
 
 import lombok.experimental.UtilityClass;
+import org.apache.commons.lang.Validate;
 import org.bukkit.Location;
+import org.bukkit.Particle;
+import org.bukkit.World;
+import org.bukkit.block.Block;
+import org.bukkit.entity.Animals;
+import org.bukkit.entity.Breedable;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.util.Vector;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 import java.util.Map;
+import java.util.function.Predicate;
 
 @UtilityClass
 public final class EntityUtils {
@@ -57,8 +68,32 @@ public final class EntityUtils {
     public static boolean isFacingAway(Player p, Entity e, @Nullable Integer tolerance) {
         double d = getFacing(p, e);
         Integer val = tolerance == null ? Integer.valueOf(30) : tolerance;
-        return d <= 30 && d >= -30;
+        return d <= val && d >= -val;
     }
 
+    public static void makeBreed(Animals a) {
+        if (a.isAdult() &&!a.isLoveMode()) {
+            a.setBreed(true);
+            a.setLoveModeTicks(400);
+            a.getWorld().spawnParticle(Particle.HEART, a.getLocation(), 4, 0.5, 0.5, 0.5);
+        }
+    }
+
+    @Nonnull
+    public static <T> List<T> getNearbyEntitiesByType(@Nonnull Class<?> clazz, @Nonnull Entity e, double x, double y, double z) {
+        return getNearbyEntitiesByType(clazz, e.getLocation(), x, y, z);
+    }
+
+    @Nonnull
+    public static <T> List<T> getNearbyEntitiesByType(@Nonnull Class<?> clazz, @Nonnull Block b, double x, double y, double z) {
+        return getNearbyEntitiesByType(clazz, b.getLocation(), x, y, z);
+    }
+
+    @Nonnull
+    public static <T> List<T> getNearbyEntitiesByType(@Nonnull Class<?> clazz, @Nonnull Location l, double x, double y, double z) {
+        World world = l.getWorld();
+        Validate.notNull(world);
+        return ((List<T>) world.getNearbyEntities(l, x, y, z, e -> e.getClass().isInstance(clazz)));
+    }
 
 }

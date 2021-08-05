@@ -2,6 +2,9 @@ package io.github.sefiraat.slimetinker.events;
 
 import io.github.sefiraat.slimetinker.SlimeTinker;
 import io.github.sefiraat.slimetinker.events.friend.EventFriend;
+import io.github.sefiraat.slimetinker.utils.EntityUtils;
+import io.github.sefiraat.slimetinker.utils.GeneralUtils;
+import io.github.sefiraat.slimetinker.utils.ItemUtils;
 import io.github.sefiraat.slimetinker.utils.ThemeUtils;
 import lombok.experimental.UtilityClass;
 import me.mrCookieSlime.Slimefun.cscorelib2.data.PersistentDataAPI;
@@ -11,6 +14,8 @@ import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.Particle;
+import org.bukkit.entity.Animals;
+import org.bukkit.entity.Breedable;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
@@ -20,8 +25,11 @@ import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
 
 import java.time.Instant;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
+import java.util.stream.Collectors;
 
 @UtilityClass
 public final class RightClickEvents {
@@ -90,4 +98,25 @@ public final class RightClickEvents {
         PersistentDataAPI.setDouble(im, k, 0);
         i.setItemMeta(im);
     }
+
+    public static void linksEarth(EventFriend friend) {
+        String cdName = "natural";
+        Player p = friend.getPlayer();
+        ItemStack i = friend.getActiveStack();
+        int cdMinutes = 2;
+        if (ItemUtils.onCooldown(i, cdName)) {
+            p.sendMessage(ThemeUtils.WARNING + "It's Natural is on cooldown");
+        } else {
+            List<Animals> animals = EntityUtils.getNearbyEntitiesByType(Animals.class, p, 3, 3, 3);
+            if (animals.size() >= 2) {
+                int first = GeneralUtils.roll(animals.size(), false);
+                int second = first == animals.size() ? 0 : first + 1;
+                EntityUtils.makeBreed(animals.get(first));
+                EntityUtils.makeBreed(animals.get(second));
+            }
+            ItemUtils.setCooldown(i, cdName, cdMinutes * 60000);
+        }
+    }
+
+
 }

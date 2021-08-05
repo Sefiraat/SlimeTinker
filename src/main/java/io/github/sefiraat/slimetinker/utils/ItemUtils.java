@@ -10,10 +10,15 @@ import io.github.sefiraat.slimetinker.modifiers.Modifications;
 import lombok.experimental.UtilityClass;
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.SlimefunItem;
 import me.mrCookieSlime.Slimefun.api.SlimefunItemStack;
+import me.mrCookieSlime.Slimefun.cscorelib2.data.PersistentDataAPI;
 import net.md_5.bungee.api.ChatColor;
 import org.apache.commons.lang.Validate;
+import org.bukkit.Effect;
+import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.NamespacedKey;
 import org.bukkit.enchantments.Enchantment;
+import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.Damageable;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -22,9 +27,11 @@ import org.bukkit.persistence.PersistentDataType;
 import org.jetbrains.annotations.Nullable;
 
 import javax.annotation.Nonnull;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ThreadLocalRandom;
 
 @UtilityClass
 public final class ItemUtils {
@@ -657,6 +664,24 @@ public final class ItemUtils {
             im.addEnchant(randEnchant, 1, true);
         }
         i.setItemMeta(im);
+    }
+
+    public static boolean onCooldown(ItemStack i, String name) {
+        ItemMeta im = i.getItemMeta();
+        Validate.notNull(im, "Meta is null, THIS PARTY BE POPPIN'");
+        NamespacedKey key = new NamespacedKey(SlimeTinker.inst(), "cooldown_" + name);
+        long time = System.currentTimeMillis();
+        long cd = PersistentDataAPI.getLong(im, key, 0);
+        return cd > time;
+    }
+
+    public static void setCooldown(ItemStack i, String name, long duration) {
+        ItemMeta im = i.getItemMeta();
+        Validate.notNull(im, "Meta is null, sigh");
+        NamespacedKey key = new NamespacedKey(SlimeTinker.inst(), "cooldown_" + name);
+        long time = System.currentTimeMillis();
+        long cd = time + duration;
+        PersistentDataAPI.setLong(im, key, cd);
     }
 
 }

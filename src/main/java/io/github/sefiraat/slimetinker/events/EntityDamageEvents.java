@@ -1,5 +1,6 @@
 package io.github.sefiraat.slimetinker.events;
 
+import io.github.mooy1.infinitylib.persistence.PersistenceUtils;
 import io.github.sefiraat.slimetinker.SlimeTinker;
 import io.github.sefiraat.slimetinker.events.friend.EventFriend;
 import io.github.sefiraat.slimetinker.utils.EntityUtils;
@@ -361,5 +362,35 @@ public final class EntityDamageEvents {
     public static void linksAdamantite(EventFriend friend) {
         friend.incrementExpMod(0.1);
         friend.setPlayerExpMod(friend.getPlayerExpMod() + 0.1);
+    }
+
+    public static void plateSingMagnesium(EventFriend friend) {
+        friend.setDamageMod(friend.getDamageMod() - 0.5);
+    }
+
+    public static void linksIron(EventFriend friend) {
+        friend.setDamageMod(friend.getDamageMod() - 0.1);
+        friend.setPlayerExpMod(friend.getPlayerExpMod() + 0.2);
+    }
+
+    public static void plateSingZinc(EventFriend friend) {
+        if (EntityUtils.isFacingAway(friend.getPlayer(), friend.getDamagedEntity(), 70)) {
+            friend.setDamageMod(friend.getDamageMod() + 1);
+        }
+    }
+
+    public static void linksSingCopper(EventFriend friend) {
+        friend.setDamageMod(friend.getDamageMod() - 0.2);
+        friend.incrementExpMod(0.4);
+    }
+
+    public static void plateMagic(EventFriend friend) {
+        Entity e = friend.getDamagedEntity();
+        Particle.DustOptions d1 = new Particle.DustOptions(Color.fromRGB(GeneralUtils.roll(255),GeneralUtils.roll(255),GeneralUtils.roll(255)), 5);
+        Particle.DustOptions d2 = new Particle.DustOptions(Color.fromRGB(GeneralUtils.roll(255),GeneralUtils.roll(255),GeneralUtils.roll(255)), 5);
+        Particle.DustOptions d3 = new Particle.DustOptions(Color.fromRGB(GeneralUtils.roll(255),GeneralUtils.roll(255),GeneralUtils.roll(255)), 5);
+        e.getWorld().spawnParticle(Particle.REDSTONE, e.getLocation(), 30, 3, 3, 3, 1, d1);
+        e.getWorld().spawnParticle(Particle.REDSTONE, e.getLocation(), 30, 3, 3, 3, 1, d2);
+        e.getWorld().spawnParticle(Particle.REDSTONE, e.getLocation(), 30, 3, 3, 3, 1, d3);
     }
 }

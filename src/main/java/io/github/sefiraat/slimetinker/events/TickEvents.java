@@ -2,11 +2,13 @@ package io.github.sefiraat.slimetinker.events;
 
 import io.github.sefiraat.slimetinker.SlimeTinker;
 import io.github.sefiraat.slimetinker.events.friend.EventFriend;
+import io.github.sefiraat.slimetinker.runnables.event.RemoveMagmaBlock;
 import io.github.sefiraat.slimetinker.runnables.event.RemovePoweredState;
 import io.github.sefiraat.slimetinker.utils.BlockUtils;
 import io.github.sefiraat.slimetinker.utils.EntityUtils;
 import io.github.sefiraat.slimetinker.utils.GeneralUtils;
 import io.github.sefiraat.slimetinker.utils.ItemUtils;
+import io.github.sefiraat.slimetinker.utils.WorldUtils;
 import io.github.sefiraat.slimetinker.utils.enums.Temperature;
 import io.github.thebusybiscuit.slimefun4.implementation.SlimefunPlugin;
 import lombok.experimental.UtilityClass;
@@ -33,6 +35,7 @@ import org.bukkit.entity.Wither;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
@@ -352,11 +355,9 @@ public final class TickEvents {
     }
 
     public static void linksGold(EventFriend friend) {
-        for (Entity entity : friend.getPlayer().getNearbyEntities(5,5,5)) {
-            if (entity instanceof Piglin) {
-                Piglin p = (Piglin) entity;
-                p.setTarget(null);
-            }
+        List<Piglin> piglins = EntityUtils.getNearbyEntitiesByType(Piglin.class, friend.getPlayer(), 5, 5, 5);
+        for (Piglin p : piglins) {
+            p.setTarget(null);
         }
     }
 
@@ -531,7 +532,7 @@ public final class TickEvents {
     }
 
     public static void linksCorBronze(EventFriend friend) {
-        Temperature temp = GeneralUtils.getBiomeTemperature(friend.getPlayer().getLocation().getBlock().getBiome());
+        Temperature temp = WorldUtils.getBiomeTemperature(friend.getPlayer().getLocation().getBlock().getBiome());
         if (temp == Temperature.HOT) {
             increaseEffect(PotionEffectType.SPEED, friend.getPotionEffects(), 1);
         } else if (temp == Temperature.COLD) {
@@ -551,11 +552,9 @@ public final class TickEvents {
     }
 
     public static void linksSingGold(EventFriend friend) {
-        for (Entity entity : friend.getPlayer().getNearbyEntities(5,5,5)) {
-            if (entity instanceof Piglin) {
-                Piglin p = (Piglin) entity;
-                p.setTarget(null);
-            }
+        List<Piglin> piglins = EntityUtils.getNearbyEntitiesByType(Piglin.class, friend.getPlayer(), 5, 5, 5);
+        for (Piglin p : piglins) {
+            p.setTarget(null);
         }
     }
 
@@ -563,7 +562,47 @@ public final class TickEvents {
         increaseEffect(PotionEffectType.SPEED, friend.getPotionEffects(), 1);
     }
 
-    public static void linksEarth(EventFriend friend) {
+    public static void plateEarth(EventFriend friend) {
+        Player p = friend.getPlayer();
+        Block stoodBlock = p.getLocation().clone().subtract(0, 1, 0).getBlock();
+        for (int x = -1; x <= 1; x++) {
+            for (int z = -1; z <= 1; z++) {
+                Block b = stoodBlock.getRelative(x, 0 ,z);
+                if (SlimefunPlugin.getProtectionManager().hasPermission(p, b, ProtectableAction.PLACE_BLOCK)) {
+                    if (b.getType() == Material.LAVA) {
+                        b.setType(Material.MAGMA_BLOCK);
+                        RemoveMagmaBlock task = new RemoveMagmaBlock(b, p);
+                        task.runTaskLater(SlimeTinker.inst(), 200);
+                    }
+                }
+            }
+        }
+    }
 
+    public static void plateSingMagnesium(EventFriend friend) {
+        increaseEffect(PotionEffectType.SPEED, friend.getPotionEffects(), 1);
+    }
+
+    public static void linksSingMagnesium(EventFriend friend) {
+        increaseEffect(PotionEffectType.NIGHT_VISION, friend.getPotionEffects());
+        List<Mob> mobs = EntityUtils.getNearbyEntitiesByType(Mob.class, friend.getPlayer(), 3, 3, 3);
+        for (Mob m : mobs) {
+            m.addPotionEffect(new PotionEffect(PotionEffectType.GLOWING, 100, 0));
+        }
+    }
+
+    public static void plateSingTin(EventFriend friend) {
+        Player p = friend.getPlayer();
+        if (p.hasPotionEffect(PotionEffectType.POISON)) p.removePotionEffect(PotionEffectType.POISON);
+        if (p.hasPotionEffect(PotionEffectType.HUNGER)) p.removePotionEffect(PotionEffectType.HUNGER);
+        if (p.hasPotionEffect(PotionEffectType.WEAKNESS)) p.removePotionEffect(PotionEffectType.WEAKNESS);
+    }
+
+    public static void linksSingLead(EventFriend friend) {
+        increaseEffect(PotionEffectType.POISON, friend.getPotionEffects(), 5);
+    }
+
+    public static void plateSingLead(EventFriend friend) {
+        increaseEffect(PotionEffectType.POISON, friend.getPotionEffects(), 5);
     }
 }

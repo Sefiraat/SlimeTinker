@@ -19,10 +19,13 @@ import org.bukkit.NamespacedKey;
 import org.bukkit.Particle;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.enchantments.Enchantment;
+import org.bukkit.entity.EnderDragon;
+import org.bukkit.entity.Enderman;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
+import org.bukkit.entity.Shulker;
 import org.bukkit.entity.Wolf;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.inventory.ItemStack;
@@ -337,7 +340,7 @@ public final class PlayerDamagedEvents {
         }
     }
 
-    public static void plateMagSteel(EventFriend friend) {
+    public static void linksMagSteel(EventFriend friend) {
         if (GeneralUtils.testChance(5,100)) {
             friend.setCancelEvent(true);
             increaseEffect(PotionEffectType.ABSORPTION, friend.getPotionEffects());
@@ -471,6 +474,58 @@ public final class PlayerDamagedEvents {
                 PersistentDataAPI.setInt(im, k, d);
             }
             i.setItemMeta(im);
+        }
+    }
+
+    public static void linksMagic(EventFriend friend) {
+        if (friend.getCause() == EntityDamageEvent.DamageCause.DRAGON_BREATH) {
+            friend.setCancelEvent(true);
+        }
+    }
+
+    public static void linksInfinity(EventFriend friend) {
+        if (friend.getDamagingEntity() != null && GeneralUtils.testChance(20, 100)) {
+            friend.setDamageMod(0);
+            LivingEntity e = (LivingEntity) friend.getDamagingEntity();
+            e.damage(friend.getInitialDamage(), friend.getPlayer());
+            e.getWorld().spawnParticle(Particle.ELECTRIC_SPARK, e.getLocation(), 5, 0.5, 0.5, 0.5);
+        }
+    }
+
+    public static void linksMagnonium(EventFriend friend) {
+        if (friend.getCause() == EntityDamageEvent.DamageCause.DROWNING) {
+            friend.setCancelEvent(true);
+        }
+    }
+
+    public static void plateVoid(EventFriend friend) {
+        if (friend.getCause() == EntityDamageEvent.DamageCause.VOID) {
+            friend.setCancelEvent(true);
+            increaseEffect(PotionEffectType.LEVITATION, friend.getPotionEffects(), 3);
+        }
+    }
+
+    public static void plateSingGold(EventFriend friend) {
+        if (friend.getInitialDamage() >= 1 && GeneralUtils.testChance(1, 100)) {
+            WorldUtils.dropItem(new ItemStack(Material.GOLD_NUGGET, GeneralUtils.roll(4)), friend.getPlayer());
+        }
+    }
+
+
+    public static void plateSingIron(EventFriend friend) {
+        Player p = friend.getPlayer();
+        friend.setCancelEvent(true);
+        p.setHealth(Math.max(p.getHealth() + friend.getInitialDamage(), p.getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue()));
+    }
+
+    public static void linksVoid(EventFriend friend) {
+        Entity e = friend.getDamagedEntity();
+        if (
+                e instanceof EnderDragon
+                || e instanceof Enderman
+                || e instanceof Shulker
+        ) {
+            friend.setDamageMod(friend.getDamageMod() - 0.1);
         }
     }
 }

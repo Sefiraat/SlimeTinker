@@ -310,21 +310,19 @@ public final class CMSlimefunWarfare {
                                     null
                                 ),
                                 new CMTraits(
-                                        IDStrings.OSMIUM_SUPERALLOY,
+                                        IDStrings.UNPATENTABLIUM,
                                         new CMTrait(
                                                 CMTraits.PROP_HEAD,
                                                 SupportedPluginsManager.SLIMEFUN_WARFARE_NOTE,
-                                                "Brute",
-                                                "Slow swinging speed. Hit enemies are stunned",
-                                                "briefly. Damage +50% with an additional 10%",
-                                                "chance to crit for +200% instead"
+                                                "Innovation",
+                                                "+100% Tool and Player EXP during the day."
                                         ),
                                         null,
                                         new CMTrait(
                                                 CMTraits.PROP_ROD,
                                                 SupportedPluginsManager.SLIMEFUN_WARFARE_NOTE,
-                                                "Tuff Stuff",
-                                                "Knocks back anything hit and stuns."
+                                                "Incoporeal Right",
+                                                "Tool cannot be dropped or lost on death."
                                         ),
                                         new CMTrait(
                                                 CMTraits.PROP_PLATES,
@@ -340,7 +338,8 @@ public final class CMSlimefunWarfare {
                                                 "KOTR",
                                                 "Chance, when hit, to summon a Knight",
                                                 "of the Round. (It's a Golem ;))"
-                                        ))
+                                        )
+                                )
                         ));
 
         map.get(IDStrings.SEGGANESSON).addEvent(TraitEventType.TICK, TraitPartType.ROD, TickEvents::rodSegganesson);                                        // Blinding Speed

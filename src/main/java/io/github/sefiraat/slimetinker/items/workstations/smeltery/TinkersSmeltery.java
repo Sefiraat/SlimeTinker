@@ -31,7 +31,7 @@ public class TinkersSmeltery extends AbstractTickingContainer {
     private static final int[] BACKGROUND_INPUT_SLOTS = {0,1,2,9,11,18,19,20};
     private static final int[] BACKGROUND_CAST_SLOTS = {3,4,5,12,14,21,22,23};
     private static final int[] BACKGROUND_OUTPUT_SLOTS = {6,7,8,15,17,24,25,26};
-    private static final int[] CAST_STORE_SLOTS = {36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53};
+    protected static final int[] CAST_STORE_SLOTS = {36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53};
     protected static final int INPUT_SLOT = 10;
     protected static final int CAST_SLOT = 13;
     protected static final int OUTPUT_SLOT = 16;

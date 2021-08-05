@@ -776,7 +776,7 @@ public final class CMCore {
                                         new CMTrait(
                                                 CMTraits.PROP_HEAD,
                                                 SupportedPluginsManager.CORE_NOTE,
-                                                "Sharp 2",
+                                                "Tuff Stuff",
                                                 "Knocks back anything hit with a chance",
                                                 "to stun."
                                         ),

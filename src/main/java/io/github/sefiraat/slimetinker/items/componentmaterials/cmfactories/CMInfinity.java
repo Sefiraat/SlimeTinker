@@ -4,6 +4,7 @@ import io.github.sefiraat.slimetinker.events.BlockBreakEvents;
 import io.github.sefiraat.slimetinker.events.DurabilityEvents;
 import io.github.sefiraat.slimetinker.events.EntityDamageEvents;
 import io.github.sefiraat.slimetinker.events.PlayerDamagedEvents;
+import io.github.sefiraat.slimetinker.events.RightClickEvents;
 import io.github.sefiraat.slimetinker.events.TickEvents;
 import io.github.sefiraat.slimetinker.events.friend.TraitEventType;
 import io.github.sefiraat.slimetinker.events.friend.TraitPartType;
@@ -1199,6 +1200,15 @@ public final class CMInfinity {
         map.get(IDStrings.ADAMANTITE).addEvent(TraitEventType.BLOCK_BREAK, TraitPartType.LINKS, BlockBreakEvents::linksAdamantite);             // Experienced - Block Break
         map.get(IDStrings.SINGALUMINUM).addEvent(TraitEventType.TICK, TraitPartType.PLATE, TickEvents::plateSingAluminium);                     // Foil II - Speed
         map.get(IDStrings.SINGALUMINUM).addEvent(TraitEventType.PLAYER_DAMAGED, TraitPartType.PLATE, PlayerDamagedEvents::plateSingAluminium);  // Foil II - Damage
+        map.get(IDStrings.METAL).addEvent(TraitEventType.PLAYER_DAMAGED, TraitPartType.LINKS, PlayerDamagedEvents::linksMetal);                 // Gleam
+        map.get(IDStrings.TITANIUM).addEvent(TraitEventType.PLAYER_DAMAGED, TraitPartType.LINKS, PlayerDamagedEvents::linksTitanium);           // Heat Resistant
+        map.get(IDStrings.FORTUNE).addEvent(TraitEventType.PLAYER_DAMAGED, TraitPartType.PLATE, PlayerDamagedEvents::plateFortune);             // How Fortunate!
+        map.get(IDStrings.FORTUNE).addEvent(TraitEventType.PLAYER_DAMAGED, TraitPartType.PLATE, PlayerDamagedEvents::plateFortune);             // How Fortunate!
+        map.get(IDStrings.INFINITY).addEvent(TraitEventType.PLAYER_DAMAGED, TraitPartType.PLATE, PlayerDamagedEvents::plateInfinity);           // Infinite Capacity
+        map.get(IDStrings.INFINITY).addEvent(TraitEventType.RIGHT_CLICK, TraitPartType.PLATE, RightClickEvents::plateInfinity);                 // Infinite Capacity - Click
+        map.get(IDStrings.SINGINFINITY).addEvent(TraitEventType.PLAYER_DAMAGED, TraitPartType.LINKS, PlayerDamagedEvents::linksSingInfinity);   // Infinite Defence
+        map.get(IDStrings.SINGINFINITY).addEvent(TraitEventType.PLAYER_DAMAGED, TraitPartType.PLATE, PlayerDamagedEvents::plateSingInfinity);   // Infinite Defence
+        map.get(IDStrings.EARTH).addEvent(TraitEventType.TICK, TraitPartType.LINKS, TickEvents::linksEarth);                                    // It's Natural
     }
 
 }

@@ -49,6 +49,15 @@ public final class GeneralUtils {
         return ThreadLocalRandom.current().nextInt(1, upper + 1) <= chance;
     }
 
+    /**
+     * Rolls a number starting from 1 to upper
+     * @param upper The highest possible number that could roll (inclusive)
+     * @return rolled int
+     */
+    public static int roll(int upper) {
+        return ThreadLocalRandom.current().nextInt(1, upper + 1);
+    }
+
     public static boolean isBiomeHot(Biome biome) {
         return getBiomeTemperature(biome) == Temperature.HOT;
     }

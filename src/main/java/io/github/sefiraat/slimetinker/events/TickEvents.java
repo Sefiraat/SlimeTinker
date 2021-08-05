@@ -562,4 +562,8 @@ public final class TickEvents {
     public static void plateSingAluminium(EventFriend friend) {
         increaseEffect(PotionEffectType.SPEED, friend.getPotionEffects(), 1);
     }
+
+    public static void linksEarth(EventFriend friend) {
+
+    }
 }

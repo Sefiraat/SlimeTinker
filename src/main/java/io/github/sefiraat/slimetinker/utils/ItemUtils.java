@@ -13,6 +13,7 @@ import me.mrCookieSlime.Slimefun.api.SlimefunItemStack;
 import net.md_5.bungee.api.ChatColor;
 import org.apache.commons.lang.Validate;
 import org.bukkit.Material;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.Damageable;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -644,6 +645,18 @@ public final class ItemUtils {
 
     public static boolean isBackpack(String s) {
         return s.matches("(.*)BACKPACK(.*)");
+    }
+
+    public static void incrementRandomEnchant(ItemStack i) {
+        ItemMeta im = i.getItemMeta();
+        Validate.notNull(im, "Mate is null, TIME TO GET GOT!");
+        Enchantment randEnchant = Enchantment.values()[(int) (Math.random()*Enchantment.values().length)];
+        if (im.hasEnchant(randEnchant)) {
+            im.addEnchant(randEnchant, i.getEnchantmentLevel(randEnchant) + 1, true);
+        } else {
+            im.addEnchant(randEnchant, 1, true);
+        }
+        i.setItemMeta(im);
     }
 
 }

@@ -62,7 +62,7 @@ public final class Experience {
             promoteMaterial(itemStack, level, player);
             player.sendMessage(ThemeUtils.SUCCESS + "Your Tinker's tool has leveled up! +1 Modifier Slot");
 
-            silverChecks(im, itemStack, player);
+            silverChecks(itemStack, player);
 
         } else {
             newExp = currentExp + amount;
@@ -107,17 +107,12 @@ public final class Experience {
         return false;
     }
 
-    private static void silverChecks(ItemMeta im, ItemStack itemStack, Player player) {
+    private static void silverChecks(ItemStack itemStack, Player player) {
         if (ItemUtils.isEnchanting(itemStack)) {
             int number = ItemUtils.isEnchanting2(itemStack) ? 3 : 1;
             int amount = ThreadLocalRandom.current().nextInt(1, number + 1);
             for (int i = 0; i < amount; i++) {
-                Enchantment randEnchant = Enchantment.values()[(int) (Math.random()*Enchantment.values().length)];
-                if (im.hasEnchant(randEnchant)) {
-                    im.addEnchant(randEnchant, itemStack.getEnchantmentLevel(randEnchant) + 1, true);
-                } else {
-                    im.addEnchant(randEnchant, 1, true);
-                }
+                ItemUtils.incrementRandomEnchant(itemStack);
             }
             player.sendMessage(ThemeUtils.SUCCESS + "It also gained [" + amount + "] random enchantment(s)! Hope it's good :>");
         }

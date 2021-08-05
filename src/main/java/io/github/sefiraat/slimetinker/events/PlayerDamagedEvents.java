@@ -2,12 +2,15 @@ package io.github.sefiraat.slimetinker.events;
 
 import io.github.sefiraat.slimetinker.SlimeTinker;
 import io.github.sefiraat.slimetinker.events.friend.EventFriend;
+import io.github.sefiraat.slimetinker.items.Materials;
 import io.github.sefiraat.slimetinker.runnables.event.RemoveWolf;
 import io.github.sefiraat.slimetinker.utils.GeneralUtils;
 import io.github.sefiraat.slimetinker.utils.ItemUtils;
 import io.github.sefiraat.slimetinker.utils.ThemeUtils;
+import io.github.sefiraat.slimetinker.utils.WorldUtils;
 import lombok.experimental.UtilityClass;
 import me.mrCookieSlime.Slimefun.cscorelib2.data.PersistentDataAPI;
+import org.apache.commons.lang.Validate;
 import org.bukkit.Color;
 import org.bukkit.Effect;
 import org.bukkit.Location;
@@ -15,6 +18,7 @@ import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.Particle;
 import org.bukkit.attribute.Attribute;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
@@ -364,5 +368,109 @@ public final class PlayerDamagedEvents {
 
     public static void plateSingAluminium(EventFriend friend) {
         friend.setDamageMod(friend.getDamageMod() + 0.5);
+    }
+
+    public static void linksMetal(EventFriend friend) {
+        if (GeneralUtils.testChance(1,5)) {
+            if (friend.getDamagingEntity() instanceof LivingEntity) {
+                LivingEntity l = (LivingEntity) friend.getDamagingEntity();
+                l.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 100, 1));
+                l.getWorld().spawnParticle(Particle.FIREWORKS_SPARK, l.getLocation(), 0, 0, 0,0);
+            }
+        }
+    }
+
+    public static void linksTitanium(EventFriend friend) {
+        EntityDamageEvent.DamageCause c = friend.getCause();
+        if (
+                c == EntityDamageEvent.DamageCause.LAVA
+                || c == EntityDamageEvent.DamageCause.FIRE
+                || c == EntityDamageEvent.DamageCause.FIRE_TICK
+                || c == EntityDamageEvent.DamageCause.HOT_FLOOR
+        ) {
+            friend.setCancelEvent(true);
+        }
+    }
+
+    public static void plateFortune(EventFriend friend) {
+        if (friend.getInitialDamage() >= 1 && GeneralUtils.testChance(1, 200)) {
+            int roll = GeneralUtils.roll(100);
+            ItemStack i;
+            if (roll < 5) {
+                i = Materials.NUGGET_CAST_ADAMANTITE.clone();
+            } else if (roll < 10) {
+                i = Materials.NUGGET_CAST_TITANIUM.clone();
+            } else if (roll < 15) {
+                i = Materials.NUGGET_CAST_MYTHRIL.clone();
+            } else if (roll < 20) {
+                i = Materials.NUGGET_CAST_MAGNONIUM.clone();
+            } else if (roll < 25) {
+                i = Materials.NUGGET_CAST_MAGSTEEL.clone();
+            } else if (roll < 30) {
+                i = Materials.NUGGET_CAST_REINFORCED.clone();
+            } else if (roll < 35) {
+                i = Materials.NUGGET_CAST_REDSTONE_ALLOY.clone();
+            } else if (roll < 40) {
+                i = Materials.NUGGET_CAST_ALU_BRASS.clone();
+            } else if (roll < 50) {
+                i = Materials.NUGGET_CAST_COR_BRONZE.clone();
+            } else if (roll < 55) {
+                i = Materials.NUGGET_CAST_HARD_METAL.clone();
+            } else if (roll < 60) {
+                i = Materials.NUGGET_CAST_ALU_BRONZE.clone();
+            } else if (roll < 65) {
+                i = Materials.NUGGET_CAST_DAMASCUS_STEEL.clone();
+            } else if (roll < 70) {
+                i = Materials.NUGGET_CAST_COBALT.clone();
+            } else if (roll < 75) {
+                i = Materials.NUGGET_CAST_NICKEL.clone();
+            } else if (roll < 80) {
+                i = Materials.NUGGET_CAST_BILLON.clone();
+            } else if (roll < 85) {
+                i = Materials.NUGGET_CAST_SOLDER.clone();
+            } else if (roll < 90) {
+                i = Materials.NUGGET_CAST_DURALIUM.clone();
+            } else if (roll < 95) {
+                i = Materials.NUGGET_CAST_STEEL.clone();
+            } else {
+                i = Materials.NUGGET_CAST_COAL.clone();
+            }
+            WorldUtils.dropItem(i, friend.getPlayer());
+        }
+    }
+
+    public static void plateInfinity(EventFriend friend) {
+        ItemStack i = friend.getActiveStack();
+        ItemMeta im = i.getItemMeta();
+        NamespacedKey k = SlimeTinker.inst().getKeys().getArmourInfiniteCapacityStored();
+        Validate.notNull(im, "Meta is null, nope!");
+        double d = PersistentDataAPI.getDouble(im, k, 0);
+        if (d < 5) {
+            d = Math.max(5, d + friend.getInitialDamage() / 10);
+            PersistentDataAPI.setDouble(im, k, d);
+            i.setItemMeta(im);
+        }
+    }
+
+    public static void linksSingInfinity(EventFriend friend) {
+        friend.setDamageMod(0);
+    }
+
+    public static void plateSingInfinity(EventFriend friend) {
+        ItemStack i = friend.getActiveStack();
+        ItemMeta im = i.getItemMeta();
+        NamespacedKey k = SlimeTinker.inst().getKeys().getArmourInfinitlyPowerfulStored();
+        Validate.notNull(im, "Meta is null, nope!");
+        int d = PersistentDataAPI.getInt(im, k, 0);
+        if (d < 2000) {
+            d = (int) Math.max(2000, d + friend.getInitialDamage());
+            if (d == 2000) {
+                ItemUtils.incrementRandomEnchant(i);
+                PersistentDataAPI.setInt(im, k, 0);
+            } else {
+                PersistentDataAPI.setInt(im, k, d);
+            }
+            i.setItemMeta(im);
+        }
     }
 }

@@ -1,11 +1,14 @@
 package io.github.sefiraat.slimetinker.events;
 
+import com.sun.tools.javac.util.Names;
 import io.github.mooy1.infinitylib.persistence.PersistenceUtils;
 import io.github.sefiraat.slimetinker.SlimeTinker;
 import io.github.sefiraat.slimetinker.events.friend.EventFriend;
 import io.github.sefiraat.slimetinker.utils.EntityUtils;
 import io.github.sefiraat.slimetinker.utils.GeneralUtils;
 import lombok.experimental.UtilityClass;
+import me.mrCookieSlime.Slimefun.cscorelib2.data.PersistentDataAPI;
+import org.apache.commons.lang.Validate;
 import org.bukkit.Color;
 import org.bukkit.Effect;
 import org.bukkit.Location;
@@ -25,6 +28,7 @@ import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
+import javax.naming.Name;
 import java.time.Instant;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -392,5 +396,22 @@ public final class EntityDamageEvents {
         e.getWorld().spawnParticle(Particle.REDSTONE, e.getLocation(), 30, 3, 3, 3, 1, d1);
         e.getWorld().spawnParticle(Particle.REDSTONE, e.getLocation(), 30, 3, 3, 3, 1, d2);
         e.getWorld().spawnParticle(Particle.REDSTONE, e.getLocation(), 30, 3, 3, 3, 1, d3);
+    }
+
+    public static void linksSegganesson(EventFriend friend) {
+        if (friend.getDamagedEntity() instanceof LivingEntity) {
+            LivingEntity e = (LivingEntity) friend.getDamagedEntity();
+            ItemStack i = friend.getActiveStack();
+            ItemMeta im = i.getItemMeta();
+            NamespacedKey k = SlimeTinker.inst().getKeys().getArmourSoulsStored();
+            Validate.notNull(im, "Meta is not null, this is odd!");
+            long souls = PersistentDataAPI.getLong(im, k ,0);
+            friend.setDamageMod(friend.getDamageMod() + ((double) souls / 100L));
+            if (friend.getInitialDamage() >= e.getHealth()) {
+                souls++;
+                PersistentDataAPI.setLong(im, k, souls);
+            }
+            i.setItemMeta(im);
+        }
     }
 }

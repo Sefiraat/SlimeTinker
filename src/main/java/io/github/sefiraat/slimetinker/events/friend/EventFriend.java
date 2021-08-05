@@ -72,6 +72,7 @@ public class EventFriend {
     private int positivity = 0;
     private int negativity = 0;
     private int hyperbolic = 0;
+    private int gravity = 0;
 
     private boolean blocksIntoInv = false;
 

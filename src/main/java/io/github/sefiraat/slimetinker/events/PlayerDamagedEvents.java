@@ -4,6 +4,7 @@ import io.github.sefiraat.slimetinker.SlimeTinker;
 import io.github.sefiraat.slimetinker.events.friend.EventFriend;
 import io.github.sefiraat.slimetinker.items.Materials;
 import io.github.sefiraat.slimetinker.runnables.event.RemoveWolf;
+import io.github.sefiraat.slimetinker.utils.EntityUtils;
 import io.github.sefiraat.slimetinker.utils.GeneralUtils;
 import io.github.sefiraat.slimetinker.utils.ItemUtils;
 import io.github.sefiraat.slimetinker.utils.ThemeUtils;
@@ -23,6 +24,7 @@ import org.bukkit.entity.Enderman;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
+import org.bukkit.entity.Panda;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Shulker;
 import org.bukkit.entity.Wolf;
@@ -551,4 +553,33 @@ public final class PlayerDamagedEvents {
     }
 
 
+    public static void linksReinforcedSlimesteel(EventFriend friend) {
+        if (friend.getCause() == EntityDamageEvent.DamageCause.PROJECTILE && GeneralUtils.testChance(10, 100)) {
+            friend.setCancelEvent(true);
+        }
+    }
+
+    public static void linksOsmium(EventFriend friend) {
+        if (GeneralUtils.testChance(5, 100)) {
+            Player p = friend.getPlayer();
+            friend.setCancelEvent(true);
+            p.setHealth(Math.min(p.getHealth() + friend.getInitialDamage(), p.getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue()));
+        }
+    }
+
+    public static void plateOsmium(EventFriend friend) {
+        if (friend.getDamagingEntity() != null) {
+            EntityUtils.push((LivingEntity) friend.getDamagingEntity(), friend.getPlayer().getLocation(), 0.2);
+        }
+    }
+
+    public static void gambesonSlimeSteel(EventFriend friend) {
+        if (friend.getCause() == EntityDamageEvent.DamageCause.FALL) {
+            friend.setCancelEvent(true);
+        }
+    }
+
+    public static void plateReinforcedSlimesteel(EventFriend friend) {
+        friend.setDamageMod(friend.getDamageMod() + 0.1);
+    }
 }

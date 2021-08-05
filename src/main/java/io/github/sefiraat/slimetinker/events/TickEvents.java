@@ -37,10 +37,12 @@ import org.bukkit.entity.Player;
 import org.bukkit.entity.Vex;
 import org.bukkit.entity.Villager;
 import org.bukkit.entity.Wither;
+import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
+import org.bukkit.util.Vector;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -655,11 +657,83 @@ public final class TickEvents {
     public static void plateStardust(EventFriend friend) {
         Player p = friend.getPlayer();
         if (!GeneralUtils.day(p.getWorld()) && GeneralUtils.testChance(5,100)) {
-            p.setHealth(Math.min(p.getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue(), p.getHealth() + 1);
+            p.setHealth(Math.min(p.getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue(), p.getHealth() + 1));
         }
     }
 
     public static void linksStainlessSteel(EventFriend friend) {
         increaseEffect(PotionEffectType.WATER_BREATHING, friend.getPotionEffects());
+    }
+
+    public static void linksSegganesson(EventFriend friend) {
+        friend.setGravity(friend.getGravity() + 1);
+        Player p = friend.getPlayer();
+        if (GeneralUtils.testChance(friend.getGravity(), 10)) {
+            List<LivingEntity> entityList = EntityUtils.getNearbyEntitiesByType(LivingEntity.class, p, 4, 4, 4);
+            for (LivingEntity e : entityList) {
+                Location el = e.getLocation();
+                Location pl = p.getLocation();
+                e.teleport(WorldUtils.getMid(e.getWorld(), el.getX() + 0.5, el.getY(), el.getZ(), pl.getX() + 0.5, pl.getY(), pl.getZ()));
+            }
+        }
+    }
+
+    public static void plateOsmium(EventFriend friend) {
+        increaseEffect(PotionEffectType.SLOW, friend.getPotionEffects());
+    }
+
+    /**
+     * https://www.spigotmc.org/threads/tutorial-get-the-entity-another-entity-is-looking-at.202495/
+     */
+    public static void plateUnpatentabilum(EventFriend friend) {
+        Player p = friend.getPlayer();
+
+        Vector pLookDir = p.getEyeLocation().getDirection();
+        Vector pEyeLoc = p.getEyeLocation().toVector();
+
+        List<Entity> entityList = EntityUtils.getNearbyEntitiesByType(Entity.class, p, 10, 10, 10);
+        for (Entity e : entityList) {
+            if (p.hasLineOfSight(e)) {
+                Vector entityLoc = e.getLocation().toVector();
+                Vector pEntVec = entityLoc.subtract(pEyeLoc);
+                float angle = pLookDir.angle(pEntVec);
+                if (angle < 0.2f) {
+                    e.teleport(p.getLocation());
+                    return;
+                }
+            }
+        }
+    }
+
+    public static void linksOsmiumSuperalloy(EventFriend friend) {
+        Player p = friend.getPlayer();
+        List<Mob> mobs = EntityUtils.getNearbyEntitiesByType(Mob.class, p, 2, 2, 2);
+        for (Mob m : mobs) {
+            if (m.getHealth() > 1) {
+                m.damage(1, p);
+            }
+        }
+    }
+
+    public static void plateReinforcedSlimesteel(EventFriend friend) {
+        increaseEffect(PotionEffectType.JUMP, friend.getPotionEffects());
+        increaseEffect(PotionEffectType.SPEED, friend.getPotionEffects());
+    }
+
+    public static void plateOsmiumSuperalloy(EventFriend friend) {
+        if (GeneralUtils.testChance(1, 50)) {
+            NamespacedKey key = SlimeTinker.inst().getKeys().getStopEvents();
+            Player player = friend.getPlayer();
+            if (!PersistentDataAPI.hasInt(player, key)) {
+                PersistentDataAPI.setInt(player, key, 1);
+                int rnd = ThreadLocalRandom.current().nextInt(3, 7);
+                for (int i = 0; i <= rnd; i++) {
+                    int rndX = ThreadLocalRandom.current().nextInt(-3, 4);
+                    int rndZ = ThreadLocalRandom.current().nextInt(-3, 4);
+                    player.getWorld().strikeLightningEffect(player.getLocation().clone().add(rndX, 0, rndZ));
+                }
+                PersistentDataAPI.remove(player, key);
+            }
+        }
     }
 }

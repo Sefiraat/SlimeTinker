@@ -17,6 +17,9 @@ import java.util.Map;
 @Data
 public class EventFriend {
 
+    /**
+     * The type of item that the friend is currently working on
+     */
     private ActiveFriendElement activeFriendElement;
     private TraitEventType eventType;
 
@@ -32,12 +35,24 @@ public class EventFriend {
     private ItemStack boots;
 
     private Player player;
+
+    /**
+     * The block broken in BlockBreakEvents
+     */
     private Block block;
+
+    /**
+     * The entity doing the damaging (for EntityDamageEvents)
+     * Otherwise use player for PlayerDamageEvents
+     */
     private Entity damagedEntity;
+
     /**
      * The entity doing the damaging (for PlayerDamageEvents)
+     * Otherwise use player for EntityDamageEvents
      */
     private Entity damagingEntity;
+
     private EntityDamageEvent.DamageCause cause;
     private double initialDamage = 0;
 
@@ -73,6 +88,8 @@ public class EventFriend {
     private int negativity = 0;
     private int hyperbolic = 0;
     private int gravity = 0;
+    private int manners = 0;
+    private int kingsman = 0;
 
     private boolean blocksIntoInv = false;
 

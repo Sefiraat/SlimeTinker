@@ -13,12 +13,9 @@ import me.mrCookieSlime.Slimefun.api.SlimefunItemStack;
 import me.mrCookieSlime.Slimefun.cscorelib2.data.PersistentDataAPI;
 import net.md_5.bungee.api.ChatColor;
 import org.apache.commons.lang.Validate;
-import org.bukkit.Effect;
-import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.enchantments.Enchantment;
-import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.Damageable;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -27,11 +24,9 @@ import org.bukkit.persistence.PersistentDataType;
 import org.jetbrains.annotations.Nullable;
 
 import javax.annotation.Nonnull;
-import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.ThreadLocalRandom;
 
 @UtilityClass
 public final class ItemUtils {
@@ -303,12 +298,6 @@ public final class ItemUtils {
     }
 
     @Nullable
-    public static String getToolHeadMaterial(PersistentDataContainer c) {
-        String s = c.get(SlimeTinker.inst().getKeys().getToolInfoHeadMaterial(), PersistentDataType.STRING);
-        return s;
-    }
-
-    @Nullable
     public static String getToolHeadMaterial(ItemStack itemStack) {
         ItemMeta im = itemStack.getItemMeta();
         Validate.notNull(im, "ItemStack with no meta provided.");
@@ -316,9 +305,8 @@ public final class ItemUtils {
     }
 
     @Nullable
-    public static String getToolBindingMaterial(PersistentDataContainer c) {
-        String s =  c.get(SlimeTinker.inst().getKeys().getToolInfoBinderMaterial(), PersistentDataType.STRING);
-        return s;
+    public static String getToolHeadMaterial(PersistentDataContainer c) {
+        return c.get(SlimeTinker.inst().getKeys().getToolInfoHeadMaterial(), PersistentDataType.STRING);
     }
 
     @Nullable
@@ -329,9 +317,8 @@ public final class ItemUtils {
     }
 
     @Nullable
-    public static String getToolRodMaterial(PersistentDataContainer c) {
-        String s =  c.get(SlimeTinker.inst().getKeys().getToolInfoRodMaterial(), PersistentDataType.STRING);
-        return s;
+    public static String getToolBindingMaterial(PersistentDataContainer c) {
+        return c.get(SlimeTinker.inst().getKeys().getToolInfoBinderMaterial(), PersistentDataType.STRING);
     }
 
     @Nullable
@@ -342,9 +329,8 @@ public final class ItemUtils {
     }
 
     @Nullable
-    public static String getToolTypeName(PersistentDataContainer c) {
-        String s = c.get(SlimeTinker.inst().getKeys().getToolInfoToolType(), PersistentDataType.STRING);
-        return s;
+    public static String getToolRodMaterial(PersistentDataContainer c) {
+        return c.get(SlimeTinker.inst().getKeys().getToolInfoRodMaterial(), PersistentDataType.STRING);
     }
 
     @Nullable
@@ -355,9 +341,8 @@ public final class ItemUtils {
     }
 
     @Nullable
-    public static String getArmourPlateMaterial(PersistentDataContainer c) {
-        String s = c.get(SlimeTinker.inst().getKeys().getArmourInfoPlateMaterial(), PersistentDataType.STRING);
-        return s;
+    public static String getToolTypeName(PersistentDataContainer c) {
+        return c.get(SlimeTinker.inst().getKeys().getToolInfoToolType(), PersistentDataType.STRING);
     }
 
     @Nullable
@@ -368,9 +353,8 @@ public final class ItemUtils {
     }
 
     @Nullable
-    public static String getArmourGambesonMaterial(PersistentDataContainer c) {
-        String s =  c.get(SlimeTinker.inst().getKeys().getArmourInfoGambesonMaterial(), PersistentDataType.STRING);
-        return s;
+    public static String getArmourPlateMaterial(PersistentDataContainer c) {
+        return c.get(SlimeTinker.inst().getKeys().getArmourInfoPlateMaterial(), PersistentDataType.STRING);
     }
 
     @Nullable
@@ -381,9 +365,8 @@ public final class ItemUtils {
     }
 
     @Nullable
-    public static String getArmourLinksMaterial(PersistentDataContainer c) {
-        String s =  c.get(SlimeTinker.inst().getKeys().getArmourInfoLinksMaterial(), PersistentDataType.STRING);
-        return s;
+    public static String getArmourGambesonMaterial(PersistentDataContainer c) {
+        return c.get(SlimeTinker.inst().getKeys().getArmourInfoGambesonMaterial(), PersistentDataType.STRING);
     }
 
     @Nullable
@@ -394,9 +377,8 @@ public final class ItemUtils {
     }
 
     @Nullable
-    public static String getArmourTypeName(PersistentDataContainer c) {
-        String s = c.get(SlimeTinker.inst().getKeys().getArmourInfoArmourType(), PersistentDataType.STRING);
-        return s;
+    public static String getArmourLinksMaterial(PersistentDataContainer c) {
+        return c.get(SlimeTinker.inst().getKeys().getArmourInfoLinksMaterial(), PersistentDataType.STRING);
     }
 
     @Nullable
@@ -404,6 +386,11 @@ public final class ItemUtils {
         ItemMeta im = itemStack.getItemMeta();
         Validate.notNull(im, "ItemStack with no meta provided.");
         return getToolHeadMaterial(im.getPersistentDataContainer());
+    }
+
+    @Nullable
+    public static String getArmourTypeName(PersistentDataContainer c) {
+        return c.get(SlimeTinker.inst().getKeys().getArmourInfoArmourType(), PersistentDataType.STRING);
     }
 
     public static String formatMaterialName(String s) {
@@ -586,7 +573,6 @@ public final class ItemUtils {
         ItemMeta im = itemStack.getItemMeta();
         Validate.notNull(im, "ItemStack does not have meta");
         PersistentDataContainer c = im.getPersistentDataContainer();
-        Validate.notNull(c, "ItemStack does not have PDC");
         return getTinkerExp(c);
     }
 
@@ -601,7 +587,6 @@ public final class ItemUtils {
         ItemMeta im = itemStack.getItemMeta();
         Validate.notNull(im, "ItemStack does not have meta");
         PersistentDataContainer c = im.getPersistentDataContainer();
-        Validate.notNull(c, "ItemStack does not have PDC");
         return getTinkerRequiredExp(c);
     }
 
@@ -616,7 +601,6 @@ public final class ItemUtils {
         ItemMeta im = itemStack.getItemMeta();
         Validate.notNull(im, "ItemStack does not have meta");
         PersistentDataContainer c = im.getPersistentDataContainer();
-        Validate.notNull(c, "ItemStack does not have PDC");
         return getTinkerLevel(c);
     }
 
@@ -630,7 +614,6 @@ public final class ItemUtils {
         ItemMeta im = itemStack.getItemMeta();
         Validate.notNull(im, "ItemStack does not have meta");
         PersistentDataContainer c = im.getPersistentDataContainer();
-        Validate.notNull(c, "ItemStack does not have PDC");
         return getTinkerModifierSlots(c);
     }
 
@@ -640,13 +623,13 @@ public final class ItemUtils {
 
     public static String getLoreExp(PersistentDataContainer c) {
         return ThemeUtils.ITEM_TOOL + "Level: " +
-                org.bukkit.ChatColor.WHITE + getTinkerLevel(c) +
+                ChatColor.WHITE + getTinkerLevel(c) +
                 ThemeUtils.PASSIVE + " (" + getTinkerExp(c) + " / " + getTinkerRequiredExp(c) + ")";
     }
 
     public static String getLoreModSlots(PersistentDataContainer c) {
         return ThemeUtils.ITEM_TOOL + "Modifier Slots: " +
-                org.bukkit.ChatColor.WHITE + getTinkerModifierSlots(c);
+                ChatColor.WHITE + getTinkerModifierSlots(c);
     }
 
     public static boolean rejectCraftingRecipe(SlimefunItemStack i) {

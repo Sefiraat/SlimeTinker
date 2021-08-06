@@ -5,7 +5,6 @@ import io.github.sefiraat.slimetinker.items.Guide;
 import io.github.sefiraat.slimetinker.modifiers.Modifications;
 import lombok.experimental.UtilityClass;
 import org.bukkit.Material;
-import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;

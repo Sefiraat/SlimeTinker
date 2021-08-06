@@ -1,5 +1,6 @@
 package io.github.sefiraat.slimetinker.events;
 
+import com.sun.tools.javac.jvm.Gen;
 import io.github.sefiraat.slimetinker.SlimeTinker;
 import io.github.sefiraat.slimetinker.events.friend.EventFriend;
 import io.github.sefiraat.slimetinker.items.Materials;
@@ -9,7 +10,9 @@ import io.github.sefiraat.slimetinker.utils.GeneralUtils;
 import io.github.sefiraat.slimetinker.utils.ItemUtils;
 import io.github.sefiraat.slimetinker.utils.ThemeUtils;
 import io.github.sefiraat.slimetinker.utils.WorldUtils;
+import io.github.thebusybiscuit.slimefun4.core.attributes.Rechargeable;
 import lombok.experimental.UtilityClass;
+import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.SlimefunItem;
 import me.mrCookieSlime.Slimefun.cscorelib2.data.PersistentDataAPI;
 import org.apache.commons.lang.Validate;
 import org.bukkit.Color;
@@ -24,7 +27,7 @@ import org.bukkit.entity.Enderman;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
-import org.bukkit.entity.Panda;
+import org.bukkit.entity.Mob;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Shulker;
 import org.bukkit.entity.Wolf;
@@ -545,6 +548,7 @@ public final class PlayerDamagedEvents {
                 amount -= dmg;
             }
             PersistentDataAPI.setInt(im, k, amount);
+            i.setItemMeta(im);
         }
     }
 
@@ -581,5 +585,96 @@ public final class PlayerDamagedEvents {
 
     public static void plateReinforcedSlimesteel(EventFriend friend) {
         friend.setDamageMod(friend.getDamageMod() + 0.1);
+    }
+
+    public static void linksMagThor(EventFriend friend) {
+        if (GeneralUtils.testChance(1, 5)) {
+            Player p = friend.getPlayer();
+            PotionEffect speed = p.hasPotionEffect(PotionEffectType.SPEED) ? p.getPotionEffect(PotionEffectType.SPEED) : null;
+            PotionEffect haste = p.hasPotionEffect(PotionEffectType.FAST_DIGGING) ? p.getPotionEffect(PotionEffectType.FAST_DIGGING) : null;
+            if (speed == null) {
+                p.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 200, 0));
+            } else {
+                p.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 200, Math.max(speed.getAmplifier() + 1, 9)));
+            }
+            if (haste == null) {
+                p.addPotionEffect(new PotionEffect(PotionEffectType.FAST_DIGGING, 200, 1));
+            } else {
+                p.addPotionEffect(new PotionEffect(PotionEffectType.FAST_DIGGING, 200, Math.max(haste.getAmplifier() + 2, 19)));
+            }
+        }
+    }
+
+    public static void plateIridium(EventFriend friend) {
+        Player p = friend.getPlayer();
+        Entity e = friend.getDamagingEntity();
+        if (e instanceof Mob) {
+            ((Mob) e).damage(friend.getInitialDamage() * 0.1, p);
+            friend.setDamageMod(friend.getDamageMod() - 0.1);
+        }
+    }
+
+    public static void linksMixedMetal(EventFriend friend) {
+        if (GeneralUtils.testChance(1,5)) {
+            Entity e = friend.getDamagingEntity();
+            if (e != null) {
+                Player p = friend.getPlayer();
+                Location pl = p.getLocation();
+                Location el = e.getLocation();
+                p.teleport(el);
+                e.teleport(pl);
+            }
+        }
+    }
+
+    public static void linksRefinedIron(EventFriend friend) {
+        Entity e = friend.getDamagingEntity();
+        if (e instanceof LivingEntity) {
+            LivingEntity l = (LivingEntity) e;
+            l.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 200, 9));
+        }
+    }
+
+    public static void plateScrap(EventFriend friend) {
+        if (GeneralUtils.testChance(5,100)) {
+            friend.getPlayer().damage(100, friend.getPlayer());
+        }
+    }
+
+    public static void plateMagThor(EventFriend friend) {
+        Entity e = friend.getDamagingEntity();
+        if (e instanceof LivingEntity) {
+            LivingEntity l = (LivingEntity) e;
+            int a = l.hasPotionEffect(PotionEffectType.POISON) ? l.getPotionEffect(PotionEffectType.POISON).getAmplifier() + 1 : 0;
+            l.addPotionEffect(new PotionEffect(PotionEffectType.POISON, 200, Math.max(a, 9)));
+        }
+    }
+
+    public static void linksIridium(EventFriend friend) {
+        ItemStack i = friend.getActiveStack();
+        ItemMeta im = i.getItemMeta();
+        Validate.notNull(im, "Meta is null, herp derp derp");
+        NamespacedKey k = SlimeTinker.inst().getKeys().getArmourHyperbolicStored();
+        int amount = PersistentDataAPI.getInt(im, k, 0);
+
+        for (ItemStack i2 : friend.getPlayer().getInventory()) {
+            SlimefunItem s = SlimefunItem.getByItem(i2);
+            if (s instanceof Rechargeable) {
+                Rechargeable r1 = (Rechargeable) s;
+                float maxCharge = r1.getMaxItemCharge(i2);
+                float charge = r1.getItemCharge(i2);
+                float amountToCharge = maxCharge - charge;
+                if (amount > amountToCharge) {
+                    r1.setItemCharge(i2, maxCharge);
+                    amount = (int) (amount - amountToCharge);
+                } else {
+                    r1.addItemCharge(i2, amount);
+                    amount = 0;
+                }
+            }
+        }
+
+        PersistentDataAPI.setInt(im, k, amount);
+        i.setItemMeta(im);
     }
 }

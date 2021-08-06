@@ -1,11 +1,11 @@
 package io.github.sefiraat.slimetinker.events;
 
-import com.sun.tools.javac.util.Names;
-import io.github.mooy1.infinitylib.persistence.PersistenceUtils;
+import com.sun.tools.javac.jvm.Gen;
 import io.github.sefiraat.slimetinker.SlimeTinker;
 import io.github.sefiraat.slimetinker.events.friend.EventFriend;
 import io.github.sefiraat.slimetinker.utils.EntityUtils;
 import io.github.sefiraat.slimetinker.utils.GeneralUtils;
+import io.github.sefiraat.slimetinker.utils.WorldUtils;
 import lombok.experimental.UtilityClass;
 import me.mrCookieSlime.Slimefun.cscorelib2.data.PersistentDataAPI;
 import org.apache.commons.lang.Validate;
@@ -28,7 +28,6 @@ import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
-import javax.naming.Name;
 import java.time.Instant;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -413,5 +412,21 @@ public final class EntityDamageEvents {
             }
             i.setItemMeta(im);
         }
+    }
+
+    public static void linksScrap(EventFriend friend) {
+        Player p = friend.getPlayer();
+        if (GeneralUtils.testChance(1,10)) {
+            ItemStack i = friend.getActiveStack();
+            ItemStack drop = i.clone();
+            i.setAmount(0);
+            WorldUtils.dropItem(drop, p);
+        } else {
+            friend.incrementExpMod(2);
+        }
+    }
+
+    public static void plateScrap(EventFriend friend) {
+        friend.setPlayerExpMod(friend.getPlayerExpMod() + 4);
     }
 }

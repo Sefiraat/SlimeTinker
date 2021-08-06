@@ -1,6 +1,5 @@
 package io.github.sefiraat.slimetinker.events;
 
-import com.sun.tools.javac.jvm.Gen;
 import io.github.sefiraat.slimetinker.SlimeTinker;
 import io.github.sefiraat.slimetinker.events.friend.EventFriend;
 import io.github.sefiraat.slimetinker.runnables.event.RemoveMagmaBlock;
@@ -37,12 +36,10 @@ import org.bukkit.entity.Player;
 import org.bukkit.entity.Vex;
 import org.bukkit.entity.Villager;
 import org.bukkit.entity.Wither;
-import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
-import org.bukkit.util.Vector;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -682,26 +679,16 @@ public final class TickEvents {
         increaseEffect(PotionEffectType.SLOW, friend.getPotionEffects());
     }
 
-    /**
-     * https://www.spigotmc.org/threads/tutorial-get-the-entity-another-entity-is-looking-at.202495/
-     */
     public static void plateUnpatentabilum(EventFriend friend) {
         Player p = friend.getPlayer();
-
-        Vector pLookDir = p.getEyeLocation().getDirection();
-        Vector pEyeLoc = p.getEyeLocation().toVector();
-
-        List<Entity> entityList = EntityUtils.getNearbyEntitiesByType(Entity.class, p, 10, 10, 10);
-        for (Entity e : entityList) {
-            if (p.hasLineOfSight(e)) {
-                Vector entityLoc = e.getLocation().toVector();
-                Vector pEntVec = entityLoc.subtract(pEyeLoc);
-                float angle = pLookDir.angle(pEntVec);
-                if (angle < 0.2f) {
-                    e.teleport(p.getLocation());
-                    return;
-                }
-            }
+        Entity e = EntityUtils.getEntityLookedAtByEntity(p);
+        if (
+                e != null
+                && !(e instanceof Player)
+                && SlimefunPlugin.getProtectionManager().hasPermission(p, e.getLocation(), ProtectableAction.INTERACT_ENTITY)
+        )
+        {
+            e.teleport(friend.getPlayer().getLocation());
         }
     }
 
@@ -735,5 +722,13 @@ public final class TickEvents {
                 PersistentDataAPI.remove(player, key);
             }
         }
+    }
+
+    public static void gambesonCarbonMesh(EventFriend friend) {
+        increaseEffect(PotionEffectType.SPEED, friend.getPotionEffects());
+    }
+
+    public static void gambesonRubber(EventFriend friend) {
+        friend.getPlayer().setFireTicks(SlimeTinker.RUNNABLE_TICK_RATE + 5);
     }
 }

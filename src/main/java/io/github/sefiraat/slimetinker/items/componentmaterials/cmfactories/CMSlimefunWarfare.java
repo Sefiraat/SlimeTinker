@@ -15,7 +15,6 @@ import io.github.sefiraat.slimetinker.items.componentmaterials.cmelements.CMTool
 import io.github.sefiraat.slimetinker.items.componentmaterials.cmelements.CMTrait;
 import io.github.sefiraat.slimetinker.items.componentmaterials.cmelements.CMTraits;
 import io.github.sefiraat.slimetinker.managers.SupportedPluginsManager;
-import io.github.sefiraat.slimetinker.utils.EntityUtils;
 import io.github.sefiraat.slimetinker.utils.IDStrings;
 import io.github.sefiraat.slimetinker.utils.SkullTextures;
 import lombok.Getter;

@@ -1,13 +1,15 @@
 package io.github.sefiraat.slimetinker.events;
 
-import io.github.mooy1.infinitylib.persistence.PersistenceUtils;
 import io.github.sefiraat.slimetinker.SlimeTinker;
 import io.github.sefiraat.slimetinker.events.friend.EventFriend;
+import io.github.sefiraat.slimetinker.runnables.event.KingsmanSpam;
 import io.github.sefiraat.slimetinker.utils.EntityUtils;
 import io.github.sefiraat.slimetinker.utils.GeneralUtils;
 import io.github.sefiraat.slimetinker.utils.ItemUtils;
 import io.github.sefiraat.slimetinker.utils.ThemeUtils;
+import io.github.thebusybiscuit.slimefun4.implementation.SlimefunPlugin;
 import lombok.experimental.UtilityClass;
+import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.SlimefunItem;
 import me.mrCookieSlime.Slimefun.cscorelib2.data.PersistentDataAPI;
 import org.apache.commons.lang.Validate;
 import org.bukkit.Effect;
@@ -16,24 +18,17 @@ import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.Particle;
 import org.bukkit.entity.Animals;
-import org.bukkit.entity.Breedable;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
-import org.bukkit.event.block.Action;
-import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
 
 import java.time.Instant;
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
-import java.util.Objects;
 import java.util.concurrent.ThreadLocalRandom;
-import java.util.stream.Collectors;
 
 @UtilityClass
 public final class RightClickEvents {
@@ -155,5 +150,29 @@ public final class RightClickEvents {
         }
     }
 
+    public static void rodRefinedIron(EventFriend friend) {
+        friend.setManners(1);
+    }
 
+    public static void plateRefinedIron(EventFriend friend) {
+        friend.setKingsman(friend.getKingsman() + 1);
+        if (friend.getManners() > 0 && friend.getKingsman() >= 4) {
+            // We use helmet to control CD. You HAVE to have all four so using one stops 4 triggers
+            Player p = friend.getPlayer();
+            ItemStack i = friend.getHelmet();
+            Validate.notNull(i, "Helmet doesn't exist but has 4 stacks? I call hax");
+            String cdName = "kingsman";
+            if (!ItemUtils.onCooldown(i, cdName)) {
+                KingsmanSpam task = new KingsmanSpam(p, 10);
+                task.runTaskTimer(SlimeTinker.inst(), 0, 20);
+                ItemUtils.setCooldown(i, cdName, 20 * 60000);
+            } else {
+                p.sendMessage(ThemeUtils.WARNING + "This ability is on cooldown.");
+            }
+        }
+    }
+
+    public static void linksIridium(EventFriend friend) {
+
+    }
 }

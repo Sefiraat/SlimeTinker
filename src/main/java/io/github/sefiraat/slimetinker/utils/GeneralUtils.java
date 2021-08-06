@@ -1,11 +1,9 @@
 package io.github.sefiraat.slimetinker.utils;
 
 import io.github.sefiraat.slimetinker.SlimeTinker;
-import io.github.sefiraat.slimetinker.utils.enums.Temperature;
 import lombok.experimental.UtilityClass;
 import org.bukkit.Location;
 import org.bukkit.World;
-import org.bukkit.block.Biome;
 
 import java.util.Objects;
 import java.util.concurrent.ThreadLocalRandom;

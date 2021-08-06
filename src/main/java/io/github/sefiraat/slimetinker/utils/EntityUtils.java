@@ -7,7 +7,6 @@ import org.bukkit.Particle;
 import org.bukkit.World;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Animals;
-import org.bukkit.entity.Breedable;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
@@ -16,11 +15,8 @@ import org.bukkit.util.Vector;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 import java.util.Map;
-import java.util.function.Predicate;
 
 @UtilityClass
 public final class EntityUtils {
@@ -94,6 +90,31 @@ public final class EntityUtils {
         World world = l.getWorld();
         Validate.notNull(world);
         return ((List<T>) world.getNearbyEntities(l, x, y, z, e -> e.getClass().isInstance(clazz)));
+    }
+
+    @Nullable
+    public static Entity getEntityLookedAtByEntity(LivingEntity lookingEntity) {
+        return getEntityLookedAtByEntityByType(lookingEntity, Entity.class);
+    }
+
+    @Nullable
+    public static <T extends Entity> T getEntityLookedAtByEntityByType(LivingEntity lookingEntity, Class<? extends Entity> entityType) {
+
+        Vector fromLookDir = lookingEntity.getEyeLocation().getDirection();
+        Vector fromEyeLoc = lookingEntity.getEyeLocation().toVector();
+
+        List<Entity> entityList = EntityUtils.getNearbyEntitiesByType(entityType, lookingEntity, 10, 10, 10);
+        for (Entity e : entityList) {
+            if (lookingEntity.hasLineOfSight(e)) {
+                Vector entityLoc = e.getLocation().toVector();
+                Vector pEntVec = entityLoc.subtract(fromEyeLoc);
+                float angle = fromLookDir.angle(pEntVec);
+                if (angle < 0.2f) {
+                    return (T) e;
+                }
+            }
+        }
+        return null;
     }
 
 }

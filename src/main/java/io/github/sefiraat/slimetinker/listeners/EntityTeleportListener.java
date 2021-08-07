@@ -1,6 +1,7 @@
 package io.github.sefiraat.slimetinker.listeners;
 
 import io.github.sefiraat.slimetinker.SlimeTinker;
+import me.mrCookieSlime.Slimefun.cscorelib2.data.PersistentDataAPI;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityTeleportEvent;
@@ -11,7 +12,7 @@ public class EntityTeleportListener implements Listener {
     @SuppressWarnings("unused")
     @EventHandler
     public void onEntityTeleport(EntityTeleportEvent event) {
-        if (event.getEntity().getPersistentDataContainer().has(SlimeTinker.inst().getKeys().getToolFlagTeleport(), PersistentDataType.STRING)) {
+        if (PersistentDataAPI.hasString(event.getEntity(), SlimeTinker.inst().getKeys().getToolFlagTeleport())) {
             event.setCancelled(true);
         }
     }

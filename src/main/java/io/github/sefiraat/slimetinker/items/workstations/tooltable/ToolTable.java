@@ -84,11 +84,11 @@ public class ToolTable extends AbstractTickingContainer {
         ItemStack tool;
 
         ToolDefinition toolDefinition = new ToolDefinition(
-                hm.getPersistentDataContainer().get(SlimeTinker.inst().getKeys().getPartInfoClassType(), PersistentDataType.STRING),
-                hm.getPersistentDataContainer().get(SlimeTinker.inst().getKeys().getPartInfoType(), PersistentDataType.STRING),
-                hm.getPersistentDataContainer().get(SlimeTinker.inst().getKeys().getPartInfoMaterialType(), PersistentDataType.STRING),
-                bm.getPersistentDataContainer().get(SlimeTinker.inst().getKeys().getPartInfoMaterialType(), PersistentDataType.STRING),
-                rm.getPersistentDataContainer().get(SlimeTinker.inst().getKeys().getPartInfoMaterialType(), PersistentDataType.STRING)
+                hm.getPersistentDataContainer().get(SlimeTinker.inst().getKeys().getPartClass(), PersistentDataType.STRING),
+                hm.getPersistentDataContainer().get(SlimeTinker.inst().getKeys().getPartType(), PersistentDataType.STRING),
+                hm.getPersistentDataContainer().get(SlimeTinker.inst().getKeys().getPartMaterial(), PersistentDataType.STRING),
+                bm.getPersistentDataContainer().get(SlimeTinker.inst().getKeys().getPartMaterial(), PersistentDataType.STRING),
+                rm.getPersistentDataContainer().get(SlimeTinker.inst().getKeys().getPartMaterial(), PersistentDataType.STRING)
         );
 
         if (
@@ -147,10 +147,10 @@ public class ToolTable extends AbstractTickingContainer {
         if (itemStack == null || !itemStack.hasItemMeta()) { // No item
             return false;
         }
-        if (!itemStack.getItemMeta().getPersistentDataContainer().has(SlimeTinker.inst().getKeys().getPartInfoClassType(), PersistentDataType.STRING)) { // Not a part
+        if (!itemStack.getItemMeta().getPersistentDataContainer().has(SlimeTinker.inst().getKeys().getPartClass(), PersistentDataType.STRING)) { // Not a part
             return false;
         }
-        String type = itemStack.getItemMeta().getPersistentDataContainer().get(SlimeTinker.inst().getKeys().getPartInfoClassType(), PersistentDataType.STRING);
+        String type = itemStack.getItemMeta().getPersistentDataContainer().get(SlimeTinker.inst().getKeys().getPartClass(), PersistentDataType.STRING);
         assert type != null;
         return type.equals(classType);
     }

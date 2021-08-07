@@ -7,7 +7,9 @@ import lombok.Getter;
 import me.mrCookieSlime.Slimefun.Lists.RecipeType;
 import me.mrCookieSlime.Slimefun.Objects.Category;
 import me.mrCookieSlime.Slimefun.api.SlimefunItemStack;
+import me.mrCookieSlime.Slimefun.cscorelib2.data.PersistentDataAPI;
 import net.md_5.bungee.api.ChatColor;
+import org.apache.commons.lang.Validate;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataContainer;
@@ -41,14 +43,13 @@ public class PartTemplate extends UnplaceableBlock {
     public ItemStack getStack(String material, String partClass, @Nullable String partType, ChatColor color) {
         ItemStack itemStack = this.getItem().clone();
         ItemMeta im = itemStack.getItemMeta();
-        assert im != null;
-        PersistentDataContainer c = im.getPersistentDataContainer();
+        Validate.notNull(im, "Meta null, boo!");
         im.setLore(getLore(material, color));
         im.setDisplayName(color + getName(material));
-        c.set(SlimeTinker.inst().getKeys().getPartInfoMaterialType(), PersistentDataType.STRING, material);
-        c.set(SlimeTinker.inst().getKeys().getPartInfoClassType(), PersistentDataType.STRING, partClass); // Whether the part is HEAD, BINDER or ROD
+        PersistentDataAPI.setString(im, SlimeTinker.inst().getKeys().getPartMaterial(), material);
+        PersistentDataAPI.setString(im, SlimeTinker.inst().getKeys().getPartClass(), partClass);
         if (partType != null) {
-            c.set(SlimeTinker.inst().getKeys().getPartInfoType(), PersistentDataType.STRING, partType); // If HEAD, What tool type is it for?
+            PersistentDataAPI.setString(im, SlimeTinker.inst().getKeys().getPartType(), partType);
         }
         itemStack.setItemMeta(im);
         return itemStack;

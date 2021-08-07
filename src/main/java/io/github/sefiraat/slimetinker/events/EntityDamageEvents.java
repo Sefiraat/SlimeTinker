@@ -1,10 +1,11 @@
 package io.github.sefiraat.slimetinker.events;
 
-import com.sun.tools.javac.jvm.Gen;
 import io.github.sefiraat.slimetinker.SlimeTinker;
 import io.github.sefiraat.slimetinker.events.friend.EventFriend;
 import io.github.sefiraat.slimetinker.utils.EntityUtils;
 import io.github.sefiraat.slimetinker.utils.GeneralUtils;
+import io.github.sefiraat.slimetinker.utils.ItemUtils;
+import io.github.sefiraat.slimetinker.utils.ThemeUtils;
 import io.github.sefiraat.slimetinker.utils.WorldUtils;
 import lombok.experimental.UtilityClass;
 import me.mrCookieSlime.Slimefun.cscorelib2.data.PersistentDataAPI;
@@ -222,7 +223,7 @@ public final class EntityDamageEvents {
     public static void rodOsmium(EventFriend friend) {
         LivingEntity e = (LivingEntity) friend.getDamagedEntity();
         if (e.getType() == EntityType.ENDERMAN) {
-            e.getPersistentDataContainer().set(new NamespacedKey(SlimeTinker.inst(), "ST_STOP_TELEPORT"), PersistentDataType.STRING,"Y");
+            PersistentDataAPI.setString(e, new NamespacedKey(SlimeTinker.inst(), "ST_STOP_TELEPORT"), "Y");
             e.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 100, 5, true, true));
         }
     }
@@ -300,25 +301,13 @@ public final class EntityDamageEvents {
     public static void rodIridium(EventFriend friend) {
 
         ItemStack i = friend.getTool();
-        ItemMeta im = i.getItemMeta();
-        NamespacedKey key = SlimeTinker.inst().getKeys().getTraitsCooldownWarp();
-        assert im != null;
-        PersistentDataContainer c = im.getPersistentDataContainer();
-        long time = System.currentTimeMillis();
-
-        if (c.has(key, PersistentDataType.LONG)) {
-            Long cd = c.get(key, PersistentDataType.LONG);
-            assert cd != null;
-            if (cd > time) {
-                return;
-            }
+        if (!ItemUtils.onCooldown(i, "WARP")) {
+            friend.getDamagedEntity().teleport(friend.getDamagedEntity().getLocation().clone().setDirection(friend.getPlayer().getLocation().getDirection()));
+            ItemUtils.setCooldown(i, "WARP", 20000);
+        } else {
+            friend.getPlayer().sendMessage(ThemeUtils.WARNING + "This skill is on cooldown");
         }
 
-        friend.getDamagedEntity().teleport(friend.getDamagedEntity().getLocation().clone().setDirection(friend.getPlayer().getLocation().getDirection()));
-
-        Instant cd = Instant.ofEpochMilli(time).plusSeconds(20);
-        c.set(key, PersistentDataType.LONG, cd.toEpochMilli());
-        i.setItemMeta(im);
     }
 
     public static void plateMagnesium(EventFriend friend) {

@@ -137,13 +137,9 @@ public class PlayerInteractListener implements Listener {
 
     private void checkArmourPiece(EventFriend friend, ItemStack itemStack) {
 
-        ItemMeta im = itemStack.getItemMeta();
-        Validate.notNull(im, "No item meta, failed isTool check - grr?");
-
-        PersistentDataContainer c = im.getPersistentDataContainer();
-        String matPropertyHead = ItemUtils.getArmourPlateMaterial(c);
-        String matPropertyBinding = ItemUtils.getArmourGambesonMaterial(c);
-        String matPropertyRod = ItemUtils.getArmourLinksMaterial(c);
+        String matPropertyHead = ItemUtils.getArmourPlateMaterial(itemStack);
+        String matPropertyBinding = ItemUtils.getArmourGambesonMaterial(itemStack);
+        String matPropertyRod = ItemUtils.getArmourLinksMaterial(itemStack);
 
         CMManager.getMAP().get(matPropertyHead).runEvent(friend.getEventType(), TraitPartType.PLATE, friend);
         CMManager.getMAP().get(matPropertyBinding).runEvent(friend.getEventType(), TraitPartType.GAMBESON, friend);

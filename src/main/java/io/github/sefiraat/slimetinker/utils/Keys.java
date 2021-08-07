@@ -23,9 +23,9 @@ public class Keys {
     private final NamespacedKey categoryDummy = new NamespacedKey(SlimeTinker.inst(), "slime-tinker-dummy");
 
     // Parts information
-    private final NamespacedKey partInfoMaterialType = new NamespacedKey(SlimeTinker.inst(), "ST_Material");
-    private final NamespacedKey partInfoClassType = new NamespacedKey(SlimeTinker.inst(), "ST_Class");
-    private final NamespacedKey partInfoType = new NamespacedKey(SlimeTinker.inst(), "ST_Type");
+    private final NamespacedKey partMaterial = new NamespacedKey(SlimeTinker.inst(), "ST_Material");
+    private final NamespacedKey partClass = new NamespacedKey(SlimeTinker.inst(), "ST_Class");
+    private final NamespacedKey partType = new NamespacedKey(SlimeTinker.inst(), "ST_Type");
 
     // General Information
     private final NamespacedKey stExpCurrent = new NamespacedKey(SlimeTinker.inst(), "ST_CurrentExp");
@@ -38,7 +38,7 @@ public class Keys {
     private final NamespacedKey stModLevelQuartz = new NamespacedKey(SlimeTinker.inst(), "ST_mod_level_quartz");
     private final NamespacedKey stModLevelDiamond = new NamespacedKey(SlimeTinker.inst(), "ST_mod_level_diamond");
     private final NamespacedKey stModLevelEmerald = new NamespacedKey(SlimeTinker.inst(), "ST_mod_level_emerald");
-    private final NamespacedKey stModLevelObsidian = new NamespacedKey(SlimeTinker.inst(), "ST_mod_level_obsidian");
+    private final NamespacedKey stModLevelReinforced = new NamespacedKey(SlimeTinker.inst(), "ST_mod_level_obsidian");
 
     // Tool information
     private final NamespacedKey toolInfoIsTool = new NamespacedKey(SlimeTinker.inst(), "ST_Tool");

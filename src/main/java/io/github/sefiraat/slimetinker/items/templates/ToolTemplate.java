@@ -10,7 +10,9 @@ import me.mrCookieSlime.Slimefun.Lists.RecipeType;
 import me.mrCookieSlime.Slimefun.Objects.Category;
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.SlimefunItem;
 import me.mrCookieSlime.Slimefun.api.SlimefunItemStack;
+import me.mrCookieSlime.Slimefun.cscorelib2.data.PersistentDataAPI;
 import net.md_5.bungee.api.ChatColor;
+import org.apache.commons.lang.Validate;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -51,15 +53,14 @@ public class ToolTemplate extends SlimefunItem {
 
         itemStack.setType(getMaterial(toolDefinition));
         ItemMeta im = itemStack.getItemMeta();
-        assert im != null;
-        PersistentDataContainer c = im.getPersistentDataContainer();
-        Experience.setupExpNew(c);
-        c.set(SlimeTinker.inst().getKeys().getToolInfoIsTool(), PersistentDataType.STRING, "Y");
-        c.set(SlimeTinker.inst().getKeys().getToolInfoHeadType(), PersistentDataType.STRING, toolDefinition.getClassType());
-        c.set(SlimeTinker.inst().getKeys().getToolInfoToolType(), PersistentDataType.STRING, toolDefinition.getPartType());
-        c.set(SlimeTinker.inst().getKeys().getToolInfoHeadMaterial(), PersistentDataType.STRING, toolDefinition.getHeadMaterial());
-        c.set(SlimeTinker.inst().getKeys().getToolInfoBinderMaterial(), PersistentDataType.STRING, toolDefinition.getBinderMaterial());
-        c.set(SlimeTinker.inst().getKeys().getToolInfoRodMaterial(), PersistentDataType.STRING, toolDefinition.getRodMaterial());
+        Validate.notNull(im, "This meta, it be null!");
+        Experience.setupExpNew(im);
+        PersistentDataAPI.setString(im, SlimeTinker.inst().getKeys().getToolInfoIsTool(), "Y");
+        PersistentDataAPI.setString(im, SlimeTinker.inst().getKeys().getToolInfoHeadType(), toolDefinition.getClassType());
+        PersistentDataAPI.setString(im, SlimeTinker.inst().getKeys().getToolInfoToolType(), toolDefinition.getPartType());
+        PersistentDataAPI.setString(im, SlimeTinker.inst().getKeys().getToolInfoHeadMaterial(), toolDefinition.getHeadMaterial());
+        PersistentDataAPI.setString(im, SlimeTinker.inst().getKeys().getToolInfoBinderMaterial(), toolDefinition.getBinderMaterial());
+        PersistentDataAPI.setString(im, SlimeTinker.inst().getKeys().getToolInfoRodMaterial(), toolDefinition.getRodMaterial());
         im.setDisplayName(getName(toolDefinition));
         itemStack.setItemMeta(im);
         ItemUtils.rebuildTinkerLore(itemStack);
@@ -80,11 +81,7 @@ public class ToolTemplate extends SlimefunItem {
     public static boolean isTool(ItemStack itemStack) {
         return  itemStack != null &&
                 itemStack.getType() != Material.AIR &&
-                itemStack.hasItemMeta() &&
-                itemStack.getItemMeta().getPersistentDataContainer().has(
-                        SlimeTinker.inst().getKeys().getToolInfoIsTool(),
-                        PersistentDataType.STRING
-                );
+                PersistentDataAPI.hasString(itemStack.getItemMeta(), SlimeTinker.inst().getKeys().getToolInfoIsTool());
     }
 
 }

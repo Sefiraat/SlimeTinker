@@ -7,6 +7,7 @@ import io.github.sefiraat.slimetinker.items.componentmaterials.CMManager;
 import io.github.sefiraat.slimetinker.items.componentmaterials.cmrecipes.MoltenResult;
 import io.github.sefiraat.slimetinker.modifiers.Mod;
 import io.github.sefiraat.slimetinker.modifiers.Modifications;
+import io.github.thebusybiscuit.slimefun4.implementation.SlimefunPlugin;
 import lombok.experimental.UtilityClass;
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.SlimefunItem;
 import me.mrCookieSlime.Slimefun.api.SlimefunItemStack;
@@ -93,10 +94,44 @@ public final class ItemUtils {
             return null;
         }
         PersistentDataContainer c = im.getPersistentDataContainer();
-        if (!c.has(SlimeTinker.inst().getKeys().getPartInfoMaterialType(), PersistentDataType.STRING)) {
+        if (!c.has(SlimeTinker.inst().getKeys().getPartMaterial(), PersistentDataType.STRING)) {
             return null;
         }
-        return c.get(SlimeTinker.inst().getKeys().getPartInfoMaterialType(), PersistentDataType.STRING);
+        return c.get(SlimeTinker.inst().getKeys().getPartMaterial(), PersistentDataType.STRING);
+    }
+
+    /**
+     * Gets the part's class (Head, Rod, Binder or Plate, Link, Gambeson)
+     * @param itemStack The {@link ItemStack} part to check
+     * @return Null if not found or the string class.
+     */
+    @Nullable
+    public static String getPartClass(ItemStack itemStack) {
+        ItemMeta im = itemStack.getItemMeta();
+        return im == null ? null : PersistentDataAPI.getString(im, SlimeTinker.inst().getKeys().getPartClass());
+    }
+
+    public static boolean partIsTool(String partClass) {
+        return partClass.equals(IDStrings.HEAD)
+                || partClass.equals(IDStrings.BINDING)
+                || partClass.equals(IDStrings.ROD);
+    }
+
+    public static boolean partIsArmour(String partClass) {
+        return partClass.equals(IDStrings.PLATE)
+                || partClass.equals(IDStrings.GAMBESON)
+                || partClass.equals(IDStrings.LINKS);
+    }
+
+    /**
+     * Gets the part's type (Pick, Shovel // Helm, Chest) etc.)
+     * @param itemStack The {@link ItemStack} part to check
+     * @return Null if not found or the string class.
+     */
+    @Nullable
+    public static String getPartType(ItemStack itemStack) {
+        ItemMeta im = itemStack.getItemMeta();
+        return im == null ? null : PersistentDataAPI.getString(im, SlimeTinker.inst().getKeys().getPartType());
     }
 
     public static void rebuildTinkerLore(ItemStack itemStack) {
@@ -137,7 +172,7 @@ public final class ItemUtils {
         lore.add(ThemeUtils.getLine());
 
         // Active Mods
-        Map<String, Integer> mapAmounts = Modifications.getModificationMap(itemStack);
+        Map<String, Integer> mapAmounts = Modifications.getModificationMapTool(itemStack);
         Map<String, Integer> mapLevels = Modifications.getAllModLevels(itemStack);
 
         for (Map.Entry<String, Integer> entry : mapLevels.entrySet()) {
@@ -189,7 +224,7 @@ public final class ItemUtils {
         lore.add(ThemeUtils.getLine());
 
         // Active Mods
-        Map<String, Integer> mapAmounts = Modifications.getModificationMap(itemStack);
+        Map<String, Integer> mapAmounts = Modifications.getModificationMapArmour(itemStack);
         Map<String, Integer> mapLevels = Modifications.getAllModLevels(itemStack);
 
         for (Map.Entry<String, Integer> entry : mapLevels.entrySet()) {
@@ -313,7 +348,7 @@ public final class ItemUtils {
     public static String getToolBindingMaterial(ItemStack itemStack) {
         ItemMeta im = itemStack.getItemMeta();
         Validate.notNull(im, "ItemStack with no meta provided.");
-        return getToolHeadMaterial(im.getPersistentDataContainer());
+        return getToolBindingMaterial(im.getPersistentDataContainer());
     }
 
     @Nullable
@@ -325,7 +360,7 @@ public final class ItemUtils {
     public static String getToolRodMaterial(ItemStack itemStack) {
         ItemMeta im = itemStack.getItemMeta();
         Validate.notNull(im, "ItemStack with no meta provided.");
-        return getToolHeadMaterial(im.getPersistentDataContainer());
+        return getToolRodMaterial(im.getPersistentDataContainer());
     }
 
     @Nullable
@@ -337,7 +372,7 @@ public final class ItemUtils {
     public static String getToolTypeName(ItemStack itemStack) {
         ItemMeta im = itemStack.getItemMeta();
         Validate.notNull(im, "ItemStack with no meta provided.");
-        return getToolHeadMaterial(im.getPersistentDataContainer());
+        return getToolTypeName(im.getPersistentDataContainer());
     }
 
     @Nullable
@@ -349,7 +384,7 @@ public final class ItemUtils {
     public static String getArmourPlateMaterial(ItemStack itemStack) {
         ItemMeta im = itemStack.getItemMeta();
         Validate.notNull(im, "ItemStack with no meta provided.");
-        return getToolHeadMaterial(im.getPersistentDataContainer());
+        return getArmourPlateMaterial(im.getPersistentDataContainer());
     }
 
     @Nullable
@@ -361,7 +396,7 @@ public final class ItemUtils {
     public static String getArmourGambesonMaterial(ItemStack itemStack) {
         ItemMeta im = itemStack.getItemMeta();
         Validate.notNull(im, "ItemStack with no meta provided.");
-        return getToolHeadMaterial(im.getPersistentDataContainer());
+        return getArmourGambesonMaterial(im.getPersistentDataContainer());
     }
 
     @Nullable
@@ -373,7 +408,7 @@ public final class ItemUtils {
     public static String getArmourLinksMaterial(ItemStack itemStack) {
         ItemMeta im = itemStack.getItemMeta();
         Validate.notNull(im, "ItemStack with no meta provided.");
-        return getToolHeadMaterial(im.getPersistentDataContainer());
+        return getArmourLinksMaterial(im.getPersistentDataContainer());
     }
 
     @Nullable
@@ -385,7 +420,7 @@ public final class ItemUtils {
     public static String getArmourTypeName(ItemStack itemStack) {
         ItemMeta im = itemStack.getItemMeta();
         Validate.notNull(im, "ItemStack with no meta provided.");
-        return getToolHeadMaterial(im.getPersistentDataContainer());
+        return getArmourTypeName(im.getPersistentDataContainer());
     }
 
     @Nullable
@@ -410,10 +445,7 @@ public final class ItemUtils {
     }
 
     public boolean doesUnequipWhenBroken(ItemStack itemStack) {
-        String plateMat = getArmourPlateMaterial(itemStack);
-        String gambesonMat = getArmourGambesonMaterial(itemStack);
-        String linksMat = getArmourLinksMaterial(itemStack);
-        return !plateMat.equals(IDStrings.DURALIUM);
+        return !getArmourPlateMaterial(itemStack).equals(IDStrings.DURALIUM);
     }
 
     /**
@@ -509,8 +541,6 @@ public final class ItemUtils {
         if (isTool(itemStack)) {
             return getToolRodMaterial(itemStack).equals(IDStrings.COPPER)
                     || getToolRodMaterial(itemStack).equals(IDStrings.SINGCOPPER);
-        } else if (isArmour(itemStack)) {
-            return false;
         } else {
             return false;
         }
@@ -519,8 +549,6 @@ public final class ItemUtils {
     public static boolean isConductive1(ItemStack itemStack) {
         if (isTool(itemStack)) {
             return getToolRodMaterial(itemStack).equals(IDStrings.COPPER);
-        } else if (isArmour(itemStack)) {
-            return false;
         } else {
             return false;
         }
@@ -529,8 +557,6 @@ public final class ItemUtils {
     public static boolean isConductive2(ItemStack itemStack) {
         if (isTool(itemStack)) {
             return getToolRodMaterial(itemStack).equals(IDStrings.SINGCOPPER);
-        } else if (isArmour(itemStack)) {
-            return false;
         } else {
             return false;
         }
@@ -651,7 +677,7 @@ public final class ItemUtils {
     public static void incrementRandomEnchant(ItemStack i) {
         ItemMeta im = i.getItemMeta();
         Validate.notNull(im, "Mate is null, TIME TO GET GOT!");
-        Enchantment randEnchant = Enchantment.values()[(int) (Math.random()*Enchantment.values().length)];
+        Enchantment randEnchant = Enchantment.values()[(GeneralUtils.roll(Enchantment.values().length))];
         if (im.hasEnchant(randEnchant)) {
             im.addEnchant(randEnchant, i.getEnchantmentLevel(randEnchant) + 1, true);
         } else {
@@ -676,6 +702,19 @@ public final class ItemUtils {
         long time = System.currentTimeMillis();
         long cd = time + duration;
         PersistentDataAPI.setLong(im, key, cd);
+        i.setItemMeta(im);
+    }
+
+    public static boolean isToolExplosive(ItemStack itemStack) {
+        ItemMeta im = itemStack.getItemMeta();
+        Validate.notNull(im, "Meta is null, nerd.");
+        return isToolExplosive(im.getPersistentDataContainer());
+    }
+
+    public static boolean isToolExplosive(PersistentDataContainer c) {
+        NamespacedKey sfIDKey = new NamespacedKey(SlimefunPlugin.instance(), "slimefun_item");
+        String sID = c.get(sfIDKey, PersistentDataType.STRING);
+        return sID.contains("_EXP");
     }
 
 }

@@ -1,5 +1,6 @@
 package io.github.sefiraat.slimetinker.events;
 
+import com.sun.tools.javac.jvm.Gen;
 import io.github.sefiraat.slimetinker.events.friend.EventFriend;
 import io.github.sefiraat.slimetinker.listeners.BlockMap;
 import io.github.sefiraat.slimetinker.utils.GeneralUtils;
@@ -178,17 +179,13 @@ public final class BlockBreakEvents {
     }
 
     public static void headVoid(EventFriend friend) {
-        ItemMeta im = friend.getTool().getItemMeta();
-        assert im != null;
-        PersistentDataContainer c = im.getPersistentDataContainer();
-        String toolType = ItemUtils.getToolTypeName(c);
+        String toolType = ItemUtils.getToolTypeName(friend.getTool());
         Map<Material, String> m = BlockMap.getMaterialMap();
         Block b = friend.getBlock();
         if (m.containsKey(b.getType()) && m.get(b.getType()).equals(toolType)) {
-            int rnd = ThreadLocalRandom.current().nextInt(1, 11);
-            if (rnd == 1) {
+            if (GeneralUtils.testChance(1, 10)) {
                 ItemStack i;
-                int rnd2 = ThreadLocalRandom.current().nextInt(1, 1001);
+                int rnd2 = GeneralUtils.roll(1000);
                 if (rnd2 > 975) {
                     i = new ItemStack(Material.ANCIENT_DEBRIS);
                 } else if (rnd2 > 900) {

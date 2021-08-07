@@ -7,9 +7,7 @@ import io.github.sefiraat.slimetinker.utils.EntityUtils;
 import io.github.sefiraat.slimetinker.utils.GeneralUtils;
 import io.github.sefiraat.slimetinker.utils.ItemUtils;
 import io.github.sefiraat.slimetinker.utils.ThemeUtils;
-import io.github.thebusybiscuit.slimefun4.implementation.SlimefunPlugin;
 import lombok.experimental.UtilityClass;
-import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.SlimefunItem;
 import me.mrCookieSlime.Slimefun.cscorelib2.data.PersistentDataAPI;
 import org.apache.commons.lang.Validate;
 import org.bukkit.Effect;
@@ -77,35 +75,21 @@ public final class RightClickEvents {
     public static void bindVex(EventFriend friend) {
         Player p = friend.getPlayer();
         ItemStack i = friend.getTool();
-        ItemMeta im = i.getItemMeta();
-        NamespacedKey key = SlimeTinker.inst().getKeys().getTraitsCooldownNoClip();
-        assert im != null;
-        PersistentDataContainer c = im.getPersistentDataContainer();
-        long time = System.currentTimeMillis();
-        if (c.has(key, PersistentDataType.LONG)) {
-            Long cd = c.get(key, PersistentDataType.LONG);
-            assert cd != null;
-            if (cd > time) {
-                p.sendMessage(ThemeUtils.WARNING + "NoClip is on cooldown!");
+
+        if (!ItemUtils.onCooldown(i, "NOCLIP")) {
+            int rndX = ThreadLocalRandom.current().nextInt(-25,26);
+            int rndY = ThreadLocalRandom.current().nextInt(0,5);
+            int rndZ = ThreadLocalRandom.current().nextInt(-25,26);
+            Location location = p.getLocation().clone().add(rndX, rndY, rndZ);
+            if (p.getWorld().getBlockAt(location).getType() == Material.AIR) {
+                p.teleport(location);
+                p.getWorld().playEffect(friend.getPlayer().getLocation(), Effect.ENDEREYE_LAUNCH, 10);
+                ItemUtils.setCooldown(i, "NOCLIP", 300000);
+            } else {
+                p.sendMessage(ThemeUtils.WARNING + "Couldn't teleport! Try again.");
                 return;
             }
         }
-
-        int rndX = ThreadLocalRandom.current().nextInt(-25,26);
-        int rndY = ThreadLocalRandom.current().nextInt(0,5);
-        int rndZ = ThreadLocalRandom.current().nextInt(-25,26);
-        Location location = p.getLocation().clone().add(rndX, rndY, rndZ);
-        if (p.getWorld().getBlockAt(location).getType() == Material.AIR) {
-            p.teleport(location);
-            p.getWorld().playEffect(friend.getPlayer().getLocation(), Effect.ENDEREYE_LAUNCH, 10);
-        } else {
-            p.sendMessage(ThemeUtils.WARNING + "Couldn't teleport! Try again.");
-            return;
-        }
-
-        Instant cd = Instant.ofEpochMilli(time).plusSeconds(300);
-        c.set(key, PersistentDataType.LONG, cd.toEpochMilli());
-        i.setItemMeta(im);
     }
 
     public static void plateInfinity(EventFriend friend) {
@@ -146,7 +130,7 @@ public final class RightClickEvents {
                 EntityUtils.makeBreed(animals.get(first));
                 EntityUtils.makeBreed(animals.get(second));
             }
-            ItemUtils.setCooldown(i, cdName, cdMinutes * 60000);
+            ItemUtils.setCooldown(i, cdName, cdMinutes * 60000L);
         }
     }
 
@@ -165,7 +149,7 @@ public final class RightClickEvents {
             if (!ItemUtils.onCooldown(i, cdName)) {
                 KingsmanSpam task = new KingsmanSpam(p, 10);
                 task.runTaskTimer(SlimeTinker.inst(), 0, 20);
-                ItemUtils.setCooldown(i, cdName, 20 * 60000);
+                ItemUtils.setCooldown(i, cdName, 20 * 60000L);
             } else {
                 p.sendMessage(ThemeUtils.WARNING + "This ability is on cooldown.");
             }

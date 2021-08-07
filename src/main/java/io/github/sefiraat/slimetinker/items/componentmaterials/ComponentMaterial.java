@@ -21,7 +21,9 @@ import io.github.sefiraat.slimetinker.utils.ThemeUtils;
 import io.github.sefiraat.slimetinker.utils.enums.ThemeItemType;
 import lombok.Data;
 import me.mrCookieSlime.Slimefun.api.SlimefunItemStack;
+import me.mrCookieSlime.Slimefun.cscorelib2.data.PersistentDataAPI;
 import net.md_5.bungee.api.ChatColor;
+import org.apache.commons.lang.Validate;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -192,11 +194,13 @@ public class ComponentMaterial {
                 getColor() + titName + ThemeUtils.ITEM_PART +  " Binding",
                 ThemeUtils.PASSIVE + "A binding made of " + titName + "."
         );
+
         ItemMeta im = i.getItemMeta();
-        assert im != null;
-        PersistentDataContainer c = im.getPersistentDataContainer();
-        c.set(SlimeTinker.inst().getKeys().getPartInfoMaterialType(), PersistentDataType.STRING, name);
-        c.set(SlimeTinker.inst().getKeys().getPartInfoClassType(), PersistentDataType.STRING, IDStrings.BINDING);
+        Validate.notNull(im, "Meta is null, impossible but meh!");
+
+        PersistentDataAPI.setString(im, SlimeTinker.inst().getKeys().getPartMaterial(), name);
+        PersistentDataAPI.setString(im, SlimeTinker.inst().getKeys().getPartClass(), IDStrings.BINDING);
+
         i.setItemMeta(im);
         return i;
     }
@@ -233,11 +237,12 @@ public class ComponentMaterial {
                 getColor() + titName + ThemeUtils.ITEM_PART +  " Gambeson",
                 ThemeUtils.PASSIVE + "A gambeson made of " + titName + "."
         );
+
         ItemMeta im = i.getItemMeta();
-        assert im != null;
-        PersistentDataContainer c = im.getPersistentDataContainer();
-        c.set(SlimeTinker.inst().getKeys().getPartInfoMaterialType(), PersistentDataType.STRING, name);
-        c.set(SlimeTinker.inst().getKeys().getPartInfoClassType(), PersistentDataType.STRING, IDStrings.GAMBESON);
+        Validate.notNull(im, "Meta is null, nope, not happening!");
+
+        PersistentDataAPI.setString(im, SlimeTinker.inst().getKeys().getPartMaterial(), name);
+        PersistentDataAPI.setString(im, SlimeTinker.inst().getKeys().getPartClass(), IDStrings.GAMBESON);
         i.setItemMeta(im);
         return i;
     }

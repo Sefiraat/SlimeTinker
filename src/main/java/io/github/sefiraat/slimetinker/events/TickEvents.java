@@ -576,7 +576,7 @@ public final class TickEvents {
                 if (SlimefunPlugin.getProtectionManager().hasPermission(p, b, ProtectableAction.PLACE_BLOCK)) {
                     if (b.getType() == Material.LAVA) {
                         b.setType(Material.MAGMA_BLOCK);
-                        RemoveMagmaBlock task = new RemoveMagmaBlock(b, p);
+                        RemoveMagmaBlock task = new RemoveMagmaBlock(b);
                         task.runTaskLater(SlimeTinker.inst(), 200);
                     }
                 }

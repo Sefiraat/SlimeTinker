@@ -1,6 +1,5 @@
 package io.github.sefiraat.slimetinker.events;
 
-import com.sun.tools.javac.jvm.Gen;
 import io.github.sefiraat.slimetinker.SlimeTinker;
 import io.github.sefiraat.slimetinker.events.friend.EventFriend;
 import io.github.sefiraat.slimetinker.items.Materials;
@@ -114,32 +113,24 @@ public final class PlayerDamagedEvents {
         Player p = friend.getPlayer();
 
         if (friend.getInitialDamage() >= p.getHealth()) {
-            ItemStack i = friend.getTool();
-            ItemMeta im = i.getItemMeta();
-            NamespacedKey key = SlimeTinker.inst().getKeys().getTraitsCooldownProtective();
-            assert im != null;
-            PersistentDataContainer c = im.getPersistentDataContainer();
-            long time = System.currentTimeMillis();
 
-            if (c.has(key, PersistentDataType.LONG)) {
-                Long cd = c.get(key, PersistentDataType.LONG);
-                assert cd != null;
-                if (cd > time) {
-                    return;
-                }
+            ItemStack i = friend.getTool();
+
+            if (!ItemUtils.onCooldown(i, "PROTECTIVE")) {
+                p.setHealth(1);
+                friend.setDamageMod(0);
+                Particle.DustOptions dustOptions = new Particle.DustOptions(Color.fromRGB(20,20,20), 2);
+                p.getWorld().spawnParticle(Particle.REDSTONE, p.getLocation(), 30, 3, 3, 3, 1, dustOptions);
+                Particle.DustOptions dustOptions2 = new Particle.DustOptions(Color.fromRGB(1,1,1), 2);
+                p.getWorld().spawnParticle(Particle.REDSTONE, p.getLocation(), 30, 3, 3, 3, 1, dustOptions2);
+                Particle.DustOptions dustOptions3 = new Particle.DustOptions(Color.fromRGB(40,40,40), 2);
+                p.getWorld().spawnParticle(Particle.REDSTONE, p.getLocation(), 30, 3, 3, 3, 1, dustOptions3);
+                p.sendMessage(ThemeUtils.WARNING + "Protective has saved you from death. It's now on cooldown - take care!");
+                ItemUtils.setCooldown(i, "PROTECTIVE", 1200000);
+            } else {
+                p.sendMessage(ThemeUtils.WARNING + "Skill is on cooldown");
             }
-            p.setHealth(1);
-            friend.setDamageMod(0);
-            Particle.DustOptions dustOptions = new Particle.DustOptions(Color.fromRGB(20,20,20), 2);
-            p.getWorld().spawnParticle(Particle.REDSTONE, p.getLocation(), 30, 3, 3, 3, 1, dustOptions);
-            Particle.DustOptions dustOptions2 = new Particle.DustOptions(Color.fromRGB(1,1,1), 2);
-            p.getWorld().spawnParticle(Particle.REDSTONE, p.getLocation(), 30, 3, 3, 3, 1, dustOptions2);
-            Particle.DustOptions dustOptions3 = new Particle.DustOptions(Color.fromRGB(40,40,40), 2);
-            p.getWorld().spawnParticle(Particle.REDSTONE, p.getLocation(), 30, 3, 3, 3, 1, dustOptions3);
-            Instant cd = Instant.ofEpochMilli(time).plusSeconds(1200);
-            c.set(key, PersistentDataType.LONG, cd.toEpochMilli());
-            p.sendMessage(ThemeUtils.WARNING + "Protective has saved you from death. It's now on cooldown - take care!");
-            i.setItemMeta(im);
+
         }
     }
 

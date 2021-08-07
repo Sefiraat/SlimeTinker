@@ -8,7 +8,9 @@ import lombok.Getter;
 import me.mrCookieSlime.Slimefun.Lists.RecipeType;
 import me.mrCookieSlime.Slimefun.Objects.Category;
 import me.mrCookieSlime.Slimefun.api.SlimefunItemStack;
+import me.mrCookieSlime.Slimefun.cscorelib2.data.PersistentDataAPI;
 import net.md_5.bungee.api.ChatColor;
+import org.apache.commons.lang.Validate;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.ItemStack;
@@ -44,12 +46,12 @@ public class RepairkitTemplate extends UnplaceableBlock {
         ItemStack itemStack = this.getItem().clone();
         itemStack.setType(Material.CHEST_MINECART);
         ItemMeta im = itemStack.getItemMeta();
-        assert im != null;
-        PersistentDataContainer c = im.getPersistentDataContainer();
+        Validate.notNull(im, "Meta be null y'all!");
         im.setLore(getLore(material, color));
         im.setDisplayName(color + getName(material));
-        c.set(SlimeTinker.inst().getKeys().getPartInfoMaterialType(), PersistentDataType.STRING, material);
-        c.set(SlimeTinker.inst().getKeys().getPartInfoClassType(), PersistentDataType.STRING, partClass);
+        PersistentDataAPI.setString(im, SlimeTinker.inst().getKeys().getPartMaterial(), material);
+        PersistentDataAPI.setString(im, SlimeTinker.inst().getKeys().getPartClass(), partClass);
+
         itemStack.setItemMeta(im);
         return itemStack;
     }
@@ -60,10 +62,10 @@ public class RepairkitTemplate extends UnplaceableBlock {
     }
 
     public static boolean isRepairKit(ItemStack itemStack) {
-        NamespacedKey key = SlimeTinker.inst().getKeys().getPartInfoClassType();
-        return itemStack.hasItemMeta() &&
-                itemStack.getItemMeta().getPersistentDataContainer().has(key, PersistentDataType.STRING) &&
-                itemStack.getItemMeta().getPersistentDataContainer().get(key, PersistentDataType.STRING).equals(IDStrings.REPAIR);
+        NamespacedKey key = SlimeTinker.inst().getKeys().getPartClass();
+        ItemMeta im = itemStack.getItemMeta();
+        Validate.notNull(im, "Meta is null, wrong wrong wrong.");
+        return  PersistentDataAPI.getString(im, key).equals(IDStrings.REPAIR);
     }
 
 }

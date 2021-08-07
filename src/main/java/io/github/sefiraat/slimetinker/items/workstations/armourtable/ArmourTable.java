@@ -105,11 +105,11 @@ public class ArmourTable extends AbstractContainer {
         ItemStack armour;
 
         ArmourDefinition armourDefinition = new ArmourDefinition(
-                PersistentDataAPI.getString(pm, keys.getPartInfoClassType()),
-                PersistentDataAPI.getString(pm, keys.getPartInfoType()),
-                PersistentDataAPI.getString(pm, keys.getPartInfoMaterialType()),
-                PersistentDataAPI.getString(gm, keys.getPartInfoMaterialType()),
-                PersistentDataAPI.getString(lm, keys.getPartInfoMaterialType())
+                PersistentDataAPI.getString(pm, keys.getPartClass()),
+                PersistentDataAPI.getString(pm, keys.getPartType()),
+                PersistentDataAPI.getString(pm, keys.getPartMaterial()),
+                PersistentDataAPI.getString(gm, keys.getPartMaterial()),
+                PersistentDataAPI.getString(lm, keys.getPartMaterial())
         );
 
         SlimeTinker.inst().getLogger().info(armourDefinition.getClassType());
@@ -143,10 +143,10 @@ public class ArmourTable extends AbstractContainer {
         if (itemStack == null || !itemStack.hasItemMeta()) { // No item
             return false;
         }
-        if (!itemStack.getItemMeta().getPersistentDataContainer().has(SlimeTinker.inst().getKeys().getPartInfoClassType(), PersistentDataType.STRING)) { // Not a part
+        if (!itemStack.getItemMeta().getPersistentDataContainer().has(SlimeTinker.inst().getKeys().getPartClass(), PersistentDataType.STRING)) { // Not a part
             return false;
         }
-        String type = itemStack.getItemMeta().getPersistentDataContainer().get(SlimeTinker.inst().getKeys().getPartInfoClassType(), PersistentDataType.STRING);
+        String type = itemStack.getItemMeta().getPersistentDataContainer().get(SlimeTinker.inst().getKeys().getPartClass(), PersistentDataType.STRING);
         assert type != null;
         return type.equals(classType);
     }

@@ -4,6 +4,7 @@ import io.github.sefiraat.slimetinker.SlimeTinker;
 import io.github.sefiraat.slimetinker.items.Guide;
 import io.github.sefiraat.slimetinker.modifiers.Modifications;
 import lombok.experimental.UtilityClass;
+import me.mrCookieSlime.Slimefun.cscorelib2.data.PersistentDataAPI;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -20,11 +21,11 @@ public final class Experience {
     public static final double EXP_LEVEL_BASE = 100;
     public static final double EXP_GROWTH = 1.3;
 
-    public static void setupExpNew(PersistentDataContainer c) {
-        c.set(SlimeTinker.inst().getKeys().getStExpCurrent(), PersistentDataType.INTEGER, 0);
-        c.set(SlimeTinker.inst().getKeys().getStExpRequired(), PersistentDataType.DOUBLE, EXP_LEVEL_BASE);
-        c.set(SlimeTinker.inst().getKeys().getStLevel(), PersistentDataType.INTEGER, 0);
-        c.set(SlimeTinker.inst().getKeys().getStModSlots(), PersistentDataType.INTEGER, 0);
+    public static void setupExpNew(ItemMeta im) {
+        PersistentDataAPI.setInt(im, SlimeTinker.inst().getKeys().getStExpCurrent(), 0);
+        PersistentDataAPI.setDouble(im, SlimeTinker.inst().getKeys().getStExpRequired(), EXP_LEVEL_BASE);
+        PersistentDataAPI.setInt(im, SlimeTinker.inst().getKeys().getStLevel(), 0);
+        PersistentDataAPI.setInt(im, SlimeTinker.inst().getKeys().getStModSlots(), 0);
     }
 
     public static void addExp(ItemStack itemStack, int amount, Player player, boolean tool) {

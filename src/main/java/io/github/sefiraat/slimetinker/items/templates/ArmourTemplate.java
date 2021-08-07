@@ -10,7 +10,9 @@ import io.github.thebusybiscuit.slimefun4.implementation.items.blocks.Unplaceabl
 import me.mrCookieSlime.Slimefun.Lists.RecipeType;
 import me.mrCookieSlime.Slimefun.Objects.Category;
 import me.mrCookieSlime.Slimefun.api.SlimefunItemStack;
+import me.mrCookieSlime.Slimefun.cscorelib2.data.PersistentDataAPI;
 import net.md_5.bungee.api.ChatColor;
+import org.apache.commons.lang.Validate;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -49,15 +51,15 @@ public class ArmourTemplate extends UnplaceableBlock {
 
         itemStack.setType(getMaterial(armourDefinition));
         ItemMeta im = itemStack.getItemMeta();
-        assert im != null;
-        PersistentDataContainer c = im.getPersistentDataContainer();
-        Experience.setupExpNew(c);
-        c.set(SlimeTinker.inst().getKeys().getArmourInfoIsArmour(), PersistentDataType.STRING, "Y");
-        c.set(SlimeTinker.inst().getKeys().getArmourInfoPlateType(), PersistentDataType.STRING, armourDefinition.getClassType());
-        c.set(SlimeTinker.inst().getKeys().getArmourInfoArmourType(), PersistentDataType.STRING, armourDefinition.getPartType());
-        c.set(SlimeTinker.inst().getKeys().getArmourInfoPlateMaterial(), PersistentDataType.STRING, armourDefinition.getPlateMaterial());
-        c.set(SlimeTinker.inst().getKeys().getArmourInfoGambesonMaterial(), PersistentDataType.STRING, armourDefinition.getGambesonMaterial());
-        c.set(SlimeTinker.inst().getKeys().getArmourInfoLinksMaterial(), PersistentDataType.STRING, armourDefinition.getLinksMaterial());
+        Validate.notNull(im, "Meta is null, whoops!");
+        Experience.setupExpNew(im);
+        PersistentDataAPI.setString(im, SlimeTinker.inst().getKeys().getArmourInfoIsArmour(), "Y");
+        PersistentDataAPI.setString(im, SlimeTinker.inst().getKeys().getArmourInfoPlateType(), armourDefinition.getClassType());
+        PersistentDataAPI.setString(im, SlimeTinker.inst().getKeys().getArmourInfoArmourType(), armourDefinition.getPartType());
+        PersistentDataAPI.setString(im, SlimeTinker.inst().getKeys().getArmourInfoPlateMaterial(), armourDefinition.getPlateMaterial());
+        PersistentDataAPI.setString(im, SlimeTinker.inst().getKeys().getArmourInfoGambesonMaterial(), armourDefinition.getGambesonMaterial());
+        PersistentDataAPI.setString(im, SlimeTinker.inst().getKeys().getArmourInfoLinksMaterial(), armourDefinition.getLinksMaterial());
+
         im.setDisplayName(getName(armourDefinition));
         itemStack.setItemMeta(im);
         ItemUtils.rebuildTinkerLore(itemStack);

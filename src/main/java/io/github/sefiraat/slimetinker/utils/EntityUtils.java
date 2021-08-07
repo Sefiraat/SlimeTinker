@@ -50,7 +50,7 @@ public final class EntityUtils {
 
     public static double getFacing(Player p, Entity e) {
         Vector pd = p.getLocation().getDirection();
-        Vector ed = p.getLocation().getDirection();
+        Vector ed = e.getLocation().getDirection();
         double x = (pd.getX() * ed.getZ()) - (pd.getZ() * ed.getX());
         double z = (pd.getX() * ed.getX()) + (pd.getZ() * ed.getZ());
         double a = Math.atan2(x, z);

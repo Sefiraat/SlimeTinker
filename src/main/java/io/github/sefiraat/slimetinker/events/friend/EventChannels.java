@@ -33,14 +33,10 @@ public class EventChannels {
 
         friend.setTool(i);
         friend.setActiveFriendElement(ActiveFriendElement.TOOL);
-        Validate.notNull(friend.getTool(), "Tool is null, which isn't possible!");
-        ItemMeta im = friend.getTool().getItemMeta();
-        Validate.notNull(im, "No item meta, failed isTool check - grr?");
 
-        PersistentDataContainer c = im.getPersistentDataContainer();
-        String matPropertyHead = ItemUtils.getToolHeadMaterial(c);
-        String matPropertyBinding = ItemUtils.getToolBindingMaterial(c);
-        String matPropertyRod = ItemUtils.getToolRodMaterial(c);
+        String matPropertyHead = ItemUtils.getToolHeadMaterial(i);
+        String matPropertyBinding = ItemUtils.getToolBindingMaterial(i);
+        String matPropertyRod = ItemUtils.getToolRodMaterial(i);
 
         CMManager.getMAP().get(matPropertyHead).runEvent(friend.getEventType(), TraitPartType.HEAD, friend);
         CMManager.getMAP().get(matPropertyBinding).runEvent(friend.getEventType(), TraitPartType.BINDER, friend);
@@ -114,13 +110,10 @@ public class EventChannels {
     public static void checkArmourPiece(EventFriend friend) {
 
         ItemStack i = friend.getActiveStack();
-        ItemMeta im = i.getItemMeta();
-        Validate.notNull(im, "No item meta, failed isTool check - grr?");
 
-        PersistentDataContainer c = im.getPersistentDataContainer();
-        String matPropertyHead = ItemUtils.getArmourPlateMaterial(c);
-        String matPropertyBinding = ItemUtils.getArmourGambesonMaterial(c);
-        String matPropertyRod = ItemUtils.getArmourLinksMaterial(c);
+        String matPropertyHead = ItemUtils.getArmourPlateMaterial(i);
+        String matPropertyBinding = ItemUtils.getArmourGambesonMaterial(i);
+        String matPropertyRod = ItemUtils.getArmourLinksMaterial(i);
 
         CMManager.getMAP().get(matPropertyHead).runEvent(friend.getEventType(), TraitPartType.PLATE, friend);
         CMManager.getMAP().get(matPropertyBinding).runEvent(friend.getEventType(), TraitPartType.GAMBESON, friend);

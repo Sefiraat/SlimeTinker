@@ -5,7 +5,8 @@ import lombok.experimental.UtilityClass;
 @UtilityClass
 public final class IDStrings {
 
-    // Vanilla + Core SF
+    // TODO Collapse into Map and then form command completions from this
+    // Vanilla + Core SF + Tinkers
     public static final String IRON = "IRON";
     public static final String GOLD = "GOLD";
     public static final String COPPER = "COPPER";
@@ -43,6 +44,7 @@ public final class IDStrings {
     public static final String REDSTONE_ALLOY = "REDSTONE_ALLOY";
     public static final String SILICON = "SILICON";
     public static final String FERROSILICON = "FERROSILICON";
+    public static final String BOOMERITE = "BOOMERITE";
 
     // Infinity Expansion
     public static final String VOID = "VOID";

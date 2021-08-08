@@ -28,10 +28,7 @@ public class EffectTick extends BukkitRunnable {
             ItemStack heldItem = player.getInventory().getItemInMainHand();
 
             Map<PotionEffectType, Integer> potionEffects = new HashMap<>();
-            EventFriend friend = new EventFriend();
-
-            friend.setPlayer(player);
-            friend.setEventType(TraitEventType.TICK);
+            EventFriend friend = new EventFriend(player, TraitEventType.TICK);
 
             // Properties
             checkTool(friend);

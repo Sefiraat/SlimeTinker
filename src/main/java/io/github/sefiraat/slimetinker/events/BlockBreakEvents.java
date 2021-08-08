@@ -220,7 +220,7 @@ public final class BlockBreakEvents {
     }
 
     public static void bindSilicon(EventFriend friend) {
-        friend.setToolExpMod(friend.getToolExpMod() + (friend.getToolExpMod() * (friend.getToolLevel() * 0.05)));
+        friend.setToolExpMod(friend.getToolExpMod() + (friend.getToolExpMod() * (friend.getActiveLevel() * 0.05)));
     }
 
     public static void headScrap(EventFriend friend) {
@@ -246,7 +246,7 @@ public final class BlockBreakEvents {
         }
     }
 
-    public static void platesBronze(EventFriend friend) {
+    public static void plateBronze(EventFriend friend) {
         Block b = friend.getBlock();
         if (SlimefunTag.CROPS.isTagged(b.getType())) {
             Optional<ItemStack> opStack = b.getDrops().stream().findFirst();
@@ -261,5 +261,9 @@ public final class BlockBreakEvents {
     public static void linksAdamantite(EventFriend friend) {
         friend.incrementExpMod(0.1);
         friend.setPlayerExpMod(friend.getPlayerExpMod() + 0.1);
+    }
+
+    public static void binderLeather(EventFriend friend) {
+        friend.incrementExpMod(0.5);
     }
 }

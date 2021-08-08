@@ -34,12 +34,10 @@ public class PlayerDamagedListener implements Listener {
 
         Player player = (Player) event.getEntity();
 
-        EventFriend friend = new EventFriend();
+        EventFriend friend = new EventFriend(player, TraitEventType.PLAYER_DAMAGED);
 
-        friend.setPlayer(player);
         friend.setCause(event.getCause());
         friend.setInitialDamage(event.getDamage());
-        friend.setEventType(TraitEventType.PLAYER_DAMAGED);
 
         // Properties
         checkTool(friend);
@@ -66,13 +64,11 @@ public class PlayerDamagedListener implements Listener {
 
         Player player = (Player) event.getEntity();
 
-        EventFriend friend = new EventFriend();
+        EventFriend friend = new EventFriend(player, TraitEventType.PLAYER_DAMAGED);
 
-        friend.setPlayer(player);
         friend.setDamagingEntity(event.getDamager());
         friend.setCause(event.getCause());
         friend.setInitialDamage(event.getDamage());
-        friend.setEventType(TraitEventType.PLAYER_DAMAGED);
 
         // Properties
         checkTool(friend);

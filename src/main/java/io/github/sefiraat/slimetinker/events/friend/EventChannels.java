@@ -4,6 +4,7 @@ import io.github.sefiraat.slimetinker.SlimeTinker;
 import io.github.sefiraat.slimetinker.items.componentmaterials.CMManager;
 import io.github.sefiraat.slimetinker.utils.Experience;
 import io.github.sefiraat.slimetinker.utils.ItemUtils;
+import io.github.sefiraat.slimetinker.utils.ThemeUtils;
 import lombok.experimental.UtilityClass;
 import org.apache.commons.lang.Validate;
 import org.bukkit.inventory.ItemStack;
@@ -31,6 +32,12 @@ public class EventChannels {
             return;
         }
 
+        if (eventShouldCancelIfBroken(i, friend.getEventType())) {
+            friend.setCancelEvent(true);
+            friend.getPlayer().sendMessage(ThemeUtils.WARNING + "Your tool is broken, you should really repair it!");
+            return;
+        }
+
         friend.setTool(i);
         friend.setActiveFriendElement(ActiveFriendElement.TOOL);
 
@@ -44,6 +51,12 @@ public class EventChannels {
 
     }
 
+    private boolean eventShouldCancelIfBroken(ItemStack i, TraitEventType type) {
+        return
+                (ItemUtils.isTinkersBroken(i) && !ItemUtils.worksWhenBroken(i))
+                && (type == TraitEventType.BLOCK_BREAK || type == TraitEventType.ENTITY_DAMAGED);
+    }
+
     public static void checkArmour(EventFriend friend) {
         checkHelm(friend);
         checkChestplate(friend);
@@ -55,7 +68,7 @@ public class EventChannels {
 
         ItemStack i = friend.getPlayer().getInventory().getHelmet();
 
-        if (!ItemUtils.isArmour(i)) {
+        if (!ItemUtils.isArmour(i) || (ItemUtils.isTinkersBroken(i) && !ItemUtils.worksWhenBroken(i))) {
             return;
         }
 
@@ -69,7 +82,7 @@ public class EventChannels {
 
         ItemStack i = friend.getPlayer().getInventory().getChestplate();
 
-        if (!ItemUtils.isArmour(i)) {
+        if (!ItemUtils.isArmour(i) || (ItemUtils.isTinkersBroken(i) && !ItemUtils.worksWhenBroken(i))) {
             return;
         }
 
@@ -83,7 +96,7 @@ public class EventChannels {
 
         ItemStack i = friend.getPlayer().getInventory().getLeggings();
 
-        if (!ItemUtils.isArmour(i)) {
+        if (!ItemUtils.isArmour(i) || (ItemUtils.isTinkersBroken(i) && !ItemUtils.worksWhenBroken(i))) {
             return;
         }
 
@@ -97,7 +110,7 @@ public class EventChannels {
 
         ItemStack i = friend.getPlayer().getInventory().getBoots();
 
-        if (!ItemUtils.isArmour(i)) {
+        if (!ItemUtils.isArmour(i) || (ItemUtils.isTinkersBroken(i) && !ItemUtils.worksWhenBroken(i))) {
             return;
         }
 

@@ -4,6 +4,7 @@ import io.github.sefiraat.slimetinker.events.BlockBreakEvents;
 import io.github.sefiraat.slimetinker.events.DurabilityEvents;
 import io.github.sefiraat.slimetinker.events.EntityDamageEvents;
 import io.github.sefiraat.slimetinker.events.PlayerDamagedEvents;
+import io.github.sefiraat.slimetinker.events.RightClickEvents;
 import io.github.sefiraat.slimetinker.events.TickEvents;
 import io.github.sefiraat.slimetinker.events.friend.TraitEventType;
 import io.github.sefiraat.slimetinker.events.friend.TraitPartType;
@@ -1707,6 +1708,48 @@ public final class CMCore {
                                         null,
                                         null)
                         ));
+        map.put(IDStrings.BOOMERITE,
+                new ComponentMaterial
+                        (
+                                new CMIdentity(IDStrings.BOOMERITE, Materials.INGOT_CAST_BOOMERITE, SkullTextures.ALLOY_PURPLE, "#d94c00"),
+                                Arrays.asList(
+                                        map.get(IDStrings.REINFORCED).getLiquidItemStack(1),
+                                        map.get(IDStrings.CORBRONZE).getLiquidItemStack(1),
+                                        map.get(IDStrings.HARD).getLiquidItemStack(1),
+                                        map.get(IDStrings.COPPER).getLiquidItemStack(5)
+                                        ),
+                                new CMToolMakeup(true, false, false, true, false, false),
+                                new CMForms(
+                                    Materials.NUGGET_CAST_BOOMERITE.getItemId(),
+                                        Materials.INGOT_CAST_BOOMERITE.getItemId(),
+                                        Materials.BLOCK_CAST_BOOMERITE.getItemId(),
+                                    null,
+                                    null,
+                                    null,
+                                    null,
+                                    null,
+                                    null,
+                                    null
+                                ),
+                                new CMTraits(
+                                        IDStrings.BOOMERITE,
+                                        new CMTrait(
+                                                CMTraits.PROP_HEAD,
+                                                SupportedPluginsManager.CORE_NOTE,
+                                                "Ladder Simulator™",
+                                                "Spawns ladders on right click."
+                                        ),
+                                        null,
+                                        null,
+                                        new CMTrait(
+                                                CMTraits.PROP_PLATES,
+                                                SupportedPluginsManager.CORE_NOTE,
+                                                "Go Boomer",
+                                                "Warning... things will go boom..."
+                                        ),
+                                        null,
+                                        null)
+                        ));
 
         setupToolConsumers();
         setupArmourConsumers();
@@ -1748,6 +1791,7 @@ public final class CMCore {
         map.get(IDStrings.SOLDER).addEvent(TraitEventType.TICK, TraitPartType.HEAD, TickEvents::headSolder);                                // Hidden - Tick
         map.get(IDStrings.FERROSILICON).addEvent(TraitEventType.PLAYER_DAMAGED, TraitPartType.HEAD, PlayerDamagedEvents::headFerrosilicon); // Hydrogen
         map.get(IDStrings.BRONZE).addEvent(TraitEventType.TICK, TraitPartType.ROD, TickEvents::rodBronze);                                  // Ingheights
+        map.get(IDStrings.BOOMERITE).addEvent(TraitEventType.RIGHT_CLICK, TraitPartType.HEAD, RightClickEvents::headBoomerite);             // Ladder Simulator™
         map.get(IDStrings.LEAD).addEvent(TraitEventType.TICK, TraitPartType.ROD, TickEvents::rodLead);                                      // Leech
         map.get(IDStrings.REDSTONE_ALLOY).addEvent(TraitEventType.ENTITY_DAMAGED, TraitPartType.ROD, EntityDamageEvents::rodRedstoneAlloy); // Lightning Rod
         map.get(IDStrings.MAGNESIUM).addEvent(TraitEventType.TICK, TraitPartType.ROD, TickEvents::rodMagnesium);                            // Magnetisium
@@ -1776,6 +1820,8 @@ public final class CMCore {
         map.get(IDStrings.ALUBRASS).addEvent(TraitEventType.ENTITY_DAMAGED, TraitPartType.ROD, EntityDamageEvents::rodAlubrass);            // Studious - Damage
         map.get(IDStrings.ALUBRASS).addEvent(TraitEventType.BLOCK_BREAK, TraitPartType.ROD, BlockBreakEvents::rodAluBrass);                 // Studious - Block Break
         map.get(IDStrings.ZINC).addEvent(TraitEventType.TICK, TraitPartType.ROD, TickEvents::rodZinc);                                      // Super Light Weight
+        map.get(IDStrings.LEATHER).addEvent(TraitEventType.ENTITY_DAMAGED, TraitPartType.BINDER, EntityDamageEvents::binderLeather);        // Thick - Exp Entity Damage
+        map.get(IDStrings.LEATHER).addEvent(TraitEventType.BLOCK_BREAK, TraitPartType.BINDER, BlockBreakEvents::binderLeather);             // Thick - Exp Block Break
         map.get(IDStrings.CORBRONZE).addEvent(TraitEventType.TICK, TraitPartType.ROD, TickEvents::rodCorbronze);                            // Too Hot to Handle
         map.get(IDStrings.HARD).addEvent(TraitEventType.ENTITY_DAMAGED, TraitPartType.ROD, EntityDamageEvents::headHard);                   // Tuff Stuff
         map.get(IDStrings.DAMSTEEL).addEvent(TraitEventType.ENTITY_DAMAGED, TraitPartType.HEAD, EntityDamageEvents::headDamsteel);          // Vampirism
@@ -1806,15 +1852,15 @@ public final class CMCore {
         map.get(IDStrings.ALUBRONZE).addEvent(TraitEventType.PLAYER_DAMAGED, TraitPartType.LINKS, PlayerDamagedEvents::linksAluBronze);     // Eject!
                                                                                                                                             // Enchanting (Experience)
         map.get(IDStrings.ALUBRASS).addEvent(TraitEventType.PLAYER_DAMAGED, TraitPartType.LINKS, PlayerDamagedEvents::linksAluBrass);       // Escape
-        map.get(IDStrings.BRONZE).addEvent(TraitEventType.BLOCK_BREAK, TraitPartType.PLATE, BlockBreakEvents::platesBronze);                // Farmer
-        map.get(IDStrings.ALUMINUM).addEvent(TraitEventType.PLAYER_DAMAGED, TraitPartType.PLATE, PlayerDamagedEvents::platesAluminum);      // Foil 50% damage
-        map.get(IDStrings.ALUMINUM).addEvent(TraitEventType.TICK, TraitPartType.PLATE, TickEvents::platesAluminum);                         // Foil +1 speed
+        map.get(IDStrings.BRONZE).addEvent(TraitEventType.BLOCK_BREAK, TraitPartType.PLATE, BlockBreakEvents::plateBronze);                 // Farmer
+        map.get(IDStrings.ALUMINUM).addEvent(TraitEventType.PLAYER_DAMAGED, TraitPartType.PLATE, PlayerDamagedEvents::plateAluminum);       // Foil 50% damage
+        map.get(IDStrings.ALUMINUM).addEvent(TraitEventType.TICK, TraitPartType.PLATE, TickEvents::plateAluminum);                          // Foil +1 speed
                                                                                                                                             // Fused
+        map.get(IDStrings.BOOMERITE).addEvent(TraitEventType.TICK, TraitPartType.PLATE, TickEvents::plateBoomerite);                        // Go Boomer
         map.get(IDStrings.VINE).addEvent(TraitEventType.TICK, TraitPartType.GAMBESON, TickEvents::gambesonVine);                            // Growth
         map.get(IDStrings.STEEL).addEvent(TraitEventType.PLAYER_DAMAGED, TraitPartType.PLATE, PlayerDamagedEvents::plateSteel);             // Hardy
         map.get(IDStrings.BILLON).addEvent(TraitEventType.PLAYER_DAMAGED, TraitPartType.LINKS, PlayerDamagedEvents::linksBillon);           // Heat Conductor
         map.get(IDStrings.BRASS).addEvent(TraitEventType.PLAYER_DAMAGED, TraitPartType.LINKS, PlayerDamagedEvents::linksBrass);             // Help
-        map.get(IDStrings.METAL).addEvent(TraitEventType.PLAYER_DAMAGED, TraitPartType.PLATE, PlayerDamagedEvents::plateMetal);             // KOTR
         map.get(IDStrings.MAGNESIUM).addEvent(TraitEventType.ENTITY_DAMAGED, TraitPartType.PLATE, EntityDamageEvents::plateMagnesium);      // Light - Player Damage
         map.get(IDStrings.MAGNESIUM).addEvent(TraitEventType.TICK, TraitPartType.PLATE, TickEvents::plateMagnesium);                        // Light - Speed
         map.get(IDStrings.MAGNESIUM).addEvent(TraitEventType.TICK, TraitPartType.LINKS, TickEvents::linksMagnesium);                        // Magnesight

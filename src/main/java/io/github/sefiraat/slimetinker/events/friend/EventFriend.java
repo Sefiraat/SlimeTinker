@@ -213,12 +213,9 @@ public class EventFriend {
         return l == null ? 0 : l;
     }
 
-
-    public EventFriend() {
-        ItemStack i = player.getInventory().getItemInMainHand();
-        if (ItemUtils.isTool(i)) {
-            tool = i;
-        }
+    public EventFriend (Player p, TraitEventType type) {
+        this.player = p;
+        this.eventType = type;
     }
 
 }

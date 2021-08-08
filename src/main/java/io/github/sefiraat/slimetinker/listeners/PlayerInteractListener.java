@@ -17,133 +17,28 @@ import org.bukkit.inventory.meta.Damageable;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataContainer;
 
+import static io.github.sefiraat.slimetinker.events.friend.EventChannels.checkArmour;
+import static io.github.sefiraat.slimetinker.events.friend.EventChannels.checkTool;
 import static io.github.sefiraat.slimetinker.events.friend.EventChannels.settlePotionEffects;
 
 public class PlayerInteractListener implements Listener {
 
     @SuppressWarnings("unused")
     @EventHandler
-    public void onEntityDamaged(PlayerInteractEvent event) {
+    public void onInteract(PlayerInteractEvent event) {
 
         Player player = event.getPlayer();
         ItemStack heldItem = player.getInventory().getItemInMainHand();
 
-        int toolLevel = ItemUtils.getTinkerLevel(heldItem);
-
-        EventFriend friend = new EventFriend();
-
-        friend.setPlayer(player);
-        friend.setEventType(TraitEventType.RIGHT_CLICK);
+        EventFriend friend = new EventFriend(player, TraitEventType.RIGHT_CLICK);
 
         // Properties
         checkTool(friend);
         checkArmour(friend);
 
-        // Cancel if tool is broken (moved down here as we bypass if the duralium event fires)
-        if (cancelIfBroken(heldItem)) {
-            if (ItemUtils.worksWhenBroken(heldItem)) { // Run duralium as it will flag the duraliumCheck meaning we can bypass durability checks
-                EntityDamageEvents.headDuralium(friend);
-            }
-            if (!friend.isDuraliumCheck()) {
-                player.sendMessage(ThemeUtils.WARNING + "Your tool is broken, you should really repair it!");
-                event.setCancelled(true);
-                return;
-            }
-        }
-
         // Settle
         settlePotionEffects(friend);
 
-    }
-
-    private void checkTool(EventFriend friend) {
-
-        if (!ItemUtils.isTool(friend.getTool())) {
-            return;
-        }
-
-        ItemMeta im = friend.getTool().getItemMeta();
-        Validate.notNull(im, "No item meta, failed isTool check - grr?");
-
-        PersistentDataContainer c = im.getPersistentDataContainer();
-        String matPropertyHead = ItemUtils.getToolHeadMaterial(c);
-        String matPropertyBinding = ItemUtils.getToolBindingMaterial(c);
-        String matPropertyRod = ItemUtils.getToolRodMaterial(c);
-
-        CMManager.getMAP().get(matPropertyHead).runEvent(friend.getEventType(), TraitPartType.HEAD, friend);
-        CMManager.getMAP().get(matPropertyBinding).runEvent(friend.getEventType(), TraitPartType.BINDER, friend);
-        CMManager.getMAP().get(matPropertyRod).runEvent(friend.getEventType(), TraitPartType.ROD, friend);
-
-    }
-
-    private void checkArmour(EventFriend friend) {
-        checkHelm(friend);
-        checkChestplate(friend);
-        checkLeggings(friend);
-        checkBoots(friend);
-    }
-
-    private void checkHelm(EventFriend friend) {
-
-        ItemStack i = friend.getPlayer().getInventory().getHelmet();
-
-        if (!ItemUtils.isArmour(i)) {
-            return;
-        }
-
-        friend.setHelmet(i);
-        checkArmourPiece(friend, i);
-
-    }
-
-    private void checkChestplate(EventFriend friend) {
-
-        ItemStack i = friend.getPlayer().getInventory().getChestplate();
-
-        if (!ItemUtils.isArmour(i)) {
-            return;
-        }
-
-        friend.setChestplate(i);
-        checkArmourPiece(friend, i);
-
-    }
-
-    private void checkLeggings(EventFriend friend) {
-
-        ItemStack i = friend.getPlayer().getInventory().getLeggings();
-
-        if (!ItemUtils.isArmour(i)) {
-            return;
-        }
-
-        friend.setLeggings(i);
-        checkArmourPiece(friend, i);
-
-    }
-
-    private void checkBoots(EventFriend friend) {
-
-        ItemStack i = friend.getPlayer().getInventory().getBoots();
-
-        if (!ItemUtils.isArmour(i)) {
-            return;
-        }
-
-        friend.setBoots(i);
-        checkArmourPiece(friend, i);
-
-    }
-
-    private void checkArmourPiece(EventFriend friend, ItemStack itemStack) {
-
-        String matPropertyHead = ItemUtils.getArmourPlateMaterial(itemStack);
-        String matPropertyBinding = ItemUtils.getArmourGambesonMaterial(itemStack);
-        String matPropertyRod = ItemUtils.getArmourLinksMaterial(itemStack);
-
-        CMManager.getMAP().get(matPropertyHead).runEvent(friend.getEventType(), TraitPartType.PLATE, friend);
-        CMManager.getMAP().get(matPropertyBinding).runEvent(friend.getEventType(), TraitPartType.GAMBESON, friend);
-        CMManager.getMAP().get(matPropertyRod).runEvent(friend.getEventType(), TraitPartType.LINKS, friend);
     }
 
     private boolean cancelIfBroken(ItemStack itemStack) {

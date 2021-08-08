@@ -338,9 +338,9 @@ public final class Guide {
                     ThemeUtils.PASSIVE + DESC_ERROR
             );
 
-    public static final SlimefunItemStack AMROUR_HELM =
+    public static final SlimefunItemStack ARMOUR_HELM =
             ThemeUtils.themedItemStack(
-                    "AMROUR_HELM",
+                    "ARMOUR_HELM",
                     SkullTextures.PART_HELM_PLATES,
                     ThemeItemType.PART,
                     DESC_ERROR,
@@ -408,7 +408,7 @@ public final class Guide {
     public static final ToolTemplateExplosive EXP_HOE = new ToolTemplateExplosive(Categories.DUMMY, TOOL_HOE_EXP, DummyToolTable.TYPE, new ItemStack[9]);
     public static final ToolTemplateExplosive EXP_SWORD = new ToolTemplateExplosive(Categories.DUMMY, TOOL_SWORD_EXP, DummyToolTable.TYPE, new ItemStack[9]);
 
-    public static final ArmourTemplate HELM = new ArmourTemplate(Categories.DUMMY, AMROUR_HELM, DummyToolTable.TYPE, new ItemStack[9]);
+    public static final ArmourTemplate HELM = new ArmourTemplate(Categories.DUMMY, ARMOUR_HELM, DummyToolTable.TYPE, new ItemStack[9]);
     public static final ArmourTemplate CHEST = new ArmourTemplate(Categories.DUMMY, ARMOUR_CHESTPLATE, DummyToolTable.TYPE, new ItemStack[9]);
     public static final ArmourTemplate LEG = new ArmourTemplate(Categories.DUMMY, ARMOUR_LEGGINGS, DummyToolTable.TYPE, new ItemStack[9]);
     public static final ArmourTemplate BOOT = new ArmourTemplate(Categories.DUMMY, ARMOUR_BOOTS, DummyToolTable.TYPE, new ItemStack[9]);

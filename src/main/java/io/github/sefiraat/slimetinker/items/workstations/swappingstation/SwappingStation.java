@@ -150,13 +150,13 @@ public class SwappingStation extends AbstractContainer {
         ItemMeta newArmourMeta = newArmour.getItemMeta();
 
         switch (partClass) {
-            case IDStrings.HEAD:
+            case IDStrings.PLATE:
                 PersistentDataAPI.setString(newArmourMeta, SlimeTinker.inst().getKeys().getArmourInfoPlateMaterial(), partMaterial);
                 break;
-            case IDStrings.BINDING:
+            case IDStrings.GAMBESON:
                 PersistentDataAPI.setString(newArmourMeta, SlimeTinker.inst().getKeys().getArmourInfoGambesonMaterial(), partMaterial);
                 break;
-            case IDStrings.ROD:
+            case IDStrings.LINKS:
                 PersistentDataAPI.setString(newArmourMeta, SlimeTinker.inst().getKeys().getArmourInfoLinksMaterial(), partMaterial);
                 break;
             default:

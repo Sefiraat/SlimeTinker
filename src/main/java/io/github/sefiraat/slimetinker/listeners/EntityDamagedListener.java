@@ -54,30 +54,15 @@ public class EntityDamagedListener implements Listener {
         String matPropertyHead = ItemUtils.getToolHeadMaterial(c);
         String matPropertyBinding = ItemUtils.getToolBindingMaterial(c);
         String matPropertyRod = ItemUtils.getToolRodMaterial(c);
-        int toolLevel = ItemUtils.getTinkerLevel(c);
 
-        EventFriend friend = new EventFriend();
+        EventFriend friend = new EventFriend(player, TraitEventType.ENTITY_DAMAGED);
 
-        friend.setPlayer(player);
         friend.setDamagedEntity(event.getEntity());
         friend.setInitialDamage(event.getDamage());
-        friend.setEventType(TraitEventType.ENTITY_DAMAGED);
 
         // Properties
         checkTool(friend);
         checkArmour(friend);
-
-        // Cancel if tool is broken (moved down here as we bypass if the duralium event fires)
-        if (cancelIfBroken(heldItem)) {
-            if (matPropertyHead.equals(IDStrings.DURALIUM) || matPropertyRod.equals(IDStrings.TITANIUM)) { // Run duralium as it will flag the duraliumCheck meaning we can bypass durability checks
-                EntityDamageEvents.headDuralium(friend);
-            }
-            if (!friend.isDuraliumCheck()) {
-                player.sendMessage(ThemeUtils.WARNING + "Your weapon is broken, you should really repair it!");
-                event.setCancelled(true);
-                return;
-            }
-        }
 
         // Mods
         modChecks(event, heldItem, friend);

@@ -33,6 +33,7 @@ import org.bukkit.entity.Mob;
 import org.bukkit.entity.Monster;
 import org.bukkit.entity.Piglin;
 import org.bukkit.entity.Player;
+import org.bukkit.entity.TNTPrimed;
 import org.bukkit.entity.Vex;
 import org.bukkit.entity.Villager;
 import org.bukkit.entity.Wither;
@@ -40,6 +41,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
+import org.bukkit.util.Vector;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -439,7 +441,7 @@ public final class TickEvents {
         increaseEffect(PotionEffectType.BAD_OMEN, friend.getPotionEffects());
     }
 
-    public static void platesAluminum(EventFriend friend) {
+    public static void plateAluminum(EventFriend friend) {
         increaseEffect(PotionEffectType.SPEED, friend.getPotionEffects(), 1);
     }
 
@@ -730,5 +732,12 @@ public final class TickEvents {
 
     public static void gambesonRubber(EventFriend friend) {
         friend.getPlayer().setFireTicks(SlimeTinker.RUNNABLE_TICK_RATE + 5);
+    }
+
+    public static void plateBoomerite(EventFriend friend) {
+        Player p = friend.getPlayer();
+        TNTPrimed tnt = (TNTPrimed) p.getWorld().spawnEntity(p.getLocation(), EntityType.PRIMED_TNT);
+        tnt.setSource(friend.getPlayer());
+        tnt.setVelocity(new Vector(p.getLocation().getDirection().getX(), 1, p.getLocation().getDirection().getZ()));
     }
 }

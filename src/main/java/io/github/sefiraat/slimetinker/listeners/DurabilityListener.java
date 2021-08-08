@@ -31,10 +31,7 @@ public class DurabilityListener implements Listener {
         ItemStack damagedItem = event.getItem();
         ItemMeta im = event.getItem().getItemMeta();
 
-        EventFriend friend = new EventFriend();
-
-        friend.setPlayer(event.getPlayer());
-        friend.setEventType(TraitEventType.DURABILITY);
+        EventFriend friend = new EventFriend(event.getPlayer(), TraitEventType.DURABILITY);
 
         // Properties
         checkTool(friend);
@@ -42,7 +39,6 @@ public class DurabilityListener implements Listener {
 
         // Mods
         modChecks(damagedItem, event);
-
 
         // Settle
         settlePotionEffects(friend);

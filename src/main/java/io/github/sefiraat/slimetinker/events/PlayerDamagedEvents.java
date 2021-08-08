@@ -226,7 +226,7 @@ public final class PlayerDamagedEvents {
         }
     }
 
-    public static void platesAluminum(EventFriend friend) {
+    public static void plateAluminum(EventFriend friend) {
         friend.setDamageMod(friend.getDamageMod() + 0.5);
     }
 

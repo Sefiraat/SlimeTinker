@@ -564,12 +564,14 @@ public final class ItemUtils {
 
     public static boolean cannotDrop(ItemStack itemStack) {
         if (isTool(itemStack)) {
-            return !getToolRodMaterial(itemStack).equals(IDStrings.SOLDER)
-                    && !getToolRodMaterial(itemStack).equals(IDStrings.UNPATENTABLIUM);
+            return
+                    getToolRodMaterial(itemStack).equals(IDStrings.SOLDER)
+                    || getToolRodMaterial(itemStack).equals(IDStrings.UNPATENTABLIUM);
         } else if (isArmour(itemStack)) {
-            return !getArmourLinksMaterial(itemStack).equals(IDStrings.SOLDER);
+            return
+                    getArmourLinksMaterial(itemStack).equals(IDStrings.SOLDER);
         } else {
-            return true;
+            return false;
         }
 
     }
@@ -715,6 +717,13 @@ public final class ItemUtils {
         NamespacedKey sfIDKey = new NamespacedKey(SlimefunPlugin.instance(), "slimefun_item");
         String sID = c.get(sfIDKey, PersistentDataType.STRING);
         return sID.contains("_EXP");
+    }
+
+    public static boolean isToolExplosive(String headMaterial, String rodMaterial) {
+        return headMaterial.equals(IDStrings.REINFORCED)
+                || rodMaterial.equals(IDStrings.HARD)
+                || headMaterial.equals(IDStrings.SINGINFINITY)
+                || headMaterial.equals(IDStrings.OSMIUM);
     }
 
 }

@@ -46,7 +46,7 @@ public class BlockBreakListener implements Listener {
             return;
         }
 
-        Player p = event.getPlayer();
+        Player player = event.getPlayer();
         ItemStack heldItem = event.getPlayer().getInventory().getItemInMainHand();
         Block block = event.getBlock();
 
@@ -54,26 +54,12 @@ public class BlockBreakListener implements Listener {
             return;
         }
 
-        EventFriend friend = new EventFriend();
+        EventFriend friend = new EventFriend(player, TraitEventType.BLOCK_BREAK);
 
-        friend.setPlayer(p);
         friend.setBlock(block);
         friend.setDrops(block.getDrops(heldItem)); // Stores the event drops. All may not be dropped
         friend.setAddDrops(new ArrayList<>()); // Additional drops or substitutions for items from the main collection
         friend.setRemoveDrops(new ArrayList<>()); // Items to remove from the main collection if moved/reformed into the additional
-
-        // Cancel if tool is broken. Bypass but run event if works while broken
-        if (cancelIfBroken(heldItem)) {
-            if (ItemUtils.worksWhenBroken(heldItem)) {
-                BlockBreakEvents.headDuralium(friend);
-            } else {
-                event.getPlayer().sendMessage(ThemeUtils.WARNING + "Your tool is broken, you should really repair it!");
-                event.setCancelled(true);
-                return;
-            }
-        }
-
-        friend.setEventType(TraitEventType.BLOCK_BREAK);
 
         // Properties
         checkTool(friend);
@@ -97,7 +83,7 @@ public class BlockBreakListener implements Listener {
                 continue;
             }
             if (friend.isBlocksIntoInv()) {
-                Map<Integer, ItemStack> remainingItems = p.getInventory().addItem(i);
+                Map<Integer, ItemStack> remainingItems = player.getInventory().addItem(i);
                 for (ItemStack i2 : remainingItems.values()) {
                     block.getWorld().dropItem(block.getLocation().clone().add(0.5, 0.5, 0.5), i2);
                 }
@@ -108,7 +94,7 @@ public class BlockBreakListener implements Listener {
 
         for (ItemStack i : friend.getAddDrops()) { // Then the additional items collection - no removals
             if (friend.isBlocksIntoInv()) {
-                Map<Integer, ItemStack> remainingItems = p.getInventory().addItem(i);
+                Map<Integer, ItemStack> remainingItems = player.getInventory().addItem(i);
                 for (ItemStack i2 : remainingItems.values()) {
                     block.getWorld().dropItem(block.getLocation().clone().add(0.5, 0.5, 0.5), i2);
                 }

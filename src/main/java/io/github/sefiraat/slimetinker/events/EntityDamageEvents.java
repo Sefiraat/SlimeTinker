@@ -74,7 +74,7 @@ public final class EntityDamageEvents {
     public static void headMagnesium(EventFriend friend) {
         LivingEntity e = (LivingEntity) friend.getDamagedEntity();
         int rnd = ThreadLocalRandom.current().nextInt(1, 100);
-        if (rnd < (friend.getToolLevel() * 5)) {
+        if (rnd < (friend.getActiveLevel() * 5)) {
             e.setFireTicks(100);
         }
     }
@@ -170,7 +170,7 @@ public final class EntityDamageEvents {
     public static void headSingMagnesium(EventFriend friend) {
         LivingEntity e = (LivingEntity) friend.getDamagedEntity();
         int rnd = ThreadLocalRandom.current().nextInt(1, 100);
-        if (rnd < (friend.getToolLevel() * 10)) {
+        if (rnd < (friend.getActiveLevel() * 10)) {
             e.setFireTicks(200);
             e.getWorld().spawnParticle(Particle.SOUL_FIRE_FLAME, e.getLocation(), 25, 1, 1, 1, 1);
         }
@@ -289,8 +289,8 @@ public final class EntityDamageEvents {
     }
 
     public static void headRefinedIron(EventFriend friend) {
-        if (friend.getToolLevel() >= 10) {
-            friend.setDamageMod(friend.getDamageMod() + (friend.getToolLevel() * 0.1));
+        if (friend.getActiveLevel() >= 10) {
+            friend.setDamageMod(friend.getDamageMod() + (friend.getActiveLevel() * 0.1));
         }
     }
 
@@ -417,5 +417,9 @@ public final class EntityDamageEvents {
 
     public static void plateScrap(EventFriend friend) {
         friend.setPlayerExpMod(friend.getPlayerExpMod() + 4);
+    }
+
+    public static void binderLeather(EventFriend friend) {
+        friend.incrementExpMod(0.5);
     }
 }

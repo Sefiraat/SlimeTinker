@@ -236,7 +236,26 @@ public final class Materials {
                     "Redstone Alloy Nugget",
                     "A nugget made from redstone alloy"
             );
+
+    public static final SlimefunItemStack NUGGET_CAST_BOOMERITE =
+            ThemeUtils.themedItemStack(
+                    "NUGGET_CAST_BOOMERITE",
+                    Material.ACACIA_BUTTON,
+                    ThemeItemType.CRAFTING,
+                    "Boomerite Nugget",
+                    "A nugget made from boomerite"
+            );
     // endregion
+    // region Ingots
+    public static final SlimefunItemStack INGOT_CAST_BOOMERITE =
+            ThemeUtils.themedItemStack(
+                    "INGOT_CAST_BOOMERITE",
+                    Material.BRICK,
+                    ThemeItemType.CRAFTING,
+                    "Boomerite Ingot",
+                    "A very rare ingot. Origins unknown."
+            );
+    // End Region
     // region Blocks
     public static final SlimefunItemStack BLOCK_CAST_COPPER =
             ThemeUtils.themedItemStack(
@@ -438,10 +457,19 @@ public final class Materials {
     public static final SlimefunItemStack BLOCK_CAST_REDSTONE_ALLOY =
             ThemeUtils.themedItemStack(
                     "BLOCK_CAST_REDSTONE_ALLOY",
-                    Material.IRON_BLOCK,
+                    Material.TERRACOTTA,
                     ThemeItemType.CRAFTING,
                     "Redstone Alloy Block",
                     "A block made from redstone alloy"
+            );
+
+    public static final SlimefunItemStack BLOCK_CAST_BOOMERITE =
+            ThemeUtils.themedItemStack(
+                    "BLOCK_CAST_BOOMERITE",
+                    Material.TERRACOTTA,
+                    ThemeItemType.CRAFTING,
+                    "Boomerite Block",
+                    "A block made from boomerite"
             );
     // endregion
     // region Crafts
@@ -999,6 +1027,10 @@ public final class Materials {
 
         new UnplaceableBlock(Categories.MATERIALS, NUGGET_CAST_REDSTONE_ALLOY, DummySmeltery.TYPE, Parts.getDummyCastRecipe(Casts.CAST_NUGGET)).register(p);
         new UnplaceableBlock(Categories.MATERIALS, BLOCK_CAST_REDSTONE_ALLOY, DummySmeltery.TYPE, Parts.getDummyCastRecipe(Casts.CAST_BLOCK)).register(p);
+
+        new UnplaceableBlock(Categories.MATERIALS, NUGGET_CAST_BOOMERITE, DummySmeltery.TYPE, Parts.getDummyCastRecipe(Casts.CAST_NUGGET)).register(p);
+        new UnplaceableBlock(Categories.MATERIALS, INGOT_CAST_BOOMERITE, DummySmeltery.TYPE, Parts.getDummyCastRecipe(Casts.CAST_INGOT)).register(p);
+        new UnplaceableBlock(Categories.MATERIALS, BLOCK_CAST_BOOMERITE, DummySmeltery.TYPE, Parts.getDummyCastRecipe(Casts.CAST_BLOCK)).register(p);
 
         new UnplaceableBlock(Categories.MATERIALS, NUGGET_CAST_COAL, DummySmeltery.TYPE, Parts.getDummyCastRecipe(Casts.CAST_NUGGET)).register(p);
 

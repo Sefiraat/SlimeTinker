@@ -3,18 +3,24 @@ package io.github.sefiraat.slimetinker.events;
 import io.github.sefiraat.slimetinker.SlimeTinker;
 import io.github.sefiraat.slimetinker.events.friend.EventFriend;
 import io.github.sefiraat.slimetinker.runnables.event.KingsmanSpam;
+import io.github.sefiraat.slimetinker.utils.BlockUtils;
 import io.github.sefiraat.slimetinker.utils.EntityUtils;
 import io.github.sefiraat.slimetinker.utils.GeneralUtils;
 import io.github.sefiraat.slimetinker.utils.ItemUtils;
 import io.github.sefiraat.slimetinker.utils.ThemeUtils;
+import io.github.thebusybiscuit.slimefun4.implementation.SlimefunPlugin;
 import lombok.experimental.UtilityClass;
 import me.mrCookieSlime.Slimefun.cscorelib2.data.PersistentDataAPI;
+import me.mrCookieSlime.Slimefun.cscorelib2.protection.ProtectableAction;
 import org.apache.commons.lang.Validate;
 import org.bukkit.Effect;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.Particle;
+import org.bukkit.block.Block;
+import org.bukkit.block.BlockFace;
+import org.bukkit.block.data.type.Ladder;
 import org.bukkit.entity.Animals;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
@@ -25,6 +31,7 @@ import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
 
 import java.time.Instant;
+import java.util.HashSet;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -157,6 +164,23 @@ public final class RightClickEvents {
     }
 
     public static void linksIridium(EventFriend friend) {
+
+    }
+
+    public static void headBoomerite(EventFriend friend) {
+        Player player = friend.getPlayer();
+        BlockFace blockFace = BlockUtils.getTargetedBlockFace(player);
+        if (blockFace != null) {
+            Block target = player.getTargetBlock(null, 5);
+            if (target.getType() != Material.AIR) {
+                Block place = target.getRelative(blockFace);
+                if (place.getType() == Material.AIR && SlimefunPlugin.getProtectionManager().hasPermission(player, place, ProtectableAction.PLACE_BLOCK)) {
+                    place.setType(Material.LADDER);
+                    Ladder l = (Ladder) target.getRelative(blockFace);
+                    l.setFacing(blockFace);
+                }
+            }
+        }
 
     }
 }

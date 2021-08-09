@@ -1,13 +1,8 @@
 package io.github.sefiraat.slimetinker.listeners;
 
-import io.github.sefiraat.slimetinker.events.EventFriend;
-import io.github.sefiraat.slimetinker.items.componentmaterials.factories.CMManager;
-import io.github.sefiraat.slimetinker.items.templates.ToolTemplate;
+import io.github.sefiraat.slimetinker.events.friend.EventFriend;
+import io.github.sefiraat.slimetinker.events.friend.TraitEventType;
 import io.github.sefiraat.slimetinker.modifiers.Modifications;
-import io.github.sefiraat.slimetinker.utils.Experience;
-import io.github.sefiraat.slimetinker.utils.ItemUtils;
-import io.github.sefiraat.slimetinker.utils.enums.TraitEventType;
-import io.github.sefiraat.slimetinker.utils.enums.TraitPartType;
 import org.bukkit.Color;
 import org.bukkit.Material;
 import org.bukkit.Particle;
@@ -19,11 +14,13 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
-import org.bukkit.persistence.PersistentDataContainer;
 
 import java.util.Map;
 import java.util.concurrent.ThreadLocalRandom;
+
+import static io.github.sefiraat.slimetinker.events.friend.EventChannels.checkArmour;
+import static io.github.sefiraat.slimetinker.events.friend.EventChannels.checkTool;
+import static io.github.sefiraat.slimetinker.events.friend.EventChannels.settlePotionEffects;
 
 public class PlayerDamagedListener implements Listener {
 
@@ -36,40 +33,54 @@ public class PlayerDamagedListener implements Listener {
         }
 
         Player player = (Player) event.getEntity();
-        ItemStack heldItem = player.getInventory().getItemInMainHand();
 
-        if (!ToolTemplate.isTool(heldItem)) { // Not a Tinker's tool, so we don't care
-            return;
-        }
+        EventFriend friend = new EventFriend(player, TraitEventType.PLAYER_DAMAGED);
 
-        // Properties
-        ItemMeta im = heldItem.getItemMeta();
-        assert im != null;
-        PersistentDataContainer c = im.getPersistentDataContainer();
-        String matPropertyHead = ItemUtils.getToolHeadMaterial(c);
-        String matPropertyBinding = ItemUtils.getToolBindingMaterial(c);
-        String matPropertyRod = ItemUtils.getToolRodMaterial(c);
-        int toolLevel = Experience.getToolLevel(c);
-
-        EventFriend friend = new EventFriend();
-
-        friend.setHeldItem(heldItem);
-        friend.setPlayer(player);
-        friend.setToolLevel(toolLevel);
         friend.setCause(event.getCause());
         friend.setInitialDamage(event.getDamage());
 
-        TraitEventType traitEventType = TraitEventType.PLAYER_DAMAGED;
-        CMManager.getMAP().get(matPropertyHead).runEvent(traitEventType, TraitPartType.HEAD, friend);
-        CMManager.getMAP().get(matPropertyBinding).runEvent(traitEventType, TraitPartType.BINDER, friend);
-        CMManager.getMAP().get(matPropertyRod).runEvent(traitEventType, TraitPartType.ROD, friend);
+        // Properties
+        checkTool(friend);
+        checkArmour(friend);
 
         // Mods
-        modChecks(event, heldItem);
+        modChecks(event, player.getInventory().getItemInMainHand());
 
         // Settle
+        settlePotionEffects(friend);
         event.setDamage(event.getDamage() * friend.getDamageMod());
-        if (friend.getDamageMod() == 0) {
+        if (friend.getDamageMod() == 0 || friend.isCancelEvent()) {
+            event.setCancelled(true);
+        }
+    }
+
+    @SuppressWarnings("unused")
+    @EventHandler
+    public void onPlayerDamagedByEntity(EntityDamageByEntityEvent event) {
+
+        if (!(event.getEntity() instanceof Player)) {
+            return;
+        }
+
+        Player player = (Player) event.getEntity();
+
+        EventFriend friend = new EventFriend(player, TraitEventType.PLAYER_DAMAGED);
+
+        friend.setDamagingEntity(event.getDamager());
+        friend.setCause(event.getCause());
+        friend.setInitialDamage(event.getDamage());
+
+        // Properties
+        checkTool(friend);
+        checkArmour(friend);
+
+        // Mods
+        modChecks(event, player.getInventory().getItemInMainHand());
+
+        // Settle
+        settlePotionEffects(friend);
+        event.setDamage(event.getDamage() * friend.getDamageMod());
+        if (friend.getDamageMod() == 0 || friend.isCancelEvent()) {
             event.setCancelled(true);
         }
     }

@@ -1,8 +1,14 @@
 package io.github.sefiraat.slimetinker.events;
 
 import io.github.sefiraat.slimetinker.SlimeTinker;
+import io.github.sefiraat.slimetinker.events.friend.EventFriend;
+import io.github.sefiraat.slimetinker.utils.EntityUtils;
 import io.github.sefiraat.slimetinker.utils.GeneralUtils;
+import io.github.sefiraat.slimetinker.utils.ItemUtils;
+import io.github.sefiraat.slimetinker.utils.ThemeUtils;
 import lombok.experimental.UtilityClass;
+import me.mrCookieSlime.Slimefun.cscorelib2.data.PersistentDataAPI;
+import org.apache.commons.lang.Validate;
 import org.bukkit.Color;
 import org.bukkit.Effect;
 import org.bukkit.Location;
@@ -17,12 +23,9 @@ import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
-import org.bukkit.persistence.PersistentDataContainer;
-import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
-import java.time.Instant;
 import java.util.concurrent.ThreadLocalRandom;
 
 import static io.github.sefiraat.slimetinker.utils.EntityUtils.push;
@@ -67,7 +70,7 @@ public final class EntityDamageEvents {
     public static void headMagnesium(EventFriend friend) {
         LivingEntity e = (LivingEntity) friend.getDamagedEntity();
         int rnd = ThreadLocalRandom.current().nextInt(1, 100);
-        if (rnd < (friend.getToolLevel() * 5)) {
+        if (rnd < (friend.getActiveLevel() * 5)) {
             e.setFireTicks(100);
         }
     }
@@ -163,7 +166,7 @@ public final class EntityDamageEvents {
     public static void headSingMagnesium(EventFriend friend) {
         LivingEntity e = (LivingEntity) friend.getDamagedEntity();
         int rnd = ThreadLocalRandom.current().nextInt(1, 100);
-        if (rnd < (friend.getToolLevel() * 10)) {
+        if (rnd < (friend.getActiveLevel() * 10)) {
             e.setFireTicks(200);
             e.getWorld().spawnParticle(Particle.SOUL_FIRE_FLAME, e.getLocation(), 25, 1, 1, 1, 1);
         }
@@ -209,18 +212,14 @@ public final class EntityDamageEvents {
     }
 
     public static void headOsmiumSuperalloy(EventFriend friend) {
-        int rnd = ThreadLocalRandom.current().nextInt(1, 4);
-        if (rnd == 1) {
-            friend.setDamageMod(friend.getDamageMod() + 2);
-        } else {
-            friend.setDamageMod(friend.getDamageMod() + 1);
-        }
+        int rnd = ThreadLocalRandom.current().nextInt(0, 10);
+        friend.setDamageMod(rnd == 0 ? friend.getDamageMod() + 2 : friend.getDamageMod() + 0.5);
     }
 
     public static void rodOsmium(EventFriend friend) {
         LivingEntity e = (LivingEntity) friend.getDamagedEntity();
         if (e.getType() == EntityType.ENDERMAN) {
-            e.getPersistentDataContainer().set(new NamespacedKey(SlimeTinker.inst(), "ST_STOP_TELEPORT"), PersistentDataType.STRING,"Y");
+            PersistentDataAPI.setString(e, new NamespacedKey(SlimeTinker.inst(), "ST_STOP_TELEPORT"), "Y");
             e.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 100, 5, true, true));
         }
     }
@@ -286,8 +285,8 @@ public final class EntityDamageEvents {
     }
 
     public static void headRefinedIron(EventFriend friend) {
-        if (friend.getToolLevel() >= 10) {
-            friend.setDamageMod(friend.getDamageMod() + (friend.getToolLevel() * 0.1));
+        if (friend.getActiveLevel() >= 10) {
+            friend.setDamageMod(friend.getDamageMod() + (friend.getActiveLevel() * 0.1));
         }
     }
 
@@ -297,25 +296,118 @@ public final class EntityDamageEvents {
 
     public static void rodIridium(EventFriend friend) {
 
-        ItemStack i = friend.getHeldItem();
-        ItemMeta im = i.getItemMeta();
-        NamespacedKey key = SlimeTinker.inst().getKeys().getToolCooldownWarp();
-        assert im != null;
-        PersistentDataContainer c = im.getPersistentDataContainer();
-        long time = System.currentTimeMillis();
-
-        if (c.has(key, PersistentDataType.LONG)) {
-            Long cd = c.get(key, PersistentDataType.LONG);
-            assert cd != null;
-            if (cd > time) {
-                return;
-            }
+        ItemStack i = friend.getTool();
+        if (!ItemUtils.onCooldown(i, "WARP")) {
+            friend.getDamagedEntity().teleport(friend.getDamagedEntity().getLocation().clone().setDirection(friend.getPlayer().getLocation().getDirection()));
+            ItemUtils.setCooldown(i, "WARP", 20000);
+        } else {
+            friend.getPlayer().sendMessage(ThemeUtils.WARNING + "This skill is on cooldown");
         }
 
-        friend.getDamagedEntity().teleport(friend.getDamagedEntity().getLocation().clone().setDirection(friend.getPlayer().getLocation().getDirection()));
+    }
 
-        Instant cd = Instant.ofEpochMilli(time).plusSeconds(20);
-        c.set(key, PersistentDataType.LONG, cd.toEpochMilli());
-        i.setItemMeta(im);
+    public static void plateMagnesium(EventFriend friend) {
+        friend.setDamageMod(friend.getDamageMod() - 0.25);
+    }
+
+    public static void gambesonSilicon(EventFriend friend) {
+        friend.incrementItemExpMod((0.05 * friend.getActiveLevel()));
+    }
+
+    public static void plateZinc(EventFriend friend) {
+        if (EntityUtils.isFacingAway(friend.getPlayer(), friend.getDamagedEntity())) {
+            friend.setDamageMod(friend.getDamageMod() + 1);
+        }
+    }
+
+    public static void linksCopper(EventFriend friend) {
+        friend.setDamageMod(friend.getDamageMod() - 0.2);
+        friend.incrementItemExpMod(0.2);
+    }
+
+
+    public static void gambesonLeather(EventFriend friend) {
+        friend.incrementItemExpMod(0.1);
+    }
+
+    public static void plateBillon(EventFriend friend) {
+       if (friend.getDamagedEntity() instanceof LivingEntity) {
+           friend.setCancelEvent(true);
+           LivingEntity l = (LivingEntity) friend.getDamagedEntity();
+           l.setHealth(Math.min(l.getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue(), l.getHealth() + friend.getInitialDamage()));
+       }
+
+    }
+
+    public static void plateCopper(EventFriend friend) {
+        friend.incrementItemExpMod(0.2);
+    }
+
+    public static void plateSingCopper(EventFriend friend) {
+        friend.incrementItemExpMod(0.4);
+    }
+
+    public static void linksAdamantite(EventFriend friend) {
+        friend.incrementItemExpMod(0.1);
+        friend.setPlayerExpMod(friend.getPlayerExpMod() + 0.1);
+    }
+
+    public static void plateSingMagnesium(EventFriend friend) {
+        friend.setDamageMod(friend.getDamageMod() - 0.5);
+    }
+
+    public static void linksIron(EventFriend friend) {
+        friend.setDamageMod(friend.getDamageMod() - 0.1);
+        friend.setPlayerExpMod(friend.getPlayerExpMod() + 0.2);
+    }
+
+    public static void plateSingZinc(EventFriend friend) {
+        if (EntityUtils.isFacingAway(friend.getPlayer(), friend.getDamagedEntity(), 70)) {
+            friend.setDamageMod(friend.getDamageMod() + 1);
+        }
+    }
+
+    public static void linksSingCopper(EventFriend friend) {
+        friend.setDamageMod(friend.getDamageMod() - 0.2);
+        friend.incrementItemExpMod(0.4);
+    }
+
+    public static void plateMagic(EventFriend friend) {
+        Entity e = friend.getDamagedEntity();
+        Particle.DustOptions d1 = new Particle.DustOptions(Color.fromRGB(GeneralUtils.roll(255),GeneralUtils.roll(255),GeneralUtils.roll(255)), 5);
+        Particle.DustOptions d2 = new Particle.DustOptions(Color.fromRGB(GeneralUtils.roll(255),GeneralUtils.roll(255),GeneralUtils.roll(255)), 5);
+        Particle.DustOptions d3 = new Particle.DustOptions(Color.fromRGB(GeneralUtils.roll(255),GeneralUtils.roll(255),GeneralUtils.roll(255)), 5);
+        e.getWorld().spawnParticle(Particle.REDSTONE, e.getLocation(), 30, 3, 3, 3, 1, d1);
+        e.getWorld().spawnParticle(Particle.REDSTONE, e.getLocation(), 30, 3, 3, 3, 1, d2);
+        e.getWorld().spawnParticle(Particle.REDSTONE, e.getLocation(), 30, 3, 3, 3, 1, d3);
+    }
+
+    public static void linksSegganesson(EventFriend friend) {
+        if (friend.getDamagedEntity() instanceof LivingEntity) {
+            LivingEntity e = (LivingEntity) friend.getDamagedEntity();
+            ItemStack i = friend.getActiveStack();
+            ItemMeta im = i.getItemMeta();
+            NamespacedKey k = SlimeTinker.inst().getKeys().getArmourSoulsStored();
+            Validate.notNull(im, "Meta is not null, this is odd!");
+            long souls = PersistentDataAPI.getLong(im, k ,0);
+            friend.setDamageMod(friend.getDamageMod() + ((double) souls / 100L));
+            if (friend.getInitialDamage() >= e.getHealth()) {
+                souls++;
+                PersistentDataAPI.setLong(im, k, souls);
+            }
+            i.setItemMeta(im);
+        }
+    }
+
+    public static void linksScrap(EventFriend friend) {
+        friend.incrementItemExpMod(2);
+    }
+
+    public static void plateScrap(EventFriend friend) {
+        friend.setPlayerExpMod(friend.getPlayerExpMod() + 4);
+    }
+
+    public static void binderLeather(EventFriend friend) {
+        friend.incrementItemExpMod(0.5);
     }
 }

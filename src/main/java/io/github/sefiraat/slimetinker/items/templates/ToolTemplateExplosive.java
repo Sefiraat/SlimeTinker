@@ -1,7 +1,7 @@
 package io.github.sefiraat.slimetinker.items.templates;
 
 import io.github.sefiraat.slimetinker.SlimeTinker;
-import io.github.sefiraat.slimetinker.items.componentmaterials.factories.CMManager;
+import io.github.sefiraat.slimetinker.items.componentmaterials.CMManager;
 import io.github.sefiraat.slimetinker.utils.Experience;
 import io.github.sefiraat.slimetinker.utils.IDStrings;
 import io.github.sefiraat.slimetinker.utils.ItemUtils;
@@ -53,7 +53,7 @@ public class ToolTemplateExplosive extends ExplosiveTool {
         ItemMeta im = itemStack.getItemMeta();
         assert im != null;
         PersistentDataContainer c = im.getPersistentDataContainer();
-        Experience.setupExpNewTool(c);
+        Experience.setupExpNew(im);
         c.set(SlimeTinker.inst().getKeys().getToolInfoIsTool(), PersistentDataType.STRING, "Y");
         c.set(SlimeTinker.inst().getKeys().getToolInfoHeadType(), PersistentDataType.STRING, toolDefinition.getClassType());
         c.set(SlimeTinker.inst().getKeys().getToolInfoToolType(), PersistentDataType.STRING, toolDefinition.getPartType());
@@ -62,7 +62,7 @@ public class ToolTemplateExplosive extends ExplosiveTool {
         c.set(SlimeTinker.inst().getKeys().getToolInfoRodMaterial(), PersistentDataType.STRING, toolDefinition.getRodMaterial());
         im.setDisplayName(getName(toolDefinition));
         itemStack.setItemMeta(im);
-        ItemUtils.rebuildToolLore(itemStack);
+        ItemUtils.rebuildTinkerLore(itemStack);
         return itemStack;
     }
 

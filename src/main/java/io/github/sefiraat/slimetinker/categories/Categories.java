@@ -45,6 +45,10 @@ public final class Categories {
             Material.DIAMOND_SWORD,
             ThemeUtils.MAIN + "Tool Building Guide"
     ));
+    public static final SubCategory ARMOUR = new SubCategory(SlimeTinker.inst().getKeys().getCategoryArmour(), MAIN, new CustomItem(
+            Material.DIAMOND_CHESTPLATE,
+            ThemeUtils.MAIN + "Armour Building Guide"
+    ));
     public static final SubCategory TRAITS = new SubCategory(SlimeTinker.inst().getKeys().getCategoryProperties(), MAIN, new CustomItem(
             SkullItem.fromBase64(SkullTextures.CAT_TRAITS),
             ThemeUtils.MAIN + "Metal Traits"
@@ -71,6 +75,7 @@ public final class Categories {
         CASTS.register(p);
         PARTS.register(p);
         TOOLS.register(p);
+        ARMOUR.register(p);
         TRAITS.register(p);
         MODIFICATIONS.register(p);
         PART_DICT.register(p);

@@ -14,7 +14,7 @@ public class ListenerManager {
     private final EntityKilledListener entityKilledListener = new EntityKilledListener();
     private final PlayerDamagedListener playerDamagedListener = new PlayerDamagedListener();
     private final DropItemListener dropItemListener = new DropItemListener();
-    private final EntityTeleportListener entityTeleportListener = new EntityTeleportListener();
+    private final GeneralEntityEventListener generalEntityEventListener = new GeneralEntityEventListener();
     private final PlayerInteractListener playerInteractListener = new PlayerInteractListener();
 
     public ListenerManager(SlimeTinker plugin, PluginManager manager) {
@@ -25,7 +25,7 @@ public class ListenerManager {
         manager.registerEvents(entityKilledListener, plugin);
         manager.registerEvents(playerDamagedListener, plugin);
         manager.registerEvents(dropItemListener, plugin);
-        manager.registerEvents(entityTeleportListener, plugin);
+        manager.registerEvents(generalEntityEventListener, plugin);
         manager.registerEvents(playerInteractListener, plugin);
     }
 

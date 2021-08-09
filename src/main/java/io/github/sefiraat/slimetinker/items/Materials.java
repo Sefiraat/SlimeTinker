@@ -7,6 +7,7 @@ import io.github.sefiraat.slimetinker.items.workstations.smeltery.TinkersSmelter
 import io.github.sefiraat.slimetinker.items.workstations.workbench.Workbench;
 import io.github.sefiraat.slimetinker.managers.SupportedPluginsManager;
 import io.github.sefiraat.slimetinker.utils.ThemeUtils;
+import io.github.sefiraat.slimetinker.utils.enums.ThemeItemType;
 import io.github.thebusybiscuit.slimefun4.implementation.items.blocks.UnplaceableBlock;
 import lombok.experimental.UtilityClass;
 import me.mrCookieSlime.Slimefun.Lists.RecipeType;
@@ -24,7 +25,7 @@ public final class Materials {
             ThemeUtils.themedItemStack(
                     "NUGGET_CAST_COPPER",
                     Material.ACACIA_BUTTON,
-                    ThemeUtils.ThemeItemType.CRAFTING,
+                    ThemeItemType.CRAFTING,
                     "Copper Nugget",
                     "A nugget made from solid copper"
             );
@@ -33,7 +34,7 @@ public final class Materials {
             ThemeUtils.themedItemStack(
                     "NUGGET_CAST_TIN",
                     Material.IRON_NUGGET,
-                    ThemeUtils.ThemeItemType.CRAFTING,
+                    ThemeItemType.CRAFTING,
                     "Tin Nugget",
                     "A nugget made from solid tin"
             );
@@ -42,7 +43,7 @@ public final class Materials {
             ThemeUtils.themedItemStack(
                     "NUGGET_CAST_ZINC",
                     Material.IRON_NUGGET,
-                    ThemeUtils.ThemeItemType.CRAFTING,
+                    ThemeItemType.CRAFTING,
                     "Zinc Nugget",
                     "A nugget made from solid zinc"
             );
@@ -51,7 +52,7 @@ public final class Materials {
             ThemeUtils.themedItemStack(
                     "NUGGET_CAST_ALUMINUM",
                     Material.IRON_NUGGET,
-                    ThemeUtils.ThemeItemType.CRAFTING,
+                    ThemeItemType.CRAFTING,
                     "Aluminum Nugget",
                     "A nugget made from solid aluminum"
             );
@@ -60,7 +61,7 @@ public final class Materials {
             ThemeUtils.themedItemStack(
                     "NUGGET_CAST_MAGNESIUM",
                     Material.IRON_NUGGET,
-                    ThemeUtils.ThemeItemType.CRAFTING,
+                    ThemeItemType.CRAFTING,
                     "Magnesium Nugget",
                     "A nugget made from solid magnesium"
             );
@@ -69,7 +70,7 @@ public final class Materials {
             ThemeUtils.themedItemStack(
                     "NUGGET_CAST_LEAD",
                     Material.IRON_NUGGET,
-                    ThemeUtils.ThemeItemType.CRAFTING,
+                    ThemeItemType.CRAFTING,
                     "Lead Nugget",
                     "A nugget made from solid lead"
             );
@@ -78,7 +79,7 @@ public final class Materials {
             ThemeUtils.themedItemStack(
                     "NUGGET_CAST_SILVER",
                     Material.IRON_NUGGET,
-                    ThemeUtils.ThemeItemType.CRAFTING,
+                    ThemeItemType.CRAFTING,
                     "Silver Nugget",
                     "A nugget made from solid silver"
             );
@@ -87,7 +88,7 @@ public final class Materials {
             ThemeUtils.themedItemStack(
                     "NUGGET_CAST_COAL",
                     Material.POLISHED_BLACKSTONE_BUTTON,
-                    ThemeUtils.ThemeItemType.CRAFTING,
+                    ThemeItemType.CRAFTING,
                     "Coal Nugget",
                     "A nugget made from liquifacted coal"
             );
@@ -96,7 +97,7 @@ public final class Materials {
             ThemeUtils.themedItemStack(
                     "NUGGET_CAST_STEEL",
                     Material.IRON_NUGGET,
-                    ThemeUtils.ThemeItemType.CRAFTING,
+                    ThemeItemType.CRAFTING,
                     "Steel Nugget",
                     "A nugget made from solid steel"
             );
@@ -105,7 +106,7 @@ public final class Materials {
             ThemeUtils.themedItemStack(
                     "NUGGET_CAST_DAMASCUS_STEEL",
                     Material.IRON_NUGGET,
-                    ThemeUtils.ThemeItemType.CRAFTING,
+                    ThemeItemType.CRAFTING,
                     "Damascus Steel Nugget",
                     "A nugget made from damascus steel"
             );
@@ -114,7 +115,7 @@ public final class Materials {
             ThemeUtils.themedItemStack(
                     "NUGGET_CAST_DURALIUM",
                     Material.IRON_NUGGET,
-                    ThemeUtils.ThemeItemType.CRAFTING,
+                    ThemeItemType.CRAFTING,
                     "Duralium Nugget",
                     "A nugget made from duralium"
             );
@@ -123,7 +124,7 @@ public final class Materials {
            ThemeUtils.themedItemStack(
                    "NUGGET_CAST_BRONZE",
                    Material.ACACIA_BUTTON,
-                   ThemeUtils.ThemeItemType.CRAFTING,
+                   ThemeItemType.CRAFTING,
                    "Bronze Nugget",
                    "A nugget made from bronze"
            );
@@ -132,7 +133,7 @@ public final class Materials {
           ThemeUtils.themedItemStack(
                   "NUGGET_CAST_ALU_BRONZE",
                   Material.GOLD_NUGGET,
-                  ThemeUtils.ThemeItemType.CRAFTING,
+                  ThemeItemType.CRAFTING,
                   "Aluminum Bronze Nugget",
                   "A nugget made from aluminum bronze"
           );
@@ -141,7 +142,7 @@ public final class Materials {
             ThemeUtils.themedItemStack(
                     "NUGGET_CAST_HARD_METAL",
                     Material.IRON_NUGGET,
-                    ThemeUtils.ThemeItemType.CRAFTING,
+                    ThemeItemType.CRAFTING,
                     "Hardened Metal Nugget",
                     "A nugget made from hardened metal"
             );
@@ -150,7 +151,7 @@ public final class Materials {
             ThemeUtils.themedItemStack(
                     "NUGGET_CAST_COR_BRONZE",
                     Material.GOLD_NUGGET,
-                    ThemeUtils.ThemeItemType.CRAFTING,
+                    ThemeItemType.CRAFTING,
                     "Corinthian Bronze Nugget",
                     "A nugget made from corinthian bronze"
             );
@@ -159,7 +160,7 @@ public final class Materials {
             ThemeUtils.themedItemStack(
                     "NUGGET_CAST_SOLDER",
                     Material.IRON_NUGGET,
-                    ThemeUtils.ThemeItemType.CRAFTING,
+                    ThemeItemType.CRAFTING,
                     "Solder Nugget",
                     "A nugget made from solder"
             );
@@ -168,7 +169,7 @@ public final class Materials {
             ThemeUtils.themedItemStack(
                     "NUGGET_CAST_BILLON",
                     Material.IRON_NUGGET,
-                    ThemeUtils.ThemeItemType.CRAFTING,
+                    ThemeItemType.CRAFTING,
                     "Billon Nugget",
                     "A nugget made from billon"
             );
@@ -177,7 +178,7 @@ public final class Materials {
             ThemeUtils.themedItemStack(
                     "NUGGET_CAST_BRASS",
                     Material.GOLD_NUGGET,
-                    ThemeUtils.ThemeItemType.CRAFTING,
+                    ThemeItemType.CRAFTING,
                     "Brass Nugget",
                     "A nugget made from brass"
             );
@@ -185,8 +186,8 @@ public final class Materials {
     public static final SlimefunItemStack NUGGET_CAST_ALU_BRASS =
             ThemeUtils.themedItemStack(
                     "NUGGET_CAST_ALU_BRASS",
-                    Material.GOLD_INGOT,
-                    ThemeUtils.ThemeItemType.CRAFTING,
+                    Material.GOLD_NUGGET,
+                    ThemeItemType.CRAFTING,
                     "Aluminum Brass Nugget",
                     "A nugget made from aluminum brass"
             );
@@ -195,7 +196,7 @@ public final class Materials {
             ThemeUtils.themedItemStack(
                     "NUGGET_CAST_NICKEL",
                     Material.IRON_NUGGET,
-                    ThemeUtils.ThemeItemType.CRAFTING,
+                    ThemeItemType.CRAFTING,
                     "Nickel Nugget",
                     "A nugget made from nickel"
             );
@@ -204,7 +205,7 @@ public final class Materials {
             ThemeUtils.themedItemStack(
                     "NUGGET_CAST_COBALT",
                     Material.IRON_NUGGET,
-                    ThemeUtils.ThemeItemType.CRAFTING,
+                    ThemeItemType.CRAFTING,
                     "Cobalt Nugget",
                     "A nugget made from cobalt"
             );
@@ -213,7 +214,7 @@ public final class Materials {
             ThemeUtils.themedItemStack(
                     "NUGGET_CAST_REINFORCED",
                     Material.IRON_NUGGET,
-                    ThemeUtils.ThemeItemType.CRAFTING,
+                    ThemeItemType.CRAFTING,
                     "Reinforced Alloy Nugget",
                     "A nugget made from reinforced alloy"
             );
@@ -222,7 +223,7 @@ public final class Materials {
             ThemeUtils.themedItemStack(
                     "NUGGET_CAST_FERROSILICON",
                     Material.IRON_NUGGET,
-                    ThemeUtils.ThemeItemType.CRAFTING,
+                    ThemeItemType.CRAFTING,
                     "Ferrosilicon Nugget",
                     "A nugget made from ferrosilicon"
             );
@@ -231,17 +232,36 @@ public final class Materials {
             ThemeUtils.themedItemStack(
                     "NUGGET_CAST_REDSTONE_ALLOY",
                     Material.ACACIA_BUTTON,
-                    ThemeUtils.ThemeItemType.CRAFTING,
+                    ThemeItemType.CRAFTING,
                     "Redstone Alloy Nugget",
                     "A nugget made from redstone alloy"
             );
+
+    public static final SlimefunItemStack NUGGET_CAST_BOOMERITE =
+            ThemeUtils.themedItemStack(
+                    "NUGGET_CAST_BOOMERITE",
+                    Material.ACACIA_BUTTON,
+                    ThemeItemType.CRAFTING,
+                    "Boomerite Nugget",
+                    "A nugget made from boomerite"
+            );
     // endregion
+    // region Ingots
+    public static final SlimefunItemStack INGOT_CAST_BOOMERITE =
+            ThemeUtils.themedItemStack(
+                    "INGOT_CAST_BOOMERITE",
+                    Material.BRICK,
+                    ThemeItemType.CRAFTING,
+                    "Boomerite Ingot",
+                    "A very rare ingot. Origins unknown."
+            );
+    // End Region
     // region Blocks
     public static final SlimefunItemStack BLOCK_CAST_COPPER =
             ThemeUtils.themedItemStack(
                     "BLOCK_CAST_COPPER",
                     Material.TERRACOTTA,
-                    ThemeUtils.ThemeItemType.CRAFTING,
+                    ThemeItemType.CRAFTING,
                     "Copper Block",
                     "A block made from solid copper"
             );
@@ -250,7 +270,7 @@ public final class Materials {
             ThemeUtils.themedItemStack(
                     "BLOCK_CAST_TIN",
                     Material.IRON_BLOCK,
-                    ThemeUtils.ThemeItemType.CRAFTING,
+                    ThemeItemType.CRAFTING,
                     "Tin Block",
                     "A block made from solid tin"
             );
@@ -259,7 +279,7 @@ public final class Materials {
             ThemeUtils.themedItemStack(
                     "BLOCK_CAST_ZINC",
                     Material.IRON_BLOCK,
-                    ThemeUtils.ThemeItemType.CRAFTING,
+                    ThemeItemType.CRAFTING,
                     "Zinc Block",
                     "A block made from solid zinc"
             );
@@ -268,7 +288,7 @@ public final class Materials {
             ThemeUtils.themedItemStack(
                     "BLOCK_CAST_ALUMINUM",
                     Material.IRON_BLOCK,
-                    ThemeUtils.ThemeItemType.CRAFTING,
+                    ThemeItemType.CRAFTING,
                     "Aluminum Block",
                     "A block made from solid aluminum"
             );
@@ -277,7 +297,7 @@ public final class Materials {
             ThemeUtils.themedItemStack(
                     "BLOCK_CAST_MAGNESIUM",
                     Material.PINK_TERRACOTTA,
-                    ThemeUtils.ThemeItemType.CRAFTING,
+                    ThemeItemType.CRAFTING,
                     "Magnesium Block",
                     "A block made from solid magnesium"
             );
@@ -286,7 +306,7 @@ public final class Materials {
             ThemeUtils.themedItemStack(
                     "BLOCK_CAST_LEAD",
                     Material.PURPLE_TERRACOTTA,
-                    ThemeUtils.ThemeItemType.CRAFTING,
+                    ThemeItemType.CRAFTING,
                     "Lead Block",
                     "A block made from solid lead"
             );
@@ -295,7 +315,7 @@ public final class Materials {
             ThemeUtils.themedItemStack(
                     "BLOCK_CAST_SILVER",
                     Material.IRON_BLOCK,
-                    ThemeUtils.ThemeItemType.CRAFTING,
+                    ThemeItemType.CRAFTING,
                     "Silver Block",
                     "A block made from solid silver"
             );
@@ -304,7 +324,7 @@ public final class Materials {
             ThemeUtils.themedItemStack(
                     "BLOCK_CAST_STEEL",
                     Material.IRON_BLOCK,
-                    ThemeUtils.ThemeItemType.CRAFTING,
+                    ThemeItemType.CRAFTING,
                     "Steel Block",
                     "A block made from solid steel"
             );
@@ -313,7 +333,7 @@ public final class Materials {
             ThemeUtils.themedItemStack(
                     "BLOCK_CAST_DAMASCUS_STEEL",
                     Material.IRON_BLOCK,
-                    ThemeUtils.ThemeItemType.CRAFTING,
+                    ThemeItemType.CRAFTING,
                     "Damascus Steel Block",
                     "A block made from damascus steel"
             );
@@ -322,7 +342,7 @@ public final class Materials {
             ThemeUtils.themedItemStack(
                     "BLOCK_CAST_DURALIUM",
                     Material.IRON_BLOCK,
-                    ThemeUtils.ThemeItemType.CRAFTING,
+                    ThemeItemType.CRAFTING,
                     "Duralium Block",
                     "A block made from duralium"
             );
@@ -331,7 +351,7 @@ public final class Materials {
             ThemeUtils.themedItemStack(
                     "BLOCK_CAST_BRONZE",
                     Material.TERRACOTTA,
-                    ThemeUtils.ThemeItemType.CRAFTING,
+                    ThemeItemType.CRAFTING,
                     "Bronze Block",
                     "A block made from bronze"
             );
@@ -340,7 +360,7 @@ public final class Materials {
             ThemeUtils.themedItemStack(
                     "BLOCK_CAST_ALU_BRONZE",
                     Material.TERRACOTTA,
-                    ThemeUtils.ThemeItemType.CRAFTING,
+                    ThemeItemType.CRAFTING,
                     "Aluminum Bronze Block",
                     "A block made from aluminum bronze"
             );
@@ -349,7 +369,7 @@ public final class Materials {
             ThemeUtils.themedItemStack(
                     "BLOCK_CAST_HARD_METAL",
                     Material.IRON_BLOCK,
-                    ThemeUtils.ThemeItemType.CRAFTING,
+                    ThemeItemType.CRAFTING,
                     "Hardened Metal Block",
                     "A block made from hardened metal"
             );
@@ -357,7 +377,7 @@ public final class Materials {
             ThemeUtils.themedItemStack(
                     "BLOCK_CAST_COR_BRONZE",
                     Material.TERRACOTTA,
-                    ThemeUtils.ThemeItemType.CRAFTING,
+                    ThemeItemType.CRAFTING,
                     "Corinthian Bronze Block",
                     "A block made from corinthian bronze"
             );
@@ -366,7 +386,7 @@ public final class Materials {
             ThemeUtils.themedItemStack(
                     "BLOCK_CAST_SOLDER",
                     Material.IRON_BLOCK,
-                    ThemeUtils.ThemeItemType.CRAFTING,
+                    ThemeItemType.CRAFTING,
                     "Solder Block",
                     "A block made from solder"
             );
@@ -375,7 +395,7 @@ public final class Materials {
             ThemeUtils.themedItemStack(
                     "BLOCK_CAST_BILLON",
                     Material.IRON_BLOCK,
-                    ThemeUtils.ThemeItemType.CRAFTING,
+                    ThemeItemType.CRAFTING,
                     "Billon Block",
                     "A block made from billon"
             );
@@ -384,7 +404,7 @@ public final class Materials {
             ThemeUtils.themedItemStack(
                     "BLOCK_CAST_BRASS",
                     Material.IRON_BLOCK,
-                    ThemeUtils.ThemeItemType.CRAFTING,
+                    ThemeItemType.CRAFTING,
                     "Brass Block",
                     "A block made from brass"
             );
@@ -393,7 +413,7 @@ public final class Materials {
             ThemeUtils.themedItemStack(
                     "BLOCK_CAST_ALU_BRASS",
                     Material.IRON_BLOCK,
-                    ThemeUtils.ThemeItemType.CRAFTING,
+                    ThemeItemType.CRAFTING,
                     "Aluminum Brass Block",
                     "A block made from aluminum brass"
             );
@@ -402,7 +422,7 @@ public final class Materials {
             ThemeUtils.themedItemStack(
                     "BLOCK_CAST_NICKEL",
                     Material.IRON_BLOCK,
-                    ThemeUtils.ThemeItemType.CRAFTING,
+                    ThemeItemType.CRAFTING,
                     "Nickel Block",
                     "A block made from nickel"
             );
@@ -411,7 +431,7 @@ public final class Materials {
             ThemeUtils.themedItemStack(
                     "BLOCK_CAST_COBALT",
                     Material.IRON_BLOCK,
-                    ThemeUtils.ThemeItemType.CRAFTING,
+                    ThemeItemType.CRAFTING,
                     "Cobalt Block",
                     "A block made from cobalt"
             );
@@ -420,7 +440,7 @@ public final class Materials {
             ThemeUtils.themedItemStack(
                     "BLOCK_CAST_REINFORCED",
                     Material.IRON_BLOCK,
-                    ThemeUtils.ThemeItemType.CRAFTING,
+                    ThemeItemType.CRAFTING,
                     "Reinforced Alloy Block",
                     "A block made from reinforced alloy"
             );
@@ -429,7 +449,7 @@ public final class Materials {
             ThemeUtils.themedItemStack(
                     "BLOCK_CAST_FERROSILICON",
                     Material.IRON_BLOCK,
-                    ThemeUtils.ThemeItemType.CRAFTING,
+                    ThemeItemType.CRAFTING,
                     "Ferrosilicon Block",
                     "A block made from ferrosilicon"
             );
@@ -437,10 +457,19 @@ public final class Materials {
     public static final SlimefunItemStack BLOCK_CAST_REDSTONE_ALLOY =
             ThemeUtils.themedItemStack(
                     "BLOCK_CAST_REDSTONE_ALLOY",
-                    Material.IRON_BLOCK,
-                    ThemeUtils.ThemeItemType.CRAFTING,
+                    Material.TERRACOTTA,
+                    ThemeItemType.CRAFTING,
                     "Redstone Alloy Block",
                     "A block made from redstone alloy"
+            );
+
+    public static final SlimefunItemStack BLOCK_CAST_BOOMERITE =
+            ThemeUtils.themedItemStack(
+                    "BLOCK_CAST_BOOMERITE",
+                    Material.TERRACOTTA,
+                    ThemeItemType.CRAFTING,
+                    "Boomerite Block",
+                    "A block made from boomerite"
             );
     // endregion
     // region Crafts
@@ -448,7 +477,7 @@ public final class Materials {
             ThemeUtils.themedItemStack(
                     "MOD_PLATE",
                     Material.OBSIDIAN,
-                    ThemeUtils.ThemeItemType.MOD,
+                    ThemeItemType.MOD,
                     "Reinforced Plate",
                     ThemeUtils.PASSIVE + "A modification for tools that gives.",
                     ThemeUtils.PASSIVE + "a chance to ignore tool damage."
@@ -458,7 +487,7 @@ public final class Materials {
             ThemeUtils.themedItemStack(
                     "GROUT",
                     Material.GRAVEL,
-                    ThemeUtils.ThemeItemType.CRAFTING,
+                    ThemeItemType.CRAFTING,
                     "Grout",
                     ThemeUtils.PASSIVE + "Used to make seared bricks."
             );
@@ -468,7 +497,7 @@ public final class Materials {
             ThemeUtils.themedItemStack(
                     "SEARED_BRICK",
                     Material.BRICK,
-                    ThemeUtils.ThemeItemType.CRAFTING,
+                    ThemeItemType.CRAFTING,
                     "Seared Brick",
                     ThemeUtils.PASSIVE + "Used in crafting smeltery blocks."
             );
@@ -477,7 +506,7 @@ public final class Materials {
             ThemeUtils.themedItemStack(
                     "SMELTERY_CONTROLLER",
                     Material.CHISELED_POLISHED_BLACKSTONE,
-                    ThemeUtils.ThemeItemType.MACHINE,
+                    ThemeItemType.MACHINE,
                     "Smeltery Controller",
                     ThemeUtils.PASSIVE + "Used in crafting smeltery blocks."
             );
@@ -486,7 +515,7 @@ public final class Materials {
             ThemeUtils.themedItemStack(
                     "SEARED_TANK",
                     Material.RED_NETHER_BRICK_WALL,
-                    ThemeUtils.ThemeItemType.CRAFTING,
+                    ThemeItemType.CRAFTING,
                     "Seared Tank",
                     ThemeUtils.PASSIVE + "Used in building the smeltery."
             );
@@ -495,7 +524,7 @@ public final class Materials {
             ThemeUtils.themedItemStack(
                     "SPOUT",
                     Material.POLISHED_BLACKSTONE_BRICK_WALL,
-                    ThemeUtils.ThemeItemType.CRAFTING,
+                    ThemeItemType.CRAFTING,
                     "Seared Spout",
                     ThemeUtils.PASSIVE + "Used in building the smeltery."
             );
@@ -504,7 +533,7 @@ public final class Materials {
             ThemeUtils.themedItemStack(
                     "SEARED_BRICK_BLOCK",
                     Material.POLISHED_BLACKSTONE_BRICKS,
-                    ThemeUtils.ThemeItemType.CRAFTING,
+                    ThemeItemType.CRAFTING,
                     "Seared Brick Block",
                     ThemeUtils.PASSIVE + "Used in building the smeltery."
             );
@@ -517,7 +546,7 @@ public final class Materials {
             ThemeUtils.themedItemStack(
                     "NUGGET_CAST_INFINITY",
                     Material.IRON_NUGGET,
-                    ThemeUtils.ThemeItemType.CRAFTING,
+                    ThemeItemType.CRAFTING,
                     "Infinity Nugget",
                     "A nugget made from solid infinity... yup!"
             );
@@ -526,7 +555,7 @@ public final class Materials {
             ThemeUtils.themedItemStack(
                     "NUGGET_CAST_MAGSTEEL",
                     Material.ACACIA_BUTTON,
-                    ThemeUtils.ThemeItemType.CRAFTING,
+                    ThemeItemType.CRAFTING,
                     "MagSteel Nugget",
                     "A nugget made from solid MagSteel"
             );
@@ -535,7 +564,7 @@ public final class Materials {
             ThemeUtils.themedItemStack(
                     "NUGGET_CAST_TITANIUM",
                     Material.IRON_NUGGET,
-                    ThemeUtils.ThemeItemType.CRAFTING,
+                    ThemeItemType.CRAFTING,
                     "Titanium Nugget",
                     "A nugget made from solid Titanium"
             );
@@ -544,7 +573,7 @@ public final class Materials {
             ThemeUtils.themedItemStack(
                     "NUGGET_CAST_MYTHRIL",
                     Material.IRON_NUGGET,
-                    ThemeUtils.ThemeItemType.CRAFTING,
+                    ThemeItemType.CRAFTING,
                     "Mythril Nugget",
                     "A nugget made from solid Mythril"
             );
@@ -553,7 +582,7 @@ public final class Materials {
             ThemeUtils.themedItemStack(
                     "NUGGET_CAST_ADAMANTITE",
                     Material.ACACIA_BUTTON,
-                    ThemeUtils.ThemeItemType.CRAFTING,
+                    ThemeItemType.CRAFTING,
                     "Adamantite Nugget",
                     "A nugget made from solid Adamantite"
             );
@@ -562,7 +591,7 @@ public final class Materials {
             ThemeUtils.themedItemStack(
                     "NUGGET_CAST_MAGNONIUM",
                     Material.CRIMSON_BUTTON,
-                    ThemeUtils.ThemeItemType.CRAFTING,
+                    ThemeItemType.CRAFTING,
                     "Magnonium Nugget",
                     "A nugget made from solid Magnonium"
             );
@@ -573,7 +602,7 @@ public final class Materials {
             ThemeUtils.themedItemStack(
                     "BLOCK_CAST_VOID",
                     Material.NETHERITE_BLOCK,
-                    ThemeUtils.ThemeItemType.CRAFTING,
+                    ThemeItemType.CRAFTING,
                     "Void Block",
                     "A block made from ... void?"
             );
@@ -582,7 +611,7 @@ public final class Materials {
             ThemeUtils.themedItemStack(
                     "BLOCK_CAST_INFINITY",
                     Material.IRON_BLOCK,
-                    ThemeUtils.ThemeItemType.CRAFTING,
+                    ThemeItemType.CRAFTING,
                     "Infinity Block",
                     "A block made from *sigh* infinity."
             );
@@ -591,7 +620,7 @@ public final class Materials {
             ThemeUtils.themedItemStack(
                     "BLOCK_CAST_MAGSTEEL",
                     Material.TERRACOTTA,
-                    ThemeUtils.ThemeItemType.CRAFTING,
+                    ThemeItemType.CRAFTING,
                     "MagSteel Block",
                     "A block made from MagSteel."
             );
@@ -600,7 +629,7 @@ public final class Materials {
             ThemeUtils.themedItemStack(
                     "BLOCK_CAST_TITANIUM",
                     Material.IRON_BLOCK,
-                    ThemeUtils.ThemeItemType.CRAFTING,
+                    ThemeItemType.CRAFTING,
                     "Titanium Block",
                     "A block made from Titanium."
             );
@@ -609,7 +638,7 @@ public final class Materials {
             ThemeUtils.themedItemStack(
                     "BLOCK_CAST_MYTHRIL",
                     Material.IRON_BLOCK,
-                    ThemeUtils.ThemeItemType.CRAFTING,
+                    ThemeItemType.CRAFTING,
                     "Mythril Block",
                     "A block made from Mythril."
             );
@@ -618,7 +647,7 @@ public final class Materials {
             ThemeUtils.themedItemStack(
                     "BLOCK_CAST_ADAMANTITE",
                     Material.TERRACOTTA,
-                    ThemeUtils.ThemeItemType.CRAFTING,
+                    ThemeItemType.CRAFTING,
                     "Adamanitite Block",
                     "A block made from Adamanitite."
             );
@@ -627,7 +656,7 @@ public final class Materials {
             ThemeUtils.themedItemStack(
                     "BLOCK_CAST_MAGNONIUM",
                     Material.PURPLE_TERRACOTTA,
-                    ThemeUtils.ThemeItemType.CRAFTING,
+                    ThemeItemType.CRAFTING,
                     "Magnonium Block",
                     "A block made from Magnonium."
             );
@@ -641,7 +670,7 @@ public final class Materials {
             ThemeUtils.themedItemStack(
                     "NUGGET_CAST_SLIMESTEEL",
                     Material.IRON_NUGGET,
-                    ThemeUtils.ThemeItemType.CRAFTING,
+                    ThemeItemType.CRAFTING,
                     "Slimesteel Nugget",
                     "A nugget of slimesteel"
             );
@@ -650,7 +679,7 @@ public final class Materials {
             ThemeUtils.themedItemStack(
                     "NUGGET_CAST_REINFORCED_SLIMESTEEL",
                     Material.IRON_NUGGET,
-                    ThemeUtils.ThemeItemType.CRAFTING,
+                    ThemeItemType.CRAFTING,
                     "Reinforced Slimesteel Nugget",
                     "A nugget of reinforced slimesteel"
             );
@@ -659,7 +688,7 @@ public final class Materials {
             ThemeUtils.themedItemStack(
                     "NUGGET_CAST_OSMIUM",
                     Material.WARPED_BUTTON,
-                    ThemeUtils.ThemeItemType.CRAFTING,
+                    ThemeItemType.CRAFTING,
                     "Osmium Nugget",
                     "A nugget of osmium"
             );
@@ -668,7 +697,7 @@ public final class Materials {
             ThemeUtils.themedItemStack(
                     "NUGGET_CAST_OSMIUM_SUPER_ALLOY",
                     Material.WARPED_BUTTON,
-                    ThemeUtils.ThemeItemType.CRAFTING,
+                    ThemeItemType.CRAFTING,
                     "Osmium Superalloy Nugget",
                     "A nugget of osmium superalloy"
             );
@@ -677,7 +706,7 @@ public final class Materials {
             ThemeUtils.themedItemStack(
                     "NUGGET_CAST_UNPATENTABILUM",
                     Material.IRON_BLOCK,
-                    ThemeUtils.ThemeItemType.CRAFTING,
+                    ThemeItemType.CRAFTING,
                     "Unpatentabilum Nugget",
                     "A nugget of unpatentabilum"
             );
@@ -688,7 +717,7 @@ public final class Materials {
             ThemeUtils.themedItemStack(
                     "BLOCK_CAST_SLIMESTEEL",
                     Material.SLIME_BLOCK,
-                    ThemeUtils.ThemeItemType.CRAFTING,
+                    ThemeItemType.CRAFTING,
                     "Slimesteel Block",
                     "A block of slimesteel"
             );
@@ -697,7 +726,7 @@ public final class Materials {
             ThemeUtils.themedItemStack(
                     "BLOCK_CAST_REINFORCED_SLIMESTEEL",
                     Material.SLIME_BLOCK,
-                    ThemeUtils.ThemeItemType.CRAFTING,
+                    ThemeItemType.CRAFTING,
                     "Reinforced Slimesteel Block",
                     "A block of reinforced slimesteel"
             );
@@ -706,7 +735,7 @@ public final class Materials {
             ThemeUtils.themedItemStack(
                     "BLOCK_CAST_OSMIUM",
                     Material.LIGHT_BLUE_TERRACOTTA,
-                    ThemeUtils.ThemeItemType.CRAFTING,
+                    ThemeItemType.CRAFTING,
                     "Osmium Block",
                     "A block of osmium"
             );
@@ -715,7 +744,7 @@ public final class Materials {
             ThemeUtils.themedItemStack(
                     "BLOCK_CAST_OSMIUM_SUPER_ALLOY",
                     Material.BLUE_TERRACOTTA,
-                    ThemeUtils.ThemeItemType.CRAFTING,
+                    ThemeItemType.CRAFTING,
                     "Osmium Superalloy Block",
                     "A block of osmium superalloy"
             );
@@ -724,7 +753,7 @@ public final class Materials {
             ThemeUtils.themedItemStack(
                     "BLOCK_CAST_UNPATENTABILUM",
                     Material.IRON_BLOCK,
-                    ThemeUtils.ThemeItemType.CRAFTING,
+                    ThemeItemType.CRAFTING,
                     "Unpatentabilum Block",
                     "A block of unpatentabilum"
             );
@@ -738,7 +767,7 @@ public final class Materials {
             ThemeUtils.themedItemStack(
                     "NUGGET_CAST_STAINLESSSTEEL",
                     Material.IRON_NUGGET,
-                    ThemeUtils.ThemeItemType.CRAFTING,
+                    ThemeItemType.CRAFTING,
                     "Stainless Steel Nugget",
                     "A nugget of stainless steel"
             );
@@ -749,7 +778,7 @@ public final class Materials {
             ThemeUtils.themedItemStack(
                     "BLOCK_CAST_STAINLESSSTEEL",
                     Material.IRON_BLOCK,
-                    ThemeUtils.ThemeItemType.CRAFTING,
+                    ThemeItemType.CRAFTING,
                     "Stainless Steel Block",
                     "A block of stainless"
             );
@@ -764,7 +793,7 @@ public final class Materials {
             ThemeUtils.themedItemStack(
                     "NUGGET_CAST_REFINED_IRON",
                     Material.IRON_NUGGET,
-                    ThemeUtils.ThemeItemType.CRAFTING,
+                    ThemeItemType.CRAFTING,
                     "Refined Iron Nugget",
                     "A nugget of refined iron"
             );
@@ -773,7 +802,7 @@ public final class Materials {
             ThemeUtils.themedItemStack(
                     "NUGGET_CAST_MIXED_METAL",
                     Material.IRON_NUGGET,
-                    ThemeUtils.ThemeItemType.CRAFTING,
+                    ThemeItemType.CRAFTING,
                     "Mixed Metal Nugget",
                     "A nugget of mixed metal"
             );
@@ -782,7 +811,7 @@ public final class Materials {
             ThemeUtils.themedItemStack(
                     "NUGGET_CAST_ADVANCED_ALLOY",
                     Material.IRON_NUGGET,
-                    ThemeUtils.ThemeItemType.CRAFTING,
+                    ThemeItemType.CRAFTING,
                     "Advanced Alloy Nugget",
                     "A nugget of advanced alloy"
             );
@@ -791,7 +820,7 @@ public final class Materials {
             ThemeUtils.themedItemStack(
                     "NUGGET_CAST_MAG_THOR",
                     Material.IRON_NUGGET,
-                    ThemeUtils.ThemeItemType.CRAFTING,
+                    ThemeItemType.CRAFTING,
                     "Mag-Thor Nugget",
                     "A nugget of mag-thor"
             );
@@ -800,7 +829,7 @@ public final class Materials {
             ThemeUtils.themedItemStack(
                     "NUGGET_CAST_SCRAP",
                     Material.IRON_NUGGET,
-                    ThemeUtils.ThemeItemType.CRAFTING,
+                    ThemeItemType.CRAFTING,
                     "Scrap Nugget",
                     "A nugget of scrap"
             );
@@ -809,9 +838,9 @@ public final class Materials {
             ThemeUtils.themedItemStack(
                     "NUGGET_CAST_IRIDIUM",
                     Material.IRON_NUGGET,
-                    ThemeUtils.ThemeItemType.CRAFTING,
+                    ThemeItemType.CRAFTING,
                     "Iridium Nugget",
-                    "A nugget of iridium"
+                    "A nugget of Iridium"
             );
 
     // endregion
@@ -820,7 +849,7 @@ public final class Materials {
             ThemeUtils.themedItemStack(
                     "BLOCK_CAST_REFINED_IRON",
                     Material.IRON_BLOCK,
-                    ThemeUtils.ThemeItemType.CRAFTING,
+                    ThemeItemType.CRAFTING,
                     "Refined Iron Block",
                     "A block of refined iron"
             );
@@ -829,7 +858,7 @@ public final class Materials {
             ThemeUtils.themedItemStack(
                     "BLOCK_CAST_MIXED_METAL",
                     Material.IRON_BLOCK,
-                    ThemeUtils.ThemeItemType.CRAFTING,
+                    ThemeItemType.CRAFTING,
                     "Mixed Metal Block",
                     "A block of mixed metal"
             );
@@ -838,7 +867,7 @@ public final class Materials {
             ThemeUtils.themedItemStack(
                     "BLOCK_CAST_ADVANCED_ALLOY",
                     Material.IRON_BLOCK,
-                    ThemeUtils.ThemeItemType.CRAFTING,
+                    ThemeItemType.CRAFTING,
                     "Advanced Alloy Block",
                     "A block of advacned alloy"
             );
@@ -847,7 +876,7 @@ public final class Materials {
             ThemeUtils.themedItemStack(
                     "BLOCK_CAST_MAG_THOR",
                     Material.IRON_BLOCK,
-                    ThemeUtils.ThemeItemType.CRAFTING,
+                    ThemeItemType.CRAFTING,
                     "Mag-Thor Block",
                     "A block of mag-thor"
             );
@@ -856,7 +885,7 @@ public final class Materials {
             ThemeUtils.themedItemStack(
                     "BLOCK_CAST_SCRAP",
                     Material.IRON_BLOCK,
-                    ThemeUtils.ThemeItemType.CRAFTING,
+                    ThemeItemType.CRAFTING,
                     "Scrap Block",
                     "A block of scrap"
             );
@@ -865,7 +894,7 @@ public final class Materials {
             ThemeUtils.themedItemStack(
                     "BLOCK_CAST_IRIDIUM",
                     Material.IRON_BLOCK,
-                    ThemeUtils.ThemeItemType.CRAFTING,
+                    ThemeItemType.CRAFTING,
                     "Iridium Block",
                     "A block of iridium"
             );
@@ -998,6 +1027,10 @@ public final class Materials {
 
         new UnplaceableBlock(Categories.MATERIALS, NUGGET_CAST_REDSTONE_ALLOY, DummySmeltery.TYPE, Parts.getDummyCastRecipe(Casts.CAST_NUGGET)).register(p);
         new UnplaceableBlock(Categories.MATERIALS, BLOCK_CAST_REDSTONE_ALLOY, DummySmeltery.TYPE, Parts.getDummyCastRecipe(Casts.CAST_BLOCK)).register(p);
+
+        new UnplaceableBlock(Categories.MATERIALS, NUGGET_CAST_BOOMERITE, DummySmeltery.TYPE, Parts.getDummyCastRecipe(Casts.CAST_NUGGET)).register(p);
+        new UnplaceableBlock(Categories.MATERIALS, INGOT_CAST_BOOMERITE, DummySmeltery.TYPE, Parts.getDummyCastRecipe(Casts.CAST_INGOT)).register(p);
+        new UnplaceableBlock(Categories.MATERIALS, BLOCK_CAST_BOOMERITE, DummySmeltery.TYPE, Parts.getDummyCastRecipe(Casts.CAST_BLOCK)).register(p);
 
         new UnplaceableBlock(Categories.MATERIALS, NUGGET_CAST_COAL, DummySmeltery.TYPE, Parts.getDummyCastRecipe(Casts.CAST_NUGGET)).register(p);
 

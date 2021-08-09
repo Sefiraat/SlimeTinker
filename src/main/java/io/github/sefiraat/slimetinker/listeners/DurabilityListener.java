@@ -1,15 +1,13 @@
 package io.github.sefiraat.slimetinker.listeners;
 
 import io.github.mooy1.infinitylib.items.StackUtils;
-import io.github.sefiraat.slimetinker.events.EventFriend;
+import io.github.sefiraat.slimetinker.events.friend.EventFriend;
+import io.github.sefiraat.slimetinker.events.friend.TraitEventType;
 import io.github.sefiraat.slimetinker.items.Materials;
-import io.github.sefiraat.slimetinker.items.componentmaterials.factories.CMManager;
-import io.github.sefiraat.slimetinker.items.templates.ToolTemplate;
 import io.github.sefiraat.slimetinker.modifiers.Modifications;
-import io.github.sefiraat.slimetinker.utils.IDStrings;
+import io.github.sefiraat.slimetinker.utils.GeneralUtils;
 import io.github.sefiraat.slimetinker.utils.ItemUtils;
-import io.github.sefiraat.slimetinker.utils.enums.TraitEventType;
-import io.github.sefiraat.slimetinker.utils.enums.TraitPartType;
+import org.apache.commons.lang.Validate;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerItemBreakEvent;
@@ -17,10 +15,12 @@ import org.bukkit.event.player.PlayerItemDamageEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.Damageable;
 import org.bukkit.inventory.meta.ItemMeta;
-import org.bukkit.persistence.PersistentDataContainer;
 
 import java.util.Map;
-import java.util.concurrent.ThreadLocalRandom;
+
+import static io.github.sefiraat.slimetinker.events.friend.EventChannels.checkArmour;
+import static io.github.sefiraat.slimetinker.events.friend.EventChannels.checkTool;
+import static io.github.sefiraat.slimetinker.events.friend.EventChannels.settlePotionEffects;
 
 public class DurabilityListener implements Listener {
 
@@ -29,33 +29,19 @@ public class DurabilityListener implements Listener {
     public void onItemDamage(PlayerItemDamageEvent event) {
 
         ItemStack damagedItem = event.getItem();
-        if (!ToolTemplate.isTool(damagedItem)) { // Not a tool, moving on!
-            return;
-        }
+        ItemMeta im = event.getItem().getItemMeta();
+
+        EventFriend friend = new EventFriend(event.getPlayer(), TraitEventType.DURABILITY);
 
         // Properties
-        ItemMeta im = event.getItem().getItemMeta();
-        assert im != null;
-        PersistentDataContainer c = im.getPersistentDataContainer();
-        String matPropertyHead = ItemUtils.getToolHeadMaterial(c);
-        String matPropertyBinding = ItemUtils.getToolBindingMaterial(c);
-        String matPropertyRod = ItemUtils.getToolRodMaterial(c);
-
-        EventFriend friend = new EventFriend();
-
-        friend.setHeldItem(event.getItem());
-        friend.setPlayer(event.getPlayer());
-
-        TraitEventType traitEventType = TraitEventType.DURABILITY;
-        CMManager.getMAP().get(matPropertyHead).runEvent(traitEventType, TraitPartType.HEAD, friend);
-        CMManager.getMAP().get(matPropertyBinding).runEvent(traitEventType, TraitPartType.BINDER, friend);
-        CMManager.getMAP().get(matPropertyRod).runEvent(traitEventType, TraitPartType.ROD, friend);
+        checkTool(friend);
+        checkArmour(friend);
 
         // Mods
         modChecks(damagedItem, event);
 
-
         // Settle
+        settlePotionEffects(friend);
         if (friend.isCancelEvent()) {
             event.setCancelled(true);
         }
@@ -76,7 +62,7 @@ public class DurabilityListener implements Listener {
     public void onItemBreak(PlayerItemBreakEvent event) { // Covering my bases here for anything else that can break a tool, may not be required?
 
         ItemStack damagedItem = event.getBrokenItem();
-        if (!ToolTemplate.isTool(damagedItem)) { // Not a tool, moving on!
+        if (!ItemUtils.isTool(damagedItem)) { // Not a tool, moving on!
             return;
         }
 
@@ -103,21 +89,16 @@ public class DurabilityListener implements Listener {
     private void modCheckPlate(ItemStack damagedItem, int level, PlayerItemDamageEvent event) {
 
         ItemMeta im = damagedItem.getItemMeta();
-        assert im != null;
-        PersistentDataContainer c = im.getPersistentDataContainer();
-        String matPropertyRod = ItemUtils.getToolRodMaterial(c);
+        Validate.notNull(im, "Meta is null, mod check failed");
 
-        if (matPropertyRod.equals(IDStrings.REINFORCED)) {
+        if (ItemUtils.isReinforced(damagedItem)) {
             level = level * 2;
         }
 
-        int rnd = ThreadLocalRandom.current().nextInt(1,11);
-
-        if (rnd <= level) {
+        if (GeneralUtils.testChance(level, 10)) {
             event.setCancelled(true);
         }
 
     }
-
 
 }

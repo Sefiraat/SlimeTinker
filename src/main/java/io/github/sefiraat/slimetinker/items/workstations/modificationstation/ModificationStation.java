@@ -2,10 +2,8 @@ package io.github.sefiraat.slimetinker.items.workstations.modificationstation;
 
 import io.github.mooy1.infinitylib.items.StackUtils;
 import io.github.mooy1.infinitylib.slimefun.AbstractContainer;
-import io.github.sefiraat.slimetinker.items.templates.ToolTemplate;
 import io.github.sefiraat.slimetinker.modifiers.Mod;
 import io.github.sefiraat.slimetinker.modifiers.Modifications;
-import io.github.sefiraat.slimetinker.utils.Experience;
 import io.github.sefiraat.slimetinker.utils.GUIItems;
 import io.github.sefiraat.slimetinker.utils.ItemUtils;
 import io.github.sefiraat.slimetinker.utils.ThemeUtils;
@@ -44,37 +42,45 @@ public class ModificationStation extends AbstractContainer {
     @SuppressWarnings("SameReturnValue")
     protected boolean craft(BlockMenu blockMenu, Player player) {
 
-        ItemStack tool = blockMenu.getItemInSlot(INPUT_TOOL);
+        ItemStack item = blockMenu.getItemInSlot(INPUT_TOOL);
         ItemStack modItem = blockMenu.getItemInSlot(INPUT_MOD);
 
-        // No tool dummy!
-        if (tool == null) {
-            player.sendMessage(ThemeUtils.WARNING + "Input a tool into the first slot.");
+        // No item dummy!
+        if (item == null) {
+            player.sendMessage(ThemeUtils.WARNING + "Input a tool/piece of armour into the first slot.");
             return false;
         }
 
         // Still no tool, nice try
-        if (!ToolTemplate.isTool(tool)) {
-            player.sendMessage(ThemeUtils.WARNING + "The item in the first slot isn't a Tinker's tool.");
-            return false;
+        if (!ItemUtils.isTool(item)) {
+            return modTool(blockMenu, player, item, modItem);
+        } else if(!ItemUtils.isArmour(item)) {
+            return modArmour(blockMenu, player, item, modItem);
+        } else {
+            player.sendMessage(ThemeUtils.WARNING + "The item in the first slot isn't a Tinker's tool/armour piece.");
         }
 
+        return false;
+
+    }
+
+    private boolean modTool(BlockMenu blockMenu, Player player, ItemStack item, ItemStack modItem) {
         // No modifier!
-        if (modItem == null || !Modifications.getMODIFICATION_LIST().contains(StackUtils.getIDorType(modItem))) {
+        if (modItem == null || !Modifications.getMODIFICATION_LIST_TOOL().contains(StackUtils.getIDorType(modItem))) {
             player.sendMessage(ThemeUtils.WARNING + "Input a valid modifier into the second slot.");
             return false;
         }
 
-        ItemMeta im = tool.getItemMeta();
+        ItemMeta im = item.getItemMeta();
         assert im != null;
         PersistentDataContainer c = im.getPersistentDataContainer();
 
-        Map<String, Integer> modMap = Modifications.getModificationMap(c);
+        Map<String, Integer> modMap = Modifications.getModificationMapTool(c);
 
-        Mod mod = Modifications.getMODIFICATION_DEFINITIONS().get(StackUtils.getIDorType(modItem)); // The definition of the mod being created/updated
-        int modSlots = Experience.getToolModifierSlots(tool.getItemMeta().getPersistentDataContainer()); // Number of free modification slots on the tool
+        Mod mod = Modifications.getMODIFICATION_DEFINITIONS_TOOL().get(StackUtils.getIDorType(modItem)); // The definition of the mod being created/updated
+        int modSlots = ItemUtils.getTinkerModifierSlots(c); // Number of free modification slots on the tool
         int currentAmount = modMap.get(StackUtils.getIDorType(modItem)); // The current value of that material loaded into the tool (not the level)
-        int currentLevel = Modifications.getModLevel(mod, tool); // The current level of this mod (or 0)
+        int currentLevel = Modifications.getModLevel(mod, item); // The current level of this mod (or 0)
 
         if (!mod.getRequirementMap().containsKey(currentLevel + 1)) { // Max level
             player.sendMessage(ThemeUtils.WARNING + "You have already maxed out this modifier");
@@ -89,7 +95,7 @@ public class ModificationStation extends AbstractContainer {
                 player.sendMessage(ThemeUtils.WARNING + "You do not have enough free Modification slots for this");
                 return false;
             } else { // Remove mod slot
-                Experience.setToolModifierSlots(c,modSlots - 1);
+                ItemUtils.setTinkerModifierSlots(c,modSlots - 1);
             }
         }  // Or continuing on with a previous mod so we can continue without a free slot
 
@@ -102,24 +108,85 @@ public class ModificationStation extends AbstractContainer {
         }
 
         modMap.put(StackUtils.getIDorType(modItem), currentAmount);
-        Modifications.setModificationMap(c, modMap);
+        Modifications.setModificationMapTool(c, modMap);
 
-        tool.setItemMeta(im);
-        ItemStack newTool = tool.clone();
+        item.setItemMeta(im);
+        ItemStack newTool = item.clone();
 
         if (!blockMenu.fits(newTool, OUTPUT_SLOT)) {
             player.sendMessage(ThemeUtils.WARNING + "Clear the output slot first");
             return false;
         }
 
-        ItemUtils.rebuildToolLore(newTool);
+        ItemUtils.rebuildTinkerLore(newTool);
         blockMenu.pushItem(newTool, OUTPUT_SLOT);
-        tool.setAmount(0);
+        item.setAmount(0);
         modItem.setAmount(leftoverAmount);
 
         return false;
     }
 
+    private boolean modArmour(BlockMenu blockMenu, Player player, ItemStack item, ItemStack modItem) {
+        // No modifier!
+        if (modItem == null || !Modifications.getMODIFICATION_LIST_ARMOUR().contains(StackUtils.getIDorType(modItem))) {
+            player.sendMessage(ThemeUtils.WARNING + "Input a valid modifier into the second slot.");
+            return false;
+        }
+
+        ItemMeta im = item.getItemMeta();
+        assert im != null;
+        PersistentDataContainer c = im.getPersistentDataContainer();
+
+        Map<String, Integer> modMap = Modifications.getModificationMapArmour(c);
+
+        Mod mod = Modifications.getMODIFICATION_DEFINITIONS_ARMOUR().get(StackUtils.getIDorType(modItem)); // The definition of the mod being created/updated
+        int modSlots = ItemUtils.getTinkerModifierSlots(c); // Number of free modification slots on the tool
+        int currentAmount = modMap.get(StackUtils.getIDorType(modItem)); // The current value of that material loaded into the tool (not the level)
+        int currentLevel = Modifications.getModLevel(mod, item); // The current level of this mod (or 0)
+
+        if (!mod.getRequirementMap().containsKey(currentLevel + 1)) { // Max level
+            player.sendMessage(ThemeUtils.WARNING + "You have already maxed out this modifier");
+            return false;
+        }
+
+        int requiredAmount = mod.getRequirementMap().get(currentLevel + 1) - currentAmount; // The amount needed for the next level less the amount currently on the tool
+        int leftoverAmount = 0;
+
+        if (currentAmount <= 0) {
+            if (modSlots == 0) { // New mod and no slots
+                player.sendMessage(ThemeUtils.WARNING + "You do not have enough free Modification slots for this");
+                return false;
+            } else { // Remove mod slot
+                ItemUtils.setTinkerModifierSlots(c,modSlots - 1);
+            }
+        }  // Or continuing on with a previous mod so we can continue without a free slot
+
+        if (requiredAmount <= modItem.getAmount()) { // We don't need the full amount (or the full amount will level up the tool)
+            leftoverAmount = modItem.getAmount() - requiredAmount; // Remove what we need
+            Modifications.setModLevel(mod, c, currentLevel + 1);
+            currentAmount = 0;
+        } else {
+            currentAmount = currentAmount + modItem.getAmount();
+        }
+
+        modMap.put(StackUtils.getIDorType(modItem), currentAmount);
+        Modifications.setModificationMapArmour(c, modMap);
+
+        item.setItemMeta(im);
+        ItemStack newArmour = item.clone();
+
+        if (!blockMenu.fits(newArmour, OUTPUT_SLOT)) {
+            player.sendMessage(ThemeUtils.WARNING + "Clear the output slot first");
+            return false;
+        }
+
+        ItemUtils.rebuildTinkerLore(newArmour);
+        blockMenu.pushItem(newArmour, OUTPUT_SLOT);
+        item.setAmount(0);
+        modItem.setAmount(leftoverAmount);
+
+        return false;
+    }
 
     @Override
     protected void setupMenu(BlockMenuPreset blockMenuPreset) {

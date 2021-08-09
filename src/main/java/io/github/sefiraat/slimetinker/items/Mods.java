@@ -4,6 +4,7 @@ import io.github.sefiraat.slimetinker.SlimeTinker;
 import io.github.sefiraat.slimetinker.categories.Categories;
 import io.github.sefiraat.slimetinker.items.workstations.modificationstation.DummyModificationStation;
 import io.github.sefiraat.slimetinker.utils.ThemeUtils;
+import io.github.sefiraat.slimetinker.utils.enums.ThemeItemType;
 import io.github.thebusybiscuit.slimefun4.implementation.items.blocks.UnplaceableBlock;
 import lombok.experimental.UtilityClass;
 import me.mrCookieSlime.Slimefun.api.SlimefunItemStack;
@@ -17,7 +18,7 @@ public final class Mods {
             ThemeUtils.themedItemStack(
                     "MOD_REDSTONE_DUMMY",
                     Material.REDSTONE,
-                    ThemeUtils.ThemeItemType.MOD,
+                    ThemeItemType.MOD,
                     "Modification: Redstone",
                     ThemeUtils.PASSIVE + "When applied to a tool, the holder",
                     ThemeUtils.PASSIVE + "will be given Haste matching the level",
@@ -28,7 +29,7 @@ public final class Mods {
             ThemeUtils.themedItemStack(
                     "MOD_LAPIS_DUMMY",
                     Material.LAPIS_LAZULI,
-                    ThemeUtils.ThemeItemType.MOD,
+                    ThemeItemType.MOD,
                     "Modification: Lapis",
                     ThemeUtils.PASSIVE + "When applied to a tool, the holder",
                     ThemeUtils.PASSIVE + "will drop bonus items from blocks or",
@@ -40,7 +41,7 @@ public final class Mods {
             ThemeUtils.themedItemStack(
                     "MOD_QUARTZ_DUMMY",
                     Material.QUARTZ,
-                    ThemeUtils.ThemeItemType.MOD,
+                    ThemeItemType.MOD,
                     "Modification: Quartz",
                     ThemeUtils.PASSIVE + "When applied to a tool, the holder",
                     ThemeUtils.PASSIVE + "will deal bonus damage. Calculated after",
@@ -52,7 +53,7 @@ public final class Mods {
             ThemeUtils.themedItemStack(
                     "MOD_DIAMOND_DUMMY",
                     Material.DIAMOND,
-                    ThemeUtils.ThemeItemType.MOD,
+                    ThemeItemType.MOD,
                     "Modification: Diamond",
                     ThemeUtils.PASSIVE + "When applied to a tool, the holder",
                     ThemeUtils.PASSIVE + "has a chance to reflect damage taken",
@@ -63,7 +64,7 @@ public final class Mods {
             ThemeUtils.themedItemStack(
                     "MOD_EMERALD_DUMMY",
                     Material.EMERALD,
-                    ThemeUtils.ThemeItemType.MOD,
+                    ThemeItemType.MOD,
                     "Modification: Emerald",
                     ThemeUtils.PASSIVE + "When applied to a tool, the holder",
                     ThemeUtils.PASSIVE + "will gain bonus tool EXP per action",
@@ -76,7 +77,7 @@ public final class Mods {
             ThemeUtils.themedItemStack(
                     "MOD_PLATE_DUMMY",
                     Material.OBSIDIAN,
-                    ThemeUtils.ThemeItemType.MOD,
+                    ThemeItemType.MOD,
                     "Modification: Reinforced Plate",
                     ThemeUtils.PASSIVE + "A tool with this modification has a",
                     ThemeUtils.PASSIVE + "chance to not take durability damage. 10%",

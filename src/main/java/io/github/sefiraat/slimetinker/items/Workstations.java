@@ -2,13 +2,15 @@ package io.github.sefiraat.slimetinker.items;
 
 import io.github.sefiraat.slimetinker.SlimeTinker;
 import io.github.sefiraat.slimetinker.categories.Categories;
+import io.github.sefiraat.slimetinker.items.workstations.armourtable.ArmourTable;
 import io.github.sefiraat.slimetinker.items.workstations.modificationstation.ModificationStation;
 import io.github.sefiraat.slimetinker.items.workstations.repairbench.RepairBench;
 import io.github.sefiraat.slimetinker.items.workstations.smeltery.DummySmelteryMulti;
 import io.github.sefiraat.slimetinker.items.workstations.swappingstation.SwappingStation;
-import io.github.sefiraat.slimetinker.items.workstations.table.Table;
+import io.github.sefiraat.slimetinker.items.workstations.tooltable.ToolTable;
 import io.github.sefiraat.slimetinker.items.workstations.workbench.Workbench;
 import io.github.sefiraat.slimetinker.utils.ThemeUtils;
+import io.github.sefiraat.slimetinker.utils.enums.ThemeItemType;
 import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
 import io.github.thebusybiscuit.slimefun4.implementation.items.blocks.UnplaceableBlock;
 import lombok.experimental.UtilityClass;
@@ -25,7 +27,7 @@ public final class Workstations {
             ThemeUtils.themedItemStack(
                     "TINKERS_SMELTERY_CORE",
                     Material.CHISELED_POLISHED_BLACKSTONE,
-                    ThemeUtils.ThemeItemType.MACHINE,
+                    ThemeItemType.MACHINE,
                     "Tinker's Smeltery",
                     "Melts down metals into liquids.",
                     "Metals can then be alloyed and",
@@ -38,7 +40,7 @@ public final class Workstations {
             ThemeUtils.themedItemStack(
                     "TINKERS_WORKBENCH",
                     Material.FLETCHING_TABLE,
-                    ThemeUtils.ThemeItemType.MACHINE,
+                    ThemeItemType.MACHINE,
                     "Tinker's Workbench",
                     "Used for crafting various items",
                     "and parts for Tinker's tools and",
@@ -46,14 +48,24 @@ public final class Workstations {
                     "Enhanced Crafting Table."
             );
 
-    // Table
+    // Tool Table
     public static final SlimefunItemStack TINKERS_TABLE =
             ThemeUtils.themedItemStack(
                     "TINKERS_TABLE",
                     Material.SMITHING_TABLE,
-                    ThemeUtils.ThemeItemType.MACHINE,
-                    "Tinker's Table",
+                    ThemeItemType.MACHINE,
+                    "Tinker's Tool Table",
                     "Combines parts into tools."
+            );
+
+    // Armour Table
+    public static final SlimefunItemStack TINKERS_ARMOUR_TABLE =
+            ThemeUtils.themedItemStack(
+                    "TINKERS_ARMOUR_TABLE",
+                    Material.SMITHING_TABLE,
+                    ThemeItemType.MACHINE,
+                    "Tinker's Armour Table",
+                    "Combines parts into armour pieces."
             );
 
     // Repair
@@ -61,7 +73,7 @@ public final class Workstations {
             ThemeUtils.themedItemStack(
                     "TINKERS_REPAIR_BENCH",
                     Material.CARTOGRAPHY_TABLE,
-                    ThemeUtils.ThemeItemType.MACHINE,
+                    ThemeItemType.MACHINE,
                     "Tinker's Repair Bench",
                     "Repairs tools and weapons."
             );
@@ -71,7 +83,7 @@ public final class Workstations {
             ThemeUtils.themedItemStack(
                     "TINKERS_SWAPPING_STATION",
                     Material.LOOM,
-                    ThemeUtils.ThemeItemType.MACHINE,
+                    ThemeItemType.MACHINE,
                     "Tinker's Swapping Station",
                     "Swaps parts of tools with new parts."
             );
@@ -81,7 +93,7 @@ public final class Workstations {
             ThemeUtils.themedItemStack(
                     "TINKERS_MOD_STATION",
                     Material.GRINDSTONE,
-                    ThemeUtils.ThemeItemType.MACHINE,
+                    ThemeItemType.MACHINE,
                     "Tinker's Modification Station",
                     "Applies modifications to tools and weapons."
             );
@@ -98,6 +110,11 @@ public final class Workstations {
     };
     protected static final ItemStack[] RECIPE_TINKERS_TABLE = new ItemStack[] {
             Materials.BLOCK_CAST_STEEL,   Materials.BLOCK_CAST_STEEL,   Materials.BLOCK_CAST_STEEL,
+            new ItemStack(Material.OAK_PLANKS),   Workstations.TINKERS_WORKBENCH,   new ItemStack(Material.OAK_PLANKS),
+            new ItemStack(Material.OAK_PLANKS),   SlimefunItems.POWER_CRYSTAL,   new ItemStack(Material.OAK_PLANKS)
+    };
+    protected static final ItemStack[] RECIPE_TINKERS_ARMOUR_TABLE = new ItemStack[] {
+            Materials.BLOCK_CAST_DAMASCUS_STEEL,   Materials.BLOCK_CAST_DAMASCUS_STEEL,   Materials.BLOCK_CAST_DAMASCUS_STEEL,
             new ItemStack(Material.OAK_PLANKS),   Workstations.TINKERS_WORKBENCH,   new ItemStack(Material.OAK_PLANKS),
             new ItemStack(Material.OAK_PLANKS),   SlimefunItems.POWER_CRYSTAL,   new ItemStack(Material.OAK_PLANKS)
     };
@@ -125,7 +142,8 @@ public final class Workstations {
         p.getWorkbench().register(p);
 
         new UnplaceableBlock(Categories.WORKSTATIONS, TINKERS_SMELTERY_CORE, DummySmelteryMulti.TYPE, RECIPE_TINKERS_SMELTERY_MULTI).register(p);
-        new Table(Categories.WORKSTATIONS, TINKERS_TABLE, Workbench.TYPE, RECIPE_TINKERS_TABLE).register(p);
+        new ToolTable(Categories.WORKSTATIONS, TINKERS_TABLE, Workbench.TYPE, RECIPE_TINKERS_TABLE).register(p);
+        new ArmourTable(Categories.WORKSTATIONS, TINKERS_ARMOUR_TABLE, Workbench.TYPE, RECIPE_TINKERS_ARMOUR_TABLE).register(p);
         new RepairBench(Categories.WORKSTATIONS, TINKERS_REPAIR_BENCH, Workbench.TYPE, RECIPE_TINKERS_REPAIR_BENCH).register(p);
         new SwappingStation(Categories.WORKSTATIONS, TINKERS_SWAPPING_STATION, Workbench.TYPE, RECIPE_TINKERS_SWAPPING_STATION).register(p);
         new ModificationStation(Categories.WORKSTATIONS, TINKERS_MOD_STATION, Workbench.TYPE, RECIPE_TINKERS_MOD_STATION).register(p);

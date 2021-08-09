@@ -1,14 +1,11 @@
 package io.github.sefiraat.slimetinker.listeners;
 
-import io.github.sefiraat.slimetinker.events.EventFriend;
-import io.github.sefiraat.slimetinker.items.componentmaterials.factories.CMManager;
-import io.github.sefiraat.slimetinker.items.templates.ToolTemplate;
+import io.github.sefiraat.slimetinker.events.friend.EventChannels;
+import io.github.sefiraat.slimetinker.events.friend.EventFriend;
+import io.github.sefiraat.slimetinker.events.friend.TraitEventType;
 import io.github.sefiraat.slimetinker.modifiers.Modifications;
 import io.github.sefiraat.slimetinker.utils.Experience;
-import io.github.sefiraat.slimetinker.utils.IDStrings;
 import io.github.sefiraat.slimetinker.utils.ItemUtils;
-import io.github.sefiraat.slimetinker.utils.enums.TraitEventType;
-import io.github.sefiraat.slimetinker.utils.enums.TraitPartType;
 import org.bukkit.Color;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -21,13 +18,15 @@ import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerRespawnEvent;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
-import org.bukkit.persistence.PersistentDataContainer;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import static io.github.sefiraat.slimetinker.events.friend.EventChannels.checkArmour;
+import static io.github.sefiraat.slimetinker.events.friend.EventChannels.checkTool;
+import static io.github.sefiraat.slimetinker.events.friend.EventChannels.settlePotionEffects;
 
 public class EntityKilledListener implements Listener {
 
@@ -43,20 +42,9 @@ public class EntityKilledListener implements Listener {
         }
 
         for (ItemStack i : event.getDrops()) {
-
-            if (!ToolTemplate.isTool(i)) {
-                continue;
-            }
-
-            PersistentDataContainer c = i.getItemMeta().getPersistentDataContainer();
-            String headMaterial = ItemUtils.getToolHeadMaterial(c);
-            String bindMaterial = ItemUtils.getToolBindingMaterial(c);
-            String rodMaterial = ItemUtils.getToolRodMaterial(c);
-
-            if (rodMaterial.equals(IDStrings.SOLDER) || rodMaterial.equals(IDStrings.UNPATENTABLIUM)) {
+            if (ItemUtils.cannotDrop(i)) {
                 list.add(i);
             }
-
         }
         for (ItemStack i : list) {
             event.getDrops().remove(i);
@@ -90,43 +78,31 @@ public class EntityKilledListener implements Listener {
         Player player = dyingEntity.getKiller();
         ItemStack heldItem = player.getInventory().getItemInMainHand();
 
-        if (!ToolTemplate.isTool(heldItem)) { // Not a Tinker's tool, so we don't care
-            return;
-        }
+        EventFriend friend = new EventFriend(player, TraitEventType.ENTITY_DAMAGED);
+
+        friend.setDamagedEntity(dyingEntity);
 
         // Properties
-        ItemMeta im = heldItem.getItemMeta();
-        assert im != null;
-        PersistentDataContainer c = im.getPersistentDataContainer();
-        String matPropertyHead = ItemUtils.getToolHeadMaterial(c);
-        String matPropertyBinding = ItemUtils.getToolBindingMaterial(c);
-        String matPropertyRod = ItemUtils.getToolRodMaterial(c);
-        int toolLevel = Experience.getToolLevel(c);
-
-        EventFriend friend = new EventFriend();
-
-        friend.setHeldItem(heldItem);
-        friend.setPlayer(player);
-        friend.setDamagedEntity(dyingEntity);
-        friend.setToolLevel(toolLevel);
-
-        TraitEventType traitEventType = TraitEventType.ENTITY_DAMAGED;
-        CMManager.getMAP().get(matPropertyHead).runEvent(traitEventType, TraitPartType.HEAD, friend);
-        CMManager.getMAP().get(matPropertyBinding).runEvent(traitEventType, TraitPartType.BINDER, friend);
-        CMManager.getMAP().get(matPropertyRod).runEvent(traitEventType, TraitPartType.ROD, friend);
+        checkTool(friend);
+        checkArmour(friend);
 
         // Mods
         modChecks(event, heldItem);
 
         // Settle
+        settlePotionEffects(friend);
+        int rawExp = event.getDroppedExp();
         event.setDroppedExp((int) Math.ceil(event.getDroppedExp() * friend.getPlayerExpMod()));
         if (event.getDroppedExp() > 0 && friend.isMetalCheck()) {
-            Experience.addToolExp(heldItem, (int) Math.ceil(event.getDroppedExp() / 10D), player, true);
+            Experience.addExp(heldItem, (int) Math.ceil(event.getDroppedExp() / 10D), player, true);
             event.setDroppedExp(0);
+        } else {
+            EventChannels.provideKillExp(friend, rawExp);
         }
 
 
     }
+
 
     private void modChecks(EntityDeathEvent event, ItemStack heldItem) {
         modCheckLapis(event, heldItem);

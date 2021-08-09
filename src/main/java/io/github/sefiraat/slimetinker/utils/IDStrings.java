@@ -5,7 +5,8 @@ import lombok.experimental.UtilityClass;
 @UtilityClass
 public final class IDStrings {
 
-    // Vanilla + Core SF
+    // TODO Collapse into Map and then form command completions from this
+    // Vanilla + Core SF + Tinkers
     public static final String IRON = "IRON";
     public static final String GOLD = "GOLD";
     public static final String COPPER = "COPPER";
@@ -37,11 +38,13 @@ public final class IDStrings {
     public static final String WEEPING_VINES = "WEEPING_VINE";
     public static final String TWISTED_VINES = "TWISTED_VINE";
     public static final String SLIME = "SLIME";
+    public static final String LEATHER = "LEATHER";
     public static final String DIAMOND = "DIAMOND";
     public static final String REDSTONE = "REDSTONE";
     public static final String REDSTONE_ALLOY = "REDSTONE_ALLOY";
     public static final String SILICON = "SILICON";
     public static final String FERROSILICON = "FERROSILICON";
+    public static final String BOOMERITE = "BOOMERITE";
 
     // Infinity Expansion
     public static final String VOID = "VOID";
@@ -97,13 +100,22 @@ public final class IDStrings {
     public static final String HEAD = "HEAD";
     public static final String BINDING = "BINDING";
     public static final String ROD = "ROD";
-    public static final String REPAIR = "REPAIR";
+    public static final String PLATE = "PLATE";
+    public static final String GAMBESON = "GAMBESON";
+    public static final String LINKS = "LINKS";
 
     public static final String SHOVEL = "SHOVEL";
     public static final String PICKAXE = "PICK";
     public static final String AXE = "AXE";
     public static final String HOE = "HOE";
     public static final String SWORD = "SWORD";
+
+    public static final String HELMET = "HELMET";
+    public static final String CHESTPLATE = "CHESTPLATE";
+    public static final String LEGGINGS = "LEGGINGS";
+    public static final String BOOTS = "BOOTS";
+
+    public static final String REPAIR = "REPAIR";
 
     public static final String PLACED = "st-placed-block";
 }

@@ -18,7 +18,7 @@ public final class DummyWorkbench {
     public static final SlimefunItemStack STACK = new SlimefunItemStack(
             "DUMMY_TINKERS_SMELTERY",
             Material.FLETCHING_TABLE,
-            ThemeUtils.ITEM_MACHINE + "Table",
+            ThemeUtils.ITEM_MACHINE + "ToolTable",
             "",
             ThemeUtils.PASSIVE + "This item is crafted in the workbench.",
             "",

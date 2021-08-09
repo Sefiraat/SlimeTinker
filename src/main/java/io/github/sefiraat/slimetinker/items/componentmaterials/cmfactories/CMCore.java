@@ -586,7 +586,8 @@ public final class CMCore {
                                                 CMTraits.PROP_PLATES,
                                                 SupportedPluginsManager.CORE_NOTE,
                                                 "Compounding",
-                                                "Gain extra health equal to Compounding^2"
+                                                "Gain extra health equal for each compounding",
+                                                "piece. Amount stacks on it's own gain"
                                         ),
                                         null,
                                         new CMTrait(
@@ -1517,7 +1518,7 @@ public final class CMCore {
                         (
                                 new CMIdentity(IDStrings.SILICON, SlimefunItems.SILICON, SkullTextures.ALLOY_SILVER, "#f2f2f2"),
                                 null,
-                                new CMToolMakeup(false, true, false, true, false, true),
+                                new CMToolMakeup(false, true, false, true, true, false),
                                 new CMForms(
                                         null,
                                         Material.QUARTZ.toString(),
@@ -1883,7 +1884,7 @@ public final class CMCore {
         map.get(IDStrings.DAMSTEEL).addEvent(TraitEventType.PLAYER_DAMAGED, TraitPartType.LINKS, PlayerDamagedEvents::linksDamSteel);       // Snroht
         map.get(IDStrings.SOLDER).addEvent(TraitEventType.PLAYER_DAMAGED, TraitPartType.PLATE, PlayerDamagedEvents::plateSolder);           // Soft Landing
         map.get(IDStrings.FERROSILICON).addEvent(TraitEventType.TICK, TraitPartType.PLATE, TickEvents::plateFerrosilicon);                  // Solar Powered
-        map.get(IDStrings.IRON).addEvent(TraitEventType.TICK, TraitPartType.PLATE, TickEvents::plateIron);                                  // Steadfast
+        map.get(IDStrings.IRON).addEvent(TraitEventType.PLAYER_DAMAGED, TraitPartType.PLATE, PlayerDamagedEvents::plateIron);               // Steadfast
         map.get(IDStrings.STEEL).addEvent(TraitEventType.TICK, TraitPartType.LINKS, TickEvents::linksSteel);                                // Strong
         map.get(IDStrings.CORBRONZE).addEvent(TraitEventType.TICK, TraitPartType.PLATE, TickEvents::plateCorBronze);                        // SuperHot
         map.get(IDStrings.COPPER).addEvent(TraitEventType.ENTITY_DAMAGED, TraitPartType.LINKS, EntityDamageEvents::linksCopper);            // Tarnished

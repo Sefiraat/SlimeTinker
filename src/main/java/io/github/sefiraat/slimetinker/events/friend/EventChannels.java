@@ -6,10 +6,8 @@ import io.github.sefiraat.slimetinker.utils.Experience;
 import io.github.sefiraat.slimetinker.utils.ItemUtils;
 import io.github.sefiraat.slimetinker.utils.ThemeUtils;
 import lombok.experimental.UtilityClass;
-import org.apache.commons.lang.Validate;
+import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
-import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
@@ -19,8 +17,18 @@ import java.util.Map;
 public class EventChannels {
 
     public static void settlePotionEffects(EventFriend friend) {
+        Player p = friend.getPlayer();
         for (Map.Entry<PotionEffectType, Integer> entry : friend.getPotionEffects().entrySet()) {
-            friend.getPlayer().addPotionEffect(new PotionEffect(entry.getKey(), SlimeTinker.RUNNABLE_TICK_RATE + 5, entry.getValue(), false, true, true));
+            boolean resetHealth = false;
+            double health = 0;
+            if (entry.getKey() == PotionEffectType.HEALTH_BOOST) {
+                resetHealth = true;
+                health = p.getHealth();
+            }
+            friend.getPlayer().addPotionEffect(new PotionEffect(entry.getKey(), SlimeTinker.RUNNABLE_TICK_RATE + 20, entry.getValue(), false, false, true));
+            if (resetHealth) {
+                p.setHealth(health);
+            }
         }
     }
 

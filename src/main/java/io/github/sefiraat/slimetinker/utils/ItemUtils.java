@@ -316,7 +316,7 @@ public final class ItemUtils {
         itemStack.setItemMeta(im);
     }
 
-    public static void repairTool(ItemStack itemStack) {
+    public static void repairItem(ItemStack itemStack) {
         ItemMeta im = itemStack.getItemMeta();
         Damageable d = (Damageable) im;
         Validate.notNull(d, "Damagable is null, this is some BULL YO'");
@@ -324,7 +324,7 @@ public final class ItemUtils {
         itemStack.setItemMeta(im);
     }
 
-    public static void repairTool(ItemStack itemStack, int amount) {
+    public static void repairItem(ItemStack itemStack, int amount) {
         ItemMeta im = itemStack.getItemMeta();
         Damageable d = (Damageable) im;
         Validate.notNull(d, "Damagable is null, this is some BULL YO'");
@@ -502,7 +502,10 @@ public final class ItemUtils {
     }
 
     public static boolean repairBenchEasyFix2(ItemStack itemStack) {
-        return getArmourLinksMaterial(itemStack).equals(IDStrings.SINGALUMINUM);
+        if (isArmour(itemStack)) {
+            return getArmourLinksMaterial(itemStack).equals(IDStrings.SINGALUMINUM);
+        }
+        return false;
     }
 
     public static boolean isEnchanting(ItemStack itemStack) {
@@ -676,16 +679,14 @@ public final class ItemUtils {
         return s.matches("(.*)BACKPACK(.*)");
     }
 
-    public static void incrementRandomEnchant(ItemStack i) {
-        ItemMeta im = i.getItemMeta();
-        Validate.notNull(im, "Mate is null, TIME TO GET GOT!");
-        Enchantment randEnchant = Enchantment.values()[(GeneralUtils.roll(Enchantment.values().length))];
+    public static void incrementRandomEnchant(ItemStack i, ItemMeta im) {
+        Validate.notNull(im, "Mata is null, TIME TO GET GOT!");
+        Enchantment randEnchant = Enchantment.values()[(GeneralUtils.roll(Enchantment.values().length, false))];
         if (im.hasEnchant(randEnchant)) {
             im.addEnchant(randEnchant, i.getEnchantmentLevel(randEnchant) + 1, true);
         } else {
             im.addEnchant(randEnchant, 1, true);
         }
-        i.setItemMeta(im);
     }
 
     public static boolean onCooldown(ItemStack i, String name) {

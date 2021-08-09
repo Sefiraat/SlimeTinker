@@ -9,9 +9,7 @@ import io.github.sefiraat.slimetinker.utils.GeneralUtils;
 import io.github.sefiraat.slimetinker.utils.ItemUtils;
 import io.github.sefiraat.slimetinker.utils.ThemeUtils;
 import io.github.sefiraat.slimetinker.utils.WorldUtils;
-import io.github.thebusybiscuit.slimefun4.core.attributes.Rechargeable;
 import lombok.experimental.UtilityClass;
-import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.SlimefunItem;
 import me.mrCookieSlime.Slimefun.cscorelib2.data.PersistentDataAPI;
 import org.apache.commons.lang.Validate;
 import org.bukkit.Color;
@@ -34,12 +32,9 @@ import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.Damageable;
 import org.bukkit.inventory.meta.ItemMeta;
-import org.bukkit.persistence.PersistentDataContainer;
-import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
-import java.time.Instant;
 import java.util.concurrent.ThreadLocalRandom;
 
 import static io.github.sefiraat.slimetinker.utils.EntityUtils.increaseEffect;
@@ -141,8 +136,8 @@ public final class PlayerDamagedEvents {
     }
 
     public static void plateBrass(EventFriend friend) {
-        Damageable damagable = (Damageable) friend.getTool().getItemMeta();
-        int dmgPerc = (damagable.getDamage() / friend.getTool().getType().getMaxDurability()) * 100;
+        Damageable damagable = (Damageable) friend.getActiveStack().getItemMeta();
+        int dmgPerc = (damagable.getDamage() / friend.getActiveStack().getType().getMaxDurability()) * 100;
         if (dmgPerc <= 0) {
             friend.setDamageMod(friend.getDamageMod() + 0.25);
         } else if (dmgPerc <= 10) {
@@ -310,7 +305,7 @@ public final class PlayerDamagedEvents {
         if (friend.getCause() == EntityDamageEvent.DamageCause.CONTACT) {
             Player p = friend.getPlayer();
             friend.setDamageMod(0);
-            p.setHealth(Math.max(p.getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue(), p.getHealth() + friend.getInitialDamage()));
+            p.setHealth(Math.min(p.getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue(), p.getHealth() + friend.getInitialDamage()));
         }
     }
 
@@ -444,14 +439,17 @@ public final class PlayerDamagedEvents {
         Validate.notNull(im, "Meta is null, nope!");
         double d = PersistentDataAPI.getDouble(im, k, 0);
         if (d < 5) {
-            d = Math.max(5, d + friend.getInitialDamage() / 10);
+            d = Math.min(5, d + friend.getInitialDamage() / 10);
             PersistentDataAPI.setDouble(im, k, d);
             i.setItemMeta(im);
         }
     }
 
     public static void linksSingInfinity(EventFriend friend) {
-        friend.setDamageMod(0);
+        friend.setInfinity(friend.getInfinity() + 1);
+        if (friend.getInfinity() >= 4) {
+            friend.setDamageMod(0);
+        }
     }
 
     public static void plateSingInfinity(EventFriend friend) {
@@ -461,9 +459,9 @@ public final class PlayerDamagedEvents {
         Validate.notNull(im, "Meta is null, nope!");
         int d = PersistentDataAPI.getInt(im, k, 0);
         if (d < 2000) {
-            d = (int) Math.max(2000, d + friend.getInitialDamage());
+            d = (int) Math.min(2000, d + friend.getInitialDamage());
             if (d == 2000) {
-                ItemUtils.incrementRandomEnchant(i);
+                ItemUtils.incrementRandomEnchant(i, im);
                 PersistentDataAPI.setInt(im, k, 0);
             } else {
                 PersistentDataAPI.setInt(im, k, d);
@@ -496,7 +494,9 @@ public final class PlayerDamagedEvents {
     public static void plateVoid(EventFriend friend) {
         if (friend.getCause() == EntityDamageEvent.DamageCause.VOID) {
             friend.setCancelEvent(true);
-            increaseEffect(PotionEffectType.LEVITATION, friend.getPotionEffects(), 3);
+            Player player = friend.getPlayer();
+            player.teleport(friend.getPlayer().getLocation().add(0, 200, 0));
+            player.setNoDamageTicks(100);
         }
     }
 
@@ -508,9 +508,14 @@ public final class PlayerDamagedEvents {
 
 
     public static void plateSingIron(EventFriend friend) {
-        Player p = friend.getPlayer();
-        friend.setCancelEvent(true);
-        p.setHealth(Math.max(p.getHealth() + friend.getInitialDamage(), p.getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue()));
+        if (
+                friend.getCause() == EntityDamageEvent.DamageCause.ENTITY_EXPLOSION
+                || friend.getCause() == EntityDamageEvent.DamageCause.BLOCK_EXPLOSION
+        ) {
+            Player p = friend.getPlayer();
+            friend.setCancelEvent(true);
+            p.setHealth(Math.min(p.getHealth() + friend.getInitialDamage(), p.getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue()));
+        }
     }
 
     public static void linksVoid(EventFriend friend) {
@@ -586,12 +591,12 @@ public final class PlayerDamagedEvents {
             if (speed == null) {
                 p.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 200, 0));
             } else {
-                p.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 200, Math.max(speed.getAmplifier() + 1, 9)));
+                p.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 200, Math.min(speed.getAmplifier() + 1, 9)));
             }
             if (haste == null) {
                 p.addPotionEffect(new PotionEffect(PotionEffectType.FAST_DIGGING, 200, 1));
             } else {
-                p.addPotionEffect(new PotionEffect(PotionEffectType.FAST_DIGGING, 200, Math.max(haste.getAmplifier() + 2, 19)));
+                p.addPotionEffect(new PotionEffect(PotionEffectType.FAST_DIGGING, 200, Math.min(haste.getAmplifier() + 2, 19)));
             }
         }
     }
@@ -645,27 +650,33 @@ public final class PlayerDamagedEvents {
         ItemStack i = friend.getActiveStack();
         ItemMeta im = i.getItemMeta();
         Validate.notNull(im, "Meta is null, herp derp derp");
-        NamespacedKey k = SlimeTinker.inst().getKeys().getArmourHyperbolicStored();
+        NamespacedKey k = SlimeTinker.inst().getKeys().getArmourUnconventionalStored();
         int amount = PersistentDataAPI.getInt(im, k, 0);
 
-        for (ItemStack i2 : friend.getPlayer().getInventory()) {
-            SlimefunItem s = SlimefunItem.getByItem(i2);
-            if (s instanceof Rechargeable) {
-                Rechargeable r1 = (Rechargeable) s;
-                float maxCharge = r1.getMaxItemCharge(i2);
-                float charge = r1.getItemCharge(i2);
-                float amountToCharge = maxCharge - charge;
-                if (amount > amountToCharge) {
-                    r1.setItemCharge(i2, maxCharge);
-                    amount = (int) (amount - amountToCharge);
-                } else {
-                    r1.addItemCharge(i2, amount);
-                    amount = 0;
-                }
+        PersistentDataAPI.setInt(im, k, (int) (amount + friend.getInitialDamage()));
+        i.setItemMeta(im);
+    }
+
+    public static void linksScrap(EventFriend friend) {
+        Player p = friend.getPlayer();
+        if (GeneralUtils.testChance(1,10)) {
+            ItemStack i = friend.getActiveStack();
+            ItemStack drop = i.clone();
+            i.setAmount(0);
+            WorldUtils.dropItem(drop, p);
+        } else {
+            friend.incrementItemExpMod(2);
+        }
+    }
+
+    public static void plateIron(EventFriend friend) {
+        if (
+                friend.getCause() == EntityDamageEvent.DamageCause.ENTITY_EXPLOSION
+                || friend.getCause() == EntityDamageEvent.DamageCause.BLOCK_EXPLOSION
+        ) {
+            if (GeneralUtils.testChance(1,8)) {
+                friend.setCancelEvent(true);
             }
         }
-
-        PersistentDataAPI.setInt(im, k, amount);
-        i.setItemMeta(im);
     }
 }

@@ -8,8 +8,10 @@ import io.github.sefiraat.slimetinker.utils.EntityUtils;
 import io.github.sefiraat.slimetinker.utils.GeneralUtils;
 import io.github.sefiraat.slimetinker.utils.ItemUtils;
 import io.github.sefiraat.slimetinker.utils.ThemeUtils;
+import io.github.thebusybiscuit.slimefun4.core.attributes.Rechargeable;
 import io.github.thebusybiscuit.slimefun4.implementation.SlimefunPlugin;
 import lombok.experimental.UtilityClass;
+import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.SlimefunItem;
 import me.mrCookieSlime.Slimefun.cscorelib2.data.PersistentDataAPI;
 import me.mrCookieSlime.Slimefun.cscorelib2.protection.ProtectableAction;
 import org.apache.commons.lang.Validate;
@@ -20,18 +22,14 @@ import org.bukkit.NamespacedKey;
 import org.bukkit.Particle;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
-import org.bukkit.block.data.type.Ladder;
+import org.bukkit.block.data.Directional;
 import org.bukkit.entity.Animals;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
-import org.bukkit.persistence.PersistentDataContainer;
-import org.bukkit.persistence.PersistentDataType;
 
-import java.time.Instant;
-import java.util.HashSet;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -94,7 +92,6 @@ public final class RightClickEvents {
                 ItemUtils.setCooldown(i, "NOCLIP", 300000);
             } else {
                 p.sendMessage(ThemeUtils.WARNING + "Couldn't teleport! Try again.");
-                return;
             }
         }
     }
@@ -165,19 +162,44 @@ public final class RightClickEvents {
 
     public static void linksIridium(EventFriend friend) {
 
+        ItemStack i = friend.getActiveStack();
+        ItemMeta im = i.getItemMeta();
+        Validate.notNull(im, "Meta is null, herp derp derp");
+        NamespacedKey k = SlimeTinker.inst().getKeys().getArmourUnconventionalStored();
+        int amount = PersistentDataAPI.getInt(im, k, 0);
+
+        for (ItemStack i2 : friend.getPlayer().getInventory()) {
+            SlimefunItem s = SlimefunItem.getByItem(i2);
+            if (s instanceof Rechargeable) {
+                Rechargeable r1 = (Rechargeable) s;
+                float maxCharge = r1.getMaxItemCharge(i2);
+                float charge = r1.getItemCharge(i2);
+                float amountToCharge = maxCharge - charge;
+                if (amount > amountToCharge) {
+                    r1.setItemCharge(i2, maxCharge);
+                    amount = (int) (amount - amountToCharge);
+                } else {
+                    r1.addItemCharge(i2, amount);
+                    amount = 0;
+                }
+            }
+        }
+        PersistentDataAPI.setInt(im, k, amount);
+        i.setItemMeta(im);
     }
 
     public static void headBoomerite(EventFriend friend) {
         Player player = friend.getPlayer();
         BlockFace blockFace = BlockUtils.getTargetedBlockFace(player);
-        if (blockFace != null) {
+        if (blockFace != null && blockFace != BlockFace.UP && blockFace != BlockFace.DOWN) {
             Block target = player.getTargetBlock(null, 5);
             if (target.getType() != Material.AIR) {
                 Block place = target.getRelative(blockFace);
                 if (place.getType() == Material.AIR && SlimefunPlugin.getProtectionManager().hasPermission(player, place, ProtectableAction.PLACE_BLOCK)) {
                     place.setType(Material.LADDER);
-                    Ladder l = (Ladder) target.getRelative(blockFace);
-                    l.setFacing(blockFace);
+                    Directional directional = (Directional) place.getBlockData();
+                    directional.setFacing(blockFace);
+                    place.setBlockData(directional);
                 }
             }
         }

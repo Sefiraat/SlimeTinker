@@ -5,6 +5,7 @@ import io.github.sefiraat.slimetinker.items.Guide;
 import io.github.sefiraat.slimetinker.modifiers.Modifications;
 import lombok.experimental.UtilityClass;
 import me.mrCookieSlime.Slimefun.cscorelib2.data.PersistentDataAPI;
+import org.apache.commons.lang.Validate;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -62,7 +63,7 @@ public final class Experience {
             promoteMaterial(itemStack, level, player);
             player.sendMessage(ThemeUtils.SUCCESS + "Your Tinker's tool has leveled up! +1 Modifier Slot");
 
-            silverChecks(itemStack, player);
+            silverChecks(itemStack, im, player);
 
         } else {
             newExp = currentExp + amount;
@@ -84,14 +85,22 @@ public final class Experience {
         if (level > (Guide.LEVEL_TOOLS_NETHERITE + 1)) {
             return;
         }
+
         ItemMeta im = itemStack.getItemMeta();
-        assert im != null;
-        String toolType = im.getPersistentDataContainer().get(SlimeTinker.inst().getKeys().getToolInfoToolType(), PersistentDataType.STRING);
-        if (Guide.getGrowthMap().get(toolType).containsKey(level)) {
-            itemStack.setType(Guide.getGrowthMap().get(toolType).get(level));
-            ItemUtils.repairTool(itemStack);
+        Validate.notNull(im, "Meta null, grr!");
+        String type;
+        if (ItemUtils.isTool(itemStack)) {
+            type = PersistentDataAPI.getString(im, SlimeTinker.inst().getKeys().getToolInfoToolType());
+        } else if (ItemUtils.isArmour(itemStack)) {
+            type = PersistentDataAPI.getString(im, SlimeTinker.inst().getKeys().getArmourInfoArmourType());
+        } else {
+            throw new IllegalArgumentException("Trying to promote something that isn't armour or a tool!");
+        }
+
+        if (Guide.getGrowthMap().get(type).containsKey(level)) {
+            itemStack.setType(Guide.getGrowthMap().get(type).get(level));
+            ItemUtils.repairItem(itemStack);
             player.sendMessage(ThemeUtils.SUCCESS + "Your tool has been promoted!");
-            ItemUtils.repairTool(itemStack);
         }
 
     }
@@ -107,12 +116,12 @@ public final class Experience {
         return false;
     }
 
-    private static void silverChecks(ItemStack itemStack, Player player) {
+    private static void silverChecks(ItemStack itemStack, ItemMeta im, Player player) {
         if (ItemUtils.isEnchanting(itemStack)) {
             int number = ItemUtils.isEnchanting2(itemStack) ? 3 : 1;
             int amount = ThreadLocalRandom.current().nextInt(1, number + 1);
             for (int i = 0; i < amount; i++) {
-                ItemUtils.incrementRandomEnchant(itemStack);
+                ItemUtils.incrementRandomEnchant(itemStack, im);
             }
             player.sendMessage(ThemeUtils.SUCCESS + "It also gained [" + amount + "] random enchantment(s)! Hope it's good :>");
         }

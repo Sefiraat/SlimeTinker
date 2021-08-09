@@ -108,7 +108,7 @@ public class Modifications {
 
         // ARMOUR
 
-        MODIFICATION_LIST_TOOL.add(StackUtils.getIDorType(Materials.MOD_PLATE));
+        MODIFICATION_LIST_ARMOUR.add(StackUtils.getIDorType(Materials.MOD_PLATE));
 
         MODIFICATION_DEFINITIONS_ARMOUR.put(StackUtils.getIDorType(Materials.MOD_PLATE), new Mod(MOD_MAP_PLATE, SlimeTinker.inst().getKeys().getStModLevelReinforced()));
 

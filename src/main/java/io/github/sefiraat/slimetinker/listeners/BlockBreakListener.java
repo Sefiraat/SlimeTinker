@@ -1,7 +1,6 @@
 package io.github.sefiraat.slimetinker.listeners;
 
 import io.github.sefiraat.slimetinker.SlimeTinker;
-import io.github.sefiraat.slimetinker.events.BlockBreakEvents;
 import io.github.sefiraat.slimetinker.events.friend.EventFriend;
 import io.github.sefiraat.slimetinker.events.friend.TraitEventType;
 import io.github.sefiraat.slimetinker.modifiers.Modifications;
@@ -9,7 +8,6 @@ import io.github.sefiraat.slimetinker.utils.BlockUtils;
 import io.github.sefiraat.slimetinker.utils.Experience;
 import io.github.sefiraat.slimetinker.utils.IDStrings;
 import io.github.sefiraat.slimetinker.utils.ItemUtils;
-import io.github.sefiraat.slimetinker.utils.ThemeUtils;
 import org.bukkit.Color;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -103,13 +101,15 @@ public class BlockBreakListener implements Listener {
             block.getWorld().dropItem(block.getLocation().clone().add(0.5, 0.5, 0.5), i);
         }
 
-        if (shouldGrantExp(heldItem, event.getBlock())) { // Should grant exp (checks tool / material validity and the crop state)
-            Experience.addExp(heldItem, (int) Math.ceil(1 * friend.getToolExpMod()), event.getPlayer(), true);
-        }
+        if (ItemUtils.isTool(heldItem)) {
+            if (shouldGrantExp(heldItem, event.getBlock())) { // Should grant exp (checks tool / material validity and the crop state)
+                Experience.addExp(heldItem, (int) Math.ceil(1 * friend.getToolExpMod()), event.getPlayer(), true);
+            }
 
-        if (event.getExpToDrop() > 0 && friend.isMetalCheck()) { // todo Get outta dodge with this one
-            Experience.addExp(heldItem, (int) Math.ceil(event.getExpToDrop() / 10D), event.getPlayer(), true);
-            event.setExpToDrop(0);
+            if (event.getExpToDrop() > 0 && friend.isMetalCheck()) { // todo Get outta dodge with this one
+                Experience.addExp(heldItem, (int) Math.ceil(event.getExpToDrop() / 10D), event.getPlayer(), true);
+                event.setExpToDrop(0);
+            }
         }
 
     }

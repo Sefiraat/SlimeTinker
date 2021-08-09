@@ -6,7 +6,6 @@ import io.github.sefiraat.slimetinker.utils.EntityUtils;
 import io.github.sefiraat.slimetinker.utils.GeneralUtils;
 import io.github.sefiraat.slimetinker.utils.ItemUtils;
 import io.github.sefiraat.slimetinker.utils.ThemeUtils;
-import io.github.sefiraat.slimetinker.utils.WorldUtils;
 import lombok.experimental.UtilityClass;
 import me.mrCookieSlime.Slimefun.cscorelib2.data.PersistentDataAPI;
 import org.apache.commons.lang.Validate;
@@ -24,12 +23,9 @@ import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
-import org.bukkit.persistence.PersistentDataContainer;
-import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
-import java.time.Instant;
 import java.util.concurrent.ThreadLocalRandom;
 
 import static io.github.sefiraat.slimetinker.utils.EntityUtils.push;
@@ -315,7 +311,7 @@ public final class EntityDamageEvents {
     }
 
     public static void gambesonSilicon(EventFriend friend) {
-        friend.incrementExpMod((0.05 * friend.getActiveLevel()));
+        friend.incrementItemExpMod((0.05 * friend.getActiveLevel()));
     }
 
     public static void plateZinc(EventFriend friend) {
@@ -326,33 +322,33 @@ public final class EntityDamageEvents {
 
     public static void linksCopper(EventFriend friend) {
         friend.setDamageMod(friend.getDamageMod() - 0.2);
-        friend.incrementExpMod(0.2);
+        friend.incrementItemExpMod(0.2);
     }
 
 
     public static void gambesonLeather(EventFriend friend) {
-        friend.incrementExpMod(0.1);
+        friend.incrementItemExpMod(0.1);
     }
 
     public static void plateBillon(EventFriend friend) {
-        friend.setCancelEvent(true);
        if (friend.getDamagedEntity() instanceof LivingEntity) {
+           friend.setCancelEvent(true);
            LivingEntity l = (LivingEntity) friend.getDamagedEntity();
-           l.setHealth(Math.max(l.getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue(), l.getHealth() + friend.getInitialDamage()));
+           l.setHealth(Math.min(l.getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue(), l.getHealth() + friend.getInitialDamage()));
        }
 
     }
 
     public static void plateCopper(EventFriend friend) {
-        friend.incrementExpMod(0.2);
+        friend.incrementItemExpMod(0.2);
     }
 
     public static void plateSingCopper(EventFriend friend) {
-        friend.incrementExpMod(0.4);
+        friend.incrementItemExpMod(0.4);
     }
 
     public static void linksAdamantite(EventFriend friend) {
-        friend.incrementExpMod(0.1);
+        friend.incrementItemExpMod(0.1);
         friend.setPlayerExpMod(friend.getPlayerExpMod() + 0.1);
     }
 
@@ -373,7 +369,7 @@ public final class EntityDamageEvents {
 
     public static void linksSingCopper(EventFriend friend) {
         friend.setDamageMod(friend.getDamageMod() - 0.2);
-        friend.incrementExpMod(0.4);
+        friend.incrementItemExpMod(0.4);
     }
 
     public static void plateMagic(EventFriend friend) {
@@ -404,15 +400,7 @@ public final class EntityDamageEvents {
     }
 
     public static void linksScrap(EventFriend friend) {
-        Player p = friend.getPlayer();
-        if (GeneralUtils.testChance(1,10)) {
-            ItemStack i = friend.getActiveStack();
-            ItemStack drop = i.clone();
-            i.setAmount(0);
-            WorldUtils.dropItem(drop, p);
-        } else {
-            friend.incrementExpMod(2);
-        }
+        friend.incrementItemExpMod(2);
     }
 
     public static void plateScrap(EventFriend friend) {
@@ -420,6 +408,6 @@ public final class EntityDamageEvents {
     }
 
     public static void binderLeather(EventFriend friend) {
-        friend.incrementExpMod(0.5);
+        friend.incrementItemExpMod(0.5);
     }
 }

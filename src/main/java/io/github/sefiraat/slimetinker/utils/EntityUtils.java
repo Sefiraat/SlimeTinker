@@ -17,6 +17,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Predicate;
 
 @UtilityClass
 public final class EntityUtils {
@@ -89,7 +90,12 @@ public final class EntityUtils {
     public static <T> List<T> getNearbyEntitiesByType(@Nonnull Class<?> clazz, @Nonnull Location l, double x, double y, double z) {
         World world = l.getWorld();
         Validate.notNull(world);
-        return ((List<T>) world.getNearbyEntities(l, x, y, z, e -> e.getClass().isInstance(clazz)));
+        return ((List<T>) world.getNearbyEntities(l, x, y, z, new Predicate<Entity>() {
+            @Override
+            public boolean test(Entity entity) {
+                return clazz.isInstance(entity);
+            }
+        }));
     }
 
     @Nullable
@@ -103,7 +109,7 @@ public final class EntityUtils {
         Vector fromLookDir = lookingEntity.getEyeLocation().getDirection();
         Vector fromEyeLoc = lookingEntity.getEyeLocation().toVector();
 
-        List<Entity> entityList = EntityUtils.getNearbyEntitiesByType(entityType, lookingEntity, 10, 10, 10);
+        List<Entity> entityList = EntityUtils.getNearbyEntitiesByType(entityType, lookingEntity, 15, 15, 15);
         for (Entity e : entityList) {
             if (lookingEntity.hasLineOfSight(e)) {
                 Vector entityLoc = e.getLocation().toVector();

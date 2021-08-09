@@ -125,17 +125,16 @@ public final class CMInfinity {
                                         new CMTrait(
                                                 CMTraits.PROP_PLATES,
                                                 SupportedPluginsManager.INFINITY_EXPANSION_NOTE,
-                                                "Infinite Capacity",
-                                                "Everytime you take damage, 10% is stored",
-                                                "up to 5 hearts. Right click to release",
-                                                "the damage on nearby entities"
+                                                "Tarnished",
+                                                "Outgoing damage reduced by 25%. Armour Exp +20%"
                                         ),
                                         null,
                                         new CMTrait(
                                                 CMTraits.PROP_LINKS,
                                                 SupportedPluginsManager.INFINITY_EXPANSION_NOTE,
-                                                "Oroborus",
-                                                "20% chance to reflect 50% damage taken."
+                                                "Defender",
+                                                "5% chance, when hit, to ignore damage",
+                                                "and gain absorbtion."
                                         ))
                         ));
 
@@ -180,15 +179,15 @@ public final class CMInfinity {
                                         new CMTrait(
                                                 CMTraits.PROP_PLATES,
                                                 SupportedPluginsManager.INFINITY_EXPANSION_NOTE,
-                                                "Planewalker",
-                                                "The void is no longer your enemy"
+                                                "Dwarven Skills",
+                                                "Chance to find rare artifacts while mining."
                                         ),
                                         null,
                                         new CMTrait(
                                                 CMTraits.PROP_LINKS,
                                                 SupportedPluginsManager.INFINITY_EXPANSION_NOTE,
-                                                "The End",
-                                                "Reduce damage from the Dragon, Endermen and"
+                                                "Heat Resistant",
+                                                "Immune to fire and lava."
                                         ))
                         ));
 

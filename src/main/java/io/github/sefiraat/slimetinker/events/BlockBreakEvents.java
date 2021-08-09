@@ -1,6 +1,5 @@
 package io.github.sefiraat.slimetinker.events;
 
-import com.sun.tools.javac.jvm.Gen;
 import io.github.sefiraat.slimetinker.events.friend.EventFriend;
 import io.github.sefiraat.slimetinker.listeners.BlockMap;
 import io.github.sefiraat.slimetinker.utils.GeneralUtils;
@@ -17,8 +16,6 @@ import org.bukkit.block.Block;
 import org.bukkit.inventory.FurnaceRecipe;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.Recipe;
-import org.bukkit.inventory.meta.ItemMeta;
-import org.bukkit.persistence.PersistentDataContainer;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -241,8 +238,8 @@ public final class BlockBreakEvents {
                 SlimefunItems.CARBON_CHUNK
         );
         int rnd = ThreadLocalRandom.current().nextInt(0, 10000);
-        if (rnd < list.size()) {
-            friend.getAddDrops().add(list.get(rnd));
+        if (GeneralUtils.testChance(1,200)) {
+            friend.getAddDrops().add(list.get(GeneralUtils.roll(list.size(), false)));
         }
     }
 
@@ -259,11 +256,11 @@ public final class BlockBreakEvents {
     }
 
     public static void linksAdamantite(EventFriend friend) {
-        friend.incrementExpMod(0.1);
+        friend.incrementItemExpMod(0.1);
         friend.setPlayerExpMod(friend.getPlayerExpMod() + 0.1);
     }
 
     public static void binderLeather(EventFriend friend) {
-        friend.incrementExpMod(0.5);
+        friend.incrementItemExpMod(0.5);
     }
 }

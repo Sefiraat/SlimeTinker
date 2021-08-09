@@ -188,7 +188,7 @@ public class WorldUtils {
 
     @Nullable
     private static Block getRandomBlockInRange(Location l, int boundX, int boundY, int boundZ, boolean allowAir, int ittr) {
-        if (ittr > 50) {
+        if (ittr < 50) {
             int rndX = ThreadLocalRandom.current().nextInt(-boundX, boundX + 1);
             int rndY = ThreadLocalRandom.current().nextInt(-boundY, boundY + 1);
             int rndZ = ThreadLocalRandom.current().nextInt(-boundZ, boundZ + 1);

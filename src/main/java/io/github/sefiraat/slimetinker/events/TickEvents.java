@@ -4,6 +4,7 @@ import io.github.sefiraat.slimetinker.SlimeTinker;
 import io.github.sefiraat.slimetinker.events.friend.EventFriend;
 import io.github.sefiraat.slimetinker.runnables.event.RemoveMagmaBlock;
 import io.github.sefiraat.slimetinker.runnables.event.RemovePoweredState;
+import io.github.sefiraat.slimetinker.utils.BlockUtils;
 import io.github.sefiraat.slimetinker.utils.EntityUtils;
 import io.github.sefiraat.slimetinker.utils.GeneralUtils;
 import io.github.sefiraat.slimetinker.utils.ItemUtils;
@@ -20,10 +21,10 @@ import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.Particle;
 import org.bukkit.attribute.Attribute;
-import org.bukkit.attribute.AttributeInstance;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
-import org.bukkit.block.data.Powerable;
+import org.bukkit.block.data.Levelled;
+import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.EnderDragon;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
@@ -44,6 +45,7 @@ import org.bukkit.potion.PotionEffectType;
 import org.bukkit.util.Vector;
 
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
@@ -347,10 +349,6 @@ public final class TickEvents {
         friend.setPlayerExpMod(friend.getPlayerExpMod() + 0.1);
     }
 
-    public static void plateIron(EventFriend friend) {
-        increaseEffect(PotionEffectType.SPEED, friend.getPotionEffects());
-    }
-
     public static void gambesonTwistingWines(EventFriend friend) {
         for (Entity entity : friend.getPlayer().getNearbyEntities(5,5,5)) {
             if (entity instanceof Item) {
@@ -364,6 +362,7 @@ public final class TickEvents {
     public static void linksGold(EventFriend friend) {
         List<Piglin> piglins = EntityUtils.getNearbyEntitiesByType(Piglin.class, friend.getPlayer(), 5, 5, 5);
         for (Piglin p : piglins) {
+            PersistentDataAPI.setString(p, SlimeTinker.inst().getKeys().getArmourHappyPiglin(), friend.getPlayer().getUniqueId().toString());
             p.setTarget(null);
         }
     }
@@ -415,17 +414,15 @@ public final class TickEvents {
         if (friend.getBrightBurn() >= 4) {
             for (Entity entity : friend.getPlayer().getNearbyEntities(5,5,5)) {
                 if (entity instanceof Mob && (!(entity instanceof Wither) && !(entity instanceof EnderDragon))) {
-                    EntityUtils.push((LivingEntity) entity, friend.getPlayer().getLocation(), 1);
+                    EntityUtils.push((LivingEntity) entity, friend.getPlayer().getLocation(), 0.3);
                 }
             }
         }
     }
 
     public static void plateDamSteel(EventFriend friend) {
-        AttributeInstance a = friend.getPlayer().getAttribute(Attribute.GENERIC_MAX_HEALTH);
-        if (a != null) {
-            a.setBaseValue(20d + (friend.getCompounding()^2));
-        }
+        friend.setCompounding(friend.getCompounding() + 1);
+        increaseEffect(PotionEffectType.HEALTH_BOOST, friend.getPotionEffects(), friend.getCompounding() - 1);
     }
 
     public static void gambesonCrimsonRoots(EventFriend friend) {
@@ -442,7 +439,7 @@ public final class TickEvents {
     }
 
     public static void plateAluminum(EventFriend friend) {
-        increaseEffect(PotionEffectType.SPEED, friend.getPotionEffects(), 1);
+        increaseEffect(PotionEffectType.SPEED, friend.getPotionEffects());
     }
 
     public static void gambesonVine(EventFriend friend) {
@@ -493,20 +490,26 @@ public final class TickEvents {
     }
 
     public static void plateRedstoneAlloy(EventFriend friend) {
-        if (GeneralUtils.testChance(1, 5)) {
-            Block b = WorldUtils.getRandomBlockInRange(friend.getPlayer().getLocation(), 5, 2, 5, false);
-            if (b instanceof Powerable) {
-                Powerable p = (Powerable) b;
-                p.setPowered(true);
-                RemovePoweredState task = new RemovePoweredState(p, friend.getPlayer());
-                task.runTaskTimer(SlimeTinker.inst(), 100, 100);
-            }
+        Player player = friend.getPlayer();
+        Block blockTarget = WorldUtils.getRandomBlockInRange(player.getLocation(), 5, 2, 5, false);
+        if (blockTarget != null) {
+            BlockUtils.fakePower(blockTarget);
+            BlockUtils.fakePower(blockTarget.getRelative(BlockFace.NORTH));
+            BlockUtils.fakePower(blockTarget.getRelative(BlockFace.SOUTH));
+            BlockUtils.fakePower(blockTarget.getRelative(BlockFace.EAST));
+            BlockUtils.fakePower(blockTarget.getRelative(BlockFace.WEST));
+            BlockUtils.fakePower(blockTarget.getRelative(BlockFace.DOWN));
+            BlockUtils.fakePower(blockTarget.getRelative(BlockFace.UP));
+            RemovePoweredState task = new RemovePoweredState(blockTarget, friend.getPlayer());
+            task.runTaskTimer(SlimeTinker.inst(), 100, 100);
         }
     }
 
     public static void gambesonWarpedRoots(EventFriend friend) {
         if (GeneralUtils.testChance(1, 4)) {
-            friend.getPlayer().setHealth(Math.min(friend.getPlayer().getHealth() + 1, friend.getPlayer().getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue()));
+            Player p = friend.getPlayer();
+            double maxHealth = p.getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue();
+            friend.getPlayer().setHealth(Math.min(p.getHealth() + 1, maxHealth));
         }
     }
 
@@ -549,18 +552,25 @@ public final class TickEvents {
 
     public static void linksRedstoneAlloy(EventFriend friend) {
         Player player = friend.getPlayer();
-        Block b = player.getLocation().clone().subtract(0, 1, 0).getBlock();
-        if (b instanceof Powerable) {
-            Powerable p = (Powerable) b;
-            p.setPowered(true);
-            RemovePoweredState task = new RemovePoweredState(p, friend.getPlayer());
-            task.runTaskTimer(SlimeTinker.inst(), 100, 100);
-        }
+        Block blockTarget = player.getLocation().clone().subtract(0, 1, 0).getBlock();
+
+        BlockUtils.fakePower(blockTarget);
+        BlockUtils.fakePower(blockTarget.getRelative(BlockFace.NORTH));
+        BlockUtils.fakePower(blockTarget.getRelative(BlockFace.SOUTH));
+        BlockUtils.fakePower(blockTarget.getRelative(BlockFace.EAST));
+        BlockUtils.fakePower(blockTarget.getRelative(BlockFace.WEST));
+        BlockUtils.fakePower(blockTarget.getRelative(BlockFace.DOWN));
+        BlockUtils.fakePower(blockTarget.getRelative(BlockFace.UP));
+
+        RemovePoweredState task = new RemovePoweredState(blockTarget, friend.getPlayer());
+        task.runTaskTimer(SlimeTinker.inst(), 100, 100);
+
     }
 
     public static void linksSingGold(EventFriend friend) {
         List<Piglin> piglins = EntityUtils.getNearbyEntitiesByType(Piglin.class, friend.getPlayer(), 5, 5, 5);
         for (Piglin p : piglins) {
+            PersistentDataAPI.setString(p, SlimeTinker.inst().getKeys().getArmourHappyPiglin(), friend.getPlayer().getUniqueId().toString());
             p.setTarget(null);
         }
     }
@@ -572,14 +582,17 @@ public final class TickEvents {
     public static void plateEarth(EventFriend friend) {
         Player p = friend.getPlayer();
         Block stoodBlock = p.getLocation().clone().subtract(0, 1, 0).getBlock();
-        for (int x = -1; x <= 1; x++) {
-            for (int z = -1; z <= 1; z++) {
+        for (int x = -2; x <= 2; x++) {
+            for (int z = -2; z <= 2; z++) {
                 Block b = stoodBlock.getRelative(x, 0 ,z);
                 if (SlimefunPlugin.getProtectionManager().hasPermission(p, b, ProtectableAction.PLACE_BLOCK)) {
                     if (b.getType() == Material.LAVA) {
-                        b.setType(Material.MAGMA_BLOCK);
-                        RemoveMagmaBlock task = new RemoveMagmaBlock(b);
-                        task.runTaskLater(SlimeTinker.inst(), 200);
+                        Levelled l = (Levelled) b.getBlockData();
+                        if (l.getLevel() == 0) {
+                            b.setType(Material.MAGMA_BLOCK);
+                            RemoveMagmaBlock task = new RemoveMagmaBlock(b);
+                            task.runTaskLater(SlimeTinker.inst(), 100);
+                        }
                     }
                 }
             }
@@ -592,7 +605,7 @@ public final class TickEvents {
 
     public static void linksSingMagnesium(EventFriend friend) {
         increaseEffect(PotionEffectType.NIGHT_VISION, friend.getPotionEffects());
-        List<Mob> mobs = EntityUtils.getNearbyEntitiesByType(Mob.class, friend.getPlayer(), 3, 3, 3);
+        List<Mob> mobs = EntityUtils.getNearbyEntitiesByType(Mob.class, friend.getPlayer(), 10, 10, 10);
         for (Mob m : mobs) {
             m.addPotionEffect(new PotionEffect(PotionEffectType.GLOWING, 100, 0));
         }
@@ -620,6 +633,7 @@ public final class TickEvents {
             Location l = WorldUtils.getRandomLocationInRange(p, 3, 3, 3);
             Vex v = (Vex) p.getWorld().spawnEntity(l, EntityType.VEX);
             v.setTarget(p);
+            ItemUtils.setCooldown(i, "annoying",600000);
         }
     }
 
@@ -649,7 +663,8 @@ public final class TickEvents {
             Validate.notNull(im, "Meta is null, herp derp derp");
             NamespacedKey k = SlimeTinker.inst().getKeys().getArmourHyperbolicStored();
             int amount = PersistentDataAPI.getInt(im, k, 0);
-            PersistentDataAPI.setInt(im, k, Math.max(amount + 1, 25));
+            PersistentDataAPI.setInt(im, k, Math.min(amount + 1, 50));
+            i.setItemMeta(im);
         }
     }
 
@@ -667,12 +682,14 @@ public final class TickEvents {
     public static void linksSegganesson(EventFriend friend) {
         friend.setGravity(friend.getGravity() + 1);
         Player p = friend.getPlayer();
-        if (GeneralUtils.testChance(friend.getGravity(), 10)) {
-            List<LivingEntity> entityList = EntityUtils.getNearbyEntitiesByType(LivingEntity.class, p, 4, 4, 4);
-            for (LivingEntity e : entityList) {
-                Location el = e.getLocation();
-                Location pl = p.getLocation();
-                e.teleport(WorldUtils.getMid(e.getWorld(), el.getX() + 0.5, el.getY(), el.getZ(), pl.getX() + 0.5, pl.getY(), pl.getZ()));
+        if (GeneralUtils.testChance(friend.getGravity(), 4)) {
+            Collection<Entity> entityList = p.getWorld().getNearbyEntities(p.getLocation(), 4, 4, 4);
+            for (Entity e : entityList) {
+                if (e.getUniqueId() != p.getUniqueId()) {
+                    Location el = e.getLocation();
+                    Location pl = p.getLocation();
+                    e.teleport(WorldUtils.getMid(e.getWorld(), el.getX() + 0.5, el.getY(), el.getZ(), pl.getX() + 0.5, pl.getY(), pl.getZ()));
+                }
             }
         }
     }
@@ -687,6 +704,7 @@ public final class TickEvents {
         if (
                 e != null
                 && !(e instanceof Player)
+                && !(e instanceof ArmorStand)
                 && SlimefunPlugin.getProtectionManager().hasPermission(p, e.getLocation(), ProtectableAction.INTERACT_ENTITY)
         )
         {
@@ -710,15 +728,15 @@ public final class TickEvents {
     }
 
     public static void plateOsmiumSuperalloy(EventFriend friend) {
-        if (GeneralUtils.testChance(1, 50)) {
+        if (GeneralUtils.testChance(1, 25)) {
             NamespacedKey key = SlimeTinker.inst().getKeys().getStopEvents();
             Player player = friend.getPlayer();
             if (!PersistentDataAPI.hasInt(player, key)) {
                 PersistentDataAPI.setInt(player, key, 1);
-                int rnd = ThreadLocalRandom.current().nextInt(3, 7);
+                int rnd = ThreadLocalRandom.current().nextInt(7, 15);
                 for (int i = 0; i <= rnd; i++) {
-                    int rndX = ThreadLocalRandom.current().nextInt(-3, 4);
-                    int rndZ = ThreadLocalRandom.current().nextInt(-3, 4);
+                    int rndX = ThreadLocalRandom.current().nextInt(-5, 6);
+                    int rndZ = ThreadLocalRandom.current().nextInt(-5, 6);
                     player.getWorld().strikeLightningEffect(player.getLocation().clone().add(rndX, 0, rndZ));
                 }
                 PersistentDataAPI.remove(player, key);

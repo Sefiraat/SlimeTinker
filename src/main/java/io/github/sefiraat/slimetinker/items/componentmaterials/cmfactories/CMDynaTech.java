@@ -270,7 +270,7 @@ public final class CMDynaTech {
                                                 "Hyberbolic Tesseration",
                                                 "When in your personal home, you store energy.",
                                                 "Damage taken is removed from this energy pool.",
-                                                "Required 8x pieces to function and caps at 25",
+                                                "Required 8x pieces to function and caps at 50",
                                                 "per peice."
                                         ))
                         ));

@@ -44,9 +44,11 @@ public class EffectTick extends BukkitRunnable {
 
             // TODO remove with modification changes
             for (Map.Entry<PotionEffectType, Integer> entry : potionEffects.entrySet()) {
-                player.addPotionEffect(new PotionEffect(entry.getKey(), SlimeTinker.RUNNABLE_TICK_RATE + 5, entry.getValue(), false, true, true));
+                player.addPotionEffect(new PotionEffect(entry.getKey(), SlimeTinker.RUNNABLE_TICK_RATE + 20, entry.getValue(), false, true, true));
             }
             TickEvents.magnetic(friend);
+
+
         }
     }
 

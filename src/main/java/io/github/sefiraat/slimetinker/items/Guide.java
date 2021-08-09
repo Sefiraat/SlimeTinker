@@ -131,9 +131,9 @@ public final class Guide {
 
     protected static ItemStack[] getDummyArmourRecipe(ItemStack i3) {
         return new ItemStack[]{
-                null,                       null,                       null,
-                Parts.PART_GAMBESON_DUMMY,  Parts.PART_MAIL_LINKS_DUMMY,i3,
-                null,                       null,                       null
+                null,   null,                       null,
+                i3,     Parts.PART_GAMBESON_DUMMY,  Parts.PART_MAIL_LINKS_DUMMY,
+                null,   null,                       null
         };
     }
 

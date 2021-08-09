@@ -1,13 +1,9 @@
 package io.github.sefiraat.slimetinker.listeners;
 
-import io.github.sefiraat.slimetinker.events.EntityDamageEvents;
 import io.github.sefiraat.slimetinker.events.friend.EventFriend;
 import io.github.sefiraat.slimetinker.events.friend.TraitEventType;
 import io.github.sefiraat.slimetinker.modifiers.Modifications;
 import io.github.sefiraat.slimetinker.utils.EntityUtils;
-import io.github.sefiraat.slimetinker.utils.IDStrings;
-import io.github.sefiraat.slimetinker.utils.ItemUtils;
-import io.github.sefiraat.slimetinker.utils.ThemeUtils;
 import org.bukkit.Color;
 import org.bukkit.Material;
 import org.bukkit.Particle;
@@ -18,8 +14,6 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.Damageable;
-import org.bukkit.inventory.meta.ItemMeta;
-import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
@@ -42,18 +36,6 @@ public class EntityDamagedListener implements Listener {
 
         Player player = (Player) event.getDamager();
         ItemStack heldItem = player.getInventory().getItemInMainHand();
-
-        if (!ItemUtils.isTool(heldItem)) { // Not a Tinker's tool, so we don't care
-            return;
-        }
-
-        // Properties
-        ItemMeta im = heldItem.getItemMeta();
-        assert im != null;
-        PersistentDataContainer c = im.getPersistentDataContainer();
-        String matPropertyHead = ItemUtils.getToolHeadMaterial(c);
-        String matPropertyBinding = ItemUtils.getToolBindingMaterial(c);
-        String matPropertyRod = ItemUtils.getToolRodMaterial(c);
 
         EventFriend friend = new EventFriend(player, TraitEventType.ENTITY_DAMAGED);
 

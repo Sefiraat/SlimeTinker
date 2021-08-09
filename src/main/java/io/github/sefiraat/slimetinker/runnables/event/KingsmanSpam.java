@@ -67,7 +67,9 @@ public class KingsmanSpam extends BukkitRunnable {
             damaged.addAll(EntityUtils.getNearbyEntitiesByType(LivingEntity.class, l5, 2, 2, 2));
 
             for (LivingEntity e : damaged) {
-                e.damage(2, p);
+                if (e.getUniqueId() != p.getUniqueId()) {
+                    e.damage(2, p);
+                }
             }
 
             runs--;

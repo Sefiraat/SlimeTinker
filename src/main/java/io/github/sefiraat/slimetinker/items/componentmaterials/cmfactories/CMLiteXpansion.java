@@ -316,7 +316,7 @@ public final class CMLiteXpansion {
                         (
                                 new CMIdentity(IDStrings.CARBON_MESH, Objects.requireNonNull(SlimefunItem.getByID("RAW_CARBON_MESH")).getItem(), SkullTextures.ALLOY_BROWN, "#192927"),
                                 null,
-                                new CMToolMakeup(false, true, false, true, false, true),
+                                new CMToolMakeup(false, true, false, true, true, false),
                                 new CMForms(
                                         null,
                                         null,
@@ -388,7 +388,9 @@ public final class CMLiteXpansion {
                                                 SupportedPluginsManager.LITEXPANSION_NOTE,
                                                 "Pathetic",
                                                 "Do not wear this armour.",
-                                                "Exp + 400%. 5% chance to die when hit."
+                                                "VERY BAD THINGS MAY HAPPEN",
+                                                "YOU HAVE BEEN WARNED",
+                                                "Exp + 400%."
                                         ),
                                         null,
                                         new CMTrait(
@@ -487,7 +489,8 @@ public final class CMLiteXpansion {
                                                                                                                                                         // Event More Advanced (mod affector)
         map.get(IDStrings.MIXED_METAL).addEvent(TraitEventType.ENTITY_DAMAGED, TraitPartType.PLATE, EntityDamageEvents::linksAdamantite);               // Experienced (CO) - Kill
         map.get(IDStrings.MIXED_METAL).addEvent(TraitEventType.BLOCK_BREAK, TraitPartType.PLATE, BlockBreakEvents::linksAdamantite);                    // Experienced (CO) - Block Break
-        map.get(IDStrings.SCRAP).addEvent(TraitEventType.ENTITY_DAMAGED, TraitPartType.LINKS, EntityDamageEvents::linksScrap);                          // Falling Apart
+        map.get(IDStrings.SCRAP).addEvent(TraitEventType.ENTITY_DAMAGED, TraitPartType.LINKS, EntityDamageEvents::linksScrap);                          // Falling Apart - Exp
+        map.get(IDStrings.SCRAP).addEvent(TraitEventType.PLAYER_DAMAGED, TraitPartType.LINKS, PlayerDamagedEvents::linksScrap);                         // Falling Apart - Drop
         map.get(IDStrings.IRIDIUM).addEvent(TraitEventType.PLAYER_DAMAGED, TraitPartType.PLATE, PlayerDamagedEvents::plateIridium);                     // Indomitable
         map.get(IDStrings.REFINED_IRON).addEvent(TraitEventType.RIGHT_CLICK, TraitPartType.PLATE, RightClickEvents::plateRefinedIron);                  // Kingsman
         map.get(IDStrings.MIXED_METAL).addEvent(TraitEventType.PLAYER_DAMAGED, TraitPartType.LINKS, PlayerDamagedEvents::linksMixedMetal);              // Mix it Up

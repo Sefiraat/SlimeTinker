@@ -90,10 +90,15 @@ public class EventFriend {
     private int gravity = 0;
     private int manners = 0;
     private int kingsman = 0;
+    private int infinity = 0;
 
     private boolean blocksIntoInv = false;
 
-    public void incrementExpMod(ActiveFriendElement element, double amount) {
+    public void incrementItemExpMod(double amount) {
+        incrementItemExpMod(activeFriendElement, amount);
+    }
+
+    public void incrementItemExpMod(ActiveFriendElement element, double amount) {
         switch (element) {
             case TOOL:
                 toolExpMod += amount;
@@ -135,10 +140,6 @@ public class EventFriend {
             default:
                 throw new IllegalStateException("Unexpected value: " + element);
         }
-    }
-
-    public void incrementExpMod(double amount) {
-        incrementExpMod(activeFriendElement, amount);
     }
 
     public void setExpMod(double amount) {

@@ -66,10 +66,12 @@ public class EventChannels {
     }
 
     public static void checkArmour(EventFriend friend) {
-        checkHelm(friend);
-        checkChestplate(friend);
-        checkLeggings(friend);
-        checkBoots(friend);
+        if (!friend.isCancelEvent()) {
+            checkHelm(friend);
+            checkChestplate(friend);
+            checkLeggings(friend);
+            checkBoots(friend);
+        }
     }
 
     public static void checkHelm(EventFriend friend) {

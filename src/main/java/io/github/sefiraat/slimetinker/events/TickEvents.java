@@ -374,7 +374,7 @@ public final class TickEvents {
             Set<Block> blocks = new HashSet<>();
             for (int x = -3; x <= 3; x++) {
                 for (int z = -3; z <= 3; z++) {
-                    for (int y = -1; z <= 1; z++) {
+                    for (int y = -1; y <= 1; y++) {
                         blocks.add(player.getLocation().getBlock().getRelative(x, y, z));
                     }
                 }
@@ -585,14 +585,12 @@ public final class TickEvents {
         for (int x = -2; x <= 2; x++) {
             for (int z = -2; z <= 2; z++) {
                 Block b = stoodBlock.getRelative(x, 0 ,z);
-                if (SlimefunPlugin.getProtectionManager().hasPermission(p, b, ProtectableAction.PLACE_BLOCK)) {
-                    if (b.getType() == Material.LAVA) {
-                        Levelled l = (Levelled) b.getBlockData();
-                        if (l.getLevel() == 0) {
-                            b.setType(Material.MAGMA_BLOCK);
-                            RemoveMagmaBlock task = new RemoveMagmaBlock(b);
-                            task.runTaskLater(SlimeTinker.inst(), 100);
-                        }
+                if (SlimefunPlugin.getProtectionManager().hasPermission(p, b, ProtectableAction.PLACE_BLOCK) && b.getType() == Material.LAVA) {
+                    Levelled l = (Levelled) b.getBlockData();
+                    if (l.getLevel() == 0) {
+                        b.setType(Material.MAGMA_BLOCK);
+                        RemoveMagmaBlock task = new RemoveMagmaBlock(b);
+                        task.runTaskLater(SlimeTinker.inst(), 100);
                     }
                 }
             }

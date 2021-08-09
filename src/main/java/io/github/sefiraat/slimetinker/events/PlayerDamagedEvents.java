@@ -364,12 +364,10 @@ public final class PlayerDamagedEvents {
     }
 
     public static void linksMetal(EventFriend friend) {
-        if (GeneralUtils.testChance(1,5)) {
-            if (friend.getDamagingEntity() instanceof LivingEntity) {
-                LivingEntity l = (LivingEntity) friend.getDamagingEntity();
-                l.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 100, 1));
-                l.getWorld().spawnParticle(Particle.FIREWORKS_SPARK, l.getLocation(), 0, 0, 0,0);
-            }
+        if (GeneralUtils.testChance(1, 5) && friend.getDamagingEntity() instanceof LivingEntity) {
+            LivingEntity l = (LivingEntity) friend.getDamagingEntity();
+            l.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 100, 1));
+            l.getWorld().spawnParticle(Particle.FIREWORKS_SPARK, l.getLocation(), 0, 0, 0, 0);
         }
     }
 
@@ -531,7 +529,6 @@ public final class PlayerDamagedEvents {
 
     public static void hyperbolic(EventFriend friend) {
         friend.setHyperbolic(friend.getHyperbolic() + 1);
-        Player p = friend.getPlayer();
         if (friend.getHyperbolic() >= 8) {
             ItemStack i = friend.getActiveStack();
             ItemMeta im = i.getItemMeta();
@@ -670,13 +667,8 @@ public final class PlayerDamagedEvents {
     }
 
     public static void plateIron(EventFriend friend) {
-        if (
-                friend.getCause() == EntityDamageEvent.DamageCause.ENTITY_EXPLOSION
-                || friend.getCause() == EntityDamageEvent.DamageCause.BLOCK_EXPLOSION
-        ) {
-            if (GeneralUtils.testChance(1,8)) {
-                friend.setCancelEvent(true);
-            }
+        if ((friend.getCause() == EntityDamageEvent.DamageCause.ENTITY_EXPLOSION || friend.getCause() == EntityDamageEvent.DamageCause.BLOCK_EXPLOSION) && GeneralUtils.testChance(1, 8)) {
+            friend.setCancelEvent(true);
         }
     }
 }

@@ -179,29 +179,27 @@ public final class BlockBreakEvents {
         String toolType = ItemUtils.getToolTypeName(friend.getTool());
         Map<Material, String> m = BlockMap.getMaterialMap();
         Block b = friend.getBlock();
-        if (m.containsKey(b.getType()) && m.get(b.getType()).equals(toolType)) {
-            if (GeneralUtils.testChance(1, 10)) {
-                ItemStack i;
-                int rnd2 = GeneralUtils.roll(1000);
-                if (rnd2 > 975) {
-                    i = new ItemStack(Material.ANCIENT_DEBRIS);
-                } else if (rnd2 > 900) {
-                    i = new ItemStack(Material.DIAMOND);
-                } else if (rnd2 > 800) {
-                    i = new ItemStack(Material.LAPIS_LAZULI);
-                } else if (rnd2 > 700) {
-                    i = new ItemStack(Material.REDSTONE);
-                } else if (rnd2 > 550) {
-                    i = new ItemStack(Material.GOLD_ORE);
-                } else if (rnd2 > 400) {
-                    i = new ItemStack(Material.IRON_ORE);
-                } else {
-                    i = new ItemStack(Material.COAL);
-                }
-                friend.getAddDrops().add(i);
-                Particle.DustOptions dustOptions = new Particle.DustOptions(Color.fromRGB(60, 60, 60), 2);
-                friend.getBlock().getWorld().spawnParticle(Particle.REDSTONE, friend.getBlock().getLocation(), 10, 0.2, 0.2, 0.2, 0.5, dustOptions);
+        if (m.containsKey(b.getType()) && m.get(b.getType()).equals(toolType) && GeneralUtils.testChance(1, 10)) {
+            ItemStack i;
+            int rnd2 = GeneralUtils.roll(1000);
+            if (rnd2 > 975) {
+                i = new ItemStack(Material.ANCIENT_DEBRIS);
+            } else if (rnd2 > 900) {
+                i = new ItemStack(Material.DIAMOND);
+            } else if (rnd2 > 800) {
+                i = new ItemStack(Material.LAPIS_LAZULI);
+            } else if (rnd2 > 700) {
+                i = new ItemStack(Material.REDSTONE);
+            } else if (rnd2 > 550) {
+                i = new ItemStack(Material.GOLD_ORE);
+            } else if (rnd2 > 400) {
+                i = new ItemStack(Material.IRON_ORE);
+            } else {
+                i = new ItemStack(Material.COAL);
             }
+            friend.getAddDrops().add(i);
+            Particle.DustOptions dustOptions = new Particle.DustOptions(Color.fromRGB(60, 60, 60), 2);
+            friend.getBlock().getWorld().spawnParticle(Particle.REDSTONE, friend.getBlock().getLocation(), 10, 0.2, 0.2, 0.2, 0.5, dustOptions);
         }
     }
 
@@ -237,7 +235,6 @@ public final class BlockBreakEvents {
                 SlimefunItems.COMPRESSED_CARBON,
                 SlimefunItems.CARBON_CHUNK
         );
-        int rnd = ThreadLocalRandom.current().nextInt(0, 10000);
         if (GeneralUtils.testChance(1,200)) {
             friend.getAddDrops().add(list.get(GeneralUtils.roll(list.size(), false)));
         }

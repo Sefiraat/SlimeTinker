@@ -60,7 +60,7 @@ public class SwappingStation extends AbstractContainer {
         String partType = ItemUtils.getPartType(part);
         String partMaterial = ItemUtils.getPartMaterial(part);
 
-        String itemPartType = ItemUtils.getPartType(part);
+        String itemPartType = ItemUtils.getPartType(item);
 
         if (ItemUtils.isTool(item)) {
             if (partClass != null && ItemUtils.partIsTool(partClass)) {

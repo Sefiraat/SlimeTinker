@@ -6,6 +6,7 @@ import io.github.sefiraat.slimetinker.events.friend.TraitEventType;
 import io.github.sefiraat.slimetinker.items.Materials;
 import io.github.sefiraat.slimetinker.modifiers.Modifications;
 import io.github.sefiraat.slimetinker.utils.GeneralUtils;
+import io.github.sefiraat.slimetinker.utils.IDStrings;
 import io.github.sefiraat.slimetinker.utils.ItemUtils;
 import org.apache.commons.lang.Validate;
 import org.bukkit.event.EventHandler;
@@ -19,6 +20,10 @@ import org.bukkit.inventory.meta.ItemMeta;
 import java.util.Map;
 
 import static io.github.sefiraat.slimetinker.events.friend.EventChannels.checkArmour;
+import static io.github.sefiraat.slimetinker.events.friend.EventChannels.checkBoots;
+import static io.github.sefiraat.slimetinker.events.friend.EventChannels.checkChestplate;
+import static io.github.sefiraat.slimetinker.events.friend.EventChannels.checkHelm;
+import static io.github.sefiraat.slimetinker.events.friend.EventChannels.checkLeggings;
 import static io.github.sefiraat.slimetinker.events.friend.EventChannels.checkTool;
 import static io.github.sefiraat.slimetinker.events.friend.EventChannels.settlePotionEffects;
 
@@ -29,13 +34,33 @@ public class DurabilityListener implements Listener {
     public void onItemDamage(PlayerItemDamageEvent event) {
 
         ItemStack damagedItem = event.getItem();
-        ItemMeta im = event.getItem().getItemMeta();
-
         EventFriend friend = new EventFriend(event.getPlayer(), TraitEventType.DURABILITY);
+        String armourTypeName = ItemUtils.getArmourTypeName(damagedItem);
 
-        // Properties
-        checkTool(friend);
-        checkArmour(friend);
+        if (ItemUtils.isTinkers(damagedItem)) {
+            if (ItemUtils.isTool(damagedItem)) {
+                checkTool(friend);
+            } else if (armourTypeName != null) {
+                switch (armourTypeName) {
+                    case IDStrings.HELMET:
+                        checkHelm(friend);
+                        break;
+                    case IDStrings.CHESTPLATE:
+                        checkChestplate(friend);
+                        break;
+                    case IDStrings.LEGGINGS:
+                        checkLeggings(friend);
+                        break;
+                    case IDStrings.BOOTS:
+                        checkBoots(friend);
+                        break;
+                    default:
+                        return;
+                }
+            }
+        } else {
+            return;
+        }
 
         // Mods
         modChecks(damagedItem, event);
@@ -46,6 +71,7 @@ public class DurabilityListener implements Listener {
             event.setCancelled(true);
         }
 
+        ItemMeta im = event.getItem().getItemMeta();
         Damageable damageable = (Damageable) im;
         event.setDamage((int) Math.ceil(event.getDamage() * friend.getDurabilityMod())); // Modify the damage taken
 

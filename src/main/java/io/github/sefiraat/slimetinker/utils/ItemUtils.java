@@ -453,7 +453,7 @@ public final class ItemUtils {
      * @param itemStack Stack to check
      * @return true if Tinker's Tool
      */
-    public static boolean isTool(ItemStack itemStack) {
+    public static boolean isTool(@Nullable ItemStack itemStack) {
         return  itemStack != null &&
                 itemStack.getType() != Material.AIR &&
                 itemStack.hasItemMeta() &&
@@ -476,6 +476,10 @@ public final class ItemUtils {
                         SlimeTinker.inst().getKeys().getArmourInfoIsArmour(),
                         PersistentDataType.STRING
                 );
+    }
+
+    public static boolean isTinkers(@Nullable ItemStack itemStack) {
+        return isTool(itemStack) || isArmour(itemStack);
     }
 
     public static boolean worksWhenBroken(ItemStack itemStack) {

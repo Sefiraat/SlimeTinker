@@ -61,7 +61,7 @@ public class EventChannels {
 
     private boolean eventShouldCancelIfBroken(ItemStack i, TraitEventType type) {
         return
-                (ItemUtils.isTinkersBroken(i) && !ItemUtils.worksWhenBroken(i))
+                (ItemUtils.isTinkersBroken(i) && ItemUtils.doesNotWorkWhenBroken(i))
                 && (type == TraitEventType.BLOCK_BREAK || type == TraitEventType.ENTITY_DAMAGED);
     }
 
@@ -78,7 +78,7 @@ public class EventChannels {
 
         ItemStack i = friend.getPlayer().getInventory().getHelmet();
 
-        if (!ItemUtils.isArmour(i) || (ItemUtils.isTinkersBroken(i) && !ItemUtils.worksWhenBroken(i))) {
+        if (!ItemUtils.isArmour(i) || (ItemUtils.isTinkersBroken(i) && ItemUtils.doesNotWorkWhenBroken(i))) {
             return;
         }
 
@@ -92,7 +92,7 @@ public class EventChannels {
 
         ItemStack i = friend.getPlayer().getInventory().getChestplate();
 
-        if (!ItemUtils.isArmour(i) || (ItemUtils.isTinkersBroken(i) && !ItemUtils.worksWhenBroken(i))) {
+        if (!ItemUtils.isArmour(i) || (ItemUtils.isTinkersBroken(i) && ItemUtils.doesNotWorkWhenBroken(i))) {
             return;
         }
 
@@ -106,7 +106,7 @@ public class EventChannels {
 
         ItemStack i = friend.getPlayer().getInventory().getLeggings();
 
-        if (!ItemUtils.isArmour(i) || (ItemUtils.isTinkersBroken(i) && !ItemUtils.worksWhenBroken(i))) {
+        if (!ItemUtils.isArmour(i) || (ItemUtils.isTinkersBroken(i) && ItemUtils.doesNotWorkWhenBroken(i))) {
             return;
         }
 
@@ -120,7 +120,7 @@ public class EventChannels {
 
         ItemStack i = friend.getPlayer().getInventory().getBoots();
 
-        if (!ItemUtils.isArmour(i) || (ItemUtils.isTinkersBroken(i) && !ItemUtils.worksWhenBroken(i))) {
+        if (!ItemUtils.isArmour(i) || (ItemUtils.isTinkersBroken(i) && ItemUtils.doesNotWorkWhenBroken(i))) {
             return;
         }
 

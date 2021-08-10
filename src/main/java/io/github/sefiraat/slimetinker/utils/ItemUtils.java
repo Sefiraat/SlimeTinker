@@ -24,7 +24,6 @@ import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
 import org.jetbrains.annotations.Nullable;
 
-import javax.annotation.Nonnull;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -482,14 +481,14 @@ public final class ItemUtils {
         return isTool(itemStack) || isArmour(itemStack);
     }
 
-    public static boolean worksWhenBroken(ItemStack itemStack) {
+    public static boolean doesNotWorkWhenBroken(ItemStack itemStack) {
         if (isTool(itemStack)) {
             return
-                    getToolHeadMaterial(itemStack).equals(IDStrings.DURALIUM)
-                    || getToolRodMaterial(itemStack).equals(IDStrings.TITANIUM);
+                    !getToolHeadMaterial(itemStack).equals(IDStrings.DURALIUM)
+                            && !getToolRodMaterial(itemStack).equals(IDStrings.TITANIUM);
 
         }
-        return false;
+        return true;
     }
 
     public static boolean repairBenchEasyFix(ItemStack itemStack) {
@@ -597,42 +596,38 @@ public final class ItemUtils {
         return getArmourPlateMaterial(itemStack).equals(IDStrings.REINFORCED);
     }
 
-    @Nonnull
-    public static Integer getTinkerExp(PersistentDataContainer c) {
-        return c.get(SlimeTinker.inst().getKeys().getStExpCurrent(), PersistentDataType.INTEGER);
+    public static int getTinkerExp(PersistentDataContainer c) {
+        Integer i = c.get(SlimeTinker.inst().getKeys().getStExpCurrent(), PersistentDataType.INTEGER);
+        return i != null ? i : 0;
     }
 
-    @Nullable
-    public static Integer getTinkerExp(ItemStack itemStack) {
-        if (itemStack == null) return null;
+    public static int getTinkerExp(ItemStack itemStack) {
+        if (itemStack == null) return 0;
         ItemMeta im = itemStack.getItemMeta();
         Validate.notNull(im, "ItemStack does not have meta");
         PersistentDataContainer c = im.getPersistentDataContainer();
         return getTinkerExp(c);
     }
 
-    @Nonnull
-    public static Integer getTinkerRequiredExp(PersistentDataContainer c) {
+    public static int getTinkerRequiredExp(PersistentDataContainer c) {
         return c.get(SlimeTinker.inst().getKeys().getStExpRequired(), PersistentDataType.DOUBLE).intValue();
     }
 
-    @Nullable
-    public static Integer getTinkerRequiredExp(ItemStack itemStack) {
-        if (itemStack == null) return null;
+    public static int getTinkerRequiredExp(ItemStack itemStack) {
+        if (itemStack == null) return 0;
         ItemMeta im = itemStack.getItemMeta();
         Validate.notNull(im, "ItemStack does not have meta");
         PersistentDataContainer c = im.getPersistentDataContainer();
         return getTinkerRequiredExp(c);
     }
 
-    @Nonnull
-    public static Integer getTinkerLevel(PersistentDataContainer c) {
-        return c.get(SlimeTinker.inst().getKeys().getStLevel(), PersistentDataType.INTEGER);
+    public static int getTinkerLevel(PersistentDataContainer c) {
+        Integer i = c.get(SlimeTinker.inst().getKeys().getStLevel(), PersistentDataType.INTEGER);
+        return i != null ? i : 0;
     }
 
-    @Nullable
-    public static Integer getTinkerLevel(ItemStack itemStack) {
-        if (itemStack == null) return null;
+    public static int getTinkerLevel(ItemStack itemStack) {
+        if (itemStack == null) return 0;
         ItemMeta im = itemStack.getItemMeta();
         Validate.notNull(im, "ItemStack does not have meta");
         PersistentDataContainer c = im.getPersistentDataContainer();
@@ -640,12 +635,12 @@ public final class ItemUtils {
     }
 
     public static int getTinkerModifierSlots(PersistentDataContainer c) {
-        return c.get(SlimeTinker.inst().getKeys().getStModSlots(), PersistentDataType.INTEGER);
+        Integer i = c.get(SlimeTinker.inst().getKeys().getStModSlots(), PersistentDataType.INTEGER);
+        return i != null ? i : 0;
     }
 
-    @Nullable
-    public static Integer getTinkerModifierSlots(ItemStack itemStack) {
-        if (itemStack == null) return null;
+    public static int getTinkerModifierSlots(ItemStack itemStack) {
+        if (itemStack == null) return 0;
         ItemMeta im = itemStack.getItemMeta();
         Validate.notNull(im, "ItemStack does not have meta");
         PersistentDataContainer c = im.getPersistentDataContainer();

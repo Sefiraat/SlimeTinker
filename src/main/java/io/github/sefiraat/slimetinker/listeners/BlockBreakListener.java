@@ -38,6 +38,7 @@ import static io.github.sefiraat.slimetinker.events.friend.EventChannels.settleP
 public class BlockBreakListener implements Listener {
 
     @SuppressWarnings("unused")
+    @EventHandler
     public void onBlockBreak(BlockBreakEvent event) {
 
         if (event.isCancelled()) {
@@ -67,7 +68,6 @@ public class BlockBreakListener implements Listener {
         modChecks(heldItem, block, friend.getAddDrops());
 
         // Settle
-
         if (friend.isCancelEvent()) {
             event.setCancelled(true);
             return;

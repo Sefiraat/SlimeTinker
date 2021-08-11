@@ -107,7 +107,7 @@ public class SwappingStation extends AbstractContainer {
                 throw new IllegalStateException("Unexpected value: " + partClass);
         }
 
-        checkAndChangeExplosiveness(newTool, newToolMeta, swappedMaterial, partMaterial, partClass);
+        checkAndChangeExplosiveness(newTool, newToolMeta, partMaterial, partClass);
 
         switch (partClass) {
             case IDStrings.HEAD:
@@ -174,7 +174,7 @@ public class SwappingStation extends AbstractContainer {
 
     }
 
-    private void checkAndChangeExplosiveness(ItemStack newTool, ItemMeta im, String swappedMaterial, String partMaterial, String partClass) {
+    private void checkAndChangeExplosiveness(ItemStack newTool, ItemMeta im, String partMaterial, String partClass) {
 
         NamespacedKey sfIDKey = new NamespacedKey(SlimefunPlugin.instance(), "slimefun_item");
         String sID = PersistentDataAPI.getString(im, sfIDKey);
@@ -183,7 +183,7 @@ public class SwappingStation extends AbstractContainer {
             // Part IS explosive but the tool is NOT - we need to make it explosive!
             sID = sID + "_EXP";
             PersistentDataAPI.setString(im, sfIDKey, sID);
-        } else if (!isExplosivePart(swappedMaterial, partClass) && ItemUtils.isToolExplosive(newTool)) {
+        } else if (!isExplosivePart(partMaterial, partClass) && ItemUtils.isToolExplosive(newTool)) {
             // Part is NOT explosive but the tool IS - we need to make it explosive!
             sID = sID.replace("_EXP","");
             PersistentDataAPI.setString(im, sfIDKey, sID);

@@ -19,7 +19,6 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.Map;
 
-import static io.github.sefiraat.slimetinker.events.friend.EventChannels.checkArmour;
 import static io.github.sefiraat.slimetinker.events.friend.EventChannels.checkBoots;
 import static io.github.sefiraat.slimetinker.events.friend.EventChannels.checkChestplate;
 import static io.github.sefiraat.slimetinker.events.friend.EventChannels.checkHelm;

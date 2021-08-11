@@ -756,4 +756,10 @@ public final class TickEvents {
         tnt.setSource(friend.getPlayer());
         tnt.setVelocity(new Vector(p.getLocation().getDirection().getX(), 1, p.getLocation().getDirection().getZ()));
     }
+
+    public static void rodSteel(EventFriend friend) {
+        friend.incrementItemExpMod(0.5);
+        increaseEffect(PotionEffectType.SPEED, friend.getPotionEffects());
+    }
+
 }

@@ -314,7 +314,7 @@ public final class PlayerDamagedEvents {
     }
 
     public static void linksSingTin(EventFriend friend) {
-        increaseEffect(PotionEffectType.ABSORPTION, friend.getPotionEffects(), 1);
+        increaseEffect(PotionEffectType.ABSORPTION, friend.getPotionEffects(), 2);
     }
 
     public static void linksMythril(EventFriend friend) {

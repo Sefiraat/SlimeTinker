@@ -25,7 +25,7 @@ public class EventChannels {
                 resetHealth = true;
                 health = p.getHealth();
             }
-            friend.getPlayer().addPotionEffect(new PotionEffect(entry.getKey(), SlimeTinker.RUNNABLE_TICK_RATE + 20, entry.getValue(), false, false, true));
+            friend.getPlayer().addPotionEffect(new PotionEffect(entry.getKey(), SlimeTinker.RUNNABLE_TICK_RATE + 20, entry.getValue() - 1, false, false, true));
             if (resetHealth) {
                 p.setHealth(health);
             }

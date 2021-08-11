@@ -60,17 +60,15 @@ public class SwappingStation extends AbstractContainer {
         String partType = ItemUtils.getPartType(part);
         String partMaterial = ItemUtils.getPartMaterial(part);
 
-        String itemPartType = ItemUtils.getPartType(item);
-
         if (ItemUtils.isTool(item)) {
             if (partClass != null && ItemUtils.partIsTool(partClass)) {
-                return swapTool(blockMenu, player, item, partClass, partType, partMaterial, itemPartType);
+                return swapTool(blockMenu, player, item, partClass, partType, partMaterial);
             } else {
                 player.sendMessage(ThemeUtils.WARNING + "This part cannot be swapped onto this tool.");
             }
         } else if (ItemUtils.isArmour(item)) {
             if (partClass != null && ItemUtils.partIsArmour(partClass)) {
-                return swapArmour(blockMenu, player, item, partClass, partType, partMaterial, itemPartType);
+                return swapArmour(blockMenu, player, item, partClass, partType, partMaterial);
             } else {
                 player.sendMessage(ThemeUtils.WARNING + "This part cannot be swapped onto this tool.");
             }
@@ -82,10 +80,10 @@ public class SwappingStation extends AbstractContainer {
 
     }
 
-    private boolean swapTool(BlockMenu blockMenu, Player player, ItemStack item, String partClass, String partType, String partMaterial, String itemPartType) {
+    private boolean swapTool(BlockMenu blockMenu, Player player, ItemStack item, String partClass, String partType, String partMaterial) {
 
         // The part is a head part but the type is either null or not matching the tool (Axe head part for shovel etc.)
-        if (partClass.equals(IDStrings.HEAD) && (partType != null && !partType.equals(itemPartType))) {
+        if (partClass.equals(IDStrings.HEAD) && (partType != null && !partType.equals(ItemUtils.getToolTypeName(item)))) {
             player.sendMessage(ThemeUtils.WARNING + "This head type cannot be swapped onto this tool.");
             return false;
         }
@@ -109,7 +107,7 @@ public class SwappingStation extends AbstractContainer {
                 throw new IllegalStateException("Unexpected value: " + partClass);
         }
 
-        checkAndChangeExplosiveness(newTool, newToolMeta, swappedMaterial, partMaterial, partClass);
+        checkAndChangeExplosiveness(newTool, newToolMeta, partMaterial, partClass);
 
         switch (partClass) {
             case IDStrings.HEAD:
@@ -138,10 +136,10 @@ public class SwappingStation extends AbstractContainer {
 
     }
 
-    private boolean swapArmour(BlockMenu blockMenu, Player player, ItemStack item, String partClass, String partType, String partMaterial, String itemPartType) {
+    private boolean swapArmour(BlockMenu blockMenu, Player player, ItemStack item, String partClass, String partType, String partMaterial) {
 
         // The part is a plate part but the type is either null or not matching the armour (Helm plates for boots etc..)
-        if (partClass.equals(IDStrings.PLATE) && (partType != null && !partType.equals(itemPartType))) {
+        if (partClass.equals(IDStrings.PLATE) && (partType != null && !partType.equals(ItemUtils.getArmourTypeName(item)))) {
             player.sendMessage(ThemeUtils.WARNING + "This plate type cannot be swapped onto this armour.");
             return false;
         }
@@ -176,7 +174,7 @@ public class SwappingStation extends AbstractContainer {
 
     }
 
-    private void checkAndChangeExplosiveness(ItemStack newTool, ItemMeta im, String swappedMaterial, String partMaterial, String partClass) {
+    private void checkAndChangeExplosiveness(ItemStack newTool, ItemMeta im, String partMaterial, String partClass) {
 
         NamespacedKey sfIDKey = new NamespacedKey(SlimefunPlugin.instance(), "slimefun_item");
         String sID = PersistentDataAPI.getString(im, sfIDKey);
@@ -185,7 +183,7 @@ public class SwappingStation extends AbstractContainer {
             // Part IS explosive but the tool is NOT - we need to make it explosive!
             sID = sID + "_EXP";
             PersistentDataAPI.setString(im, sfIDKey, sID);
-        } else if (!isExplosivePart(swappedMaterial, partClass) && ItemUtils.isToolExplosive(newTool)) {
+        } else if (!isExplosivePart(partMaterial, partClass) && ItemUtils.isToolExplosive(newTool)) {
             // Part is NOT explosive but the tool IS - we need to make it explosive!
             sID = sID.replace("_EXP","");
             PersistentDataAPI.setString(im, sfIDKey, sID);

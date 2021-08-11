@@ -257,7 +257,7 @@ public final class CMCore {
                                         ),
                                         null,
                                         new CMTrait(
-                                                SlimefunItems.SILVER_INGOT,
+                                                CMTraits.PROP_ROD,
                                                 SupportedPluginsManager.CORE_NOTE,
                                                 "Soft Touch",
                                                 "You feel lighter."

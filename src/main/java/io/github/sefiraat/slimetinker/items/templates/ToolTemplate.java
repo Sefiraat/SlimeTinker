@@ -6,6 +6,7 @@ import io.github.sefiraat.slimetinker.utils.Experience;
 import io.github.sefiraat.slimetinker.utils.IDStrings;
 import io.github.sefiraat.slimetinker.utils.ItemUtils;
 import io.github.sefiraat.slimetinker.utils.ThemeUtils;
+import io.github.thebusybiscuit.slimefun4.core.attributes.NotPlaceable;
 import me.mrCookieSlime.Slimefun.Lists.RecipeType;
 import me.mrCookieSlime.Slimefun.Objects.Category;
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.SlimefunItem;
@@ -17,7 +18,7 @@ import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-public class ToolTemplate extends SlimefunItem {
+public class ToolTemplate extends SlimefunItem implements NotPlaceable {
 
     public String getName(ToolDefinition toolDefinition) {
         return

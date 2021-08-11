@@ -1,11 +1,14 @@
 package io.github.sefiraat.slimetinker.events.friend;
 
+import co.aikar.commands.BaseCommand;
 import io.github.sefiraat.slimetinker.SlimeTinker;
 import io.github.sefiraat.slimetinker.items.componentmaterials.CMManager;
 import io.github.sefiraat.slimetinker.utils.Experience;
 import io.github.sefiraat.slimetinker.utils.ItemUtils;
 import io.github.sefiraat.slimetinker.utils.ThemeUtils;
 import lombok.experimental.UtilityClass;
+import net.md_5.bungee.api.chat.BaseComponent;
+import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
@@ -25,7 +28,7 @@ public class EventChannels {
                 resetHealth = true;
                 health = p.getHealth();
             }
-            friend.getPlayer().addPotionEffect(new PotionEffect(entry.getKey(), SlimeTinker.RUNNABLE_TICK_RATE + 20, entry.getValue(), false, false, true));
+            friend.getPlayer().addPotionEffect(new PotionEffect(entry.getKey(), SlimeTinker.RUNNABLE_TICK_RATE + 20, entry.getValue() - 1, false, false, true));
             if (resetHealth) {
                 p.setHealth(health);
             }

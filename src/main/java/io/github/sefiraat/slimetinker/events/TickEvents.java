@@ -118,7 +118,7 @@ public final class TickEvents {
     }
 
     public static void rodLead(EventFriend friend) {
-        increaseEffect(PotionEffectType.HEALTH_BOOST, friend.getPotionEffects(), 2);
+        increaseEffect(PotionEffectType.HEALTH_BOOST, friend.getPotionEffects(), 3);
         increaseEffect(PotionEffectType.HUNGER, friend.getPotionEffects());
     }
 
@@ -162,20 +162,20 @@ public final class TickEvents {
     }
 
     public static void rodSilver(EventFriend friend) {
-        increaseEffect(PotionEffectType.SLOW_FALLING, friend.getPotionEffects(), 2);
+        increaseEffect(PotionEffectType.SLOW_FALLING, friend.getPotionEffects(), 3);
     }
 
     public static void rodBillon(EventFriend friend) {
-        increaseEffect(PotionEffectType.JUMP, friend.getPotionEffects(), 3);
+        increaseEffect(PotionEffectType.JUMP, friend.getPotionEffects(), 4);
     }
 
     public static void headBrass(EventFriend friend) {
-        increaseEffect(PotionEffectType.UNLUCK, friend.getPotionEffects(), 2);
+        increaseEffect(PotionEffectType.UNLUCK, friend.getPotionEffects(), 3);
     }
 
     public static void rodZinc(EventFriend friend) {
         if (!friend.getPlayer().isSneaking()) {
-            increaseEffect(PotionEffectType.LEVITATION, friend.getPotionEffects(), 1);
+            increaseEffect(PotionEffectType.LEVITATION, friend.getPotionEffects(), 2);
         }
     }
 
@@ -194,28 +194,28 @@ public final class TickEvents {
     }
 
     public static void rodSingTin(EventFriend friend) {
-        increaseEffect(PotionEffectType.SATURATION, friend.getPotionEffects(), 2);
+        increaseEffect(PotionEffectType.SATURATION, friend.getPotionEffects(), 3);
     }
 
     public static void headMetal(EventFriend friend) {
-        increaseEffect(PotionEffectType.FAST_DIGGING, friend.getPotionEffects(), 1);
+        increaseEffect(PotionEffectType.FAST_DIGGING, friend.getPotionEffects(), 2);
     }
 
     public static void headMythril(EventFriend friend) {
-        increaseEffect(PotionEffectType.FAST_DIGGING, friend.getPotionEffects(), 1);
+        increaseEffect(PotionEffectType.FAST_DIGGING, friend.getPotionEffects(), 2);
         increaseEffect(PotionEffectType.SPEED, friend.getPotionEffects());
     }
 
     public static void headSingGold(EventFriend friend) {
-        increaseEffect(PotionEffectType.INVISIBILITY, friend.getPotionEffects(), 1);
+        increaseEffect(PotionEffectType.INVISIBILITY, friend.getPotionEffects(), 2);
     }
 
     public static void headSingZinc(EventFriend friend) {
-        increaseEffect(PotionEffectType.DOLPHINS_GRACE, friend.getPotionEffects(), 1);
+        increaseEffect(PotionEffectType.DOLPHINS_GRACE, friend.getPotionEffects(), 2);
     }
 
     public static void rodSingLead(EventFriend friend) {
-        increaseEffect(PotionEffectType.HEALTH_BOOST, friend.getPotionEffects(), 1);
+        increaseEffect(PotionEffectType.HEALTH_BOOST, friend.getPotionEffects(), 2);
     }
 
     public static void rodSingMagnesium(EventFriend friend) {
@@ -229,12 +229,12 @@ public final class TickEvents {
     }
 
     public static void headSingTin(EventFriend friend) {
-        increaseEffect(PotionEffectType.LUCK, friend.getPotionEffects(), 1);
-        increaseEffect(PotionEffectType.SPEED, friend.getPotionEffects(), 1);
+        increaseEffect(PotionEffectType.LUCK, friend.getPotionEffects(), 2);
+        increaseEffect(PotionEffectType.SPEED, friend.getPotionEffects(), 2);
     }
 
     public static void rodFortune(EventFriend friend) {
-        increaseEffect(PotionEffectType.INVISIBILITY, friend.getPotionEffects(), 2);
+        increaseEffect(PotionEffectType.INVISIBILITY, friend.getPotionEffects(), 3);
     }
 
     public static void rodMagic(EventFriend friend) {
@@ -247,7 +247,7 @@ public final class TickEvents {
     }
 
     public static void rodSingIron(EventFriend friend) {
-        increaseEffect(PotionEffectType.INCREASE_DAMAGE, friend.getPotionEffects(), 1);
+        increaseEffect(PotionEffectType.INCREASE_DAMAGE, friend.getPotionEffects(), 2);
     }
 
     public static void rodMythril(EventFriend friend) {
@@ -261,7 +261,7 @@ public final class TickEvents {
 
     public static void rodSingZinc(EventFriend friend) {
         if (friend.getPlayer().isSneaking()) {
-            increaseEffect(PotionEffectType.LEVITATION, friend.getPotionEffects(), 1);
+            increaseEffect(PotionEffectType.LEVITATION, friend.getPotionEffects(), 2);
         }
     }
 
@@ -301,12 +301,12 @@ public final class TickEvents {
     }
 
     public static void rodSegganesson(EventFriend friend) {
-        increaseEffect(PotionEffectType.BLINDNESS, friend.getPotionEffects(), 1);
-        increaseEffect(PotionEffectType.SPEED, friend.getPotionEffects(), 5);
+        increaseEffect(PotionEffectType.BLINDNESS, friend.getPotionEffects(), 2);
+        increaseEffect(PotionEffectType.SPEED, friend.getPotionEffects(), 6);
     }
 
     public static void bindSlimesteel(EventFriend friend) {
-        increaseEffect(PotionEffectType.JUMP, friend.getPotionEffects(), 1);
+        increaseEffect(PotionEffectType.JUMP, friend.getPotionEffects(), 2);
     }
 
     public static void headOsmiumSuperalloy(EventFriend friend) {
@@ -422,7 +422,7 @@ public final class TickEvents {
 
     public static void plateDamSteel(EventFriend friend) {
         friend.setCompounding(friend.getCompounding() + 1);
-        increaseEffect(PotionEffectType.HEALTH_BOOST, friend.getPotionEffects(), friend.getCompounding() - 1);
+        increaseEffect(PotionEffectType.HEALTH_BOOST, friend.getPotionEffects(), friend.getCompounding());
     }
 
     public static void gambesonCrimsonRoots(EventFriend friend) {
@@ -452,7 +452,7 @@ public final class TickEvents {
     }
 
     public static void plateMagnesium(EventFriend friend) {
-        increaseEffect(PotionEffectType.SPEED, friend.getPotionEffects(), 2);
+        increaseEffect(PotionEffectType.SPEED, friend.getPotionEffects(), 3);
     }
 
     public static void linksMagnesium(EventFriend friend) {
@@ -514,11 +514,11 @@ public final class TickEvents {
     }
 
     public static void plateLead(EventFriend friend) {
-        increaseEffect(PotionEffectType.POISON, friend.getPotionEffects(), 1);
+        increaseEffect(PotionEffectType.POISON, friend.getPotionEffects(), 2);
     }
 
     public static void linksLead(EventFriend friend) {
-        increaseEffect(PotionEffectType.POISON, friend.getPotionEffects(), 1);
+        increaseEffect(PotionEffectType.POISON, friend.getPotionEffects(), 2);
     }
 
     public static void plateFerrosilicon(EventFriend friend) {
@@ -544,7 +544,7 @@ public final class TickEvents {
     public static void linksCorBronze(EventFriend friend) {
         Temperature temp = WorldUtils.getBiomeTemperature(friend.getPlayer().getLocation().getBlock().getBiome());
         if (temp == Temperature.HOT) {
-            increaseEffect(PotionEffectType.SPEED, friend.getPotionEffects(), 1);
+            increaseEffect(PotionEffectType.SPEED, friend.getPotionEffects(), 2);
         } else if (temp == Temperature.COLD) {
             increaseEffect(PotionEffectType.SLOW, friend.getPotionEffects());
         }
@@ -576,7 +576,7 @@ public final class TickEvents {
     }
 
     public static void plateSingAluminium(EventFriend friend) {
-        increaseEffect(PotionEffectType.SPEED, friend.getPotionEffects(), 1);
+        increaseEffect(PotionEffectType.SPEED, friend.getPotionEffects(), 2);
     }
 
     public static void plateEarth(EventFriend friend) {
@@ -598,7 +598,7 @@ public final class TickEvents {
     }
 
     public static void plateSingMagnesium(EventFriend friend) {
-        increaseEffect(PotionEffectType.SPEED, friend.getPotionEffects(), 1);
+        increaseEffect(PotionEffectType.SPEED, friend.getPotionEffects(), 2);
     }
 
     public static void linksSingMagnesium(EventFriend friend) {

@@ -29,10 +29,21 @@ public final class EntityUtils {
         pushed.setVelocity(v);
     }
 
+    /**
+     * Increases the requested potion effect by one, adding it if it doesn't exist
+     * @param potionEffectType The type of effect
+     * @param potionEffects The map of effects to update
+     */
     public static void increaseEffect(PotionEffectType potionEffectType, Map<PotionEffectType, Integer> potionEffects) {
-        increaseEffect(potionEffectType, potionEffects, 0);
+        increaseEffect(potionEffectType, potionEffects, 1);
     }
 
+    /**
+     * Increases the requested potion effect by the amount, adding it if it doesn't exist
+     * @param potionEffectType The type of effect
+     * @param potionEffects The map of effects to update
+     * @param amount The amount to increment by
+     */
     public static void increaseEffect(PotionEffectType potionEffectType, Map<PotionEffectType, Integer> potionEffects, int amount) {
         if (potionEffects.containsKey(potionEffectType)) {
             potionEffects.put(potionEffectType, potionEffects.get(potionEffectType) + amount);

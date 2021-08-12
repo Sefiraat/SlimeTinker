@@ -52,9 +52,9 @@ public class ModificationStation extends AbstractContainer {
         }
 
         // Still no tool, nice try
-        if (!ItemUtils.isTool(item)) {
+        if (ItemUtils.isTool(item)) {
             return modTool(blockMenu, player, item, modItem);
-        } else if(!ItemUtils.isArmour(item)) {
+        } else if(ItemUtils.isArmour(item)) {
             return modArmour(blockMenu, player, item, modItem);
         } else {
             player.sendMessage(ThemeUtils.WARNING + "The item in the first slot isn't a Tinker's tool/armour piece.");

@@ -25,11 +25,29 @@ public class EventChannels {
                 resetHealth = true;
                 health = p.getHealth();
             }
-            friend.getPlayer().addPotionEffect(new PotionEffect(entry.getKey(), SlimeTinker.RUNNABLE_TICK_RATE + 40, entry.getValue() - 1, false, false, true));
+            PotionEffectType potionEffectType = entry.getKey();
+            int tickDuration = SlimeTinker.RUNNABLE_TICK_RATE + getBonusTicks(potionEffectType);
+            int amplifier = entry.getValue() - 1;
+            friend.getPlayer().addPotionEffect(new PotionEffect(potionEffectType, tickDuration, amplifier, false, false, true));
             if (resetHealth) {
                 p.setHealth(health);
             }
         }
+    }
+
+    /**
+     * We give 20 ticks bonus to traits so they stay active between applications.
+     * We give more to confusion for the outro and much more to night vision for blinking
+     * @param potionEffectType The PotionEffect being applied
+     * @return int for number of bonus ticks required
+     */
+    private static int getBonusTicks(PotionEffectType potionEffectType) {
+        if (potionEffectType.equals(PotionEffectType.CONFUSION)) {
+            return 70;
+        } else if (potionEffectType.equals(PotionEffectType.NIGHT_VISION)) {
+            return 210;
+        }
+        return 20;
     }
 
     public static void checkTool(EventFriend friend) {

@@ -170,7 +170,7 @@ public final class CMCore {
                                                 CMTraits.PROP_PLATES,
                                                 SupportedPluginsManager.CORE_NOTE,
                                                 "Beginner",
-                                                "Damage taken +20%. Armour Exp +20%"
+                                                "Damage taken +25%. Armour Exp +20%"
                                         ),
                                         null,
                                         new CMTrait(
@@ -314,7 +314,7 @@ public final class CMCore {
                                                 CMTraits.PROP_PLATES,
                                                 SupportedPluginsManager.CORE_NOTE,
                                                 "Foil",
-                                                "Damage Taken +25%. Speed + 1"
+                                                "Damage Taken +50%. Speed + 1"
                                         ),
                                         null,
                                         new CMTrait(
@@ -637,7 +637,7 @@ public final class CMCore {
                                                 CMTraits.PROP_PLATES,
                                                 SupportedPluginsManager.CORE_NOTE,
                                                 "Durable",
-                                                "Works when broken but slow + 1"
+                                                "Works when broken but damage taken +20%"
                                         ),
                                         null,
                                         new CMTrait(
@@ -792,7 +792,7 @@ public final class CMCore {
                                                 CMTraits.PROP_PLATES,
                                                 SupportedPluginsManager.CORE_NOTE,
                                                 "Toughened",
-                                                "50% chance to not lose durability."
+                                                "Will not lose durability."
                                         ),
                                         null,
                                         new CMTrait(
@@ -996,7 +996,7 @@ public final class CMCore {
                                                 CMTraits.PROP_PLATES,
                                                 SupportedPluginsManager.CORE_NOTE,
                                                 "Band",
-                                                "Durability loss + 200%. Damage reduced between 1-25%",
+                                                "Durability loss + 300%. Damage reduced between 1-25%",
                                                 "getting lower as durability drops."
                                         ),
                                         null,
@@ -1004,7 +1004,7 @@ public final class CMCore {
                                                 CMTraits.PROP_LINKS,
                                                 SupportedPluginsManager.CORE_NOTE,
                                                 "Scarpaaarr!",
-                                                "When damaged below 1/2 health, gain Speed 3."
+                                                "Durability loss doubled. When damaged below 1/2 health, gain Speed 3."
                                         ))
                         ));
         map.put(IDStrings.ALUBRASS,

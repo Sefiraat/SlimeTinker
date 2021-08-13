@@ -1546,7 +1546,7 @@ public final class CMCore {
                                                 CMTraits.PROP_GAMBESON,
                                                 SupportedPluginsManager.CORE_NOTE,
                                                 "Slow Learner",
-                                                "Armour exp gain = (Level * 10%)"
+                                                "Armour exp gain = (Level * 5%)"
                                         ),
                                         null)
                         ));
@@ -1584,7 +1584,7 @@ public final class CMCore {
                                                 CMTraits.PROP_GAMBESON,
                                                 SupportedPluginsManager.CORE_NOTE,
                                                 "Thick",
-                                                "Armour exp gain + 50%"
+                                                "Armour exp gain + 10%"
                                         ),
                                         null)
                         ));

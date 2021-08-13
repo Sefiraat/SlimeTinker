@@ -103,6 +103,7 @@ public final class EntityDamageEvents {
     public static void rodAlubrass(EventFriend friend) {
         friend.setDamageMod(friend.getDamageMod() - 0.5);
         friend.setToolExpMod(friend.getToolExpMod() + 0.5);
+        friend.setPlayerExpMod(friend.getPlayerExpMod() + 0.5);
     }
 
     public static void headHard(EventFriend friend) {

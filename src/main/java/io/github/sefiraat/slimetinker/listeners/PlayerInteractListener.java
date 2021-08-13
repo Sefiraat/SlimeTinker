@@ -37,14 +37,10 @@ public class PlayerInteractListener implements Listener {
         checkArmour(friend);
 
         // Settle
-        settlePotionEffects(friend);
+        if (friend.isActionTaken()) {
+            settlePotionEffects(friend);
+        }
 
-    }
-
-    private boolean cancelIfBroken(ItemStack itemStack) {
-        Damageable damageable = (Damageable) itemStack.getItemMeta();
-        assert damageable != null;
-        return damageable.getDamage() == itemStack.getType().getMaxDurability() - 1;
     }
 
     @EventHandler

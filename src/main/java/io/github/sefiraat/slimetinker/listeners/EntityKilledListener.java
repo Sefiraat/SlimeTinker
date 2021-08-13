@@ -86,21 +86,22 @@ public class EntityKilledListener implements Listener {
         checkTool(friend);
         checkArmour(friend);
 
-        // Mods
-        modChecks(event, heldItem);
 
-        // Settle
-        settlePotionEffects(friend);
-        int rawExp = event.getDroppedExp();
-        event.setDroppedExp((int) Math.ceil(event.getDroppedExp() * friend.getPlayerExpMod()));
-        if (event.getDroppedExp() > 0 && friend.isMetalCheck()) {
-            Experience.addExp(heldItem, (int) Math.ceil(event.getDroppedExp() / 10D), player, true);
-            event.setDroppedExp(0);
-        } else {
-            EventChannels.provideKillExp(friend, rawExp);
+        if (friend.isActionTaken()) {
+            // Mods
+            modChecks(event, heldItem);
+
+            // Settle
+            settlePotionEffects(friend);
+            int rawExp = event.getDroppedExp();
+            event.setDroppedExp((int) Math.ceil(event.getDroppedExp() * friend.getPlayerExpMod()));
+            if (event.getDroppedExp() > 0 && friend.isMetalCheck()) {
+                Experience.addExp(heldItem, (int) Math.ceil(event.getDroppedExp() / 10D), player, true);
+                event.setDroppedExp(0);
+            } else {
+                EventChannels.provideKillExp(friend, rawExp);
+            }
         }
-
-
     }
 
 

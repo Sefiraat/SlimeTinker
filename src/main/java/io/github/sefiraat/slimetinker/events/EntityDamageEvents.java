@@ -64,7 +64,6 @@ public final class EntityDamageEvents {
     public static void headDuralium(EventFriend friend) {
         friend.setDamageMod(friend.getDamageMod() - 0.5);
         friend.setToolExpMod(0);
-        friend.setDuraliumCheck(true);
     }
 
     public static void headMagnesium(EventFriend friend) {

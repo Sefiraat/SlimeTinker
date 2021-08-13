@@ -64,6 +64,7 @@ public class EventChannels {
             return;
         }
 
+        friend.setActionTaken(true);
         friend.setTool(i);
         friend.setActiveFriendElement(ActiveFriendElement.TOOL);
 
@@ -100,6 +101,7 @@ public class EventChannels {
             return;
         }
 
+        friend.setActionTaken(true);
         friend.setActiveFriendElement(ActiveFriendElement.HELMET);
         friend.setHelmet(i);
         checkArmourPiece(friend);
@@ -114,6 +116,7 @@ public class EventChannels {
             return;
         }
 
+        friend.setActionTaken(true);
         friend.setActiveFriendElement(ActiveFriendElement.CHESTPLATE);
         friend.setChestplate(i);
         checkArmourPiece(friend);
@@ -128,6 +131,7 @@ public class EventChannels {
             return;
         }
 
+        friend.setActionTaken(true);
         friend.setActiveFriendElement(ActiveFriendElement.LEGGINGS);
         friend.setLeggings(i);
         checkArmourPiece(friend);
@@ -142,6 +146,7 @@ public class EventChannels {
             return;
         }
 
+        friend.setActionTaken(true);
         friend.setActiveFriendElement(ActiveFriendElement.BOOTS);
         friend.setBoots(i);
         checkArmourPiece(friend);

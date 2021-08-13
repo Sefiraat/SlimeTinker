@@ -63,60 +63,55 @@ public class BlockBreakListener implements Listener {
         checkTool(friend);
         checkArmour(friend);
 
-        // Mods
-        modChecks(heldItem, block, friend.getAddDrops());
+        if (friend.isActionTaken()) {
+            // Mods
+            modChecks(heldItem, block, friend.getAddDrops());
 
-        // Settle
-        if (friend.isCancelEvent()) {
-            event.setCancelled(true);
-            return;
-        }
-
-        settlePotionEffects(friend);
-        event.setDropItems(false);
-
-        for (ItemStack i : friend.getDrops()) { // Drop items in original collection not flagged for removal
-            if (friend.getRemoveDrops().contains(i)) {
-                continue;
+            // Settle
+            if (friend.isCancelEvent()) {
+                event.setCancelled(true);
+                return;
             }
-            if (friend.isBlocksIntoInv()) {
-                Map<Integer, ItemStack> remainingItems = player.getInventory().addItem(i);
-                for (ItemStack i2 : remainingItems.values()) {
-                    block.getWorld().dropItem(block.getLocation().clone().add(0.5, 0.5, 0.5), i2);
+
+            settlePotionEffects(friend);
+            event.setDropItems(false);
+
+            for (ItemStack i : friend.getDrops()) { // Drop items in original collection not flagged for removal
+                if (friend.getRemoveDrops().contains(i) || i.getType() == Material.AIR) {
+                    continue;
                 }
-                continue;
-            }
-            block.getWorld().dropItem(block.getLocation().clone().add(0.5, 0.5, 0.5), i);
-        }
-
-        for (ItemStack i : friend.getAddDrops()) { // Then the additional items collection - no removals
-            if (friend.isBlocksIntoInv()) {
-                Map<Integer, ItemStack> remainingItems = player.getInventory().addItem(i);
-                for (ItemStack i2 : remainingItems.values()) {
-                    block.getWorld().dropItem(block.getLocation().clone().add(0.5, 0.5, 0.5), i2);
+                if (friend.isBlocksIntoInv()) {
+                    Map<Integer, ItemStack> remainingItems = player.getInventory().addItem(i);
+                    for (ItemStack i2 : remainingItems.values()) {
+                        block.getWorld().dropItem(block.getLocation().clone().add(0.5, 0.5, 0.5), i2);
+                    }
+                    continue;
                 }
-                continue;
+                block.getWorld().dropItem(block.getLocation().clone().add(0.5, 0.5, 0.5), i);
             }
-            block.getWorld().dropItem(block.getLocation().clone().add(0.5, 0.5, 0.5), i);
+
+            for (ItemStack i : friend.getAddDrops()) { // Then the additional items collection - no removals
+                if (friend.isBlocksIntoInv()) {
+                    Map<Integer, ItemStack> remainingItems = player.getInventory().addItem(i);
+                    for (ItemStack i2 : remainingItems.values()) {
+                        block.getWorld().dropItem(block.getLocation().clone().add(0.5, 0.5, 0.5), i2);
+                    }
+                    continue;
+                }
+                block.getWorld().dropItem(block.getLocation().clone().add(0.5, 0.5, 0.5), i);
+            }
+
+            if (ItemUtils.isTool(heldItem)) {
+                if (shouldGrantExp(heldItem, event.getBlock())) { // Should grant exp (checks tool / material validity and the crop state)
+                    Experience.addExp(heldItem, (int) Math.ceil(1 * friend.getToolExpMod()), event.getPlayer(), true);
+                }
+                if (event.getExpToDrop() > 0 && friend.isMetalCheck()) { // todo Get outta dodge with this one
+                    Experience.addExp(heldItem, (int) Math.ceil(event.getExpToDrop() / 10D), event.getPlayer(), true);
+                    event.setExpToDrop(0);
+                }
+            }
         }
 
-        if (ItemUtils.isTool(heldItem)) {
-            if (shouldGrantExp(heldItem, event.getBlock())) { // Should grant exp (checks tool / material validity and the crop state)
-                Experience.addExp(heldItem, (int) Math.ceil(1 * friend.getToolExpMod()), event.getPlayer(), true);
-            }
-
-            if (event.getExpToDrop() > 0 && friend.isMetalCheck()) { // todo Get outta dodge with this one
-                Experience.addExp(heldItem, (int) Math.ceil(event.getExpToDrop() / 10D), event.getPlayer(), true);
-                event.setExpToDrop(0);
-            }
-        }
-
-    }
-
-    private boolean cancelIfBroken(ItemStack itemStack) {
-        Damageable damageable = (Damageable) itemStack.getItemMeta();
-        assert damageable != null;
-        return damageable.getDamage() == itemStack.getType().getMaxDurability() - 1; // Tool is 'broken'
     }
 
     private boolean shouldGrantExp(ItemStack itemStack, Block block) {

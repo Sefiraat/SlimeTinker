@@ -13,9 +13,7 @@ public class DropItemListener implements Listener {
     @SuppressWarnings("unused")
     @EventHandler
     public void onDropItem(PlayerDropItemEvent event) {
-
         ItemStack itemStack = event.getItemDrop().getItemStack();
-
         if (ItemUtils.cannotDrop(itemStack)) {
             event.setCancelled(true);
             event.getPlayer().sendMessage(ThemeUtils.WARNING + "This cannot be dropped.");

@@ -344,11 +344,6 @@ public final class TickEvents {
         increaseEffect(PotionEffectType.SPEED, friend.getPotionEffects());
     }
 
-    public static void linksIron(EventFriend friend) {
-        friend.setDamageMod(friend.getDamageMod() - 0.1);
-        friend.setPlayerExpMod(friend.getPlayerExpMod() + 0.1);
-    }
-
     public static void gambesonTwistingWines(EventFriend friend) {
         for (Entity entity : friend.getPlayer().getNearbyEntities(5,5,5)) {
             if (entity instanceof Item) {

@@ -106,6 +106,11 @@ public final class EntityDamageEvents {
         friend.setToolExpMod(friend.getToolExpMod() + 0.5);
     }
 
+    public static void linksIron(EventFriend friend) {
+        friend.setDamageMod(friend.getDamageMod() - 0.1);
+        friend.setPlayerExpMod(friend.getPlayerExpMod() + 0.1);
+    }
+
     public static void headHard(EventFriend friend) {
         LivingEntity e = (LivingEntity) friend.getDamagedEntity();
         push(e, friend.getPlayer().getLocation(), 3);
@@ -356,7 +361,7 @@ public final class EntityDamageEvents {
         friend.setDamageMod(friend.getDamageMod() - 0.5);
     }
 
-    public static void linksIron(EventFriend friend) {
+    public static void linksSingIron(EventFriend friend) {
         friend.setDamageMod(friend.getDamageMod() - 0.1);
         friend.setPlayerExpMod(friend.getPlayerExpMod() + 0.2);
     }

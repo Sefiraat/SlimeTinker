@@ -996,7 +996,7 @@ public final class CMCore {
                                                 CMTraits.PROP_PLATES,
                                                 SupportedPluginsManager.CORE_NOTE,
                                                 "Band",
-                                                "Durability loss + 300%. Damage reduced between 1-25%",
+                                                "Durability loss + 200%. Damage reduced between 1-25%",
                                                 "getting lower as durability drops."
                                         ),
                                         null,

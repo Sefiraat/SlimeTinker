@@ -474,7 +474,7 @@ public final class CMInfinity {
                                                 CMTraits.PROP_PLATES,
                                                 SupportedPluginsManager.INFINITY_EXPANSION_NOTE,
                                                 "Foil II",
-                                                "Damage Taken +25%. Speed + 2"
+                                                "Damage Taken +50%. Speed + 2"
                                         ),
                                         null,
                                         new CMTrait(
@@ -565,7 +565,7 @@ public final class CMInfinity {
                                                 CMTraits.PROP_ROD,
                                                 SupportedPluginsManager.INFINITY_EXPANSION_NOTE,
                                                 "Super Lightweight II",
-                                                "Makes you lighter than air when not sneaking."
+                                                "Makes you lighter than air when sneaking."
                                         ),
                                         new CMTrait(
                                                 CMTraits.PROP_PLATES,

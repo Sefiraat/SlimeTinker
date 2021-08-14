@@ -622,7 +622,7 @@ public final class CMInfinity {
                                                 CMTraits.PROP_PLATES,
                                                 SupportedPluginsManager.INFINITY_EXPANSION_NOTE,
                                                 "Light II",
-                                                "Damage Dealt -25%. Speed + 2"
+                                                "Damage Dealt -50%. Speed + 2"
                                         ),
                                         null,
                                         new CMTrait(

@@ -579,7 +579,7 @@ public final class CMInfinity {
                                                 CMTraits.PROP_LINKS,
                                                 SupportedPluginsManager.INFINITY_EXPANSION_NOTE,
                                                 "Acupuncture II",
-                                                "Cactus pricks heal you and removes all effects."
+                                                "Cactus pricks heal you."
                                         ))
                         ));
 

@@ -90,6 +90,11 @@ public final class EntityDamageEvents {
         }
     }
 
+    public static void linksIron(EventFriend friend) {
+        friend.setDamageMod(friend.getDamageMod() - 0.1);
+        friend.setPlayerExpMod(friend.getPlayerExpMod() + 0.1);
+    }
+
     public static void headSteel(EventFriend friend) {
         Entity e = friend.getDamagedEntity();
         Particle.DustOptions dustOptions = new Particle.DustOptions(Color.RED, 5);
@@ -356,7 +361,7 @@ public final class EntityDamageEvents {
         friend.setDamageMod(friend.getDamageMod() - 0.5);
     }
 
-    public static void linksIron(EventFriend friend) {
+    public static void linksSingIron(EventFriend friend) {
         friend.setDamageMod(friend.getDamageMod() - 0.1);
         friend.setPlayerExpMod(friend.getPlayerExpMod() + 0.2);
     }

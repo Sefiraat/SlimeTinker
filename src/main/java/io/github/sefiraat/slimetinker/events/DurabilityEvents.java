@@ -85,7 +85,7 @@ public final class DurabilityEvents {
     }
 
     public static void plateBrass(EventFriend friend) {
-        friend.setDurabilityMod(friend.getDurabilityMod() + 3);
+        friend.setDurabilityMod(friend.getDurabilityMod() + 2);
     }
 
     public static void linksBrass(EventFriend friend) {

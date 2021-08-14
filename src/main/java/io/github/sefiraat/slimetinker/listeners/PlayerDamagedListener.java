@@ -74,15 +74,18 @@ public class PlayerDamagedListener implements Listener {
         checkTool(friend);
         checkArmour(friend);
 
-        // Mods
-        modChecks(event, player.getInventory().getItemInMainHand());
+        if (friend.isActionTaken()) {
+            // Mods
+            modChecks(event, player.getInventory().getItemInMainHand());
 
-        // Settle
-        settlePotionEffects(friend);
-        event.setDamage(event.getDamage() * friend.getDamageMod());
-        if (friend.getDamageMod() == 0 || friend.isCancelEvent()) {
-            event.setCancelled(true);
+            // Settle
+            settlePotionEffects(friend);
+            event.setDamage(event.getDamage() * friend.getDamageMod());
+            if (friend.getDamageMod() == 0 || friend.isCancelEvent()) {
+                event.setCancelled(true);
+            }
         }
+
     }
 
     private void modChecks(EntityDamageEvent event, ItemStack heldItem) { // Entity Damaging player

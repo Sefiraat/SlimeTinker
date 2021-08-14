@@ -492,7 +492,7 @@ public final class TickEvents {
     public static void plateRedstoneAlloy(EventFriend friend) {
         Player player = friend.getPlayer();
         Block blockTarget = WorldUtils.getRandomBlockInRange(player.getLocation(), 5, 2, 5, false);
-        if (blockTarget != null) {
+        if (blockTarget != null && SlimefunPlugin.getProtectionManager().hasPermission(player, blockTarget, ProtectableAction.INTERACT_BLOCK)) {
             BlockUtils.fakePower(blockTarget);
             BlockUtils.fakePower(blockTarget.getRelative(BlockFace.NORTH));
             BlockUtils.fakePower(blockTarget.getRelative(BlockFace.SOUTH));
@@ -554,13 +554,15 @@ public final class TickEvents {
         Player player = friend.getPlayer();
         Block blockTarget = player.getLocation().clone().subtract(0, 1, 0).getBlock();
 
-        BlockUtils.fakePower(blockTarget);
-        BlockUtils.fakePower(blockTarget.getRelative(BlockFace.NORTH));
-        BlockUtils.fakePower(blockTarget.getRelative(BlockFace.SOUTH));
-        BlockUtils.fakePower(blockTarget.getRelative(BlockFace.EAST));
-        BlockUtils.fakePower(blockTarget.getRelative(BlockFace.WEST));
-        BlockUtils.fakePower(blockTarget.getRelative(BlockFace.DOWN));
-        BlockUtils.fakePower(blockTarget.getRelative(BlockFace.UP));
+        if (SlimefunPlugin.getProtectionManager().hasPermission(player, blockTarget, ProtectableAction.INTERACT_BLOCK)) {
+            BlockUtils.fakePower(blockTarget);
+            BlockUtils.fakePower(blockTarget.getRelative(BlockFace.NORTH));
+            BlockUtils.fakePower(blockTarget.getRelative(BlockFace.SOUTH));
+            BlockUtils.fakePower(blockTarget.getRelative(BlockFace.EAST));
+            BlockUtils.fakePower(blockTarget.getRelative(BlockFace.WEST));
+            BlockUtils.fakePower(blockTarget.getRelative(BlockFace.DOWN));
+            BlockUtils.fakePower(blockTarget.getRelative(BlockFace.UP));
+        }
 
         RemovePoweredState task = new RemovePoweredState(blockTarget, friend.getPlayer());
         task.runTaskTimer(SlimeTinker.inst(), 100, 100);

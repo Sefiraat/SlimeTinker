@@ -485,7 +485,7 @@ public final class ItemUtils {
         if (isTool(itemStack)) {
             return
                     !getToolHeadMaterial(itemStack).equals(IDStrings.DURALIUM)
-                            && !getToolRodMaterial(itemStack).equals(IDStrings.TITANIUM);
+                    && !getToolRodMaterial(itemStack).equals(IDStrings.TITANIUM);
 
         }
         return true;

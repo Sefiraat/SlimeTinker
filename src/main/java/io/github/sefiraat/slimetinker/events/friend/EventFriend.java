@@ -17,6 +17,8 @@ import java.util.Map;
 @Data
 public class EventFriend {
 
+    private boolean actionTaken = false;
+
     /**
      * The type of item that the friend is currently working on
      */
@@ -190,28 +192,23 @@ public class EventFriend {
 
     @Nullable
     public Integer getToolLevel() {
-        Integer l = ItemUtils.getTinkerLevel(tool);
-        return l == null ? 0 : l;
+        return ItemUtils.getTinkerLevel(tool);
     }
     @Nullable
     public Integer getHelmLevel() {
-        Integer l = ItemUtils.getTinkerLevel(helmet);
-        return l == null ? 0 : l;
+        return ItemUtils.getTinkerLevel(helmet);
     }
     @Nullable
     public Integer getChestLevel() {
-        Integer l = ItemUtils.getTinkerLevel(chestplate);
-        return l == null ? 0 : l;
+        return ItemUtils.getTinkerLevel(chestplate);
     }
     @Nullable
     public Integer getLegLevel() {
-        Integer l = ItemUtils.getTinkerLevel(leggings);
-        return l == null ? 0 : l;
+        return ItemUtils.getTinkerLevel(leggings);
     }
     @Nullable
     public Integer getBootLevel() {
-        Integer l = ItemUtils.getTinkerLevel(boots);
-        return l == null ? 0 : l;
+        return ItemUtils.getTinkerLevel(boots);
     }
 
     public EventFriend (Player p, TraitEventType type) {

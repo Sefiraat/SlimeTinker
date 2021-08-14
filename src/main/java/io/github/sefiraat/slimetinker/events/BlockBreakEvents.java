@@ -77,7 +77,6 @@ public final class BlockBreakEvents {
 
     public static void headDuralium(EventFriend friend) {
         friend.setToolExpMod(0);
-        friend.setDuraliumCheck(true);
     }
 
     public static void headSingCopper(EventFriend friend) {

@@ -1,7 +1,9 @@
 package io.github.sefiraat.slimetinker.utils;
 
+import io.github.thebusybiscuit.slimefun4.implementation.SlimefunPlugin;
 import lombok.experimental.UtilityClass;
 import me.mrCookieSlime.Slimefun.api.BlockStorage;
+import me.mrCookieSlime.Slimefun.cscorelib2.protection.ProtectableAction;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.block.Container;
@@ -16,8 +18,12 @@ import java.util.List;
 @UtilityClass
 public final class BlockUtils {
 
-    public static boolean isValidBreakEvent(Block block) {
-        return !isPlaced(block) && !BlockStorage.hasBlockInfo(block) && !(block instanceof Container);
+    public static boolean isValidBreakEvent(Block block, Player player) {
+        return
+                !isPlaced(block)
+                && !BlockStorage.hasBlockInfo(block)
+                && !(block instanceof Container)
+                && SlimefunPlugin.getProtectionManager().hasPermission(player, block, ProtectableAction.BREAK_BLOCK);
     }
 
     public static boolean isPlaced(Block block) {

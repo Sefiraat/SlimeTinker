@@ -47,7 +47,7 @@ public class BlockBreakListener implements Listener {
         ItemStack heldItem = event.getPlayer().getInventory().getItemInMainHand();
         Block block = event.getBlock();
 
-        if (!BlockUtils.isValidBreakEvent(block)) {
+        if (!BlockUtils.isValidBreakEvent(block, player)) {
             return;
         }
 

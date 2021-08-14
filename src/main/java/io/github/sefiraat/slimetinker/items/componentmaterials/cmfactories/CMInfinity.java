@@ -326,7 +326,7 @@ public final class CMInfinity {
                                                 CMTraits.PROP_PLATES,
                                                 SupportedPluginsManager.INFINITY_EXPANSION_NOTE,
                                                 "Beginner II",
-                                                "Damage Taken +20%. Armour Exp +40%"
+                                                "Damage Taken +50%. Armour Exp +40%"
                                         ),
                                         null,
                                         new CMTrait(
@@ -409,16 +409,16 @@ public final class CMInfinity {
                                                 CMTraits.PROP_HEAD,
                                                 SupportedPluginsManager.INFINITY_EXPANSION_NOTE,
                                                 "Enchanting II",
-                                                "Poisons more frequently and for longer."
+                                                "Tool exp gain is halved. Tools add 1-3",
+                                                "randomly selected enchants when leveling",
+                                                "up. These enchants may not be useful!"
                                         ),
                                         null,
                                         new CMTrait(
                                                 CMTraits.PROP_ROD,
                                                 SupportedPluginsManager.INFINITY_EXPANSION_NOTE,
                                                 "Soft Touch II",
-                                                "Tool exp gain is halved. Tools add 1-3",
-                                                "randomly selected enchants when leveling",
-                                                "up. These enchants may not be useful!"
+                                                "You feel much lighter."
                                         ),
                                         new CMTrait(
                                                 CMTraits.PROP_PLATES,

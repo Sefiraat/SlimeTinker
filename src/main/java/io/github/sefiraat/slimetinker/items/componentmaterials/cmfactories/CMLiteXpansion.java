@@ -175,7 +175,7 @@ public final class CMLiteXpansion {
                                                 CMTraits.PROP_LINKS,
                                                 SupportedPluginsManager.LITEXPANSION_NOTE,
                                                 "Mix it up!",
-                                                "Mixes things up a bit while attacking"
+                                                "Mixes things up a bit when hit"
                                         ))
                         ));
 
@@ -203,7 +203,7 @@ public final class CMLiteXpansion {
                                                 CMTraits.PROP_HEAD,
                                                 SupportedPluginsManager.LITEXPANSION_NOTE,
                                                 "Cleave",
-                                                "Half damage to all nearby entities.",
+                                                "Damage all nearby mobs when you attack.",
                                                 "Cleave damage does not trigger Tinker's effects."
                                         ),
                                         null,
@@ -462,7 +462,7 @@ public final class CMLiteXpansion {
         map.get(IDStrings.SCRAP).addEvent(TraitEventType.BLOCK_BREAK, TraitPartType.ROD, BlockBreakEvents::headCopper);                                 // Brains not brawn - Block Break        | - CO Copper Head
         map.get(IDStrings.ADVANCED_ALLOY).addEvent(TraitEventType.ENTITY_DAMAGED, TraitPartType.HEAD, EntityDamageEvents::headAdvancedAlloy);           // Cleave
         map.get(IDStrings.MAG_THOR).addEvent(TraitEventType.PLAYER_DAMAGED, TraitPartType.HEAD, PlayerDamagedEvents::headMagThor);                      // Heat Resistance
-        map.get(IDStrings.ADVANCED_ALLOY).addEvent(TraitEventType.DURABILITY, TraitPartType.ROD, DurabilityEvents::headAdvancedAlloy);                  // Heavy Duty
+        map.get(IDStrings.ADVANCED_ALLOY).addEvent(TraitEventType.DURABILITY, TraitPartType.ROD, DurabilityEvents::rodAdvancedAlloy);                   // Heavy Duty
         map.get(IDStrings.RUBBER).addEvent(TraitEventType.PLAYER_DAMAGED, TraitPartType.BINDER, PlayerDamagedEvents::bindRubber);                       // Insulated
         map.get(IDStrings.REFINED_IRON).addEvent(TraitEventType.ENTITY_DAMAGED, TraitPartType.ROD, EntityDamageEvents::rodRefinedIron);                 // Manners Maketh Man - Damage
         map.get(IDStrings.REFINED_IRON).addEvent(TraitEventType.RIGHT_CLICK, TraitPartType.ROD, RightClickEvents::rodRefinedIron);                      // Manners Maketh Man - Right Click (Register Manners)

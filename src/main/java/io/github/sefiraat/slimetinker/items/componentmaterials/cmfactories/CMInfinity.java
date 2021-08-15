@@ -1062,7 +1062,7 @@ public final class CMInfinity {
                                                 CMTraits.PROP_LINKS,
                                                 SupportedPluginsManager.CORE_NOTE,
                                                 "Oroborus",
-                                                "20% chance to reflect 50% damage taken."
+                                                "20% chance to reflect damage taken."
                                         ))
                         ));
 
@@ -1099,7 +1099,7 @@ public final class CMInfinity {
                                                 CMTraits.PROP_PLATES,
                                                 SupportedPluginsManager.CORE_NOTE,
                                                 "Infinitly Powerful",
-                                                "Every 300 points of damage taken (before",
+                                                "Every 2000 points of damage taken (before",
                                                 "reductions) will unlock a new, random,",
                                                 "enchantment. No upper limits."
                                         ),

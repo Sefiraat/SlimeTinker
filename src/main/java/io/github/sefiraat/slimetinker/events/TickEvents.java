@@ -673,7 +673,7 @@ public final class TickEvents {
         increaseEffect(PotionEffectType.WATER_BREATHING, friend.getPotionEffects());
     }
 
-    public static void linksSegganesson(EventFriend friend) {
+    public static void plateSegganesson(EventFriend friend) {
         friend.setGravity(friend.getGravity() + 1);
         Player p = friend.getPlayer();
         if (GeneralUtils.testChance(friend.getGravity(), 4)) {
@@ -699,6 +699,7 @@ public final class TickEvents {
                 e != null
                 && !(e instanceof Player)
                 && !(e instanceof ArmorStand)
+                && !(e instanceof Boss)
                 && SlimefunPlugin.getProtectionManager().hasPermission(p, e.getLocation(), ProtectableAction.INTERACT_ENTITY)
         )
         {

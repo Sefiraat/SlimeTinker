@@ -20,6 +20,7 @@ import org.bukkit.entity.Animals;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
+import org.bukkit.entity.Monster;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -388,14 +389,14 @@ public final class EntityDamageEvents {
     }
 
     public static void linksSegganesson(EventFriend friend) {
-        if (friend.getDamagedEntity() instanceof LivingEntity) {
+        if (friend.getDamagedEntity() instanceof Monster) {
             LivingEntity e = (LivingEntity) friend.getDamagedEntity();
             ItemStack i = friend.getActiveStack();
             ItemMeta im = i.getItemMeta();
             NamespacedKey k = SlimeTinker.inst().getKeys().getArmourSoulsStored();
             Validate.notNull(im, "Meta is not null, this is odd!");
             long souls = PersistentDataAPI.getLong(im, k ,0);
-            friend.setDamageMod(friend.getDamageMod() + ((double) souls / 100L));
+            friend.setDamageMod(friend.getDamageMod() + ((double) souls / 10000L));
             if (friend.getInitialDamage() >= e.getHealth()) {
                 souls++;
                 PersistentDataAPI.setLong(im, k, souls);

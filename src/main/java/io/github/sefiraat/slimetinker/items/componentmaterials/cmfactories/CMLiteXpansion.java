@@ -344,7 +344,7 @@ public final class CMLiteXpansion {
                                                 CMTraits.PROP_GAMBESON,
                                                 SupportedPluginsManager.LITEXPANSION_NOTE,
                                                 "Carbon Fibre",
-                                                "Damage -5%, Speed + 1"
+                                                "Speed + 1"
                                         ),
                                         null)
                         ));

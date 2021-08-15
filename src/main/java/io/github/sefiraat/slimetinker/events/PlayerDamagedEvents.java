@@ -369,9 +369,11 @@ public final class PlayerDamagedEvents {
 
     public static void linksMetal(EventFriend friend) {
         if (GeneralUtils.testChance(1, 5) && friend.getDamagingEntity() instanceof LivingEntity) {
+            friend.setCancelEvent(true);
             LivingEntity l = (LivingEntity) friend.getDamagingEntity();
             l.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 100, 1));
-            l.getWorld().spawnParticle(Particle.FIREWORKS_SPARK, l.getLocation(), 0, 0, 0, 0);
+            l.getWorld().spawnParticle(Particle.FIREWORKS_SPARK, l.getLocation(), 3, 0.2, 0.2, 0.2);
+            l.damage(friend.getInitialDamage(), friend.getPlayer());
         }
     }
 

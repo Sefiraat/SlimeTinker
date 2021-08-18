@@ -398,7 +398,7 @@ public final class EntityDamageEvents {
             long souls = PersistentDataAPI.getLong(im, k ,0);
             friend.setDamageMod(friend.getDamageMod() + ((double) souls / 10000L));
             if (friend.getInitialDamage() >= e.getHealth()) {
-                souls++;
+                souls = Math.max(souls + 1, 10000L);
                 PersistentDataAPI.setLong(im, k, souls);
             }
             i.setItemMeta(im);

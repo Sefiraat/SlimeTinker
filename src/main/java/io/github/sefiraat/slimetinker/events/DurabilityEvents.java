@@ -65,7 +65,7 @@ public final class DurabilityEvents {
         friend.setDurabilityMod(friend.getDurabilityMod() + 1);
     }
 
-    public static void headAdvancedAlloy(EventFriend friend) {
+    public static void rodAdvancedAlloy(EventFriend friend) {
         Damageable d = (Damageable) friend.getTool().getItemMeta();
         assert d != null;
         if (d.getDamage() < 50) {
@@ -85,7 +85,7 @@ public final class DurabilityEvents {
     }
 
     public static void plateBrass(EventFriend friend) {
-        friend.setDurabilityMod(friend.getDurabilityMod() + 3);
+        friend.setDurabilityMod(friend.getDurabilityMod() + 2);
     }
 
     public static void linksBrass(EventFriend friend) {

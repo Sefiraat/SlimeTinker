@@ -359,7 +359,7 @@ public final class PlayerDamagedEvents {
 
     public static void plateAdamantite(EventFriend friend) {
         if (friend.getCause() == EntityDamageEvent.DamageCause.PROJECTILE) {
-            friend.setDamageMod(friend.getDamageMod() -0.25);
+            friend.setDamageMod(friend.getDamageMod() - 0.25);
         }
     }
 

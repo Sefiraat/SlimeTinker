@@ -20,6 +20,7 @@ import org.bukkit.entity.Animals;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
+import org.bukkit.entity.Monster;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -88,6 +89,11 @@ public final class EntityDamageEvents {
         if (rnd == 1) {
             e.addPotionEffect(new PotionEffect(PotionEffectType.POISON, 100, 0, true, true, false));
         }
+    }
+
+    public static void linksIron(EventFriend friend) {
+        friend.setDamageMod(friend.getDamageMod() - 0.1);
+        friend.setPlayerExpMod(friend.getPlayerExpMod() + 0.1);
     }
 
     public static void headSteel(EventFriend friend) {
@@ -356,7 +362,7 @@ public final class EntityDamageEvents {
         friend.setDamageMod(friend.getDamageMod() - 0.5);
     }
 
-    public static void linksIron(EventFriend friend) {
+    public static void linksSingIron(EventFriend friend) {
         friend.setDamageMod(friend.getDamageMod() - 0.1);
         friend.setPlayerExpMod(friend.getPlayerExpMod() + 0.2);
     }
@@ -383,16 +389,16 @@ public final class EntityDamageEvents {
     }
 
     public static void linksSegganesson(EventFriend friend) {
-        if (friend.getDamagedEntity() instanceof LivingEntity) {
+        if (friend.getDamagedEntity() instanceof Monster) {
             LivingEntity e = (LivingEntity) friend.getDamagedEntity();
             ItemStack i = friend.getActiveStack();
             ItemMeta im = i.getItemMeta();
             NamespacedKey k = SlimeTinker.inst().getKeys().getArmourSoulsStored();
             Validate.notNull(im, "Meta is not null, this is odd!");
             long souls = PersistentDataAPI.getLong(im, k ,0);
-            friend.setDamageMod(friend.getDamageMod() + ((double) souls / 100L));
+            friend.setDamageMod(friend.getDamageMod() + ((double) souls / 10000L));
             if (friend.getInitialDamage() >= e.getHealth()) {
-                souls++;
+                souls = Math.max(souls + 1, 10000L);
                 PersistentDataAPI.setLong(im, k, souls);
             }
             i.setItemMeta(im);

@@ -25,7 +25,7 @@ import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.block.data.Levelled;
 import org.bukkit.entity.ArmorStand;
-import org.bukkit.entity.EnderDragon;
+import org.bukkit.entity.Boss;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Item;
@@ -37,7 +37,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.entity.TNTPrimed;
 import org.bukkit.entity.Vex;
 import org.bukkit.entity.Villager;
-import org.bukkit.entity.Wither;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.potion.PotionEffect;
@@ -344,11 +343,6 @@ public final class TickEvents {
         increaseEffect(PotionEffectType.SPEED, friend.getPotionEffects());
     }
 
-    public static void linksIron(EventFriend friend) {
-        friend.setDamageMod(friend.getDamageMod() - 0.1);
-        friend.setPlayerExpMod(friend.getPlayerExpMod() + 0.1);
-    }
-
     public static void gambesonTwistingWines(EventFriend friend) {
         for (Entity entity : friend.getPlayer().getNearbyEntities(5,5,5)) {
             if (entity instanceof Item) {
@@ -413,7 +407,7 @@ public final class TickEvents {
         friend.setBrightBurn(friend.getBrightBurn() + 1);
         if (friend.getBrightBurn() >= 4) {
             for (Entity entity : friend.getPlayer().getNearbyEntities(5,5,5)) {
-                if (entity instanceof Mob && (!(entity instanceof Wither) && !(entity instanceof EnderDragon))) {
+                if (entity instanceof Monster && !(entity instanceof Boss)) {
                     EntityUtils.push((LivingEntity) entity, friend.getPlayer().getLocation(), 0.3);
                 }
             }
@@ -679,7 +673,7 @@ public final class TickEvents {
         increaseEffect(PotionEffectType.WATER_BREATHING, friend.getPotionEffects());
     }
 
-    public static void linksSegganesson(EventFriend friend) {
+    public static void plateSegganesson(EventFriend friend) {
         friend.setGravity(friend.getGravity() + 1);
         Player p = friend.getPlayer();
         if (GeneralUtils.testChance(friend.getGravity(), 4)) {
@@ -705,6 +699,7 @@ public final class TickEvents {
                 e != null
                 && !(e instanceof Player)
                 && !(e instanceof ArmorStand)
+                && !(e instanceof Boss)
                 && SlimefunPlugin.getProtectionManager().hasPermission(p, e.getLocation(), ProtectableAction.INTERACT_ENTITY)
         )
         {

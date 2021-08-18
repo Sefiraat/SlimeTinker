@@ -100,7 +100,7 @@ public final class PlayerDamagedEvents {
     }
 
     public static void bindCarbonMesh(EventFriend friend) {
-        friend.setDamageMod(friend.getDamageMod() + 0.3);
+        friend.setDamageMod(friend.getDamageMod() - 0.33);
     }
 
     public static void headIridium(EventFriend friend) {
@@ -359,7 +359,7 @@ public final class PlayerDamagedEvents {
 
     public static void plateAdamantite(EventFriend friend) {
         if (friend.getCause() == EntityDamageEvent.DamageCause.PROJECTILE) {
-            friend.setDamageMod(friend.getDamageMod() -0.25);
+            friend.setDamageMod(friend.getDamageMod() - 0.25);
         }
     }
 
@@ -369,9 +369,11 @@ public final class PlayerDamagedEvents {
 
     public static void linksMetal(EventFriend friend) {
         if (GeneralUtils.testChance(1, 5) && friend.getDamagingEntity() instanceof LivingEntity) {
+            friend.setCancelEvent(true);
             LivingEntity l = (LivingEntity) friend.getDamagingEntity();
             l.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 100, 1));
-            l.getWorld().spawnParticle(Particle.FIREWORKS_SPARK, l.getLocation(), 0, 0, 0, 0);
+            l.getWorld().spawnParticle(Particle.FIREWORKS_SPARK, l.getLocation(), 3, 0.2, 0.2, 0.2);
+            l.damage(friend.getInitialDamage(), friend.getPlayer());
         }
     }
 

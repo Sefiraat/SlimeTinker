@@ -70,18 +70,5 @@ public class ToolTemplate extends SlimefunItem implements NotPlaceable {
         super(itemGroup, item, recipeType, recipe);
     }
 
-    /**
-     * @deprecated
-     * Moved to {@link ItemUtils#isTool(ItemStack)}
-     * @param itemStack Stack to check
-     * @return true if Tinker's Tool
-     */
-    @Deprecated
-    public static boolean isTool(ItemStack itemStack) {
-        return  itemStack != null &&
-                itemStack.getType() != Material.AIR &&
-                PersistentDataAPI.hasString(itemStack.getItemMeta(), SlimeTinker.inst().getKeys().getToolInfoIsTool());
-    }
-
 }
 

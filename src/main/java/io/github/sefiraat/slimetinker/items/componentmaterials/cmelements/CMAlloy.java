@@ -1,7 +1,7 @@
 package io.github.sefiraat.slimetinker.items.componentmaterials.cmelements;
 
 import io.github.sefiraat.slimetinker.SlimeTinker;
-import io.github.sefiraat.slimetinker.categories.Categories;
+import io.github.sefiraat.slimetinker.itemgroups.ItemGroups;
 import io.github.sefiraat.slimetinker.items.componentmaterials.ComponentMaterial;
 import io.github.sefiraat.slimetinker.items.workstations.smeltery.DummySmelteryAlloy;
 import io.github.sefiraat.slimetinker.utils.ThemeUtils;
@@ -42,7 +42,7 @@ public class CMAlloy {
                 );
         List<SlimefunItemStack> alloyRecipe = parent.getAlloyRecipe();
         Validate.notNull(alloyRecipe, "Alloy recipe is null. SefiDumb™");
-        this.item = new SlimefunItem(Categories.ALLOYS, itemStack, DummySmelteryAlloy.TYPE, alloyRecipe.toArray(new ItemStack[9]));
+        this.item = new SlimefunItem(ItemGroups.ALLOYS, itemStack, DummySmelteryAlloy.TYPE, alloyRecipe.toArray(new ItemStack[9]));
         item.register(SlimeTinker.inst());
         for (SlimefunItemStack i : parent.getAlloyRecipe()) {
             alloyMap.put(i.getItemId().replace("_LIQUID",""), i.getAmount());

@@ -66,8 +66,8 @@ public class ToolTemplateExplosive extends ExplosiveTool {
         return itemStack;
     }
 
-    public ToolTemplateExplosive(ItemGroup category, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
-        super(category, item, recipeType, recipe);
+    public ToolTemplateExplosive(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
+        super(itemGroup, item, recipeType, recipe);
 
     }
 

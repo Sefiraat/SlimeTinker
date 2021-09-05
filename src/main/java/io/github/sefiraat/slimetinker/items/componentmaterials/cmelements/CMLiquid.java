@@ -1,7 +1,7 @@
 package io.github.sefiraat.slimetinker.items.componentmaterials.cmelements;
 
 import io.github.sefiraat.slimetinker.SlimeTinker;
-import io.github.sefiraat.slimetinker.categories.Categories;
+import io.github.sefiraat.slimetinker.itemgroups.ItemGroups;
 import io.github.sefiraat.slimetinker.items.componentmaterials.ComponentMaterial;
 import io.github.sefiraat.slimetinker.items.workstations.smeltery.DummySmelteryMolten;
 import io.github.sefiraat.slimetinker.utils.ThemeUtils;
@@ -34,7 +34,7 @@ public class CMLiquid {
                 ThemeUtils.PASSIVE + "The molten form of " + titName
         );
 
-        this.item = new SlimefunItem(Categories.MOLTEN_METALS, itemStack, DummySmelteryMolten.TYPE, new ItemStack[] {
+        this.item = new SlimefunItem(ItemGroups.MOLTEN_METALS, itemStack, DummySmelteryMolten.TYPE, new ItemStack[] {
                 null, null,                             null,
                 null, parent.getRepresentativeStack(),  null,
                 null, null,                             null

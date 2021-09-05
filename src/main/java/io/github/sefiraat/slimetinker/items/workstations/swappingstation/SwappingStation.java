@@ -33,8 +33,8 @@ public class SwappingStation extends MenuBlock {
     protected static final int CRAFT_BUTTON = 14;
     protected static final int OUTPUT_SLOT = 16;
 
-    public SwappingStation(ItemGroup category, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
-        super(category, item, recipeType, recipe);
+    public SwappingStation(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
+        super(itemGroup, item, recipeType, recipe);
     }
 
     @SuppressWarnings("SameReturnValue")

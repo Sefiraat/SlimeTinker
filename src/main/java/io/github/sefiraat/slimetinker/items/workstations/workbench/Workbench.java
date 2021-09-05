@@ -36,8 +36,8 @@ public class Workbench extends CraftingBlock {
     protected static final int OUTPUT_SLOT = 25;
     protected static final int CRAFT_BUTTON = 23;
 
-    public Workbench(ItemGroup category, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
-        super(category, item, recipeType, recipe);
+    public Workbench(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
+        super(itemGroup, item, recipeType, recipe);
     }
 
     @Override

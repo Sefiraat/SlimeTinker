@@ -1,7 +1,7 @@
 package io.github.sefiraat.slimetinker.items;
 
 import io.github.sefiraat.slimetinker.SlimeTinker;
-import io.github.sefiraat.slimetinker.categories.Categories;
+import io.github.sefiraat.slimetinker.itemgroups.ItemGroups;
 import io.github.sefiraat.slimetinker.items.workstations.workbench.Workbench;
 import io.github.sefiraat.slimetinker.utils.SkullTextures;
 import io.github.sefiraat.slimetinker.utils.ThemeUtils;
@@ -199,17 +199,17 @@ public final class Dies {
 
 
     public static void set(SlimeTinker p) {
-        new UnplaceableBlock(Categories.CASTS, DIE_SHOVEL_HEAD, Workbench.TYPE, RECIPE_DIE_SHOVEL_HEAD).register(p);
-        new UnplaceableBlock(Categories.CASTS, DIE_PICKAXE_HEAD, Workbench.TYPE, RECIPE_DIE_PICKAXE_HEAD).register(p);
-        new UnplaceableBlock(Categories.CASTS, DIE_AXE_HEAD, Workbench.TYPE, RECIPE_DIE_AXE_HEAD).register(p);
-        new UnplaceableBlock(Categories.CASTS, DIE_HOE_HEAD, Workbench.TYPE, RECIPE_DIE_HOE_HEAD).register(p);
-        new UnplaceableBlock(Categories.CASTS, DIE_SWORD_BLADE, Workbench.TYPE, RECIPE_DIE_SWORD_BLADE).register(p);
-        new UnplaceableBlock(Categories.CASTS, DIE_TOOL_ROD , Workbench.TYPE, RECIPE_DIE_TOOL_ROD).register(p);
-        new UnplaceableBlock(Categories.CASTS, DIE_REPAIR_KIT , Workbench.TYPE, RECIPE_DIE_REPAIR_KIT).register(p);
-        new UnplaceableBlock(Categories.CASTS, DIE_HELM_PLATE, Workbench.TYPE, RECIPE_DIE_HELM_PLATE).register(p);
-        new UnplaceableBlock(Categories.CASTS, DIE_CHEST_PLATE, Workbench.TYPE, RECIPE_DIE_CHEST_PLATE).register(p);
-        new UnplaceableBlock(Categories.CASTS, DIE_LEG_PLATE, Workbench.TYPE, RECIPE_DIE_LEG_PLATE).register(p);
-        new UnplaceableBlock(Categories.CASTS, DIE_BOOT_PLATE , Workbench.TYPE, RECIPE_DIE_BOOT_PLATE).register(p);
-        new UnplaceableBlock(Categories.CASTS, DIE_MAIL_LINK , Workbench.TYPE, RECIPE_DIE_MAIL_LINKS).register(p);
+        new UnplaceableBlock(ItemGroups.CASTS, DIE_SHOVEL_HEAD, Workbench.TYPE, RECIPE_DIE_SHOVEL_HEAD).register(p);
+        new UnplaceableBlock(ItemGroups.CASTS, DIE_PICKAXE_HEAD, Workbench.TYPE, RECIPE_DIE_PICKAXE_HEAD).register(p);
+        new UnplaceableBlock(ItemGroups.CASTS, DIE_AXE_HEAD, Workbench.TYPE, RECIPE_DIE_AXE_HEAD).register(p);
+        new UnplaceableBlock(ItemGroups.CASTS, DIE_HOE_HEAD, Workbench.TYPE, RECIPE_DIE_HOE_HEAD).register(p);
+        new UnplaceableBlock(ItemGroups.CASTS, DIE_SWORD_BLADE, Workbench.TYPE, RECIPE_DIE_SWORD_BLADE).register(p);
+        new UnplaceableBlock(ItemGroups.CASTS, DIE_TOOL_ROD , Workbench.TYPE, RECIPE_DIE_TOOL_ROD).register(p);
+        new UnplaceableBlock(ItemGroups.CASTS, DIE_REPAIR_KIT , Workbench.TYPE, RECIPE_DIE_REPAIR_KIT).register(p);
+        new UnplaceableBlock(ItemGroups.CASTS, DIE_HELM_PLATE, Workbench.TYPE, RECIPE_DIE_HELM_PLATE).register(p);
+        new UnplaceableBlock(ItemGroups.CASTS, DIE_CHEST_PLATE, Workbench.TYPE, RECIPE_DIE_CHEST_PLATE).register(p);
+        new UnplaceableBlock(ItemGroups.CASTS, DIE_LEG_PLATE, Workbench.TYPE, RECIPE_DIE_LEG_PLATE).register(p);
+        new UnplaceableBlock(ItemGroups.CASTS, DIE_BOOT_PLATE , Workbench.TYPE, RECIPE_DIE_BOOT_PLATE).register(p);
+        new UnplaceableBlock(ItemGroups.CASTS, DIE_MAIL_LINK , Workbench.TYPE, RECIPE_DIE_MAIL_LINKS).register(p);
     }
 }

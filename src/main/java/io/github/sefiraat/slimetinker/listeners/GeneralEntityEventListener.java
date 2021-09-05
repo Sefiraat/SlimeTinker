@@ -1,7 +1,7 @@
 package io.github.sefiraat.slimetinker.listeners;
 
 import io.github.sefiraat.slimetinker.SlimeTinker;
-import me.mrCookieSlime.Slimefun.cscorelib2.data.PersistentDataAPI;
+import io.github.thebusybiscuit.slimefun4.libraries.dough.data.persistent.PersistentDataAPI;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;

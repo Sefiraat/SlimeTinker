@@ -16,9 +16,9 @@ import io.github.sefiraat.slimetinker.items.componentmaterials.cmelements.CMTrai
 import io.github.sefiraat.slimetinker.managers.SupportedPluginsManager;
 import io.github.sefiraat.slimetinker.utils.IDStrings;
 import io.github.sefiraat.slimetinker.utils.SkullTextures;
+import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import lombok.Getter;
 import lombok.experimental.UtilityClass;
-import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.SlimefunItem;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -37,7 +37,7 @@ public final class CMDynaTech {
         map.put(IDStrings.STAINLESS_STEEL,
                 new ComponentMaterial
                         (
-                                new CMIdentity(IDStrings.STAINLESS_STEEL, Objects.requireNonNull(SlimefunItem.getByID("STAINLESS_STEEL")).getItem(), SkullTextures.ALLOY_SILVER, "#d1d1d1"),
+                                new CMIdentity(IDStrings.STAINLESS_STEEL, Objects.requireNonNull(SlimefunItem.getById("STAINLESS_STEEL")).getItem(), SkullTextures.ALLOY_SILVER, "#d1d1d1"),
                                 Arrays.asList(
                                         CMCore.getMap().get(IDStrings.IRON).getLiquidItemStack(2),
                                         CMCore.getMap().get(IDStrings.ZINC).getLiquidItemStack(1)
@@ -45,7 +45,7 @@ public final class CMDynaTech {
                                 new CMToolMakeup(true, false, true, true, false, true),
                                 new CMForms(
                                     Materials.NUGGET_CAST_STAINLESSSTEEL.getItemId(),
-                                    SlimefunItem.getByID("STAINLESS_STEEL").getId(),
+                                    SlimefunItem.getById("STAINLESS_STEEL").getId(),
                                     Materials.BLOCK_CAST_STAINLESSSTEEL.getItemId(),
                                     null,
                                     null,
@@ -88,7 +88,7 @@ public final class CMDynaTech {
         map.put(IDStrings.VEX_GEM,
                 new ComponentMaterial
                         (
-                                new CMIdentity(IDStrings.VEX_GEM, Objects.requireNonNull(SlimefunItem.getByID("VEX_GEM")).getItem(), SkullTextures.ALLOY_BLUE, "#38c0c2"),
+                                new CMIdentity(IDStrings.VEX_GEM, Objects.requireNonNull(SlimefunItem.getById("VEX_GEM")).getItem(), SkullTextures.ALLOY_BLUE, "#38c0c2"),
                                 null,
                                 new CMToolMakeup(false, true, false, false, true, false),
                                 new CMForms(
@@ -96,7 +96,7 @@ public final class CMDynaTech {
                                     null,
                                     null,
                                     null,
-                                    SlimefunItem.getByID("VEX_GEM").getId(),
+                                    SlimefunItem.getById("VEX_GEM").getId(),
                                     null,
                                     null,
                                     null,
@@ -127,15 +127,15 @@ public final class CMDynaTech {
         map.put(IDStrings.STARDUST,
                 new ComponentMaterial
                         (
-                                new CMIdentity(IDStrings.STARDUST, Objects.requireNonNull(SlimefunItem.getByID("STAR_DUST")).getItem(), SkullTextures.ALLOY_SILVER, "#fdff96"),
+                                new CMIdentity(IDStrings.STARDUST, Objects.requireNonNull(SlimefunItem.getById("STAR_DUST")).getItem(), SkullTextures.ALLOY_SILVER, "#fdff96"),
                                 null,
                                 new CMToolMakeup(true, false, true, true, false, true),
                                 new CMForms(
                                     null,
                                     null,
                                     null,
-                                    Objects.requireNonNull(SlimefunItem.getByID("STARDUST_METEOR")).getId(),
-                                    Objects.requireNonNull(SlimefunItem.getByID("STAR_DUST")).getId(),
+                                    Objects.requireNonNull(SlimefunItem.getById("STARDUST_METEOR")).getId(),
+                                    Objects.requireNonNull(SlimefunItem.getById("STAR_DUST")).getId(),
                                     null,
                                     null,
                                     null,
@@ -178,7 +178,7 @@ public final class CMDynaTech {
         map.put(IDStrings.GHOSTLY_ESSENCE,
                 new ComponentMaterial
                         (
-                                new CMIdentity(IDStrings.GHOSTLY_ESSENCE, Objects.requireNonNull(SlimefunItem.getByID("GHOSTLY_ESSENCE")).getItem(), SkullTextures.ALLOY_BROWN, "#d4ffef"),
+                                new CMIdentity(IDStrings.GHOSTLY_ESSENCE, Objects.requireNonNull(SlimefunItem.getById("GHOSTLY_ESSENCE")).getItem(), SkullTextures.ALLOY_BROWN, "#d4ffef"),
                                 null,
                                 new CMToolMakeup(false, true, true, false, true, true),
                                 new CMForms(
@@ -187,7 +187,7 @@ public final class CMDynaTech {
                                     null,
                                     null,
                                     null,
-                                    Objects.requireNonNull(SlimefunItem.getByID("GHOSTLY_ESSENCE")).getId(),
+                                    Objects.requireNonNull(SlimefunItem.getById("GHOSTLY_ESSENCE")).getId(),
                                     null,
                                     null,
                                     null,
@@ -228,13 +228,13 @@ public final class CMDynaTech {
         map.put(IDStrings.TESSERACT,
                 new ComponentMaterial
                         (
-                                new CMIdentity(IDStrings.TESSERACT, Objects.requireNonNull(SlimefunItem.getByID("TESSERACTING_OBJ")).getItem(), SkullTextures.ALLOY_TAN, "#c7ba9f"),
+                                new CMIdentity(IDStrings.TESSERACT, Objects.requireNonNull(SlimefunItem.getById("TESSERACTING_OBJ")).getItem(), SkullTextures.ALLOY_TAN, "#c7ba9f"),
                                 null,
                                 new CMToolMakeup(true, false, true, true, false, true),
                                 new CMForms(
                                     null,
                                     null,
-                                    Objects.requireNonNull(SlimefunItem.getByID("TESSERACTING_OBJ")).getId(),
+                                    Objects.requireNonNull(SlimefunItem.getById("TESSERACTING_OBJ")).getId(),
                                     null,
                                     null,
                                     null,

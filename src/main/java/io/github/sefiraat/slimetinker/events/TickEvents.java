@@ -10,10 +10,10 @@ import io.github.sefiraat.slimetinker.utils.GeneralUtils;
 import io.github.sefiraat.slimetinker.utils.ItemUtils;
 import io.github.sefiraat.slimetinker.utils.WorldUtils;
 import io.github.sefiraat.slimetinker.utils.enums.Temperature;
-import io.github.thebusybiscuit.slimefun4.implementation.SlimefunPlugin;
+import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
+import io.github.thebusybiscuit.slimefun4.libraries.dough.data.persistent.PersistentDataAPI;
+import io.github.thebusybiscuit.slimefun4.libraries.dough.protection.Interaction;
 import lombok.experimental.UtilityClass;
-import me.mrCookieSlime.Slimefun.cscorelib2.data.PersistentDataAPI;
-import me.mrCookieSlime.Slimefun.cscorelib2.protection.ProtectableAction;
 import org.apache.commons.lang.Validate;
 import org.bukkit.Effect;
 import org.bukkit.Location;
@@ -377,7 +377,7 @@ public final class TickEvents {
             if (oBlock.isPresent()) {
                 Block grass = oBlock.get();
                 Block above = grass.getRelative(BlockFace.UP);
-                if (above.getType() == Material.AIR && SlimefunPlugin.getProtectionManager().hasPermission(player, above, ProtectableAction.PLACE_BLOCK)) {
+                if (above.getType() == Material.AIR && Slimefun.getProtectionManager().hasPermission(player, above, Interaction.PLACE_BLOCK)) {
                     if (ThreadLocalRandom.current().nextInt(0, 101) == 0) {
                         above.setType(Material.WITHER_ROSE);
                         return;
@@ -486,7 +486,7 @@ public final class TickEvents {
     public static void plateRedstoneAlloy(EventFriend friend) {
         Player player = friend.getPlayer();
         Block blockTarget = WorldUtils.getRandomBlockInRange(player.getLocation(), 5, 2, 5, false);
-        if (blockTarget != null && SlimefunPlugin.getProtectionManager().hasPermission(player, blockTarget, ProtectableAction.INTERACT_BLOCK)) {
+        if (blockTarget != null && Slimefun.getProtectionManager().hasPermission(player, blockTarget, Interaction.INTERACT_BLOCK)) {
             BlockUtils.fakePower(blockTarget);
             BlockUtils.fakePower(blockTarget.getRelative(BlockFace.NORTH));
             BlockUtils.fakePower(blockTarget.getRelative(BlockFace.SOUTH));
@@ -548,7 +548,7 @@ public final class TickEvents {
         Player player = friend.getPlayer();
         Block blockTarget = player.getLocation().clone().subtract(0, 1, 0).getBlock();
 
-        if (SlimefunPlugin.getProtectionManager().hasPermission(player, blockTarget, ProtectableAction.INTERACT_BLOCK)) {
+        if (Slimefun.getProtectionManager().hasPermission(player, blockTarget, Interaction.INTERACT_BLOCK)) {
             BlockUtils.fakePower(blockTarget);
             BlockUtils.fakePower(blockTarget.getRelative(BlockFace.NORTH));
             BlockUtils.fakePower(blockTarget.getRelative(BlockFace.SOUTH));
@@ -581,7 +581,7 @@ public final class TickEvents {
         for (int x = -2; x <= 2; x++) {
             for (int z = -2; z <= 2; z++) {
                 Block b = stoodBlock.getRelative(x, 0 ,z);
-                if (SlimefunPlugin.getProtectionManager().hasPermission(p, b, ProtectableAction.PLACE_BLOCK) && b.getType() == Material.LAVA) {
+                if (Slimefun.getProtectionManager().hasPermission(p, b, Interaction.PLACE_BLOCK) && b.getType() == Material.LAVA) {
                     Levelled l = (Levelled) b.getBlockData();
                     if (l.getLevel() == 0) {
                         b.setType(Material.MAGMA_BLOCK);
@@ -700,7 +700,7 @@ public final class TickEvents {
                 && !(e instanceof Player)
                 && !(e instanceof ArmorStand)
                 && !(e instanceof Boss)
-                && SlimefunPlugin.getProtectionManager().hasPermission(p, e.getLocation(), ProtectableAction.INTERACT_ENTITY)
+                && Slimefun.getProtectionManager().hasPermission(p, e.getLocation(), Interaction.INTERACT_ENTITY)
         )
         {
             e.teleport(friend.getPlayer().getLocation());

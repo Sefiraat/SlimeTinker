@@ -3,65 +3,66 @@ package io.github.sefiraat.slimetinker.categories;
 import io.github.sefiraat.slimetinker.SlimeTinker;
 import io.github.sefiraat.slimetinker.utils.SkullTextures;
 import io.github.sefiraat.slimetinker.utils.ThemeUtils;
-import io.github.thebusybiscuit.slimefun4.core.categories.MultiCategory;
-import io.github.thebusybiscuit.slimefun4.core.categories.SubCategory;
+import io.github.thebusybiscuit.slimefun4.api.items.groups.NestedItemGroup;
+import io.github.thebusybiscuit.slimefun4.api.items.groups.SubItemGroup;
+import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
+import io.github.thebusybiscuit.slimefun4.libraries.dough.skins.PlayerHead;
+import io.github.thebusybiscuit.slimefun4.libraries.dough.skins.PlayerSkin;
 import lombok.experimental.UtilityClass;
-import me.mrCookieSlime.Slimefun.cscorelib2.item.CustomItem;
-import me.mrCookieSlime.Slimefun.cscorelib2.skull.SkullItem;
 import org.bukkit.Material;
 
 @UtilityClass
 public final class Categories {
 
-    public static final MultiCategory MAIN = new MultiCategory(SlimeTinker.inst().getKeys().getCategoryMain(), new CustomItem(
-            SkullItem.fromBase64(SkullTextures.CAT_MAIN),
+    public static final NestedItemGroup MAIN = new NestedItemGroup(SlimeTinker.inst().getKeys().getCategoryMain(), new CustomItemStack(
+            PlayerHead.getItemStack(PlayerSkin.fromBase64(SkullTextures.CAT_MAIN)),
             ThemeUtils.MAIN + "SlimeTinker"
     ));
-    public static final SubCategory WORKSTATIONS = new SubCategory(SlimeTinker.inst().getKeys().getCategoryWorkstations(), MAIN, new CustomItem(
-            SkullItem.fromBase64(SkullTextures.CAT_MAIN),
+    public static final SubItemGroup WORKSTATIONS = new SubItemGroup(SlimeTinker.inst().getKeys().getCategoryWorkstations(), MAIN, new CustomItemStack(
+            PlayerHead.getItemStack(PlayerSkin.fromBase64(SkullTextures.CAT_MAIN)),
             ThemeUtils.MAIN + "Workstations"
     ));
-    public static final SubCategory MATERIALS = new SubCategory(SlimeTinker.inst().getKeys().getCategoryMaterials(), MAIN, new CustomItem(
-            SkullItem.fromBase64(SkullTextures.CAT_MATERIALS),
+    public static final SubItemGroup MATERIALS = new SubItemGroup(SlimeTinker.inst().getKeys().getCategoryMaterials(), MAIN, new CustomItemStack(
+            PlayerHead.getItemStack(PlayerSkin.fromBase64(SkullTextures.CAT_MATERIALS)),
             ThemeUtils.MAIN + "Materials"
     ));
-    public static final SubCategory MOLTEN_METALS = new SubCategory(SlimeTinker.inst().getKeys().getCategoryMolten(), MAIN, new CustomItem(
-            SkullItem.fromBase64(SkullTextures.CAT_MOLTEN),
+    public static final SubItemGroup MOLTEN_METALS = new SubItemGroup(SlimeTinker.inst().getKeys().getCategoryMolten(), MAIN, new CustomItemStack(
+            PlayerHead.getItemStack(PlayerSkin.fromBase64(SkullTextures.CAT_MOLTEN)),
             ThemeUtils.MAIN + "Molten Metals"
     ));
-    public static final SubCategory ALLOYS = new SubCategory(SlimeTinker.inst().getKeys().getCategoryAlloys(), MAIN, new CustomItem(
-            SkullItem.fromBase64(SkullTextures.CAT_ALLOYS),
+    public static final SubItemGroup ALLOYS = new SubItemGroup(SlimeTinker.inst().getKeys().getCategoryAlloys(), MAIN, new CustomItemStack(
+            PlayerHead.getItemStack(PlayerSkin.fromBase64(SkullTextures.CAT_ALLOYS)),
             ThemeUtils.MAIN + "Alloy Metals"
     ));
-    public static final SubCategory CASTS = new SubCategory(SlimeTinker.inst().getKeys().getCategoryCasts(), MAIN, new CustomItem(
-            SkullItem.fromBase64(SkullTextures.CAT_CASTS),
+    public static final SubItemGroup CASTS = new SubItemGroup(SlimeTinker.inst().getKeys().getCategoryCasts(), MAIN, new CustomItemStack(
+            PlayerHead.getItemStack(PlayerSkin.fromBase64(SkullTextures.CAT_CASTS)),
             ThemeUtils.MAIN + "Casts"
     ));
-    public static final SubCategory PARTS = new SubCategory(SlimeTinker.inst().getKeys().getCategoryParts(), MAIN, new CustomItem(
-            SkullItem.fromBase64(SkullTextures.CAT_PARTS),
+    public static final SubItemGroup PARTS = new SubItemGroup(SlimeTinker.inst().getKeys().getCategoryParts(), MAIN, new CustomItemStack(
+            PlayerHead.getItemStack(PlayerSkin.fromBase64(SkullTextures.CAT_PARTS)),
             ThemeUtils.MAIN + "Part Building Guide"
     ));
-    public static final SubCategory TOOLS = new SubCategory(SlimeTinker.inst().getKeys().getCategoryTools(), MAIN, new CustomItem(
+    public static final SubItemGroup TOOLS = new SubItemGroup(SlimeTinker.inst().getKeys().getCategoryTools(), MAIN, new CustomItemStack(
             Material.DIAMOND_SWORD,
             ThemeUtils.MAIN + "Tool Building Guide"
     ));
-    public static final SubCategory ARMOUR = new SubCategory(SlimeTinker.inst().getKeys().getCategoryArmour(), MAIN, new CustomItem(
+    public static final SubItemGroup ARMOUR = new SubItemGroup(SlimeTinker.inst().getKeys().getCategoryArmour(), MAIN, new CustomItemStack(
             Material.DIAMOND_CHESTPLATE,
             ThemeUtils.MAIN + "Armour Building Guide"
     ));
-    public static final SubCategory TRAITS = new SubCategory(SlimeTinker.inst().getKeys().getCategoryProperties(), MAIN, new CustomItem(
-            SkullItem.fromBase64(SkullTextures.CAT_TRAITS),
+    public static final SubItemGroup TRAITS = new SubItemGroup(SlimeTinker.inst().getKeys().getCategoryProperties(), MAIN, new CustomItemStack(
+            PlayerHead.getItemStack(PlayerSkin.fromBase64(SkullTextures.CAT_TRAITS)),
             ThemeUtils.MAIN + "Metal Traits"
     ));
-    public static final SubCategory MODIFICATIONS = new SubCategory(SlimeTinker.inst().getKeys().getCategoryModifications(), MAIN, new CustomItem(
+    public static final SubItemGroup MODIFICATIONS = new SubItemGroup(SlimeTinker.inst().getKeys().getCategoryModifications(), MAIN, new CustomItemStack(
             Material.REDSTONE,
             ThemeUtils.MAIN + "Mods"
     ));
-    public static final SubCategory PART_DICT = new SubCategory(SlimeTinker.inst().getKeys().getCategoryPartDict(), MAIN, new CustomItem(
-            SkullItem.fromBase64(SkullTextures.PART_PICKAXE_HEAD),
+    public static final SubItemGroup PART_DICT = new SubItemGroup(SlimeTinker.inst().getKeys().getCategoryPartDict(), MAIN, new CustomItemStack(
+            PlayerHead.getItemStack(PlayerSkin.fromBase64(SkullTextures.PART_PICKAXE_HEAD)),
             ThemeUtils.MAIN + "Part Dictionary"
     ));
-    public static final DummyCategory DUMMY = new DummyCategory(SlimeTinker.inst().getKeys().getCategoryDummy(), new CustomItem(
+    public static final DummyCategory DUMMY = new DummyCategory(SlimeTinker.inst().getKeys().getCategoryDummy(), new CustomItemStack(
             Material.BARRIER,
             ThemeUtils.MAIN + "SlimeTinker Dummy"
     ));

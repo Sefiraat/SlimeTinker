@@ -1,15 +1,15 @@
 package io.github.sefiraat.slimetinker.items.componentmaterials.cmelements;
 
-import io.github.mooy1.infinitylib.items.StackUtils;
 import io.github.sefiraat.slimetinker.SlimeTinker;
 import io.github.sefiraat.slimetinker.categories.Categories;
 import io.github.sefiraat.slimetinker.items.componentmaterials.ComponentMaterial;
 import io.github.sefiraat.slimetinker.items.workstations.smeltery.DummySmelteryTrait;
+import io.github.sefiraat.slimetinker.utils.ItemUtils;
 import io.github.sefiraat.slimetinker.utils.ThemeUtils;
 import io.github.sefiraat.slimetinker.utils.enums.ThemeItemType;
+import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
+import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import lombok.Getter;
-import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.SlimefunItem;
-import me.mrCookieSlime.Slimefun.api.SlimefunItemStack;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -45,7 +45,7 @@ public class CMTrait {
         newLore.add(ThemeUtils.ITEM_TYPEDESC + "Added by: " + addedBy);
         this.itemStack =
                 ThemeUtils.themedItemStack(
-                        traitName.toUpperCase(Locale.ROOT).replace(" ","_") + "_TRAIT_" + partType.getItemId().toUpperCase(Locale.ROOT) + "_" + StackUtils.getIDorType(parentCM.getRepresentativeStack()),
+                        traitName.toUpperCase(Locale.ROOT).replace(" ","_") + "_TRAIT_" + partType.getItemId().toUpperCase(Locale.ROOT) + "_" + ItemUtils.getIdOrType(parentCM.getRepresentativeStack()),
                         CMTraits.getTraitTexture(addedBy),
                         ThemeItemType.PROP,
                         "Trait : " + traitName,

@@ -1,11 +1,9 @@
 package io.github.sefiraat.slimetinker.items.workstations.tooltable;
 
-import io.github.mooy1.infinitylib.recipes.RecipeMap;
-import io.github.mooy1.infinitylib.recipes.ShapedRecipe;
 import io.github.sefiraat.slimetinker.SlimeTinker;
 import io.github.sefiraat.slimetinker.utils.ThemeUtils;
-import me.mrCookieSlime.Slimefun.Lists.RecipeType;
-import me.mrCookieSlime.Slimefun.api.SlimefunItemStack;
+import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
+import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
@@ -25,7 +23,6 @@ public final class DummyToolTable {
             ThemeUtils.LORE_TYPE_MACHINE
     );
 
-    private static final RecipeMap<ItemStack> RECIPES = new RecipeMap<>(ShapedRecipe::new);
-    public static final RecipeType TYPE = new RecipeType(SlimeTinker.inst().getKeys().getWsDummyToolTable(), STACK, RECIPES::put);
+    public static final RecipeType TYPE = new RecipeType(SlimeTinker.inst().getKeys().getWsDummyToolTable(), STACK, "");
 
 }

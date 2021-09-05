@@ -1,15 +1,15 @@
 package io.github.sefiraat.slimetinker.items.workstations.smeltery;
 
-import io.github.mooy1.infinitylib.slimefun.AbstractTickingContainer;
+import io.github.mooy1.infinitylib.machines.TickingMenuBlock;
 import io.github.sefiraat.slimetinker.items.Materials;
 import io.github.sefiraat.slimetinker.utils.GUIItems;
 import io.github.sefiraat.slimetinker.utils.ThemeUtils;
+import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
+import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
+import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.utils.ChestMenuUtils;
 import me.mrCookieSlime.CSCoreLibPlugin.Configuration.Config;
-import me.mrCookieSlime.Slimefun.Lists.RecipeType;
-import me.mrCookieSlime.Slimefun.Objects.Category;
 import me.mrCookieSlime.Slimefun.api.BlockStorage;
-import me.mrCookieSlime.Slimefun.api.SlimefunItemStack;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenuPreset;
 import me.mrCookieSlime.Slimefun.api.inventory.DirtyChestMenu;
@@ -25,7 +25,7 @@ import javax.annotation.Nonnull;
 import java.util.HashMap;
 import java.util.Map;
 
-public class TinkersSmeltery extends AbstractTickingContainer {
+public class TinkersSmeltery extends TickingMenuBlock {
 
     private static final int[] BACKGROUND_SLOTS = {27,29,31,35};
     private static final int[] BACKGROUND_INPUT_SLOTS = {0,1,2,9,11,18,19,20};
@@ -45,12 +45,12 @@ public class TinkersSmeltery extends AbstractTickingContainer {
 
     private final Map<Location, TinkersSmelteryCache> caches = new HashMap<>();
 
-    public TinkersSmeltery(Category category, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
+    public TinkersSmeltery(ItemGroup category, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(category, item, recipeType, recipe);
     }
 
     @Override
-    protected void tick(@NotNull BlockMenu blockMenu, @NotNull Block block) {
+    protected void tick(Block block, BlockMenu blockMenu) {
         TinkersSmelteryCache cache = TinkersSmeltery.this.caches.get(block.getLocation());
         if (cache != null) {
             cache.process(false);
@@ -58,7 +58,7 @@ public class TinkersSmeltery extends AbstractTickingContainer {
     }
 
     @Override
-    protected void setupMenu(BlockMenuPreset blockMenuPreset) {
+    protected void setup(BlockMenuPreset blockMenuPreset) {
 
         blockMenuPreset.setSize(54);
 
@@ -82,19 +82,19 @@ public class TinkersSmeltery extends AbstractTickingContainer {
     }
 
     @Override
-    protected int @NotNull [] getTransportSlots(@NotNull DirtyChestMenu dirtyChestMenu, @NotNull ItemTransportFlow itemTransportFlow, ItemStack itemStack) {
-        if (itemTransportFlow == ItemTransportFlow.INSERT) {
-            return new int[] {INPUT_SLOT};
-        } else if (itemTransportFlow == ItemTransportFlow.WITHDRAW) {
-            return new int[] {OUTPUT_SLOT};
-        } else {
-            return new int[0];
-        }
+    protected int[] getInputSlots() {
+        return new int[] {INPUT_SLOT};
     }
 
     @Override
-    protected void onBreak(@Nonnull BlockBreakEvent event, @Nonnull BlockMenu blockMenu, @Nonnull Location location) {
-        super.onBreak(event, blockMenu, location);
+    protected int[] getOutputSlots() {
+        return new int[] {OUTPUT_SLOT};
+    }
+
+    @Override
+    protected void onBreak(@Nonnull BlockBreakEvent event, @Nonnull BlockMenu blockMenu) {
+        super.onBreak(event, blockMenu);
+        Location location = blockMenu.getLocation();
         TinkersSmelteryCache simpleInventoryCache = caches.remove(location);
         if (simpleInventoryCache != null) {
             simpleInventoryCache.kill(location);

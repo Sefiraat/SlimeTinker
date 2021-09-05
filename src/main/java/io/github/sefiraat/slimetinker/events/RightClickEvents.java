@@ -8,12 +8,12 @@ import io.github.sefiraat.slimetinker.utils.EntityUtils;
 import io.github.sefiraat.slimetinker.utils.GeneralUtils;
 import io.github.sefiraat.slimetinker.utils.ItemUtils;
 import io.github.sefiraat.slimetinker.utils.ThemeUtils;
+import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.core.attributes.Rechargeable;
-import io.github.thebusybiscuit.slimefun4.implementation.SlimefunPlugin;
+import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
+import io.github.thebusybiscuit.slimefun4.libraries.dough.data.persistent.PersistentDataAPI;
+import io.github.thebusybiscuit.slimefun4.libraries.dough.protection.Interaction;
 import lombok.experimental.UtilityClass;
-import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.SlimefunItem;
-import me.mrCookieSlime.Slimefun.cscorelib2.data.PersistentDataAPI;
-import me.mrCookieSlime.Slimefun.cscorelib2.protection.ProtectableAction;
 import org.apache.commons.lang.Validate;
 import org.bukkit.Effect;
 import org.bukkit.Location;
@@ -195,7 +195,7 @@ public final class RightClickEvents {
             Block target = player.getTargetBlock(null, 5);
             if (target.getType() != Material.AIR) {
                 Block place = target.getRelative(blockFace);
-                if (place.getType() == Material.AIR && SlimefunPlugin.getProtectionManager().hasPermission(player, place, ProtectableAction.PLACE_BLOCK)) {
+                if (place.getType() == Material.AIR && Slimefun.getProtectionManager().hasPermission(player, place, Interaction.PLACE_BLOCK)) {
                     place.setType(Material.LADDER);
                     Directional directional = (Directional) place.getBlockData();
                     directional.setFacing(blockFace);

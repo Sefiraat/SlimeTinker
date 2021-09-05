@@ -45,8 +45,8 @@ public class TinkersSmeltery extends TickingMenuBlock {
 
     private final Map<Location, TinkersSmelteryCache> caches = new HashMap<>();
 
-    public TinkersSmeltery(ItemGroup category, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
-        super(category, item, recipeType, recipe);
+    public TinkersSmeltery(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
+        super(itemGroup, item, recipeType, recipe);
     }
 
     @Override

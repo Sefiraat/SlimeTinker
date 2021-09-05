@@ -66,8 +66,8 @@ public class ToolTemplate extends SlimefunItem implements NotPlaceable {
         return itemStack;
     }
 
-    public ToolTemplate(ItemGroup category, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
-        super(category, item, recipeType, recipe);
+    public ToolTemplate(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
+        super(itemGroup, item, recipeType, recipe);
     }
 
     /**

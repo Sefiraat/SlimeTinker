@@ -53,8 +53,8 @@ public class PartTemplate extends UnplaceableBlock {
         return itemStack;
     }
 
-    public PartTemplate(ItemGroup category, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe, String name) {
-        super(category, item, recipeType, recipe);
+    public PartTemplate(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe, String name) {
+        super(itemGroup, item, recipeType, recipe);
         this.name = name;
     }
 

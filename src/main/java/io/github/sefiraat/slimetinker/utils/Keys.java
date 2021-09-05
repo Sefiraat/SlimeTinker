@@ -7,20 +7,20 @@ import org.bukkit.NamespacedKey;
 @Data
 public class Keys {
 
-    // Categories
-    private final NamespacedKey categoryMain = new NamespacedKey(SlimeTinker.inst(), "slime-tinker");
-    private final NamespacedKey categoryWorkstations = new NamespacedKey(SlimeTinker.inst(), "slime-tinker-workstations");
-    private final NamespacedKey categoryMaterials = new NamespacedKey(SlimeTinker.inst(), "slime-tinker-materials");
-    private final NamespacedKey categoryMolten = new NamespacedKey(SlimeTinker.inst(), "slime-tinker-molten");
-    private final NamespacedKey categoryAlloys = new NamespacedKey(SlimeTinker.inst(), "slime-tinker-alloys");
-    private final NamespacedKey categoryProperties = new NamespacedKey(SlimeTinker.inst(), "slime-tinker-properties");
-    private final NamespacedKey categoryCasts = new NamespacedKey(SlimeTinker.inst(), "slime-tinker-casts");
-    private final NamespacedKey categoryParts = new NamespacedKey(SlimeTinker.inst(), "slime-tinker-parts");
-    private final NamespacedKey categoryPartDict = new NamespacedKey(SlimeTinker.inst(), "slime-tinker-part-dict");
-    private final NamespacedKey categoryTools = new NamespacedKey(SlimeTinker.inst(), "slime-tinker-tools");
-    private final NamespacedKey categoryArmour = new NamespacedKey(SlimeTinker.inst(), "slime-tinker-armour");
-    private final NamespacedKey categoryModifications = new NamespacedKey(SlimeTinker.inst(), "slime-tinker-modifications");
-    private final NamespacedKey categoryDummy = new NamespacedKey(SlimeTinker.inst(), "slime-tinker-dummy");
+    // ItemGroups
+    private final NamespacedKey itemGroupMain = new NamespacedKey(SlimeTinker.inst(), "slime-tinker");
+    private final NamespacedKey itemGroupWorkstations = new NamespacedKey(SlimeTinker.inst(), "slime-tinker-workstations");
+    private final NamespacedKey itemGroupMaterials = new NamespacedKey(SlimeTinker.inst(), "slime-tinker-materials");
+    private final NamespacedKey itemGroupMolten = new NamespacedKey(SlimeTinker.inst(), "slime-tinker-molten");
+    private final NamespacedKey itemGroupAlloys = new NamespacedKey(SlimeTinker.inst(), "slime-tinker-alloys");
+    private final NamespacedKey itemGroupProperties = new NamespacedKey(SlimeTinker.inst(), "slime-tinker-properties");
+    private final NamespacedKey itemGroupCasts = new NamespacedKey(SlimeTinker.inst(), "slime-tinker-casts");
+    private final NamespacedKey itemGroupParts = new NamespacedKey(SlimeTinker.inst(), "slime-tinker-parts");
+    private final NamespacedKey itemGroupPartDict = new NamespacedKey(SlimeTinker.inst(), "slime-tinker-part-dict");
+    private final NamespacedKey itemGroupTools = new NamespacedKey(SlimeTinker.inst(), "slime-tinker-tools");
+    private final NamespacedKey itemGroupArmour = new NamespacedKey(SlimeTinker.inst(), "slime-tinker-armour");
+    private final NamespacedKey itemGroupModifications = new NamespacedKey(SlimeTinker.inst(), "slime-tinker-modifications");
+    private final NamespacedKey itemGroupDummy = new NamespacedKey(SlimeTinker.inst(), "slime-tinker-dummy");
 
     // Parts information
     private final NamespacedKey partMaterial = new NamespacedKey(SlimeTinker.inst(), "ST_Material");

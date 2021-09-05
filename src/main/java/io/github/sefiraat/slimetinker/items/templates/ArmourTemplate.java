@@ -64,8 +64,8 @@ public class ArmourTemplate extends UnplaceableBlock {
         return itemStack;
     }
 
-    public ArmourTemplate(ItemGroup category, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
-        super(category, item, recipeType, recipe);
+    public ArmourTemplate(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
+        super(itemGroup, item, recipeType, recipe);
     }
 
 }

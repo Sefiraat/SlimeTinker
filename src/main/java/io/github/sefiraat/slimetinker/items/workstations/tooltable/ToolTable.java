@@ -42,8 +42,8 @@ public class ToolTable extends TickingMenuBlock {
     protected static final int CRAFT_BUTTON = 40;
     protected static final int OUTPUT_SLOT = 42;
 
-    public ToolTable(ItemGroup category, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
-        super(category, item, recipeType, recipe);
+    public ToolTable(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
+        super(itemGroup, item, recipeType, recipe);
     }
 
     @Override

@@ -29,8 +29,8 @@ public class RepairBench extends MenuBlock {
     protected static final int CRAFT_BUTTON = 14;
     protected static final int OUTPUT_SLOT = 16;
 
-    public RepairBench(ItemGroup category, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
-        super(category, item, recipeType, recipe);
+    public RepairBench(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
+        super(itemGroup, item, recipeType, recipe);
     }
 
     @SuppressWarnings("SameReturnValue")

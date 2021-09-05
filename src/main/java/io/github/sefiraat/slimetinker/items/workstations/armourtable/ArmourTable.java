@@ -47,8 +47,8 @@ public class ArmourTable extends MenuBlock {
 
     private BlockMenu menu;
 
-    public ArmourTable(ItemGroup category, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
-        super(category, item, recipeType, recipe);
+    public ArmourTable(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
+        super(itemGroup, item, recipeType, recipe);
 
         addItemHandler(new BlockTicker() {
             @Override

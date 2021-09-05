@@ -31,8 +31,8 @@ public class ModificationStation extends MenuBlock {
     protected static final int MOD_BUTTON = 14;
     protected static final int OUTPUT_SLOT = 16;
 
-    public ModificationStation(ItemGroup category, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
-        super(category, item, recipeType, recipe);
+    public ModificationStation(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
+        super(itemGroup, item, recipeType, recipe);
     }
 
     @SuppressWarnings("SameReturnValue")

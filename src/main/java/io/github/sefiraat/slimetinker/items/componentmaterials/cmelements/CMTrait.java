@@ -1,7 +1,7 @@
 package io.github.sefiraat.slimetinker.items.componentmaterials.cmelements;
 
 import io.github.sefiraat.slimetinker.SlimeTinker;
-import io.github.sefiraat.slimetinker.categories.Categories;
+import io.github.sefiraat.slimetinker.itemgroups.ItemGroups;
 import io.github.sefiraat.slimetinker.items.componentmaterials.ComponentMaterial;
 import io.github.sefiraat.slimetinker.items.workstations.smeltery.DummySmelteryTrait;
 import io.github.sefiraat.slimetinker.utils.ItemUtils;
@@ -51,7 +51,7 @@ public class CMTrait {
                         "Trait : " + traitName,
                         newLore
                 );
-        this.item = new SlimefunItem(Categories.TRAITS, itemStack, DummySmelteryTrait.TYPE, CMTraits.propRecipe(partType, parentCM.getRepresentativeStack()));
+        this.item = new SlimefunItem(ItemGroups.TRAITS, itemStack, DummySmelteryTrait.TYPE, CMTraits.propRecipe(partType, parentCM.getRepresentativeStack()));
         item.register(SlimeTinker.inst());
 
     }

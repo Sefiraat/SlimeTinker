@@ -1,17 +1,18 @@
 package io.github.sefiraat.slimetinker.utils;
 
-import io.github.mooy1.infinitylib.items.StackUtils;
+import io.github.mooy1.infinitylib.common.StackUtils;
 import io.github.sefiraat.slimetinker.SlimeTinker;
 import io.github.sefiraat.slimetinker.events.friend.TraitPartType;
 import io.github.sefiraat.slimetinker.items.componentmaterials.CMManager;
 import io.github.sefiraat.slimetinker.items.componentmaterials.cmrecipes.MoltenResult;
 import io.github.sefiraat.slimetinker.modifiers.Mod;
 import io.github.sefiraat.slimetinker.modifiers.Modifications;
-import io.github.thebusybiscuit.slimefun4.implementation.SlimefunPlugin;
+import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
+import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
+import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
+import io.github.thebusybiscuit.slimefun4.libraries.dough.data.persistent.PersistentDataAPI;
+import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
 import lombok.experimental.UtilityClass;
-import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.SlimefunItem;
-import me.mrCookieSlime.Slimefun.api.SlimefunItemStack;
-import me.mrCookieSlime.Slimefun.cscorelib2.data.PersistentDataAPI;
 import net.md_5.bungee.api.ChatColor;
 import org.apache.commons.lang.Validate;
 import org.bukkit.Material;
@@ -24,6 +25,7 @@ import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
 import org.jetbrains.annotations.Nullable;
 
+import javax.annotation.Nonnull;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -436,11 +438,11 @@ public final class ItemUtils {
     }
 
     public static boolean isMeltable(ItemStack itemStack) {
-        return SlimeTinker.inst().getCmManager().meltingRecipes.containsKey(StackUtils.getIDorType(itemStack));
+        return SlimeTinker.inst().getCmManager().meltingRecipes.containsKey(getIdOrType(itemStack));
     }
 
     public static MoltenResult getMoltenResult(ItemStack itemStack) {
-        return SlimeTinker.inst().getCmManager().meltingRecipes.get(StackUtils.getIDorType(itemStack));
+        return SlimeTinker.inst().getCmManager().meltingRecipes.get(getIdOrType(itemStack));
     }
 
     public boolean doesUnequipWhenBroken(ItemStack itemStack) {
@@ -714,7 +716,7 @@ public final class ItemUtils {
     }
 
     public static boolean isToolExplosive(PersistentDataContainer c) {
-        NamespacedKey sfIDKey = new NamespacedKey(SlimefunPlugin.instance(), "slimefun_item");
+        NamespacedKey sfIDKey = new NamespacedKey(Slimefun.instance(), "slimefun_item");
         String sID = c.get(sfIDKey, PersistentDataType.STRING);
         return sID.contains("_EXP");
     }
@@ -724,6 +726,37 @@ public final class ItemUtils {
                 || rodMaterial.equals(IDStrings.HARD)
                 || headMaterial.equals(IDStrings.SINGINFINITY)
                 || headMaterial.equals(IDStrings.OSMIUM);
+    }
+
+    // TODO Removed when/if returned to InfinityLib
+    @Deprecated
+    @Nonnull
+    public static String getIdOrType(@Nonnull ItemStack item) {
+        String id = StackUtils.getId(item);
+        if (id == null) {
+            return item.getType().toString();
+        } else {
+            return id;
+        }
+    }
+
+    // TODO Removed when/if returned to InfinityLib
+    @Deprecated
+    @Nullable
+    public static ItemStack getItemByID(@Nonnull String id) {
+        return getItemByID(id, 1);
+    }
+
+    // TODO Removed when/if returned to InfinityLib
+    @Deprecated
+    @Nullable
+    public static ItemStack getItemByID(@Nonnull String id, int amount) {
+        SlimefunItem sfItem = SlimefunItem.getById(id);
+        if (sfItem != null) {
+            return new CustomItemStack(sfItem.getItem(), amount);
+        } else {
+            return null;
+        }
     }
 
 }

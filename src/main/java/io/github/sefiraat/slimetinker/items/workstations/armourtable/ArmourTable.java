@@ -1,26 +1,24 @@
 package io.github.sefiraat.slimetinker.items.workstations.armourtable;
 
-import io.github.mooy1.infinitylib.items.StackUtils;
-import io.github.mooy1.infinitylib.slimefun.AbstractContainer;
+import io.github.mooy1.infinitylib.machines.MenuBlock;
 import io.github.sefiraat.slimetinker.SlimeTinker;
 import io.github.sefiraat.slimetinker.items.Guide;
 import io.github.sefiraat.slimetinker.items.templates.ArmourDefinition;
 import io.github.sefiraat.slimetinker.utils.GUIItems;
 import io.github.sefiraat.slimetinker.utils.IDStrings;
+import io.github.sefiraat.slimetinker.utils.ItemUtils;
 import io.github.sefiraat.slimetinker.utils.Keys;
 import io.github.sefiraat.slimetinker.utils.ThemeUtils;
+import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
+import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
+import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
+import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
+import io.github.thebusybiscuit.slimefun4.libraries.dough.data.persistent.PersistentDataAPI;
 import io.github.thebusybiscuit.slimefun4.utils.ChestMenuUtils;
 import me.mrCookieSlime.CSCoreLibPlugin.Configuration.Config;
-import me.mrCookieSlime.Slimefun.Lists.RecipeType;
-import me.mrCookieSlime.Slimefun.Objects.Category;
-import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.SlimefunItem;
 import me.mrCookieSlime.Slimefun.Objects.handlers.BlockTicker;
-import me.mrCookieSlime.Slimefun.api.SlimefunItemStack;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenuPreset;
-import me.mrCookieSlime.Slimefun.api.inventory.DirtyChestMenu;
-import me.mrCookieSlime.Slimefun.api.item_transport.ItemTransportFlow;
-import me.mrCookieSlime.Slimefun.cscorelib2.data.PersistentDataAPI;
 import org.bukkit.Location;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
@@ -28,11 +26,10 @@ import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataType;
-import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nonnull;
 
-public class ArmourTable extends AbstractContainer {
+public class ArmourTable extends MenuBlock {
 
     private static final int[] BACKGROUND_SLOTS = {0,8,9,17,18,26,27,31,35,36,44,45,49,53};
     private static final int[] BACKGROUND_INPUTS = {1,3,5,7,10,12,14,16,19,20,21,22,23,24,25};
@@ -50,7 +47,7 @@ public class ArmourTable extends AbstractContainer {
 
     private BlockMenu menu;
 
-    public ArmourTable(Category category, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
+    public ArmourTable(ItemGroup category, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(category, item, recipeType, recipe);
 
         addItemHandler(new BlockTicker() {
@@ -151,7 +148,7 @@ public class ArmourTable extends AbstractContainer {
         if (itemStack == null || !itemStack.hasItemMeta()) { // No item
             return false;
         }
-        return StackUtils.getIDorType(itemStack).startsWith("PART_GAMBESON_");
+        return ItemUtils.getIdOrType(itemStack).startsWith("PART_GAMBESON_");
     }
 
     @SuppressWarnings("SameReturnValue")
@@ -184,7 +181,7 @@ public class ArmourTable extends AbstractContainer {
     }
 
     @Override
-    protected void setupMenu(BlockMenuPreset blockMenuPreset) {
+    protected void setup(BlockMenuPreset blockMenuPreset) {
 
         blockMenuPreset.drawBackground(ChestMenuUtils.getBackground(), BACKGROUND_SLOTS);
         blockMenuPreset.drawBackground(GUIItems.menuBackgroundInput(), BACKGROUND_INPUTS);
@@ -206,13 +203,19 @@ public class ArmourTable extends AbstractContainer {
     }
 
     @Override
-    protected int @NotNull [] getTransportSlots(@NotNull DirtyChestMenu dirtyChestMenu, @NotNull ItemTransportFlow itemTransportFlow, ItemStack itemStack) {
+    protected int[] getInputSlots() {
         return new int[0];
     }
 
     @Override
-    protected void onBreak(@Nonnull BlockBreakEvent event, @Nonnull BlockMenu blockMenu, @Nonnull Location location) {
-        super.onBreak(event, blockMenu, location);
+    protected int[] getOutputSlots() {
+        return new int[0];
+    }
+
+    @Override
+    protected void onBreak(@Nonnull BlockBreakEvent event, @Nonnull BlockMenu blockMenu) {
+        super.onBreak(event, blockMenu);
+        Location location = blockMenu.getLocation();
         blockMenu.dropItems(location, INPUT_PLATES);
         blockMenu.dropItems(location, INPUT_GAMBESON);
         blockMenu.dropItems(location, INPUT_MAIL_LINK);

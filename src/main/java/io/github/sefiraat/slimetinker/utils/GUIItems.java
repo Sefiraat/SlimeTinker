@@ -1,8 +1,9 @@
 package io.github.sefiraat.slimetinker.utils;
 
 import io.github.sefiraat.slimetinker.items.componentmaterials.CMManager;
-import me.mrCookieSlime.Slimefun.cscorelib2.item.CustomItem;
-import me.mrCookieSlime.Slimefun.cscorelib2.skull.SkullItem;
+import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
+import io.github.thebusybiscuit.slimefun4.libraries.dough.skins.PlayerHead;
+import io.github.thebusybiscuit.slimefun4.libraries.dough.skins.PlayerSkin;
 import net.md_5.bungee.api.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
@@ -19,133 +20,133 @@ public final class GUIItems {
         throw new IllegalStateException("Utility class");
     }
 
-    public static CustomItem menuBackgroundInput() {
-        return new CustomItem(
+    public static CustomItemStack menuBackgroundInput() {
+        return new CustomItemStack(
                 Material.LIGHT_BLUE_STAINED_GLASS_PANE,
                 ChatColor.BLUE + "Input",
                 " "
         );
     }
 
-    public static CustomItem menuBackgroundOutput() {
-        return new CustomItem(
+    public static CustomItemStack menuBackgroundOutput() {
+        return new CustomItemStack(
                 Material.ORANGE_STAINED_GLASS_PANE,
                 ChatColor.RED + "Output",
                 " "
         );
     }
 
-    public static CustomItem menuBackgroundCast() {
-        return new CustomItem(
+    public static CustomItemStack menuBackgroundCast() {
+        return new CustomItemStack(
                 Material.LIME_STAINED_GLASS_PANE,
                 ChatColor.GREEN + "Cast/Die",
                 " "
         );
     }
 
-    public static CustomItem menuPreview() {
-        return new CustomItem(
+    public static CustomItemStack menuPreview() {
+        return new CustomItemStack(
                 Material.LIME_STAINED_GLASS_PANE,
                 ChatColor.GREEN + "Preview",
                 " "
         );
     }
 
-    public static CustomItem menuBackgroundPreview() {
-        return new CustomItem(
+    public static CustomItemStack menuBackgroundPreview() {
+        return new CustomItemStack(
                 Material.LIME_STAINED_GLASS_PANE,
                 ChatColor.GREEN + "Preview",
                 " "
         );
     }
 
-    public static CustomItem menuMarkerRod() {
-        return new CustomItem(
+    public static CustomItemStack menuMarkerRod() {
+        return new CustomItemStack(
                 Material.RED_STAINED_GLASS_PANE,
                 ChatColor.RED + "Rod Input",
                 " "
         );
     }
 
-    public static CustomItem menuMarkerBinder() {
-        return new CustomItem(
+    public static CustomItemStack menuMarkerBinder() {
+        return new CustomItemStack(
                 Material.RED_STAINED_GLASS_PANE,
                 ChatColor.RED + "Binder Input",
                 " "
         );
     }
 
-    public static CustomItem menuMarkerHead() {
-        return new CustomItem(
+    public static CustomItemStack menuMarkerHead() {
+        return new CustomItemStack(
                 Material.RED_STAINED_GLASS_PANE,
                 ChatColor.RED + "Head/Blade Input",
                 " "
         );
     }
 
-    public static CustomItem menuMarkerLinks() {
-        return new CustomItem(
+    public static CustomItemStack menuMarkerLinks() {
+        return new CustomItemStack(
                 Material.RED_STAINED_GLASS_PANE,
                 ChatColor.RED + "Links Input",
                 " "
         );
     }
 
-    public static CustomItem menuMarkerGambeson() {
-        return new CustomItem(
+    public static CustomItemStack menuMarkerGambeson() {
+        return new CustomItemStack(
                 Material.RED_STAINED_GLASS_PANE,
                 ChatColor.RED + "Gambeson Input",
                 " "
         );
     }
 
-    public static CustomItem menuMarkerPlates() {
-        return new CustomItem(
+    public static CustomItemStack menuMarkerPlates() {
+        return new CustomItemStack(
                 Material.RED_STAINED_GLASS_PANE,
                 ChatColor.RED + "Plates Input",
                 " "
         );
     }
 
-    public static CustomItem menuLavaInfo(int fillPercent, int fillAmt, int fillMax) {
+    public static CustomItemStack menuLavaInfo(int fillPercent, int fillAmt, int fillMax) {
         ItemStack skull;
         if (fillPercent >= 95) {
-            skull = SkullItem.fromBase64(SkullTextures.TANK_LAVA_5);
+            skull = PlayerHead.getItemStack(PlayerSkin.fromBase64(SkullTextures.TANK_LAVA_5));
         } else if (fillPercent >= 75) {
-            skull = SkullItem.fromBase64(SkullTextures.TANK_LAVA_4);
+            skull = PlayerHead.getItemStack(PlayerSkin.fromBase64(SkullTextures.TANK_LAVA_4));
         } else if (fillPercent >= 50) {
-            skull = SkullItem.fromBase64(SkullTextures.TANK_LAVA_3);
+            skull = PlayerHead.getItemStack(PlayerSkin.fromBase64(SkullTextures.TANK_LAVA_3));
         } else if (fillPercent >= 25) {
-            skull = SkullItem.fromBase64(SkullTextures.TANK_LAVA_2);
+            skull = PlayerHead.getItemStack(PlayerSkin.fromBase64(SkullTextures.TANK_LAVA_2));
         } else if (fillPercent > 0) {
-            skull = SkullItem.fromBase64(SkullTextures.TANK_LAVA_1);
+            skull = PlayerHead.getItemStack(PlayerSkin.fromBase64(SkullTextures.TANK_LAVA_1));
         } else {
-            skull = SkullItem.fromBase64(SkullTextures.TANK_EMPTY);
+            skull = PlayerHead.getItemStack(PlayerSkin.fromBase64(SkullTextures.TANK_EMPTY));
         }
         List<String> meta = new ArrayList<>();
         meta.add(ThemeUtils.GUI_HEAD + "Lava Tank");
         meta.add("");
         meta.add(ThemeUtils.CLICK_INFO + "Lava: " + ChatColor.WHITE + fillAmt + " / " + fillMax);
-        return new CustomItem(
+        return new CustomItemStack(
                 skull,
                 meta
         );
     }
 
-    public static CustomItem menuMetalInfo(int fillPercent, int fillAmt, int fillMax, @Nullable Map<String, Integer> map) {
+    public static CustomItemStack menuMetalInfo(int fillPercent, int fillAmt, int fillMax, @Nullable Map<String, Integer> map) {
         ItemStack skull;
         if (fillPercent >= 95) {
-            skull = SkullItem.fromBase64(SkullTextures.TANK_METAL_5);
+            skull = PlayerHead.getItemStack(PlayerSkin.fromBase64(SkullTextures.TANK_METAL_5));
         } else if (fillPercent >= 75) {
-            skull = SkullItem.fromBase64(SkullTextures.TANK_METAL_4);
+            skull = PlayerHead.getItemStack(PlayerSkin.fromBase64(SkullTextures.TANK_METAL_4));
         } else if (fillPercent >= 50) {
-            skull = SkullItem.fromBase64(SkullTextures.TANK_METAL_3);
+            skull = PlayerHead.getItemStack(PlayerSkin.fromBase64(SkullTextures.TANK_METAL_3));
         } else if (fillPercent >= 25) {
-            skull = SkullItem.fromBase64(SkullTextures.TANK_METAL_2);
+            skull = PlayerHead.getItemStack(PlayerSkin.fromBase64(SkullTextures.TANK_METAL_2));
         } else if (fillPercent > 0) {
-            skull = SkullItem.fromBase64(SkullTextures.TANK_METAL_1);
+            skull = PlayerHead.getItemStack(PlayerSkin.fromBase64(SkullTextures.TANK_METAL_1));
         } else {
-            skull = SkullItem.fromBase64(SkullTextures.TANK_EMPTY);
+            skull = PlayerHead.getItemStack(PlayerSkin.fromBase64(SkullTextures.TANK_EMPTY));
         }
         List<String> meta = new ArrayList<>();
         meta.add(ThemeUtils.GUI_HEAD + "Metals Tank");
@@ -165,15 +166,15 @@ public final class GUIItems {
         meta.add(ThemeUtils.PASSIVE + "Metals pour out from the " + ChatColor.BOLD + "top" + ThemeUtils.PASSIVE + " first");
         meta.add("");
         meta.add(ThemeUtils.CLICK_INFO + "Click to cycle metal order.");
-        return new CustomItem(
+        return new CustomItemStack(
                 skull,
                 meta
         );
     }
 
-    public static CustomItem menuPurge() {
-        return new CustomItem(
-                SkullItem.fromBase64(SkullTextures.BUTTON_PURGE),
+    public static CustomItemStack menuPurge() {
+        return new CustomItemStack(
+                PlayerHead.getItemStack(PlayerSkin.fromBase64(SkullTextures.BUTTON_PURGE)),
                 ThemeUtils.GUI_HEAD + "Purge Metals",
                 "",
                 ThemeUtils.PASSIVE + "Purge unwanted metals from the tank.",
@@ -183,9 +184,9 @@ public final class GUIItems {
         );
     }
 
-    public static CustomItem menuAlloy() {
-        return new CustomItem(
-                SkullItem.fromBase64(SkullTextures.BUTTON_ALLOY),
+    public static CustomItemStack menuAlloy() {
+        return new CustomItemStack(
+                PlayerHead.getItemStack(PlayerSkin.fromBase64(SkullTextures.BUTTON_ALLOY)),
                 ThemeUtils.GUI_HEAD + "Alloy Metals",
                 "",
                 ThemeUtils.PASSIVE + "Mixes up the metals in the tank to",
@@ -193,9 +194,9 @@ public final class GUIItems {
         );
     }
 
-    public static CustomItem menuPour() {
-        return new CustomItem(
-                SkullItem.fromBase64(SkullTextures.BUCKET_ORANGE),
+    public static CustomItemStack menuPour() {
+        return new CustomItemStack(
+                PlayerHead.getItemStack(PlayerSkin.fromBase64(SkullTextures.BUCKET_ORANGE)),
                 ThemeUtils.GUI_HEAD + "Pour content",
                 "",
                 ThemeUtils.PASSIVE + "Pours the first metal into the",
@@ -204,8 +205,8 @@ public final class GUIItems {
         );
     }
 
-    public static CustomItem menuCraftWorkbench() {
-        return new CustomItem(
+    public static CustomItemStack menuCraftWorkbench() {
+        return new CustomItemStack(
                 Material.FLETCHING_TABLE,
                 ThemeUtils.GUI_HEAD + "Craft",
                 "",
@@ -213,8 +214,8 @@ public final class GUIItems {
         );
     }
 
-    public static CustomItem menuCraftTable() {
-        return new CustomItem(
+    public static CustomItemStack menuCraftTable() {
+        return new CustomItemStack(
                 Material.SMITHING_TABLE,
                 ThemeUtils.GUI_HEAD + "Form Tool",
                 "",
@@ -223,8 +224,8 @@ public final class GUIItems {
         );
     }
 
-    public static CustomItem menuCraftRepair() {
-        return new CustomItem(
+    public static CustomItemStack menuCraftRepair() {
+        return new CustomItemStack(
                 Material.CARTOGRAPHY_TABLE,
                 ThemeUtils.GUI_HEAD + "Repair",
                 "",
@@ -233,8 +234,8 @@ public final class GUIItems {
         );
     }
 
-    public static CustomItem menuCraftMod() {
-        return new CustomItem(
+    public static CustomItemStack menuCraftMod() {
+        return new CustomItemStack(
                 Material.GRINDSTONE,
                 ThemeUtils.GUI_HEAD + "Apply Modification",
                 "",
@@ -242,8 +243,8 @@ public final class GUIItems {
         );
     }
 
-    public static CustomItem menuCraftSwap() {
-        return new CustomItem(
+    public static CustomItemStack menuCraftSwap() {
+        return new CustomItemStack(
                 Material.LOOM,
                 ThemeUtils.GUI_HEAD + "Swap out part",
                 "",

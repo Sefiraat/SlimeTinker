@@ -107,7 +107,7 @@
         <dependency>
             <groupId>com.github.Slimefun</groupId>
             <artifactId>Slimefun4</artifactId>
-            <version>25dea3d</version>
+            <version>RC-27</version>
             <scope>provided</scope>
             <exclusions>
                 <exclusion>
@@ -125,7 +125,7 @@
         <dependency>
             <groupId>io.github.mooy1</groupId>
             <artifactId>InfinityLib</artifactId>
-            <version>84a3ce8</version>
+            <version>b4e69ad</version>
             <scope>compile</scope>
         </dependency>
         <dependency>

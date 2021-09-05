@@ -2,8 +2,8 @@ package io.github.sefiraat.slimetinker.utils;
 
 import io.github.sefiraat.slimetinker.items.BaseItem;
 import io.github.sefiraat.slimetinker.utils.enums.ThemeItemType;
+import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import lombok.experimental.UtilityClass;
-import me.mrCookieSlime.Slimefun.api.SlimefunItemStack;
 import net.md_5.bungee.api.ChatColor;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.WordUtils;

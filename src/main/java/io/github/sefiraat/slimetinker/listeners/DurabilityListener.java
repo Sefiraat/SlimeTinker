@@ -1,6 +1,5 @@
 package io.github.sefiraat.slimetinker.listeners;
 
-import io.github.mooy1.infinitylib.items.StackUtils;
 import io.github.sefiraat.slimetinker.events.friend.EventFriend;
 import io.github.sefiraat.slimetinker.events.friend.TraitEventType;
 import io.github.sefiraat.slimetinker.items.Materials;
@@ -105,8 +104,8 @@ public class DurabilityListener implements Listener {
 
         Map<String, Integer> modLevels = Modifications.getAllModLevels(damagedItem);
 
-        if (modLevels.containsKey(StackUtils.getIDorType(Materials.MOD_PLATE))) { // PLATE
-            modCheckPlate(damagedItem, modLevels.get(StackUtils.getIDorType(Materials.MOD_PLATE)), event);
+        if (modLevels.containsKey(ItemUtils.getIdOrType(Materials.MOD_PLATE))) { // PLATE
+            modCheckPlate(damagedItem, modLevels.get(ItemUtils.getIdOrType(Materials.MOD_PLATE)), event);
         }
 
     }

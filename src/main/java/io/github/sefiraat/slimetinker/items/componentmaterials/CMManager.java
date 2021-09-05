@@ -1,6 +1,6 @@
 package io.github.sefiraat.slimetinker.items.componentmaterials;
 
-import io.github.mooy1.infinitylib.items.StackUtils;
+import io.github.mooy1.infinitylib.common.StackUtils;
 import io.github.sefiraat.slimetinker.events.friend.TraitPartType;
 import io.github.sefiraat.slimetinker.items.Casts;
 import io.github.sefiraat.slimetinker.items.Dies;
@@ -15,6 +15,7 @@ import io.github.sefiraat.slimetinker.items.componentmaterials.cmfactories.CMSli
 import io.github.sefiraat.slimetinker.items.componentmaterials.cmrecipes.CastResult;
 import io.github.sefiraat.slimetinker.items.componentmaterials.cmrecipes.MoltenResult;
 import io.github.sefiraat.slimetinker.managers.SupportedPluginsManager;
+import io.github.sefiraat.slimetinker.utils.ItemUtils;
 import lombok.Getter;
 import net.md_5.bungee.api.ChatColor;
 import org.apache.commons.lang.Validate;
@@ -184,7 +185,7 @@ public class CMManager {
 
             // Gems
             if (cm.getFormGem() != null) {
-                ItemStack i = StackUtils.getItemByID(cm.getFormGem());
+                ItemStack i = ItemUtils.getItemByID(cm.getFormGem());
                 if (i == null) {
                     i = new ItemStack(Material.valueOf(cm.getFormGem()));
                 }
@@ -194,7 +195,7 @@ public class CMManager {
 
             // Blocks
             if (cm.getFormBlock() != null) {
-                ItemStack i = StackUtils.getItemByID(cm.getFormBlock());
+                ItemStack i = ItemUtils.getItemByID(cm.getFormBlock());
                 if (i == null) {
                     i = new ItemStack(Material.valueOf(cm.getFormBlock()));
                 }
@@ -204,7 +205,7 @@ public class CMManager {
 
             // Ingots
             if (cm.getFormIngot() != null) {
-                ItemStack i = StackUtils.getItemByID(cm.getFormIngot());
+                ItemStack i = ItemUtils.getItemByID(cm.getFormIngot());
                 if (i == null) {
                     i = new ItemStack(Material.valueOf(cm.getFormIngot()));
                 }
@@ -214,7 +215,7 @@ public class CMManager {
 
             // Nuggets
             if (cm.getFormNugget() != null) {
-                ItemStack i = StackUtils.getItemByID(cm.getFormNugget());
+                ItemStack i = ItemUtils.getItemByID(cm.getFormNugget());
                 if (i == null) {
                     i = new ItemStack(Material.valueOf(cm.getFormNugget()));
                 }

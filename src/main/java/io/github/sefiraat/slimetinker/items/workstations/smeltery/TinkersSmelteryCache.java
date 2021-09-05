@@ -1,6 +1,5 @@
 package io.github.sefiraat.slimetinker.items.workstations.smeltery;
 
-import io.github.mooy1.infinitylib.items.StackUtils;
 import io.github.sefiraat.slimetinker.SlimeTinker;
 import io.github.sefiraat.slimetinker.items.componentmaterials.CMManager;
 import io.github.sefiraat.slimetinker.items.componentmaterials.ComponentMaterial;
@@ -236,7 +235,7 @@ public final class TinkersSmelteryCache extends AbstractCache {
         ItemStack inputItem = blockMenu.getItemInSlot(TinkersSmeltery.CAST_SLOT);
 
         // Cast item is null or not a cast
-        if (inputItem == null || !SlimeTinker.inst().getCmManager().castingRecipes.containsKey(StackUtils.getIDorType(inputItem))) {
+        if (inputItem == null || !SlimeTinker.inst().getCmManager().castingRecipes.containsKey(ItemUtils.getIdOrType(inputItem))) {
             player.sendMessage(ThemeUtils.WARNING + "Please input a valid cast before trying to pour metals.");
             return false;
         }
@@ -251,7 +250,7 @@ public final class TinkersSmelteryCache extends AbstractCache {
 
         String metalID = first.get();
         ComponentMaterial componentMaterial = CMManager.getById(metalID);
-        CastResult result = SlimeTinker.inst().getCmManager().castingRecipes.get(StackUtils.getIDorType(inputItem));
+        CastResult result = SlimeTinker.inst().getCmManager().castingRecipes.get(ItemUtils.getIdOrType(inputItem));
 
         // Cast valid, but this cast and metal combination doesn't work
         if (!result.getOutputs().containsKey(componentMaterial)) {

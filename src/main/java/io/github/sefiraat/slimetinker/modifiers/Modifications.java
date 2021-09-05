@@ -1,6 +1,5 @@
 package io.github.sefiraat.slimetinker.modifiers;
 
-import io.github.mooy1.infinitylib.items.StackUtils;
 import io.github.sefiraat.slimetinker.SlimeTinker;
 import io.github.sefiraat.slimetinker.items.Materials;
 import io.github.sefiraat.slimetinker.utils.ItemUtils;
@@ -92,25 +91,25 @@ public class Modifications {
 
         // TOOLS
 
-        MODIFICATION_LIST_TOOL.add(StackUtils.getIDorType(new ItemStack(Material.REDSTONE)));
-        MODIFICATION_LIST_TOOL.add(StackUtils.getIDorType(new ItemStack(Material.LAPIS_LAZULI)));
-        MODIFICATION_LIST_TOOL.add(StackUtils.getIDorType(new ItemStack(Material.QUARTZ)));
-        MODIFICATION_LIST_TOOL.add(StackUtils.getIDorType(new ItemStack(Material.DIAMOND)));
-        MODIFICATION_LIST_TOOL.add(StackUtils.getIDorType(new ItemStack(Material.EMERALD)));
-        MODIFICATION_LIST_TOOL.add(StackUtils.getIDorType(Materials.MOD_PLATE));
+        MODIFICATION_LIST_TOOL.add(ItemUtils.getIdOrType(new ItemStack(Material.REDSTONE)));
+        MODIFICATION_LIST_TOOL.add(ItemUtils.getIdOrType(new ItemStack(Material.LAPIS_LAZULI)));
+        MODIFICATION_LIST_TOOL.add(ItemUtils.getIdOrType(new ItemStack(Material.QUARTZ)));
+        MODIFICATION_LIST_TOOL.add(ItemUtils.getIdOrType(new ItemStack(Material.DIAMOND)));
+        MODIFICATION_LIST_TOOL.add(ItemUtils.getIdOrType(new ItemStack(Material.EMERALD)));
+        MODIFICATION_LIST_TOOL.add(ItemUtils.getIdOrType(Materials.MOD_PLATE));
 
-        MODIFICATION_DEFINITIONS_TOOL.put(StackUtils.getIDorType(new ItemStack(Material.REDSTONE)), new Mod(MOD_MAP_REDSTONE_TOOL, SlimeTinker.inst().getKeys().getStModLevelRedstone()));
-        MODIFICATION_DEFINITIONS_TOOL.put(StackUtils.getIDorType(new ItemStack(Material.LAPIS_LAZULI)), new Mod(MOD_MAP_LAPIS_TOOL, SlimeTinker.inst().getKeys().getStModLevelLapis()));
-        MODIFICATION_DEFINITIONS_TOOL.put(StackUtils.getIDorType(new ItemStack(Material.QUARTZ)), new Mod(MOD_MAP_QUARTZ_TOOL, SlimeTinker.inst().getKeys().getStModLevelQuartz()));
-        MODIFICATION_DEFINITIONS_TOOL.put(StackUtils.getIDorType(new ItemStack(Material.DIAMOND)), new Mod(MOD_MAP_DIAMOND_TOOL, SlimeTinker.inst().getKeys().getStModLevelDiamond()));
-        MODIFICATION_DEFINITIONS_TOOL.put(StackUtils.getIDorType(new ItemStack(Material.EMERALD)), new Mod(MOD_MAP_EMERALD_TOOL, SlimeTinker.inst().getKeys().getStModLevelEmerald()));
-        MODIFICATION_DEFINITIONS_TOOL.put(StackUtils.getIDorType(Materials.MOD_PLATE), new Mod(MOD_MAP_PLATE, SlimeTinker.inst().getKeys().getStModLevelReinforced()));
+        MODIFICATION_DEFINITIONS_TOOL.put(ItemUtils.getIdOrType(new ItemStack(Material.REDSTONE)), new Mod(MOD_MAP_REDSTONE_TOOL, SlimeTinker.inst().getKeys().getStModLevelRedstone()));
+        MODIFICATION_DEFINITIONS_TOOL.put(ItemUtils.getIdOrType(new ItemStack(Material.LAPIS_LAZULI)), new Mod(MOD_MAP_LAPIS_TOOL, SlimeTinker.inst().getKeys().getStModLevelLapis()));
+        MODIFICATION_DEFINITIONS_TOOL.put(ItemUtils.getIdOrType(new ItemStack(Material.QUARTZ)), new Mod(MOD_MAP_QUARTZ_TOOL, SlimeTinker.inst().getKeys().getStModLevelQuartz()));
+        MODIFICATION_DEFINITIONS_TOOL.put(ItemUtils.getIdOrType(new ItemStack(Material.DIAMOND)), new Mod(MOD_MAP_DIAMOND_TOOL, SlimeTinker.inst().getKeys().getStModLevelDiamond()));
+        MODIFICATION_DEFINITIONS_TOOL.put(ItemUtils.getIdOrType(new ItemStack(Material.EMERALD)), new Mod(MOD_MAP_EMERALD_TOOL, SlimeTinker.inst().getKeys().getStModLevelEmerald()));
+        MODIFICATION_DEFINITIONS_TOOL.put(ItemUtils.getIdOrType(Materials.MOD_PLATE), new Mod(MOD_MAP_PLATE, SlimeTinker.inst().getKeys().getStModLevelReinforced()));
 
         // ARMOUR
 
-        MODIFICATION_LIST_ARMOUR.add(StackUtils.getIDorType(Materials.MOD_PLATE));
+        MODIFICATION_LIST_ARMOUR.add(ItemUtils.getIdOrType(Materials.MOD_PLATE));
 
-        MODIFICATION_DEFINITIONS_ARMOUR.put(StackUtils.getIDorType(Materials.MOD_PLATE), new Mod(MOD_MAP_PLATE, SlimeTinker.inst().getKeys().getStModLevelReinforced()));
+        MODIFICATION_DEFINITIONS_ARMOUR.put(ItemUtils.getIdOrType(Materials.MOD_PLATE), new Mod(MOD_MAP_PLATE, SlimeTinker.inst().getKeys().getStModLevelReinforced()));
 
     }
 

@@ -1,21 +1,20 @@
 package io.github.sefiraat.slimetinker.items.workstations.swappingstation;
 
-import io.github.mooy1.infinitylib.slimefun.AbstractContainer;
+import io.github.mooy1.infinitylib.machines.MenuBlock;
 import io.github.sefiraat.slimetinker.SlimeTinker;
 import io.github.sefiraat.slimetinker.utils.GUIItems;
 import io.github.sefiraat.slimetinker.utils.IDStrings;
 import io.github.sefiraat.slimetinker.utils.ItemUtils;
 import io.github.sefiraat.slimetinker.utils.ThemeUtils;
-import io.github.thebusybiscuit.slimefun4.implementation.SlimefunPlugin;
+import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
+import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
+import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
+import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
+import io.github.thebusybiscuit.slimefun4.libraries.dough.data.persistent.PersistentDataAPI;
 import io.github.thebusybiscuit.slimefun4.utils.ChestMenuUtils;
-import me.mrCookieSlime.Slimefun.Lists.RecipeType;
-import me.mrCookieSlime.Slimefun.Objects.Category;
-import me.mrCookieSlime.Slimefun.api.SlimefunItemStack;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenuPreset;
-import me.mrCookieSlime.Slimefun.api.inventory.DirtyChestMenu;
-import me.mrCookieSlime.Slimefun.api.item_transport.ItemTransportFlow;
-import me.mrCookieSlime.Slimefun.cscorelib2.data.PersistentDataAPI;
+import org.apache.commons.lang.Validate;
 import org.bukkit.Location;
 import org.bukkit.NamespacedKey;
 import org.bukkit.block.Block;
@@ -23,11 +22,10 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
-import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nonnull;
 
-public class SwappingStation extends AbstractContainer {
+public class SwappingStation extends MenuBlock {
 
     private static final int[] BACKGROUND_SLOTS = {0,1,2,3,4,5,6,7,8,9,11,13,15,17,18,19,20,21,22,23,24,25,26};
     private static final int INPUT_ITEM = 10;
@@ -35,7 +33,7 @@ public class SwappingStation extends AbstractContainer {
     protected static final int CRAFT_BUTTON = 14;
     protected static final int OUTPUT_SLOT = 16;
 
-    public SwappingStation(Category category, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
+    public SwappingStation(ItemGroup category, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(category, item, recipeType, recipe);
     }
 
@@ -176,7 +174,9 @@ public class SwappingStation extends AbstractContainer {
 
     private void checkAndChangeExplosiveness(ItemStack newTool, ItemMeta im, String partMaterial, String partClass) {
 
-        NamespacedKey sfIDKey = new NamespacedKey(SlimefunPlugin.instance(), "slimefun_item");
+        Validate.notNull(Slimefun.instance(), "Slimefun is null, that's... not great?");
+
+        NamespacedKey sfIDKey = new NamespacedKey(Slimefun.instance(), "slimefun_item");
         String sID = PersistentDataAPI.getString(im, sfIDKey);
 
         if (isExplosivePart(partMaterial, partClass) && !ItemUtils.isToolExplosive(newTool)) {
@@ -192,7 +192,7 @@ public class SwappingStation extends AbstractContainer {
     }
 
     @Override
-    protected void setupMenu(BlockMenuPreset blockMenuPreset) {
+    protected void setup(BlockMenuPreset blockMenuPreset) {
 
         blockMenuPreset.drawBackground(ChestMenuUtils.getBackground(), BACKGROUND_SLOTS);
         blockMenuPreset.addItem(CRAFT_BUTTON, GUIItems.menuCraftSwap());
@@ -201,13 +201,19 @@ public class SwappingStation extends AbstractContainer {
     }
 
     @Override
-    protected int @NotNull [] getTransportSlots(@NotNull DirtyChestMenu dirtyChestMenu, @NotNull ItemTransportFlow itemTransportFlow, ItemStack itemStack) {
+    protected int[] getInputSlots() {
         return new int[0];
     }
 
     @Override
-    protected void onBreak(@Nonnull BlockBreakEvent event, @Nonnull BlockMenu blockMenu, @Nonnull Location location) {
-        super.onBreak(event, blockMenu, location);
+    protected int[] getOutputSlots() {
+        return new int[0];
+    }
+
+    @Override
+    protected void onBreak(@Nonnull BlockBreakEvent event, @Nonnull BlockMenu blockMenu) {
+        super.onBreak(event, blockMenu);
+        Location location = blockMenu.getLocation();
         blockMenu.dropItems(location, INPUT_ITEM);
         blockMenu.dropItems(location, INPUT_PART);
         blockMenu.dropItems(location, OUTPUT_SLOT);

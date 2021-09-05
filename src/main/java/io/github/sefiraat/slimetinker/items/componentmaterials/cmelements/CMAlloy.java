@@ -6,9 +6,9 @@ import io.github.sefiraat.slimetinker.items.componentmaterials.ComponentMaterial
 import io.github.sefiraat.slimetinker.items.workstations.smeltery.DummySmelteryAlloy;
 import io.github.sefiraat.slimetinker.utils.ThemeUtils;
 import io.github.sefiraat.slimetinker.utils.enums.ThemeItemType;
+import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
+import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import lombok.Getter;
-import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.SlimefunItem;
-import me.mrCookieSlime.Slimefun.api.SlimefunItemStack;
 import org.apache.commons.lang.Validate;
 import org.bukkit.inventory.ItemStack;
 

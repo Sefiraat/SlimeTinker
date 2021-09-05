@@ -1,18 +1,16 @@
 package io.github.sefiraat.slimetinker.items.workstations.repairbench;
 
-import io.github.mooy1.infinitylib.slimefun.AbstractContainer;
+import io.github.mooy1.infinitylib.machines.MenuBlock;
 import io.github.sefiraat.slimetinker.items.templates.RepairkitTemplate;
 import io.github.sefiraat.slimetinker.utils.GUIItems;
 import io.github.sefiraat.slimetinker.utils.ItemUtils;
 import io.github.sefiraat.slimetinker.utils.ThemeUtils;
+import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
+import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
+import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.utils.ChestMenuUtils;
-import me.mrCookieSlime.Slimefun.Lists.RecipeType;
-import me.mrCookieSlime.Slimefun.Objects.Category;
-import me.mrCookieSlime.Slimefun.api.SlimefunItemStack;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenuPreset;
-import me.mrCookieSlime.Slimefun.api.inventory.DirtyChestMenu;
-import me.mrCookieSlime.Slimefun.api.item_transport.ItemTransportFlow;
 import org.bukkit.Location;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
@@ -20,11 +18,10 @@ import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.Damageable;
 import org.bukkit.inventory.meta.ItemMeta;
-import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nonnull;
 
-public class RepairBench extends AbstractContainer {
+public class RepairBench extends MenuBlock {
 
     private static final int[] BACKGROUND_SLOTS = {0,1,2,3,4,5,6,7,8,9,11,13,15,17,18,19,20,21,22,23,24,25,26};
     private static final int INPUT_TOOL = 10;
@@ -32,7 +29,7 @@ public class RepairBench extends AbstractContainer {
     protected static final int CRAFT_BUTTON = 14;
     protected static final int OUTPUT_SLOT = 16;
 
-    public RepairBench(Category category, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
+    public RepairBench(ItemGroup category, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(category, item, recipeType, recipe);
     }
 
@@ -119,7 +116,7 @@ public class RepairBench extends AbstractContainer {
     }
 
     @Override
-    protected void setupMenu(BlockMenuPreset blockMenuPreset) {
+    protected void setup(BlockMenuPreset blockMenuPreset) {
 
         blockMenuPreset.drawBackground(ChestMenuUtils.getBackground(), BACKGROUND_SLOTS);
 
@@ -129,13 +126,19 @@ public class RepairBench extends AbstractContainer {
     }
 
     @Override
-    protected int @NotNull [] getTransportSlots(@NotNull DirtyChestMenu dirtyChestMenu, @NotNull ItemTransportFlow itemTransportFlow, ItemStack itemStack) {
+    protected int[] getInputSlots() {
         return new int[0];
     }
 
     @Override
-    protected void onBreak(@Nonnull BlockBreakEvent event, @Nonnull BlockMenu blockMenu, @Nonnull Location location) {
-        super.onBreak(event, blockMenu, location);
+    protected int[] getOutputSlots() {
+        return new int[0];
+    }
+
+    @Override
+    protected void onBreak(@Nonnull BlockBreakEvent event, @Nonnull BlockMenu blockMenu) {
+        super.onBreak(event, blockMenu);
+        Location location = blockMenu.getLocation();
         blockMenu.dropItems(location, INPUT_TOOL);
         blockMenu.dropItems(location, INPUT_KIT);
         blockMenu.dropItems(location, OUTPUT_SLOT);

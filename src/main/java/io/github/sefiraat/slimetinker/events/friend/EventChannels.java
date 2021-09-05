@@ -2,6 +2,7 @@ package io.github.sefiraat.slimetinker.events.friend;
 
 import io.github.sefiraat.slimetinker.SlimeTinker;
 import io.github.sefiraat.slimetinker.items.componentmaterials.CMManager;
+import io.github.sefiraat.slimetinker.items.componentmaterials.ComponentMaterial;
 import io.github.sefiraat.slimetinker.utils.Experience;
 import io.github.sefiraat.slimetinker.utils.ItemUtils;
 import io.github.sefiraat.slimetinker.utils.ThemeUtils;
@@ -72,9 +73,13 @@ public class EventChannels {
         String matPropertyBinding = ItemUtils.getToolBindingMaterial(i);
         String matPropertyRod = ItemUtils.getToolRodMaterial(i);
 
-        CMManager.getMAP().get(matPropertyHead).runEvent(friend.getEventType(), TraitPartType.HEAD, friend);
-        CMManager.getMAP().get(matPropertyBinding).runEvent(friend.getEventType(), TraitPartType.BINDER, friend);
-        CMManager.getMAP().get(matPropertyRod).runEvent(friend.getEventType(), TraitPartType.ROD, friend);
+        ComponentMaterial headMaterial = CMManager.getMAP().get(matPropertyHead);
+        ComponentMaterial binderMaterial = CMManager.getMAP().get(matPropertyBinding);
+        ComponentMaterial rodMaterial = CMManager.getMAP().get(matPropertyRod);
+
+        if (headMaterial != null) headMaterial.runEvent(friend.getEventType(), TraitPartType.HEAD, friend);
+        if (binderMaterial != null) binderMaterial.runEvent(friend.getEventType(), TraitPartType.BINDER, friend);
+        if (rodMaterial != null) rodMaterial.runEvent(friend.getEventType(), TraitPartType.ROD, friend);
 
     }
 
@@ -157,13 +162,18 @@ public class EventChannels {
 
         ItemStack i = friend.getActiveStack();
 
-        String matPropertyHead = ItemUtils.getArmourPlateMaterial(i);
-        String matPropertyBinding = ItemUtils.getArmourGambesonMaterial(i);
-        String matPropertyRod = ItemUtils.getArmourLinksMaterial(i);
+        String matPropertyPlate = ItemUtils.getArmourPlateMaterial(i);
+        String matPropertyGambeson = ItemUtils.getArmourGambesonMaterial(i);
+        String matPropertyLinks = ItemUtils.getArmourLinksMaterial(i);
 
-        CMManager.getMAP().get(matPropertyHead).runEvent(friend.getEventType(), TraitPartType.PLATE, friend);
-        CMManager.getMAP().get(matPropertyBinding).runEvent(friend.getEventType(), TraitPartType.GAMBESON, friend);
-        CMManager.getMAP().get(matPropertyRod).runEvent(friend.getEventType(), TraitPartType.LINKS, friend);
+        ComponentMaterial plateMaterial = CMManager.getMAP().get(matPropertyPlate);
+        ComponentMaterial gambesonMaterial = CMManager.getMAP().get(matPropertyGambeson);
+        ComponentMaterial linksMaterial = CMManager.getMAP().get(matPropertyLinks);
+
+        if (plateMaterial != null) plateMaterial.runEvent(friend.getEventType(), TraitPartType.PLATE, friend);
+        if (gambesonMaterial != null) gambesonMaterial.runEvent(friend.getEventType(), TraitPartType.GAMBESON, friend);
+        if (linksMaterial != null) linksMaterial.runEvent(friend.getEventType(), TraitPartType.LINKS, friend);
+
     }
 
     public static void provideKillExp(EventFriend friend, int baseAmount) {

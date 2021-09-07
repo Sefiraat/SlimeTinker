@@ -1,10 +1,10 @@
 package io.github.sefiraat.slimetinker.items.componentmaterials;
 
 import io.github.sefiraat.slimetinker.SlimeTinker;
-import io.github.sefiraat.slimetinker.itemgroups.ItemGroups;
 import io.github.sefiraat.slimetinker.events.friend.EventFriend;
 import io.github.sefiraat.slimetinker.events.friend.TraitEventType;
 import io.github.sefiraat.slimetinker.events.friend.TraitPartType;
+import io.github.sefiraat.slimetinker.itemgroups.ItemGroups;
 import io.github.sefiraat.slimetinker.items.Casts;
 import io.github.sefiraat.slimetinker.items.componentmaterials.cmelements.CMAlloy;
 import io.github.sefiraat.slimetinker.items.componentmaterials.cmelements.CMForms;

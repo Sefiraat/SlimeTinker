@@ -1,29 +1,24 @@
 package io.github.sefiraat.slimetinker.items.workstations.workbench;
 
 import io.github.mooy1.infinitylib.machines.CraftingBlock;
-import io.github.mooy1.infinitylib.machines.MenuBlock;
 import io.github.sefiraat.slimetinker.SlimeTinker;
 import io.github.sefiraat.slimetinker.items.Workstations;
 import io.github.sefiraat.slimetinker.utils.GUIItems;
 import io.github.sefiraat.slimetinker.utils.ItemUtils;
-import io.github.sefiraat.slimetinker.utils.ThemeUtils;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.utils.ChestMenuUtils;
-import lombok.Getter;
-import me.mrCookieSlime.CSCoreLibPlugin.general.Inventory.ChestMenu;
-import me.mrCookieSlime.CSCoreLibPlugin.general.Inventory.ClickAction;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenuPreset;
 import org.bukkit.Location;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.event.block.BlockBreakEvent;
-import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
+import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nonnull;
 
@@ -41,11 +36,11 @@ public class Workbench extends CraftingBlock {
     }
 
     @Override
-    protected void craft(Block b, BlockMenu menu, Player p) {
+    protected void craft(@NotNull Block b, @NotNull BlockMenu menu, @NotNull Player p) {
         super.craft(b, menu, p);
     }
 
-    //    @SuppressWarnings("SameReturnValue")
+//    @SuppressWarnings("SameReturnValue")
 //    protected boolean craft(BlockMenu blockMenu, Player player) {
 //
 //        ItemStack[] inputs = new ItemStack[9];
@@ -78,12 +73,9 @@ public class Workbench extends CraftingBlock {
 
     @Override
     protected void setup(BlockMenuPreset blockMenuPreset) {
-
         blockMenuPreset.drawBackground(ChestMenuUtils.getBackground(), BACKGROUND_SLOTS);
-
         blockMenuPreset.addItem(CRAFT_BUTTON, GUIItems.menuCraftWorkbench());
         blockMenuPreset.addMenuClickHandler(CRAFT_BUTTON, (player, i, itemStack, clickAction) -> false);
-
     }
 
     @Override
@@ -103,9 +95,10 @@ public class Workbench extends CraftingBlock {
         });
     }
 
-    public void setupSFRecipes() {
+    public void setupRecipes() {
         for (SlimefunItem i : Slimefun.getRegistry().getEnabledSlimefunItems()) {
-            if (i.getRecipeType() == RecipeType.ENHANCED_CRAFTING_TABLE && !ItemUtils.rejectCraftingRecipe(i)) {
+            RecipeType recipeType = i.getRecipeType();
+            if ((recipeType == RecipeType.ENHANCED_CRAFTING_TABLE || recipeType == TYPE) && !ItemUtils.rejectCraftingRecipe(i)) {
                 this.addRecipe(i.getRecipeOutput(), i.getRecipe());
             }
         }

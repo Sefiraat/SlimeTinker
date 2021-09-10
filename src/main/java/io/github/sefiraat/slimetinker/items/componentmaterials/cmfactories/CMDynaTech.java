@@ -215,7 +215,8 @@ public final class CMDynaTech {
                                                 CMTraits.PROP_GAMBESON,
                                                 SupportedPluginsManager.DYNATECH_NOTE,
                                                 "Ghost in the shell",
-                                                "Slowly damaged all nearby mobs at the cost of durability"
+                                                "Slowly damages all nearby mobs at the cost of durability.",
+                                                "Mobs cannot die due to this effect."
                                         ),
                                         new CMTrait(
                                                 CMTraits.PROP_LINKS,

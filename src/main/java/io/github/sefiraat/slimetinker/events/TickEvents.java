@@ -637,9 +637,11 @@ public final class TickEvents {
         if (!ItemUtils.isTinkersBroken(i)) {
             List<Mob> mobs = EntityUtils.getNearbyEntitiesByType(Mob.class, p, 3, 3, 3);
             for (Mob m : mobs) {
-                m.damage(1, p);
-                m.getWorld().spawnParticle(Particle.FLASH, m.getLocation(), 1, 0.5, 0.5, 0.5);
-                ItemUtils.damageTinkersItem(i, 1);
+                if (m.getHealth() >= 2) {
+                    m.damage(1);
+                    m.getWorld().spawnParticle(Particle.FLASH, m.getLocation(), 1, 0.5, 0.5, 0.5);
+                    ItemUtils.damageTinkersItem(i, 1);
+                }
             }
         }
     }

@@ -17,6 +17,9 @@ import java.util.Map;
 @Data
 public class EventFriend {
 
+    /**
+     * Denotes if any of the event channels actually triggered.
+     */
     private boolean actionTaken = false;
 
     /**
@@ -69,6 +72,7 @@ public class EventFriend {
     private double playerExpMod = 1;
     private double durabilityMod = 1;
     private double damageMod = 1;
+    private Double damageOverride = null;
 
     private Collection<ItemStack> drops;
     private Collection<ItemStack> addDrops;

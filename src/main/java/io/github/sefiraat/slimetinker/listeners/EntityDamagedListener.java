@@ -66,7 +66,6 @@ public class EntityDamagedListener implements Listener {
             }
 
             if (friend.getCharged() >= 2) { // Special case for Charged - event is dependant on two materials, consumers up a value to trigger this
-
                 int rnd = ThreadLocalRandom.current().nextInt(1,6);
                 if (rnd == 1) {
                     friend.setDamageMod(friend.getDamageMod() * 3);
@@ -77,7 +76,8 @@ public class EntityDamagedListener implements Listener {
                 }
             }
 
-            event.setDamage(event.getDamage() * friend.getDamageMod());
+            event.setDamage(friend.getDamageOverride() == null ? event.getDamage() * friend.getDamageMod() : friend.getDamageOverride());
+
         }
 
     }

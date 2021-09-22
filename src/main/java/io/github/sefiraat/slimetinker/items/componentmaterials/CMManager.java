@@ -1,6 +1,5 @@
 package io.github.sefiraat.slimetinker.items.componentmaterials;
 
-import io.github.mooy1.infinitylib.common.StackUtils;
 import io.github.sefiraat.slimetinker.events.friend.TraitPartType;
 import io.github.sefiraat.slimetinker.items.Casts;
 import io.github.sefiraat.slimetinker.items.Dies;

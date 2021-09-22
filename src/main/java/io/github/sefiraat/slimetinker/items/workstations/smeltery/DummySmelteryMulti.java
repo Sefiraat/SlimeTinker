@@ -5,7 +5,6 @@ import io.github.sefiraat.slimetinker.utils.ThemeUtils;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import org.bukkit.Material;
-import org.bukkit.inventory.ItemStack;
 
 public final class DummySmelteryMulti {
 

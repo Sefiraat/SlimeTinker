@@ -24,7 +24,7 @@ import javax.annotation.Nonnull;
 
 public class Workbench extends CraftingBlock {
 
-    public static final RecipeType TYPE = new RecipeType(SlimeTinker.createKey("tinkers-workbench"), Workstations.TINKERS_WORKBENCH, "");
+    public static final RecipeType TYPE = new RecipeType(SlimeTinker.createKey("tinkers-workbench"), Workstations.TINKERS_WORKBENCH);
 
     private static final int[] BACKGROUND_SLOTS = {0,1,2,3,4,5,6,7,8,9,13,14,15,16,17,18,22,24,26,27,31,32,33,34,35,36,37,38,39,40,41,42,43,44};
     private static final int[] INPUT_SLOTS = {10,11,12,19,20,21,28,29,30};

@@ -8,6 +8,8 @@ import io.github.sefiraat.slimetinker.utils.BlockUtils;
 import io.github.sefiraat.slimetinker.utils.Experience;
 import io.github.sefiraat.slimetinker.utils.IDStrings;
 import io.github.sefiraat.slimetinker.utils.ItemUtils;
+import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
+import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import org.bukkit.Color;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -17,6 +19,7 @@ import org.bukkit.block.data.Ageable;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.inventory.ItemStack;
@@ -36,18 +39,14 @@ import static io.github.sefiraat.slimetinker.events.friend.EventChannels.settleP
 public class BlockBreakListener implements Listener {
 
     @SuppressWarnings("unused")
-    @EventHandler
+    @EventHandler(priority = EventPriority.LOWEST, ignoreCancelled = true)
     public void onBlockBreak(BlockBreakEvent event) {
-
-        if (event.isCancelled()) {
-            return;
-        }
 
         Player player = event.getPlayer();
         ItemStack heldItem = event.getPlayer().getInventory().getItemInMainHand();
         Block block = event.getBlock();
 
-        if (!BlockUtils.isValidBreakEvent(block, player)) {
+        if (event.isCancelled() || isLockedTool(event.getPlayer(), heldItem) || !BlockUtils.isValidBreakEvent(block, player)) {
             return;
         }
 
@@ -183,5 +182,10 @@ public class BlockBreakListener implements Listener {
         }
     }
 
+    public boolean isLockedTool(Player player, ItemStack itemStack) {
+        SlimefunItem slimefunItem = SlimefunItem.getByItem(itemStack);
+        return slimefunItem != null
+                && !slimefunItem.canUse(player, false);
+    }
 
 }

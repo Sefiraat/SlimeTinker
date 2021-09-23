@@ -18,7 +18,7 @@ public final class DummyWorkbench {
             Material.FLETCHING_TABLE,
             ThemeItemType.MACHINE,
             "ToolTable",
-            ThemeUtils.PASSIVE + "This item is crafted in the workbench."
+            "This item is crafted in the workbench."
     );
 
     public static final RecipeType TYPE = new RecipeType(SlimeTinker.inst().getKeys().getWsDummyWorkbench(), STACK);

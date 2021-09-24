@@ -39,7 +39,7 @@ import static io.github.sefiraat.slimetinker.events.friend.EventChannels.settleP
 public class BlockBreakListener implements Listener {
 
     @SuppressWarnings("unused")
-    @EventHandler(priority = EventPriority.LOWEST, ignoreCancelled = true)
+    @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
     public void onBlockBreak(BlockBreakEvent event) {
 
         Player player = event.getPlayer();

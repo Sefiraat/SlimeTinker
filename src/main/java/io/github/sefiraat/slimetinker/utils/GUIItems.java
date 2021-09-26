@@ -214,13 +214,23 @@ public final class GUIItems {
         );
     }
 
-    public static CustomItemStack menuCraftTable() {
+    public static CustomItemStack menuCraftToolTable() {
         return new CustomItemStack(
                 Material.SMITHING_TABLE,
                 ThemeUtils.GUI_HEAD + "Form Tool",
                 "",
                 ThemeUtils.PASSIVE + "Forms a tool from the three given",
                 ThemeUtils.PASSIVE + "parts (Rod, Binding and Head/Blade)"
+        );
+    }
+
+    public static CustomItemStack menuCraftArmourTable() {
+        return new CustomItemStack(
+                Material.SMITHING_TABLE,
+                ThemeUtils.GUI_HEAD + "Form Armour",
+                "",
+                ThemeUtils.PASSIVE + "Forms a piece of armour from the three given",
+                ThemeUtils.PASSIVE + "parts (Plate, Gambeson and Links)"
         );
     }
 

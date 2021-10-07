@@ -1051,7 +1051,7 @@ public final class CMInfinity {
                                         ),
                                         new CMTrait(
                                                 CMTraits.PROP_PLATES,
-                                                SupportedPluginsManager.CORE_NOTE,
+                                                SupportedPluginsManager.INFINITY_EXPANSION_NOTE,
                                                 "Infinite Capacity",
                                                 "Everytime you take damage, 10% is stored",
                                                 "up to 5 hearts. Right click to release",
@@ -1060,7 +1060,7 @@ public final class CMInfinity {
                                         null,
                                         new CMTrait(
                                                 CMTraits.PROP_LINKS,
-                                                SupportedPluginsManager.CORE_NOTE,
+                                                SupportedPluginsManager.INFINITY_EXPANSION_NOTE,
                                                 "Oroborus",
                                                 "20% chance to reflect damage taken."
                                         ))

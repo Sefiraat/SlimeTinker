@@ -1097,7 +1097,7 @@ public final class CMInfinity {
                                         null,
                                         new CMTrait(
                                                 CMTraits.PROP_PLATES,
-                                                SupportedPluginsManager.CORE_NOTE,
+                                                SupportedPluginsManager.INFINITY_EXPANSION_NOTE,
                                                 "Infinitly Powerful",
                                                 "Every 2000 points of damage taken (before",
                                                 "reductions) will unlock a new, random,",
@@ -1106,9 +1106,9 @@ public final class CMInfinity {
                                         null,
                                         new CMTrait(
                                                 CMTraits.PROP_LINKS,
-                                                SupportedPluginsManager.CORE_NOTE,
+                                                SupportedPluginsManager.INFINITY_EXPANSION_NOTE,
                                                 "Infinite Defence",
-                                                "All damage taken set to 1 when 4 peices",
+                                                "All damage taken set to 1 when 4 pieces",
                                                 "are equipped."
                                         ))
                         ));

@@ -194,7 +194,7 @@ public class ToolTable extends TickingMenuBlock {
         blockMenuPreset.drawBackground(GUIItems.menuBackgroundOutput(), BACKGROUND_OUTPUT);
         blockMenuPreset.drawBackground(GUIItems.menuBackgroundPreview(), BACKGROUND_PREVIEW);
 
-        blockMenuPreset.addItem(CRAFT_BUTTON, GUIItems.menuCraftTable());
+        blockMenuPreset.addItem(CRAFT_BUTTON, GUIItems.menuCraftToolTable());
         blockMenuPreset.addItem(MARKER_ROD, GUIItems.menuMarkerRod());
         blockMenuPreset.addItem(MARKER_BINDER, GUIItems.menuMarkerBinder());
         blockMenuPreset.addItem(MARKER_HEAD, GUIItems.menuMarkerHead());

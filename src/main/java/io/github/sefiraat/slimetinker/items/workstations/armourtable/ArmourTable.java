@@ -188,7 +188,7 @@ public class ArmourTable extends MenuBlock {
         blockMenuPreset.drawBackground(GUIItems.menuBackgroundOutput(), BACKGROUND_OUTPUT);
         blockMenuPreset.drawBackground(GUIItems.menuBackgroundPreview(), BACKGROUND_PREVIEW);
 
-        blockMenuPreset.addItem(CRAFT_BUTTON, GUIItems.menuCraftTable());
+        blockMenuPreset.addItem(CRAFT_BUTTON, GUIItems.menuCraftArmourTable());
         blockMenuPreset.addItem(MARKER_MAIL_LINK, GUIItems.menuMarkerLinks());
         blockMenuPreset.addItem(MARKER_GAMBESON, GUIItems.menuMarkerGambeson());
         blockMenuPreset.addItem(MARKER_PLATES, GUIItems.menuMarkerPlates());

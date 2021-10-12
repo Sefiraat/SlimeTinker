@@ -1753,7 +1753,7 @@ public final class CMCore {
         map.put(IDStrings.SEFIRITE,
             new ComponentMaterial
                 (
-                    new CMIdentity(IDStrings.SEFIRITE, Materials.INGOT_CAST_BOOMERITE, SkullTextures.ALLOY_GREEN, "#9beb34"),
+                    new CMIdentity(IDStrings.SEFIRITE, Materials.INGOT_CAST_SEFIRITE, SkullTextures.ALLOY_GREEN, "#9beb34"),
                     Arrays.asList(
                         map.get(IDStrings.REINFORCED).getLiquidItemStack(1),
                         map.get(IDStrings.ALUBRASS).getLiquidItemStack(2),

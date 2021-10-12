@@ -20,7 +20,7 @@ public final class BlockUtils {
 
     public static boolean isValidBreakEvent(Block block, Player player) {
         return
-                !isPlaced(block)
+            !isPlaced(block)
                 && !BlockStorage.hasBlockInfo(block)
                 && !(block instanceof Container)
                 && Slimefun.getProtectionManager().hasPermission(player, block, Interaction.BREAK_BLOCK);

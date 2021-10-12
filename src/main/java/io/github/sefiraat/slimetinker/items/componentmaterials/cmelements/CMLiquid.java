@@ -14,8 +14,8 @@ import org.bukkit.inventory.ItemStack;
 @Getter
 public class CMLiquid {
 
-    private ComponentMaterial parent;
     private final String texture;
+    private ComponentMaterial parent;
     private SlimefunItemStack itemStack;
     private SlimefunItem item;
 
@@ -27,17 +27,17 @@ public class CMLiquid {
         this.parent = parent;
         String titName = ThemeUtils.toTitleCase(parent.getId());
         this.itemStack = ThemeUtils.themedItemStack(
-                parent.getId() + "_LIQUID",
-                texture,
-                ThemeItemType.MOLTEN_METAL,
-                "Molten " + titName,
-                ThemeUtils.PASSIVE + "The molten form of " + titName
+            parent.getId() + "_LIQUID",
+            texture,
+            ThemeItemType.MOLTEN_METAL,
+            "Molten " + titName,
+            ThemeUtils.PASSIVE + "The molten form of " + titName
         );
 
-        this.item = new SlimefunItem(ItemGroups.MOLTEN_METALS, itemStack, DummySmelteryMolten.TYPE, new ItemStack[] {
-                null, null,                             null,
-                null, parent.getRepresentativeStack(),  null,
-                null, null,                             null
+        this.item = new SlimefunItem(ItemGroups.MOLTEN_METALS, itemStack, DummySmelteryMolten.TYPE, new ItemStack[]{
+            null, null, null,
+            null, parent.getRepresentativeStack(), null,
+            null, null, null
         });
         item.register(SlimeTinker.inst());
     }

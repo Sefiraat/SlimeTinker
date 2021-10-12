@@ -17,17 +17,16 @@ import java.util.Map;
 @Data
 public class EventFriend {
 
+    private final Map<PotionEffectType, Integer> potionEffects = new HashMap<>();
     /**
      * Denotes if any of the event channels actually triggered.
      */
     private boolean actionTaken = false;
-
     /**
      * The type of item that the friend is currently working on
      */
     private ActiveFriendElement activeFriendElement;
     private TraitEventType eventType;
-
     @Nullable
     private ItemStack tool;
     @Nullable
@@ -38,31 +37,23 @@ public class EventFriend {
     private ItemStack leggings;
     @Nullable
     private ItemStack boots;
-
     private Player player;
-
     /**
      * The block broken in BlockBreakEvents
      */
     private Block block;
-
     /**
      * The entity doing the damaging (for EntityDamageEvents)
      * Otherwise use player for PlayerDamageEvents
      */
     private Entity damagedEntity;
-
     /**
      * The entity doing the damaging (for PlayerDamageEvents)
      * Otherwise use player for EntityDamageEvents
      */
     private Entity damagingEntity;
-
     private EntityDamageEvent.DamageCause cause;
     private double initialDamage = 0;
-
-    private final Map<PotionEffectType, Integer> potionEffects = new HashMap<>();
-
     // Settle event value modifiers
     private double toolExpMod = 1;
     private double helmExpMod = 1;
@@ -99,6 +90,11 @@ public class EventFriend {
     private int infinity = 0;
 
     private boolean blocksIntoInv = false;
+
+    public EventFriend(Player p, TraitEventType type) {
+        this.player = p;
+        this.eventType = type;
+    }
 
     public void incrementItemExpMod(double amount) {
         incrementItemExpMod(activeFriendElement, amount);
@@ -198,26 +194,25 @@ public class EventFriend {
     public Integer getToolLevel() {
         return ItemUtils.getTinkerLevel(tool);
     }
+
     @Nullable
     public Integer getHelmLevel() {
         return ItemUtils.getTinkerLevel(helmet);
     }
+
     @Nullable
     public Integer getChestLevel() {
         return ItemUtils.getTinkerLevel(chestplate);
     }
+
     @Nullable
     public Integer getLegLevel() {
         return ItemUtils.getTinkerLevel(leggings);
     }
+
     @Nullable
     public Integer getBootLevel() {
         return ItemUtils.getTinkerLevel(boots);
-    }
-
-    public EventFriend (Player p, TraitEventType type) {
-        this.player = p;
-        this.eventType = type;
     }
 
 }

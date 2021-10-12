@@ -28,18 +28,16 @@ import java.util.Optional;
 
 public final class TinkersSmelteryCache extends AbstractCache {
 
-    @Getter @Setter
-    private int levelLava;
-
-    @Getter
-    private final Map<String, Integer> tankContent = new LinkedHashMap<>();
-
     protected static final int LAVA_MAX = 1000;
     protected static final int LAVA_PER_BUCKET = 250;
     protected static final int METALS_MAX = 1000;
-
     protected static final String LAVA_LEVEL_BS = "tnk-lava-level";
     protected static final String METAL_LEVEL_PREFIX = "tnk-metal:";
+    @Getter
+    private final Map<String, Integer> tankContent = new LinkedHashMap<>();
+    @Getter
+    @Setter
+    private int levelLava;
 
     public TinkersSmelteryCache(BlockMenu blockMenu) {
         super(blockMenu);
@@ -104,7 +102,9 @@ public final class TinkersSmelteryCache extends AbstractCache {
     public void process(boolean first) {
         input();
         updateView();
-        if (!first) { syncBlock(); }
+        if (!first) {
+            syncBlock();
+        }
     }
 
     public void kill(Location location) {
@@ -243,7 +243,7 @@ public final class TinkersSmelteryCache extends AbstractCache {
         Optional<String> first = tankContent.keySet().stream().findFirst();
 
         // No metals in the tank - cant pour
-        if (!first.isPresent() ) {
+        if (!first.isPresent()) {
             player.sendMessage(ThemeUtils.WARNING + "There isn't any metal to pour.");
             return false;
         }

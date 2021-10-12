@@ -24,6 +24,17 @@ public class SlimeTinker extends AbstractAddon {
     public static final int RUNNABLE_TICK_RATE = 40;
 
     private static SlimeTinker instance;
+    @Getter
+    private RunnableManager runnableManager;
+    @Getter
+    private CMManager cmManager;
+    @Getter
+    private DispatchManager dispatchManager;
+    @Getter
+    private Keys keys;
+    @Getter
+    @Setter
+    private Workbench workbench;
 
     public SlimeTinker() {
         super("Sefiraat", "SlimeTinker", "master", "auto-update");
@@ -33,23 +44,10 @@ public class SlimeTinker extends AbstractAddon {
         return instance;
     }
 
-    @Getter
-    private RunnableManager runnableManager;
-    @Getter
-    private CMManager cmManager;
-    @Getter
-    private DispatchManager dispatchManager;
-
-    @Getter
-    private Keys keys;
-
-    @Getter @Setter
-    private Workbench workbench;
-
     @Override
     public void enable() {
 
-        new Metrics(this,11748);
+        new Metrics(this, 11748);
 
         instance = this;
         keys = new Keys();

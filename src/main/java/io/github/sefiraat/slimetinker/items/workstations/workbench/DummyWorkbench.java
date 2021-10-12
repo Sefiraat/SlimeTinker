@@ -9,18 +9,17 @@ import org.bukkit.Material;
 
 public final class DummyWorkbench {
 
+    public static final SlimefunItemStack STACK = ThemeUtils.themedItemStack(
+        "DUMMY_TINKERS_SMELTERY",
+        Material.FLETCHING_TABLE,
+        ThemeItemType.MACHINE,
+        "ToolTable",
+         "This item is crafted in the workbench."
+    );
+    public static final RecipeType TYPE = new RecipeType(SlimeTinker.inst().getKeys().getWsDummyWorkbench(), STACK);
+
     private DummyWorkbench() {
         throw new IllegalStateException("Utility class");
     }
-
-    public static final SlimefunItemStack STACK = ThemeUtils.themedItemStack(
-            "DUMMY_TINKERS_SMELTERY",
-            Material.FLETCHING_TABLE,
-            ThemeItemType.MACHINE,
-            "ToolTable",
-            "This item is crafted in the workbench."
-    );
-
-    public static final RecipeType TYPE = new RecipeType(SlimeTinker.inst().getKeys().getWsDummyWorkbench(), STACK);
 
 }

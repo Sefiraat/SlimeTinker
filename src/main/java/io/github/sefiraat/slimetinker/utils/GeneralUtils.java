@@ -28,19 +28,20 @@ public final class GeneralUtils {
     public static Location deserializeLocation(String s) {
         String[] split = s.split(";");
         return new Location(
-                SlimeTinker.inst().getServer().getWorld(split[0]),
-                Double.parseDouble(split[1]),
-                Double.parseDouble(split[2]),
-                Double.parseDouble(split[3]),
-                Float.parseFloat(split[4]),
-                Float.parseFloat(split[5])
+            SlimeTinker.inst().getServer().getWorld(split[0]),
+            Double.parseDouble(split[1]),
+            Double.parseDouble(split[2]),
+            Double.parseDouble(split[3]),
+            Float.parseFloat(split[4]),
+            Float.parseFloat(split[5])
         );
     }
 
     /**
      * Tests a chance roll starting from 1 to upper
+     *
      * @param chance The number the roll must be lower than
-     * @param upper The highest possible number that could roll (inclusive)
+     * @param upper  The highest possible number that could roll (inclusive)
      * @return true if roll passes
      */
     public static boolean testChance(int chance, int upper) {
@@ -49,6 +50,7 @@ public final class GeneralUtils {
 
     /**
      * Rolls a number starting from 1 to upper
+     *
      * @param upper The highest possible number that could roll (inclusive)
      * @return rolled int
      */
@@ -59,7 +61,8 @@ public final class GeneralUtils {
 
     /**
      * Rolls a number starting from 1 to upper
-     * @param upper The highest possible number that could roll (inclusive)
+     *
+     * @param upper   The highest possible number that could roll (inclusive)
      * @param upLimit If true, the bound will be increased for 1 for inclusivity while
      *                maintaining readability for manually typed numbers
      *                (i.e. Upper 50 converts to 51 returning a max of 50 still).

@@ -27,11 +27,11 @@ import javax.annotation.Nonnull;
 
 public class SwappingStation extends MenuBlock {
 
-    private static final int[] BACKGROUND_SLOTS = {0,1,2,3,4,5,6,7,8,9,11,13,15,17,18,19,20,21,22,23,24,25,26};
-    private static final int INPUT_ITEM = 10;
-    private static final int INPUT_PART = 12;
     protected static final int CRAFT_BUTTON = 14;
     protected static final int OUTPUT_SLOT = 16;
+    private static final int[] BACKGROUND_SLOTS = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 13, 15, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26};
+    private static final int INPUT_ITEM = 10;
+    private static final int INPUT_PART = 12;
 
     public SwappingStation(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);
@@ -185,7 +185,7 @@ public class SwappingStation extends MenuBlock {
             PersistentDataAPI.setString(im, sfIDKey, sID);
         } else if (!isExplosivePart(partMaterial, partClass) && ItemUtils.isToolExplosive(newTool)) {
             // Part is NOT explosive but the tool IS - we need to make it explosive!
-            sID = sID.replace("_EXP","");
+            sID = sID.replace("_EXP", "");
             PersistentDataAPI.setString(im, sfIDKey, sID);
         }
 
@@ -227,7 +227,7 @@ public class SwappingStation extends MenuBlock {
 
     private boolean isExplosivePart(String material, String part) {
         return (
-                (material.equals(IDStrings.REINFORCED) && part.equals(IDStrings.HEAD)) ||
+            (material.equals(IDStrings.REINFORCED) && part.equals(IDStrings.HEAD)) ||
                 (material.equals(IDStrings.HARD) && part.equals(IDStrings.ROD)) ||
                 (material.equals(IDStrings.SINGINFINITY) && part.equals(IDStrings.HEAD)) ||
                 (material.equals(IDStrings.OSMIUM) && part.equals(IDStrings.HEAD))

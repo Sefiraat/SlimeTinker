@@ -161,7 +161,7 @@ public final class BlockBreakEvents {
     }
 
     public static void headMagnonium(EventFriend friend) {
-        if (ThreadLocalRandom.current().nextInt(1,6) == 1) {
+        if (ThreadLocalRandom.current().nextInt(1, 6) == 1) {
             friend.getPlayer().dropItem(true);
         }
     }
@@ -223,18 +223,18 @@ public final class BlockBreakEvents {
 
     public static void linksHardened(EventFriend friend) {
         List<SlimefunItemStack> list = Arrays.asList(
-                SlimefunItems.MAGIC_LUMP_1,
-                SlimefunItems.MAGIC_LUMP_2,
-                SlimefunItems.ENDER_LUMP_1,
-                SlimefunItems.ENDER_LUMP_2,
-                SlimefunItems.PURE_ORE_CLUSTER,
-                SlimefunItems.SIFTED_ORE,
-                SlimefunItems.GILDED_IRON,
-                SlimefunItems.CARBON,
-                SlimefunItems.COMPRESSED_CARBON,
-                SlimefunItems.CARBON_CHUNK
+            SlimefunItems.MAGIC_LUMP_1,
+            SlimefunItems.MAGIC_LUMP_2,
+            SlimefunItems.ENDER_LUMP_1,
+            SlimefunItems.ENDER_LUMP_2,
+            SlimefunItems.PURE_ORE_CLUSTER,
+            SlimefunItems.SIFTED_ORE,
+            SlimefunItems.GILDED_IRON,
+            SlimefunItems.CARBON,
+            SlimefunItems.COMPRESSED_CARBON,
+            SlimefunItems.CARBON_CHUNK
         );
-        if (GeneralUtils.testChance(1,200)) {
+        if (GeneralUtils.testChance(1, 200)) {
             friend.getAddDrops().add(list.get(GeneralUtils.roll(list.size(), false)));
         }
     }

@@ -28,6 +28,22 @@ public class Commands extends BaseCommand {
         }
     }
 
+    @Subcommand("AddExp")
+    @CommandPermission("SlimeTinker.Admin")
+    @CommandCompletion("<amount>")
+    @Description("Adds EXP to the held item")
+    public void tool(CommandSender sender, int amount) {
+        if (sender instanceof Player) {
+            Player p = (Player) sender;
+            ItemStack i = p.getInventory().getItemInMainHand();
+            if (ItemUtils.isTool(i) || ItemUtils.isArmour(i)) {
+                Experience.addExp(i, amount, p, false);
+            }
+        } else {
+            sender.sendMessage(ThemeUtils.ERROR + "This can only be done as a player.");
+        }
+    }
+
     @Subcommand("GenerateItem")
     @CommandPermission("SlimeTinker.Admin")
     @Description("Creates a new SlimeTinker item")
@@ -63,22 +79,6 @@ public class Commands extends BaseCommand {
             }
         }
 
-    }
-
-    @Subcommand("AddExp")
-    @CommandPermission("SlimeTinker.Admin")
-    @CommandCompletion("<amount>")
-    @Description("Adds EXP to the held item")
-    public void tool(CommandSender sender, int amount) {
-        if (sender instanceof Player) {
-            Player p = (Player) sender;
-            ItemStack i = p.getInventory().getItemInMainHand();
-            if (ItemUtils.isTool(i) || ItemUtils.isArmour(i)) {
-                Experience.addExp(i, amount, p, false);
-            }
-        } else {
-            sender.sendMessage(ThemeUtils.ERROR + "This can only be done as a player.");
-        }
     }
 
 }

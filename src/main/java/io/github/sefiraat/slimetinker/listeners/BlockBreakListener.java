@@ -173,7 +173,7 @@ public class BlockBreakListener implements Listener {
                     ItemStack additionalDrop = new ItemStack(drop.getType());
                     additionalDrop.setAmount(additionalAmount);
                     addDrops.add(additionalDrop);
-                    Location location = block.getLocation().clone().add(0.5,0.5,0.5);
+                    Location location = block.getLocation().clone().add(0.5, 0.5, 0.5);
                     Particle.DustOptions dustOptions = new Particle.DustOptions(Color.BLUE, 2);
                     block.getWorld().spawnParticle(Particle.REDSTONE, location, 10, 0.2, 0.2, 0.2, 0.5, dustOptions);
                 }
@@ -184,7 +184,7 @@ public class BlockBreakListener implements Listener {
     public boolean isLockedTool(Player player, ItemStack itemStack) {
         SlimefunItem slimefunItem = SlimefunItem.getByItem(itemStack);
         return slimefunItem != null
-                && !slimefunItem.canUse(player, false);
+            && !slimefunItem.canUse(player, false);
     }
 
 }

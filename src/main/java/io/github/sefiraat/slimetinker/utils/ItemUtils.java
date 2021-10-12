@@ -103,6 +103,7 @@ public final class ItemUtils {
 
     /**
      * Gets the part's class (Head, Rod, Binder or Plate, Link, Gambeson)
+     *
      * @param itemStack The {@link ItemStack} part to check
      * @return Null if not found or the string class.
      */
@@ -114,18 +115,19 @@ public final class ItemUtils {
 
     public static boolean partIsTool(String partClass) {
         return partClass.equals(IDStrings.HEAD)
-                || partClass.equals(IDStrings.BINDING)
-                || partClass.equals(IDStrings.ROD);
+            || partClass.equals(IDStrings.BINDING)
+            || partClass.equals(IDStrings.ROD);
     }
 
     public static boolean partIsArmour(String partClass) {
         return partClass.equals(IDStrings.PLATE)
-                || partClass.equals(IDStrings.GAMBESON)
-                || partClass.equals(IDStrings.LINKS);
+            || partClass.equals(IDStrings.GAMBESON)
+            || partClass.equals(IDStrings.LINKS);
     }
 
     /**
      * Gets the part's type (Pick, Shovel // Helm, Chest) etc.)
+     *
      * @param itemStack The {@link ItemStack} part to check
      * @return Null if not found or the string class.
      */
@@ -290,10 +292,10 @@ public final class ItemUtils {
         assert im != null;
 
         String name =
-                CMManager.getById(first).getColor() + ThemeUtils.toTitleCase(first) + "-" +
-                        CMManager.getById(second).getColor() + ThemeUtils.toTitleCase(second) + "-" +
-                        CMManager.getById(third).getColor() + ThemeUtils.toTitleCase(third) + " " +
-                        ChatColor.WHITE + ThemeUtils.toTitleCase(type);
+            CMManager.getById(first).getColor() + ThemeUtils.toTitleCase(first) + "-" +
+                CMManager.getById(second).getColor() + ThemeUtils.toTitleCase(second) + "-" +
+                CMManager.getById(third).getColor() + ThemeUtils.toTitleCase(third) + " " +
+                ChatColor.WHITE + ThemeUtils.toTitleCase(type);
 
         im.setDisplayName(name);
         itemStack.setItemMeta(im);
@@ -451,32 +453,34 @@ public final class ItemUtils {
 
     /**
      * Checks if the given stack is a Tinker's Tool
+     *
      * @param itemStack Stack to check
      * @return true if Tinker's Tool
      */
     public static boolean isTool(@Nullable ItemStack itemStack) {
-        return  itemStack != null &&
-                itemStack.getType() != Material.AIR &&
-                itemStack.hasItemMeta() &&
-                itemStack.getItemMeta().getPersistentDataContainer().has(
-                        SlimeTinker.inst().getKeys().getToolInfoIsTool(),
-                        PersistentDataType.STRING
-                );
+        return itemStack != null &&
+            itemStack.getType() != Material.AIR &&
+            itemStack.hasItemMeta() &&
+            itemStack.getItemMeta().getPersistentDataContainer().has(
+                SlimeTinker.inst().getKeys().getToolInfoIsTool(),
+                PersistentDataType.STRING
+            );
     }
 
     /**
      * Checks if the given stack is a Tinker's Armour Piece
+     *
      * @param itemStack Stack to check
      * @return true if Tinker's Armour Piece
      */
     public static boolean isArmour(@Nullable ItemStack itemStack) {
-        return  itemStack != null &&
-                itemStack.getType() != Material.AIR &&
-                itemStack.hasItemMeta() &&
-                itemStack.getItemMeta().getPersistentDataContainer().has(
-                        SlimeTinker.inst().getKeys().getArmourInfoIsArmour(),
-                        PersistentDataType.STRING
-                );
+        return itemStack != null &&
+            itemStack.getType() != Material.AIR &&
+            itemStack.hasItemMeta() &&
+            itemStack.getItemMeta().getPersistentDataContainer().has(
+                SlimeTinker.inst().getKeys().getArmourInfoIsArmour(),
+                PersistentDataType.STRING
+            );
     }
 
     public static boolean isTinkers(@Nullable ItemStack itemStack) {
@@ -486,7 +490,7 @@ public final class ItemUtils {
     public static boolean doesNotWorkWhenBroken(ItemStack itemStack) {
         if (isTool(itemStack)) {
             return
-                    !getToolHeadMaterial(itemStack).equals(IDStrings.DURALIUM)
+                !getToolHeadMaterial(itemStack).equals(IDStrings.DURALIUM)
                     && !getToolRodMaterial(itemStack).equals(IDStrings.TITANIUM);
 
         }
@@ -516,10 +520,10 @@ public final class ItemUtils {
     public static boolean isEnchanting(ItemStack itemStack) {
         if (isTool(itemStack)) {
             return getToolHeadMaterial(itemStack).equals(IDStrings.SILVER)
-                    || getToolHeadMaterial(itemStack).equals(IDStrings.SINGSILVER);
+                || getToolHeadMaterial(itemStack).equals(IDStrings.SINGSILVER);
         } else if (isArmour(itemStack)) {
             return getArmourLinksMaterial(itemStack).equals(IDStrings.SILVER)
-                    || getArmourLinksMaterial(itemStack).equals(IDStrings.SINGSILVER);
+                || getArmourLinksMaterial(itemStack).equals(IDStrings.SINGSILVER);
         } else {
             return false;
         }
@@ -548,7 +552,7 @@ public final class ItemUtils {
     public static boolean isConductive(ItemStack itemStack) {
         if (isTool(itemStack)) {
             return getToolRodMaterial(itemStack).equals(IDStrings.COPPER)
-                    || getToolRodMaterial(itemStack).equals(IDStrings.SINGCOPPER);
+                || getToolRodMaterial(itemStack).equals(IDStrings.SINGCOPPER);
         } else {
             return false;
         }
@@ -573,11 +577,11 @@ public final class ItemUtils {
     public static boolean cannotDrop(ItemStack itemStack) {
         if (isTool(itemStack)) {
             return
-                    getToolRodMaterial(itemStack).equals(IDStrings.SOLDER)
+                getToolRodMaterial(itemStack).equals(IDStrings.SOLDER)
                     || getToolRodMaterial(itemStack).equals(IDStrings.UNPATENTABLIUM);
         } else if (isArmour(itemStack)) {
             return
-                    getArmourLinksMaterial(itemStack).equals(IDStrings.SOLDER);
+                getArmourLinksMaterial(itemStack).equals(IDStrings.SOLDER);
         } else {
             return false;
         }
@@ -655,13 +659,13 @@ public final class ItemUtils {
 
     public static String getLoreExp(PersistentDataContainer c) {
         return ThemeUtils.ITEM_TOOL + "Level: " +
-                ChatColor.WHITE + getTinkerLevel(c) +
-                ThemeUtils.PASSIVE + " (" + getTinkerExp(c) + " / " + getTinkerRequiredExp(c) + ")";
+            ChatColor.WHITE + getTinkerLevel(c) +
+            ThemeUtils.PASSIVE + " (" + getTinkerExp(c) + " / " + getTinkerRequiredExp(c) + ")";
     }
 
     public static String getLoreModSlots(PersistentDataContainer c) {
         return ThemeUtils.ITEM_TOOL + "Modifier Slots: " +
-                ChatColor.WHITE + getTinkerModifierSlots(c);
+            ChatColor.WHITE + getTinkerModifierSlots(c);
     }
 
     public static boolean rejectCraftingRecipe(SlimefunItemStack i) {
@@ -723,9 +727,9 @@ public final class ItemUtils {
 
     public static boolean isToolExplosive(String headMaterial, String rodMaterial) {
         return headMaterial.equals(IDStrings.REINFORCED)
-                || rodMaterial.equals(IDStrings.HARD)
-                || headMaterial.equals(IDStrings.SINGINFINITY)
-                || headMaterial.equals(IDStrings.OSMIUM);
+            || rodMaterial.equals(IDStrings.HARD)
+            || headMaterial.equals(IDStrings.SINGINFINITY)
+            || headMaterial.equals(IDStrings.OSMIUM);
     }
 
     // TODO Removed when/if returned to InfinityLib

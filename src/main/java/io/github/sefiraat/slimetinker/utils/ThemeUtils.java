@@ -67,10 +67,10 @@ public final class ThemeUtils {
 
     public static SlimefunItemStack themedItemStack(String id, String skull, ThemeItemType type, String name, String... loreLines) {
         BaseItem itemStack = new BaseItem(
-                id,
-                skull,
-                itemTypeColor(type) + name,
-                ""
+            id,
+            skull,
+            itemTypeColor(type) + name,
+            ""
         );
         ItemMeta im = itemStack.getItemMeta();
         List<String> lore = im.getLore();
@@ -86,10 +86,10 @@ public final class ThemeUtils {
 
     public static SlimefunItemStack themedItemStack(String id, Material material, ThemeItemType type, String name, String... loreLines) {
         BaseItem itemStack = new BaseItem(
-                id,
-                material,
-                itemTypeColor(type) + name,
-                ""
+            id,
+            material,
+            itemTypeColor(type) + name,
+            ""
         );
         ItemMeta im = itemStack.getItemMeta();
         List<String> lore = im.getLore();
@@ -105,10 +105,10 @@ public final class ThemeUtils {
 
     public static SlimefunItemStack themedItemStack(String id, String skull, ThemeItemType type, String name, List<String> loreLines) {
         BaseItem itemStack = new BaseItem(
-                id,
-                skull,
-                itemTypeColor(type) + name,
-                ""
+            id,
+            skull,
+            itemTypeColor(type) + name,
+            ""
         );
         ItemMeta im = itemStack.getItemMeta();
         List<String> lore = im.getLore();
@@ -124,10 +124,10 @@ public final class ThemeUtils {
 
     public static SlimefunItemStack themedItemStack(String id, Material material, ThemeItemType type, String name, List<String> loreLines) {
         BaseItem itemStack = new BaseItem(
-                id,
-                material,
-                itemTypeColor(type) + name,
-                ""
+            id,
+            material,
+            itemTypeColor(type) + name,
+            ""
         );
         ItemMeta im = itemStack.getItemMeta();
         List<String> lore = im.getLore();
@@ -143,47 +143,77 @@ public final class ThemeUtils {
 
     public static ChatColor itemTypeColor(ThemeItemType type) {
         switch (type) {
-            case DROP: return ITEM_RARE_DROP;
-            case CHEST: return ITEM_CHEST;
-            case MACHINE: return ITEM_MACHINE;
-            case CRAFTING: return ITEM_CRAFTING;
-            case MOLTEN_METAL: return ITEM_MOLTEN_METAL;
-            case LIQUID: return ITEM_LIQUID;
-            case CAST: return ITEM_CAST;
-            case PART: return ITEM_PART;
-            case TOOL: return ITEM_TOOL;
-            case ARMOUR: return ITEM_ARMOUR;
-            case INFO: return ITEM_INFO;
-            case MOD: return ITEM_MOD;
-            case PROP: return ITEM_PROP;
-            case MULT: return ITEM_MULTIBLOCK;
-            default: return ITEM_BASE;
+            case DROP:
+                return ITEM_RARE_DROP;
+            case CHEST:
+                return ITEM_CHEST;
+            case MACHINE:
+                return ITEM_MACHINE;
+            case CRAFTING:
+                return ITEM_CRAFTING;
+            case MOLTEN_METAL:
+                return ITEM_MOLTEN_METAL;
+            case LIQUID:
+                return ITEM_LIQUID;
+            case CAST:
+                return ITEM_CAST;
+            case PART:
+                return ITEM_PART;
+            case TOOL:
+                return ITEM_TOOL;
+            case ARMOUR:
+                return ITEM_ARMOUR;
+            case INFO:
+                return ITEM_INFO;
+            case MOD:
+                return ITEM_MOD;
+            case PROP:
+                return ITEM_PROP;
+            case MULT:
+                return ITEM_MULTIBLOCK;
+            default:
+                return ITEM_BASE;
         }
     }
 
     public static String itemTypeDescriptor(ThemeItemType type) {
         switch (type) {
-            case DROP: return LORE_TYPE_DROP;
-            case CHEST: return LORE_TYPE_CHEST;
-            case MACHINE: return LORE_TYPE_MACHINE;
-            case CRAFTING: return LORE_TYPE_CRAFT;
-            case MOLTEN_METAL: return LORE_MOLTEN_METAL;
-            case LIQUID: return LORE_LIQUID;
-            case CAST: return LORE_CAST;
-            case PART: return LORE_PART;
-            case TOOL: return LORE_TOOL;
-            case ARMOUR: return LORE_ARMOUR;
-            case INFO: return LORE_INFO;
-            case MOD: return LORE_MOD;
-            case PROP: return LORE_PROP;
-            case MULT: return LORE_MULTIBLOCK;
-            default: return LORE_TYPE_BASE;
+            case DROP:
+                return LORE_TYPE_DROP;
+            case CHEST:
+                return LORE_TYPE_CHEST;
+            case MACHINE:
+                return LORE_TYPE_MACHINE;
+            case CRAFTING:
+                return LORE_TYPE_CRAFT;
+            case MOLTEN_METAL:
+                return LORE_MOLTEN_METAL;
+            case LIQUID:
+                return LORE_LIQUID;
+            case CAST:
+                return LORE_CAST;
+            case PART:
+                return LORE_PART;
+            case TOOL:
+                return LORE_TOOL;
+            case ARMOUR:
+                return LORE_ARMOUR;
+            case INFO:
+                return LORE_INFO;
+            case MOD:
+                return LORE_MOD;
+            case PROP:
+                return LORE_PROP;
+            case MULT:
+                return LORE_MULTIBLOCK;
+            default:
+                return LORE_TYPE_BASE;
         }
     }
 
     public static String toTitleCase(String string) {
-        final char[] delimiters = { ' ', '_' };
-        return WordUtils.capitalizeFully(string, delimiters).replace("_"," ");
+        final char[] delimiters = {' ', '_'};
+        return WordUtils.capitalizeFully(string, delimiters).replace("_", " ");
     }
 
     public static String getLine() {

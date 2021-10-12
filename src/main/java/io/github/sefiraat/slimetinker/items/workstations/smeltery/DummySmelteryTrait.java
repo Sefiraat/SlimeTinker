@@ -9,20 +9,19 @@ import org.bukkit.Material;
 
 public final class DummySmelteryTrait {
 
+    public static final SlimefunItemStack STACK = ThemeUtils.themedItemStack(
+        "DUMMY_TINKERS_SMELTERY_PROP",
+        Material.CHISELED_POLISHED_BLACKSTONE,
+        ThemeItemType.MACHINE,
+        "Tinker's Smeltery",
+        "When a matching part is made using this",
+        "metal, it will give the finished tool",
+        "this property."
+    );
+    public static final RecipeType TYPE = new RecipeType(SlimeTinker.inst().getKeys().getWsDummySmelteryA(), STACK);
+
     private DummySmelteryTrait() {
         throw new IllegalStateException("Utility class");
     }
-
-    public static final SlimefunItemStack STACK = ThemeUtils.themedItemStack(
-            "DUMMY_TINKERS_SMELTERY_PROP",
-            Material.CHISELED_POLISHED_BLACKSTONE,
-            ThemeItemType.MACHINE,
-            "Tinker's Smeltery",
-            "When a matching part is made using this",
-            "metal, it will give the finished tool",
-            "this property."
-    );
-
-    public static final RecipeType TYPE = new RecipeType(SlimeTinker.inst().getKeys().getWsDummySmelteryA(), STACK);
 
 }

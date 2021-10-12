@@ -8,6 +8,7 @@ import io.github.sefiraat.slimetinker.utils.EntityUtils;
 import io.github.sefiraat.slimetinker.utils.GeneralUtils;
 import io.github.sefiraat.slimetinker.utils.ItemUtils;
 import io.github.sefiraat.slimetinker.utils.ThemeUtils;
+import io.github.thebusybiscuit.slimefun4.api.MinecraftVersion;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.core.attributes.Rechargeable;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
@@ -82,9 +83,9 @@ public final class RightClickEvents {
         ItemStack i = friend.getTool();
 
         if (!ItemUtils.onCooldown(i, "NOCLIP")) {
-            int rndX = ThreadLocalRandom.current().nextInt(-25,26);
-            int rndY = ThreadLocalRandom.current().nextInt(0,5);
-            int rndZ = ThreadLocalRandom.current().nextInt(-25,26);
+            int rndX = ThreadLocalRandom.current().nextInt(-25, 26);
+            int rndY = ThreadLocalRandom.current().nextInt(0, 5);
+            int rndZ = ThreadLocalRandom.current().nextInt(-25, 26);
             Location location = p.getLocation().clone().add(rndX, rndY, rndZ);
             if (p.getWorld().getBlockAt(location).getType() == Material.AIR) {
                 p.teleport(location);
@@ -103,7 +104,7 @@ public final class RightClickEvents {
         Validate.notNull(im, "Meta is null, nope!");
         double d = PersistentDataAPI.getDouble(im, k, 0);
         if (d > 1) {
-            List<Entity> entityList = friend.getPlayer().getNearbyEntities(3,3,3);
+            List<Entity> entityList = friend.getPlayer().getNearbyEntities(3, 3, 3);
             for (Entity e : entityList) {
                 if (e instanceof LivingEntity) {
                     LivingEntity l = (LivingEntity) e;
@@ -204,5 +205,20 @@ public final class RightClickEvents {
             }
         }
 
+    }
+
+    public static void headSefirite(EventFriend friend) {
+        final ItemStack tool = friend.getActiveStack();
+        final Player player = friend.getPlayer();
+        if (!ItemUtils.onCooldown(tool, "celebrate")) {
+            Block potential = player.getTargetBlock(null, 5).getRelative(BlockFace.UP);
+            if (potential.getType() == Material.AIR && Slimefun.getProtectionManager().hasPermission(player, potential, Interaction.PLACE_BLOCK)) {
+                MinecraftVersion minecraftVersion = Slimefun.getMinecraftVersion();
+                potential.setType(minecraftVersion.isAtLeast(MinecraftVersion.MINECRAFT_1_17) ? Material.BLACK_CANDLE_CAKE : Material.CAKE);
+                ItemUtils.setCooldown(tool, "celebrate", 3600000);
+            }
+        } else {
+            player.sendMessage(ThemeUtils.WARNING + "This ability is on cooldown.");
+        }
     }
 }

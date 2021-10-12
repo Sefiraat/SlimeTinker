@@ -62,12 +62,11 @@ public class PlayerInteractListener implements Listener {
             String type = ItemUtils.getToolTypeName(itemStack);
             Validate.notNull(type, "Item is tool but without a type? /sf cheat or other error has happened.");
             return ((type.equals(IDStrings.HOE) || type.equals(IDStrings.SHOVEL))
-                    && (block.getType() == Material.DIRT || block.getType() == Material.GRASS_BLOCK));
+                && (block.getType() == Material.DIRT || block.getType() == Material.GRASS_BLOCK));
         } else {
             return false;
         }
     }
-
 
 
 }

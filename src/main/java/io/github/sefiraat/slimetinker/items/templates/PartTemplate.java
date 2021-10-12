@@ -19,12 +19,17 @@ import java.util.List;
 
 public class PartTemplate extends UnplaceableBlock {
 
+    private final String name;
     @Getter
     private String materialType;
 
-    private final String name;
+    public PartTemplate(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe, String name) {
+        super(itemGroup, item, recipeType, recipe);
+        this.name = name;
+    }
 
-    public String getName(String material) { return ThemeUtils.toTitleCase(material) + ThemeUtils.ITEM_PART + " " + name;
+    public String getName(String material) {
+        return ThemeUtils.toTitleCase(material) + ThemeUtils.ITEM_PART + " " + name;
     }
 
     public List<String> getLore(String material, ChatColor color) {
@@ -51,11 +56,6 @@ public class PartTemplate extends UnplaceableBlock {
         }
         itemStack.setItemMeta(im);
         return itemStack;
-    }
-
-    public PartTemplate(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe, String name) {
-        super(itemGroup, item, recipeType, recipe);
-        this.name = name;
     }
 
 }

@@ -7,7 +7,8 @@ import org.bukkit.inventory.ItemStack;
 
 import java.util.Map;
 
-@Getter @AllArgsConstructor
+@Getter
+@AllArgsConstructor
 public class CastResult {
 
     private final String id;

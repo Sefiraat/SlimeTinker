@@ -14,7 +14,7 @@ public final class DummyToolTable {
         Material.SMITHING_TABLE,
         ThemeItemType.MACHINE,
         "Tinker's Tool Table",
-        ThemeUtils.PASSIVE + "This item is made on a Tinker's Tool Table."
+         "This item is made on a Tinker's Tool Table."
     );
     public static final RecipeType TYPE = new RecipeType(SlimeTinker.inst().getKeys().getWsDummyToolTable(), STACK);
 

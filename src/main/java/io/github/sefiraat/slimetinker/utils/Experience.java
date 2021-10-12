@@ -51,7 +51,7 @@ public final class Experience {
 
         if (modLevels.containsKey(Material.EMERALD.toString())) { // EMERALD
             int eLevel = modLevels.get(Material.EMERALD.toString());
-            if (eLevel > 0) amount = tool ? amount + eLevel : (int) Math.ceil(amount * (eLevel * 0.1));
+            if (eLevel > 0) amount = tool ? amount + eLevel : (int) Math.ceil(amount * (1 + eLevel * 0.1));
         }
 
         // Check if it's due to level up

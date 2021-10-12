@@ -6,8 +6,6 @@ import lombok.Getter;
 @Getter
 public class CMForms {
 
-    private ComponentMaterial parent;
-
     private final String formNugget;
     private final String formIngot;
     private final String formBlock;
@@ -18,6 +16,7 @@ public class CMForms {
     private final String formLeg;
     private final String formChest;
     private final String formHelm;
+    private ComponentMaterial parent;
 
     public CMForms(String formNugget, String formIngot, String formBlock, String formOre, String formGem, String formDust, String formBoot, String formLeg, String formChest, String formHelm) {
         this.formNugget = formNugget;

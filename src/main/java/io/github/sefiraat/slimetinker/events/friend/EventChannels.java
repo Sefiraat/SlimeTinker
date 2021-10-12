@@ -39,6 +39,7 @@ public class EventChannels {
     /**
      * We give 20 ticks bonus to traits so they stay active between applications.
      * We give more to confusion for the outro and much more to night vision for blinking
+     *
      * @param potionEffectType The PotionEffect being applied
      * @return int for number of bonus ticks required
      */
@@ -85,7 +86,7 @@ public class EventChannels {
 
     private boolean eventShouldCancelIfBroken(ItemStack i, TraitEventType type) {
         return
-                (ItemUtils.isTinkersBroken(i) && ItemUtils.doesNotWorkWhenBroken(i))
+            (ItemUtils.isTinkersBroken(i) && ItemUtils.doesNotWorkWhenBroken(i))
                 && (type == TraitEventType.BLOCK_BREAK || type == TraitEventType.ENTITY_DAMAGED);
     }
 

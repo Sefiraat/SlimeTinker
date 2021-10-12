@@ -24,22 +24,19 @@ import java.util.Map;
 
 public class TinkersSmeltery extends TickingMenuBlock {
 
-    private static final int[] BACKGROUND_SLOTS = {27,29,31,35};
-    private static final int[] BACKGROUND_INPUT_SLOTS = {0,1,2,9,11,18,19,20};
-    private static final int[] BACKGROUND_CAST_SLOTS = {3,4,5,12,14,21,22,23};
-    private static final int[] BACKGROUND_OUTPUT_SLOTS = {6,7,8,15,17,24,25,26};
-    protected static final int[] CAST_STORE_SLOTS = {36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53};
+    protected static final int[] CAST_STORE_SLOTS = {36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53};
     protected static final int INPUT_SLOT = 10;
     protected static final int CAST_SLOT = 13;
     protected static final int OUTPUT_SLOT = 16;
-
     protected static final int PURGE_BUTTON = 32;
     protected static final int ALLOY_BUTTON = 33;
     protected static final int POUR_BUTTON = 34;
-
     protected static final int LAVA_INFO = 28;
     protected static final int METAL_INFO = 30;
-
+    private static final int[] BACKGROUND_SLOTS = {27, 29, 31, 35};
+    private static final int[] BACKGROUND_INPUT_SLOTS = {0, 1, 2, 9, 11, 18, 19, 20};
+    private static final int[] BACKGROUND_CAST_SLOTS = {3, 4, 5, 12, 14, 21, 22, 23};
+    private static final int[] BACKGROUND_OUTPUT_SLOTS = {6, 7, 8, 15, 17, 24, 25, 26};
     private final Map<Location, TinkersSmelteryCache> caches = new HashMap<>();
 
     public TinkersSmeltery(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
@@ -80,12 +77,12 @@ public class TinkersSmeltery extends TickingMenuBlock {
 
     @Override
     protected int[] getInputSlots() {
-        return new int[] {INPUT_SLOT};
+        return new int[]{INPUT_SLOT};
     }
 
     @Override
     protected int[] getOutputSlots() {
-        return new int[] {OUTPUT_SLOT};
+        return new int[]{OUTPUT_SLOT};
     }
 
     @Override
@@ -106,7 +103,9 @@ public class TinkersSmeltery extends TickingMenuBlock {
         TinkersSmelteryCache cache = new TinkersSmelteryCache(menu);
 
         String lavaLevel = BlockStorage.getLocationInfo(menu.getLocation(), TinkersSmelteryCache.LAVA_LEVEL_BS);
-        if (lavaLevel != null) { cache.setLevelLava(Integer.parseInt(lavaLevel)); }
+        if (lavaLevel != null) {
+            cache.setLevelLava(Integer.parseInt(lavaLevel));
+        }
 
         Config c = BlockStorage.getLocationInfo(menu.getLocation());
 
@@ -135,8 +134,8 @@ public class TinkersSmeltery extends TickingMenuBlock {
         Location controllerLoc = blockMenu.getLocation();
         Block b = controllerLoc.getBlock();
         //if (BlockStorage. controllerLoc.getBlock().getRelative(BlockFace.UP))
-        Map<String, Integer>  blockMapXY = getBlockMapXY(b);
-        Map<String, Integer>  blockMapZY = getBlockMapZY(b);
+        Map<String, Integer> blockMapXY = getBlockMapXY(b);
+        Map<String, Integer> blockMapZY = getBlockMapZY(b);
 
         if (!blockMapXY.equals(blockMapMaster) && !blockMapZY.equals(blockMapMaster)) {
             player.sendMessage(ThemeUtils.WARNING + "This multiblock has not been setup correctly.");
@@ -149,7 +148,7 @@ public class TinkersSmeltery extends TickingMenuBlock {
         Map<String, Integer> blockMapXY = new HashMap<>();
         for (int x = -1; x <= 1; x++) {
             for (int y = -1; y <= 1; y++) {
-                String id = BlockStorage.getLocationInfo(b.getRelative(x,y,0).getLocation(),"id");
+                String id = BlockStorage.getLocationInfo(b.getRelative(x, y, 0).getLocation(), "id");
                 if (id != null) {
                     if (blockMapXY.containsKey(id)) {
                         blockMapXY.put(id, blockMapXY.get(id) + 1);
@@ -166,7 +165,7 @@ public class TinkersSmeltery extends TickingMenuBlock {
         Map<String, Integer> blockMapZY = new HashMap<>();
         for (int z = -1; z <= 1; z++) {
             for (int y = -1; y <= 1; y++) {
-                String id = BlockStorage.getLocationInfo(b.getRelative(0,y,z).getLocation(),"id");
+                String id = BlockStorage.getLocationInfo(b.getRelative(0, y, z).getLocation(), "id");
                 if (id != null) {
                     if (blockMapZY.containsKey(id)) {
                         blockMapZY.put(id, blockMapZY.get(id) + 1);

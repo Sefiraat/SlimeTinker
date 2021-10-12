@@ -28,7 +28,7 @@ public final class DurabilityEvents {
     }
 
     public static void headAluminum(EventFriend friend) {
-        if (ThreadLocalRandom.current().nextInt(1,4) == 1) {
+        if (ThreadLocalRandom.current().nextInt(1, 4) == 1) {
             ItemUtils.incrementRepair(friend.getTool(), 1);
             friend.setCancelEvent(true);
         }
@@ -55,7 +55,7 @@ public final class DurabilityEvents {
     }
 
     public static void headSingAluminum(EventFriend friend) {
-        if (ThreadLocalRandom.current().nextInt(1,4) == 1) {
+        if (ThreadLocalRandom.current().nextInt(1, 4) == 1) {
             ItemUtils.incrementRepair(friend.getTool(), 2);
             friend.setCancelEvent(true);
         }

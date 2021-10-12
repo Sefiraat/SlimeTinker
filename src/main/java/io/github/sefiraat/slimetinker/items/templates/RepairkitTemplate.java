@@ -21,10 +21,21 @@ import java.util.List;
 
 public class RepairkitTemplate extends UnplaceableBlock {
 
+    private final String name;
     @Getter
     private String materialType;
 
-    private final String name;
+    public RepairkitTemplate(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe, String name) {
+        super(itemGroup, item, recipeType, recipe);
+        this.name = name;
+    }
+
+    public static boolean isRepairKit(ItemStack itemStack) {
+        NamespacedKey key = SlimeTinker.inst().getKeys().getPartClass();
+        ItemMeta im = itemStack.getItemMeta();
+        Validate.notNull(im, "Meta is null, wrong wrong wrong.");
+        return PersistentDataAPI.getString(im, key).equals(IDStrings.REPAIR);
+    }
 
     public String getName(String material) {
         return ThemeUtils.toTitleCase(material) + ThemeUtils.ITEM_PART + " " + name;
@@ -52,18 +63,6 @@ public class RepairkitTemplate extends UnplaceableBlock {
 
         itemStack.setItemMeta(im);
         return itemStack;
-    }
-
-    public RepairkitTemplate(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe, String name) {
-        super(itemGroup, item, recipeType, recipe);
-        this.name = name;
-    }
-
-    public static boolean isRepairKit(ItemStack itemStack) {
-        NamespacedKey key = SlimeTinker.inst().getKeys().getPartClass();
-        ItemMeta im = itemStack.getItemMeta();
-        Validate.notNull(im, "Meta is null, wrong wrong wrong.");
-        return  PersistentDataAPI.getString(im, key).equals(IDStrings.REPAIR);
     }
 
 }

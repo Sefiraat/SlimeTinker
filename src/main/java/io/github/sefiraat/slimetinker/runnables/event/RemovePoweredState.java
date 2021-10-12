@@ -19,7 +19,7 @@ public class RemovePoweredState extends BukkitRunnable {
 
     @Override
     public void run() {
-        for (Entity e : block.getWorld().getNearbyEntities(block.getLocation(), 1,1,1)) {
+        for (Entity e : block.getWorld().getNearbyEntities(block.getLocation(), 1, 1, 1)) {
             if (e instanceof Player) {
                 Player p = (Player) e;
                 if (p.getUniqueId() == player.getUniqueId()) {

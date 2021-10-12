@@ -8,10 +8,6 @@ import java.util.EnumMap;
 
 public final class BlockMap {
 
-    private BlockMap() {
-        throw new IllegalStateException("Utility class");
-    }
-
     @Getter
     protected static final EnumMap<Material, String> materialMap = new EnumMap<>(Material.class);
 
@@ -131,6 +127,10 @@ public final class BlockMap {
                     break;
             }
         }
+    }
+
+    private BlockMap() {
+        throw new IllegalStateException("Utility class");
     }
 
 }

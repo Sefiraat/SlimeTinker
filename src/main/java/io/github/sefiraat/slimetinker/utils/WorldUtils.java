@@ -141,13 +141,14 @@ public class WorldUtils {
     }
 
     public static Location getMid(World world, double x1, double y1, double z1, double x2, double y2, double z2) {
-        return new Location(world,x1 + (x2 - x1) * 0.5, y1 + (y2 - y1) * 0.5, z1 + (z2 - z1) * 0.5);
+        return new Location(world, x1 + (x2 - x1) * 0.5, y1 + (y2 - y1) * 0.5, z1 + (z2 - z1) * 0.5);
     }
 
     /**
      * Scans the given bounds range around the given location for a random block
      * If allowAir is false then will try max 50 times then return null
-     * @param l {@link Location} to start looking from
+     *
+     * @param l      {@link Location} to start looking from
      * @param boundX The maximum distance on the X axis
      * @param boundY The maximum distance on the Y axis
      * @param boundZ The maximum distance on the Z axis
@@ -161,7 +162,8 @@ public class WorldUtils {
     /**
      * Scans the given bounds range around the given location for a random block
      * If allowAir is false then will try max 50 times then return null
-     * @param p {@link Player} to start looking from
+     *
+     * @param p      {@link Player} to start looking from
      * @param boundX The maximum distance on the X axis
      * @param boundY The maximum distance on the Y axis
      * @param boundZ The maximum distance on the Z axis
@@ -175,7 +177,8 @@ public class WorldUtils {
     /**
      * Scans the given bounds range around the given location for a random block
      * If allowAir is false then will try max 50 times then return null
-     * @param b {@link Block} to start looking from
+     *
+     * @param b      {@link Block} to start looking from
      * @param boundX The maximum distance on the X axis
      * @param boundY The maximum distance on the Y axis
      * @param boundZ The maximum distance on the Z axis
@@ -204,7 +207,8 @@ public class WorldUtils {
 
     /**
      * Scans the given bounds range around the given location for a random location
-     * @param b {@link Block} to start looking from
+     *
+     * @param b      {@link Block} to start looking from
      * @param boundX The maximum distance on the X axis
      * @param boundY The maximum distance on the Y axis
      * @param boundZ The maximum distance on the Z axis
@@ -217,7 +221,8 @@ public class WorldUtils {
 
     /**
      * Scans the given bounds range around the given location for a random location
-     * @param e {@link Entity} to start looking from
+     *
+     * @param e      {@link Entity} to start looking from
      * @param boundX The maximum distance on the X axis
      * @param boundY The maximum distance on the Y axis
      * @param boundZ The maximum distance on the Z axis
@@ -230,7 +235,8 @@ public class WorldUtils {
 
     /**
      * Scans the given bounds range around the given location for a random location
-     * @param l {@link Location} to start looking from
+     *
+     * @param l      {@link Location} to start looking from
      * @param boundX The maximum distance on the X axis
      * @param boundY The maximum distance on the Y axis
      * @param boundZ The maximum distance on the Z axis

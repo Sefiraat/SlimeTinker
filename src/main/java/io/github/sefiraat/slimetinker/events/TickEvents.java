@@ -61,7 +61,7 @@ public final class TickEvents {
     }
 
     public static void binderTwistingVine(EventFriend friend) {
-        for (Entity entity : friend.getPlayer().getNearbyEntities(5,5,5)) {
+        for (Entity entity : friend.getPlayer().getNearbyEntities(5, 5, 5)) {
             if (entity instanceof Item) {
                 Location eLoc = entity.getLocation();
                 Location pLoc = friend.getPlayer().getLocation();
@@ -76,7 +76,7 @@ public final class TickEvents {
 
     public static void binderCrimsonRoot(EventFriend friend) {
         if (!GeneralUtils.day(friend.getPlayer().getWorld())) {
-            int rnd = ThreadLocalRandom.current().nextInt(1,5);
+            int rnd = ThreadLocalRandom.current().nextInt(1, 5);
             if (rnd == 1) {
                 ItemUtils.incrementRepair(friend.getTool());
             }
@@ -101,7 +101,7 @@ public final class TickEvents {
 
     public static void binderVine(EventFriend friend) {
         if (GeneralUtils.day(friend.getPlayer().getWorld())) {
-            int rnd = ThreadLocalRandom.current().nextInt(1,5);
+            int rnd = ThreadLocalRandom.current().nextInt(1, 5);
             if (rnd == 1) {
                 ItemUtils.incrementRepair(friend.getTool());
             }
@@ -122,8 +122,8 @@ public final class TickEvents {
     }
 
     public static void rodMagnesium(EventFriend friend) {
-        for (Entity entity : friend.getPlayer().getNearbyEntities(10,10,10)) {
-            if (entity instanceof Item && ThreadLocalRandom.current().nextInt(1,3) == 1) {
+        for (Entity entity : friend.getPlayer().getNearbyEntities(10, 10, 10)) {
+            if (entity instanceof Item && ThreadLocalRandom.current().nextInt(1, 3) == 1) {
                 entity.teleport(friend.getPlayer().getLocation());
             }
         }
@@ -142,7 +142,7 @@ public final class TickEvents {
     }
 
     public static void bindWarpedRoot(EventFriend friend) {
-        int rnd = ThreadLocalRandom.current().nextInt(1,5);
+        int rnd = ThreadLocalRandom.current().nextInt(1, 5);
         if (rnd == 1) {
             friend.getPlayer().setHealth(Math.min(friend.getPlayer().getHealth() + 1, friend.getPlayer().getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue()));
         }
@@ -218,7 +218,7 @@ public final class TickEvents {
     }
 
     public static void rodSingMagnesium(EventFriend friend) {
-        for (Entity entity : friend.getPlayer().getNearbyEntities(10,10,10)) {
+        for (Entity entity : friend.getPlayer().getNearbyEntities(10, 10, 10)) {
             if (entity instanceof Item) {
                 Location eLoc = entity.getLocation();
                 Location pLoc = friend.getPlayer().getLocation();
@@ -237,7 +237,7 @@ public final class TickEvents {
     }
 
     public static void rodMagic(EventFriend friend) {
-        for (Entity entity : friend.getPlayer().getNearbyEntities(10,10,10)) {
+        for (Entity entity : friend.getPlayer().getNearbyEntities(10, 10, 10)) {
             if (entity instanceof LivingEntity) {
                 LivingEntity l = (LivingEntity) entity;
                 l.addPotionEffect(new PotionEffect(PotionEffectType.GLOWING, SlimeTinker.RUNNABLE_TICK_RATE + 5, 0));
@@ -250,7 +250,7 @@ public final class TickEvents {
     }
 
     public static void rodMythril(EventFriend friend) {
-        for (Entity entity : friend.getPlayer().getNearbyEntities(5,5,5)) {
+        for (Entity entity : friend.getPlayer().getNearbyEntities(5, 5, 5)) {
             if (entity instanceof Monster && (entity.getType() != EntityType.WITHER && entity.getType() != EntityType.ENDER_DRAGON)) {
                 Monster l = (Monster) entity;
                 EntityUtils.push(l, friend.getPlayer().getLocation(), 0.2);
@@ -265,7 +265,7 @@ public final class TickEvents {
     }
 
     public static void headMagic(EventFriend friend) {
-        for (Entity entity : friend.getPlayer().getNearbyEntities(5,5,5)) {
+        for (Entity entity : friend.getPlayer().getNearbyEntities(5, 5, 5)) {
             int rnd = ThreadLocalRandom.current().nextInt(1, 10);
             if (entity instanceof LivingEntity) {
                 LivingEntity l = (LivingEntity) entity;
@@ -277,9 +277,9 @@ public final class TickEvents {
                         l.addPotionEffect(new PotionEffect(PotionEffectType.POISON, 100, 0, true, true, false));
                         break;
                     case 3:
-                        int rndX = ThreadLocalRandom.current().nextInt(-25,26);
-                        int rndY = ThreadLocalRandom.current().nextInt(0,5);
-                        int rndZ = ThreadLocalRandom.current().nextInt(-25,26);
+                        int rndX = ThreadLocalRandom.current().nextInt(-25, 26);
+                        int rndY = ThreadLocalRandom.current().nextInt(0, 5);
+                        int rndZ = ThreadLocalRandom.current().nextInt(-25, 26);
                         Location location = l.getLocation().clone().add(rndX, rndY, rndZ);
                         if (entity.getWorld().getBlockAt(location).getType() == Material.AIR) {
                             entity.teleport(location);
@@ -312,10 +312,10 @@ public final class TickEvents {
         increaseEffect(PotionEffectType.SLOW_DIGGING, friend.getPotionEffects());
     }
 
-    // todo Find a way for 'real' following without NMS??
+    // todo Find a way for 'real' following without NMS - Spoke w/Walshy Jeff Alle - USE PAPER :O ??
     public static void rodStarDust(EventFriend friend) {
         increaseEffect(PotionEffectType.GLOWING, friend.getPotionEffects());
-        for (Entity e : friend.getPlayer().getNearbyEntities(10,10,10)) {
+        for (Entity e : friend.getPlayer().getNearbyEntities(10, 10, 10)) {
             if (e instanceof Villager) {
                 Location eLoc = e.getLocation();
                 Location pLoc = friend.getPlayer().getLocation();
@@ -344,7 +344,7 @@ public final class TickEvents {
     }
 
     public static void gambesonTwistingWines(EventFriend friend) {
-        for (Entity entity : friend.getPlayer().getNearbyEntities(5,5,5)) {
+        for (Entity entity : friend.getPlayer().getNearbyEntities(5, 5, 5)) {
             if (entity instanceof Item) {
                 Location eLoc = entity.getLocation();
                 Location pLoc = friend.getPlayer().getLocation();
@@ -362,7 +362,7 @@ public final class TickEvents {
     }
 
     public static void plateAluBronze(EventFriend friend) {
-        int rnd = ThreadLocalRandom.current().nextInt(0,5);
+        int rnd = ThreadLocalRandom.current().nextInt(0, 5);
         if (rnd == 0) {
             Player player = friend.getPlayer();
             Set<Block> blocks = new HashSet<>();
@@ -383,21 +383,21 @@ public final class TickEvents {
                         return;
                     }
                     List<Material> flowers = Arrays.asList(
-                            Material.DANDELION,
-                            Material.POPPY,
-                            Material.BLUE_ORCHID,
-                            Material.ALLIUM,
-                            Material.AZURE_BLUET,
-                            Material.WHITE_TULIP,
-                            Material.ORANGE_TULIP,
-                            Material.PINK_TULIP,
-                            Material.RED_TULIP,
-                            Material.OXEYE_DAISY,
-                            Material.CORNFLOWER,
-                            Material.LILY_OF_THE_VALLEY,
-                            Material.SUNFLOWER
+                        Material.DANDELION,
+                        Material.POPPY,
+                        Material.BLUE_ORCHID,
+                        Material.ALLIUM,
+                        Material.AZURE_BLUET,
+                        Material.WHITE_TULIP,
+                        Material.ORANGE_TULIP,
+                        Material.PINK_TULIP,
+                        Material.RED_TULIP,
+                        Material.OXEYE_DAISY,
+                        Material.CORNFLOWER,
+                        Material.LILY_OF_THE_VALLEY,
+                        Material.SUNFLOWER
                     );
-                    above.setType(flowers.get(ThreadLocalRandom.current().nextInt(0,flowers.size())));
+                    above.setType(flowers.get(ThreadLocalRandom.current().nextInt(0, flowers.size())));
                 }
             }
         }
@@ -406,7 +406,7 @@ public final class TickEvents {
     public static void brightBurn(EventFriend friend) {
         friend.setBrightBurn(friend.getBrightBurn() + 1);
         if (friend.getBrightBurn() >= 4) {
-            for (Entity entity : friend.getPlayer().getNearbyEntities(5,5,5)) {
+            for (Entity entity : friend.getPlayer().getNearbyEntities(5, 5, 5)) {
                 if (entity instanceof Monster && !(entity instanceof Boss)) {
                     EntityUtils.push((LivingEntity) entity, friend.getPlayer().getLocation(), 0.3);
                 }
@@ -421,7 +421,7 @@ public final class TickEvents {
 
     public static void gambesonCrimsonRoots(EventFriend friend) {
         if (!GeneralUtils.day(friend.getPlayer().getWorld())) {
-            int rnd = ThreadLocalRandom.current().nextInt(1,5);
+            int rnd = ThreadLocalRandom.current().nextInt(1, 5);
             if (rnd == 1) {
                 ItemUtils.incrementRepair(friend.getActiveStack());
             }
@@ -438,7 +438,7 @@ public final class TickEvents {
 
     public static void gambesonVine(EventFriend friend) {
         if (GeneralUtils.day(friend.getPlayer().getWorld())) {
-            int rnd = ThreadLocalRandom.current().nextInt(1,5);
+            int rnd = ThreadLocalRandom.current().nextInt(1, 5);
             if (rnd == 1) {
                 ItemUtils.incrementRepair(friend.getActiveStack());
             }
@@ -474,7 +474,7 @@ public final class TickEvents {
         int neg = friend.getNegativity();
         int range = (pos + neg) - Math.abs(pos - neg);
         if (range > 0) {
-            for (Entity entity : friend.getPlayer().getNearbyEntities(range,range,range)) {
+            for (Entity entity : friend.getPlayer().getNearbyEntities(range, range, range)) {
                 if (entity instanceof Item) {
                     Location pLoc = friend.getPlayer().getLocation();
                     entity.teleport(pLoc);
@@ -526,8 +526,8 @@ public final class TickEvents {
     }
 
     public static void plateCorBronze(EventFriend friend) {
-        if (GeneralUtils.testChance(1,5)) {
-            for (Entity entity : friend.getPlayer().getNearbyEntities(2,2,2)) {
+        if (GeneralUtils.testChance(1, 5)) {
+            for (Entity entity : friend.getPlayer().getNearbyEntities(2, 2, 2)) {
                 if (entity instanceof Mob) {
                     entity.setFireTicks(100);
                 }
@@ -580,7 +580,7 @@ public final class TickEvents {
         Block stoodBlock = p.getLocation().clone().subtract(0, 1, 0).getBlock();
         for (int x = -2; x <= 2; x++) {
             for (int z = -2; z <= 2; z++) {
-                Block b = stoodBlock.getRelative(x, 0 ,z);
+                Block b = stoodBlock.getRelative(x, 0, z);
                 if (Slimefun.getProtectionManager().hasPermission(p, b, Interaction.PLACE_BLOCK) && b.getType() == Material.LAVA) {
                     Levelled l = (Levelled) b.getBlockData();
                     if (l.getLevel() == 0) {
@@ -627,7 +627,7 @@ public final class TickEvents {
             Location l = WorldUtils.getRandomLocationInRange(p, 3, 3, 3);
             Vex v = (Vex) p.getWorld().spawnEntity(l, EntityType.VEX);
             v.setTarget(p);
-            ItemUtils.setCooldown(i, "annoying",600000);
+            ItemUtils.setCooldown(i, "annoying", 600000);
         }
     }
 
@@ -666,7 +666,7 @@ public final class TickEvents {
 
     public static void plateStardust(EventFriend friend) {
         Player p = friend.getPlayer();
-        if (!GeneralUtils.day(p.getWorld()) && GeneralUtils.testChance(5,100)) {
+        if (!GeneralUtils.day(p.getWorld()) && GeneralUtils.testChance(5, 100)) {
             p.setHealth(Math.min(p.getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue(), p.getHealth() + 1));
         }
     }
@@ -698,13 +698,12 @@ public final class TickEvents {
         Player p = friend.getPlayer();
         Entity e = EntityUtils.getEntityLookedAtByEntity(p);
         if (
-                e != null
+            e != null
                 && !(e instanceof Player)
                 && !(e instanceof ArmorStand)
                 && !(e instanceof Boss)
                 && Slimefun.getProtectionManager().hasPermission(p, e.getLocation(), Interaction.INTERACT_ENTITY)
-        )
-        {
+        ) {
             e.teleport(friend.getPlayer().getLocation());
         }
     }

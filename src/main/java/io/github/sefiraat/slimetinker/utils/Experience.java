@@ -126,9 +126,4 @@ public final class Experience {
             player.sendMessage(ThemeUtils.SUCCESS + "It also gained [" + amount + "] random enchantment(s)! Hope it's good :>");
         }
     }
-
-
-
-
-
 }

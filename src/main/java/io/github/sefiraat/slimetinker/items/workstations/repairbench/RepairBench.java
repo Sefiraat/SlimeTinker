@@ -23,11 +23,11 @@ import javax.annotation.Nonnull;
 
 public class RepairBench extends MenuBlock {
 
-    private static final int[] BACKGROUND_SLOTS = {0,1,2,3,4,5,6,7,8,9,11,13,15,17,18,19,20,21,22,23,24,25,26};
-    private static final int INPUT_TOOL = 10;
-    private static final int INPUT_KIT = 12;
     protected static final int CRAFT_BUTTON = 14;
     protected static final int OUTPUT_SLOT = 16;
+    private static final int[] BACKGROUND_SLOTS = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 13, 15, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26};
+    private static final int INPUT_TOOL = 10;
+    private static final int INPUT_KIT = 12;
 
     public RepairBench(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);

@@ -4,7 +4,8 @@ import io.github.sefiraat.slimetinker.items.componentmaterials.ComponentMaterial
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
-@Getter @AllArgsConstructor
+@Getter
+@AllArgsConstructor
 public class MoltenResult {
 
     private final ComponentMaterial componentMaterial;

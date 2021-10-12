@@ -40,11 +40,11 @@ public class KingsmanSpam extends BukkitRunnable {
             int rnd4 = GeneralUtils.roll(255);
             int rnd5 = GeneralUtils.roll(255);
 
-            Particle.DustOptions d1 = new Particle.DustOptions(Color.fromRGB(rnd1,rnd2,rnd3), 5);
-            Particle.DustOptions d2 = new Particle.DustOptions(Color.fromRGB(rnd5,rnd1,rnd2), 5);
-            Particle.DustOptions d3 = new Particle.DustOptions(Color.fromRGB(rnd4,rnd5,rnd1), 5);
-            Particle.DustOptions d4 = new Particle.DustOptions(Color.fromRGB(rnd3,rnd4,rnd5), 5);
-            Particle.DustOptions d5 = new Particle.DustOptions(Color.fromRGB(rnd2,rnd3,rnd4), 5);
+            Particle.DustOptions d1 = new Particle.DustOptions(Color.fromRGB(rnd1, rnd2, rnd3), 5);
+            Particle.DustOptions d2 = new Particle.DustOptions(Color.fromRGB(rnd5, rnd1, rnd2), 5);
+            Particle.DustOptions d3 = new Particle.DustOptions(Color.fromRGB(rnd4, rnd5, rnd1), 5);
+            Particle.DustOptions d4 = new Particle.DustOptions(Color.fromRGB(rnd3, rnd4, rnd5), 5);
+            Particle.DustOptions d5 = new Particle.DustOptions(Color.fromRGB(rnd2, rnd3, rnd4), 5);
 
             Location l1 = WorldUtils.getRandomLocationInRange(p, 5, 2, 5);
             Location l2 = WorldUtils.getRandomLocationInRange(p, 5, 2, 5);

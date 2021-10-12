@@ -19,11 +19,11 @@ import java.util.Map;
 @Getter
 public class CMAlloy {
 
+    private final Map<String, Integer> alloyMap = new HashMap<>();
+    private final List<SlimefunItemStack> recipe;
     private ComponentMaterial parent;
     private SlimefunItemStack itemStack;
     private SlimefunItem item;
-    private final Map<String, Integer> alloyMap = new HashMap<>();
-    private final List<SlimefunItemStack> recipe;
 
     public CMAlloy(List<SlimefunItemStack> recipe) {
         this.recipe = recipe;
@@ -33,19 +33,19 @@ public class CMAlloy {
         this.parent = parent;
         String titName = ThemeUtils.toTitleCase(parent.getId());
         this.itemStack =
-                ThemeUtils.themedItemStack(
-                        parent.getId() + "_ALLOY",
-                        parent.getLiquidTexture(),
-                        ThemeItemType.MOLTEN_METAL,
-                        "Molten " + titName,
-                        ThemeUtils.PASSIVE + "A molten alloy metal of " + titName
-                );
+            ThemeUtils.themedItemStack(
+                parent.getId() + "_ALLOY",
+                parent.getLiquidTexture(),
+                ThemeItemType.MOLTEN_METAL,
+                "Molten " + titName,
+                ThemeUtils.PASSIVE + "A molten alloy metal of " + titName
+            );
         List<SlimefunItemStack> alloyRecipe = parent.getAlloyRecipe();
         Validate.notNull(alloyRecipe, "Alloy recipe is null. SefiDumb™");
         this.item = new SlimefunItem(ItemGroups.ALLOYS, itemStack, DummySmelteryAlloy.TYPE, alloyRecipe.toArray(new ItemStack[9]));
         item.register(SlimeTinker.inst());
         for (SlimefunItemStack i : parent.getAlloyRecipe()) {
-            alloyMap.put(i.getItemId().replace("_LIQUID",""), i.getAmount());
+            alloyMap.put(i.getItemId().replace("_LIQUID", ""), i.getAmount());
         }
     }
 

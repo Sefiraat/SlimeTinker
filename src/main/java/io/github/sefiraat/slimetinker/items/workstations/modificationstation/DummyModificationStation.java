@@ -9,21 +9,20 @@ import org.bukkit.Material;
 
 public final class DummyModificationStation {
 
+    public static final SlimefunItemStack STACK = ThemeUtils.themedItemStack(
+        "DUMMY_MODIFICATION_STATION",
+        Material.GRINDSTONE,
+        ThemeItemType.MACHINE,
+        "Tinker's Modification Station",
+        "Tools are augmented on the Modification",
+        "station using the appropriate material.",
+        "Once enough material has been added, the",
+        "modification will level."
+    );
+    public static final RecipeType TYPE = new RecipeType(SlimeTinker.inst().getKeys().getWsDummyToolTable(), STACK);
+
     private DummyModificationStation() {
         throw new IllegalStateException("Utility class");
     }
-
-    public static final SlimefunItemStack STACK = ThemeUtils.themedItemStack(
-            "DUMMY_MODIFICATION_STATION",
-            Material.GRINDSTONE,
-            ThemeItemType.MACHINE,
-            "Tinker's Modification Station",
-            "Tools are augmented on the Modification",
-            "station using the appropriate material.",
-            "Once enough material has been added, the",
-            "modification will level."
-    );
-
-    public static final RecipeType TYPE = new RecipeType(SlimeTinker.inst().getKeys().getWsDummyToolTable(), STACK);
 
 }

@@ -19,13 +19,12 @@ import java.util.Locale;
 @Getter
 public class CMTrait {
 
-    private CMTraits parent;
-    private ComponentMaterial parentCM;
-
     private final String traitName;
     private final String[] lore;
     private final String addedBy;
     private final SlimefunItemStack partType;
+    private CMTraits parent;
+    private ComponentMaterial parentCM;
     private SlimefunItemStack itemStack;
     private SlimefunItem item;
 
@@ -44,13 +43,13 @@ public class CMTrait {
         newLore.add("");
         newLore.add(ThemeUtils.ITEM_TYPEDESC + "Added by: " + addedBy);
         this.itemStack =
-                ThemeUtils.themedItemStack(
-                        traitName.toUpperCase(Locale.ROOT).replace(" ","_") + "_TRAIT_" + partType.getItemId().toUpperCase(Locale.ROOT) + "_" + ItemUtils.getIdOrType(parentCM.getRepresentativeStack()),
-                        CMTraits.getTraitTexture(addedBy),
-                        ThemeItemType.PROP,
-                        "Trait : " + traitName,
-                        newLore
-                );
+            ThemeUtils.themedItemStack(
+                traitName.toUpperCase(Locale.ROOT).replace(" ", "_") + "_TRAIT_" + partType.getItemId().toUpperCase(Locale.ROOT) + "_" + ItemUtils.getIdOrType(parentCM.getRepresentativeStack()),
+                CMTraits.getTraitTexture(addedBy),
+                ThemeItemType.PROP,
+                "Trait : " + traitName,
+                newLore
+            );
         this.item = new SlimefunItem(ItemGroups.TRAITS, itemStack, DummySmelteryTrait.TYPE, CMTraits.propRecipe(partType, parentCM.getRepresentativeStack()));
         item.register(SlimeTinker.inst());
 

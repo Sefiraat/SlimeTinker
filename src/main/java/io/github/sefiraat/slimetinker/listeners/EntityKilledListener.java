@@ -30,7 +30,7 @@ import static io.github.sefiraat.slimetinker.events.friend.EventChannels.settleP
 
 public class EntityKilledListener implements Listener {
 
-    protected final Map<Player, List<ItemStack>>  heldItems = new HashMap<>();
+    protected final Map<Player, List<ItemStack>> heldItems = new HashMap<>();
 
     @SuppressWarnings("unused")
     @EventHandler
@@ -127,7 +127,7 @@ public class EntityKilledListener implements Listener {
             if (additionalAmount > 0) {
                 ItemStack additionalDrop = new ItemStack(drop.getType());
                 additionalDrop.setAmount(additionalAmount);
-                Location location = entity.getLocation().clone().add(0.5,0.5,0.5);
+                Location location = entity.getLocation().clone().add(0.5, 0.5, 0.5);
                 entity.getWorld().dropItemNaturally(location, additionalDrop);
                 Particle.DustOptions dustOptions = new Particle.DustOptions(Color.BLUE, 2);
                 entity.getWorld().spawnParticle(Particle.REDSTONE, location, 10, 0.2, 0.2, 0.2, 0.5, dustOptions);

@@ -51,12 +51,11 @@ public class ComponentMaterial {
     private final Map<TraitEventType, Map<TraitPartType, Consumer<EventFriend>>> cmEventMap = new EnumMap<>(TraitEventType.class);
 
     /**
-     *
-     * @param cmIdentity Defines the ID, Displayed ItemStack for recipes, SkullTexture for liquids and the Color for theming lore and names
-     * @param alloyRecipe List of material IDs that can be found in the CMMap used to build alloy recipes
+     * @param cmIdentity   Defines the ID, Displayed ItemStack for recipes, SkullTexture for liquids and the Color for theming lore and names
+     * @param alloyRecipe  List of material IDs that can be found in the CMMap used to build alloy recipes
      * @param cmToolMakeup Defines what parts this material can be formed into
-     * @param cmForms Defines the solid forms of metals that can be used for input
-     * @param cmTraits A collection of cmTraits for each potential part
+     * @param cmForms      Defines the solid forms of metals that can be used for input
+     * @param cmTraits     A collection of cmTraits for each potential part
      */
     public ComponentMaterial(CMIdentity cmIdentity,
                              @Nullable List<SlimefunItemStack> alloyRecipe,
@@ -69,7 +68,7 @@ public class ComponentMaterial {
         this.cmToolMakeup = cmToolMakeup;
         this.cmForms = cmForms;
 
-        if (cmIdentity.getLiquidTexture()  != null) {
+        if (cmIdentity.getLiquidTexture() != null) {
             this.cmLiquid = new CMLiquid(cmIdentity.getLiquidTexture());
             cmLiquid.setupLiquid(this);
         } else {
@@ -135,19 +134,19 @@ public class ComponentMaterial {
         // Plates
         if (cmToolMakeup.isValidPlates()) {
             //CMManager.MAP_CAST_ARMOUR_PLATES_HELM.put(this, Parts.HELM_PLATE.getStack(cmIdentity.getId(), PLATE, HELMET, getColor()));
-            new PartTemplate(ItemGroups.PART_DICT, platesStack(cmIdentity.getId(),  "HELMET", SkullTextures.PART_HELM_PLATES), DummySmeltery.TYPE, basicRecipe(Casts.CAST_HELM_PLATE, getLiquidItemStack(CMManager.AMOUNT_ARM_HELM)), cmIdentity.getId()).register(SlimeTinker.inst());
+            new PartTemplate(ItemGroups.PART_DICT, platesStack(cmIdentity.getId(), "HELMET", SkullTextures.PART_HELM_PLATES), DummySmeltery.TYPE, basicRecipe(Casts.CAST_HELM_PLATE, getLiquidItemStack(CMManager.AMOUNT_ARM_HELM)), cmIdentity.getId()).register(SlimeTinker.inst());
         }
         if (cmToolMakeup.isValidPlates()) {
             //CMManager.MAP_CAST_ARMOUR_PLATES_CHEST.put(this, Parts.CHEST_PLATE.getStack(cmIdentity.getId(), PLATE, CHESTPLATE, getColor()));
-            new PartTemplate(ItemGroups.PART_DICT, platesStack(cmIdentity.getId(),  "CHESTPLATE", SkullTextures.PART_CHEST_PLATES), DummySmeltery.TYPE, basicRecipe(Casts.CAST_CHEST_PLATE, getLiquidItemStack(CMManager.AMOUNT_ARM_CHEST)), cmIdentity.getId()).register(SlimeTinker.inst());
+            new PartTemplate(ItemGroups.PART_DICT, platesStack(cmIdentity.getId(), "CHESTPLATE", SkullTextures.PART_CHEST_PLATES), DummySmeltery.TYPE, basicRecipe(Casts.CAST_CHEST_PLATE, getLiquidItemStack(CMManager.AMOUNT_ARM_CHEST)), cmIdentity.getId()).register(SlimeTinker.inst());
         }
         if (cmToolMakeup.isValidPlates()) {
             //CMManager.MAP_CAST_ARMOUR_PLATES_LEGGINGS.put(this, Parts.LEG_PLATE.getStack(cmIdentity.getId(), PLATE, LEGGINGS, getColor()));
-            new PartTemplate(ItemGroups.PART_DICT, platesStack(cmIdentity.getId(),  "LEGGINGS", SkullTextures.PART_LEG_PLATES), DummySmeltery.TYPE, basicRecipe(Casts.CAST_LEG_PLATE, getLiquidItemStack(CMManager.AMOUNT_ARM_LEG)), cmIdentity.getId()).register(SlimeTinker.inst());
+            new PartTemplate(ItemGroups.PART_DICT, platesStack(cmIdentity.getId(), "LEGGINGS", SkullTextures.PART_LEG_PLATES), DummySmeltery.TYPE, basicRecipe(Casts.CAST_LEG_PLATE, getLiquidItemStack(CMManager.AMOUNT_ARM_LEG)), cmIdentity.getId()).register(SlimeTinker.inst());
         }
         if (cmToolMakeup.isValidPlates()) {
             //CMManager.MAP_CAST_ARMOUR_PLATES_BOOTS.put(this, Parts.BOOT_PLATE.getStack(cmIdentity.getId(), PLATE, BOOTS, getColor()));
-            new PartTemplate(ItemGroups.PART_DICT, platesStack(cmIdentity.getId(),  "BOOTS", SkullTextures.PART_BOOTS_PLATES), DummySmeltery.TYPE, basicRecipe(Casts.CAST_BOOT_PLATE, getLiquidItemStack(CMManager.AMOUNT_ARM_BOOT)), cmIdentity.getId()).register(SlimeTinker.inst());
+            new PartTemplate(ItemGroups.PART_DICT, platesStack(cmIdentity.getId(), "BOOTS", SkullTextures.PART_BOOTS_PLATES), DummySmeltery.TYPE, basicRecipe(Casts.CAST_BOOT_PLATE, getLiquidItemStack(CMManager.AMOUNT_ARM_BOOT)), cmIdentity.getId()).register(SlimeTinker.inst());
         }
 
         // Gambeson
@@ -174,11 +173,11 @@ public class ComponentMaterial {
     public SlimefunItemStack headStack(String name, String type, String skullTexture) {
         String titName = ThemeUtils.toTitleCase(name);
         return ThemeUtils.themedItemStack(
-                "PART_HEAD_" + type + name,
-                skullTexture,
-                ThemeItemType.PART,
-                getColor() + titName + ThemeUtils.ITEM_PART + " " + ThemeUtils.toTitleCase(type) + " Head",
-        ThemeUtils.PASSIVE + "A tool head made of " + titName + "."
+            "PART_HEAD_" + type + name,
+            skullTexture,
+            ThemeItemType.PART,
+            getColor() + titName + ThemeUtils.ITEM_PART + " " + ThemeUtils.toTitleCase(type) + " Head",
+            ThemeUtils.PASSIVE + "A tool head made of " + titName + "."
         );
     }
 
@@ -186,11 +185,11 @@ public class ComponentMaterial {
     public SlimefunItemStack bindingStack(String name) {
         String titName = ThemeUtils.toTitleCase(name);
         SlimefunItemStack i = ThemeUtils.themedItemStack(
-                "PART_BINDING_" + name,
-                SkullTextures.PART_BINDING,
-                ThemeItemType.PART,
-                getColor() + titName + ThemeUtils.ITEM_PART +  " Binding",
-                ThemeUtils.PASSIVE + "A binding made of " + titName + "."
+            "PART_BINDING_" + name,
+            SkullTextures.PART_BINDING,
+            ThemeItemType.PART,
+            getColor() + titName + ThemeUtils.ITEM_PART + " Binding",
+            ThemeUtils.PASSIVE + "A binding made of " + titName + "."
         );
 
         ItemMeta im = i.getItemMeta();
@@ -206,22 +205,22 @@ public class ComponentMaterial {
     public SlimefunItemStack rodStack(String name) {
         String titName = ThemeUtils.toTitleCase(name);
         return ThemeUtils.themedItemStack(
-                "PART_ROD_" + name,
-                SkullTextures.PART_TOOL_ROD,
-                ThemeItemType.PART,
-                getColor() + titName + ThemeUtils.ITEM_PART + " Rod",
-                ThemeUtils.PASSIVE + "A tool rod made of " + titName + "."
+            "PART_ROD_" + name,
+            SkullTextures.PART_TOOL_ROD,
+            ThemeItemType.PART,
+            getColor() + titName + ThemeUtils.ITEM_PART + " Rod",
+            ThemeUtils.PASSIVE + "A tool rod made of " + titName + "."
         );
     }
 
     public SlimefunItemStack platesStack(String name, String type, String skullTexture) {
         String titName = ThemeUtils.toTitleCase(name);
         return ThemeUtils.themedItemStack(
-                "PART_PLATES_" + type + name,
-                skullTexture,
-                ThemeItemType.PART,
-                getColor() + titName + ThemeUtils.ITEM_PART + " " + ThemeUtils.toTitleCase(type) + " Plates",
-        ThemeUtils.PASSIVE + "A set of armour plates made of " + titName + "."
+            "PART_PLATES_" + type + name,
+            skullTexture,
+            ThemeItemType.PART,
+            getColor() + titName + ThemeUtils.ITEM_PART + " " + ThemeUtils.toTitleCase(type) + " Plates",
+            ThemeUtils.PASSIVE + "A set of armour plates made of " + titName + "."
         );
     }
 
@@ -229,11 +228,11 @@ public class ComponentMaterial {
     public SlimefunItemStack gambesonStack(String name) {
         String titName = ThemeUtils.toTitleCase(name);
         SlimefunItemStack i = ThemeUtils.themedItemStack(
-                "PART_GAMBESON_" + name,
-                SkullTextures.PART_GAMBESON,
-                ThemeItemType.PART,
-                getColor() + titName + ThemeUtils.ITEM_PART +  " Gambeson",
-                ThemeUtils.PASSIVE + "A gambeson made of " + titName + "."
+            "PART_GAMBESON_" + name,
+            SkullTextures.PART_GAMBESON,
+            ThemeItemType.PART,
+            getColor() + titName + ThemeUtils.ITEM_PART + " Gambeson",
+            ThemeUtils.PASSIVE + "A gambeson made of " + titName + "."
         );
 
         ItemMeta im = i.getItemMeta();
@@ -248,47 +247,47 @@ public class ComponentMaterial {
     public SlimefunItemStack linksStack(String name) {
         String titName = ThemeUtils.toTitleCase(name);
         return ThemeUtils.themedItemStack(
-                "PART_LINKS_" + name,
-                SkullTextures.PART_LINKS,
-                ThemeItemType.PART,
-                getColor() + titName + ThemeUtils.ITEM_PART + " Mail Links",
-                ThemeUtils.PASSIVE + "A set of mail links made of " + titName + "."
+            "PART_LINKS_" + name,
+            SkullTextures.PART_LINKS,
+            ThemeItemType.PART,
+            getColor() + titName + ThemeUtils.ITEM_PART + " Mail Links",
+            ThemeUtils.PASSIVE + "A set of mail links made of " + titName + "."
         );
     }
 
     public SlimefunItemStack repairStack(String name) {
         String titName = ThemeUtils.toTitleCase(name);
         return ThemeUtils.themedItemStack(
-                "PART_REPAIR_KIT_" + name,
-                Material.CHEST_MINECART,
-                ThemeItemType.PART,
-                getColor() + titName + ThemeUtils.ITEM_PART + " Repair Kit",
-                ThemeUtils.PASSIVE + "A kit that is able to repair items",
-                "made out of " + titName + "."
+            "PART_REPAIR_KIT_" + name,
+            Material.CHEST_MINECART,
+            ThemeItemType.PART,
+            getColor() + titName + ThemeUtils.ITEM_PART + " Repair Kit",
+            ThemeUtils.PASSIVE + "A kit that is able to repair items",
+            "made out of " + titName + "."
         );
     }
 
     public ItemStack[] basicRecipe(ItemStack i, ItemStack i2) {
-        return new ItemStack[] {
-            null,   null,   null,
-            i,     null,   i2,
-            null,   null,   null
+        return new ItemStack[]{
+            null, null, null,
+            i, null, i2,
+            null, null, null
         };
     }
 
     public ItemStack[] bindingRecipe(ItemStack i) {
-        return new ItemStack[] {
-            i,      null,   i,
-            null,   i,      null,
-            i,      null,   i
+        return new ItemStack[]{
+            i, null, i,
+            null, i, null,
+            i, null, i
         };
     }
 
     public ItemStack[] gambesonRecipe(ItemStack i) {
-        return new ItemStack[] {
-            null,   i,      i,
-            i,      null,   i,
-            i,      i,      null
+        return new ItemStack[]{
+            null, i, i,
+            i, null, i,
+            i, i, null
         };
     }
 
@@ -377,16 +376,15 @@ public class ComponentMaterial {
     }
 
     /**
-     *
      * Runs an event based on the type of event the listener is requesting and the tool part.
      * If an event does not exist, nothing happens.
      *
-     * @param type "The type of event that will be triggered. Different cmEventMap can fire based on the listener (tick event) raising
-     * @param part "The tool part to be tested against this material type"
+     * @param type   "The type of event that will be triggered. Different cmEventMap can fire based on the listener (tick event) raising
+     * @param part   "The tool part to be tested against this material type"
      * @param friend "The EventFriend to be carried through the cmEventMap to the settle phase"
      */
     public void runEvent(TraitEventType type, TraitPartType part, EventFriend friend) {
-        if(!cmEventMap.containsKey(type)) {
+        if (!cmEventMap.containsKey(type)) {
             return;
         }
         Map<TraitPartType, Consumer<EventFriend>> map = cmEventMap.get(type);

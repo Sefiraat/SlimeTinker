@@ -16,4 +16,4 @@ commands:
   slimetinker:
     description: /slimetinker
     usage: /slimetinker <sub>
-    aliases: [st, tinker]
+    aliases: [ st, tinker ]

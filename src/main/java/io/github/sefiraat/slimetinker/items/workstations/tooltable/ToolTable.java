@@ -27,19 +27,19 @@ import javax.annotation.Nonnull;
 
 public class ToolTable extends TickingMenuBlock {
 
-    private static final int[] BACKGROUND_SLOTS = {0,8,9,17,18,26,27,31,35,36,44,45,49,53};
-    private static final int[] BACKGROUND_INPUTS = {1,3,5,7,10,12,14,16,19,20,21,22,23,24,25};
-    private static final int[] BACKGROUND_PREVIEW = {28,29,30,37,39,46,47,48};
-    private static final int[] BACKGROUND_OUTPUT = {32,33,34,41,43,50,51,52};
+    protected static final int PREVIEW_SLOT = 38;
+    protected static final int CRAFT_BUTTON = 40;
+    protected static final int OUTPUT_SLOT = 42;
+    private static final int[] BACKGROUND_SLOTS = {0, 8, 9, 17, 18, 26, 27, 31, 35, 36, 44, 45, 49, 53};
+    private static final int[] BACKGROUND_INPUTS = {1, 3, 5, 7, 10, 12, 14, 16, 19, 20, 21, 22, 23, 24, 25};
+    private static final int[] BACKGROUND_PREVIEW = {28, 29, 30, 37, 39, 46, 47, 48};
+    private static final int[] BACKGROUND_OUTPUT = {32, 33, 34, 41, 43, 50, 51, 52};
     private static final int MARKER_ROD = 2;
     private static final int MARKER_BINDER = 4;
     private static final int MARKER_HEAD = 6;
     private static final int INPUT_ROD = 11;
     private static final int INPUT_BINDING = 13;
     private static final int INPUT_HEAD = 15;
-    protected static final int PREVIEW_SLOT = 38;
-    protected static final int CRAFT_BUTTON = 40;
-    protected static final int OUTPUT_SLOT = 42;
 
     public ToolTable(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);
@@ -82,15 +82,15 @@ public class ToolTable extends TickingMenuBlock {
         ItemStack tool;
 
         ToolDefinition toolDefinition = new ToolDefinition(
-                hm.getPersistentDataContainer().get(SlimeTinker.inst().getKeys().getPartClass(), PersistentDataType.STRING),
-                hm.getPersistentDataContainer().get(SlimeTinker.inst().getKeys().getPartType(), PersistentDataType.STRING),
-                hm.getPersistentDataContainer().get(SlimeTinker.inst().getKeys().getPartMaterial(), PersistentDataType.STRING),
-                bm.getPersistentDataContainer().get(SlimeTinker.inst().getKeys().getPartMaterial(), PersistentDataType.STRING),
-                rm.getPersistentDataContainer().get(SlimeTinker.inst().getKeys().getPartMaterial(), PersistentDataType.STRING)
+            hm.getPersistentDataContainer().get(SlimeTinker.inst().getKeys().getPartClass(), PersistentDataType.STRING),
+            hm.getPersistentDataContainer().get(SlimeTinker.inst().getKeys().getPartType(), PersistentDataType.STRING),
+            hm.getPersistentDataContainer().get(SlimeTinker.inst().getKeys().getPartMaterial(), PersistentDataType.STRING),
+            bm.getPersistentDataContainer().get(SlimeTinker.inst().getKeys().getPartMaterial(), PersistentDataType.STRING),
+            rm.getPersistentDataContainer().get(SlimeTinker.inst().getKeys().getPartMaterial(), PersistentDataType.STRING)
         );
 
         if (
-                toolDefinition.getHeadMaterial().equals(IDStrings.REINFORCED) ||
+            toolDefinition.getHeadMaterial().equals(IDStrings.REINFORCED) ||
                 toolDefinition.getRodMaterial().equals(IDStrings.HARD) ||
                 toolDefinition.getHeadMaterial().equals(IDStrings.SINGINFINITY) ||
                 toolDefinition.getHeadMaterial().equals(IDStrings.OSMIUM)

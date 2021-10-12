@@ -9,20 +9,19 @@ import org.bukkit.Material;
 
 public final class DummySmeltery {
 
+    public static final SlimefunItemStack STACK = ThemeUtils.themedItemStack(
+        "DUMMY_TINKERS_SMELTERY",
+        Material.CHISELED_POLISHED_BLACKSTONE,
+        ThemeItemType.MACHINE,
+        "Tinker's Smeltery",
+        "This item is cast out from the",
+        "tinkers smeltery using the",
+        "relevant cast and metal/liquid."
+    );
+    public static final RecipeType TYPE = new RecipeType(SlimeTinker.inst().getKeys().getWsDummySmeltery(), STACK);
+
     private DummySmeltery() {
         throw new IllegalStateException("Utility class");
     }
-
-    public static final SlimefunItemStack STACK = ThemeUtils.themedItemStack(
-            "DUMMY_TINKERS_SMELTERY",
-            Material.CHISELED_POLISHED_BLACKSTONE,
-            ThemeItemType.MACHINE,
-            "Tinker's Smeltery",
-            "This item is cast out from the",
-            "tinkers smeltery using the",
-            "relevant cast and metal/liquid."
-    );
-
-    public static final RecipeType TYPE = new RecipeType(SlimeTinker.inst().getKeys().getWsDummySmeltery(), STACK);
 
 }

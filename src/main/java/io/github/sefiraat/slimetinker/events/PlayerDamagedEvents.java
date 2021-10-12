@@ -114,11 +114,11 @@ public final class PlayerDamagedEvents {
             if (!ItemUtils.onCooldown(i, "PROTECTIVE")) {
                 p.setHealth(1);
                 friend.setDamageMod(0);
-                Particle.DustOptions dustOptions = new Particle.DustOptions(Color.fromRGB(20,20,20), 2);
+                Particle.DustOptions dustOptions = new Particle.DustOptions(Color.fromRGB(20, 20, 20), 2);
                 p.getWorld().spawnParticle(Particle.REDSTONE, p.getLocation(), 30, 3, 3, 3, 1, dustOptions);
-                Particle.DustOptions dustOptions2 = new Particle.DustOptions(Color.fromRGB(1,1,1), 2);
+                Particle.DustOptions dustOptions2 = new Particle.DustOptions(Color.fromRGB(1, 1, 1), 2);
                 p.getWorld().spawnParticle(Particle.REDSTONE, p.getLocation(), 30, 3, 3, 3, 1, dustOptions2);
-                Particle.DustOptions dustOptions3 = new Particle.DustOptions(Color.fromRGB(40,40,40), 2);
+                Particle.DustOptions dustOptions3 = new Particle.DustOptions(Color.fromRGB(40, 40, 40), 2);
                 p.getWorld().spawnParticle(Particle.REDSTONE, p.getLocation(), 30, 3, 3, 3, 1, dustOptions3);
                 p.sendMessage(ThemeUtils.WARNING + "Protective has saved you from death. It's now on cooldown - take care!");
                 ItemUtils.setCooldown(i, "PROTECTIVE", 1200000);
@@ -211,11 +211,11 @@ public final class PlayerDamagedEvents {
     }
 
     public static void linksAluBrass(EventFriend friend) {
-        int rnd = ThreadLocalRandom.current().nextInt(0,30);
+        int rnd = ThreadLocalRandom.current().nextInt(0, 30);
         if (rnd == 0) {
-            int rndX = ThreadLocalRandom.current().nextInt(-25,26);
-            int rndY = ThreadLocalRandom.current().nextInt(0,5);
-            int rndZ = ThreadLocalRandom.current().nextInt(-25,26);
+            int rndX = ThreadLocalRandom.current().nextInt(-25, 26);
+            int rndY = ThreadLocalRandom.current().nextInt(0, 5);
+            int rndZ = ThreadLocalRandom.current().nextInt(-25, 26);
             Player p = friend.getPlayer();
             Location location = p.getLocation().clone().add(rndX, rndY, rndZ);
             if (p.getWorld().getBlockAt(location).getType() == Material.AIR) {
@@ -231,7 +231,7 @@ public final class PlayerDamagedEvents {
 
     public static void plateSteel(EventFriend friend) {
         if (friend.getCause() == EntityDamageEvent.DamageCause.ENTITY_EXPLOSION
-         || friend.getCause() == EntityDamageEvent.DamageCause.BLOCK_EXPLOSION) {
+            || friend.getCause() == EntityDamageEvent.DamageCause.BLOCK_EXPLOSION) {
             friend.setDamageMod(friend.getDamageMod() - 0.25);
         }
     }
@@ -250,7 +250,7 @@ public final class PlayerDamagedEvents {
     }
 
     public static void plateMetal(EventFriend friend) {
-        int rnd = ThreadLocalRandom.current().nextInt(0,30);
+        int rnd = ThreadLocalRandom.current().nextInt(0, 30);
         if (rnd == 0) {
             Player p = friend.getPlayer();
             p.getWorld().spawnEntity(p.getLocation().clone().add(1, 0, 1), EntityType.IRON_GOLEM);
@@ -277,7 +277,7 @@ public final class PlayerDamagedEvents {
     }
 
     public static void linksDuralium(EventFriend friend) {
-        if (GeneralUtils.testChance(1,10)) {
+        if (GeneralUtils.testChance(1, 10)) {
             friend.setCancelEvent(true);
         }
     }
@@ -335,7 +335,7 @@ public final class PlayerDamagedEvents {
     }
 
     public static void linksMagSteel(EventFriend friend) {
-        if (GeneralUtils.testChance(5,100)) {
+        if (GeneralUtils.testChance(5, 100)) {
             friend.setCancelEvent(true);
             increaseEffect(PotionEffectType.ABSORPTION, friend.getPotionEffects());
         }
@@ -380,7 +380,7 @@ public final class PlayerDamagedEvents {
     public static void linksTitanium(EventFriend friend) {
         EntityDamageEvent.DamageCause c = friend.getCause();
         if (
-                c == EntityDamageEvent.DamageCause.LAVA
+            c == EntityDamageEvent.DamageCause.LAVA
                 || c == EntityDamageEvent.DamageCause.FIRE
                 || c == EntityDamageEvent.DamageCause.FIRE_TICK
                 || c == EntityDamageEvent.DamageCause.HOT_FLOOR
@@ -513,7 +513,7 @@ public final class PlayerDamagedEvents {
 
     public static void plateSingIron(EventFriend friend) {
         if (
-                friend.getCause() == EntityDamageEvent.DamageCause.ENTITY_EXPLOSION
+            friend.getCause() == EntityDamageEvent.DamageCause.ENTITY_EXPLOSION
                 || friend.getCause() == EntityDamageEvent.DamageCause.BLOCK_EXPLOSION
         ) {
             Player p = friend.getPlayer();
@@ -525,7 +525,7 @@ public final class PlayerDamagedEvents {
     public static void linksVoid(EventFriend friend) {
         Entity e = friend.getDamagedEntity();
         if (
-                e instanceof EnderDragon
+            e instanceof EnderDragon
                 || e instanceof Enderman
                 || e instanceof Shulker
         ) {
@@ -541,7 +541,7 @@ public final class PlayerDamagedEvents {
             Validate.notNull(im, "Meta is null, herp derp derp");
             NamespacedKey k = SlimeTinker.inst().getKeys().getArmourHyperbolicStored();
             int amount = PersistentDataAPI.getInt(im, k, 0);
-            double dmg =  friend.getInitialDamage() * friend.getDamageMod();
+            double dmg = friend.getInitialDamage() * friend.getDamageMod();
             if (amount >= dmg) {
                 friend.setCancelEvent(true);
                 amount -= dmg;
@@ -614,7 +614,7 @@ public final class PlayerDamagedEvents {
     }
 
     public static void linksMixedMetal(EventFriend friend) {
-        if (GeneralUtils.testChance(1,5)) {
+        if (GeneralUtils.testChance(1, 5)) {
             Entity e = friend.getDamagingEntity();
             if (e != null) {
                 Player p = friend.getPlayer();
@@ -635,7 +635,7 @@ public final class PlayerDamagedEvents {
     }
 
     public static void plateScrap(EventFriend friend) {
-        if (GeneralUtils.testChance(5,100)) {
+        if (GeneralUtils.testChance(5, 100)) {
             friend.getPlayer().damage(100, friend.getPlayer());
         }
     }
@@ -662,7 +662,7 @@ public final class PlayerDamagedEvents {
 
     public static void linksScrap(EventFriend friend) {
         Player p = friend.getPlayer();
-        if (GeneralUtils.testChance(1,10)) {
+        if (GeneralUtils.testChance(1, 10)) {
             ItemStack i = friend.getActiveStack();
             ItemStack drop = i.clone();
             i.setAmount(0);

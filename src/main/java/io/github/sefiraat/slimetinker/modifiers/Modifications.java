@@ -18,10 +18,6 @@ import java.util.Map;
 
 public class Modifications {
 
-    private Modifications() {
-        throw new IllegalStateException("Utility class");
-    }
-
     @Getter
     protected static final List<String> MODIFICATION_LIST_TOOL = new LinkedList<>();
     @Getter
@@ -38,7 +34,6 @@ public class Modifications {
     protected static final Map<Integer, Integer> MOD_MAP_EMERALD_TOOL = new HashMap<>();
     @Getter
     protected static final Map<Integer, Integer> MOD_MAP_PLATE = new HashMap<>();
-
     @Getter
     protected static final List<String> MODIFICATION_LIST_ARMOUR = new LinkedList<>();
     @Getter
@@ -111,6 +106,10 @@ public class Modifications {
 
         MODIFICATION_DEFINITIONS_ARMOUR.put(ItemUtils.getIdOrType(Materials.MOD_PLATE), new Mod(MOD_MAP_PLATE, SlimeTinker.inst().getKeys().getStModLevelReinforced()));
 
+    }
+
+    private Modifications() {
+        throw new IllegalStateException("Utility class");
     }
 
     public static void setModificationMapTool(PersistentDataContainer c, Map<String, Integer> map) {

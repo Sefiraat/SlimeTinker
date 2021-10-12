@@ -19,9 +19,22 @@ import org.bukkit.persistence.PersistentDataType;
 
 public class ToolTemplateExplosive extends ExplosiveTool {
 
+    public ToolTemplateExplosive(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
+        super(itemGroup, item, recipeType, recipe);
+
+    }
+
+    public static boolean isTool(ItemStack itemStack) {
+        return itemStack.hasItemMeta() &&
+            itemStack.getItemMeta().getPersistentDataContainer().has(
+                SlimeTinker.inst().getKeys().getToolInfoIsTool(),
+                PersistentDataType.STRING
+            );
+    }
+
     public String getName(ToolDefinition toolDefinition) {
         return
-                CMManager.getById(toolDefinition.getHeadMaterial()).getColor() + ThemeUtils.toTitleCase(toolDefinition.getHeadMaterial()) + "-" +
+            CMManager.getById(toolDefinition.getHeadMaterial()).getColor() + ThemeUtils.toTitleCase(toolDefinition.getHeadMaterial()) + "-" +
                 CMManager.getById(toolDefinition.getBinderMaterial()).getColor() + ThemeUtils.toTitleCase(toolDefinition.getBinderMaterial()) + "-" +
                 CMManager.getById(toolDefinition.getRodMaterial()).getColor() + ThemeUtils.toTitleCase(toolDefinition.getRodMaterial()) + " " +
                 ChatColor.WHITE + ThemeUtils.toTitleCase(toolDefinition.getPartType());
@@ -64,19 +77,6 @@ public class ToolTemplateExplosive extends ExplosiveTool {
         itemStack.setItemMeta(im);
         ItemUtils.rebuildTinkerLore(itemStack);
         return itemStack;
-    }
-
-    public ToolTemplateExplosive(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
-        super(itemGroup, item, recipeType, recipe);
-
-    }
-
-    public static boolean isTool(ItemStack itemStack) {
-        return itemStack.hasItemMeta() &&
-                itemStack.getItemMeta().getPersistentDataContainer().has(
-                        SlimeTinker.inst().getKeys().getToolInfoIsTool(),
-                        PersistentDataType.STRING
-                );
     }
 
     @Override

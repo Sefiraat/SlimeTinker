@@ -10,7 +10,7 @@ public class ListenerManager {
     private final DurabilityListener durabilityListener = new DurabilityListener();
     private final BlockBreakListener blockBreakListener = new BlockBreakListener();
     private final BlockPlaceListener blockPlaceListener = new BlockPlaceListener();
-    private final EntityDamagedListener entityDamagedListener  = new EntityDamagedListener();
+    private final EntityDamagedListener entityDamagedListener = new EntityDamagedListener();
     private final EntityKilledListener entityKilledListener = new EntityKilledListener();
     private final PlayerDamagedListener playerDamagedListener = new PlayerDamagedListener();
     private final DropItemListener dropItemListener = new DropItemListener();

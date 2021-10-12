@@ -31,8 +31,9 @@ public final class EntityUtils {
 
     /**
      * Increases the requested potion effect by one, adding it if it doesn't exist
+     *
      * @param potionEffectType The type of effect
-     * @param potionEffects The map of effects to update
+     * @param potionEffects    The map of effects to update
      */
     public static void increaseEffect(PotionEffectType potionEffectType, Map<PotionEffectType, Integer> potionEffects) {
         increaseEffect(potionEffectType, potionEffects, 1);
@@ -40,9 +41,10 @@ public final class EntityUtils {
 
     /**
      * Increases the requested potion effect by the amount, adding it if it doesn't exist
+     *
      * @param potionEffectType The type of effect
-     * @param potionEffects The map of effects to update
-     * @param amount The amount to increment by
+     * @param potionEffects    The map of effects to update
+     * @param amount           The amount to increment by
      */
     public static void increaseEffect(PotionEffectType potionEffectType, Map<PotionEffectType, Integer> potionEffects, int amount) {
         if (potionEffects.containsKey(potionEffectType)) {
@@ -54,6 +56,7 @@ public final class EntityUtils {
 
     /**
      * SFW's Training dummy allows damage and exp gain for free, no thanks!
+     *
      * @return True is target is a Training Dummy
      */
     public static boolean isTrainingDummy(Entity e) {
@@ -80,7 +83,7 @@ public final class EntityUtils {
     }
 
     public static void makeBreed(Animals a) {
-        if (a.isAdult() &&!a.isLoveMode()) {
+        if (a.isAdult() && !a.isLoveMode()) {
             a.setBreed(true);
             a.setLoveModeTicks(400);
             a.getWorld().spawnParticle(Particle.HEART, a.getLocation(), 4, 0.5, 0.5, 0.5);

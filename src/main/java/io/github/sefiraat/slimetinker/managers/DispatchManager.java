@@ -22,18 +22,18 @@ public class DispatchManager {
         this.commandManager.registerCommand(new Commands());
 
         commandManager.getCommandCompletions().registerCompletion("ITEM_CLASS_TOOL", context -> ImmutableList.of(
-                "PICK",
-                "SHOVEL",
-                "AXE",
-                "HOE",
-                "SWORD"
+            "PICK",
+            "SHOVEL",
+            "AXE",
+            "HOE",
+            "SWORD"
         ));
 
         commandManager.getCommandCompletions().registerCompletion("ITEM_CLASS_ARMOUR", context -> ImmutableList.of(
-                "HELMET",
-                "CHESTPLATE",
-                "LEGGINGS",
-                "BOOTS"
+            "HELMET",
+            "CHESTPLATE",
+            "LEGGINGS",
+            "BOOTS"
         ));
 
         commandManager.getCommandCompletions().registerCompletion("PART_MATERIALS_HEAD", context -> {

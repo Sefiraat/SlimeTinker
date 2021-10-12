@@ -14,7 +14,7 @@ public final class DummyArmourTable {
         Material.CHISELED_NETHER_BRICKS,
         ThemeItemType.MACHINE,
         "Tinker's Armour Table",
-         "This item is made on a Tinker's Armour Table."
+        "This item is made on a Tinker's Armour Table."
     );
     public static final RecipeType TYPE = new RecipeType(SlimeTinker.inst().getKeys().getWsDummyArmourTable(), STACK);
 

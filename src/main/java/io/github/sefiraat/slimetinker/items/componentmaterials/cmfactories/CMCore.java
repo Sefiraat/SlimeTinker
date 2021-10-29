@@ -1754,12 +1754,7 @@ public final class CMCore {
             new ComponentMaterial
                 (
                     new CMIdentity(IDStrings.SEFIRITE, Materials.INGOT_CAST_SEFIRITE, SkullTextures.ALLOY_GREEN, "#9beb34"),
-                    Arrays.asList(
-                        map.get(IDStrings.REINFORCED).getLiquidItemStack(1),
-                        map.get(IDStrings.ALUBRASS).getLiquidItemStack(2),
-                        map.get(IDStrings.HARD).getLiquidItemStack(2),
-                        map.get(IDStrings.REDSTONE_ALLOY).getLiquidItemStack(2)
-                    ),
+                    null,
                     new CMToolMakeup(true, false, false, false, false, false),
                     new CMForms(
                         Materials.NUGGET_CAST_SEFIRITE.getItemId(),

@@ -125,7 +125,7 @@
         <dependency>
             <groupId>io.github.mooy1</groupId>
             <artifactId>InfinityLib</artifactId>
-            <version>07f02da</version>
+            <version>7e03c79</version>
             <scope>compile</scope>
         </dependency>
         <dependency>

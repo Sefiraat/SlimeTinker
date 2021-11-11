@@ -1,6 +1,9 @@
 ---
-name: Bug Report about: Report a Bug or an Issue with this Plugin. title: ''
-labels: bug assignees: ''
+name: Bug Report
+about: Report a Bug or an Issue with this Plugin.
+title: ''
+labels: bug
+assignees: ''
 
 ---
 

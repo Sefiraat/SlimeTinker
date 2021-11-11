@@ -18,7 +18,6 @@ import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.inventory.ItemStack;
-import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nonnull;
 
@@ -35,7 +34,7 @@ public class Workbench extends CraftingBlock {
     }
 
     @Override
-    protected void craft(@NotNull Block b, @NotNull BlockMenu menu, @NotNull Player p) {
+    protected void craft(@Nonnull Block b, @Nonnull BlockMenu menu, @Nonnull Player p) {
         super.craft(b, menu, p);
     }
 

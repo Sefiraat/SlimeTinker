@@ -21,7 +21,6 @@ import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataType;
-import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nonnull;
 
@@ -46,7 +45,7 @@ public class ToolTable extends TickingMenuBlock {
     }
 
     @Override
-    protected void tick(@NotNull Block block, @NotNull BlockMenu blockMenu) {
+    protected void tick(@Nonnull Block block, @Nonnull BlockMenu blockMenu) {
         previewCraft(blockMenu);
     }
 
@@ -219,7 +218,7 @@ public class ToolTable extends TickingMenuBlock {
     }
 
     @Override
-    protected void onBreak(@NotNull BlockBreakEvent e, @NotNull BlockMenu menu) {
+    protected void onBreak(@Nonnull BlockBreakEvent e, @Nonnull BlockMenu menu) {
         super.onBreak(e, menu);
         Location location = menu.getLocation();
         menu.dropItems(location, INPUT_HEAD);

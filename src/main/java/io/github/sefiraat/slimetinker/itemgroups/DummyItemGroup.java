@@ -4,7 +4,8 @@ import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
-import org.jetbrains.annotations.NotNull;
+
+import javax.annotation.Nonnull;
 
 public class DummyItemGroup extends ItemGroup {
 
@@ -13,7 +14,7 @@ public class DummyItemGroup extends ItemGroup {
     }
 
     @Override
-    public boolean isHidden(@NotNull Player p) {
+    public boolean isHidden(@Nonnull Player p) {
         return true;
     }
 

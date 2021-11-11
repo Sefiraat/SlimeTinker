@@ -3,7 +3,8 @@ package io.github.sefiraat.slimetinker.items;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.core.attributes.NotPlaceable;
 import org.bukkit.Material;
-import org.jetbrains.annotations.NotNull;
+
+import javax.annotation.Nonnull;
 
 public class BaseItem extends SlimefunItemStack implements NotPlaceable {
 
@@ -19,8 +20,9 @@ public class BaseItem extends SlimefunItemStack implements NotPlaceable {
         this.id = id;
     }
 
+    @Nonnull
     @Override
-    public @NotNull String getId() {
+    public String getId() {
         return id;
     }
 

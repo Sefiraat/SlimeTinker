@@ -20,9 +20,9 @@ public class BaseItem extends SlimefunItemStack implements NotPlaceable {
         this.id = id;
     }
 
+    @Nonnull
     @Override
-    public @Nonnull
-    String getId() {
+    public String getId() {
         return id;
     }
 

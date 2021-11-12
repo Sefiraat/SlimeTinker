@@ -155,30 +155,20 @@ public class CMManager {
 
             // Tools, armour and kits (referenced through dummy)
             if (cm.isValidToolRod()) MAP_CAST_TOOLROD.put(cm, Parts.TOOL_ROD.getStack(id, ROD, null, cm.getColor()));
-            if (cm.isValidToolHead())
-                MAP_CAST_ARMOUR_MAIL.put(cm, Parts.MAIL_LINKS.getStack(id, LINKS, null, cm.getColor()));
+            if (cm.isValidLinks()) MAP_CAST_ARMOUR_MAIL.put(cm, Parts.MAIL_LINKS.getStack(id, LINKS, null, cm.getColor()));
 
-            if (cm.isValidToolHead())
-                MAP_CAST_SWORDBLADE.put(cm, Parts.SWORD_BLADE.getStack(id, HEAD, SWORD, cm.getColor()));
+            if (cm.isValidToolHead()) MAP_CAST_SWORDBLADE.put(cm, Parts.SWORD_BLADE.getStack(id, HEAD, SWORD, cm.getColor()));
             if (cm.isValidToolHead()) MAP_CAST_HOEHEAD.put(cm, Parts.HOE_HEAD.getStack(id, HEAD, HOE, cm.getColor()));
             if (cm.isValidToolHead()) MAP_CAST_AXEHEAD.put(cm, Parts.AXE_HEAD.getStack(id, HEAD, AXE, cm.getColor()));
-            if (cm.isValidToolHead())
-                MAP_CAST_PICKAXEHEAD.put(cm, Parts.PICKAXE_HEAD.getStack(id, HEAD, PICKAXE, cm.getColor()));
-            if (cm.isValidToolHead())
-                MAP_CAST_SHOVELHEAD.put(cm, Parts.SHOVEL_HEAD.getStack(id, HEAD, SHOVEL, cm.getColor()));
+            if (cm.isValidToolHead()) MAP_CAST_PICKAXEHEAD.put(cm, Parts.PICKAXE_HEAD.getStack(id, HEAD, PICKAXE, cm.getColor()));
+            if (cm.isValidToolHead()) MAP_CAST_SHOVELHEAD.put(cm, Parts.SHOVEL_HEAD.getStack(id, HEAD, SHOVEL, cm.getColor()));
 
-            if (cm.isValidToolHead())
-                MAP_CAST_ARMOUR_PLATES_HELM.put(cm, Parts.HELM_PLATE.getStack(id, PLATE, HELMET, cm.getColor()));
-            if (cm.isValidToolHead())
-                MAP_CAST_ARMOUR_PLATES_CHEST.put(cm, Parts.CHEST_PLATE.getStack(id, PLATE, CHESTPLATE, cm.getColor()));
-            if (cm.isValidToolHead())
-                MAP_CAST_ARMOUR_PLATES_LEGGINGS.put(cm, Parts.LEG_PLATE.getStack(id, PLATE, LEGGINGS, cm.getColor()));
-            if (cm.isValidToolHead())
-                MAP_CAST_ARMOUR_PLATES_BOOTS.put(cm, Parts.BOOT_PLATE.getStack(id, PLATE, BOOTS, cm.getColor()));
+            if (cm.isValidPlates()) MAP_CAST_ARMOUR_PLATES_HELM.put(cm, Parts.HELM_PLATE.getStack(id, PLATE, HELMET, cm.getColor()));
+            if (cm.isValidPlates()) MAP_CAST_ARMOUR_PLATES_CHEST.put(cm, Parts.CHEST_PLATE.getStack(id, PLATE, CHESTPLATE, cm.getColor()));
+            if (cm.isValidPlates()) MAP_CAST_ARMOUR_PLATES_LEGGINGS.put(cm, Parts.LEG_PLATE.getStack(id, PLATE, LEGGINGS, cm.getColor()));
+            if (cm.isValidPlates()) MAP_CAST_ARMOUR_PLATES_BOOTS.put(cm, Parts.BOOT_PLATE.getStack(id, PLATE, BOOTS, cm.getColor()));
 
-            if (cm.isValidToolHead())
-                MAP_CAST_REPAIRKIT.put(cm, Parts.REPAIR_KIT.getStack(id, REPAIR, cm.getColor())); // We use HEAD here are repair always goes by head material
-
+            if (cm.isValidToolHead()) MAP_CAST_REPAIRKIT.put(cm, Parts.REPAIR_KIT.getStack(id, REPAIR, cm.getColor())); // We use HEAD here are repair always goes by head material
 
             // Gems
             if (cm.getFormGem() != null) {

@@ -43,7 +43,7 @@ public final class CMInfinity {
                     null,
                     new CMToolMakeup(true, false, true, true, false, true),
                     new CMForms(
-                        "VOID_BIT",
+                        "VOID_DUST",
                         "VOID_INGOT",
                         Materials.BLOCK_CAST_VOID.getItemId(),
                         null,

@@ -283,7 +283,7 @@ public final class EntityDamageEvents {
                 if (Slimefun.getProtectionManager().hasPermission(offlinePlayer, e.getLocation(), interaction)) {
                     ((LivingEntity) e).damage(friend.getInitialDamage(), friend.getPlayer());
                     Particle.DustOptions dustOptions3 = new Particle.DustOptions(Color.fromRGB(250, 75, 10), 5);
-                    e.getWorld().spawnParticle(Particle.REDSTONE, e.getLocation(), 20, 3, 3, 3, 1, dustOptions3);
+                    e.getWorld().spawnParticle(Particle.REDSTONE, e.getLocation(), 5, 1, 1, 1, 1, dustOptions3);
                 }
             }
         }

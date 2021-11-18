@@ -6,7 +6,7 @@ import lombok.experimental.UtilityClass;
 import me.mrCookieSlime.Slimefun.api.BlockStorage;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
-import org.bukkit.block.Container;
+import org.bukkit.block.TileState;
 import org.bukkit.block.data.AnaloguePowerable;
 import org.bukkit.block.data.BlockData;
 import org.bukkit.block.data.Lightable;
@@ -19,11 +19,10 @@ import java.util.List;
 public final class BlockUtils {
 
     public static boolean isValidBreakEvent(Block block, Player player) {
-        return
-            !isPlaced(block)
-                && !BlockStorage.hasBlockInfo(block)
-                && !(block instanceof Container)
-                && Slimefun.getProtectionManager().hasPermission(player, block, Interaction.BREAK_BLOCK);
+        return !isPlaced(block)
+            && !BlockStorage.hasBlockInfo(block)
+            && !(block.getState() instanceof TileState)
+            && Slimefun.getProtectionManager().hasPermission(player, block, Interaction.BREAK_BLOCK);
     }
 
     public static boolean isPlaced(Block block) {

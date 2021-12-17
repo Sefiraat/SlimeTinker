@@ -462,16 +462,19 @@ public final class PlayerDamagedEvents {
         NamespacedKey k = SlimeTinker.inst().getKeys().getArmourInfinitlyPowerfulStored();
         Validate.notNull(im, "Meta is null, nope!");
         int d = PersistentDataAPI.getInt(im, k, 0);
-        if (d < 2000) {
-            d = (int) Math.min(2000, d + friend.getInitialDamage());
-            if (d == 2000) {
-                ItemUtils.incrementRandomEnchant(i, im);
-                PersistentDataAPI.setInt(im, k, 0);
-            } else {
-                PersistentDataAPI.setInt(im, k, d);
-            }
-            i.setItemMeta(im);
+        d = (int) (d + friend.getInitialDamage());
+        int numberOfEnchants = 0;
+        for (int level : i.getEnchantments().values()) {
+            numberOfEnchants = numberOfEnchants + level;
         }
+        int requirement = 2000 + (2000 * numberOfEnchants);
+        if (d >= requirement) {
+            ItemUtils.incrementRandomEnchant(i, im);
+            PersistentDataAPI.setInt(im, k, 0);
+        } else {
+            PersistentDataAPI.setInt(im, k, d);
+        }
+        i.setItemMeta(im);
     }
 
     public static void linksMagic(EventFriend friend) {

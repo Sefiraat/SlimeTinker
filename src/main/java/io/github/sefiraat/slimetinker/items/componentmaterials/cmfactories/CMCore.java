@@ -851,7 +851,8 @@ public final class CMCore {
                             CMTraits.PROP_LINKS,
                             SupportedPluginsManager.CORE_NOTE,
                             "Warm Blodded",
-                            "Speed + 2 when hot. Slow + 1 when cold."
+                            "Speed + 2 when hot in the nether.",
+                            "Slow + 1 when cold in the end"
                         ))
                 ));
         map.put(IDStrings.SOLDER,

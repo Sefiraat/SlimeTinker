@@ -20,6 +20,7 @@ import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.Particle;
+import org.bukkit.World;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
@@ -536,10 +537,10 @@ public final class TickEvents {
     }
 
     public static void linksCorBronze(EventFriend friend) {
-        Temperature temp = WorldUtils.getBiomeTemperature(friend.getPlayer().getLocation().getBlock().getBiome());
-        if (temp == Temperature.HOT) {
+        World.Environment environment = friend.getPlayer().getWorld().getEnvironment();
+        if (environment == World.Environment.NETHER) {
             increaseEffect(PotionEffectType.SPEED, friend.getPotionEffects(), 2);
-        } else if (temp == Temperature.COLD) {
+        } else if (environment == World.Environment.THE_END) {
             increaseEffect(PotionEffectType.SLOW, friend.getPotionEffects());
         }
     }

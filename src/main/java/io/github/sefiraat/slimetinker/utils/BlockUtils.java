@@ -4,6 +4,7 @@ import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.protection.Interaction;
 import lombok.experimental.UtilityClass;
 import me.mrCookieSlime.Slimefun.api.BlockStorage;
+import org.bukkit.Location;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.block.TileState;
@@ -13,10 +14,14 @@ import org.bukkit.block.data.Lightable;
 import org.bukkit.block.data.Powerable;
 import org.bukkit.entity.Player;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @UtilityClass
 public final class BlockUtils {
+
+    public static Map<Location, Boolean> STATE_MAP = new HashMap<>();
 
     public static boolean isValidBreakEvent(Block block, Player player) {
         return !isPlaced(block)
@@ -26,7 +31,7 @@ public final class BlockUtils {
     }
 
     public static boolean isPlaced(Block block) {
-        return block.hasMetadata(IDStrings.PLACED);
+        return STATE_MAP.getOrDefault(block.getLocation(), false);
     }
 
     /**

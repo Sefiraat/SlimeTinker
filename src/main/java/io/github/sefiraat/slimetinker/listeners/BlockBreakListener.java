@@ -9,6 +9,7 @@ import io.github.sefiraat.slimetinker.utils.Experience;
 import io.github.sefiraat.slimetinker.utils.IDStrings;
 import io.github.sefiraat.slimetinker.utils.ItemUtils;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
+import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import org.bukkit.Color;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -42,10 +43,15 @@ public class BlockBreakListener implements Listener {
     public void onBlockBreak(BlockBreakEvent event) {
 
         Player player = event.getPlayer();
-        ItemStack heldItem = event.getPlayer().getInventory().getItemInMainHand();
+        ItemStack heldItem = player.getInventory().getItemInMainHand();
         Block block = event.getBlock();
 
-        if (event.isCancelled() || isLockedTool(event.getPlayer(), heldItem) || !BlockUtils.isValidBreakEvent(block, player)) {
+        if (Slimefun.getIntegrations().isEventFaked(event)
+            || Slimefun.getIntegrations().isCustomBlock(event.getBlock())
+            || event.isCancelled()
+            || isLockedTool(player, heldItem)
+            || !BlockUtils.isValidBreakEvent(block, player)
+        ) {
             return;
         }
 
@@ -65,13 +71,13 @@ public class BlockBreakListener implements Listener {
             modChecks(heldItem, block, friend.getAddDrops());
 
             // Settle
+            event.setCancelled(true);
             if (friend.isCancelEvent()) {
-                event.setCancelled(true);
                 return;
             }
 
+            event.getBlock().setType(Material.AIR);
             settlePotionEffects(friend);
-            event.setDropItems(false);
 
             for (ItemStack i : friend.getDrops()) { // Drop items in original collection not flagged for removal
                 if (friend.getRemoveDrops().contains(i) || i.getType() == Material.AIR) {

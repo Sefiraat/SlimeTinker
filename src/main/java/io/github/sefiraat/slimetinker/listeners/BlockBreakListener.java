@@ -22,6 +22,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.event.block.BlockDropItemEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataContainer;
@@ -29,6 +30,7 @@ import org.bukkit.persistence.PersistentDataType;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -37,6 +39,8 @@ import static io.github.sefiraat.slimetinker.events.friend.EventChannels.checkTo
 import static io.github.sefiraat.slimetinker.events.friend.EventChannels.settlePotionEffects;
 
 public class BlockBreakListener implements Listener {
+
+    public static final Map<Location, EventFriend> EVENT_FRIEND_MAP = new HashMap<>();
 
     @SuppressWarnings("unused")
     @EventHandler(priority = EventPriority.NORMAL, ignoreCancelled = true)
@@ -68,8 +72,8 @@ public class BlockBreakListener implements Listener {
 
         if (friend.isActionTaken()) {
 
-            event.setCancelled(true);
             if (friend.isCancelEvent() || ItemUtils.isTinkersBroken(heldItem)) {
+                event.setCancelled(true);
                 return;
             }
 
@@ -77,9 +81,59 @@ public class BlockBreakListener implements Listener {
             modChecks(heldItem, block, friend.getAddDrops());
 
             // Settle
-            event.getBlock().setType(Material.AIR);
             settlePotionEffects(friend);
+//            event.setDropItems(false);
+//
+//            for (ItemStack i : friend.getDrops()) { // Drop items in original collection not flagged for removal
+//                if (friend.getRemoveDrops().contains(i) || i.getType() == Material.AIR) {
+//                    continue;
+//                }
+//                if (friend.isBlocksIntoInv()) {
+//                    Map<Integer, ItemStack> remainingItems = player.getInventory().addItem(i);
+//                    for (ItemStack i2 : remainingItems.values()) {
+//                        block.getWorld().dropItem(block.getLocation().clone().add(0.5, 0.5, 0.5), i2);
+//                    }
+//                    continue;
+//                }
+//                block.getWorld().dropItem(block.getLocation().clone().add(0.5, 0.5, 0.5), i);
+//            }
+//
+//            for (ItemStack i : friend.getAddDrops()) { // Then the additional items collection - no removals
+//                if (friend.isBlocksIntoInv()) {
+//                    Map<Integer, ItemStack> remainingItems = player.getInventory().addItem(i);
+//                    for (ItemStack i2 : remainingItems.values()) {
+//                        block.getWorld().dropItem(block.getLocation().clone().add(0.5, 0.5, 0.5), i2);
+//                    }
+//                    continue;
+//                }
+//                block.getWorld().dropItem(block.getLocation().clone().add(0.5, 0.5, 0.5), i);
+//            }
 
+            if (ItemUtils.isTool(heldItem)) {
+                if (shouldGrantExp(heldItem, event.getBlock())) { // Should grant exp (checks tool / material validity and the crop state)
+                    Experience.addExp(heldItem, (int) Math.ceil(1 * friend.getToolExpMod()), event.getPlayer(), true);
+                }
+                if (event.getExpToDrop() > 0 && friend.isMetalCheck()) { // todo Get outta dodge with this one
+                    Experience.addExp(heldItem, (int) Math.ceil(event.getExpToDrop() / 10D), event.getPlayer(), true);
+                    event.setExpToDrop(0);
+                }
+            }
+
+            EVENT_FRIEND_MAP.put(block.getLocation(), friend);
+
+        }
+    }
+
+    @SuppressWarnings("unused")
+    @EventHandler(priority = EventPriority.NORMAL, ignoreCancelled = true)
+    public void onDrops(BlockDropItemEvent event) {
+        Block block = event.getBlock();
+        Location location = block.getLocation();
+        EventFriend friend = EVENT_FRIEND_MAP.remove(location);
+
+        if (friend != null) {
+            event.getItems().clear();
+            Player player = friend.getPlayer();
             for (ItemStack i : friend.getDrops()) { // Drop items in original collection not flagged for removal
                 if (friend.getRemoveDrops().contains(i) || i.getType() == Material.AIR) {
                     continue;
@@ -104,23 +158,7 @@ public class BlockBreakListener implements Listener {
                 }
                 block.getWorld().dropItem(block.getLocation().clone().add(0.5, 0.5, 0.5), i);
             }
-
-            if (ItemUtils.isTool(heldItem)) {
-                if (shouldGrantExp(heldItem, event.getBlock())) { // Should grant exp (checks tool / material validity and the crop state)
-                    Experience.addExp(heldItem, (int) Math.ceil(1 * friend.getToolExpMod()), event.getPlayer(), true);
-                }
-                if (event.getExpToDrop() > 0 && friend.isMetalCheck()) { // todo Get outta dodge with this one
-                    Experience.addExp(heldItem, (int) Math.ceil(event.getExpToDrop() / 10D), event.getPlayer(), true);
-                    event.setExpToDrop(0);
-                }
-            }
-
-            FakeItemDamageEvent damageEvent = new FakeItemDamageEvent(player, heldItem, 1);
-            SlimeTinker.inst().getListenerManager().getDurabilityListener().onItemDamage(damageEvent);
-            event.getBlock().setType(Material.AIR);
-
         }
-
     }
 
     private boolean shouldGrantExp(ItemStack itemStack, Block block) {

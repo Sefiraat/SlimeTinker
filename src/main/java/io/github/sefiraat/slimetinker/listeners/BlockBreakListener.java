@@ -39,7 +39,7 @@ import static io.github.sefiraat.slimetinker.events.friend.EventChannels.settleP
 public class BlockBreakListener implements Listener {
 
     @SuppressWarnings("unused")
-    @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
+    @EventHandler(priority = EventPriority.NORMAL, ignoreCancelled = true)
     public void onBlockBreak(BlockBreakEvent event) {
 
         Player player = event.getPlayer();
@@ -67,15 +67,16 @@ public class BlockBreakListener implements Listener {
         checkArmour(friend);
 
         if (friend.isActionTaken()) {
+
+            event.setCancelled(true);
+            if (friend.isCancelEvent() || ItemUtils.isTinkersBroken(heldItem)) {
+                return;
+            }
+
             // Mods
             modChecks(heldItem, block, friend.getAddDrops());
 
             // Settle
-            event.setCancelled(true);
-            if (friend.isCancelEvent()) {
-                return;
-            }
-
             event.getBlock().setType(Material.AIR);
             settlePotionEffects(friend);
 

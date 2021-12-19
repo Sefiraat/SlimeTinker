@@ -77,6 +77,9 @@ public class DurabilityListener implements Listener {
             damageable.setDamage(event.getItem().getType().getMaxDurability() - 1);
             damagedItem.setItemMeta(im);
             event.setCancelled(true);
+        } else if (event instanceof FakeItemDamageEvent) {
+            damageable.setDamage(damageable.getDamage() + event.getDamage());
+            damagedItem.setItemMeta(im);
         }
 
     }

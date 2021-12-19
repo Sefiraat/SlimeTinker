@@ -113,6 +113,11 @@ public class BlockBreakListener implements Listener {
                     event.setExpToDrop(0);
                 }
             }
+
+            FakeItemDamageEvent damageEvent = new FakeItemDamageEvent(player, heldItem, 1);
+            SlimeTinker.inst().getListenerManager().getDurabilityListener().onItemDamage(damageEvent);
+            event.getBlock().setType(Material.AIR);
+
         }
 
     }

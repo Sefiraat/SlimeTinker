@@ -27,6 +27,8 @@ public class SlimeTinker extends AbstractAddon {
     @Getter
     private RunnableManager runnableManager;
     @Getter
+    private ListenerManager listenerManager;
+    @Getter
     private CMManager cmManager;
     @Getter
     private DispatchManager dispatchManager;
@@ -69,7 +71,7 @@ public class SlimeTinker extends AbstractAddon {
         runnableManager = new RunnableManager();
         dispatchManager = new DispatchManager();
 
-        new ListenerManager(this, this.getServer().getPluginManager());
+        this.listenerManager = new ListenerManager(this, this.getServer().getPluginManager());
 
     }
 

@@ -254,6 +254,14 @@ public final class Materials {
             "Sefirite Nugget",
             "A nugget made from sefirite"
         );
+    public static final SlimefunItemStack NUGGET_CAST_CRINGLEIUM =
+        ThemeUtils.themedItemStack(
+            "NUGGET_CAST_CRINGLEIUM",
+            Material.IRON_NUGGET,
+            ThemeItemType.CRAFTING,
+            "Cringleium Nugget",
+            "A nugget made from Cringleium."
+        );
     // endregion
     // region Ingots
     public static final SlimefunItemStack INGOT_CAST_BOOMERITE =
@@ -271,6 +279,14 @@ public final class Materials {
             ThemeItemType.CRAFTING,
             "Sefirite Ingot",
             "An ingot that's only available for a short time."
+        );
+    public static final SlimefunItemStack INGOT_CAST_CRINGLEIUM =
+        ThemeUtils.themedItemStack(
+            "INGOT_CAST_CRINGLEIUM",
+            Material.IRON_INGOT,
+            ThemeItemType.CRAFTING,
+            "Cringleium Ingot",
+            "A festive ingot that's only available for a short time."
         );
     // End Region
     // region Blocks
@@ -496,6 +512,14 @@ public final class Materials {
             ThemeItemType.CRAFTING,
             "Sefirite Block",
             "A block made from sefirite"
+        );
+    public static final SlimefunItemStack BLOCK_CAST_CRINGLEIUM =
+        ThemeUtils.themedItemStack(
+            "BLOCK_CAST_CRINGLEIUM",
+            Material.IRON_BLOCK,
+            ThemeItemType.CRAFTING,
+            "Cringleium Block",
+            "A block made from Cringleium"
         );
     // endregion
     // region Crafts
@@ -1060,6 +1084,10 @@ public final class Materials {
         new UnplaceableBlock(ItemGroups.MATERIALS, NUGGET_CAST_SEFIRITE, DummySmeltery.TYPE, Parts.getDummyCastRecipe(Casts.CAST_NUGGET)).register(p);
         new UnplaceableBlock(ItemGroups.MATERIALS, INGOT_CAST_SEFIRITE, DummySmeltery.TYPE, Parts.getDummyCastRecipe(Casts.CAST_INGOT)).register(p);
         new UnplaceableBlock(ItemGroups.MATERIALS, BLOCK_CAST_SEFIRITE, DummySmeltery.TYPE, Parts.getDummyCastRecipe(Casts.CAST_BLOCK)).register(p);
+
+        new UnplaceableBlock(ItemGroups.MATERIALS, NUGGET_CAST_CRINGLEIUM, DummySmeltery.TYPE, Parts.getDummyCastRecipe(Casts.CAST_NUGGET)).register(p);
+        new UnplaceableBlock(ItemGroups.MATERIALS, INGOT_CAST_CRINGLEIUM, DummySmeltery.TYPE, Parts.getDummyCastRecipe(Casts.CAST_INGOT)).register(p);
+        new UnplaceableBlock(ItemGroups.MATERIALS, BLOCK_CAST_CRINGLEIUM, DummySmeltery.TYPE, Parts.getDummyCastRecipe(Casts.CAST_BLOCK)).register(p);
 
         new UnplaceableBlock(ItemGroups.MATERIALS, NUGGET_CAST_COAL, DummySmeltery.TYPE, Parts.getDummyCastRecipe(Casts.CAST_NUGGET)).register(p);
 

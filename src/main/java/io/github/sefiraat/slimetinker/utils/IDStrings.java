@@ -46,6 +46,8 @@ public final class IDStrings {
     public static final String FERROSILICON = "FERROSILICON";
     public static final String BOOMERITE = "BOOMERITE";
     public static final String SEFIRITE = "SEFIRITE";
+    public static final String LIQUID_CHRISTMAS = "LIQUID_CHRISTMAS";
+    public static final String CRINGLEIUM = "CRINGLEIUM";
 
     // Infinity Expansion
     public static final String VOID = "VOID";

@@ -9,12 +9,12 @@ import io.github.sefiraat.slimetinker.utils.EntityUtils;
 import io.github.sefiraat.slimetinker.utils.GeneralUtils;
 import io.github.sefiraat.slimetinker.utils.ItemUtils;
 import io.github.sefiraat.slimetinker.utils.WorldUtils;
-import io.github.sefiraat.slimetinker.utils.enums.Temperature;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.data.persistent.PersistentDataAPI;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.protection.Interaction;
 import lombok.experimental.UtilityClass;
 import org.apache.commons.lang.Validate;
+import org.bukkit.Color;
 import org.bukkit.Effect;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -56,6 +56,25 @@ import static io.github.sefiraat.slimetinker.utils.EntityUtils.increaseEffect;
 
 @UtilityClass
 public final class TickEvents {
+
+    public static void linksCringleium(EventFriend friend) {
+        Location location = friend.getPlayer().getLocation();
+        Particle.DustOptions red = new Particle.DustOptions(Color.RED, 1);
+        Particle.DustOptions green = new Particle.DustOptions(Color.LIME, 1);
+        for (int i = 0; i <= 5; i++) {
+            double x = ThreadLocalRandom.current().nextDouble(-2.5, 2.6);
+            double y = ThreadLocalRandom.current().nextDouble(-2.5, 2.6);
+            double z = ThreadLocalRandom.current().nextDouble(-2.5, 2.6);
+            location.getWorld().spawnParticle(Particle.REDSTONE, location.clone().add(x, y, z), 1, green);
+        }
+        for (int i = 0; i <= 5; i++) {
+            double x = ThreadLocalRandom.current().nextDouble(-2.5, 2.6);
+            double y = ThreadLocalRandom.current().nextDouble(-2.5, 2.6);
+            double z = ThreadLocalRandom.current().nextDouble(-2.5, 2.6);
+            location.getWorld().spawnParticle(Particle.REDSTONE, location.clone().add(x, y, z), 1, red);
+        }
+        increaseEffect(PotionEffectType.SATURATION, friend.getPotionEffects(), 2);
+    }
 
     public static void rodGold(EventFriend friend) {
         increaseEffect(PotionEffectType.GLOWING, friend.getPotionEffects());

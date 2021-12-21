@@ -18,6 +18,7 @@ import io.github.sefiraat.slimetinker.items.componentmaterials.cmelements.CMTrai
 import io.github.sefiraat.slimetinker.managers.SupportedPluginsManager;
 import io.github.sefiraat.slimetinker.utils.IDStrings;
 import io.github.sefiraat.slimetinker.utils.SkullTextures;
+import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
 import lombok.Getter;
 import lombok.experimental.UtilityClass;
@@ -1783,6 +1784,69 @@ public final class CMCore {
                         null,
                         null)
                 ));
+        map.put(IDStrings.LIQUID_CHRISTMAS,
+            new ComponentMaterial
+                (
+                    new CMIdentity(IDStrings.LIQUID_CHRISTMAS, SlimefunItems.CHRISTMAS_PRESENT, SkullTextures.ALLOY_GREEN, "#00cc36"),
+                    null,
+                    new CMToolMakeup(false, false, false, false, false, false),
+                    new CMForms(
+                        null,
+                        SlimefunItems.CHRISTMAS_PRESENT.getItemId(),
+                        null,
+                        null,
+                        null,
+                        null,
+                        null,
+                        null,
+                        null,
+                        null
+                    ),
+                    new CMTraits(
+                        IDStrings.LIQUID_CHRISTMAS,
+                        null,
+                        null,
+                        null,
+                        null,
+                        null,
+                        null)
+                ));
+        map.put(IDStrings.CRINGLEIUM,
+            new ComponentMaterial
+                (
+                    new CMIdentity(IDStrings.CRINGLEIUM, Materials.INGOT_CAST_SEFIRITE, SkullTextures.ALLOY_GREEN, "#00cc36"),
+                    Arrays.asList(
+                        map.get(IDStrings.REINFORCED).getLiquidItemStack(2),
+                        map.get(IDStrings.LIQUID_CHRISTMAS).getLiquidItemStack(3),
+                        map.get(IDStrings.MAGNESIUM).getLiquidItemStack(2)
+                    ),
+                    new CMToolMakeup(false, false, false, false, false, true),
+                    new CMForms(
+                        Materials.NUGGET_CAST_CRINGLEIUM.getItemId(),
+                        Materials.INGOT_CAST_CRINGLEIUM.getItemId(),
+                        Materials.BLOCK_CAST_CRINGLEIUM.getItemId(),
+                        null,
+                        null,
+                        null,
+                        null,
+                        null,
+                        null,
+                        null
+                    ),
+                    new CMTraits(
+                        IDStrings.CRINGLEIUM,
+                        null,
+                        null,
+                        null,
+                        null,
+                        null,
+                        new CMTrait(
+                            CMTraits.PROP_LINKS,
+                            SupportedPluginsManager.CORE_NOTE,
+                            "Feeling Festive",
+                            "Get that festive feeling!"
+                        ))
+                ));
 
         setupToolConsumers();
         setupArmourConsumers();
@@ -1888,6 +1952,7 @@ public final class CMCore {
         // Enchanting (Experience)
         map.get(IDStrings.ALUBRASS).addEvent(TraitEventType.PLAYER_DAMAGED, TraitPartType.LINKS, PlayerDamagedEvents::linksAluBrass);       // Escape
         map.get(IDStrings.BRONZE).addEvent(TraitEventType.BLOCK_BREAK, TraitPartType.PLATE, BlockBreakEvents::plateBronze);                 // Farmer
+        map.get(IDStrings.CRINGLEIUM).addEvent(TraitEventType.TICK, TraitPartType.LINKS, TickEvents::linksCringleium);                      // Feeling Festive
         map.get(IDStrings.ALUMINUM).addEvent(TraitEventType.PLAYER_DAMAGED, TraitPartType.PLATE, PlayerDamagedEvents::plateAluminum);       // Foil 50% damage
         map.get(IDStrings.ALUMINUM).addEvent(TraitEventType.TICK, TraitPartType.PLATE, TickEvents::plateAluminum);                          // Foil +1 speed
         // Fused

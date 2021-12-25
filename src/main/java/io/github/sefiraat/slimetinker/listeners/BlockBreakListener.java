@@ -1,6 +1,7 @@
 package io.github.sefiraat.slimetinker.listeners;
 
 import io.github.sefiraat.slimetinker.SlimeTinker;
+import io.github.sefiraat.slimetinker.events.friend.EventChannels;
 import io.github.sefiraat.slimetinker.events.friend.EventFriend;
 import io.github.sefiraat.slimetinker.events.friend.TraitEventType;
 import io.github.sefiraat.slimetinker.modifiers.Modifications;
@@ -34,10 +35,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static io.github.sefiraat.slimetinker.events.friend.EventChannels.checkArmour;
-import static io.github.sefiraat.slimetinker.events.friend.EventChannels.checkTool;
-import static io.github.sefiraat.slimetinker.events.friend.EventChannels.settlePotionEffects;
-
 public class BlockBreakListener implements Listener {
 
     public static final Map<Location, EventFriend> EVENT_FRIEND_MAP = new HashMap<>();
@@ -67,12 +64,12 @@ public class BlockBreakListener implements Listener {
         friend.setRemoveDrops(new ArrayList<>()); // Items to remove from the main collection if moved/reformed into the additional
 
         // Properties
-        checkTool(friend);
-        checkArmour(friend);
+        EventChannels.checkTool(friend);
+        EventChannels.checkArmour(friend);
 
         if (friend.isActionTaken()) {
 
-            if (friend.isCancelEvent() || ItemUtils.isTinkersBroken(heldItem)) {
+            if (friend.isCancelEvent()) {
                 event.setCancelled(true);
                 return;
             }
@@ -81,7 +78,7 @@ public class BlockBreakListener implements Listener {
             modChecks(heldItem, block, friend.getAddDrops());
 
             // Settle
-            settlePotionEffects(friend);
+            EventChannels.settlePotionEffects(friend);
 //            event.setDropItems(false);
 //
 //            for (ItemStack i : friend.getDrops()) { // Drop items in original collection not flagged for removal

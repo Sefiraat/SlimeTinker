@@ -49,6 +49,10 @@ public class SlimeTinker extends AbstractAddon {
         return instance;
     }
 
+    public TraitManager getTraitManager() {
+        return traitManager;
+    }
+
     @Override
     public void enable() {
 
@@ -70,10 +74,10 @@ public class SlimeTinker extends AbstractAddon {
         Mods.set(this);
         Workstations.set(this);
 
+        traitManager = new TraitManager();
         cmManager = new CMManager();
         runnableManager = new RunnableManager();
         dispatchManager = new DispatchManager();
-        traitManager = new TraitManager();
 
         this.listenerManager = new ListenerManager(this, this.getServer().getPluginManager());
 

@@ -23,4 +23,11 @@ public class TraitManager {
     public boolean getTraitStatus(String material, String part) {
         return this.config.getConfig().getOrSetDefault(material + "." + part, true);
     }
+
+    /**
+     * Save the file
+     */
+    public void save() {
+        this.config.getConfig().save();
+    }
 }

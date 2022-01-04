@@ -1,7 +1,10 @@
 package io.github.sefiraat.slimetinker.items.componentmaterials.cmelements;
 
+import io.github.sefiraat.slimetinker.SlimeTinker;
 import io.github.sefiraat.slimetinker.items.componentmaterials.ComponentMaterial;
 import io.github.sefiraat.slimetinker.managers.SupportedPluginsManager;
+import io.github.sefiraat.slimetinker.managers.TraitManager;
+import io.github.sefiraat.slimetinker.utils.IDStrings;
 import io.github.sefiraat.slimetinker.utils.SkullTextures;
 import io.github.sefiraat.slimetinker.utils.ThemeUtils;
 import io.github.sefiraat.slimetinker.utils.enums.ThemeItemType;
@@ -113,27 +116,29 @@ public class CMTraits {
 
     public void setupTraits(ComponentMaterial parent) {
         this.parent = parent;
+        TraitManager manager = SlimeTinker.inst().getTraitManager();
 
-        if (traitHead != null) {
+        if (traitHead != null && manager.getTraitStatus(this.materialID, IDStrings.HEAD)) {
             traitHead.setupTrait(this, parent);
         }
-        if (traitBind != null) {
+        if (traitBind != null && manager.getTraitStatus(this.materialID, IDStrings.BINDING)) {
             traitBind.setupTrait(this, parent);
         }
-        if (traitRod != null) {
+        if (traitRod != null && manager.getTraitStatus(this.materialID, IDStrings.ROD)) {
             traitRod.setupTrait(this, parent);
         }
 
-        if (traitPlates != null) {
+        if (traitPlates != null && manager.getTraitStatus(this.materialID, IDStrings.PLATE)) {
             traitPlates.setupTrait(this, parent);
         }
-        if (traitGambeson != null) {
+        if (traitGambeson != null && manager.getTraitStatus(this.materialID, IDStrings.GAMBESON)) {
             traitGambeson.setupTrait(this, parent);
         }
-        if (traitLinks != null) {
+        if (traitLinks != null && manager.getTraitStatus(this.materialID, IDStrings.LINKS)) {
             traitLinks.setupTrait(this, parent);
         }
 
+        manager.save();
     }
 
 }

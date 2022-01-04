@@ -49,10 +49,6 @@ public class SlimeTinker extends AbstractAddon {
         return instance;
     }
 
-    public TraitManager getTraitManager() {
-        return traitManager;
-    }
-
     @Override
     public void enable() {
 

@@ -14,14 +14,27 @@ public class TraitManager {
     }
 
     /**
-     * Get the trait status in the config file
+     * If the trait is enabled in the config.
+     * If the config does not exist, set to true by default.
      *
      * @param material the material of trait
      * @param part the part of trait
      * @return if the trait is enabled in the config
      */
-    public boolean getTraitStatus(String material, String part) {
+    public boolean getEnabled(String material, String part) {
         return this.config.getConfig().getOrSetDefault(material + "." + part, true);
+    }
+
+    /**
+     * If the trait is enabled in the config.
+     * This will not set the default value.
+     *
+     * @param material the material of trait
+     * @param part the part of trait
+     * @return if the trait is enabled in the config
+     */
+    public boolean isEnabled(String material, String part) {
+        return this.config.getConfig().getBoolean(material + "." + part);
     }
 
     /**

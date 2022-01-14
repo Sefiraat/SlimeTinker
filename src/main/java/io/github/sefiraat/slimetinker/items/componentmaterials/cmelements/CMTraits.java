@@ -118,23 +118,23 @@ public class CMTraits {
         this.parent = parent;
         TraitManager manager = SlimeTinker.inst().getTraitManager();
 
-        if (traitHead != null && manager.getTraitStatus(this.materialID, IDStrings.HEAD)) {
+        if (traitHead != null && manager.getEnabled(this.materialID, IDStrings.HEAD)) {
             traitHead.setupTrait(this, parent);
         }
-        if (traitBind != null && manager.getTraitStatus(this.materialID, IDStrings.BINDING)) {
+        if (traitBind != null && manager.getEnabled(this.materialID, IDStrings.BINDING)) {
             traitBind.setupTrait(this, parent);
         }
-        if (traitRod != null && manager.getTraitStatus(this.materialID, IDStrings.ROD)) {
+        if (traitRod != null && manager.getEnabled(this.materialID, IDStrings.ROD)) {
             traitRod.setupTrait(this, parent);
         }
 
-        if (traitPlates != null && manager.getTraitStatus(this.materialID, IDStrings.PLATE)) {
+        if (traitPlates != null && manager.getEnabled(this.materialID, IDStrings.PLATE)) {
             traitPlates.setupTrait(this, parent);
         }
-        if (traitGambeson != null && manager.getTraitStatus(this.materialID, IDStrings.GAMBESON)) {
+        if (traitGambeson != null && manager.getEnabled(this.materialID, IDStrings.GAMBESON)) {
             traitGambeson.setupTrait(this, parent);
         }
-        if (traitLinks != null && manager.getTraitStatus(this.materialID, IDStrings.LINKS)) {
+        if (traitLinks != null && manager.getEnabled(this.materialID, IDStrings.LINKS)) {
             traitLinks.setupTrait(this, parent);
         }
 

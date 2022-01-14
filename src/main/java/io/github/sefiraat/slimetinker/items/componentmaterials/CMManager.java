@@ -1,5 +1,6 @@
 package io.github.sefiraat.slimetinker.items.componentmaterials;
 
+import io.github.sefiraat.slimetinker.SlimeTinker;
 import io.github.sefiraat.slimetinker.events.friend.TraitPartType;
 import io.github.sefiraat.slimetinker.items.Casts;
 import io.github.sefiraat.slimetinker.items.Dies;
@@ -14,6 +15,8 @@ import io.github.sefiraat.slimetinker.items.componentmaterials.cmfactories.CMSli
 import io.github.sefiraat.slimetinker.items.componentmaterials.cmrecipes.CastResult;
 import io.github.sefiraat.slimetinker.items.componentmaterials.cmrecipes.MoltenResult;
 import io.github.sefiraat.slimetinker.managers.SupportedPluginsManager;
+import io.github.sefiraat.slimetinker.managers.TraitManager;
+import io.github.sefiraat.slimetinker.utils.IDStrings;
 import io.github.sefiraat.slimetinker.utils.ItemUtils;
 import lombok.Getter;
 import net.md_5.bungee.api.ChatColor;
@@ -26,23 +29,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import static io.github.sefiraat.slimetinker.utils.IDStrings.AXE;
-import static io.github.sefiraat.slimetinker.utils.IDStrings.BOOTS;
-import static io.github.sefiraat.slimetinker.utils.IDStrings.BRASS;
-import static io.github.sefiraat.slimetinker.utils.IDStrings.CHESTPLATE;
-import static io.github.sefiraat.slimetinker.utils.IDStrings.GOLD;
-import static io.github.sefiraat.slimetinker.utils.IDStrings.HEAD;
-import static io.github.sefiraat.slimetinker.utils.IDStrings.HELMET;
-import static io.github.sefiraat.slimetinker.utils.IDStrings.HOE;
-import static io.github.sefiraat.slimetinker.utils.IDStrings.LEGGINGS;
-import static io.github.sefiraat.slimetinker.utils.IDStrings.LINKS;
-import static io.github.sefiraat.slimetinker.utils.IDStrings.PICKAXE;
-import static io.github.sefiraat.slimetinker.utils.IDStrings.PLATE;
-import static io.github.sefiraat.slimetinker.utils.IDStrings.REPAIR;
-import static io.github.sefiraat.slimetinker.utils.IDStrings.ROD;
-import static io.github.sefiraat.slimetinker.utils.IDStrings.SHOVEL;
-import static io.github.sefiraat.slimetinker.utils.IDStrings.SWORD;
 
 public class CMManager {
 
@@ -147,6 +133,8 @@ public class CMManager {
             MAP.putAll(CMLiteXpansion.getMap());
         }
 
+        TraitManager traitManager = SlimeTinker.inst().getTraitManager();
+
         // Add melting recipes
         for (Map.Entry<String, ComponentMaterial> entry : MAP.entrySet()) {
 
@@ -154,21 +142,31 @@ public class CMManager {
             String id = entry.getKey();
 
             // Tools, armour and kits (referenced through dummy)
-            if (cm.isValidToolRod()) MAP_CAST_TOOLROD.put(cm, Parts.TOOL_ROD.getStack(id, ROD, null, cm.getColor()));
-            if (cm.isValidLinks()) MAP_CAST_ARMOUR_MAIL.put(cm, Parts.MAIL_LINKS.getStack(id, LINKS, null, cm.getColor()));
+            if (cm.isValidToolRod() & traitManager.isEnabled(id, IDStrings.ROD)) {
+                MAP_CAST_TOOLROD.put(cm, Parts.TOOL_ROD.getStack(id, IDStrings.ROD, null, cm.getColor()));
+            }
+            if (cm.isValidLinks() & traitManager.isEnabled(id, IDStrings.LINKS)) {
+                MAP_CAST_ARMOUR_MAIL.put(cm, Parts.MAIL_LINKS.getStack(id, IDStrings.LINKS, null, cm.getColor()));
+            }
 
-            if (cm.isValidToolHead()) MAP_CAST_SWORDBLADE.put(cm, Parts.SWORD_BLADE.getStack(id, HEAD, SWORD, cm.getColor()));
-            if (cm.isValidToolHead()) MAP_CAST_HOEHEAD.put(cm, Parts.HOE_HEAD.getStack(id, HEAD, HOE, cm.getColor()));
-            if (cm.isValidToolHead()) MAP_CAST_AXEHEAD.put(cm, Parts.AXE_HEAD.getStack(id, HEAD, AXE, cm.getColor()));
-            if (cm.isValidToolHead()) MAP_CAST_PICKAXEHEAD.put(cm, Parts.PICKAXE_HEAD.getStack(id, HEAD, PICKAXE, cm.getColor()));
-            if (cm.isValidToolHead()) MAP_CAST_SHOVELHEAD.put(cm, Parts.SHOVEL_HEAD.getStack(id, HEAD, SHOVEL, cm.getColor()));
+            if (cm.isValidToolHead() & traitManager.isEnabled(id, IDStrings.HEAD)) {
+                MAP_CAST_SWORDBLADE.put(cm, Parts.SWORD_BLADE.getStack(id, IDStrings.HEAD, IDStrings.SWORD, cm.getColor()));
+                MAP_CAST_HOEHEAD.put(cm, Parts.HOE_HEAD.getStack(id, IDStrings.HEAD, IDStrings.HOE, cm.getColor()));
+                MAP_CAST_AXEHEAD.put(cm, Parts.AXE_HEAD.getStack(id, IDStrings.HEAD, IDStrings.AXE, cm.getColor()));
+                MAP_CAST_PICKAXEHEAD.put(cm, Parts.PICKAXE_HEAD.getStack(id, IDStrings.HEAD, IDStrings.PICKAXE, cm.getColor()));
+                MAP_CAST_SHOVELHEAD.put(cm, Parts.SHOVEL_HEAD.getStack(id, IDStrings.HEAD, IDStrings.SHOVEL, cm.getColor()));
+            }
 
-            if (cm.isValidPlates()) MAP_CAST_ARMOUR_PLATES_HELM.put(cm, Parts.HELM_PLATE.getStack(id, PLATE, HELMET, cm.getColor()));
-            if (cm.isValidPlates()) MAP_CAST_ARMOUR_PLATES_CHEST.put(cm, Parts.CHEST_PLATE.getStack(id, PLATE, CHESTPLATE, cm.getColor()));
-            if (cm.isValidPlates()) MAP_CAST_ARMOUR_PLATES_LEGGINGS.put(cm, Parts.LEG_PLATE.getStack(id, PLATE, LEGGINGS, cm.getColor()));
-            if (cm.isValidPlates()) MAP_CAST_ARMOUR_PLATES_BOOTS.put(cm, Parts.BOOT_PLATE.getStack(id, PLATE, BOOTS, cm.getColor()));
+            if (cm.isValidPlates() & traitManager.isEnabled(id, IDStrings.PLATE)) {
+                MAP_CAST_ARMOUR_PLATES_HELM.put(cm, Parts.HELM_PLATE.getStack(id, IDStrings.PLATE, IDStrings.HELMET, cm.getColor()));
+                MAP_CAST_ARMOUR_PLATES_CHEST.put(cm, Parts.CHEST_PLATE.getStack(id, IDStrings.PLATE, IDStrings.CHESTPLATE, cm.getColor()));
+                MAP_CAST_ARMOUR_PLATES_LEGGINGS.put(cm, Parts.LEG_PLATE.getStack(id, IDStrings.PLATE, IDStrings.LEGGINGS, cm.getColor()));
+                MAP_CAST_ARMOUR_PLATES_BOOTS.put(cm, Parts.BOOT_PLATE.getStack(id, IDStrings.PLATE, IDStrings.BOOTS, cm.getColor()));
+            }
 
-            if (cm.isValidToolHead()) MAP_CAST_REPAIRKIT.put(cm, Parts.REPAIR_KIT.getStack(id, REPAIR, cm.getColor())); // We use HEAD here are repair always goes by head material
+            if (cm.isValidToolHead() || cm.isValidPlates()) {
+                MAP_CAST_REPAIRKIT.put(cm, Parts.REPAIR_KIT.getStack(id, IDStrings.REPAIR, cm.getColor())); // We use HEAD here are repair always goes by head material
+            }
 
             // Gems
             if (cm.getFormGem() != null) {
@@ -292,22 +290,22 @@ public class CMManager {
     }
 
     private void fillDieMetals() {
-        MAP_DIE_NUGGET.put(CMManager.getById(GOLD), Casts.CAST_NUGGET);
-        MAP_DIE_INGOT.put(CMManager.getById(GOLD), Casts.CAST_INGOT);
-        MAP_DIE_BLOCK.put(CMManager.getById(GOLD), Casts.CAST_BLOCK);
-        MAP_DIE_GEM.put(CMManager.getById(GOLD), Casts.CAST_GEM);
-        MAP_DIE_REPAIRKIT.put(CMManager.getById(GOLD), Casts.CAST_REPAIRKIT);
-        MAP_DIE_SHOVELHEAD.put(CMManager.getById(BRASS), Casts.CAST_SHOVELHEAD);
-        MAP_DIE_PICKAXEHEAD.put(CMManager.getById(BRASS), Casts.CAST_PICKAXEHEAD);
-        MAP_DIE_AXEHEAD.put(CMManager.getById(BRASS), Casts.CAST_AXEHEAD);
-        MAP_DIE_HOEHEAD.put(CMManager.getById(BRASS), Casts.CAST_HOEHEAD);
-        MAP_DIE_SWORDBLADE.put(CMManager.getById(BRASS), Casts.CAST_SWORDBLADE);
-        MAP_DIE_TOOLROD.put(CMManager.getById(BRASS), Casts.CAST_TOOLROD);
-        MAP_DIE_ARMOUR_PLATES_HELM.put(CMManager.getById(BRASS), Casts.CAST_HELM_PLATE);
-        MAP_DIE_ARMOUR_PLATES_CHEST.put(CMManager.getById(BRASS), Casts.CAST_CHEST_PLATE);
-        MAP_DIE_ARMOUR_PLATES_LEGGINGS.put(CMManager.getById(BRASS), Casts.CAST_LEG_PLATE);
-        MAP_DIE_ARMOUR_PLATES_BOOTS.put(CMManager.getById(BRASS), Casts.CAST_BOOT_PLATE);
-        MAP_DIE_ARMOUR_MAIL.put(CMManager.getById(BRASS), Casts.CAST_MAIL_LINK);
+        MAP_DIE_NUGGET.put(CMManager.getById(IDStrings.GOLD), Casts.CAST_NUGGET);
+        MAP_DIE_INGOT.put(CMManager.getById(IDStrings.GOLD), Casts.CAST_INGOT);
+        MAP_DIE_BLOCK.put(CMManager.getById(IDStrings.GOLD), Casts.CAST_BLOCK);
+        MAP_DIE_GEM.put(CMManager.getById(IDStrings.GOLD), Casts.CAST_GEM);
+        MAP_DIE_REPAIRKIT.put(CMManager.getById(IDStrings.GOLD), Casts.CAST_REPAIRKIT);
+        MAP_DIE_SHOVELHEAD.put(CMManager.getById(IDStrings.BRASS), Casts.CAST_SHOVELHEAD);
+        MAP_DIE_PICKAXEHEAD.put(CMManager.getById(IDStrings.BRASS), Casts.CAST_PICKAXEHEAD);
+        MAP_DIE_AXEHEAD.put(CMManager.getById(IDStrings.BRASS), Casts.CAST_AXEHEAD);
+        MAP_DIE_HOEHEAD.put(CMManager.getById(IDStrings.BRASS), Casts.CAST_HOEHEAD);
+        MAP_DIE_SWORDBLADE.put(CMManager.getById(IDStrings.BRASS), Casts.CAST_SWORDBLADE);
+        MAP_DIE_TOOLROD.put(CMManager.getById(IDStrings.BRASS), Casts.CAST_TOOLROD);
+        MAP_DIE_ARMOUR_PLATES_HELM.put(CMManager.getById(IDStrings.BRASS), Casts.CAST_HELM_PLATE);
+        MAP_DIE_ARMOUR_PLATES_CHEST.put(CMManager.getById(IDStrings.BRASS), Casts.CAST_CHEST_PLATE);
+        MAP_DIE_ARMOUR_PLATES_LEGGINGS.put(CMManager.getById(IDStrings.BRASS), Casts.CAST_LEG_PLATE);
+        MAP_DIE_ARMOUR_PLATES_BOOTS.put(CMManager.getById(IDStrings.BRASS), Casts.CAST_BOOT_PLATE);
+        MAP_DIE_ARMOUR_MAIL.put(CMManager.getById(IDStrings.BRASS), Casts.CAST_MAIL_LINK);
     }
 
     private void fillCastingDies() {

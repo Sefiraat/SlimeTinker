@@ -47,6 +47,11 @@ public class ModificationStation extends MenuBlock {
             return false;
         }
 
+        if (item.getAmount() > 1) {
+            player.sendMessage(ThemeUtils.WARNING + "Nope - nerd");
+            return false;
+        }
+
         // Still no tool, nice try
         if (ItemUtils.isTool(item)) {
             return modTool(blockMenu, player, item, modItem);

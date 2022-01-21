@@ -7,6 +7,7 @@ import io.github.sefiraat.slimetinker.utils.EntityUtils;
 import org.bukkit.Color;
 import org.bukkit.Material;
 import org.bukkit.Particle;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -29,7 +30,7 @@ public class EntityDamagedListener implements Listener {
     @EventHandler
     public void onEntityDamaged(EntityDamageByEntityEvent event) {
 
-        if (isValidEvent(event)) {
+        if (isInvalidEvent(event)) {
             return;
         }
 
@@ -96,11 +97,13 @@ public class EntityDamagedListener implements Listener {
         friend.setDamageMod(friend.getDamageMod() + (level * 0.2));
     }
 
-    private boolean isValidEvent(EntityDamageByEntityEvent event) {
+    private boolean isInvalidEvent(EntityDamageByEntityEvent event) {
+        final Entity entity = event.getEntity();
         return !(event.getDamager() instanceof Player)
             || event.isCancelled()
-            || !(event.getEntity() instanceof LivingEntity)
-            || EntityUtils.isTrainingDummy(event.getEntity());
+            || !(entity instanceof LivingEntity)
+            || EntityUtils.isTrainingDummy(entity)
+            || EntityUtils.shouldIgnoreDamage(entity);
     }
 
 }

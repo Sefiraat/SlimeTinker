@@ -1,8 +1,11 @@
 package io.github.sefiraat.slimetinker.utils;
 
+import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
+import io.github.thebusybiscuit.slimefun4.libraries.dough.data.persistent.PersistentDataAPI;
 import lombok.experimental.UtilityClass;
 import org.apache.commons.lang.Validate;
 import org.bukkit.Location;
+import org.bukkit.NamespacedKey;
 import org.bukkit.Particle;
 import org.bukkit.World;
 import org.bukkit.block.Block;
@@ -22,6 +25,7 @@ import java.util.function.Predicate;
 @UtilityClass
 public final class EntityUtils {
 
+    private static final NamespacedKey IGNORE_DAMAGE_KEY = new NamespacedKey(Slimefun.instance(), "ignore_damage");
 
     public static void push(LivingEntity pushed, Location loc, double force) {
         Vector v = pushed.getLocation().toVector().subtract(loc.toVector()).normalize().multiply(force);
@@ -61,6 +65,15 @@ public final class EntityUtils {
      */
     public static boolean isTrainingDummy(Entity e) {
         return e.getCustomName() != null && e.getCustomName().equals("Dummy");
+    }
+
+    /**
+     * Checks for a PDC entry to ignore damage for player damage events fired unnaturally (Crysta's plates)
+     *
+     * @return True if damage SHOULD be ignored
+     */
+    public static boolean shouldIgnoreDamage(Entity e) {
+        return PersistentDataAPI.getBoolean(e, IGNORE_DAMAGE_KEY);
     }
 
     public static double getFacing(Player p, Entity e) {

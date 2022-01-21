@@ -4,16 +4,19 @@ import io.github.sefiraat.slimetinker.events.friend.EventChannels;
 import io.github.sefiraat.slimetinker.events.friend.EventFriend;
 import io.github.sefiraat.slimetinker.events.friend.TraitEventType;
 import io.github.sefiraat.slimetinker.modifiers.Modifications;
+import io.github.sefiraat.slimetinker.utils.EntityUtils;
 import io.github.sefiraat.slimetinker.utils.Experience;
 import io.github.sefiraat.slimetinker.utils.ItemUtils;
 import org.bukkit.Color;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Particle;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerRespawnEvent;
@@ -71,7 +74,7 @@ public class EntityKilledListener implements Listener {
 
         LivingEntity dyingEntity = event.getEntity();
 
-        if (dyingEntity.getKiller() == null) {
+        if (dyingEntity.getKiller() == null || isInvalidEvent(event)) {
             return;
         }
 
@@ -135,4 +138,9 @@ public class EntityKilledListener implements Listener {
         }
     }
 
+    private boolean isInvalidEvent(EntityDeathEvent event) {
+        final LivingEntity entity = event.getEntity();
+        return EntityUtils.isTrainingDummy(entity)
+            || EntityUtils.shouldIgnoreDamage(entity);
+    }
 }

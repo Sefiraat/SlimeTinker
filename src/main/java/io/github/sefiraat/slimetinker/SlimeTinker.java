@@ -13,6 +13,7 @@ import io.github.sefiraat.slimetinker.items.componentmaterials.CMManager;
 import io.github.sefiraat.slimetinker.items.workstations.workbench.Workbench;
 import io.github.sefiraat.slimetinker.listeners.ListenerManager;
 import io.github.sefiraat.slimetinker.managers.DispatchManager;
+import io.github.sefiraat.slimetinker.managers.TraitManager;
 import io.github.sefiraat.slimetinker.runnables.RunnableManager;
 import io.github.sefiraat.slimetinker.utils.Keys;
 import lombok.Getter;
@@ -37,6 +38,8 @@ public class SlimeTinker extends AbstractAddon {
     @Getter
     @Setter
     private Workbench workbench;
+    @Getter
+    private TraitManager traitManager;
 
     public SlimeTinker() {
         super("Sefiraat", "SlimeTinker", "master", "auto-update");
@@ -67,6 +70,7 @@ public class SlimeTinker extends AbstractAddon {
         Mods.set(this);
         Workstations.set(this);
 
+        traitManager = new TraitManager();
         cmManager = new CMManager();
         runnableManager = new RunnableManager();
         dispatchManager = new DispatchManager();

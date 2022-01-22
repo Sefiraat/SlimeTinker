@@ -3,7 +3,9 @@ package io.github.sefiraat.slimetinker.events.friend;
 import io.github.sefiraat.slimetinker.SlimeTinker;
 import io.github.sefiraat.slimetinker.items.componentmaterials.CMManager;
 import io.github.sefiraat.slimetinker.items.componentmaterials.ComponentMaterial;
+import io.github.sefiraat.slimetinker.managers.TraitManager;
 import io.github.sefiraat.slimetinker.utils.Experience;
+import io.github.sefiraat.slimetinker.utils.IDStrings;
 import io.github.sefiraat.slimetinker.utils.ItemUtils;
 import io.github.sefiraat.slimetinker.utils.ThemeUtils;
 import lombok.experimental.UtilityClass;
@@ -79,9 +81,17 @@ public class EventChannels {
         ComponentMaterial binderMaterial = CMManager.getMAP().get(matPropertyBinding);
         ComponentMaterial rodMaterial = CMManager.getMAP().get(matPropertyRod);
 
-        if (headMaterial != null) headMaterial.runEvent(friend.getEventType(), TraitPartType.HEAD, friend);
-        if (binderMaterial != null) binderMaterial.runEvent(friend.getEventType(), TraitPartType.BINDER, friend);
-        if (rodMaterial != null) rodMaterial.runEvent(friend.getEventType(), TraitPartType.ROD, friend);
+        TraitManager manager = SlimeTinker.inst().getTraitManager();
+
+        if (headMaterial != null && manager.isEnabled(matPropertyHead, IDStrings.HEAD)) {
+            headMaterial.runEvent(friend.getEventType(), TraitPartType.HEAD, friend);
+        }
+        if (binderMaterial != null && manager.isEnabled(matPropertyBinding, IDStrings.BINDING)) {
+            binderMaterial.runEvent(friend.getEventType(), TraitPartType.BINDER, friend);
+        }
+        if (rodMaterial != null && manager.isEnabled(matPropertyRod, IDStrings.ROD)) {
+            rodMaterial.runEvent(friend.getEventType(), TraitPartType.ROD, friend);
+        }
 
     }
 
@@ -172,9 +182,17 @@ public class EventChannels {
         ComponentMaterial gambesonMaterial = CMManager.getMAP().get(matPropertyGambeson);
         ComponentMaterial linksMaterial = CMManager.getMAP().get(matPropertyLinks);
 
-        if (plateMaterial != null) plateMaterial.runEvent(friend.getEventType(), TraitPartType.PLATE, friend);
-        if (gambesonMaterial != null) gambesonMaterial.runEvent(friend.getEventType(), TraitPartType.GAMBESON, friend);
-        if (linksMaterial != null) linksMaterial.runEvent(friend.getEventType(), TraitPartType.LINKS, friend);
+        TraitManager manager = SlimeTinker.inst().getTraitManager();
+
+        if (plateMaterial != null && manager.isEnabled(matPropertyPlate, IDStrings.PLATE)) {
+            plateMaterial.runEvent(friend.getEventType(), TraitPartType.PLATE, friend);
+        }
+        if (gambesonMaterial != null && manager.isEnabled(matPropertyGambeson, IDStrings.GAMBESON)) {
+            gambesonMaterial.runEvent(friend.getEventType(), TraitPartType.GAMBESON, friend);
+        }
+        if (linksMaterial != null && manager.isEnabled(matPropertyLinks, IDStrings.LINKS)) {
+            linksMaterial.runEvent(friend.getEventType(), TraitPartType.LINKS, friend);
+        }
 
     }
 

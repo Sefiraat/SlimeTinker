@@ -23,6 +23,7 @@ Mod ([link](https://www.curseforge.com/minecraft/mc-mods/tinkers-construct)) in 
   faster THEN swap to Reinforced for 3x3? Go for it!
 * All effects/mods (when applicable) work with Vanilla Enchants. Damage, exp and durability modifications are all
   stackable and work nicely with each other.
+* Configurable traits. You can disable any trait you don't want in the configuration file.
 
 For a more detailed look, check out the video from Boomer_1 who runs through the basics of Tinker!
 [![Boomer shows off SlimeTinker](https://res.cloudinary.com/marcomontalbano/image/upload/v1626509062/video_to_markdown/images/youtube--gAUoxj-h26s-c05b58ac6eb4c4700831b2b3070cd403.jpg)](https://youtu.be/gAUoxj-h26s "Boomer shows off SlimeTinker")
@@ -31,6 +32,10 @@ For a more detailed look, check out the video from Boomer_1 who runs through the
 
 * Addition of molten metal types from even more addons!
 * Additional tiers of smeltery that will allow for further automation.
+
+## Configuration
+
+SlimeTinker now supports disabling traits. All the traits are enabled by default. To disable a trait, open the file `/plugins/SlimeTinker/traits.yml`, disable the part under a specific material.
 
 ## Suggestions?
 

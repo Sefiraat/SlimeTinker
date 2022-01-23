@@ -34,7 +34,8 @@ public class RepairkitTemplate extends UnplaceableBlock {
         NamespacedKey key = SlimeTinker.inst().getKeys().getPartClass();
         ItemMeta im = itemStack.getItemMeta();
         Validate.notNull(im, "Meta is null, wrong wrong wrong.");
-        return PersistentDataAPI.getString(im, key).equals(IDStrings.REPAIR);
+        String value = PersistentDataAPI.getString(im, key);
+        return value != null && value.equals(IDStrings.REPAIR);
     }
 
     public String getName(String material) {

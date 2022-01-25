@@ -17,6 +17,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
+import javax.annotation.Nonnull;
 import java.util.Map;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -29,7 +30,6 @@ public class EntityDamagedListener implements Listener {
     @SuppressWarnings("unused")
     @EventHandler
     public void onEntityDamaged(EntityDamageByEntityEvent event) {
-
         if (isInvalidEvent(event)) {
             return;
         }
@@ -48,7 +48,7 @@ public class EntityDamagedListener implements Listener {
 
         if (friend.isActionTaken()) {
             // Mods
-            modChecks(event, heldItem, friend);
+            modChecks(heldItem, friend);
 
             // Settle
             if (friend.isCancelEvent()) {
@@ -76,28 +76,23 @@ public class EntityDamagedListener implements Listener {
                     e.addPotionEffect(potionEffect);
                 }
             }
-
             event.setDamage(friend.getDamageOverride() == null ? event.getDamage() * friend.getDamageMod() : friend.getDamageOverride());
-
         }
-
     }
 
-    private void modChecks(EntityDamageByEntityEvent event, ItemStack heldItem, EventFriend friend) { // Player damaging entity
-
+    private void modChecks(ItemStack heldItem, EventFriend friend) {
         Map<String, Integer> modLevels = Modifications.getAllModLevels(heldItem);
 
         if (modLevels.containsKey(Material.QUARTZ.toString())) { // QUARTZ
             modCheckQuartz(modLevels.get(Material.QUARTZ.toString()), friend);
         }
-
     }
 
-    private void modCheckQuartz(int level, EventFriend friend) {
+    private void modCheckQuartz(int level, @Nonnull EventFriend friend) {
         friend.setDamageMod(friend.getDamageMod() + (level * 0.2));
     }
 
-    private boolean isInvalidEvent(EntityDamageByEntityEvent event) {
+    private boolean isInvalidEvent(@Nonnull EntityDamageByEntityEvent event) {
         final Entity entity = event.getEntity();
         return !(event.getDamager() instanceof Player)
             || event.isCancelled()
@@ -105,5 +100,4 @@ public class EntityDamagedListener implements Listener {
             || EntityUtils.isTrainingDummy(entity)
             || EntityUtils.shouldIgnoreDamage(entity);
     }
-
 }

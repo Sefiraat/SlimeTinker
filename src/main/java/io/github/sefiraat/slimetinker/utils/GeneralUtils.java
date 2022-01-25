@@ -1,21 +1,25 @@
 package io.github.sefiraat.slimetinker.utils;
 
 import io.github.sefiraat.slimetinker.SlimeTinker;
-import lombok.experimental.UtilityClass;
 import org.bukkit.Location;
 import org.bukkit.World;
 
+import javax.annotation.Nonnull;
 import java.util.Objects;
 import java.util.concurrent.ThreadLocalRandom;
 
-@UtilityClass
 public final class GeneralUtils {
 
-    public static boolean day(World world) {
+    private GeneralUtils() {
+        throw new IllegalStateException("Utility class");
+    }
+
+    public static boolean day(@Nonnull World world) {
         return world.getTime() > 0 && world.getTime() < 12300;
     }
 
-    public static String serializeLocation(Location l) {
+    @Nonnull
+    public static String serializeLocation(@Nonnull Location l) {
         String world = Objects.requireNonNull(l.getWorld()).getName();
         double x = l.getX();
         double y = l.getY();
@@ -25,7 +29,8 @@ public final class GeneralUtils {
         return world + ";" + x + ";" + y + ";" + z + ";" + w + ";" + p;
     }
 
-    public static Location deserializeLocation(String s) {
+    @Nonnull
+    public static Location deserializeLocation(@Nonnull String s) {
         String[] split = s.split(";");
         return new Location(
             SlimeTinker.inst().getServer().getWorld(split[0]),
@@ -58,7 +63,6 @@ public final class GeneralUtils {
         return roll(upper, true);
     }
 
-
     /**
      * Rolls a number starting from 1 to upper
      *
@@ -73,6 +77,4 @@ public final class GeneralUtils {
         if (upLimit) upper++;
         return ThreadLocalRandom.current().nextInt(1, upper);
     }
-
-
 }

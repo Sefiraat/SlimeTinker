@@ -18,8 +18,6 @@ import io.github.sefiraat.slimetinker.managers.SupportedPluginsManager;
 import io.github.sefiraat.slimetinker.utils.IDStrings;
 import io.github.sefiraat.slimetinker.utils.SkullTextures;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
-import lombok.Getter;
-import lombok.experimental.UtilityClass;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -27,15 +25,16 @@ import java.util.Map;
 import java.util.Objects;
 
 @SuppressWarnings("SpellCheckingInspection")
-@UtilityClass
 public final class CMSlimefunWarfare {
 
+    private CMSlimefunWarfare() {
+        throw new UnsupportedOperationException("Utility Class");
+    }
 
-    @Getter
-    private static final Map<String, ComponentMaterial> map = new HashMap<>();
+    private static final Map<String, ComponentMaterial> CM_MAP = new HashMap<>();
 
     static {
-        map.put(IDStrings.SEGGANESSON,
+        CM_MAP.put(IDStrings.SEGGANESSON,
             new ComponentMaterial
                 (
                     new CMIdentity(IDStrings.SEGGANESSON, Objects.requireNonNull(SlimefunItem.getById("SEGGANESSON")).getItem(), SkullTextures.ALLOY_BLUE_PALE, "#4bacbf"),
@@ -86,13 +85,13 @@ public final class CMSlimefunWarfare {
                         ))
                 ));
 
-        map.put(IDStrings.SLIMESTEEL,
+        CM_MAP.put(IDStrings.SLIMESTEEL,
             new ComponentMaterial
                 (
                     new CMIdentity(IDStrings.SLIMESTEEL, Objects.requireNonNull(SlimefunItem.getById("SLIMESTEEL_INGOT")).getItem(), SkullTextures.ALLOY_GREEN, "#aed197"),
                     Arrays.asList(
-                        CMCore.getMap().get(IDStrings.STEEL).getLiquidItemStack(1),
-                        CMCore.getMap().get(IDStrings.SLIME).getLiquidItemStack(1)
+                        CMCore.getCmMap().get(IDStrings.STEEL).getLiquidItemStack(1),
+                        CMCore.getCmMap().get(IDStrings.SLIME).getLiquidItemStack(1)
                     ),
                     new CMToolMakeup(false, true, false, false, true, false),
                     new CMForms(
@@ -128,17 +127,17 @@ public final class CMSlimefunWarfare {
                         null)
                 ));
 
-        map.put(IDStrings.REINFORCED_SLIMESTEEL,
+        CM_MAP.put(IDStrings.REINFORCED_SLIMESTEEL,
             new ComponentMaterial
                 (
                     new CMIdentity(IDStrings.REINFORCED_SLIMESTEEL, Objects.requireNonNull(SlimefunItem.getById("REINFORCED_SLIMESTEEL_INGOT")).getItem(), SkullTextures.ALLOY_GREEN, "#aed197"),
                     Arrays.asList(
-                        map.get(IDStrings.SLIMESTEEL).getLiquidItemStack(1),
-                        CMCore.getMap().get(IDStrings.SLIME).getLiquidItemStack(9),
-                        CMCore.getMap().get(IDStrings.DAMSTEEL).getLiquidItemStack(1),
-                        CMCore.getMap().get(IDStrings.HARD).getLiquidItemStack(1),
-                        CMCore.getMap().get(IDStrings.CORBRONZE).getLiquidItemStack(1),
-                        CMCore.getMap().get(IDStrings.ALUBRONZE).getLiquidItemStack(1)
+                        CM_MAP.get(IDStrings.SLIMESTEEL).getLiquidItemStack(1),
+                        CMCore.getCmMap().get(IDStrings.SLIME).getLiquidItemStack(9),
+                        CMCore.getCmMap().get(IDStrings.DAMSTEEL).getLiquidItemStack(1),
+                        CMCore.getCmMap().get(IDStrings.HARD).getLiquidItemStack(1),
+                        CMCore.getCmMap().get(IDStrings.CORBRONZE).getLiquidItemStack(1),
+                        CMCore.getCmMap().get(IDStrings.ALUBRONZE).getLiquidItemStack(1)
                     ),
                     new CMToolMakeup(true, false, true, true, false, true),
                     new CMForms(
@@ -185,7 +184,7 @@ public final class CMSlimefunWarfare {
                         ))
                 ));
 
-        map.put(IDStrings.OSMIUM,
+        CM_MAP.put(IDStrings.OSMIUM,
             new ComponentMaterial
                 (
                     new CMIdentity(IDStrings.OSMIUM, Objects.requireNonNull(SlimefunItem.getById("OSMIUM_INGOT")).getItem(), SkullTextures.ALLOY_BLUE_PALE, "#8dd6c0"),
@@ -234,15 +233,15 @@ public final class CMSlimefunWarfare {
                         ))
                 ));
 
-        map.put(IDStrings.OSMIUM_SUPERALLOY,
+        CM_MAP.put(IDStrings.OSMIUM_SUPERALLOY,
             new ComponentMaterial
                 (
                     new CMIdentity(IDStrings.OSMIUM_SUPERALLOY, Objects.requireNonNull(SlimefunItem.getById("OSMIUM_SUPERALLOY")).getItem(), SkullTextures.ALLOY_BLUE_PALE, "#8dd6c0"),
                     Arrays.asList(
-                        map.get(IDStrings.OSMIUM).getLiquidItemStack(2),
-                        map.get(IDStrings.SEGGANESSON).getLiquidItemStack(1),
-                        map.get(IDStrings.REINFORCED_SLIMESTEEL).getLiquidItemStack(1),
-                        CMCore.getMap().get(IDStrings.REINFORCED).getLiquidItemStack(1)
+                        CM_MAP.get(IDStrings.OSMIUM).getLiquidItemStack(2),
+                        CM_MAP.get(IDStrings.SEGGANESSON).getLiquidItemStack(1),
+                        CM_MAP.get(IDStrings.REINFORCED_SLIMESTEEL).getLiquidItemStack(1),
+                        CMCore.getCmMap().get(IDStrings.REINFORCED).getLiquidItemStack(1)
                     ),
                     new CMToolMakeup(true, false, true, true, false, true),
                     new CMForms(
@@ -291,7 +290,7 @@ public final class CMSlimefunWarfare {
                         ))
                 ));
 
-        map.put(IDStrings.UNPATENTABLIUM,
+        CM_MAP.put(IDStrings.UNPATENTABLIUM,
             new ComponentMaterial
                 (
                     new CMIdentity(IDStrings.UNPATENTABLIUM, Objects.requireNonNull(SlimefunItem.getById("UNPATENTABLIUM")).getItem(), SkullTextures.ALLOY_BLUE_PALE, "#8dd6c0"),
@@ -349,39 +348,42 @@ public final class CMSlimefunWarfare {
 
     public static void setupToolConsumers() {
 
-        map.get(IDStrings.SEGGANESSON).addEvent(TraitEventType.TICK, TraitPartType.ROD, TickEvents::rodSegganesson);                                           // Blinding Speed
-        map.get(IDStrings.SLIMESTEEL).addEvent(TraitEventType.TICK, TraitPartType.BINDER, TickEvents::bindSlimesteel);                                         // Bouncy II - Tick
-        map.get(IDStrings.SLIMESTEEL).addEvent(TraitEventType.PLAYER_DAMAGED, TraitPartType.BINDER, PlayerDamagedEvents::bindSlimesteel);                      // Bouncy II - Damage
-        map.get(IDStrings.OSMIUM_SUPERALLOY).addEvent(TraitEventType.ENTITY_DAMAGED, TraitPartType.HEAD, EntityDamageEvents::headOsmiumSuperalloy);            // Brute - Damage
-        map.get(IDStrings.OSMIUM_SUPERALLOY).addEvent(TraitEventType.TICK, TraitPartType.HEAD, TickEvents::headOsmiumSuperalloy);                              // Brute - Tick
-        map.get(IDStrings.REINFORCED_SLIMESTEEL).addEvent(TraitEventType.PLAYER_DAMAGED, TraitPartType.ROD, PlayerDamagedEvents::headReinforcedSlimesteel);    // Flexibility
-        map.get(IDStrings.OSMIUM).addEvent(TraitEventType.DURABILITY, TraitPartType.HEAD, DurabilityEvents::explosive);                                        // Heavy (CO)
-        map.get(IDStrings.OSMIUM).addEvent(TraitEventType.ENTITY_DAMAGED, TraitPartType.ROD, EntityDamageEvents::rodOsmium);                                   // Heavy Pommel
+        CM_MAP.get(IDStrings.SEGGANESSON).addEvent(TraitEventType.TICK, TraitPartType.ROD, TickEvents::rodSegganesson);                                           // Blinding Speed
+        CM_MAP.get(IDStrings.SLIMESTEEL).addEvent(TraitEventType.TICK, TraitPartType.BINDER, TickEvents::bindSlimesteel);                                         // Bouncy II - Tick
+        CM_MAP.get(IDStrings.SLIMESTEEL).addEvent(TraitEventType.PLAYER_DAMAGED, TraitPartType.BINDER, PlayerDamagedEvents::bindSlimesteel);                      // Bouncy II - Damage
+        CM_MAP.get(IDStrings.OSMIUM_SUPERALLOY).addEvent(TraitEventType.ENTITY_DAMAGED, TraitPartType.HEAD, EntityDamageEvents::headOsmiumSuperalloy);            // Brute - Damage
+        CM_MAP.get(IDStrings.OSMIUM_SUPERALLOY).addEvent(TraitEventType.TICK, TraitPartType.HEAD, TickEvents::headOsmiumSuperalloy);                              // Brute - Tick
+        CM_MAP.get(IDStrings.REINFORCED_SLIMESTEEL).addEvent(TraitEventType.PLAYER_DAMAGED, TraitPartType.ROD, PlayerDamagedEvents::headReinforcedSlimesteel);    // Flexibility
+        CM_MAP.get(IDStrings.OSMIUM).addEvent(TraitEventType.DURABILITY, TraitPartType.HEAD, DurabilityEvents::explosive);                                        // Heavy (CO)
+        CM_MAP.get(IDStrings.OSMIUM).addEvent(TraitEventType.ENTITY_DAMAGED, TraitPartType.ROD, EntityDamageEvents::rodOsmium);                                   // Heavy Pommel
         // Incorporeal Right (Special case in ItemDrop and PlayerDesth)
-        map.get(IDStrings.UNPATENTABLIUM).addEvent(TraitEventType.ENTITY_DAMAGED, TraitPartType.HEAD, EntityDamageEvents::headUnpatentabilum);                 // Innovation - Damage
-        map.get(IDStrings.UNPATENTABLIUM).addEvent(TraitEventType.BLOCK_BREAK, TraitPartType.HEAD, BlockBreakEvents::headUnpatentabilum);                      // Innovation - Block Break
-        map.get(IDStrings.SEGGANESSON).addEvent(TraitEventType.ENTITY_DAMAGED, TraitPartType.HEAD, EntityDamageEvents::headSegganesson);                       // Overcharge
-        map.get(IDStrings.REINFORCED_SLIMESTEEL).addEvent(TraitEventType.BLOCK_BREAK, TraitPartType.HEAD, BlockBreakEvents::headReinforcedSlimesteel);         // Strong and Sticky
-        map.get(IDStrings.OSMIUM_SUPERALLOY).addEvent(TraitEventType.ENTITY_DAMAGED, TraitPartType.ROD, EntityDamageEvents::headHard);                         // Tuff Stuff (CO)
+        CM_MAP.get(IDStrings.UNPATENTABLIUM).addEvent(TraitEventType.ENTITY_DAMAGED, TraitPartType.HEAD, EntityDamageEvents::headUnpatentabilum);                 // Innovation - Damage
+        CM_MAP.get(IDStrings.UNPATENTABLIUM).addEvent(TraitEventType.BLOCK_BREAK, TraitPartType.HEAD, BlockBreakEvents::headUnpatentabilum);                      // Innovation - Block Break
+        CM_MAP.get(IDStrings.SEGGANESSON).addEvent(TraitEventType.ENTITY_DAMAGED, TraitPartType.HEAD, EntityDamageEvents::headSegganesson);                       // Overcharge
+        CM_MAP.get(IDStrings.REINFORCED_SLIMESTEEL).addEvent(TraitEventType.BLOCK_BREAK, TraitPartType.HEAD, BlockBreakEvents::headReinforcedSlimesteel);         // Strong and Sticky
+        CM_MAP.get(IDStrings.OSMIUM_SUPERALLOY).addEvent(TraitEventType.ENTITY_DAMAGED, TraitPartType.ROD, EntityDamageEvents::headHard);                         // Tuff Stuff (CO)
 
     }
 
     public static void setupArmourConsumers() {
 
-        map.get(IDStrings.REINFORCED_SLIMESTEEL).addEvent(TraitEventType.PLAYER_DAMAGED, TraitPartType.LINKS, PlayerDamagedEvents::linksReinforcedSlimesteel);  // Deflection
-        map.get(IDStrings.OSMIUM).addEvent(TraitEventType.PLAYER_DAMAGED, TraitPartType.LINKS, PlayerDamagedEvents::linksOsmium);                               // Draw
-        map.get(IDStrings.SEGGANESSON).addEvent(TraitEventType.TICK, TraitPartType.PLATE, TickEvents::plateSegganesson);                                        // Gravity
-        map.get(IDStrings.OSMIUM).addEvent(TraitEventType.TICK, TraitPartType.PLATE, TickEvents::plateOsmium);                                                  // Increased Mass - Slow
-        map.get(IDStrings.OSMIUM).addEvent(TraitEventType.PLAYER_DAMAGED, TraitPartType.PLATE, PlayerDamagedEvents::plateOsmium);                               // Increased Mass - Knockback
-        map.get(IDStrings.UNPATENTABLIUM).addEvent(TraitEventType.TICK, TraitPartType.PLATE, TickEvents::plateUnpatentabilum);                                  // Intense Gase
-        map.get(IDStrings.UNPATENTABLIUM).addEvent(TraitEventType.PLAYER_DAMAGED, TraitPartType.LINKS, PlayerDamagedEvents::plateMetal);                        // KOTR (CO)
-        map.get(IDStrings.SLIMESTEEL).addEvent(TraitEventType.PLAYER_DAMAGED, TraitPartType.GAMBESON, PlayerDamagedEvents::gambesonSlimeSteel);                 // Moon Bounce
-        map.get(IDStrings.OSMIUM_SUPERALLOY).addEvent(TraitEventType.TICK, TraitPartType.LINKS, TickEvents::linksOsmiumSuperalloy);                             // Partial Decay
-        map.get(IDStrings.REINFORCED_SLIMESTEEL).addEvent(TraitEventType.TICK, TraitPartType.PLATE, TickEvents::plateReinforcedSlimesteel);                     // Rigid Flexibility - Effects
-        map.get(IDStrings.REINFORCED_SLIMESTEEL).addEvent(TraitEventType.PLAYER_DAMAGED, TraitPartType.PLATE, PlayerDamagedEvents::plateReinforcedSlimesteel);  // Rigid Flexibility - Damage
-        map.get(IDStrings.SEGGANESSON).addEvent(TraitEventType.ENTITY_DAMAGED, TraitPartType.LINKS, EntityDamageEvents::linksSegganesson);                      // Soul Siphon
-        map.get(IDStrings.OSMIUM_SUPERALLOY).addEvent(TraitEventType.TICK, TraitPartType.PLATE, TickEvents::plateOsmiumSuperalloy);                             // Tempest
+        CM_MAP.get(IDStrings.REINFORCED_SLIMESTEEL).addEvent(TraitEventType.PLAYER_DAMAGED, TraitPartType.LINKS, PlayerDamagedEvents::linksReinforcedSlimesteel);  // Deflection
+        CM_MAP.get(IDStrings.OSMIUM).addEvent(TraitEventType.PLAYER_DAMAGED, TraitPartType.LINKS, PlayerDamagedEvents::linksOsmium);                               // Draw
+        CM_MAP.get(IDStrings.SEGGANESSON).addEvent(TraitEventType.TICK, TraitPartType.PLATE, TickEvents::plateSegganesson);                                        // Gravity
+        CM_MAP.get(IDStrings.OSMIUM).addEvent(TraitEventType.TICK, TraitPartType.PLATE, TickEvents::plateOsmium);                                                  // Increased Mass - Slow
+        CM_MAP.get(IDStrings.OSMIUM).addEvent(TraitEventType.PLAYER_DAMAGED, TraitPartType.PLATE, PlayerDamagedEvents::plateOsmium);                               // Increased Mass - Knockback
+        CM_MAP.get(IDStrings.UNPATENTABLIUM).addEvent(TraitEventType.TICK, TraitPartType.PLATE, TickEvents::plateUnpatentabilum);                                  // Intense Gase
+        CM_MAP.get(IDStrings.UNPATENTABLIUM).addEvent(TraitEventType.PLAYER_DAMAGED, TraitPartType.LINKS, PlayerDamagedEvents::plateMetal);                        // KOTR (CO)
+        CM_MAP.get(IDStrings.SLIMESTEEL).addEvent(TraitEventType.PLAYER_DAMAGED, TraitPartType.GAMBESON, PlayerDamagedEvents::gambesonSlimeSteel);                 // Moon Bounce
+        CM_MAP.get(IDStrings.OSMIUM_SUPERALLOY).addEvent(TraitEventType.TICK, TraitPartType.LINKS, TickEvents::linksOsmiumSuperalloy);                             // Partial Decay
+        CM_MAP.get(IDStrings.REINFORCED_SLIMESTEEL).addEvent(TraitEventType.TICK, TraitPartType.PLATE, TickEvents::plateReinforcedSlimesteel);                     // Rigid Flexibility - Effects
+        CM_MAP.get(IDStrings.REINFORCED_SLIMESTEEL).addEvent(TraitEventType.PLAYER_DAMAGED, TraitPartType.PLATE, PlayerDamagedEvents::plateReinforcedSlimesteel);  // Rigid Flexibility - Damage
+        CM_MAP.get(IDStrings.SEGGANESSON).addEvent(TraitEventType.ENTITY_DAMAGED, TraitPartType.LINKS, EntityDamageEvents::linksSegganesson);                      // Soul Siphon
+        CM_MAP.get(IDStrings.OSMIUM_SUPERALLOY).addEvent(TraitEventType.TICK, TraitPartType.PLATE, TickEvents::plateOsmiumSuperalloy);                             // Tempest
 
     }
 
+    public static Map<String, ComponentMaterial> getCmMap() {
+        return CM_MAP;
+    }
 }

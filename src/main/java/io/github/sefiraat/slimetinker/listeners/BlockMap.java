@@ -1,15 +1,18 @@
 package io.github.sefiraat.slimetinker.listeners;
 
 import io.github.sefiraat.slimetinker.utils.IDStrings;
-import lombok.Getter;
 import org.bukkit.Material;
 
 import java.util.EnumMap;
+import java.util.Map;
 
 public final class BlockMap {
 
-    @Getter
-    protected static final EnumMap<Material, String> materialMap = new EnumMap<>(Material.class);
+    private static final EnumMap<Material, String> MATERIAL_MAP = new EnumMap<>(Material.class);
+
+    private BlockMap() {
+        throw new IllegalStateException("Utility class");
+    }
 
     static {
         for (Material m : Material.values()) {
@@ -58,7 +61,7 @@ public final class BlockMap {
                 case AMETHYST_CLUSTER:
                 case GLOWSTONE:
                 case NETHERRACK:
-                    materialMap.put(m, IDStrings.PICKAXE);
+                    MATERIAL_MAP.put(m, IDStrings.PICKAXE);
                     break;
                 case GRASS_BLOCK:
                 case DIRT:
@@ -75,7 +78,7 @@ public final class BlockMap {
                 case SOUL_SOIL:
                 case MYCELIUM:
                 case MOSS_BLOCK:
-                    materialMap.put(m, IDStrings.SHOVEL);
+                    MATERIAL_MAP.put(m, IDStrings.SHOVEL);
                     break;
                 case OAK_LOG:
                 case SPRUCE_LOG:
@@ -115,13 +118,13 @@ public final class BlockMap {
                 case MUSHROOM_STEM:
                 case PUMPKIN:
                 case MELON:
-                    materialMap.put(m, IDStrings.AXE);
+                    MATERIAL_MAP.put(m, IDStrings.AXE);
                     break;
                 case SEA_PICKLE:
                 case VINE:
                 case GLOW_LICHEN:
                 case LILY_PAD:
-                    materialMap.put(m, IDStrings.HOE);
+                    MATERIAL_MAP.put(m, IDStrings.HOE);
                     break;
                 default:
                     break;
@@ -129,8 +132,7 @@ public final class BlockMap {
         }
     }
 
-    private BlockMap() {
-        throw new IllegalStateException("Utility class");
+    public static Map<Material, String> getMaterialMap() {
+        return MATERIAL_MAP;
     }
-
 }

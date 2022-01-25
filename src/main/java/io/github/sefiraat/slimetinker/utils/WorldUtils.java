@@ -1,6 +1,5 @@
 package io.github.sefiraat.slimetinker.utils;
 
-import lombok.experimental.UtilityClass;
 import org.apache.commons.lang.Validate;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -14,27 +13,31 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.concurrent.ThreadLocalRandom;
 
-@UtilityClass
-public class WorldUtils {
+public final class WorldUtils {
 
-    public static void dropItem(ItemStack i, Player p) {
+    private WorldUtils() {
+        throw new UnsupportedOperationException("Utility Class");
+    }
+
+    public static void dropItem(ItemStack i, @Nonnull Player p) {
         dropItem(p.getWorld(), p.getLocation(), i);
     }
 
-    public static void dropItem(ItemStack i, Location l) {
+    public static void dropItem(ItemStack i, @Nonnull Location l) {
         Validate.notNull(l.getWorld(), "Location doesn't have a world");
         dropItem(l.getWorld(), l, i);
     }
 
-    public static void dropItem(ItemStack i, Block b) {
+    public static void dropItem(ItemStack i, @Nonnull Block b) {
         dropItem(b.getWorld(), b.getLocation(), i);
     }
 
-    public static void dropItem(World w, Location l, ItemStack i) {
+    public static void dropItem(@Nonnull World w, Location l, ItemStack i) {
         w.dropItemNaturally(l, i);
     }
 
-    public static Location getMid(World world, double x1, double y1, double z1, double x2, double y2, double z2) {
+    @Nonnull
+    public static Location getMid(@Nonnull World world, double x1, double y1, double z1, double x2, double y2, double z2) {
         return new Location(world, x1 + (x2 - x1) * 0.5, y1 + (y2 - y1) * 0.5, z1 + (z2 - z1) * 0.5);
     }
 
@@ -49,7 +52,7 @@ public class WorldUtils {
      * @return The found, random, {@link Block}
      */
     @Nullable
-    public static Block getRandomBlockInRange(Location l, int boundX, int boundY, int boundZ, boolean allowAir) {
+    public static Block getRandomBlockInRange(@Nonnull Location l, int boundX, int boundY, int boundZ, boolean allowAir) {
         return getRandomBlockInRange(l, boundX, boundY, boundZ, allowAir, 1);
     }
 
@@ -64,7 +67,7 @@ public class WorldUtils {
      * @return The found, random, {@link Block}
      */
     @Nullable
-    public static Block getRandomBlockInRange(Player p, int boundX, int boundY, int boundZ, boolean allowAir) {
+    public static Block getRandomBlockInRange(@Nonnull Player p, int boundX, int boundY, int boundZ, boolean allowAir) {
         return getRandomBlockInRange(p.getLocation(), boundX, boundY, boundZ, allowAir, 1);
     }
 
@@ -79,12 +82,12 @@ public class WorldUtils {
      * @return The found, random, {@link Block}
      */
     @Nullable
-    public static Block getRandomBlockInRange(Block b, int boundX, int boundY, int boundZ, boolean allowAir) {
+    public static Block getRandomBlockInRange(@Nonnull Block b, int boundX, int boundY, int boundZ, boolean allowAir) {
         return getRandomBlockInRange(b.getLocation(), boundX, boundY, boundZ, allowAir, 1);
     }
 
     @Nullable
-    private static Block getRandomBlockInRange(Location l, int boundX, int boundY, int boundZ, boolean allowAir, int ittr) {
+    private static Block getRandomBlockInRange(@Nonnull Location l, int boundX, int boundY, int boundZ, boolean allowAir, int ittr) {
         if (ittr < 50) {
             int rndX = ThreadLocalRandom.current().nextInt(-boundX, boundX + 1);
             int rndY = ThreadLocalRandom.current().nextInt(-boundY, boundY + 1);

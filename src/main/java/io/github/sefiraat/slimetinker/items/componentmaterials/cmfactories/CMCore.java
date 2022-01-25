@@ -18,10 +18,7 @@ import io.github.sefiraat.slimetinker.items.componentmaterials.cmelements.CMTrai
 import io.github.sefiraat.slimetinker.managers.SupportedPluginsManager;
 import io.github.sefiraat.slimetinker.utils.IDStrings;
 import io.github.sefiraat.slimetinker.utils.SkullTextures;
-import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
-import lombok.Getter;
-import lombok.experimental.UtilityClass;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
@@ -30,14 +27,16 @@ import java.util.HashMap;
 import java.util.Map;
 
 @SuppressWarnings("SpellCheckingInspection")
-@UtilityClass
 public final class CMCore {
 
-    @Getter
-    private static final Map<String, ComponentMaterial> map = new HashMap<>();
+    private CMCore() {
+        throw new UnsupportedOperationException("Utility Class");
+    }
+
+    private static final Map<String, ComponentMaterial> CM_MAP = new HashMap<>();
 
     static {
-        map.put(IDStrings.IRON,
+        CM_MAP.put(IDStrings.IRON,
             new ComponentMaterial
                 (
                     new CMIdentity(IDStrings.IRON, SlimefunItems.IRON_DUST, SkullTextures.ALLOY_SILVER, "#8c8c8c"),
@@ -85,7 +84,7 @@ public final class CMCore {
                             "Armour durability loss +10%. Player Exp gain +10%"
                         ))
                 ));
-        map.put(IDStrings.GOLD,
+        CM_MAP.put(IDStrings.GOLD,
             new ComponentMaterial
                 (
                     new CMIdentity(IDStrings.GOLD, SlimefunItems.GOLD_DUST, SkullTextures.ALLOY_RED, "#ffe138"),
@@ -133,7 +132,7 @@ public final class CMCore {
                             "Piglins like your armour"
                         ))
                 ));
-        map.put(IDStrings.COPPER,
+        CM_MAP.put(IDStrings.COPPER,
             new ComponentMaterial
                 (
                     new CMIdentity(IDStrings.COPPER, SlimefunItems.COPPER_DUST, SkullTextures.ALLOY_BROWN, "#c99732"),
@@ -181,7 +180,7 @@ public final class CMCore {
                             "Outgoing damage reduced by 25%. Armour Exp +20%"
                         ))
                 ));
-        map.put(IDStrings.LEAD,
+        CM_MAP.put(IDStrings.LEAD,
             new ComponentMaterial
                 (
                     new CMIdentity(IDStrings.LEAD, SlimefunItems.LEAD_DUST, SkullTextures.ALLOY_PURPLE, "#9043ba"),
@@ -228,7 +227,7 @@ public final class CMCore {
                             "Lead Armour is not a good idea"
                         ))
                 ));
-        map.put(IDStrings.SILVER,
+        CM_MAP.put(IDStrings.SILVER,
             new ComponentMaterial
                 (
                     new CMIdentity(IDStrings.SILVER, SlimefunItems.SILVER_DUST, SkullTextures.ALLOY_SILVER, "#d4d4d4"),
@@ -278,7 +277,7 @@ public final class CMCore {
                             "peice of armour levels up. May not be useful."
                         ))
                 ));
-        map.put(IDStrings.ALUMINUM,
+        CM_MAP.put(IDStrings.ALUMINUM,
             new ComponentMaterial
                 (
                     new CMIdentity(IDStrings.ALUMINUM, SlimefunItems.ALUMINUM_DUST, SkullTextures.ALLOY_SILVER, "#b0b0b0"),
@@ -325,7 +324,7 @@ public final class CMCore {
                             "Repairs only need a single kit."
                         ))
                 ));
-        map.put(IDStrings.TIN,
+        CM_MAP.put(IDStrings.TIN,
             new ComponentMaterial
                 (
                     new CMIdentity(IDStrings.TIN, SlimefunItems.TIN_DUST, SkullTextures.ALLOY_BLUE_PALE, "#a89b9b"),
@@ -372,7 +371,7 @@ public final class CMCore {
                             "When taking heavy damage, gain absorption"
                         ))
                 ));
-        map.put(IDStrings.ZINC,
+        CM_MAP.put(IDStrings.ZINC,
             new ComponentMaterial
                 (
                     new CMIdentity(IDStrings.ZINC, SlimefunItems.ZINC_DUST, SkullTextures.ALLOY_SILVER, "#9ba8a6"),
@@ -420,7 +419,7 @@ public final class CMCore {
                             "Take no damage from cactus pricks"
                         ))
                 ));
-        map.put(IDStrings.MAGNESIUM,
+        CM_MAP.put(IDStrings.MAGNESIUM,
             new ComponentMaterial
                 (
                     new CMIdentity(IDStrings.MAGNESIUM, SlimefunItems.MAGNESIUM_DUST, SkullTextures.ALLOY_PINK, "#e8cef5"),
@@ -469,7 +468,7 @@ public final class CMCore {
                             "Gain Nightvision."
                         ))
                 ));
-        map.put(IDStrings.COAL,
+        CM_MAP.put(IDStrings.COAL,
             new ComponentMaterial
                 (
                     new CMIdentity(IDStrings.COAL, new ItemStack(Material.COAL), SkullTextures.ALLOY_BROWN, "#2d2e2d"),
@@ -489,7 +488,7 @@ public final class CMCore {
                     ),
                     null
                 ));
-        map.put(IDStrings.STEEL,
+        CM_MAP.put(IDStrings.STEEL,
             new ComponentMaterial
                 (
                     new CMIdentity(
@@ -499,8 +498,8 @@ public final class CMCore {
                         "#d1d1d1"
                     ),
                     Arrays.asList(
-                        map.get(IDStrings.IRON).getLiquidItemStack(2),
-                        map.get(IDStrings.COAL).getLiquidItemStack(4)
+                        CM_MAP.get(IDStrings.IRON).getLiquidItemStack(2),
+                        CM_MAP.get(IDStrings.COAL).getLiquidItemStack(4)
                     ),
                     new CMToolMakeup(true, false, true, true, false, true),
                     new CMForms(
@@ -544,14 +543,14 @@ public final class CMCore {
                             "Health boost + 1"
                         ))
                 ));
-        map.put(IDStrings.DAMSTEEL,
+        CM_MAP.put(IDStrings.DAMSTEEL,
             new ComponentMaterial
                 (
                     new CMIdentity(IDStrings.DAMSTEEL, SlimefunItems.DAMASCUS_STEEL_INGOT, SkullTextures.ALLOY_RED, "#a38c8c"),
                     Arrays.asList(
-                        map.get(IDStrings.STEEL).getLiquidItemStack(1),
-                        map.get(IDStrings.IRON).getLiquidItemStack(2),
-                        map.get(IDStrings.COAL).getLiquidItemStack(8)
+                        CM_MAP.get(IDStrings.STEEL).getLiquidItemStack(1),
+                        CM_MAP.get(IDStrings.IRON).getLiquidItemStack(2),
+                        CM_MAP.get(IDStrings.COAL).getLiquidItemStack(8)
                     ),
                     new CMToolMakeup(true, false, true, true, false, true),
                     new CMForms(
@@ -597,13 +596,13 @@ public final class CMCore {
                             "Thorns damage is ignored and relfected back"
                         ))
                 ));
-        map.put(IDStrings.DURALIUM,
+        CM_MAP.put(IDStrings.DURALIUM,
             new ComponentMaterial
                 (
                     new CMIdentity(IDStrings.DURALIUM, SlimefunItems.DURALUMIN_INGOT, SkullTextures.ALLOY_SILVER, "#a3a089"),
                     Arrays.asList(
-                        map.get(IDStrings.ALUMINUM).getLiquidItemStack(2),
-                        map.get(IDStrings.COPPER).getLiquidItemStack(1)
+                        CM_MAP.get(IDStrings.ALUMINUM).getLiquidItemStack(2),
+                        CM_MAP.get(IDStrings.COPPER).getLiquidItemStack(1)
                     ),
                     new CMToolMakeup(true, false, true, true, false, true),
                     new CMForms(
@@ -648,13 +647,13 @@ public final class CMCore {
                             "10% chance to ignore damage. Not additive"
                         ))
                 ));
-        map.put(IDStrings.BRONZE,
+        CM_MAP.put(IDStrings.BRONZE,
             new ComponentMaterial
                 (
                     new CMIdentity(IDStrings.BRONZE, SlimefunItems.BRONZE_INGOT, SkullTextures.ALLOY_BROWN, "#877435"),
                     Arrays.asList(
-                        map.get(IDStrings.COPPER).getLiquidItemStack(2),
-                        map.get(IDStrings.TIN).getLiquidItemStack(1)
+                        CM_MAP.get(IDStrings.COPPER).getLiquidItemStack(2),
+                        CM_MAP.get(IDStrings.TIN).getLiquidItemStack(1)
                     ),
                     new CMToolMakeup(true, false, true, true, false, true),
                     new CMForms(
@@ -699,13 +698,13 @@ public final class CMCore {
                             "Durability loss doubled."
                         ))
                 ));
-        map.put(IDStrings.ALUBRONZE,
+        CM_MAP.put(IDStrings.ALUBRONZE,
             new ComponentMaterial
                 (
                     new CMIdentity(IDStrings.ALUBRONZE, SlimefunItems.ALUMINUM_BRONZE_INGOT, SkullTextures.ALLOY_TAN, "#bdaa6d"),
                     Arrays.asList(
-                        map.get(IDStrings.ALUMINUM).getLiquidItemStack(2),
-                        map.get(IDStrings.BRONZE).getLiquidItemStack(1)
+                        CM_MAP.get(IDStrings.ALUMINUM).getLiquidItemStack(2),
+                        CM_MAP.get(IDStrings.BRONZE).getLiquidItemStack(1)
                     ),
                     new CMToolMakeup(true, false, true, true, false, true),
                     new CMForms(
@@ -750,15 +749,15 @@ public final class CMCore {
                             "If damaged when below 1/2 health - Eject!"
                         ))
                 ));
-        map.put(IDStrings.HARD,
+        CM_MAP.put(IDStrings.HARD,
             new ComponentMaterial
                 (
                     new CMIdentity(IDStrings.HARD, SlimefunItems.HARDENED_METAL_INGOT, SkullTextures.ALLOY_SILVER, "#29251a"),
                     Arrays.asList(
-                        map.get(IDStrings.ALUBRONZE).getLiquidItemStack(1),
-                        map.get(IDStrings.DURALIUM).getLiquidItemStack(1),
-                        map.get(IDStrings.DAMSTEEL).getLiquidItemStack(1),
-                        map.get(IDStrings.COAL).getLiquidItemStack(32)
+                        CM_MAP.get(IDStrings.ALUBRONZE).getLiquidItemStack(1),
+                        CM_MAP.get(IDStrings.DURALIUM).getLiquidItemStack(1),
+                        CM_MAP.get(IDStrings.DAMSTEEL).getLiquidItemStack(1),
+                        CM_MAP.get(IDStrings.COAL).getLiquidItemStack(32)
                     ),
                     new CMToolMakeup(true, false, true, true, false, true),
                     new CMForms(
@@ -803,15 +802,15 @@ public final class CMCore {
                             "Chance to find rare artifacts while mining."
                         ))
                 ));
-        map.put(IDStrings.CORBRONZE,
+        CM_MAP.put(IDStrings.CORBRONZE,
             new ComponentMaterial
                 (
                     new CMIdentity(IDStrings.CORBRONZE, SlimefunItems.CORINTHIAN_BRONZE_INGOT, SkullTextures.ALLOY_BROWN, "#8a6500"),
                     Arrays.asList(
-                        map.get(IDStrings.BRONZE).getLiquidItemStack(1),
-                        map.get(IDStrings.GOLD).getLiquidItemStack(1),
-                        map.get(IDStrings.SILVER).getLiquidItemStack(1),
-                        map.get(IDStrings.COPPER).getLiquidItemStack(1)
+                        CM_MAP.get(IDStrings.BRONZE).getLiquidItemStack(1),
+                        CM_MAP.get(IDStrings.GOLD).getLiquidItemStack(1),
+                        CM_MAP.get(IDStrings.SILVER).getLiquidItemStack(1),
+                        CM_MAP.get(IDStrings.COPPER).getLiquidItemStack(1)
                     ),
                     new CMToolMakeup(true, false, true, true, false, true),
                     new CMForms(
@@ -856,13 +855,13 @@ public final class CMCore {
                             "Slow + 1 when cold in the end"
                         ))
                 ));
-        map.put(IDStrings.SOLDER,
+        CM_MAP.put(IDStrings.SOLDER,
             new ComponentMaterial
                 (
                     new CMIdentity(IDStrings.SOLDER, SlimefunItems.SOLDER_INGOT, SkullTextures.ALLOY_SILVER, "#b7afbd"),
                     Arrays.asList(
-                        map.get(IDStrings.LEAD).getLiquidItemStack(2),
-                        map.get(IDStrings.TIN).getLiquidItemStack(1)
+                        CM_MAP.get(IDStrings.LEAD).getLiquidItemStack(2),
+                        CM_MAP.get(IDStrings.TIN).getLiquidItemStack(1)
                     ),
                     new CMToolMakeup(true, false, true, true, false, true),
                     new CMForms(
@@ -907,13 +906,13 @@ public final class CMCore {
                             "Cannot be dropped on death or on purpose."
                         ))
                 ));
-        map.put(IDStrings.BILLON,
+        CM_MAP.put(IDStrings.BILLON,
             new ComponentMaterial
                 (
                     new CMIdentity(IDStrings.BILLON, SlimefunItems.BILLON_INGOT, SkullTextures.ALLOY_SILVER, "#b0c2be"),
                     Arrays.asList(
-                        map.get(IDStrings.SILVER).getLiquidItemStack(2),
-                        map.get(IDStrings.COPPER).getLiquidItemStack(1)
+                        CM_MAP.get(IDStrings.SILVER).getLiquidItemStack(2),
+                        CM_MAP.get(IDStrings.COPPER).getLiquidItemStack(1)
                     ),
                     new CMToolMakeup(true, false, true, true, false, true),
                     new CMForms(
@@ -958,13 +957,13 @@ public final class CMCore {
                             "Magma blocks no longer cause damage"
                         ))
                 ));
-        map.put(IDStrings.BRASS,
+        CM_MAP.put(IDStrings.BRASS,
             new ComponentMaterial
                 (
                     new CMIdentity(IDStrings.BRASS, SlimefunItems.BRASS_INGOT, SkullTextures.ALLOY_TAN, "#dbcd4b"),
                     Arrays.asList(
-                        map.get(IDStrings.COPPER).getLiquidItemStack(2),
-                        map.get(IDStrings.ZINC).getLiquidItemStack(1)
+                        CM_MAP.get(IDStrings.COPPER).getLiquidItemStack(2),
+                        CM_MAP.get(IDStrings.ZINC).getLiquidItemStack(1)
                     ),
                     new CMToolMakeup(true, false, true, true, false, true),
                     new CMForms(
@@ -1009,13 +1008,13 @@ public final class CMCore {
                             "Durability loss doubled. When damaged below 1/2 health, gain Speed 3."
                         ))
                 ));
-        map.put(IDStrings.ALUBRASS,
+        CM_MAP.put(IDStrings.ALUBRASS,
             new ComponentMaterial
                 (
                     new CMIdentity(IDStrings.ALUBRASS, SlimefunItems.ALUMINUM_BRASS_INGOT, SkullTextures.ALLOY_BROWN, "#dbd279"),
                     Arrays.asList(
-                        map.get(IDStrings.BRASS).getLiquidItemStack(1),
-                        map.get(IDStrings.ALUMINUM).getLiquidItemStack(2)
+                        CM_MAP.get(IDStrings.BRASS).getLiquidItemStack(1),
+                        CM_MAP.get(IDStrings.ALUMINUM).getLiquidItemStack(2)
                     ),
                     new CMToolMakeup(true, false, true, true, false, true),
                     new CMForms(
@@ -1061,13 +1060,13 @@ public final class CMCore {
                             "Randomly teleport then hit (10s CD)"
                         ))
                 ));
-        map.put(IDStrings.NICKEL,
+        CM_MAP.put(IDStrings.NICKEL,
             new ComponentMaterial
                 (
                     new CMIdentity(IDStrings.NICKEL, SlimefunItems.NICKEL_INGOT, SkullTextures.ALLOY_SILVER, "#ebebeb"),
                     Arrays.asList(
-                        map.get(IDStrings.IRON).getLiquidItemStack(2),
-                        map.get(IDStrings.COPPER).getLiquidItemStack(1)
+                        CM_MAP.get(IDStrings.IRON).getLiquidItemStack(2),
+                        CM_MAP.get(IDStrings.COPPER).getLiquidItemStack(1)
                     ),
                     new CMToolMakeup(true, false, true, true, false, true),
                     new CMForms(
@@ -1115,14 +1114,14 @@ public final class CMCore {
                             "Range = Magnetism Level - (∆ Positivity/Negativity)"
                         ))
                 ));
-        map.put(IDStrings.COBALT,
+        CM_MAP.put(IDStrings.COBALT,
             new ComponentMaterial
                 (
                     new CMIdentity(IDStrings.COBALT, SlimefunItems.COBALT_INGOT, SkullTextures.ALLOY_BLUE, "#9e9e9e"),
                     Arrays.asList(
-                        map.get(IDStrings.IRON).getLiquidItemStack(1),
-                        map.get(IDStrings.NICKEL).getLiquidItemStack(1),
-                        map.get(IDStrings.COPPER).getLiquidItemStack(1)
+                        CM_MAP.get(IDStrings.IRON).getLiquidItemStack(1),
+                        CM_MAP.get(IDStrings.NICKEL).getLiquidItemStack(1),
+                        CM_MAP.get(IDStrings.COPPER).getLiquidItemStack(1)
                     ),
                     new CMToolMakeup(true, false, true, true, false, true),
                     new CMForms(
@@ -1170,17 +1169,17 @@ public final class CMCore {
                             "Range = Magnetism Level - (∆ Positivity/Negativity)"
                         ))
                 ));
-        map.put(IDStrings.REINFORCED,
+        CM_MAP.put(IDStrings.REINFORCED,
             new ComponentMaterial
                 (
                     new CMIdentity(IDStrings.REINFORCED, SlimefunItems.REINFORCED_ALLOY_INGOT, SkullTextures.ALLOY_PURPLE, "#465899"),
                     Arrays.asList(
-                        map.get(IDStrings.DAMSTEEL).getLiquidItemStack(1),
-                        map.get(IDStrings.HARD).getLiquidItemStack(1),
-                        map.get(IDStrings.CORBRONZE).getLiquidItemStack(1),
-                        map.get(IDStrings.SOLDER).getLiquidItemStack(1),
-                        map.get(IDStrings.BILLON).getLiquidItemStack(1),
-                        map.get(IDStrings.GOLD).getLiquidItemStack(1)
+                        CM_MAP.get(IDStrings.DAMSTEEL).getLiquidItemStack(1),
+                        CM_MAP.get(IDStrings.HARD).getLiquidItemStack(1),
+                        CM_MAP.get(IDStrings.CORBRONZE).getLiquidItemStack(1),
+                        CM_MAP.get(IDStrings.SOLDER).getLiquidItemStack(1),
+                        CM_MAP.get(IDStrings.BILLON).getLiquidItemStack(1),
+                        CM_MAP.get(IDStrings.GOLD).getLiquidItemStack(1)
                     ),
                     new CMToolMakeup(true, false, true, true, false, true),
                     new CMForms(
@@ -1224,7 +1223,7 @@ public final class CMCore {
                             "Immune to the wither effect."
                         ))
                 ));
-        map.put(IDStrings.STRING,
+        CM_MAP.put(IDStrings.STRING,
             new ComponentMaterial
                 (
                     new CMIdentity(IDStrings.STRING, new ItemStack(Material.STRING), null, "#f5f5f5"),
@@ -1261,7 +1260,7 @@ public final class CMCore {
                         ),
                         null)
                 ));
-        map.put(IDStrings.VINE,
+        CM_MAP.put(IDStrings.VINE,
             new ComponentMaterial
                 (
                     new CMIdentity(IDStrings.VINE, new ItemStack(Material.VINE), null, "#4ca86b"),
@@ -1299,7 +1298,7 @@ public final class CMCore {
                         ),
                         null)
                 ));
-        map.put(IDStrings.CRIMSON_ROOTS,
+        CM_MAP.put(IDStrings.CRIMSON_ROOTS,
             new ComponentMaterial
                 (
                     new CMIdentity(IDStrings.CRIMSON_ROOTS, new ItemStack(Material.CRIMSON_ROOTS), null, "#b5365e"),
@@ -1337,7 +1336,7 @@ public final class CMCore {
                         ),
                         null)
                 ));
-        map.put(IDStrings.WARPED_ROOTS,
+        CM_MAP.put(IDStrings.WARPED_ROOTS,
             new ComponentMaterial
                 (
                     new CMIdentity(IDStrings.WARPED_ROOTS, new ItemStack(Material.WARPED_ROOTS), null, "#36b549"),
@@ -1374,7 +1373,7 @@ public final class CMCore {
                         ),
                         null)
                 ));
-        map.put(IDStrings.WEEPING_VINES,
+        CM_MAP.put(IDStrings.WEEPING_VINES,
             new ComponentMaterial
                 (
                     new CMIdentity(IDStrings.WEEPING_VINES, new ItemStack(Material.WEEPING_VINES), null, "#9c091d"),
@@ -1411,7 +1410,7 @@ public final class CMCore {
                         ),
                         null)
                 ));
-        map.put(IDStrings.TWISTED_VINES,
+        CM_MAP.put(IDStrings.TWISTED_VINES,
             new ComponentMaterial
                 (
                     new CMIdentity(IDStrings.TWISTED_VINES, new ItemStack(Material.TWISTING_VINES), null, "#1b8045"),
@@ -1449,7 +1448,7 @@ public final class CMCore {
                         ),
                         null)
                 ));
-        map.put(IDStrings.SLIME,
+        CM_MAP.put(IDStrings.SLIME,
             new ComponentMaterial
                 (
                     new CMIdentity(IDStrings.SLIME, new ItemStack(Material.SLIME_BALL), SkullTextures.ALLOY_GREEN, "#29e01f"),
@@ -1486,7 +1485,7 @@ public final class CMCore {
                         ),
                         null)
                 ));
-        map.put(IDStrings.REDSTONE,
+        CM_MAP.put(IDStrings.REDSTONE,
             new ComponentMaterial
                 (
                     new CMIdentity(IDStrings.REDSTONE, new ItemStack(Material.REDSTONE), SkullTextures.ALLOY_RED, "#c4082e"),
@@ -1514,7 +1513,7 @@ public final class CMCore {
                         null)
                 ));
 
-        map.put(IDStrings.SILICON,
+        CM_MAP.put(IDStrings.SILICON,
             new ComponentMaterial
                 (
                     new CMIdentity(IDStrings.SILICON, SlimefunItems.SILICON, SkullTextures.ALLOY_SILVER, "#f2f2f2"),
@@ -1553,7 +1552,7 @@ public final class CMCore {
                         null)
                 ));
 
-        map.put(IDStrings.LEATHER,
+        CM_MAP.put(IDStrings.LEATHER,
             new ComponentMaterial
                 (
                     new CMIdentity(IDStrings.LEATHER, new ItemStack(Material.LEATHER), null, "#918056"),
@@ -1591,13 +1590,13 @@ public final class CMCore {
                         null)
                 ));
 
-        map.put(IDStrings.FERROSILICON,
+        CM_MAP.put(IDStrings.FERROSILICON,
             new ComponentMaterial
                 (
                     new CMIdentity(IDStrings.FERROSILICON, SlimefunItems.FERROSILICON, SkullTextures.ALLOY_SILVER, "#f2f2f2"),
                     Arrays.asList(
-                        map.get(IDStrings.IRON).getLiquidItemStack(2),
-                        map.get(IDStrings.SILICON).getLiquidItemStack(1)
+                        CM_MAP.get(IDStrings.IRON).getLiquidItemStack(2),
+                        CM_MAP.get(IDStrings.SILICON).getLiquidItemStack(1)
                     ),
                     new CMToolMakeup(true, false, false, true, false, true),
                     new CMForms(
@@ -1637,14 +1636,14 @@ public final class CMCore {
                             "stacks, hostile mobs are repelled (not bosses)."
                         ))
                 ));
-        map.put(IDStrings.REDSTONE_ALLOY,
+        CM_MAP.put(IDStrings.REDSTONE_ALLOY,
             new ComponentMaterial
                 (
                     new CMIdentity(IDStrings.REDSTONE_ALLOY, SlimefunItems.REDSTONE_ALLOY, SkullTextures.ALLOY_RED, "#700d21"),
                     Arrays.asList(
-                        map.get(IDStrings.REDSTONE).getLiquidItemStack(10),
-                        map.get(IDStrings.FERROSILICON).getLiquidItemStack(1),
-                        map.get(IDStrings.HARD).getLiquidItemStack(1)
+                        CM_MAP.get(IDStrings.REDSTONE).getLiquidItemStack(10),
+                        CM_MAP.get(IDStrings.FERROSILICON).getLiquidItemStack(1),
+                        CM_MAP.get(IDStrings.HARD).getLiquidItemStack(1)
                     ),
                     new CMToolMakeup(false, false, true, true, false, true),
                     new CMForms(
@@ -1683,7 +1682,7 @@ public final class CMCore {
                             "The block you stand on is powered."
                         ))
                 ));
-        map.put(IDStrings.DIAMOND,
+        CM_MAP.put(IDStrings.DIAMOND,
             new ComponentMaterial
                 (
                     new CMIdentity(IDStrings.DIAMOND, new ItemStack(Material.DIAMOND), SkullTextures.ALLOY_BLUE, "#5fdde8"),
@@ -1710,15 +1709,15 @@ public final class CMCore {
                         null,
                         null)
                 ));
-        map.put(IDStrings.BOOMERITE,
+        CM_MAP.put(IDStrings.BOOMERITE,
             new ComponentMaterial
                 (
                     new CMIdentity(IDStrings.BOOMERITE, Materials.INGOT_CAST_BOOMERITE, SkullTextures.ALLOY_PURPLE, "#d94c00"),
                     Arrays.asList(
-                        map.get(IDStrings.REINFORCED).getLiquidItemStack(1),
-                        map.get(IDStrings.CORBRONZE).getLiquidItemStack(1),
-                        map.get(IDStrings.HARD).getLiquidItemStack(1),
-                        map.get(IDStrings.COPPER).getLiquidItemStack(5)
+                        CM_MAP.get(IDStrings.REINFORCED).getLiquidItemStack(1),
+                        CM_MAP.get(IDStrings.CORBRONZE).getLiquidItemStack(1),
+                        CM_MAP.get(IDStrings.HARD).getLiquidItemStack(1),
+                        CM_MAP.get(IDStrings.COPPER).getLiquidItemStack(5)
                     ),
                     new CMToolMakeup(true, false, false, true, false, false),
                     new CMForms(
@@ -1752,7 +1751,7 @@ public final class CMCore {
                         null,
                         null)
                 ));
-        map.put(IDStrings.SEFIRITE,
+        CM_MAP.put(IDStrings.SEFIRITE,
             new ComponentMaterial
                 (
                     new CMIdentity(IDStrings.SEFIRITE, Materials.INGOT_CAST_SEFIRITE, SkullTextures.ALLOY_GREEN, "#9beb34"),
@@ -1784,7 +1783,7 @@ public final class CMCore {
                         null,
                         null)
                 ));
-        map.put(IDStrings.LIQUID_CHRISTMAS,
+        CM_MAP.put(IDStrings.LIQUID_CHRISTMAS,
             new ComponentMaterial
                 (
                     new CMIdentity(IDStrings.LIQUID_CHRISTMAS, SlimefunItems.CHRISTMAS_PRESENT, SkullTextures.ALLOY_GREEN, "#00cc36"),
@@ -1811,14 +1810,14 @@ public final class CMCore {
                         null,
                         null)
                 ));
-        map.put(IDStrings.CRINGLEIUM,
+        CM_MAP.put(IDStrings.CRINGLEIUM,
             new ComponentMaterial
                 (
                     new CMIdentity(IDStrings.CRINGLEIUM, Materials.INGOT_CAST_SEFIRITE, SkullTextures.ALLOY_GREEN, "#00cc36"),
                     Arrays.asList(
-                        map.get(IDStrings.REINFORCED).getLiquidItemStack(2),
-                        map.get(IDStrings.LIQUID_CHRISTMAS).getLiquidItemStack(3),
-                        map.get(IDStrings.MAGNESIUM).getLiquidItemStack(2)
+                        CM_MAP.get(IDStrings.REINFORCED).getLiquidItemStack(2),
+                        CM_MAP.get(IDStrings.LIQUID_CHRISTMAS).getLiquidItemStack(3),
+                        CM_MAP.get(IDStrings.MAGNESIUM).getLiquidItemStack(2)
                     ),
                     new CMToolMakeup(false, false, false, false, false, true),
                     new CMForms(
@@ -1855,145 +1854,148 @@ public final class CMCore {
 
     public static void setupToolConsumers() {
 
-        map.get(IDStrings.ALUBRASS).addEvent(TraitEventType.ENTITY_DAMAGED, TraitPartType.HEAD, EntityDamageEvents::headAluBrass);          // Abra
-        map.get(IDStrings.GOLD).addEvent(TraitEventType.TICK, TraitPartType.ROD, TickEvents::rodGold);                                      // All that glitters
-        map.get(IDStrings.TWISTED_VINES).addEvent(TraitEventType.TICK, TraitPartType.BINDER, TickEvents::binderTwistingVine);               // Attraction
-        map.get(IDStrings.COPPER).addEvent(TraitEventType.ENTITY_DAMAGED, TraitPartType.HEAD, EntityDamageEvents::headCopper);              // Brains not brawn - Damage
-        map.get(IDStrings.COPPER).addEvent(TraitEventType.BLOCK_BREAK, TraitPartType.HEAD, BlockBreakEvents::headCopper);                   // Brains not brawn - Block Break
-        map.get(IDStrings.ALUBRONZE).addEvent(TraitEventType.DURABILITY, TraitPartType.ROD, DurabilityEvents::rodAluBronze);                // Brittle
-        map.get(IDStrings.REINFORCED).addEvent(TraitEventType.DURABILITY, TraitPartType.HEAD, DurabilityEvents::explosive);                 // Bulky (explosive)
-        map.get(IDStrings.TIN).addEvent(TraitEventType.TICK, TraitPartType.ROD, TickEvents::rodTin);                                        // Can
-        map.get(IDStrings.SEFIRITE).addEvent(TraitEventType.RIGHT_CLICK, TraitPartType.HEAD, RightClickEvents::headSefirite);               // Celebrate
-        map.get(IDStrings.NICKEL).addEvent(TraitEventType.ENTITY_DAMAGED, TraitPartType.HEAD, EntityDamageEvents::charged);                 // Charged A (Head)
-        map.get(IDStrings.NICKEL).addEvent(TraitEventType.ENTITY_DAMAGED, TraitPartType.ROD, EntityDamageEvents::charged);                  // Charged A (Rod)
-        map.get(IDStrings.COBALT).addEvent(TraitEventType.ENTITY_DAMAGED, TraitPartType.HEAD, EntityDamageEvents::charged);                 // Charged B (Head)
-        map.get(IDStrings.COBALT).addEvent(TraitEventType.ENTITY_DAMAGED, TraitPartType.ROD, EntityDamageEvents::charged);                  // Charged B (Rod)
+        CM_MAP.get(IDStrings.ALUBRASS).addEvent(TraitEventType.ENTITY_DAMAGED, TraitPartType.HEAD, EntityDamageEvents::headAluBrass);          // Abra
+        CM_MAP.get(IDStrings.GOLD).addEvent(TraitEventType.TICK, TraitPartType.ROD, TickEvents::rodGold);                                      // All that glitters
+        CM_MAP.get(IDStrings.TWISTED_VINES).addEvent(TraitEventType.TICK, TraitPartType.BINDER, TickEvents::binderTwistingVine);               // Attraction
+        CM_MAP.get(IDStrings.COPPER).addEvent(TraitEventType.ENTITY_DAMAGED, TraitPartType.HEAD, EntityDamageEvents::headCopper);              // Brains not brawn - Damage
+        CM_MAP.get(IDStrings.COPPER).addEvent(TraitEventType.BLOCK_BREAK, TraitPartType.HEAD, BlockBreakEvents::headCopper);                   // Brains not brawn - Block Break
+        CM_MAP.get(IDStrings.ALUBRONZE).addEvent(TraitEventType.DURABILITY, TraitPartType.ROD, DurabilityEvents::rodAluBronze);                // Brittle
+        CM_MAP.get(IDStrings.REINFORCED).addEvent(TraitEventType.DURABILITY, TraitPartType.HEAD, DurabilityEvents::explosive);                 // Bulky (explosive)
+        CM_MAP.get(IDStrings.TIN).addEvent(TraitEventType.TICK, TraitPartType.ROD, TickEvents::rodTin);                                        // Can
+        CM_MAP.get(IDStrings.SEFIRITE).addEvent(TraitEventType.RIGHT_CLICK, TraitPartType.HEAD, RightClickEvents::headSefirite);               // Celebrate
+        CM_MAP.get(IDStrings.NICKEL).addEvent(TraitEventType.ENTITY_DAMAGED, TraitPartType.HEAD, EntityDamageEvents::charged);                 // Charged A (Head)
+        CM_MAP.get(IDStrings.NICKEL).addEvent(TraitEventType.ENTITY_DAMAGED, TraitPartType.ROD, EntityDamageEvents::charged);                  // Charged A (Rod)
+        CM_MAP.get(IDStrings.COBALT).addEvent(TraitEventType.ENTITY_DAMAGED, TraitPartType.HEAD, EntityDamageEvents::charged);                 // Charged B (Head)
+        CM_MAP.get(IDStrings.COBALT).addEvent(TraitEventType.ENTITY_DAMAGED, TraitPartType.ROD, EntityDamageEvents::charged);                  // Charged B (Rod)
         // Conductive (Special case - in Experience.java, should be moved out)
-        map.get(IDStrings.CRIMSON_ROOTS).addEvent(TraitEventType.TICK, TraitPartType.BINDER, TickEvents::binderCrimsonRoot);                // Decay
-        map.get(IDStrings.WEEPING_VINES).addEvent(TraitEventType.TICK, TraitPartType.BINDER, TickEvents::binderWeepingVine);                // Doom
-        map.get(IDStrings.DURALIUM).addEvent(TraitEventType.ENTITY_DAMAGED, TraitPartType.HEAD, EntityDamageEvents::headDuralium);          // Durable - Entity Damage - Damage Reduction + No Exp
-        map.get(IDStrings.DURALIUM).addEvent(TraitEventType.BLOCK_BREAK, TraitPartType.HEAD, BlockBreakEvents::headDuralium);               // Durable - Block Break -  No Exp
-        map.get(IDStrings.DURALIUM).addEvent(TraitEventType.TICK, TraitPartType.HEAD, TickEvents::headDuralium);                            // Durable - Tick
+        CM_MAP.get(IDStrings.CRIMSON_ROOTS).addEvent(TraitEventType.TICK, TraitPartType.BINDER, TickEvents::binderCrimsonRoot);                // Decay
+        CM_MAP.get(IDStrings.WEEPING_VINES).addEvent(TraitEventType.TICK, TraitPartType.BINDER, TickEvents::binderWeepingVine);                // Doom
+        CM_MAP.get(IDStrings.DURALIUM).addEvent(TraitEventType.ENTITY_DAMAGED, TraitPartType.HEAD, EntityDamageEvents::headDuralium);          // Durable - Entity Damage - Damage Reduction + No Exp
+        CM_MAP.get(IDStrings.DURALIUM).addEvent(TraitEventType.BLOCK_BREAK, TraitPartType.HEAD, BlockBreakEvents::headDuralium);               // Durable - Block Break -  No Exp
+        CM_MAP.get(IDStrings.DURALIUM).addEvent(TraitEventType.TICK, TraitPartType.HEAD, TickEvents::headDuralium);                            // Durable - Tick
         // Easy Fix (Special case - in RepairBench.java. Will have to stay there)
         // Enchanting (Special case - in Experience.java - could be moved if I raise an event)
-        map.get(IDStrings.BILLON).addEvent(TraitEventType.TICK, TraitPartType.HEAD, TickEvents::headBillon);                                // Fast
-        map.get(IDStrings.MAGNESIUM).addEvent(TraitEventType.ENTITY_DAMAGED, TraitPartType.HEAD, EntityDamageEvents::headMagnesium);        // Flammable
-        map.get(IDStrings.CORBRONZE).addEvent(TraitEventType.BLOCK_BREAK, TraitPartType.HEAD, BlockBreakEvents::headCorbronze);             // Flaming Hot
+        CM_MAP.get(IDStrings.BILLON).addEvent(TraitEventType.TICK, TraitPartType.HEAD, TickEvents::headBillon);                                // Fast
+        CM_MAP.get(IDStrings.MAGNESIUM).addEvent(TraitEventType.ENTITY_DAMAGED, TraitPartType.HEAD, EntityDamageEvents::headMagnesium);        // Flammable
+        CM_MAP.get(IDStrings.CORBRONZE).addEvent(TraitEventType.BLOCK_BREAK, TraitPartType.HEAD, BlockBreakEvents::headCorbronze);             // Flaming Hot
         // Fused (Special Case - in EntityKilledListener.java and DropItemListener.java - likely wont move
-        map.get(IDStrings.GOLD).addEvent(TraitEventType.ENTITY_DAMAGED, TraitPartType.HEAD, EntityDamageEvents::headGold);                  // Golden Veil - Damage
-        map.get(IDStrings.GOLD).addEvent(TraitEventType.TICK, TraitPartType.HEAD, TickEvents::headGold);                                    // Golden Veil - Tick
-        map.get(IDStrings.ZINC).addEvent(TraitEventType.TICK, TraitPartType.HEAD, TickEvents::headZinc);                                    // Graceful
-        map.get(IDStrings.VINE).addEvent(TraitEventType.TICK, TraitPartType.BINDER, TickEvents::binderVine);                                // Growth
-        map.get(IDStrings.HARD).addEvent(TraitEventType.DURABILITY, TraitPartType.ROD, DurabilityEvents::explosive);                        // Heavy (explosive)
-        map.get(IDStrings.SOLDER).addEvent(TraitEventType.DURABILITY, TraitPartType.HEAD, DurabilityEvents::headSolder);                    // Hidden - Durability
-        map.get(IDStrings.SOLDER).addEvent(TraitEventType.TICK, TraitPartType.HEAD, TickEvents::headSolder);                                // Hidden - Tick
-        map.get(IDStrings.FERROSILICON).addEvent(TraitEventType.PLAYER_DAMAGED, TraitPartType.HEAD, PlayerDamagedEvents::headFerrosilicon); // Hydrogen
-        map.get(IDStrings.BRONZE).addEvent(TraitEventType.TICK, TraitPartType.ROD, TickEvents::rodBronze);                                  // Ingheights
-        map.get(IDStrings.BOOMERITE).addEvent(TraitEventType.RIGHT_CLICK, TraitPartType.HEAD, RightClickEvents::headBoomerite);             // Ladder Simulator™
-        map.get(IDStrings.LEAD).addEvent(TraitEventType.TICK, TraitPartType.ROD, TickEvents::rodLead);                                      // Leech
-        map.get(IDStrings.REDSTONE_ALLOY).addEvent(TraitEventType.ENTITY_DAMAGED, TraitPartType.ROD, EntityDamageEvents::rodRedstoneAlloy); // Lightning Rod
-        map.get(IDStrings.STEEL).addEvent(TraitEventType.TICK, TraitPartType.ROD, TickEvents::rodSteel);                                    // Lightweight
-        map.get(IDStrings.MAGNESIUM).addEvent(TraitEventType.TICK, TraitPartType.ROD, TickEvents::rodMagnesium);                            // Magnetisium
-        map.get(IDStrings.TIN).addEvent(TraitEventType.ENTITY_DAMAGED, TraitPartType.HEAD, EntityDamageEvents::headTin);                    // Malleable - Damage
-        map.get(IDStrings.TIN).addEvent(TraitEventType.TICK, TraitPartType.HEAD, TickEvents::headTin);                                      // Malleable - Tick
-        map.get(IDStrings.DAMSTEEL).addEvent(TraitEventType.TICK, TraitPartType.ROD, TickEvents::rodDamsteel);                              // Night Stalker
-        map.get(IDStrings.BRASS).addEvent(TraitEventType.TICK, TraitPartType.ROD, TickEvents::rodBrass);                                    // Oxygenated
-        map.get(IDStrings.LEAD).addEvent(TraitEventType.ENTITY_DAMAGED, TraitPartType.HEAD, EntityDamageEvents::headLead);                  // Poisonous
-        map.get(IDStrings.ALUMINUM).addEvent(TraitEventType.DURABILITY, TraitPartType.HEAD, DurabilityEvents::headAluminum);                // Recycleable
-        map.get(IDStrings.WARPED_ROOTS).addEvent(TraitEventType.TICK, TraitPartType.BINDER, TickEvents::bindWarpedRoot);                    // Refreshing
+        CM_MAP.get(IDStrings.GOLD).addEvent(TraitEventType.ENTITY_DAMAGED, TraitPartType.HEAD, EntityDamageEvents::headGold);                  // Golden Veil - Damage
+        CM_MAP.get(IDStrings.GOLD).addEvent(TraitEventType.TICK, TraitPartType.HEAD, TickEvents::headGold);                                    // Golden Veil - Tick
+        CM_MAP.get(IDStrings.ZINC).addEvent(TraitEventType.TICK, TraitPartType.HEAD, TickEvents::headZinc);                                    // Graceful
+        CM_MAP.get(IDStrings.VINE).addEvent(TraitEventType.TICK, TraitPartType.BINDER, TickEvents::binderVine);                                // Growth
+        CM_MAP.get(IDStrings.HARD).addEvent(TraitEventType.DURABILITY, TraitPartType.ROD, DurabilityEvents::explosive);                        // Heavy (explosive)
+        CM_MAP.get(IDStrings.SOLDER).addEvent(TraitEventType.DURABILITY, TraitPartType.HEAD, DurabilityEvents::headSolder);                    // Hidden - Durability
+        CM_MAP.get(IDStrings.SOLDER).addEvent(TraitEventType.TICK, TraitPartType.HEAD, TickEvents::headSolder);                                // Hidden - Tick
+        CM_MAP.get(IDStrings.FERROSILICON).addEvent(TraitEventType.PLAYER_DAMAGED, TraitPartType.HEAD, PlayerDamagedEvents::headFerrosilicon); // Hydrogen
+        CM_MAP.get(IDStrings.BRONZE).addEvent(TraitEventType.TICK, TraitPartType.ROD, TickEvents::rodBronze);                                  // Ingheights
+        CM_MAP.get(IDStrings.BOOMERITE).addEvent(TraitEventType.RIGHT_CLICK, TraitPartType.HEAD, RightClickEvents::headBoomerite);             // Ladder Simulator™
+        CM_MAP.get(IDStrings.LEAD).addEvent(TraitEventType.TICK, TraitPartType.ROD, TickEvents::rodLead);                                      // Leech
+        CM_MAP.get(IDStrings.REDSTONE_ALLOY).addEvent(TraitEventType.ENTITY_DAMAGED, TraitPartType.ROD, EntityDamageEvents::rodRedstoneAlloy); // Lightning Rod
+        CM_MAP.get(IDStrings.STEEL).addEvent(TraitEventType.TICK, TraitPartType.ROD, TickEvents::rodSteel);                                    // Lightweight
+        CM_MAP.get(IDStrings.MAGNESIUM).addEvent(TraitEventType.TICK, TraitPartType.ROD, TickEvents::rodMagnesium);                            // Magnetisium
+        CM_MAP.get(IDStrings.TIN).addEvent(TraitEventType.ENTITY_DAMAGED, TraitPartType.HEAD, EntityDamageEvents::headTin);                    // Malleable - Damage
+        CM_MAP.get(IDStrings.TIN).addEvent(TraitEventType.TICK, TraitPartType.HEAD, TickEvents::headTin);                                      // Malleable - Tick
+        CM_MAP.get(IDStrings.DAMSTEEL).addEvent(TraitEventType.TICK, TraitPartType.ROD, TickEvents::rodDamsteel);                              // Night Stalker
+        CM_MAP.get(IDStrings.BRASS).addEvent(TraitEventType.TICK, TraitPartType.ROD, TickEvents::rodBrass);                                    // Oxygenated
+        CM_MAP.get(IDStrings.LEAD).addEvent(TraitEventType.ENTITY_DAMAGED, TraitPartType.HEAD, EntityDamageEvents::headLead);                  // Poisonous
+        CM_MAP.get(IDStrings.ALUMINUM).addEvent(TraitEventType.DURABILITY, TraitPartType.HEAD, DurabilityEvents::headAluminum);                // Recycleable
+        CM_MAP.get(IDStrings.WARPED_ROOTS).addEvent(TraitEventType.TICK, TraitPartType.BINDER, TickEvents::bindWarpedRoot);                    // Refreshing
         // Reinforced (Special Case - nested within plate mod. Will be moved when mods are changed to consumers)
-        map.get(IDStrings.BRONZE).addEvent(TraitEventType.TICK, TraitPartType.HEAD, TickEvents::headBronze);                                // Resistant
-        map.get(IDStrings.IRON).addEvent(TraitEventType.TICK, TraitPartType.ROD, TickEvents::rodIron);                                      // Sharp I
-        map.get(IDStrings.ALUBRONZE).addEvent(TraitEventType.TICK, TraitPartType.HEAD, TickEvents::headAlubronze);                          // Sharp II
-        map.get(IDStrings.SILICON).addEvent(TraitEventType.BLOCK_BREAK, TraitPartType.BINDER, BlockBreakEvents::bindSilicon);               // Slow Learner
-        map.get(IDStrings.SLIME).addEvent(TraitEventType.PLAYER_DAMAGED, TraitPartType.BINDER, PlayerDamagedEvents::bindSlime);             // Slimey
-        map.get(IDStrings.ALUMINUM).addEvent(TraitEventType.DURABILITY, TraitPartType.ROD, DurabilityEvents::rodAluminum);                  // Soft - Durability
-        map.get(IDStrings.ALUMINUM).addEvent(TraitEventType.ENTITY_DAMAGED, TraitPartType.ROD, EntityDamageEvents::rodAluminum);            // Soft - Damage
-        map.get(IDStrings.ALUMINUM).addEvent(TraitEventType.BLOCK_BREAK, TraitPartType.ROD, BlockBreakEvents::rodAluminum);                 // Soft - Block Break
-        map.get(IDStrings.SILVER).addEvent(TraitEventType.TICK, TraitPartType.ROD, TickEvents::rodSilver);                                  // Soft Touch
-        map.get(IDStrings.BILLON).addEvent(TraitEventType.TICK, TraitPartType.ROD, TickEvents::rodBillon);                                  // Springs
+        CM_MAP.get(IDStrings.BRONZE).addEvent(TraitEventType.TICK, TraitPartType.HEAD, TickEvents::headBronze);                                // Resistant
+        CM_MAP.get(IDStrings.IRON).addEvent(TraitEventType.TICK, TraitPartType.ROD, TickEvents::rodIron);                                      // Sharp I
+        CM_MAP.get(IDStrings.ALUBRONZE).addEvent(TraitEventType.TICK, TraitPartType.HEAD, TickEvents::headAlubronze);                          // Sharp II
+        CM_MAP.get(IDStrings.SILICON).addEvent(TraitEventType.BLOCK_BREAK, TraitPartType.BINDER, BlockBreakEvents::bindSilicon);               // Slow Learner
+        CM_MAP.get(IDStrings.SLIME).addEvent(TraitEventType.PLAYER_DAMAGED, TraitPartType.BINDER, PlayerDamagedEvents::bindSlime);             // Slimey
+        CM_MAP.get(IDStrings.ALUMINUM).addEvent(TraitEventType.DURABILITY, TraitPartType.ROD, DurabilityEvents::rodAluminum);                  // Soft - Durability
+        CM_MAP.get(IDStrings.ALUMINUM).addEvent(TraitEventType.ENTITY_DAMAGED, TraitPartType.ROD, EntityDamageEvents::rodAluminum);            // Soft - Damage
+        CM_MAP.get(IDStrings.ALUMINUM).addEvent(TraitEventType.BLOCK_BREAK, TraitPartType.ROD, BlockBreakEvents::rodAluminum);                 // Soft - Block Break
+        CM_MAP.get(IDStrings.SILVER).addEvent(TraitEventType.TICK, TraitPartType.ROD, TickEvents::rodSilver);                                  // Soft Touch
+        CM_MAP.get(IDStrings.BILLON).addEvent(TraitEventType.TICK, TraitPartType.ROD, TickEvents::rodBillon);                                  // Springs
         // Stability (Special Case, doesn't do anything, just here for consistency)
-        map.get(IDStrings.STEEL).addEvent(TraitEventType.ENTITY_DAMAGED, TraitPartType.HEAD, EntityDamageEvents::headSteel);                // Stainless
-        map.get(IDStrings.BRASS).addEvent(TraitEventType.ENTITY_DAMAGED, TraitPartType.HEAD, EntityDamageEvents::headBrass);                // Stiff - Damage
-        map.get(IDStrings.BRASS).addEvent(TraitEventType.TICK, TraitPartType.HEAD, TickEvents::headBrass);                                  // Stiff - Tick
-        map.get(IDStrings.ALUBRASS).addEvent(TraitEventType.ENTITY_DAMAGED, TraitPartType.ROD, EntityDamageEvents::rodAlubrass);            // Studious - Damage
-        map.get(IDStrings.ALUBRASS).addEvent(TraitEventType.BLOCK_BREAK, TraitPartType.ROD, BlockBreakEvents::rodAluBrass);                 // Studious - Block Break
-        map.get(IDStrings.ZINC).addEvent(TraitEventType.TICK, TraitPartType.ROD, TickEvents::rodZinc);                                      // Super Light Weight
-        map.get(IDStrings.LEATHER).addEvent(TraitEventType.ENTITY_DAMAGED, TraitPartType.BINDER, EntityDamageEvents::binderLeather);        // Thick - Exp Entity Damage
-        map.get(IDStrings.LEATHER).addEvent(TraitEventType.BLOCK_BREAK, TraitPartType.BINDER, BlockBreakEvents::binderLeather);             // Thick - Exp Block Break
-        map.get(IDStrings.CORBRONZE).addEvent(TraitEventType.TICK, TraitPartType.ROD, TickEvents::rodCorbronze);                            // Too Hot to Handle
-        map.get(IDStrings.HARD).addEvent(TraitEventType.ENTITY_DAMAGED, TraitPartType.ROD, EntityDamageEvents::headHard);                   // Tuff Stuff
-        map.get(IDStrings.DAMSTEEL).addEvent(TraitEventType.ENTITY_DAMAGED, TraitPartType.HEAD, EntityDamageEvents::headDamsteel);          // Vampirism
+        CM_MAP.get(IDStrings.STEEL).addEvent(TraitEventType.ENTITY_DAMAGED, TraitPartType.HEAD, EntityDamageEvents::headSteel);                // Stainless
+        CM_MAP.get(IDStrings.BRASS).addEvent(TraitEventType.ENTITY_DAMAGED, TraitPartType.HEAD, EntityDamageEvents::headBrass);                // Stiff - Damage
+        CM_MAP.get(IDStrings.BRASS).addEvent(TraitEventType.TICK, TraitPartType.HEAD, TickEvents::headBrass);                                  // Stiff - Tick
+        CM_MAP.get(IDStrings.ALUBRASS).addEvent(TraitEventType.ENTITY_DAMAGED, TraitPartType.ROD, EntityDamageEvents::rodAlubrass);            // Studious - Damage
+        CM_MAP.get(IDStrings.ALUBRASS).addEvent(TraitEventType.BLOCK_BREAK, TraitPartType.ROD, BlockBreakEvents::rodAluBrass);                 // Studious - Block Break
+        CM_MAP.get(IDStrings.ZINC).addEvent(TraitEventType.TICK, TraitPartType.ROD, TickEvents::rodZinc);                                      // Super Light Weight
+        CM_MAP.get(IDStrings.LEATHER).addEvent(TraitEventType.ENTITY_DAMAGED, TraitPartType.BINDER, EntityDamageEvents::binderLeather);        // Thick - Exp Entity Damage
+        CM_MAP.get(IDStrings.LEATHER).addEvent(TraitEventType.BLOCK_BREAK, TraitPartType.BINDER, BlockBreakEvents::binderLeather);             // Thick - Exp Block Break
+        CM_MAP.get(IDStrings.CORBRONZE).addEvent(TraitEventType.TICK, TraitPartType.ROD, TickEvents::rodCorbronze);                            // Too Hot to Handle
+        CM_MAP.get(IDStrings.HARD).addEvent(TraitEventType.ENTITY_DAMAGED, TraitPartType.ROD, EntityDamageEvents::headHard);                   // Tuff Stuff
+        CM_MAP.get(IDStrings.DAMSTEEL).addEvent(TraitEventType.ENTITY_DAMAGED, TraitPartType.HEAD, EntityDamageEvents::headDamsteel);          // Vampirism
         // Works (Special Case, doesn't do anything, just here for consistency)
     }
 
     public static void setupArmourConsumers() {
 
-        map.get(IDStrings.ZINC).addEvent(TraitEventType.PLAYER_DAMAGED, TraitPartType.LINKS, PlayerDamagedEvents::linksZinc);               // Acupuncture
-        map.get(IDStrings.TWISTED_VINES).addEvent(TraitEventType.TICK, TraitPartType.GAMBESON, TickEvents::gambesonTwistingWines);          // Attraction
-        map.get(IDStrings.BRASS).addEvent(TraitEventType.PLAYER_DAMAGED, TraitPartType.PLATE, PlayerDamagedEvents::plateBrass);             // Band
-        map.get(IDStrings.BRASS).addEvent(TraitEventType.DURABILITY, TraitPartType.PLATE, DurabilityEvents::plateBrass);                    // Band
-        map.get(IDStrings.GOLD).addEvent(TraitEventType.TICK, TraitPartType.LINKS, TickEvents::linksGold);                                  // Barter
-        map.get(IDStrings.ALUBRONZE).addEvent(TraitEventType.TICK, TraitPartType.PLATE, TickEvents::plateAluBronze);                        // Beautiful
-        map.get(IDStrings.COPPER).addEvent(TraitEventType.PLAYER_DAMAGED, TraitPartType.PLATE, PlayerDamagedEvents::plateCopper);           // Beginner - Damage mod
-        map.get(IDStrings.COPPER).addEvent(TraitEventType.ENTITY_DAMAGED, TraitPartType.PLATE, EntityDamageEvents::plateCopper);            // Beginner - EXP Gain
-        map.get(IDStrings.TIN).addEvent(TraitEventType.PLAYER_DAMAGED, TraitPartType.LINKS, PlayerDamagedEvents::linksTin);                 // Boost
-        map.get(IDStrings.SLIME).addEvent(TraitEventType.PLAYER_DAMAGED, TraitPartType.GAMBESON, PlayerDamagedEvents::gambesonSlime);       // Bouncy
-        map.get(IDStrings.FERROSILICON).addEvent(TraitEventType.TICK, TraitPartType.LINKS, TickEvents::brightBurn);                         // Brightburn
-        map.get(IDStrings.BRASS).addEvent(TraitEventType.DURABILITY, TraitPartType.LINKS, DurabilityEvents::linksBrass);                    // Brittle
-        map.get(IDStrings.DAMSTEEL).addEvent(TraitEventType.TICK, TraitPartType.PLATE, TickEvents::plateDamSteel);                          // Compounding
-        map.get(IDStrings.SILVER).addEvent(TraitEventType.PLAYER_DAMAGED, TraitPartType.PLATE, PlayerDamagedEvents::plateSilver);           // Conductive
-        map.get(IDStrings.CRIMSON_ROOTS).addEvent(TraitEventType.TICK, TraitPartType.GAMBESON, TickEvents::gambesonCrimsonRoots);           // Decay
-        map.get(IDStrings.WEEPING_VINES).addEvent(TraitEventType.TICK, TraitPartType.GAMBESON, TickEvents::gambesonWeepingVines);           // Doom
-        map.get(IDStrings.DURALIUM).addEvent(TraitEventType.PLAYER_DAMAGED, TraitPartType.PLATE, PlayerDamagedEvents::plateDuralium);       // Durable (Working trait is done via ItemUtils#doesNotUnequip(ItemStack)
-        map.get(IDStrings.HARD).addEvent(TraitEventType.BLOCK_BREAK, TraitPartType.LINKS, BlockBreakEvents::linksHardened);                 // Dwarven Skills
+        CM_MAP.get(IDStrings.ZINC).addEvent(TraitEventType.PLAYER_DAMAGED, TraitPartType.LINKS, PlayerDamagedEvents::linksZinc);               // Acupuncture
+        CM_MAP.get(IDStrings.TWISTED_VINES).addEvent(TraitEventType.TICK, TraitPartType.GAMBESON, TickEvents::gambesonTwistingWines);          // Attraction
+        CM_MAP.get(IDStrings.BRASS).addEvent(TraitEventType.PLAYER_DAMAGED, TraitPartType.PLATE, PlayerDamagedEvents::plateBrass);             // Band
+        CM_MAP.get(IDStrings.BRASS).addEvent(TraitEventType.DURABILITY, TraitPartType.PLATE, DurabilityEvents::plateBrass);                    // Band
+        CM_MAP.get(IDStrings.GOLD).addEvent(TraitEventType.TICK, TraitPartType.LINKS, TickEvents::linksGold);                                  // Barter
+        CM_MAP.get(IDStrings.ALUBRONZE).addEvent(TraitEventType.TICK, TraitPartType.PLATE, TickEvents::plateAluBronze);                        // Beautiful
+        CM_MAP.get(IDStrings.COPPER).addEvent(TraitEventType.PLAYER_DAMAGED, TraitPartType.PLATE, PlayerDamagedEvents::plateCopper);           // Beginner - Damage mod
+        CM_MAP.get(IDStrings.COPPER).addEvent(TraitEventType.ENTITY_DAMAGED, TraitPartType.PLATE, EntityDamageEvents::plateCopper);            // Beginner - EXP Gain
+        CM_MAP.get(IDStrings.TIN).addEvent(TraitEventType.PLAYER_DAMAGED, TraitPartType.LINKS, PlayerDamagedEvents::linksTin);                 // Boost
+        CM_MAP.get(IDStrings.SLIME).addEvent(TraitEventType.PLAYER_DAMAGED, TraitPartType.GAMBESON, PlayerDamagedEvents::gambesonSlime);       // Bouncy
+        CM_MAP.get(IDStrings.FERROSILICON).addEvent(TraitEventType.TICK, TraitPartType.LINKS, TickEvents::brightBurn);                         // Brightburn
+        CM_MAP.get(IDStrings.BRASS).addEvent(TraitEventType.DURABILITY, TraitPartType.LINKS, DurabilityEvents::linksBrass);                    // Brittle
+        CM_MAP.get(IDStrings.DAMSTEEL).addEvent(TraitEventType.TICK, TraitPartType.PLATE, TickEvents::plateDamSteel);                          // Compounding
+        CM_MAP.get(IDStrings.SILVER).addEvent(TraitEventType.PLAYER_DAMAGED, TraitPartType.PLATE, PlayerDamagedEvents::plateSilver);           // Conductive
+        CM_MAP.get(IDStrings.CRIMSON_ROOTS).addEvent(TraitEventType.TICK, TraitPartType.GAMBESON, TickEvents::gambesonCrimsonRoots);           // Decay
+        CM_MAP.get(IDStrings.WEEPING_VINES).addEvent(TraitEventType.TICK, TraitPartType.GAMBESON, TickEvents::gambesonWeepingVines);           // Doom
+        CM_MAP.get(IDStrings.DURALIUM).addEvent(TraitEventType.PLAYER_DAMAGED, TraitPartType.PLATE, PlayerDamagedEvents::plateDuralium);       // Durable (Working trait is done via ItemUtils#doesNotUnequip(ItemStack)
+        CM_MAP.get(IDStrings.HARD).addEvent(TraitEventType.BLOCK_BREAK, TraitPartType.LINKS, BlockBreakEvents::linksHardened);                 // Dwarven Skills
         // Easily Shaped (In RepairBench)
-        map.get(IDStrings.ALUBRONZE).addEvent(TraitEventType.PLAYER_DAMAGED, TraitPartType.LINKS, PlayerDamagedEvents::linksAluBronze);     // Eject!
+        CM_MAP.get(IDStrings.ALUBRONZE).addEvent(TraitEventType.PLAYER_DAMAGED, TraitPartType.LINKS, PlayerDamagedEvents::linksAluBronze);     // Eject!
         // Enchanting (Experience)
-        map.get(IDStrings.ALUBRASS).addEvent(TraitEventType.PLAYER_DAMAGED, TraitPartType.LINKS, PlayerDamagedEvents::linksAluBrass);       // Escape
-        map.get(IDStrings.BRONZE).addEvent(TraitEventType.BLOCK_BREAK, TraitPartType.PLATE, BlockBreakEvents::plateBronze);                 // Farmer
-        map.get(IDStrings.CRINGLEIUM).addEvent(TraitEventType.TICK, TraitPartType.LINKS, TickEvents::linksCringleium);                      // Feeling Festive
-        map.get(IDStrings.ALUMINUM).addEvent(TraitEventType.PLAYER_DAMAGED, TraitPartType.PLATE, PlayerDamagedEvents::plateAluminum);       // Foil 50% damage
-        map.get(IDStrings.ALUMINUM).addEvent(TraitEventType.TICK, TraitPartType.PLATE, TickEvents::plateAluminum);                          // Foil +1 speed
+        CM_MAP.get(IDStrings.ALUBRASS).addEvent(TraitEventType.PLAYER_DAMAGED, TraitPartType.LINKS, PlayerDamagedEvents::linksAluBrass);       // Escape
+        CM_MAP.get(IDStrings.BRONZE).addEvent(TraitEventType.BLOCK_BREAK, TraitPartType.PLATE, BlockBreakEvents::plateBronze);                 // Farmer
+        CM_MAP.get(IDStrings.CRINGLEIUM).addEvent(TraitEventType.TICK, TraitPartType.LINKS, TickEvents::linksCringleium);                      // Feeling Festive
+        CM_MAP.get(IDStrings.ALUMINUM).addEvent(TraitEventType.PLAYER_DAMAGED, TraitPartType.PLATE, PlayerDamagedEvents::plateAluminum);       // Foil 50% damage
+        CM_MAP.get(IDStrings.ALUMINUM).addEvent(TraitEventType.TICK, TraitPartType.PLATE, TickEvents::plateAluminum);                          // Foil +1 speed
         // Fused
-        map.get(IDStrings.BOOMERITE).addEvent(TraitEventType.TICK, TraitPartType.PLATE, TickEvents::plateBoomerite);                        // Go Boomer
-        map.get(IDStrings.VINE).addEvent(TraitEventType.TICK, TraitPartType.GAMBESON, TickEvents::gambesonVine);                            // Growth
-        map.get(IDStrings.STEEL).addEvent(TraitEventType.PLAYER_DAMAGED, TraitPartType.PLATE, PlayerDamagedEvents::plateSteel);             // Hardy
-        map.get(IDStrings.BILLON).addEvent(TraitEventType.PLAYER_DAMAGED, TraitPartType.LINKS, PlayerDamagedEvents::linksBillon);           // Heat Conductor
-        map.get(IDStrings.BRASS).addEvent(TraitEventType.PLAYER_DAMAGED, TraitPartType.LINKS, PlayerDamagedEvents::linksBrass);             // Help
-        map.get(IDStrings.MAGNESIUM).addEvent(TraitEventType.ENTITY_DAMAGED, TraitPartType.PLATE, EntityDamageEvents::plateMagnesium);      // Light - Player Damage
-        map.get(IDStrings.MAGNESIUM).addEvent(TraitEventType.TICK, TraitPartType.PLATE, TickEvents::plateMagnesium);                        // Light - Speed
-        map.get(IDStrings.MAGNESIUM).addEvent(TraitEventType.TICK, TraitPartType.LINKS, TickEvents::linksMagnesium);                        // Magnesight
-        map.get(IDStrings.COBALT).addEvent(TraitEventType.TICK, TraitPartType.PLATE, TickEvents::plateCobalt);                              // Magnetic -
-        map.get(IDStrings.COBALT).addEvent(TraitEventType.TICK, TraitPartType.LINKS, TickEvents::linksCobalt);                              // Magnetic -
-        map.get(IDStrings.NICKEL).addEvent(TraitEventType.TICK, TraitPartType.PLATE, TickEvents::plateNickel);                              // Magnetic +
-        map.get(IDStrings.NICKEL).addEvent(TraitEventType.TICK, TraitPartType.LINKS, TickEvents::linksNickel);                              // Magnetic +
-        map.get(IDStrings.ALUBRASS).addEvent(TraitEventType.PLAYER_DAMAGED, TraitPartType.PLATE, PlayerDamagedEvents::plateAluBrass);       // Magus
-        map.get(IDStrings.TIN).addEvent(TraitEventType.PLAYER_DAMAGED, TraitPartType.PLATE, PlayerDamagedEvents::plateTin);                 // Non-corrosive
-        map.get(IDStrings.REDSTONE_ALLOY).addEvent(TraitEventType.TICK, TraitPartType.PLATE, TickEvents::plateRedstoneAlloy);               // Powered On
-        map.get(IDStrings.GOLD).addEvent(TraitEventType.PLAYER_DAMAGED, TraitPartType.PLATE, PlayerDamagedEvents::plateGold);               // Prosperous
-        map.get(IDStrings.WARPED_ROOTS).addEvent(TraitEventType.TICK, TraitPartType.GAMBESON, TickEvents::gambesonWarpedRoots);             // Refreshing
+        CM_MAP.get(IDStrings.BOOMERITE).addEvent(TraitEventType.TICK, TraitPartType.PLATE, TickEvents::plateBoomerite);                        // Go Boomer
+        CM_MAP.get(IDStrings.VINE).addEvent(TraitEventType.TICK, TraitPartType.GAMBESON, TickEvents::gambesonVine);                            // Growth
+        CM_MAP.get(IDStrings.STEEL).addEvent(TraitEventType.PLAYER_DAMAGED, TraitPartType.PLATE, PlayerDamagedEvents::plateSteel);             // Hardy
+        CM_MAP.get(IDStrings.BILLON).addEvent(TraitEventType.PLAYER_DAMAGED, TraitPartType.LINKS, PlayerDamagedEvents::linksBillon);           // Heat Conductor
+        CM_MAP.get(IDStrings.BRASS).addEvent(TraitEventType.PLAYER_DAMAGED, TraitPartType.LINKS, PlayerDamagedEvents::linksBrass);             // Help
+        CM_MAP.get(IDStrings.MAGNESIUM).addEvent(TraitEventType.ENTITY_DAMAGED, TraitPartType.PLATE, EntityDamageEvents::plateMagnesium);      // Light - Player Damage
+        CM_MAP.get(IDStrings.MAGNESIUM).addEvent(TraitEventType.TICK, TraitPartType.PLATE, TickEvents::plateMagnesium);                        // Light - Speed
+        CM_MAP.get(IDStrings.MAGNESIUM).addEvent(TraitEventType.TICK, TraitPartType.LINKS, TickEvents::linksMagnesium);                        // Magnesight
+        CM_MAP.get(IDStrings.COBALT).addEvent(TraitEventType.TICK, TraitPartType.PLATE, TickEvents::plateCobalt);                              // Magnetic -
+        CM_MAP.get(IDStrings.COBALT).addEvent(TraitEventType.TICK, TraitPartType.LINKS, TickEvents::linksCobalt);                              // Magnetic -
+        CM_MAP.get(IDStrings.NICKEL).addEvent(TraitEventType.TICK, TraitPartType.PLATE, TickEvents::plateNickel);                              // Magnetic +
+        CM_MAP.get(IDStrings.NICKEL).addEvent(TraitEventType.TICK, TraitPartType.LINKS, TickEvents::linksNickel);                              // Magnetic +
+        CM_MAP.get(IDStrings.ALUBRASS).addEvent(TraitEventType.PLAYER_DAMAGED, TraitPartType.PLATE, PlayerDamagedEvents::plateAluBrass);       // Magus
+        CM_MAP.get(IDStrings.TIN).addEvent(TraitEventType.PLAYER_DAMAGED, TraitPartType.PLATE, PlayerDamagedEvents::plateTin);                 // Non-corrosive
+        CM_MAP.get(IDStrings.REDSTONE_ALLOY).addEvent(TraitEventType.TICK, TraitPartType.PLATE, TickEvents::plateRedstoneAlloy);               // Powered On
+        CM_MAP.get(IDStrings.GOLD).addEvent(TraitEventType.PLAYER_DAMAGED, TraitPartType.PLATE, PlayerDamagedEvents::plateGold);               // Prosperous
+        CM_MAP.get(IDStrings.WARPED_ROOTS).addEvent(TraitEventType.TICK, TraitPartType.GAMBESON, TickEvents::gambesonWarpedRoots);             // Refreshing
         // Reinforcable (Special Case - nested within plate mod. Will be moved when mods are changed to consumers)
-        map.get(IDStrings.IRON).addEvent(TraitEventType.TICK, TraitPartType.LINKS, EntityDamageEvents::linksIron);                          // Rusty
-        map.get(IDStrings.DURALIUM).addEvent(TraitEventType.PLAYER_DAMAGED, TraitPartType.LINKS, PlayerDamagedEvents::linksDuralium);       // Shock Absorbant
-        map.get(IDStrings.LEAD).addEvent(TraitEventType.TICK, TraitPartType.PLATE, TickEvents::plateLead);                                  // Sickly (plate)
-        map.get(IDStrings.LEAD).addEvent(TraitEventType.TICK, TraitPartType.LINKS, TickEvents::linksLead);                                  // Sickly (links)
-        map.get(IDStrings.SILICON).addEvent(TraitEventType.ENTITY_DAMAGED, TraitPartType.GAMBESON, EntityDamageEvents::gambesonSilicon);    // Slow Learner
-        map.get(IDStrings.ZINC).addEvent(TraitEventType.ENTITY_DAMAGED, TraitPartType.PLATE, EntityDamageEvents::plateZinc);                // Sneaky
-        map.get(IDStrings.DAMSTEEL).addEvent(TraitEventType.PLAYER_DAMAGED, TraitPartType.LINKS, PlayerDamagedEvents::linksDamSteel);       // Snroht
-        map.get(IDStrings.SOLDER).addEvent(TraitEventType.PLAYER_DAMAGED, TraitPartType.PLATE, PlayerDamagedEvents::plateSolder);           // Soft Landing
-        map.get(IDStrings.FERROSILICON).addEvent(TraitEventType.TICK, TraitPartType.PLATE, TickEvents::plateFerrosilicon);                  // Solar Powered
-        map.get(IDStrings.IRON).addEvent(TraitEventType.PLAYER_DAMAGED, TraitPartType.PLATE, PlayerDamagedEvents::plateIron);               // Steadfast
-        map.get(IDStrings.STEEL).addEvent(TraitEventType.TICK, TraitPartType.LINKS, TickEvents::linksSteel);                                // Strong
-        map.get(IDStrings.CORBRONZE).addEvent(TraitEventType.TICK, TraitPartType.PLATE, TickEvents::plateCorBronze);                        // SuperHot
-        map.get(IDStrings.COPPER).addEvent(TraitEventType.ENTITY_DAMAGED, TraitPartType.LINKS, EntityDamageEvents::linksCopper);            // Tarnished
-        map.get(IDStrings.LEATHER).addEvent(TraitEventType.ENTITY_DAMAGED, TraitPartType.GAMBESON, EntityDamageEvents::gambesonLeather);    // Thick Hide
-        map.get(IDStrings.HARD).addEvent(TraitEventType.DURABILITY, TraitPartType.PLATE, DurabilityEvents::plateHardened);                  // Toughened
-        map.get(IDStrings.CORBRONZE).addEvent(TraitEventType.TICK, TraitPartType.LINKS, TickEvents::linksCorBronze);                        // Warm Blooded
-        map.get(IDStrings.BILLON).addEvent(TraitEventType.ENTITY_DAMAGED, TraitPartType.PLATE, EntityDamageEvents::plateBillon);            // WHM
-        map.get(IDStrings.REDSTONE_ALLOY).addEvent(TraitEventType.TICK, TraitPartType.LINKS, TickEvents::linksRedstoneAlloy);               // Who needs pressure plates
-        map.get(IDStrings.REINFORCED).addEvent(TraitEventType.PLAYER_DAMAGED, TraitPartType.LINKS, PlayerDamagedEvents::linksReinforced);   // Witherproof
+        CM_MAP.get(IDStrings.IRON).addEvent(TraitEventType.TICK, TraitPartType.LINKS, EntityDamageEvents::linksIron);                          // Rusty
+        CM_MAP.get(IDStrings.DURALIUM).addEvent(TraitEventType.PLAYER_DAMAGED, TraitPartType.LINKS, PlayerDamagedEvents::linksDuralium);       // Shock Absorbant
+        CM_MAP.get(IDStrings.LEAD).addEvent(TraitEventType.TICK, TraitPartType.PLATE, TickEvents::plateLead);                                  // Sickly (plate)
+        CM_MAP.get(IDStrings.LEAD).addEvent(TraitEventType.TICK, TraitPartType.LINKS, TickEvents::linksLead);                                  // Sickly (links)
+        CM_MAP.get(IDStrings.SILICON).addEvent(TraitEventType.ENTITY_DAMAGED, TraitPartType.GAMBESON, EntityDamageEvents::gambesonSilicon);    // Slow Learner
+        CM_MAP.get(IDStrings.ZINC).addEvent(TraitEventType.ENTITY_DAMAGED, TraitPartType.PLATE, EntityDamageEvents::plateZinc);                // Sneaky
+        CM_MAP.get(IDStrings.DAMSTEEL).addEvent(TraitEventType.PLAYER_DAMAGED, TraitPartType.LINKS, PlayerDamagedEvents::linksDamSteel);       // Snroht
+        CM_MAP.get(IDStrings.SOLDER).addEvent(TraitEventType.PLAYER_DAMAGED, TraitPartType.PLATE, PlayerDamagedEvents::plateSolder);           // Soft Landing
+        CM_MAP.get(IDStrings.FERROSILICON).addEvent(TraitEventType.TICK, TraitPartType.PLATE, TickEvents::plateFerrosilicon);                  // Solar Powered
+        CM_MAP.get(IDStrings.IRON).addEvent(TraitEventType.PLAYER_DAMAGED, TraitPartType.PLATE, PlayerDamagedEvents::plateIron);               // Steadfast
+        CM_MAP.get(IDStrings.STEEL).addEvent(TraitEventType.TICK, TraitPartType.LINKS, TickEvents::linksSteel);                                // Strong
+        CM_MAP.get(IDStrings.CORBRONZE).addEvent(TraitEventType.TICK, TraitPartType.PLATE, TickEvents::plateCorBronze);                        // SuperHot
+        CM_MAP.get(IDStrings.COPPER).addEvent(TraitEventType.ENTITY_DAMAGED, TraitPartType.LINKS, EntityDamageEvents::linksCopper);            // Tarnished
+        CM_MAP.get(IDStrings.LEATHER).addEvent(TraitEventType.ENTITY_DAMAGED, TraitPartType.GAMBESON, EntityDamageEvents::gambesonLeather);    // Thick Hide
+        CM_MAP.get(IDStrings.HARD).addEvent(TraitEventType.DURABILITY, TraitPartType.PLATE, DurabilityEvents::plateHardened);                  // Toughened
+        CM_MAP.get(IDStrings.CORBRONZE).addEvent(TraitEventType.TICK, TraitPartType.LINKS, TickEvents::linksCorBronze);                        // Warm Blooded
+        CM_MAP.get(IDStrings.BILLON).addEvent(TraitEventType.ENTITY_DAMAGED, TraitPartType.PLATE, EntityDamageEvents::plateBillon);            // WHM
+        CM_MAP.get(IDStrings.REDSTONE_ALLOY).addEvent(TraitEventType.TICK, TraitPartType.LINKS, TickEvents::linksRedstoneAlloy);               // Who needs pressure plates
+        CM_MAP.get(IDStrings.REINFORCED).addEvent(TraitEventType.PLAYER_DAMAGED, TraitPartType.LINKS, PlayerDamagedEvents::linksReinforced);   // Witherproof
         // Works
     }
 
+    public static Map<String, ComponentMaterial> getCmMap() {
+        return CM_MAP;
+    }
 }

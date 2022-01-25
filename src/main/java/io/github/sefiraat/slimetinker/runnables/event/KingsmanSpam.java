@@ -71,9 +71,7 @@ public class KingsmanSpam extends BukkitRunnable {
                     e.damage(2, p);
                 }
             }
-
             runs--;
         }
     }
-
 }

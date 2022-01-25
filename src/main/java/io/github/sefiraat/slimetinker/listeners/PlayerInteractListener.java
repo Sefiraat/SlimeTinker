@@ -39,7 +39,6 @@ public class PlayerInteractListener implements Listener {
         if (friend.isActionTaken()) {
             settlePotionEffects(friend);
         }
-
     }
 
     @EventHandler
@@ -67,6 +66,4 @@ public class PlayerInteractListener implements Listener {
             return false;
         }
     }
-
-
 }

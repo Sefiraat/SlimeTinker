@@ -7,6 +7,7 @@ import io.github.sefiraat.slimetinker.utils.BlockUtils;
 import io.github.sefiraat.slimetinker.utils.EntityUtils;
 import io.github.sefiraat.slimetinker.utils.GeneralUtils;
 import io.github.sefiraat.slimetinker.utils.ItemUtils;
+import io.github.sefiraat.slimetinker.utils.Keys;
 import io.github.sefiraat.slimetinker.utils.ThemeUtils;
 import io.github.thebusybiscuit.slimefun4.api.MinecraftVersion;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
@@ -14,7 +15,6 @@ import io.github.thebusybiscuit.slimefun4.core.attributes.Rechargeable;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.data.persistent.PersistentDataAPI;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.protection.Interaction;
-import lombok.experimental.UtilityClass;
 import org.apache.commons.lang.Validate;
 import org.bukkit.Effect;
 import org.bukkit.Location;
@@ -34,8 +34,11 @@ import org.bukkit.inventory.meta.ItemMeta;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
-@UtilityClass
 public final class RightClickEvents {
+
+    private RightClickEvents() {
+        throw new UnsupportedOperationException("Utility Class");
+    }
 
     public static void headTessMat(EventFriend friend) {
         friend.setHypercube(friend.getHypercube() + 1);
@@ -47,7 +50,7 @@ public final class RightClickEvents {
             ItemMeta im = i.getItemMeta();
             String cooldownName = "hypercube";
 
-            NamespacedKey keyLoc = SlimeTinker.inst().getKeys().getTraitsHypercubeLocation();
+            NamespacedKey keyLoc = Keys.TRAITS_HYPERCUBE_LOCATION;
 
             if (p.isSneaking()) {
                 // Setting location
@@ -100,7 +103,7 @@ public final class RightClickEvents {
     public static void plateInfinity(EventFriend friend) {
         ItemStack i = friend.getActiveStack();
         ItemMeta im = i.getItemMeta();
-        NamespacedKey k = SlimeTinker.inst().getKeys().getArmourInfiniteCapacityStored();
+        NamespacedKey k = Keys.ARMOUR_INFINITE_CAPACITY_STORED;
         Validate.notNull(im, "Meta is null, nope!");
         double d = PersistentDataAPI.getDouble(im, k, 0);
         if (d > 1) {
@@ -166,7 +169,7 @@ public final class RightClickEvents {
         ItemStack i = friend.getActiveStack();
         ItemMeta im = i.getItemMeta();
         Validate.notNull(im, "Meta is null, herp derp derp");
-        NamespacedKey k = SlimeTinker.inst().getKeys().getArmourUnconventionalStored();
+        NamespacedKey k = Keys.ARMOUR_UNCONVENTIONAL_STORED;
         int amount = PersistentDataAPI.getInt(im, k, 0);
 
         for (ItemStack i2 : friend.getPlayer().getInventory()) {

@@ -1,9 +1,7 @@
 package io.github.sefiraat.slimetinker.items.componentmaterials.cmelements;
 
 import io.github.sefiraat.slimetinker.items.componentmaterials.ComponentMaterial;
-import lombok.Getter;
 
-@Getter
 public class CMForms {
 
     private final String formNugget;
@@ -31,4 +29,47 @@ public class CMForms {
         this.formHelm = formHelm;
     }
 
+    public String getFormNugget() {
+        return formNugget;
+    }
+
+    public String getFormIngot() {
+        return formIngot;
+    }
+
+    public String getFormBlock() {
+        return formBlock;
+    }
+
+    public String getFormOre() {
+        return formOre;
+    }
+
+    public String getFormGem() {
+        return formGem;
+    }
+
+    public String getFormDust() {
+        return formDust;
+    }
+
+    public String getFormBoot() {
+        return formBoot;
+    }
+
+    public String getFormLeg() {
+        return formLeg;
+    }
+
+    public String getFormChest() {
+        return formChest;
+    }
+
+    public String getFormHelm() {
+        return formHelm;
+    }
+
+    public ComponentMaterial getParent() {
+        return parent;
+    }
 }

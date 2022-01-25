@@ -1,10 +1,10 @@
 package io.github.sefiraat.slimetinker.items.templates;
 
-import io.github.sefiraat.slimetinker.SlimeTinker;
 import io.github.sefiraat.slimetinker.items.componentmaterials.CMManager;
 import io.github.sefiraat.slimetinker.utils.Experience;
 import io.github.sefiraat.slimetinker.utils.IDStrings;
 import io.github.sefiraat.slimetinker.utils.ItemUtils;
+import io.github.sefiraat.slimetinker.utils.Keys;
 import io.github.sefiraat.slimetinker.utils.ThemeUtils;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
@@ -55,12 +55,12 @@ public class ArmourTemplate extends UnplaceableBlock {
         ItemMeta im = itemStack.getItemMeta();
         Validate.notNull(im, "Meta is null, whoops!");
         Experience.setupExpNew(im);
-        PersistentDataAPI.setString(im, SlimeTinker.inst().getKeys().getArmourInfoIsArmour(), "Y");
-        PersistentDataAPI.setString(im, SlimeTinker.inst().getKeys().getArmourInfoPlateType(), armourDefinition.getClassType());
-        PersistentDataAPI.setString(im, SlimeTinker.inst().getKeys().getArmourInfoArmourType(), armourDefinition.getPartType());
-        PersistentDataAPI.setString(im, SlimeTinker.inst().getKeys().getArmourInfoPlateMaterial(), armourDefinition.getPlateMaterial());
-        PersistentDataAPI.setString(im, SlimeTinker.inst().getKeys().getArmourInfoGambesonMaterial(), armourDefinition.getGambesonMaterial());
-        PersistentDataAPI.setString(im, SlimeTinker.inst().getKeys().getArmourInfoLinksMaterial(), armourDefinition.getLinksMaterial());
+        PersistentDataAPI.setString(im, Keys.ARMOUR_INFO_IS_ARMOUR, "Y");
+        PersistentDataAPI.setString(im, Keys.ARMOUR_INFO_PLATE_TYPE, armourDefinition.getClassType());
+        PersistentDataAPI.setString(im, Keys.ARMOUR_INFO_ARMOUR_TYPE, armourDefinition.getPartType());
+        PersistentDataAPI.setString(im, Keys.ARMOUR_INFO_PLATE_MATERIAL, armourDefinition.getPlateMaterial());
+        PersistentDataAPI.setString(im, Keys.ARMOUR_INFO_GAMBESON_MATERIAL, armourDefinition.getGambesonMaterial());
+        PersistentDataAPI.setString(im, Keys.ARMOUR_INFO_LINKS_MATERIAL, armourDefinition.getLinksMaterial());
 
         im.setDisplayName(getName(armourDefinition));
         itemStack.setItemMeta(im);

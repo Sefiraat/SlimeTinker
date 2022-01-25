@@ -9,7 +9,6 @@ import org.bukkit.inventory.ItemStack;
 
 public class DropItemListener implements Listener {
 
-
     @SuppressWarnings("unused")
     @EventHandler
     public void onDropItem(PlayerDropItemEvent event) {
@@ -20,6 +19,4 @@ public class DropItemListener implements Listener {
         }
 
     }
-
-
 }

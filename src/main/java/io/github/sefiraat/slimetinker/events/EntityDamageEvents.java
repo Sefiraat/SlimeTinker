@@ -5,11 +5,11 @@ import io.github.sefiraat.slimetinker.events.friend.EventFriend;
 import io.github.sefiraat.slimetinker.utils.EntityUtils;
 import io.github.sefiraat.slimetinker.utils.GeneralUtils;
 import io.github.sefiraat.slimetinker.utils.ItemUtils;
+import io.github.sefiraat.slimetinker.utils.Keys;
 import io.github.sefiraat.slimetinker.utils.ThemeUtils;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.data.persistent.PersistentDataAPI;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.protection.Interaction;
-import lombok.experimental.UtilityClass;
 import org.apache.commons.lang.Validate;
 import org.bukkit.Bukkit;
 import org.bukkit.Color;
@@ -35,8 +35,11 @@ import java.util.concurrent.ThreadLocalRandom;
 
 import static io.github.sefiraat.slimetinker.utils.EntityUtils.push;
 
-@UtilityClass
 public final class EntityDamageEvents {
+
+    private EntityDamageEvents() {
+        throw new UnsupportedOperationException("Utility Class");
+    }
 
     public static void headAluBrass(EventFriend friend) {
         int rnd = ThreadLocalRandom.current().nextInt(1, 4);
@@ -403,7 +406,7 @@ public final class EntityDamageEvents {
             LivingEntity e = (LivingEntity) friend.getDamagedEntity();
             ItemStack i = friend.getActiveStack();
             ItemMeta im = i.getItemMeta();
-            NamespacedKey k = SlimeTinker.inst().getKeys().getArmourSoulsStored();
+            NamespacedKey k = Keys.ARMOUR_SOULS_STORED;
             Validate.notNull(im, "Meta is not null, this is odd!");
             long souls = PersistentDataAPI.getLong(im, k, 0);
             friend.setDamageMod(friend.getDamageMod() + ((double) souls / 10000L));

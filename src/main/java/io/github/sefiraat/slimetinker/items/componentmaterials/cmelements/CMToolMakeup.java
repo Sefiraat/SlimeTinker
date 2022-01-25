@@ -1,8 +1,5 @@
 package io.github.sefiraat.slimetinker.items.componentmaterials.cmelements;
 
-import lombok.Getter;
-
-@Getter
 public class CMToolMakeup {
 
     private final boolean isValidHead;
@@ -22,4 +19,27 @@ public class CMToolMakeup {
         this.isValidLinks = isValidLinks;
     }
 
+    public boolean isValidHead() {
+        return isValidHead;
+    }
+
+    public boolean isValidBinder() {
+        return isValidBinder;
+    }
+
+    public boolean isValidRod() {
+        return isValidRod;
+    }
+
+    public boolean isValidPlates() {
+        return isValidPlates;
+    }
+
+    public boolean isValidGambeson() {
+        return isValidGambeson;
+    }
+
+    public boolean isValidLinks() {
+        return isValidLinks;
+    }
 }

@@ -1,11 +1,9 @@
 package io.github.sefiraat.slimetinker.modifiers;
 
-import lombok.Data;
 import org.bukkit.NamespacedKey;
 
 import java.util.Map;
 
-@Data
 public class Mod {
 
     private final Map<Integer, Integer> requirementMap;
@@ -16,4 +14,11 @@ public class Mod {
         this.levelKey = levelKey;
     }
 
+    public Map<Integer, Integer> getRequirementMap() {
+        return requirementMap;
+    }
+
+    public NamespacedKey getLevelKey() {
+        return levelKey;
+    }
 }

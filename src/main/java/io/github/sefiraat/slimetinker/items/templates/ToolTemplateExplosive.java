@@ -1,10 +1,10 @@
 package io.github.sefiraat.slimetinker.items.templates;
 
-import io.github.sefiraat.slimetinker.SlimeTinker;
 import io.github.sefiraat.slimetinker.items.componentmaterials.CMManager;
 import io.github.sefiraat.slimetinker.utils.Experience;
 import io.github.sefiraat.slimetinker.utils.IDStrings;
 import io.github.sefiraat.slimetinker.utils.ItemUtils;
+import io.github.sefiraat.slimetinker.utils.Keys;
 import io.github.sefiraat.slimetinker.utils.ThemeUtils;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
@@ -27,7 +27,7 @@ public class ToolTemplateExplosive extends ExplosiveTool {
     public static boolean isTool(ItemStack itemStack) {
         return itemStack.hasItemMeta() &&
             itemStack.getItemMeta().getPersistentDataContainer().has(
-                SlimeTinker.inst().getKeys().getToolInfoIsTool(),
+                Keys.TOOL_INFO_IS_TOOL,
                 PersistentDataType.STRING
             );
     }
@@ -67,12 +67,12 @@ public class ToolTemplateExplosive extends ExplosiveTool {
         assert im != null;
         PersistentDataContainer c = im.getPersistentDataContainer();
         Experience.setupExpNew(im);
-        c.set(SlimeTinker.inst().getKeys().getToolInfoIsTool(), PersistentDataType.STRING, "Y");
-        c.set(SlimeTinker.inst().getKeys().getToolInfoHeadType(), PersistentDataType.STRING, toolDefinition.getClassType());
-        c.set(SlimeTinker.inst().getKeys().getToolInfoToolType(), PersistentDataType.STRING, toolDefinition.getPartType());
-        c.set(SlimeTinker.inst().getKeys().getToolInfoHeadMaterial(), PersistentDataType.STRING, toolDefinition.getHeadMaterial());
-        c.set(SlimeTinker.inst().getKeys().getToolInfoBinderMaterial(), PersistentDataType.STRING, toolDefinition.getBinderMaterial());
-        c.set(SlimeTinker.inst().getKeys().getToolInfoRodMaterial(), PersistentDataType.STRING, toolDefinition.getRodMaterial());
+        c.set(Keys.TOOL_INFO_IS_TOOL, PersistentDataType.STRING, "Y");
+        c.set(Keys.TOOL_INFO_HEAD_TYPE, PersistentDataType.STRING, toolDefinition.getClassType());
+        c.set(Keys.TOOL_INFO_TOOL_TYPE, PersistentDataType.STRING, toolDefinition.getPartType());
+        c.set(Keys.TOOL_INFO_HEAD_MATERIAL, PersistentDataType.STRING, toolDefinition.getHeadMaterial());
+        c.set(Keys.TOOL_INFO_BINDER_MATERIAL, PersistentDataType.STRING, toolDefinition.getBinderMaterial());
+        c.set(Keys.TOOL_INFO_ROD_MATERIAL, PersistentDataType.STRING, toolDefinition.getRodMaterial());
         im.setDisplayName(getName(toolDefinition));
         itemStack.setItemMeta(im);
         ItemUtils.rebuildTinkerLore(itemStack);

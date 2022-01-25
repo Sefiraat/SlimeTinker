@@ -9,5 +9,4 @@ public class FirstTick extends BukkitRunnable {
     public void run() {
         SlimeTinker.inst().getWorkbench().setupRecipes();
     }
-
 }

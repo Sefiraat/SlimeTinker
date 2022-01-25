@@ -2,12 +2,14 @@ package io.github.sefiraat.slimetinker.managers;
 
 import io.github.sefiraat.slimetinker.SlimeTinker;
 import io.github.sefiraat.slimetinker.utils.ThemeUtils;
-import lombok.experimental.UtilityClass;
 import org.bukkit.plugin.PluginManager;
 
 @SuppressWarnings("SpellCheckingInspection")
-@UtilityClass
 public final class SupportedPluginsManager {
+
+    private SupportedPluginsManager() {
+        throw new IllegalStateException("Utility class");
+    }
 
     public static final boolean INFINITY_EXPANSION;
     public static final boolean SLIMEFUN_WARFARE;
@@ -28,4 +30,19 @@ public final class SupportedPluginsManager {
         LITEXPANSION = pluginManager.isPluginEnabled("LiteXpansion");
     }
 
+    public static boolean isInfinityExpansion() {
+        return INFINITY_EXPANSION;
+    }
+
+    public static boolean isSlimefunWarfare() {
+        return SLIMEFUN_WARFARE;
+    }
+
+    public static boolean isDynatech() {
+        return DYNATECH;
+    }
+
+    public static boolean isLitexpansion() {
+        return LITEXPANSION;
+    }
 }

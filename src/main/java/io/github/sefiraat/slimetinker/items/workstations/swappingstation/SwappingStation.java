@@ -1,10 +1,10 @@
 package io.github.sefiraat.slimetinker.items.workstations.swappingstation;
 
 import io.github.mooy1.infinitylib.machines.MenuBlock;
-import io.github.sefiraat.slimetinker.SlimeTinker;
 import io.github.sefiraat.slimetinker.utils.GUIItems;
 import io.github.sefiraat.slimetinker.utils.IDStrings;
 import io.github.sefiraat.slimetinker.utils.ItemUtils;
+import io.github.sefiraat.slimetinker.utils.Keys;
 import io.github.sefiraat.slimetinker.utils.ThemeUtils;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
@@ -24,6 +24,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import javax.annotation.Nonnull;
+import javax.annotation.ParametersAreNonnullByDefault;
 
 public class SwappingStation extends MenuBlock {
 
@@ -38,25 +39,24 @@ public class SwappingStation extends MenuBlock {
     }
 
     @SuppressWarnings("SameReturnValue")
-    protected boolean craft(BlockMenu blockMenu, Player player) {
-
+    protected void craft(BlockMenu blockMenu, Player player) {
         ItemStack item = blockMenu.getItemInSlot(INPUT_ITEM);
         ItemStack part = blockMenu.getItemInSlot(INPUT_PART);
 
         // No tool dummy!
         if (item == null) {
             player.sendMessage(ThemeUtils.WARNING + "Input a tool into the first slot.");
-            return false;
+            return;
         }
 
         if (item.getAmount() > 1) {
             player.sendMessage(ThemeUtils.WARNING + "Nope - nerd");
-            return false;
+            return;
         }
 
         if (part == null) {
             player.sendMessage(ThemeUtils.WARNING + "Input a replacement part into the second slot.");
-            return false;
+            return;
         }
 
         String partClass = ItemUtils.getPartClass(part);
@@ -65,62 +65,42 @@ public class SwappingStation extends MenuBlock {
 
         if (ItemUtils.isTool(item)) {
             if (partClass != null && ItemUtils.partIsTool(partClass)) {
-                return swapTool(blockMenu, player, item, partClass, partType, partMaterial);
+                swapTool(blockMenu, player, item, partClass, partType, partMaterial);
             } else {
                 player.sendMessage(ThemeUtils.WARNING + "This part cannot be swapped onto this tool.");
             }
         } else if (ItemUtils.isArmour(item)) {
             if (partClass != null && ItemUtils.partIsArmour(partClass)) {
-                return swapArmour(blockMenu, player, item, partClass, partType, partMaterial);
+                swapArmour(blockMenu, player, item, partClass, partType, partMaterial);
             } else {
                 player.sendMessage(ThemeUtils.WARNING + "This part cannot be swapped onto this tool.");
             }
         } else {
             player.sendMessage(ThemeUtils.WARNING + "The item in the first slot isn't a Tinker's item.");
         }
-
-        return false;
-
     }
 
-    private boolean swapTool(BlockMenu blockMenu, Player player, ItemStack item, String partClass, String partType, String partMaterial) {
-
+    private void swapTool(BlockMenu blockMenu, Player player, ItemStack item, String partClass, String partType, String partMaterial) {
         // The part is a head part but the type is either null or not matching the tool (Axe head part for shovel etc.)
         if (partClass.equals(IDStrings.HEAD) && (partType != null && !partType.equals(ItemUtils.getToolTypeName(item)))) {
             player.sendMessage(ThemeUtils.WARNING + "This head type cannot be swapped onto this tool.");
-            return false;
+            return;
         }
 
         ItemStack newTool = item.clone();
         ItemMeta newToolMeta = newTool.getItemMeta();
 
-        String swappedMaterial;
-
-        switch (partClass) {
-            case IDStrings.HEAD:
-                swappedMaterial = ItemUtils.getToolHeadMaterial(newTool);
-                break;
-            case IDStrings.BINDING:
-                swappedMaterial = ItemUtils.getToolBindingMaterial(newTool);
-                break;
-            case IDStrings.ROD:
-                swappedMaterial = ItemUtils.getToolRodMaterial(newTool);
-                break;
-            default:
-                throw new IllegalStateException("Unexpected value: " + partClass);
-        }
-
         checkAndChangeExplosiveness(newTool, newToolMeta, partMaterial, partClass);
 
         switch (partClass) {
             case IDStrings.HEAD:
-                PersistentDataAPI.setString(newToolMeta, SlimeTinker.inst().getKeys().getToolInfoHeadMaterial(), partMaterial);
+                PersistentDataAPI.setString(newToolMeta, Keys.TOOL_INFO_HEAD_MATERIAL, partMaterial);
                 break;
             case IDStrings.BINDING:
-                PersistentDataAPI.setString(newToolMeta, SlimeTinker.inst().getKeys().getToolInfoBinderMaterial(), partMaterial);
+                PersistentDataAPI.setString(newToolMeta, Keys.TOOL_INFO_BINDER_MATERIAL, partMaterial);
                 break;
             case IDStrings.ROD:
-                PersistentDataAPI.setString(newToolMeta, SlimeTinker.inst().getKeys().getToolInfoRodMaterial(), partMaterial);
+                PersistentDataAPI.setString(newToolMeta, Keys.TOOL_INFO_ROD_MATERIAL, partMaterial);
                 break;
             default:
                 throw new IllegalStateException("Unexpected value: " + partClass);
@@ -134,13 +114,9 @@ public class SwappingStation extends MenuBlock {
         blockMenu.pushItem(newTool, OUTPUT_SLOT);
         blockMenu.getItemInSlot(INPUT_ITEM).setAmount(blockMenu.getItemInSlot(INPUT_ITEM).getAmount() - 1);
         blockMenu.getItemInSlot(INPUT_PART).setAmount(blockMenu.getItemInSlot(INPUT_PART).getAmount() - 1);
-
-        return false;
-
     }
 
     private boolean swapArmour(BlockMenu blockMenu, Player player, ItemStack item, String partClass, String partType, String partMaterial) {
-
         // The part is a plate part but the type is either null or not matching the armour (Helm plates for boots etc..)
         if (partClass.equals(IDStrings.PLATE) && (partType != null && !partType.equals(ItemUtils.getArmourTypeName(item)))) {
             player.sendMessage(ThemeUtils.WARNING + "This plate type cannot be swapped onto this armour.");
@@ -152,13 +128,13 @@ public class SwappingStation extends MenuBlock {
 
         switch (partClass) {
             case IDStrings.PLATE:
-                PersistentDataAPI.setString(newArmourMeta, SlimeTinker.inst().getKeys().getArmourInfoPlateMaterial(), partMaterial);
+                PersistentDataAPI.setString(newArmourMeta, Keys.ARMOUR_INFO_PLATE_MATERIAL, partMaterial);
                 break;
             case IDStrings.GAMBESON:
-                PersistentDataAPI.setString(newArmourMeta, SlimeTinker.inst().getKeys().getArmourInfoGambesonMaterial(), partMaterial);
+                PersistentDataAPI.setString(newArmourMeta, Keys.ARMOUR_INFO_GAMBESON_MATERIAL, partMaterial);
                 break;
             case IDStrings.LINKS:
-                PersistentDataAPI.setString(newArmourMeta, SlimeTinker.inst().getKeys().getArmourInfoLinksMaterial(), partMaterial);
+                PersistentDataAPI.setString(newArmourMeta, Keys.ARMOUR_INFO_LINKS_MATERIAL, partMaterial);
                 break;
             default:
                 throw new IllegalStateException("Unexpected value: " + partClass);
@@ -200,7 +176,7 @@ public class SwappingStation extends MenuBlock {
     protected void setup(BlockMenuPreset blockMenuPreset) {
 
         blockMenuPreset.drawBackground(ChestMenuUtils.getBackground(), BACKGROUND_SLOTS);
-        blockMenuPreset.addItem(CRAFT_BUTTON, GUIItems.menuCraftSwap());
+        blockMenuPreset.addItem(CRAFT_BUTTON, GUIItems.MENU_CRAFT_SWAP);
         blockMenuPreset.addMenuClickHandler(CRAFT_BUTTON, (player, i, itemStack, clickAction) -> false);
 
     }
@@ -227,7 +203,10 @@ public class SwappingStation extends MenuBlock {
     @Override
     protected void onNewInstance(@Nonnull BlockMenu blockMenu, @Nonnull Block b) {
         super.onNewInstance(blockMenu, b);
-        blockMenu.addMenuClickHandler(CRAFT_BUTTON, (player, i, itemStack, clickAction) -> craft(blockMenu, player));
+        blockMenu.addMenuClickHandler(CRAFT_BUTTON, (player, i, itemStack, clickAction) -> {
+            craft(blockMenu, player);
+            return false;
+        });
     }
 
     private boolean isExplosivePart(String material, String part) {

@@ -15,7 +15,6 @@ import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenuPreset;
 import org.bukkit.Location;
 import org.bukkit.block.Block;
-import org.bukkit.entity.Player;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.inventory.ItemStack;
 
@@ -34,45 +33,9 @@ public class Workbench extends CraftingBlock {
     }
 
     @Override
-    protected void craft(@Nonnull Block b, @Nonnull BlockMenu menu, @Nonnull Player p) {
-        super.craft(b, menu, p);
-    }
-
-//    @SuppressWarnings("SameReturnValue")
-//    protected boolean craft(BlockMenu blockMenu, Player player) {
-//
-//        ItemStack[] inputs = new ItemStack[9];
-//        for (int i = 0 ; i < 9 ; i++) {
-//            inputs[i] = blockMenu.getItemInSlot(INPUT_SLOTS[i]);
-//        }
-//
-//        this.;
-//
-//        RecipeOutput<ItemStack> matchedOutput = craftingRecipes.get(inputs);
-//
-//        if (matchedOutput == null) {
-//            player.sendMessage(ThemeUtils.ERROR + "Not a valid crafting recipe");
-//            return false;
-//        }
-//
-//        ItemStack itemStack = matchedOutput.getOutput().clone();
-//
-//        if (!blockMenu.fits(itemStack, OUTPUT_SLOT)) {
-//            player.sendMessage(ThemeUtils.WARNING + "Tidy up your workbench, you have no room!");
-//            return false;
-//        }
-//
-//        matchedOutput.consumeInput();
-//        blockMenu.pushItem(itemStack, OUTPUT_SLOT);
-//
-//        return false;
-//
-//    }
-
-    @Override
     protected void setup(BlockMenuPreset blockMenuPreset) {
         blockMenuPreset.drawBackground(ChestMenuUtils.getBackground(), BACKGROUND_SLOTS);
-        blockMenuPreset.addItem(CRAFT_BUTTON, GUIItems.menuCraftWorkbench());
+        blockMenuPreset.addItem(CRAFT_BUTTON, GUIItems.MENU_CRAFT_WORKBENCH);
         blockMenuPreset.addMenuClickHandler(CRAFT_BUTTON, (player, i, itemStack, clickAction) -> false);
     }
 

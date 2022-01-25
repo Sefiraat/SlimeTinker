@@ -9,8 +9,6 @@ import io.github.sefiraat.slimetinker.items.componentmaterials.cmrecipes.MoltenR
 import io.github.sefiraat.slimetinker.utils.GUIItems;
 import io.github.sefiraat.slimetinker.utils.ItemUtils;
 import io.github.sefiraat.slimetinker.utils.ThemeUtils;
-import lombok.Getter;
-import lombok.Setter;
 import me.mrCookieSlime.CSCoreLibPlugin.Configuration.Config;
 import me.mrCookieSlime.CSCoreLibPlugin.general.Inventory.ClickAction;
 import me.mrCookieSlime.Slimefun.api.BlockStorage;
@@ -28,29 +26,36 @@ import java.util.Optional;
 
 public final class TinkersSmelteryCache extends AbstractCache {
 
-    protected static final int LAVA_MAX = 1000;
-    protected static final int LAVA_PER_BUCKET = 250;
-    protected static final int METALS_MAX = 1000;
-    protected static final String LAVA_LEVEL_BS = "tnk-lava-level";
-    protected static final String METAL_LEVEL_PREFIX = "tnk-metal:";
-    @Getter
+    public static final int LAVA_MAX = 1000;
+    public static final int LAVA_PER_BUCKET = 250;
+    public static final int METALS_MAX = 1000;
+    public static final String LAVA_LEVEL_BS = "tnk-lava-level";
+    public static final String METAL_LEVEL_PREFIX = "tnk-metal:";
+
     private final Map<String, Integer> tankContent = new LinkedHashMap<>();
-    @Getter
-    @Setter
     private int levelLava;
 
     public TinkersSmelteryCache(BlockMenu blockMenu) {
         super(blockMenu);
         process(true);
 
-        blockMenu.addItem(TinkersSmeltery.PURGE_BUTTON, GUIItems.menuPurge());
-        blockMenu.addMenuClickHandler(TinkersSmeltery.PURGE_BUTTON, (player, i, itemStack, clickAction) -> clickPurge(clickAction));
+        blockMenu.addItem(TinkersSmeltery.PURGE_BUTTON, GUIItems.MENU_PURGE);
+        blockMenu.addMenuClickHandler(TinkersSmeltery.PURGE_BUTTON, (player, i, itemStack, clickAction) -> {
+            clickPurge(clickAction);
+            return false;
+        });
 
-        blockMenu.addItem(TinkersSmeltery.ALLOY_BUTTON, GUIItems.menuAlloy());
-        blockMenu.addMenuClickHandler(TinkersSmeltery.ALLOY_BUTTON, (player, i, itemStack, clickAction) -> clickAlloy());
+        blockMenu.addItem(TinkersSmeltery.ALLOY_BUTTON, GUIItems.MENU_ALLOY);
+        blockMenu.addMenuClickHandler(TinkersSmeltery.ALLOY_BUTTON, (player, i, itemStack, clickAction) -> {
+            clickAlloy();
+            return false;
+        });
 
-        blockMenu.addItem(TinkersSmeltery.POUR_BUTTON, GUIItems.menuPour());
-        blockMenu.addMenuClickHandler(TinkersSmeltery.POUR_BUTTON, (player, i, itemStack, clickAction) -> clickPour(player));
+        blockMenu.addItem(TinkersSmeltery.POUR_BUTTON, GUIItems.MENU_POUR);
+        blockMenu.addMenuClickHandler(TinkersSmeltery.POUR_BUTTON, (player, i, itemStack, clickAction) -> {
+            clickPour(player);
+            return false;
+        });
 
     }
 
@@ -131,8 +136,10 @@ public final class TinkersSmelteryCache extends AbstractCache {
             blockMenu.addMenuClickHandler(TinkersSmeltery.LAVA_INFO, (player, i, itemStack, clickAction) -> false);
 
             blockMenu.replaceExistingItem(TinkersSmeltery.METAL_INFO, GUIItems.menuMetalInfo(metalPercent, metalLevel, METALS_MAX, tankContent));
-            blockMenu.addMenuClickHandler(TinkersSmeltery.METAL_INFO, (player, i, itemStack, clickAction) -> clickMetalTank());
-
+            blockMenu.addMenuClickHandler(TinkersSmeltery.METAL_INFO, (player, i, itemStack, clickAction) -> {
+                clickMetalTank();
+                return false;
+            });
         }
     }
 
@@ -170,10 +177,10 @@ public final class TinkersSmelteryCache extends AbstractCache {
     }
 
     @SuppressWarnings("SameReturnValue")
-    private boolean clickPurge(ClickAction clickAction) {
+    private void clickPurge(ClickAction clickAction) {
 
         if (tankContent.isEmpty()) {
-            return false;
+            return;
         }
 
         if (clickAction.isRightClicked()) {
@@ -188,7 +195,7 @@ public final class TinkersSmelteryCache extends AbstractCache {
             for (String key : keys) {
                 BlockStorage.addBlockInfo(blockMenu.getLocation(), key, null);
             }
-            return false;
+            return;
         }
 
         Optional<String> first = tankContent.keySet().stream().findFirst();
@@ -196,15 +203,11 @@ public final class TinkersSmelteryCache extends AbstractCache {
             String key = first.get();
             tankContent.remove(key);
             BlockStorage.addBlockInfo(blockMenu.getLocation(), METAL_LEVEL_PREFIX + key, null);
-            return false;
         }
-
-        return false;
-
     }
 
     @SuppressWarnings("SameReturnValue")
-    private boolean clickAlloy() {
+    private void clickAlloy() {
         for (CMAlloy alloy : CMManager.getAlloys()) {
             if (!alloy.getAlloyMap().keySet().equals(tankContent.keySet())) {
                 continue;
@@ -214,7 +217,7 @@ public final class TinkersSmelteryCache extends AbstractCache {
                 int tankAmount = tankContent.get(entry.getKey());
                 int requiredAmount = entry.getValue();
                 if (tankAmount < requiredAmount) {
-                    return false;
+                    return;
                 }
                 int possible = Math.floorDiv(tankAmount, requiredAmount);
                 if (maxPossible == 0 || maxPossible > possible) {
@@ -226,18 +229,17 @@ public final class TinkersSmelteryCache extends AbstractCache {
             }
             addMetal(alloy.getParent().getId(), maxPossible);
         }
-        return false;
     }
 
     @SuppressWarnings("SameReturnValue")
-    private boolean clickPour(Player player) {
+    private void clickPour(Player player) {
 
         ItemStack inputItem = blockMenu.getItemInSlot(TinkersSmeltery.CAST_SLOT);
 
         // Cast item is null or not a cast
         if (inputItem == null || !SlimeTinker.inst().getCmManager().castingRecipes.containsKey(ItemUtils.getIdOrType(inputItem))) {
             player.sendMessage(ThemeUtils.WARNING + "Please input a valid cast before trying to pour metals.");
-            return false;
+            return;
         }
 
         Optional<String> first = tankContent.keySet().stream().findFirst();
@@ -245,7 +247,7 @@ public final class TinkersSmelteryCache extends AbstractCache {
         // No metals in the tank - cant pour
         if (!first.isPresent()) {
             player.sendMessage(ThemeUtils.WARNING + "There isn't any metal to pour.");
-            return false;
+            return;
         }
 
         String metalID = first.get();
@@ -255,7 +257,7 @@ public final class TinkersSmelteryCache extends AbstractCache {
         // Cast valid, but this cast and metal combination doesn't work
         if (!result.getOutputs().containsKey(componentMaterial)) {
             player.sendMessage(ThemeUtils.WARNING + "The selected metal cannot be shaped into the selected cast.");
-            return false;
+            return;
         }
 
         ItemStack outputItem = result.getOutputs().get(componentMaterial).clone();
@@ -264,13 +266,13 @@ public final class TinkersSmelteryCache extends AbstractCache {
         // Does not have enough metal to cats this specific item
         if (tankContent.get(metalID) < metalAmount) {
             player.sendMessage(ThemeUtils.WARNING + "You do not have enough metal to fill this cast");
-            return false;
+            return;
         }
 
         // Lastly, can we fit the output?
         if (!blockMenu.fits(outputItem, TinkersSmeltery.OUTPUT_SLOT)) {
             player.sendMessage(ThemeUtils.WARNING + "Please clear your casting table first");
-            return false;
+            return;
         }
 
         // Finally, let's actually pour
@@ -279,13 +281,10 @@ public final class TinkersSmelteryCache extends AbstractCache {
         if (result.isInputBurns()) {
             inputItem.setAmount(inputItem.getAmount() - 1);
         }
-
-        return false;
-
     }
 
     @SuppressWarnings("SameReturnValue")
-    private boolean clickMetalTank() {
+    private void clickMetalTank() {
         // 0 or 1 metals, wont do anything
         Optional<String> first = tankContent.keySet().stream().findFirst();
         if (first.isPresent() && tankContent.size() > 1) {
@@ -293,9 +292,18 @@ public final class TinkersSmelteryCache extends AbstractCache {
             int amount = tankContent.get(string);
             tankContent.remove(string);
             tankContent.put(string, amount);
-            return false;
         }
-        return false;
     }
 
+    public Map<String, Integer> getTankContent() {
+        return tankContent;
+    }
+
+    public int getLevelLava() {
+        return levelLava;
+    }
+
+    public void setLevelLava(int levelLava) {
+        this.levelLava = levelLava;
+    }
 }

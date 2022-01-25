@@ -16,6 +16,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.Damageable;
 import org.bukkit.inventory.meta.ItemMeta;
 
+import javax.annotation.Nonnull;
 import java.util.Map;
 
 import static io.github.sefiraat.slimetinker.events.friend.EventChannels.checkBoots;
@@ -30,7 +31,6 @@ public class DurabilityListener implements Listener {
     @SuppressWarnings("unused")
     @EventHandler
     public void onItemDamage(PlayerItemDamageEvent event) {
-
         ItemStack damagedItem = event.getItem();
         EventFriend friend = new EventFriend(event.getPlayer(), TraitEventType.DURABILITY);
         String armourTypeName = ItemUtils.getArmourTypeName(damagedItem);
@@ -81,13 +81,11 @@ public class DurabilityListener implements Listener {
             damageable.setDamage(damageable.getDamage() + event.getDamage());
             damagedItem.setItemMeta(im);
         }
-
     }
 
     @SuppressWarnings("unused")
     @EventHandler
     public void onItemBreak(PlayerItemBreakEvent event) { // Covering my bases here for anything else that can break a tool, may not be required?
-
         ItemStack damagedItem = event.getBrokenItem();
         if (!ItemUtils.isTool(damagedItem)) { // Not a tool, moving on!
             return;
@@ -100,21 +98,17 @@ public class DurabilityListener implements Listener {
         Damageable damageable = (Damageable) im;
         damageable.setDamage(damagedItem.getType().getMaxDurability() - 1);
         event.getPlayer().getInventory().addItem(newItem);
-
     }
 
     private void modChecks(ItemStack damagedItem, PlayerItemDamageEvent event) {
-
         Map<String, Integer> modLevels = Modifications.getAllModLevels(damagedItem);
 
         if (modLevels.containsKey(ItemUtils.getIdOrType(Materials.MOD_PLATE))) { // PLATE
             modCheckPlate(damagedItem, modLevels.get(ItemUtils.getIdOrType(Materials.MOD_PLATE)), event);
         }
-
     }
 
-    private void modCheckPlate(ItemStack damagedItem, int level, PlayerItemDamageEvent event) {
-
+    private void modCheckPlate(@Nonnull ItemStack damagedItem, int level, PlayerItemDamageEvent event) {
         ItemMeta im = damagedItem.getItemMeta();
         Validate.notNull(im, "Meta is null, mod check failed");
 
@@ -125,7 +119,5 @@ public class DurabilityListener implements Listener {
         if (GeneralUtils.testChance(level, 10)) {
             event.setCancelled(true);
         }
-
     }
-
 }

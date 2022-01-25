@@ -67,7 +67,7 @@ public class ModificationStation extends MenuBlock {
 
     private boolean modTool(BlockMenu blockMenu, Player player, ItemStack item, ItemStack modItem) {
         // No modifier!
-        if (modItem == null || !Modifications.getMODIFICATION_LIST_TOOL().contains(ItemUtils.getIdOrType(modItem))) {
+        if (modItem == null || !Modifications.getModificationListTool().contains(ItemUtils.getIdOrType(modItem))) {
             player.sendMessage(ThemeUtils.WARNING + "Input a valid modifier into the second slot.");
             return false;
         }
@@ -78,7 +78,7 @@ public class ModificationStation extends MenuBlock {
 
         Map<String, Integer> modMap = Modifications.getModificationMapTool(c);
 
-        Mod mod = Modifications.getMODIFICATION_DEFINITIONS_TOOL().get(ItemUtils.getIdOrType(modItem)); // The definition of the mod being created/updated
+        Mod mod = Modifications.getModificationDefinitionsTool().get(ItemUtils.getIdOrType(modItem)); // The definition of the mod being created/updated
         int modSlots = ItemUtils.getTinkerModifierSlots(c); // Number of free modification slots on the tool
         int currentAmount = modMap.get(ItemUtils.getIdOrType(modItem)); // The current value of that material loaded into the tool (not the level)
         int currentLevel = Modifications.getModLevel(mod, item); // The current level of this mod (or 0)
@@ -129,7 +129,7 @@ public class ModificationStation extends MenuBlock {
 
     private boolean modArmour(BlockMenu blockMenu, Player player, ItemStack item, ItemStack modItem) {
         // No modifier!
-        if (modItem == null || !Modifications.getMODIFICATION_LIST_ARMOUR().contains(ItemUtils.getIdOrType(modItem))) {
+        if (modItem == null || !Modifications.getModificationListArmour().contains(ItemUtils.getIdOrType(modItem))) {
             player.sendMessage(ThemeUtils.WARNING + "Input a valid modifier into the second slot.");
             return false;
         }
@@ -140,7 +140,7 @@ public class ModificationStation extends MenuBlock {
 
         Map<String, Integer> modMap = Modifications.getModificationMapArmour(c);
 
-        Mod mod = Modifications.getMODIFICATION_DEFINITIONS_ARMOUR().get(ItemUtils.getIdOrType(modItem)); // The definition of the mod being created/updated
+        Mod mod = Modifications.getModificationDefinitionsArmour().get(ItemUtils.getIdOrType(modItem)); // The definition of the mod being created/updated
         int modSlots = ItemUtils.getTinkerModifierSlots(c); // Number of free modification slots on the tool
         int currentAmount = modMap.get(ItemUtils.getIdOrType(modItem)); // The current value of that material loaded into the tool (not the level)
         int currentLevel = Modifications.getModLevel(mod, item); // The current level of this mod (or 0)
@@ -194,7 +194,7 @@ public class ModificationStation extends MenuBlock {
 
         blockMenuPreset.drawBackground(ChestMenuUtils.getBackground(), BACKGROUND_SLOTS);
 
-        blockMenuPreset.addItem(MOD_BUTTON, GUIItems.menuCraftMod());
+        blockMenuPreset.addItem(MOD_BUTTON, GUIItems.MENU_CRAFT_MOD);
         blockMenuPreset.addMenuClickHandler(MOD_BUTTON, (player, i, itemStack, clickAction) -> false);
 
     }

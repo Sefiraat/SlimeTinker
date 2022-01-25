@@ -11,17 +11,16 @@ import org.bukkit.Color;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Particle;
-import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerRespawnEvent;
 import org.bukkit.inventory.ItemStack;
 
+import javax.annotation.Nonnull;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -71,7 +70,6 @@ public class EntityKilledListener implements Listener {
     @SuppressWarnings("unused")
     @EventHandler
     public void onEntityDeath(EntityDeathEvent event) {
-
         LivingEntity dyingEntity = event.getEntity();
 
         if (dyingEntity.getKiller() == null || isInvalidEvent(event)) {
@@ -88,7 +86,6 @@ public class EntityKilledListener implements Listener {
         // Properties
         checkTool(friend);
         checkArmour(friend);
-
 
         if (friend.isActionTaken()) {
             // Mods
@@ -112,9 +109,7 @@ public class EntityKilledListener implements Listener {
         modCheckLapis(event, heldItem);
     }
 
-
     private void modCheckLapis(EntityDeathEvent event, ItemStack heldItem) {
-
         Map<String, Integer> modLevels = Modifications.getAllModLevels(heldItem);
 
         if (!modLevels.containsKey(Material.LAPIS_LAZULI.toString())) { // The tools must have the lapis mod
@@ -138,7 +133,7 @@ public class EntityKilledListener implements Listener {
         }
     }
 
-    private boolean isInvalidEvent(EntityDeathEvent event) {
+    private boolean isInvalidEvent(@Nonnull EntityDeathEvent event) {
         final LivingEntity entity = event.getEntity();
         return EntityUtils.isTrainingDummy(entity)
             || EntityUtils.shouldIgnoreDamage(entity);

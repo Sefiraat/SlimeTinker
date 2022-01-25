@@ -1,11 +1,9 @@
 package io.github.sefiraat.slimetinker.items.componentmaterials.cmelements;
 
-import lombok.Data;
 import org.bukkit.inventory.ItemStack;
 
 import javax.annotation.Nullable;
 
-@Data
 public class CMIdentity {
 
     private final String id;
@@ -21,4 +19,20 @@ public class CMIdentity {
         this.colorHex = colorHex;
     }
 
+    public String getId() {
+        return id;
+    }
+
+    public ItemStack getRepresentativeStack() {
+        return representativeStack;
+    }
+
+    @Nullable
+    public String getLiquidTexture() {
+        return liquidTexture;
+    }
+
+    public String getColorHex() {
+        return colorHex;
+    }
 }

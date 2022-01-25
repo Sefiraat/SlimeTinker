@@ -1,9 +1,8 @@
 package io.github.sefiraat.slimetinker.modifiers;
 
-import io.github.sefiraat.slimetinker.SlimeTinker;
 import io.github.sefiraat.slimetinker.items.Materials;
 import io.github.sefiraat.slimetinker.utils.ItemUtils;
-import lombok.Getter;
+import io.github.sefiraat.slimetinker.utils.Keys;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -18,26 +17,16 @@ import java.util.Map;
 
 public class Modifications {
 
-    @Getter
-    protected static final List<String> MODIFICATION_LIST_TOOL = new LinkedList<>();
-    @Getter
-    protected static final Map<String, Mod> MODIFICATION_DEFINITIONS_TOOL = new HashMap<>();
-    @Getter
-    protected static final Map<Integer, Integer> MOD_MAP_REDSTONE_TOOL = new HashMap<>();
-    @Getter
-    protected static final Map<Integer, Integer> MOD_MAP_LAPIS_TOOL = new HashMap<>();
-    @Getter
-    protected static final Map<Integer, Integer> MOD_MAP_QUARTZ_TOOL = new HashMap<>();
-    @Getter
-    protected static final Map<Integer, Integer> MOD_MAP_DIAMOND_TOOL = new HashMap<>();
-    @Getter
-    protected static final Map<Integer, Integer> MOD_MAP_EMERALD_TOOL = new HashMap<>();
-    @Getter
-    protected static final Map<Integer, Integer> MOD_MAP_PLATE = new HashMap<>();
-    @Getter
-    protected static final List<String> MODIFICATION_LIST_ARMOUR = new LinkedList<>();
-    @Getter
-    protected static final Map<String, Mod> MODIFICATION_DEFINITIONS_ARMOUR = new HashMap<>();
+    private static final List<String> MODIFICATION_LIST_TOOL = new LinkedList<>();
+    private static final Map<String, Mod> MODIFICATION_DEFINITIONS_TOOL = new HashMap<>();
+    private static final Map<Integer, Integer> MOD_MAP_REDSTONE_TOOL = new HashMap<>();
+    private static final Map<Integer, Integer> MOD_MAP_LAPIS_TOOL = new HashMap<>();
+    private static final Map<Integer, Integer> MOD_MAP_QUARTZ_TOOL = new HashMap<>();
+    private static final Map<Integer, Integer> MOD_MAP_DIAMOND_TOOL = new HashMap<>();
+    private static final Map<Integer, Integer> MOD_MAP_EMERALD_TOOL = new HashMap<>();
+    private static final Map<Integer, Integer> MOD_MAP_PLATE = new HashMap<>();
+    private static final List<String> MODIFICATION_LIST_ARMOUR = new LinkedList<>();
+    private static final Map<String, Mod> MODIFICATION_DEFINITIONS_ARMOUR = new HashMap<>();
 
     static {
 
@@ -93,18 +82,18 @@ public class Modifications {
         MODIFICATION_LIST_TOOL.add(ItemUtils.getIdOrType(new ItemStack(Material.EMERALD)));
         MODIFICATION_LIST_TOOL.add(ItemUtils.getIdOrType(Materials.MOD_PLATE));
 
-        MODIFICATION_DEFINITIONS_TOOL.put(ItemUtils.getIdOrType(new ItemStack(Material.REDSTONE)), new Mod(MOD_MAP_REDSTONE_TOOL, SlimeTinker.inst().getKeys().getStModLevelRedstone()));
-        MODIFICATION_DEFINITIONS_TOOL.put(ItemUtils.getIdOrType(new ItemStack(Material.LAPIS_LAZULI)), new Mod(MOD_MAP_LAPIS_TOOL, SlimeTinker.inst().getKeys().getStModLevelLapis()));
-        MODIFICATION_DEFINITIONS_TOOL.put(ItemUtils.getIdOrType(new ItemStack(Material.QUARTZ)), new Mod(MOD_MAP_QUARTZ_TOOL, SlimeTinker.inst().getKeys().getStModLevelQuartz()));
-        MODIFICATION_DEFINITIONS_TOOL.put(ItemUtils.getIdOrType(new ItemStack(Material.DIAMOND)), new Mod(MOD_MAP_DIAMOND_TOOL, SlimeTinker.inst().getKeys().getStModLevelDiamond()));
-        MODIFICATION_DEFINITIONS_TOOL.put(ItemUtils.getIdOrType(new ItemStack(Material.EMERALD)), new Mod(MOD_MAP_EMERALD_TOOL, SlimeTinker.inst().getKeys().getStModLevelEmerald()));
-        MODIFICATION_DEFINITIONS_TOOL.put(ItemUtils.getIdOrType(Materials.MOD_PLATE), new Mod(MOD_MAP_PLATE, SlimeTinker.inst().getKeys().getStModLevelReinforced()));
+        MODIFICATION_DEFINITIONS_TOOL.put(ItemUtils.getIdOrType(new ItemStack(Material.REDSTONE)), new Mod(MOD_MAP_REDSTONE_TOOL, Keys.ST_MOD_LEVEL_REDSTONE));
+        MODIFICATION_DEFINITIONS_TOOL.put(ItemUtils.getIdOrType(new ItemStack(Material.LAPIS_LAZULI)), new Mod(MOD_MAP_LAPIS_TOOL, Keys.ST_MOD_LEVEL_LAPIS));
+        MODIFICATION_DEFINITIONS_TOOL.put(ItemUtils.getIdOrType(new ItemStack(Material.QUARTZ)), new Mod(MOD_MAP_QUARTZ_TOOL, Keys.ST_MOD_LEVEL_QUARTZ));
+        MODIFICATION_DEFINITIONS_TOOL.put(ItemUtils.getIdOrType(new ItemStack(Material.DIAMOND)), new Mod(MOD_MAP_DIAMOND_TOOL, Keys.ST_MOD_LEVEL_DIAMOND));
+        MODIFICATION_DEFINITIONS_TOOL.put(ItemUtils.getIdOrType(new ItemStack(Material.EMERALD)), new Mod(MOD_MAP_EMERALD_TOOL, Keys.ST_MOD_LEVEL_EMERALD));
+        MODIFICATION_DEFINITIONS_TOOL.put(ItemUtils.getIdOrType(Materials.MOD_PLATE), new Mod(MOD_MAP_PLATE, Keys.ST_MOD_LEVEL_OBSIDIAN));
 
         // ARMOUR
 
         MODIFICATION_LIST_ARMOUR.add(ItemUtils.getIdOrType(Materials.MOD_PLATE));
 
-        MODIFICATION_DEFINITIONS_ARMOUR.put(ItemUtils.getIdOrType(Materials.MOD_PLATE), new Mod(MOD_MAP_PLATE, SlimeTinker.inst().getKeys().getStModLevelReinforced()));
+        MODIFICATION_DEFINITIONS_ARMOUR.put(ItemUtils.getIdOrType(Materials.MOD_PLATE), new Mod(MOD_MAP_PLATE, Keys.ST_MOD_LEVEL_OBSIDIAN));
 
     }
 
@@ -117,7 +106,7 @@ public class Modifications {
         for (int i = 0; i < MODIFICATION_LIST_TOOL.size(); i++) {
             mapArray[i] = map.get(MODIFICATION_LIST_TOOL.get(i));
         }
-        c.set(SlimeTinker.inst().getKeys().getStMods(), PersistentDataType.INTEGER_ARRAY, mapArray);
+        c.set(Keys.ST_MODS, PersistentDataType.INTEGER_ARRAY, mapArray);
     }
 
     public static void setModificationMapArmour(PersistentDataContainer c, Map<String, Integer> map) {
@@ -125,7 +114,7 @@ public class Modifications {
         for (int i = 0; i < MODIFICATION_LIST_ARMOUR.size(); i++) {
             mapArray[i] = map.get(MODIFICATION_LIST_ARMOUR.get(i));
         }
-        c.set(SlimeTinker.inst().getKeys().getStMods(), PersistentDataType.INTEGER_ARRAY, mapArray);
+        c.set(Keys.ST_MODS, PersistentDataType.INTEGER_ARRAY, mapArray);
     }
 
     public static Map<String, Integer> getModificationMapTool(ItemStack itemStack) {
@@ -133,8 +122,8 @@ public class Modifications {
         ItemMeta im = itemStack.getItemMeta();
         assert im != null;
         PersistentDataContainer c = im.getPersistentDataContainer();
-        if (c.has(SlimeTinker.inst().getKeys().getStMods(), PersistentDataType.INTEGER_ARRAY)) {
-            int[] mapArray = c.get(SlimeTinker.inst().getKeys().getStMods(), PersistentDataType.INTEGER_ARRAY);
+        if (c.has(Keys.ST_MODS, PersistentDataType.INTEGER_ARRAY)) {
+            int[] mapArray = c.get(Keys.ST_MODS, PersistentDataType.INTEGER_ARRAY);
             assert mapArray != null;
             for (String m : MODIFICATION_LIST_TOOL) {
                 if ((MODIFICATION_LIST_TOOL.indexOf(m) + 1) > mapArray.length) {
@@ -158,8 +147,8 @@ public class Modifications {
         ItemMeta im = itemStack.getItemMeta();
         assert im != null;
         PersistentDataContainer c = im.getPersistentDataContainer();
-        if (c.has(SlimeTinker.inst().getKeys().getStMods(), PersistentDataType.INTEGER_ARRAY)) {
-            int[] mapArray = c.get(SlimeTinker.inst().getKeys().getStMods(), PersistentDataType.INTEGER_ARRAY);
+        if (c.has(Keys.ST_MODS, PersistentDataType.INTEGER_ARRAY)) {
+            int[] mapArray = c.get(Keys.ST_MODS, PersistentDataType.INTEGER_ARRAY);
             assert mapArray != null;
             for (String m : MODIFICATION_LIST_ARMOUR) {
                 if ((MODIFICATION_LIST_ARMOUR.indexOf(m) + 1) > mapArray.length) {
@@ -180,8 +169,8 @@ public class Modifications {
 
     public static Map<String, Integer> getModificationMapTool(PersistentDataContainer c) {
         Map<String, Integer> map = new LinkedHashMap<>();
-        if (c.has(SlimeTinker.inst().getKeys().getStMods(), PersistentDataType.INTEGER_ARRAY)) {
-            int[] mapArray = c.get(SlimeTinker.inst().getKeys().getStMods(), PersistentDataType.INTEGER_ARRAY);
+        if (c.has(Keys.ST_MODS, PersistentDataType.INTEGER_ARRAY)) {
+            int[] mapArray = c.get(Keys.ST_MODS, PersistentDataType.INTEGER_ARRAY);
             assert mapArray != null;
             for (String m : MODIFICATION_LIST_TOOL) {
                 if ((MODIFICATION_LIST_TOOL.indexOf(m) + 1) > mapArray.length) {
@@ -201,8 +190,8 @@ public class Modifications {
 
     public static Map<String, Integer> getModificationMapArmour(PersistentDataContainer c) {
         Map<String, Integer> map = new LinkedHashMap<>();
-        if (c.has(SlimeTinker.inst().getKeys().getStMods(), PersistentDataType.INTEGER_ARRAY)) {
-            int[] mapArray = c.get(SlimeTinker.inst().getKeys().getStMods(), PersistentDataType.INTEGER_ARRAY);
+        if (c.has(Keys.ST_MODS, PersistentDataType.INTEGER_ARRAY)) {
+            int[] mapArray = c.get(Keys.ST_MODS, PersistentDataType.INTEGER_ARRAY);
             assert mapArray != null;
             for (String m : MODIFICATION_LIST_ARMOUR) {
                 if ((MODIFICATION_LIST_ARMOUR.indexOf(m) + 1) > mapArray.length) {
@@ -254,5 +243,43 @@ public class Modifications {
         return map;
     }
 
+    public static List<String> getModificationListTool() {
+        return MODIFICATION_LIST_TOOL;
+    }
 
+    public static Map<String, Mod> getModificationDefinitionsTool() {
+        return MODIFICATION_DEFINITIONS_TOOL;
+    }
+
+    public static Map<Integer, Integer> getModMapRedstoneTool() {
+        return MOD_MAP_REDSTONE_TOOL;
+    }
+
+    public static Map<Integer, Integer> getModMapLapisTool() {
+        return MOD_MAP_LAPIS_TOOL;
+    }
+
+    public static Map<Integer, Integer> getModMapQuartzTool() {
+        return MOD_MAP_QUARTZ_TOOL;
+    }
+
+    public static Map<Integer, Integer> getModMapDiamondTool() {
+        return MOD_MAP_DIAMOND_TOOL;
+    }
+
+    public static Map<Integer, Integer> getModMapEmeraldTool() {
+        return MOD_MAP_EMERALD_TOOL;
+    }
+
+    public static Map<Integer, Integer> getModMapPlate() {
+        return MOD_MAP_PLATE;
+    }
+
+    public static List<String> getModificationListArmour() {
+        return MODIFICATION_LIST_ARMOUR;
+    }
+
+    public static Map<String, Mod> getModificationDefinitionsArmour() {
+        return MODIFICATION_DEFINITIONS_ARMOUR;
+    }
 }

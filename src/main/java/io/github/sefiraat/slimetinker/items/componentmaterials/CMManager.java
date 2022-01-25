@@ -18,7 +18,6 @@ import io.github.sefiraat.slimetinker.managers.SupportedPluginsManager;
 import io.github.sefiraat.slimetinker.managers.TraitManager;
 import io.github.sefiraat.slimetinker.utils.IDStrings;
 import io.github.sefiraat.slimetinker.utils.ItemUtils;
-import lombok.Getter;
 import net.md_5.bungee.api.ChatColor;
 import org.apache.commons.lang.Validate;
 import org.bukkit.Material;
@@ -34,6 +33,7 @@ public class CMManager {
 
     // Base
     public static final int AMOUNT_NUGGET = 1;
+
     // Calculated
     public static final int AMOUNT_INGOT = AMOUNT_NUGGET * 9;
     public static final int AMOUNT_ORE = AMOUNT_INGOT * 2;
@@ -58,6 +58,7 @@ public class CMManager {
     public static final int AMOUNT_ARM_LEG = AMOUNT_INGOT * 7;
     public static final int AMOUNT_ARM_BOOT = AMOUNT_INGOT * 4;
     public static final int AMOUNT_ARM_LINKS = AMOUNT_INGOT * 2;
+
     // Dies (Items that makes casts and then burn away)
     protected static final Map<ComponentMaterial, ItemStack> MAP_DIE_NUGGET = new HashMap<>();
     protected static final Map<ComponentMaterial, ItemStack> MAP_DIE_INGOT = new HashMap<>();
@@ -75,62 +76,48 @@ public class CMManager {
     protected static final Map<ComponentMaterial, ItemStack> MAP_DIE_ARMOUR_PLATES_BOOTS = new HashMap<>();
     protected static final Map<ComponentMaterial, ItemStack> MAP_DIE_ARMOUR_MAIL = new HashMap<>();
     protected static final Map<ComponentMaterial, ItemStack> MAP_DIE_REPAIRKIT = new HashMap<>();
+
     // Casts (Items that cast metals and remain)
-    @Getter
     protected static final Map<ComponentMaterial, ItemStack> MAP_CAST_NUGGET = new HashMap<>();
-    @Getter
     protected static final Map<ComponentMaterial, ItemStack> MAP_CAST_INGOT = new HashMap<>();
-    @Getter
     protected static final Map<ComponentMaterial, ItemStack> MAP_CAST_BLOCK = new HashMap<>();
-    @Getter
     protected static final Map<ComponentMaterial, ItemStack> MAP_CAST_GEM = new HashMap<>();
-    @Getter
     protected static final Map<ComponentMaterial, ItemStack> MAP_CAST_SHOVELHEAD = new HashMap<>();
-    @Getter
     protected static final Map<ComponentMaterial, ItemStack> MAP_CAST_PICKAXEHEAD = new HashMap<>();
-    @Getter
     protected static final Map<ComponentMaterial, ItemStack> MAP_CAST_AXEHEAD = new HashMap<>();
-    @Getter
     protected static final Map<ComponentMaterial, ItemStack> MAP_CAST_HOEHEAD = new HashMap<>();
-    @Getter
     protected static final Map<ComponentMaterial, ItemStack> MAP_CAST_SWORDBLADE = new HashMap<>();
-    @Getter
     protected static final Map<ComponentMaterial, ItemStack> MAP_CAST_TOOLROD = new HashMap<>();
-    @Getter
     protected static final Map<ComponentMaterial, ItemStack> MAP_CAST_ARMOUR_PLATES_HELM = new HashMap<>();
-    @Getter
     protected static final Map<ComponentMaterial, ItemStack> MAP_CAST_ARMOUR_PLATES_CHEST = new HashMap<>();
-    @Getter
     protected static final Map<ComponentMaterial, ItemStack> MAP_CAST_ARMOUR_PLATES_LEGGINGS = new HashMap<>();
-    @Getter
     protected static final Map<ComponentMaterial, ItemStack> MAP_CAST_ARMOUR_PLATES_BOOTS = new HashMap<>();
-    @Getter
     protected static final Map<ComponentMaterial, ItemStack> MAP_CAST_ARMOUR_MAIL = new HashMap<>();
-    @Getter
     protected static final Map<ComponentMaterial, ItemStack> MAP_CAST_REPAIRKIT = new HashMap<>();
-    @Getter
+
     private static final Map<String, ComponentMaterial> MAP = new HashMap<>();
     private static final String VALIDATE_TRAIT_MESSAGE = "The material {0} does not have a compatible trait type of {1}";
+
     public final Map<String, MoltenResult> meltingRecipes = new HashMap<>();
     public final Map<String, CastResult> castingRecipes = new HashMap<>();
 
     public CMManager() {
 
         // Adds all the Vanilla / Core slimefun ComponentMaterials into the map.
-        MAP.putAll(CMCore.getMap());
+        MAP.putAll(CMCore.getCmMap());
 
         // Adds expansion ComponentMaterials if they are on the server
         if (SupportedPluginsManager.INFINITY_EXPANSION) {
-            MAP.putAll(CMInfinity.getMap());
+            MAP.putAll(CMInfinity.getCmMap());
         }
         if (SupportedPluginsManager.SLIMEFUN_WARFARE) {
-            MAP.putAll(CMSlimefunWarfare.getMap());
+            MAP.putAll(CMSlimefunWarfare.getCmMap());
         }
         if (SupportedPluginsManager.DYNATECH) {
-            MAP.putAll(CMDynaTech.getMap());
+            MAP.putAll(CMDynaTech.getCmMap());
         }
         if (SupportedPluginsManager.LITEXPANSION) {
-            MAP.putAll(CMLiteXpansion.getMap());
+            MAP.putAll(CMLiteXpansion.getCmMap());
         }
 
         TraitManager traitManager = SlimeTinker.inst().getTraitManager();
@@ -142,14 +129,14 @@ public class CMManager {
             String id = entry.getKey();
 
             // Tools, armour and kits (referenced through dummy)
-            if (cm.isValidToolRod() & traitManager.isEnabled(id, IDStrings.ROD)) {
+            if (cm.isValidToolRod() && traitManager.isEnabled(id, IDStrings.ROD)) {
                 MAP_CAST_TOOLROD.put(cm, Parts.TOOL_ROD.getStack(id, IDStrings.ROD, null, cm.getColor()));
             }
-            if (cm.isValidLinks() & traitManager.isEnabled(id, IDStrings.LINKS)) {
+            if (cm.isValidLinks() && traitManager.isEnabled(id, IDStrings.LINKS)) {
                 MAP_CAST_ARMOUR_MAIL.put(cm, Parts.MAIL_LINKS.getStack(id, IDStrings.LINKS, null, cm.getColor()));
             }
 
-            if (cm.isValidToolHead() & traitManager.isEnabled(id, IDStrings.HEAD)) {
+            if (cm.isValidToolHead() && traitManager.isEnabled(id, IDStrings.HEAD)) {
                 MAP_CAST_SWORDBLADE.put(cm, Parts.SWORD_BLADE.getStack(id, IDStrings.HEAD, IDStrings.SWORD, cm.getColor()));
                 MAP_CAST_HOEHEAD.put(cm, Parts.HOE_HEAD.getStack(id, IDStrings.HEAD, IDStrings.HOE, cm.getColor()));
                 MAP_CAST_AXEHEAD.put(cm, Parts.AXE_HEAD.getStack(id, IDStrings.HEAD, IDStrings.AXE, cm.getColor()));
@@ -157,7 +144,7 @@ public class CMManager {
                 MAP_CAST_SHOVELHEAD.put(cm, Parts.SHOVEL_HEAD.getStack(id, IDStrings.HEAD, IDStrings.SHOVEL, cm.getColor()));
             }
 
-            if (cm.isValidPlates() & traitManager.isEnabled(id, IDStrings.PLATE)) {
+            if (cm.isValidPlates() && traitManager.isEnabled(id, IDStrings.PLATE)) {
                 MAP_CAST_ARMOUR_PLATES_HELM.put(cm, Parts.HELM_PLATE.getStack(id, IDStrings.PLATE, IDStrings.HELMET, cm.getColor()));
                 MAP_CAST_ARMOUR_PLATES_CHEST.put(cm, Parts.CHEST_PLATE.getStack(id, IDStrings.PLATE, IDStrings.CHESTPLATE, cm.getColor()));
                 MAP_CAST_ARMOUR_PLATES_LEGGINGS.put(cm, Parts.LEG_PLATE.getStack(id, IDStrings.PLATE, IDStrings.LEGGINGS, cm.getColor()));
@@ -346,4 +333,7 @@ public class CMManager {
         castingRecipes.put(Casts.CAST_MAIL_LINK.getItemId(), new CastResult(Casts.CAST_MAIL_LINK.getItemId(), AMOUNT_ARM_LINKS, MAP_CAST_ARMOUR_MAIL, false));
     }
 
+    public static Map<String, ComponentMaterial> getMap() {
+        return MAP;
+    }
 }

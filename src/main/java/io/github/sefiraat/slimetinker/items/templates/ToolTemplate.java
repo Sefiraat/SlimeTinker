@@ -1,10 +1,10 @@
 package io.github.sefiraat.slimetinker.items.templates;
 
-import io.github.sefiraat.slimetinker.SlimeTinker;
 import io.github.sefiraat.slimetinker.items.componentmaterials.CMManager;
 import io.github.sefiraat.slimetinker.utils.Experience;
 import io.github.sefiraat.slimetinker.utils.IDStrings;
 import io.github.sefiraat.slimetinker.utils.ItemUtils;
+import io.github.sefiraat.slimetinker.utils.Keys;
 import io.github.sefiraat.slimetinker.utils.ThemeUtils;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
@@ -58,12 +58,12 @@ public class ToolTemplate extends SlimefunItem implements NotPlaceable {
         ItemMeta im = itemStack.getItemMeta();
         Validate.notNull(im, "This meta, it be null!");
         Experience.setupExpNew(im);
-        PersistentDataAPI.setString(im, SlimeTinker.inst().getKeys().getToolInfoIsTool(), "Y");
-        PersistentDataAPI.setString(im, SlimeTinker.inst().getKeys().getToolInfoHeadType(), toolDefinition.getClassType());
-        PersistentDataAPI.setString(im, SlimeTinker.inst().getKeys().getToolInfoToolType(), toolDefinition.getPartType());
-        PersistentDataAPI.setString(im, SlimeTinker.inst().getKeys().getToolInfoHeadMaterial(), toolDefinition.getHeadMaterial());
-        PersistentDataAPI.setString(im, SlimeTinker.inst().getKeys().getToolInfoBinderMaterial(), toolDefinition.getBinderMaterial());
-        PersistentDataAPI.setString(im, SlimeTinker.inst().getKeys().getToolInfoRodMaterial(), toolDefinition.getRodMaterial());
+        PersistentDataAPI.setString(im, Keys.TOOL_INFO_IS_TOOL, "Y");
+        PersistentDataAPI.setString(im, Keys.TOOL_INFO_HEAD_TYPE, toolDefinition.getClassType());
+        PersistentDataAPI.setString(im, Keys.TOOL_INFO_TOOL_TYPE, toolDefinition.getPartType());
+        PersistentDataAPI.setString(im, Keys.TOOL_INFO_HEAD_MATERIAL, toolDefinition.getHeadMaterial());
+        PersistentDataAPI.setString(im, Keys.TOOL_INFO_BINDER_MATERIAL, toolDefinition.getBinderMaterial());
+        PersistentDataAPI.setString(im, Keys.TOOL_INFO_ROD_MATERIAL, toolDefinition.getRodMaterial());
         im.setDisplayName(getName(toolDefinition));
         itemStack.setItemMeta(im);
         ItemUtils.rebuildTinkerLore(itemStack);

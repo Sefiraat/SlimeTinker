@@ -8,7 +8,6 @@ import io.github.sefiraat.slimetinker.utils.Experience;
 import io.github.sefiraat.slimetinker.utils.IDStrings;
 import io.github.sefiraat.slimetinker.utils.ItemUtils;
 import io.github.sefiraat.slimetinker.utils.ThemeUtils;
-import lombok.experimental.UtilityClass;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
@@ -16,8 +15,11 @@ import org.bukkit.potion.PotionEffectType;
 
 import java.util.Map;
 
-@UtilityClass
-public class EventChannels {
+public final class EventChannels {
+
+    private EventChannels() {
+        throw new UnsupportedOperationException("Utility Class");
+    }
 
     public static void settlePotionEffects(EventFriend friend) {
         Player p = friend.getPlayer();
@@ -77,9 +79,9 @@ public class EventChannels {
         String matPropertyBinding = ItemUtils.getToolBindingMaterial(i);
         String matPropertyRod = ItemUtils.getToolRodMaterial(i);
 
-        ComponentMaterial headMaterial = CMManager.getMAP().get(matPropertyHead);
-        ComponentMaterial binderMaterial = CMManager.getMAP().get(matPropertyBinding);
-        ComponentMaterial rodMaterial = CMManager.getMAP().get(matPropertyRod);
+        ComponentMaterial headMaterial = CMManager.getMap().get(matPropertyHead);
+        ComponentMaterial binderMaterial = CMManager.getMap().get(matPropertyBinding);
+        ComponentMaterial rodMaterial = CMManager.getMap().get(matPropertyRod);
 
         TraitManager manager = SlimeTinker.inst().getTraitManager();
 
@@ -95,7 +97,7 @@ public class EventChannels {
 
     }
 
-    private boolean eventShouldCancelIfBroken(ItemStack i, TraitEventType type) {
+    private static boolean eventShouldCancelIfBroken(ItemStack i, TraitEventType type) {
         return
             (ItemUtils.isTinkersBroken(i) && ItemUtils.doesNotWorkWhenBroken(i))
                 && (type == TraitEventType.BLOCK_BREAK || type == TraitEventType.ENTITY_DAMAGED);
@@ -178,9 +180,9 @@ public class EventChannels {
         String matPropertyGambeson = ItemUtils.getArmourGambesonMaterial(i);
         String matPropertyLinks = ItemUtils.getArmourLinksMaterial(i);
 
-        ComponentMaterial plateMaterial = CMManager.getMAP().get(matPropertyPlate);
-        ComponentMaterial gambesonMaterial = CMManager.getMAP().get(matPropertyGambeson);
-        ComponentMaterial linksMaterial = CMManager.getMAP().get(matPropertyLinks);
+        ComponentMaterial plateMaterial = CMManager.getMap().get(matPropertyPlate);
+        ComponentMaterial gambesonMaterial = CMManager.getMap().get(matPropertyGambeson);
+        ComponentMaterial linksMaterial = CMManager.getMap().get(matPropertyLinks);
 
         TraitManager manager = SlimeTinker.inst().getTraitManager();
 

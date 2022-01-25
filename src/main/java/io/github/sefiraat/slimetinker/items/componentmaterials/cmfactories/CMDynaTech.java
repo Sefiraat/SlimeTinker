@@ -17,8 +17,6 @@ import io.github.sefiraat.slimetinker.managers.SupportedPluginsManager;
 import io.github.sefiraat.slimetinker.utils.IDStrings;
 import io.github.sefiraat.slimetinker.utils.SkullTextures;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
-import lombok.Getter;
-import lombok.experimental.UtilityClass;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -26,20 +24,21 @@ import java.util.Map;
 import java.util.Objects;
 
 @SuppressWarnings("SpellCheckingInspection")
-@UtilityClass
 public final class CMDynaTech {
 
+    private CMDynaTech() {
+        throw new UnsupportedOperationException("Utility Class");
+    }
 
-    @Getter
-    private static final Map<String, ComponentMaterial> map = new HashMap<>();
+    private static final Map<String, ComponentMaterial> CM_MAP = new HashMap<>();
 
     static {
-        map.put(IDStrings.STAINLESS_STEEL,
+        CM_MAP.put(IDStrings.STAINLESS_STEEL,
             new ComponentMaterial(
                 new CMIdentity(IDStrings.STAINLESS_STEEL, Objects.requireNonNull(SlimefunItem.getById("STAINLESS_STEEL")).getItem(), SkullTextures.ALLOY_SILVER, "#d1d1d1"),
                 Arrays.asList(
-                    CMCore.getMap().get(IDStrings.IRON).getLiquidItemStack(2),
-                    CMCore.getMap().get(IDStrings.ZINC).getLiquidItemStack(1)
+                    CMCore.getCmMap().get(IDStrings.IRON).getLiquidItemStack(2),
+                    CMCore.getCmMap().get(IDStrings.ZINC).getLiquidItemStack(1)
                 ),
                 new CMToolMakeup(true, false, true, true, false, true),
                 new CMForms(
@@ -84,7 +83,7 @@ public final class CMDynaTech {
                     ))
             ));
 
-        map.put(IDStrings.VEX_GEM,
+        CM_MAP.put(IDStrings.VEX_GEM,
             new ComponentMaterial(
                 new CMIdentity(IDStrings.VEX_GEM, Objects.requireNonNull(SlimefunItem.getById("VEX_GEM")).getItem(), SkullTextures.ALLOY_BLUE, "#38c0c2"),
                 null,
@@ -122,7 +121,7 @@ public final class CMDynaTech {
                     null)
             ));
 
-        map.put(IDStrings.STARDUST,
+        CM_MAP.put(IDStrings.STARDUST,
             new ComponentMaterial(
                 new CMIdentity(IDStrings.STARDUST, Objects.requireNonNull(SlimefunItem.getById("STAR_DUST")).getItem(), SkullTextures.ALLOY_SILVER, "#fdff96"),
                 null,
@@ -172,7 +171,7 @@ public final class CMDynaTech {
                     ))
             ));
 
-        map.put(IDStrings.GHOSTLY_ESSENCE,
+        CM_MAP.put(IDStrings.GHOSTLY_ESSENCE,
             new ComponentMaterial(
                 new CMIdentity(IDStrings.GHOSTLY_ESSENCE, Objects.requireNonNull(SlimefunItem.getById("GHOSTLY_ESSENCE")).getItem(), SkullTextures.ALLOY_BROWN, "#d4ffef"),
                 null,
@@ -222,7 +221,7 @@ public final class CMDynaTech {
                     ))
             ));
 
-        map.put(IDStrings.TESSERACT,
+        CM_MAP.put(IDStrings.TESSERACT,
             new ComponentMaterial(
                 new CMIdentity(IDStrings.TESSERACT, Objects.requireNonNull(SlimefunItem.getById("TESSERACTING_OBJ")).getItem(), SkullTextures.ALLOY_TAN, "#c7ba9f"),
                 null,
@@ -278,31 +277,33 @@ public final class CMDynaTech {
 
     public static void setupToolConsumers() {
 
-        map.get(IDStrings.STARDUST).addEvent(TraitEventType.ENTITY_DAMAGED, TraitPartType.HEAD, EntityDamageEvents::headStarDust);                    // Bright Fury
-        map.get(IDStrings.STAINLESS_STEEL).addEvent(TraitEventType.ENTITY_DAMAGED, TraitPartType.ROD, EntityDamageEvents::rodStainlessSteel);         // Cutlery
-        map.get(IDStrings.TESSERACT).addEvent(TraitEventType.RIGHT_CLICK, TraitPartType.HEAD, RightClickEvents::headTessMat);                         // HyperCube [A]
-        map.get(IDStrings.GHOSTLY_ESSENCE).addEvent(TraitEventType.RIGHT_CLICK, TraitPartType.ROD, RightClickEvents::rodGhostly);                     // HyperCube [B]
-        map.get(IDStrings.GHOSTLY_ESSENCE).addEvent(TraitEventType.PLAYER_DAMAGED, TraitPartType.BINDER, PlayerDamagedEvents::bindGhostly);           // Incorporeal
-        map.get(IDStrings.VEX_GEM).addEvent(TraitEventType.RIGHT_CLICK, TraitPartType.BINDER, RightClickEvents::bindVex);                             // NoClip
-        map.get(IDStrings.STAINLESS_STEEL).addEvent(TraitEventType.ENTITY_DAMAGED, TraitPartType.HEAD, EntityDamageEvents::headStainlessSteel);       // Super Dooper Stainless
-        map.get(IDStrings.STARDUST).addEvent(TraitEventType.TICK, TraitPartType.ROD, TickEvents::rodStarDust);                                        // Yvaine
+        CM_MAP.get(IDStrings.STARDUST).addEvent(TraitEventType.ENTITY_DAMAGED, TraitPartType.HEAD, EntityDamageEvents::headStarDust);                    // Bright Fury
+        CM_MAP.get(IDStrings.STAINLESS_STEEL).addEvent(TraitEventType.ENTITY_DAMAGED, TraitPartType.ROD, EntityDamageEvents::rodStainlessSteel);         // Cutlery
+        CM_MAP.get(IDStrings.TESSERACT).addEvent(TraitEventType.RIGHT_CLICK, TraitPartType.HEAD, RightClickEvents::headTessMat);                         // HyperCube [A]
+        CM_MAP.get(IDStrings.GHOSTLY_ESSENCE).addEvent(TraitEventType.RIGHT_CLICK, TraitPartType.ROD, RightClickEvents::rodGhostly);                     // HyperCube [B]
+        CM_MAP.get(IDStrings.GHOSTLY_ESSENCE).addEvent(TraitEventType.PLAYER_DAMAGED, TraitPartType.BINDER, PlayerDamagedEvents::bindGhostly);           // Incorporeal
+        CM_MAP.get(IDStrings.VEX_GEM).addEvent(TraitEventType.RIGHT_CLICK, TraitPartType.BINDER, RightClickEvents::bindVex);                             // NoClip
+        CM_MAP.get(IDStrings.STAINLESS_STEEL).addEvent(TraitEventType.ENTITY_DAMAGED, TraitPartType.HEAD, EntityDamageEvents::headStainlessSteel);       // Super Dooper Stainless
+        CM_MAP.get(IDStrings.STARDUST).addEvent(TraitEventType.TICK, TraitPartType.ROD, TickEvents::rodStarDust);                                        // Yvaine
 
     }
 
     public static void setupArmourConsumers() {
 
-        map.get(IDStrings.VEX_GEM).addEvent(TraitEventType.TICK, TraitPartType.GAMBESON, TickEvents::gambesonVex);                                     // Annoying
-        map.get(IDStrings.STARDUST).addEvent(TraitEventType.TICK, TraitPartType.LINKS, TickEvents::brightBurn);                                        // Brightburn (CO)
-        map.get(IDStrings.GHOSTLY_ESSENCE).addEvent(TraitEventType.TICK, TraitPartType.GAMBESON, TickEvents::gambesonGhostly);                         // Ghost in the Shell
-        map.get(IDStrings.GHOSTLY_ESSENCE).addEvent(TraitEventType.TICK, TraitPartType.LINKS, TickEvents::linksGhostly);                               // Ghostly
-        map.get(IDStrings.TESSERACT).addEvent(TraitEventType.TICK, TraitPartType.LINKS, TickEvents::hyperbolic);                                       // Hyperbolic Tesseration - Links - Store
-        map.get(IDStrings.TESSERACT).addEvent(TraitEventType.PLAYER_DAMAGED, TraitPartType.LINKS, PlayerDamagedEvents::hyperbolic);                    // Hyperbolic Tesseration - Links - Absorb
-        map.get(IDStrings.TESSERACT).addEvent(TraitEventType.TICK, TraitPartType.PLATE, TickEvents::hyperbolic);                                       // Hyperbolic Tesseration - Plate - Store
-        map.get(IDStrings.TESSERACT).addEvent(TraitEventType.PLAYER_DAMAGED, TraitPartType.PLATE, PlayerDamagedEvents::hyperbolic);                    // Hyperbolic Tesseration - Plate - Absorb
-        map.get(IDStrings.STARDUST).addEvent(TraitEventType.TICK, TraitPartType.PLATE, TickEvents::plateStardust);                                     // Starshine
-        map.get(IDStrings.STAINLESS_STEEL).addEvent(TraitEventType.PLAYER_DAMAGED, TraitPartType.PLATE, PlayerDamagedEvents::plateStainlessSteel);     // The Standard
-        map.get(IDStrings.STAINLESS_STEEL).addEvent(TraitEventType.TICK, TraitPartType.LINKS, TickEvents::linksStainlessSteel);                        // Water Safe
-
+        CM_MAP.get(IDStrings.VEX_GEM).addEvent(TraitEventType.TICK, TraitPartType.GAMBESON, TickEvents::gambesonVex);                                     // Annoying
+        CM_MAP.get(IDStrings.STARDUST).addEvent(TraitEventType.TICK, TraitPartType.LINKS, TickEvents::brightBurn);                                        // Brightburn (CO)
+        CM_MAP.get(IDStrings.GHOSTLY_ESSENCE).addEvent(TraitEventType.TICK, TraitPartType.GAMBESON, TickEvents::gambesonGhostly);                         // Ghost in the Shell
+        CM_MAP.get(IDStrings.GHOSTLY_ESSENCE).addEvent(TraitEventType.TICK, TraitPartType.LINKS, TickEvents::linksGhostly);                               // Ghostly
+        CM_MAP.get(IDStrings.TESSERACT).addEvent(TraitEventType.TICK, TraitPartType.LINKS, TickEvents::hyperbolic);                                       // Hyperbolic Tesseration - Links - Store
+        CM_MAP.get(IDStrings.TESSERACT).addEvent(TraitEventType.PLAYER_DAMAGED, TraitPartType.LINKS, PlayerDamagedEvents::hyperbolic);                    // Hyperbolic Tesseration - Links - Absorb
+        CM_MAP.get(IDStrings.TESSERACT).addEvent(TraitEventType.TICK, TraitPartType.PLATE, TickEvents::hyperbolic);                                       // Hyperbolic Tesseration - Plate - Store
+        CM_MAP.get(IDStrings.TESSERACT).addEvent(TraitEventType.PLAYER_DAMAGED, TraitPartType.PLATE, PlayerDamagedEvents::hyperbolic);                    // Hyperbolic Tesseration - Plate - Absorb
+        CM_MAP.get(IDStrings.STARDUST).addEvent(TraitEventType.TICK, TraitPartType.PLATE, TickEvents::plateStardust);                                     // Starshine
+        CM_MAP.get(IDStrings.STAINLESS_STEEL).addEvent(TraitEventType.PLAYER_DAMAGED, TraitPartType.PLATE, PlayerDamagedEvents::plateStainlessSteel);     // The Standard
+        CM_MAP.get(IDStrings.STAINLESS_STEEL).addEvent(TraitEventType.TICK, TraitPartType.LINKS, TickEvents::linksStainlessSteel);                        // Water Safe
     }
 
+    public static Map<String, ComponentMaterial> getCmMap() {
+        return CM_MAP;
+    }
 }

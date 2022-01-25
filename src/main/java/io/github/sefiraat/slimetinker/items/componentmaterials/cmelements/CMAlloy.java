@@ -8,7 +8,6 @@ import io.github.sefiraat.slimetinker.utils.ThemeUtils;
 import io.github.sefiraat.slimetinker.utils.enums.ThemeItemType;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
-import lombok.Getter;
 import org.apache.commons.lang.Validate;
 import org.bukkit.inventory.ItemStack;
 
@@ -16,7 +15,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@Getter
 public class CMAlloy {
 
     private final Map<String, Integer> alloyMap = new HashMap<>();
@@ -49,4 +47,23 @@ public class CMAlloy {
         }
     }
 
+    public Map<String, Integer> getAlloyMap() {
+        return alloyMap;
+    }
+
+    public List<SlimefunItemStack> getRecipe() {
+        return recipe;
+    }
+
+    public ComponentMaterial getParent() {
+        return parent;
+    }
+
+    public SlimefunItemStack getItemStack() {
+        return itemStack;
+    }
+
+    public SlimefunItem getItem() {
+        return item;
+    }
 }

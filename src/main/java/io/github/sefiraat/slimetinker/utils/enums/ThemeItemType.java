@@ -5,7 +5,6 @@ public enum ThemeItemType {
     MACHINE,
     CHEST,
     DROP,
-    BASE,
     MOLTEN_METAL,
     LIQUID,
     CAST,

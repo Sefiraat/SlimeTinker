@@ -15,9 +15,6 @@ import io.github.sefiraat.slimetinker.listeners.ListenerManager;
 import io.github.sefiraat.slimetinker.managers.DispatchManager;
 import io.github.sefiraat.slimetinker.managers.TraitManager;
 import io.github.sefiraat.slimetinker.runnables.RunnableManager;
-import io.github.sefiraat.slimetinker.utils.Keys;
-import lombok.Getter;
-import lombok.Setter;
 import org.bstats.bukkit.Metrics;
 
 public class SlimeTinker extends AbstractAddon {
@@ -25,20 +22,22 @@ public class SlimeTinker extends AbstractAddon {
     public static final int RUNNABLE_TICK_RATE = 40;
 
     private static SlimeTinker instance;
-    @Getter
+
+
     private RunnableManager runnableManager;
-    @Getter
     private ListenerManager listenerManager;
-    @Getter
     private CMManager cmManager;
-    @Getter
     private DispatchManager dispatchManager;
-    @Getter
-    private Keys keys;
-    @Getter
-    @Setter
+
+    public Workbench getWorkbench() {
+        return workbench;
+    }
+
+    public void setWorkbench(Workbench workbench) {
+        this.workbench = workbench;
+    }
+
     private Workbench workbench;
-    @Getter
     private TraitManager traitManager;
 
     public SlimeTinker() {
@@ -55,7 +54,6 @@ public class SlimeTinker extends AbstractAddon {
         new Metrics(this, 11748);
 
         instance = this;
-        keys = new Keys();
 
         getLogger().info("########################################");
         getLogger().info("   Slime Tinker - Created by Sefiraat   ");
@@ -83,6 +81,30 @@ public class SlimeTinker extends AbstractAddon {
     protected void disable() {
         saveConfig();
         instance = null;
+    }
+
+    public static SlimeTinker getInstance() {
+        return instance;
+    }
+
+    public RunnableManager getRunnableManager() {
+        return runnableManager;
+    }
+
+    public ListenerManager getListenerManager() {
+        return listenerManager;
+    }
+
+    public CMManager getCmManager() {
+        return cmManager;
+    }
+
+    public DispatchManager getDispatchManager() {
+        return dispatchManager;
+    }
+
+    public TraitManager getTraitManager() {
+        return traitManager;
     }
 
 }

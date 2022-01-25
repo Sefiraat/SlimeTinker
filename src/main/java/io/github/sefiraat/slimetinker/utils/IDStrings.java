@@ -1,11 +1,11 @@
 package io.github.sefiraat.slimetinker.utils;
 
-import lombok.experimental.UtilityClass;
-
-@UtilityClass
 public final class IDStrings {
 
-    // TODO Collapse into Map and then form command completions from this
+    private IDStrings() {
+        throw new IllegalStateException("Utility class");
+    }
+
     // Vanilla + Core SF + Tinkers
     public static final String IRON = "IRON";
     public static final String GOLD = "GOLD";

@@ -16,5 +16,4 @@ public class RemoveMagmaBlock extends BukkitRunnable {
     public void run() {
         block.setType(Material.LAVA);
     }
-
 }

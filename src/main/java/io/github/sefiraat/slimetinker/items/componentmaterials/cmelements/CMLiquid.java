@@ -8,10 +8,8 @@ import io.github.sefiraat.slimetinker.utils.ThemeUtils;
 import io.github.sefiraat.slimetinker.utils.enums.ThemeItemType;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
-import lombok.Getter;
 import org.bukkit.inventory.ItemStack;
 
-@Getter
 public class CMLiquid {
 
     private final String texture;
@@ -42,4 +40,19 @@ public class CMLiquid {
         item.register(SlimeTinker.inst());
     }
 
+    public String getTexture() {
+        return texture;
+    }
+
+    public ComponentMaterial getParent() {
+        return parent;
+    }
+
+    public SlimefunItemStack getItemStack() {
+        return itemStack;
+    }
+
+    public SlimefunItem getItem() {
+        return item;
+    }
 }

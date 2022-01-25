@@ -16,5 +16,4 @@ public class RemoveWolf extends BukkitRunnable {
         wolf.remove();
         this.cancel();
     }
-
 }

@@ -1,7 +1,6 @@
 package io.github.sefiraat.slimetinker.events.friend;
 
 import io.github.sefiraat.slimetinker.utils.ItemUtils;
-import lombok.Data;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
@@ -14,8 +13,8 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
-@Data
 public class EventFriend {
+
 
     private final Map<PotionEffectType, Integer> potionEffects = new HashMap<>();
     /**
@@ -90,6 +89,367 @@ public class EventFriend {
     private int infinity = 0;
 
     private boolean blocksIntoInv = false;
+
+    public Map<PotionEffectType, Integer> getPotionEffects() {
+        return potionEffects;
+    }
+
+    public boolean isActionTaken() {
+        return actionTaken;
+    }
+
+    public void setActionTaken(boolean actionTaken) {
+        this.actionTaken = actionTaken;
+    }
+
+    public ActiveFriendElement getActiveFriendElement() {
+        return activeFriendElement;
+    }
+
+    public void setActiveFriendElement(ActiveFriendElement activeFriendElement) {
+        this.activeFriendElement = activeFriendElement;
+    }
+
+    public TraitEventType getEventType() {
+        return eventType;
+    }
+
+    public void setEventType(TraitEventType eventType) {
+        this.eventType = eventType;
+    }
+
+    @Nullable
+    public ItemStack getTool() {
+        return tool;
+    }
+
+    public void setTool(@Nullable ItemStack tool) {
+        this.tool = tool;
+    }
+
+    @Nullable
+    public ItemStack getHelmet() {
+        return helmet;
+    }
+
+    public void setHelmet(@Nullable ItemStack helmet) {
+        this.helmet = helmet;
+    }
+
+    @Nullable
+    public ItemStack getChestplate() {
+        return chestplate;
+    }
+
+    public void setChestplate(@Nullable ItemStack chestplate) {
+        this.chestplate = chestplate;
+    }
+
+    @Nullable
+    public ItemStack getLeggings() {
+        return leggings;
+    }
+
+    public void setLeggings(@Nullable ItemStack leggings) {
+        this.leggings = leggings;
+    }
+
+    @Nullable
+    public ItemStack getBoots() {
+        return boots;
+    }
+
+    public void setBoots(@Nullable ItemStack boots) {
+        this.boots = boots;
+    }
+
+    public Player getPlayer() {
+        return player;
+    }
+
+    public void setPlayer(Player player) {
+        this.player = player;
+    }
+
+    public Block getBlock() {
+        return block;
+    }
+
+    public void setBlock(Block block) {
+        this.block = block;
+    }
+
+    public Entity getDamagedEntity() {
+        return damagedEntity;
+    }
+
+    public void setDamagedEntity(Entity damagedEntity) {
+        this.damagedEntity = damagedEntity;
+    }
+
+    public Entity getDamagingEntity() {
+        return damagingEntity;
+    }
+
+    public void setDamagingEntity(Entity damagingEntity) {
+        this.damagingEntity = damagingEntity;
+    }
+
+    public EntityDamageEvent.DamageCause getCause() {
+        return cause;
+    }
+
+    public void setCause(EntityDamageEvent.DamageCause cause) {
+        this.cause = cause;
+    }
+
+    public double getInitialDamage() {
+        return initialDamage;
+    }
+
+    public void setInitialDamage(double initialDamage) {
+        this.initialDamage = initialDamage;
+    }
+
+    public double getToolExpMod() {
+        return toolExpMod;
+    }
+
+    public void setToolExpMod(double toolExpMod) {
+        this.toolExpMod = toolExpMod;
+    }
+
+    public double getHelmExpMod() {
+        return helmExpMod;
+    }
+
+    public void setHelmExpMod(double helmExpMod) {
+        this.helmExpMod = helmExpMod;
+    }
+
+    public double getChestExpMod() {
+        return chestExpMod;
+    }
+
+    public void setChestExpMod(double chestExpMod) {
+        this.chestExpMod = chestExpMod;
+    }
+
+    public double getLeggingsExpMod() {
+        return leggingsExpMod;
+    }
+
+    public void setLeggingsExpMod(double leggingsExpMod) {
+        this.leggingsExpMod = leggingsExpMod;
+    }
+
+    public double getBootsExpMod() {
+        return bootsExpMod;
+    }
+
+    public void setBootsExpMod(double bootsExpMod) {
+        this.bootsExpMod = bootsExpMod;
+    }
+
+    public double getPlayerExpMod() {
+        return playerExpMod;
+    }
+
+    public void setPlayerExpMod(double playerExpMod) {
+        this.playerExpMod = playerExpMod;
+    }
+
+    public double getDurabilityMod() {
+        return durabilityMod;
+    }
+
+    public void setDurabilityMod(double durabilityMod) {
+        this.durabilityMod = durabilityMod;
+    }
+
+    public double getDamageMod() {
+        return damageMod;
+    }
+
+    public void setDamageMod(double damageMod) {
+        this.damageMod = damageMod;
+    }
+
+    public Double getDamageOverride() {
+        return damageOverride;
+    }
+
+    public void setDamageOverride(Double damageOverride) {
+        this.damageOverride = damageOverride;
+    }
+
+    public Collection<ItemStack> getDrops() {
+        return drops;
+    }
+
+    public void setDrops(Collection<ItemStack> drops) {
+        this.drops = drops;
+    }
+
+    public Collection<ItemStack> getAddDrops() {
+        return addDrops;
+    }
+
+    public void setAddDrops(Collection<ItemStack> addDrops) {
+        this.addDrops = addDrops;
+    }
+
+    public Collection<ItemStack> getRemoveDrops() {
+        return removeDrops;
+    }
+
+    public void setRemoveDrops(Collection<ItemStack> removeDrops) {
+        this.removeDrops = removeDrops;
+    }
+
+    public boolean isDuraliumCheck() {
+        return duraliumCheck;
+    }
+
+    public void setDuraliumCheck(boolean duraliumCheck) {
+        this.duraliumCheck = duraliumCheck;
+    }
+
+    public boolean isMetalCheck() {
+        return metalCheck;
+    }
+
+    public void setMetalCheck(boolean metalCheck) {
+        this.metalCheck = metalCheck;
+    }
+
+    public boolean isCancelEvent() {
+        return cancelEvent;
+    }
+
+    public void setCancelEvent(boolean cancelEvent) {
+        this.cancelEvent = cancelEvent;
+    }
+
+    public int getCharged() {
+        return charged;
+    }
+
+    public void setCharged(int charged) {
+        this.charged = charged;
+    }
+
+    public int getSegganesson() {
+        return segganesson;
+    }
+
+    public void setSegganesson(int segganesson) {
+        this.segganesson = segganesson;
+    }
+
+    public double getSegganessonDamage() {
+        return segganessonDamage;
+    }
+
+    public void setSegganessonDamage(double segganessonDamage) {
+        this.segganessonDamage = segganessonDamage;
+    }
+
+    public int getHypercube() {
+        return hypercube;
+    }
+
+    public void setHypercube(int hypercube) {
+        this.hypercube = hypercube;
+    }
+
+    public int getNoClip() {
+        return noClip;
+    }
+
+    public void setNoClip(int noClip) {
+        this.noClip = noClip;
+    }
+
+    public int getBrightBurn() {
+        return brightBurn;
+    }
+
+    public void setBrightBurn(int brightBurn) {
+        this.brightBurn = brightBurn;
+    }
+
+    public int getCompounding() {
+        return compounding;
+    }
+
+    public void setCompounding(int compounding) {
+        this.compounding = compounding;
+    }
+
+    public int getPositivity() {
+        return positivity;
+    }
+
+    public void setPositivity(int positivity) {
+        this.positivity = positivity;
+    }
+
+    public int getNegativity() {
+        return negativity;
+    }
+
+    public void setNegativity(int negativity) {
+        this.negativity = negativity;
+    }
+
+    public int getHyperbolic() {
+        return hyperbolic;
+    }
+
+    public void setHyperbolic(int hyperbolic) {
+        this.hyperbolic = hyperbolic;
+    }
+
+    public int getGravity() {
+        return gravity;
+    }
+
+    public void setGravity(int gravity) {
+        this.gravity = gravity;
+    }
+
+    public int getManners() {
+        return manners;
+    }
+
+    public void setManners(int manners) {
+        this.manners = manners;
+    }
+
+    public int getKingsman() {
+        return kingsman;
+    }
+
+    public void setKingsman(int kingsman) {
+        this.kingsman = kingsman;
+    }
+
+    public int getInfinity() {
+        return infinity;
+    }
+
+    public void setInfinity(int infinity) {
+        this.infinity = infinity;
+    }
+
+    public boolean isBlocksIntoInv() {
+        return blocksIntoInv;
+    }
+
+    public void setBlocksIntoInv(boolean blocksIntoInv) {
+        this.blocksIntoInv = blocksIntoInv;
+    }
 
     public EventFriend(Player p, TraitEventType type) {
         this.player = p;

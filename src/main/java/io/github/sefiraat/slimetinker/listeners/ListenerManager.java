@@ -1,10 +1,10 @@
 package io.github.sefiraat.slimetinker.listeners;
 
 import io.github.sefiraat.slimetinker.SlimeTinker;
-import lombok.Data;
 import org.bukkit.plugin.PluginManager;
 
-@Data
+import javax.annotation.Nonnull;
+
 public class ListenerManager {
 
     private final DurabilityListener durabilityListener = new DurabilityListener();
@@ -17,7 +17,7 @@ public class ListenerManager {
     private final GeneralEntityEventListener generalEntityEventListener = new GeneralEntityEventListener();
     private final PlayerInteractListener playerInteractListener = new PlayerInteractListener();
 
-    public ListenerManager(SlimeTinker plugin, PluginManager manager) {
+    public ListenerManager(@Nonnull SlimeTinker plugin, @Nonnull PluginManager manager) {
         manager.registerEvents(durabilityListener, plugin);
         manager.registerEvents(blockBreakListener, plugin);
         manager.registerEvents(blockPlaceListener, plugin);
@@ -29,4 +29,39 @@ public class ListenerManager {
         manager.registerEvents(playerInteractListener, plugin);
     }
 
+    public DurabilityListener getDurabilityListener() {
+        return durabilityListener;
+    }
+
+    public BlockBreakListener getBlockBreakListener() {
+        return blockBreakListener;
+    }
+
+    public BlockPlaceListener getBlockPlaceListener() {
+        return blockPlaceListener;
+    }
+
+    public EntityDamagedListener getEntityDamagedListener() {
+        return entityDamagedListener;
+    }
+
+    public EntityKilledListener getEntityKilledListener() {
+        return entityKilledListener;
+    }
+
+    public PlayerDamagedListener getPlayerDamagedListener() {
+        return playerDamagedListener;
+    }
+
+    public DropItemListener getDropItemListener() {
+        return dropItemListener;
+    }
+
+    public GeneralEntityEventListener getGeneralEntityEventListener() {
+        return generalEntityEventListener;
+    }
+
+    public PlayerInteractListener getPlayerInteractListener() {
+        return playerInteractListener;
+    }
 }

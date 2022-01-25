@@ -9,13 +9,15 @@ import io.github.sefiraat.slimetinker.utils.enums.ThemeItemType;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
 import io.github.thebusybiscuit.slimefun4.implementation.items.blocks.UnplaceableBlock;
-import lombok.experimental.UtilityClass;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
-@UtilityClass
 public final class Casts {
+
+    private Casts() {
+        throw new UnsupportedOperationException("Utility Class");
+    }
 
     public static final String CAST_DESC = "A cast for metals.";
     public static final String INPUT_DESC = "Input : ";

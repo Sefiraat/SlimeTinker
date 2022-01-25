@@ -1,7 +1,6 @@
 package io.github.sefiraat.slimetinker.items.workstations.armourtable;
 
 import io.github.mooy1.infinitylib.machines.MenuBlock;
-import io.github.sefiraat.slimetinker.SlimeTinker;
 import io.github.sefiraat.slimetinker.items.Guide;
 import io.github.sefiraat.slimetinker.items.templates.ArmourDefinition;
 import io.github.sefiraat.slimetinker.utils.GUIItems;
@@ -88,7 +87,7 @@ public class ArmourTable extends MenuBlock {
     }
 
     protected void clearPreview() {
-        menu.replaceExistingItem(PREVIEW_SLOT, GUIItems.menuPreview());
+        menu.replaceExistingItem(PREVIEW_SLOT, GUIItems.MENU_PREVIEW);
     }
 
     protected ItemStack getTool(ItemStack p, ItemStack g, ItemStack l) {
@@ -97,16 +96,14 @@ public class ArmourTable extends MenuBlock {
         ItemMeta gm = g.getItemMeta();
         ItemMeta lm = l.getItemMeta();
 
-        Keys keys = SlimeTinker.inst().getKeys();
-
         ItemStack armour;
 
         ArmourDefinition armourDefinition = new ArmourDefinition(
-            PersistentDataAPI.getString(pm, keys.getPartClass()),
-            PersistentDataAPI.getString(pm, keys.getPartType()),
-            PersistentDataAPI.getString(pm, keys.getPartMaterial()),
-            PersistentDataAPI.getString(gm, keys.getPartMaterial()),
-            PersistentDataAPI.getString(lm, keys.getPartMaterial())
+            PersistentDataAPI.getString(pm, Keys.PART_CLASS),
+            PersistentDataAPI.getString(pm, Keys.PART_TYPE),
+            PersistentDataAPI.getString(pm, Keys.PART_MATERIAL),
+            PersistentDataAPI.getString(gm, Keys.PART_MATERIAL),
+            PersistentDataAPI.getString(lm, Keys.PART_MATERIAL)
         );
 
         switch (armourDefinition.getPartType()) {
@@ -134,10 +131,10 @@ public class ArmourTable extends MenuBlock {
         if (itemStack == null || !itemStack.hasItemMeta()) { // No item
             return false;
         }
-        if (!itemStack.getItemMeta().getPersistentDataContainer().has(SlimeTinker.inst().getKeys().getPartClass(), PersistentDataType.STRING)) { // Not a part
+        if (!itemStack.getItemMeta().getPersistentDataContainer().has(Keys.PART_CLASS, PersistentDataType.STRING)) { // Not a part
             return false;
         }
-        String type = itemStack.getItemMeta().getPersistentDataContainer().get(SlimeTinker.inst().getKeys().getPartClass(), PersistentDataType.STRING);
+        String type = itemStack.getItemMeta().getPersistentDataContainer().get(Keys.PART_CLASS, PersistentDataType.STRING);
         assert type != null;
         return type.equals(classType);
     }
@@ -151,28 +148,24 @@ public class ArmourTable extends MenuBlock {
     }
 
     @SuppressWarnings("SameReturnValue")
-    protected boolean craft(BlockMenu blockMenu, Player player) {
-
+    protected void craft(BlockMenu blockMenu, Player player) {
         ItemStack plates = blockMenu.getItemInSlot(INPUT_PLATES);
         ItemStack gambeson = blockMenu.getItemInSlot(INPUT_GAMBESON);
         ItemStack links = blockMenu.getItemInSlot(INPUT_MAIL_LINK);
 
         if (plates == null || gambeson == null || links == null) { // Missing one or more items
             player.sendMessage(ThemeUtils.ERROR + "Not all items present");
-            return false;
+            return;
         }
         if (!validate(plates, gambeson, links)) { // One or more items are not the correct part
             player.sendMessage(ThemeUtils.WARNING + "One or more items are either not Tinker's parts or in the wrong slot?");
-            return false;
+            return;
         }
 
         blockMenu.pushItem(getTool(plates, gambeson, links).clone(), OUTPUT_SLOT);
         blockMenu.getItemInSlot(INPUT_PLATES).setAmount(blockMenu.getItemInSlot(INPUT_PLATES).getAmount() - 1);
         blockMenu.getItemInSlot(INPUT_GAMBESON).setAmount(blockMenu.getItemInSlot(INPUT_GAMBESON).getAmount() - 1);
         blockMenu.getItemInSlot(INPUT_MAIL_LINK).setAmount(blockMenu.getItemInSlot(INPUT_MAIL_LINK).getAmount() - 1);
-
-        return false;
-
     }
 
     private boolean validate(ItemStack plates, ItemStack gambeson, ItemStack links) {
@@ -183,15 +176,15 @@ public class ArmourTable extends MenuBlock {
     protected void setup(BlockMenuPreset blockMenuPreset) {
 
         blockMenuPreset.drawBackground(ChestMenuUtils.getBackground(), BACKGROUND_SLOTS);
-        blockMenuPreset.drawBackground(GUIItems.menuBackgroundInput(), BACKGROUND_INPUTS);
-        blockMenuPreset.drawBackground(GUIItems.menuBackgroundOutput(), BACKGROUND_OUTPUT);
-        blockMenuPreset.drawBackground(GUIItems.menuBackgroundPreview(), BACKGROUND_PREVIEW);
+        blockMenuPreset.drawBackground(GUIItems.MENU_BACKGROUND_INPUT, BACKGROUND_INPUTS);
+        blockMenuPreset.drawBackground(GUIItems.MENU_BACKGROUND_OUTPUT, BACKGROUND_OUTPUT);
+        blockMenuPreset.drawBackground(GUIItems.MENU_BACKGROUND_PREVIEW, BACKGROUND_PREVIEW);
 
-        blockMenuPreset.addItem(CRAFT_BUTTON, GUIItems.menuCraftArmourTable());
-        blockMenuPreset.addItem(MARKER_MAIL_LINK, GUIItems.menuMarkerLinks());
-        blockMenuPreset.addItem(MARKER_GAMBESON, GUIItems.menuMarkerGambeson());
-        blockMenuPreset.addItem(MARKER_PLATES, GUIItems.menuMarkerPlates());
-        blockMenuPreset.addItem(PREVIEW_SLOT, GUIItems.menuPreview());
+        blockMenuPreset.addItem(CRAFT_BUTTON, GUIItems.MENU_CRAFT_ARMOUR_TABLE);
+        blockMenuPreset.addItem(MARKER_MAIL_LINK, GUIItems.MENU_MARKER_LINKS);
+        blockMenuPreset.addItem(MARKER_GAMBESON, GUIItems.MENU_MARKER_GAMBESON);
+        blockMenuPreset.addItem(MARKER_PLATES, GUIItems.MENU_MARKER_PLATES);
+        blockMenuPreset.addItem(PREVIEW_SLOT, GUIItems.MENU_PREVIEW);
 
         blockMenuPreset.addMenuClickHandler(CRAFT_BUTTON, (player, i, itemStack, clickAction) -> false);
         blockMenuPreset.addMenuClickHandler(MARKER_MAIL_LINK, (player, i, itemStack, clickAction) -> false);
@@ -225,7 +218,10 @@ public class ArmourTable extends MenuBlock {
     protected void onNewInstance(@Nonnull BlockMenu blockMenu, @Nonnull Block b) {
         super.onNewInstance(blockMenu, b);
         this.menu = blockMenu;
-        blockMenu.addMenuClickHandler(CRAFT_BUTTON, (player, i, itemStack, clickAction) -> craft(blockMenu, player));
+        blockMenu.addMenuClickHandler(CRAFT_BUTTON, (player, i, itemStack, clickAction) -> {
+            craft(blockMenu, player);
+            return false;
+        });
     }
 
 }

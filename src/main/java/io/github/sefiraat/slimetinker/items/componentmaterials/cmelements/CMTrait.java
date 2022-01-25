@@ -9,14 +9,13 @@ import io.github.sefiraat.slimetinker.utils.ThemeUtils;
 import io.github.sefiraat.slimetinker.utils.enums.ThemeItemType;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
-import lombok.Getter;
 
+import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 
-@Getter
 public class CMTrait {
 
     private final String traitName;
@@ -44,7 +43,12 @@ public class CMTrait {
         newLore.add(ThemeUtils.ITEM_TYPEDESC + "Added by: " + addedBy);
         this.itemStack =
             ThemeUtils.themedItemStack(
-                traitName.toUpperCase(Locale.ROOT).replace(" ", "_") + "_TRAIT_" + partType.getItemId().toUpperCase(Locale.ROOT) + "_" + ItemUtils.getIdOrType(parentCM.getRepresentativeStack()),
+                MessageFormat.format(
+                    "{0}_TRAIT_{1}_{2}",
+                    traitName.toUpperCase(Locale.ROOT).replace(" ", "_"),
+                    partType.getItemId().toUpperCase(Locale.ROOT),
+                    ItemUtils.getIdOrType(parentCM.getRepresentativeStack())
+                ),
                 CMTraits.getTraitTexture(addedBy),
                 ThemeItemType.PROP,
                 "Trait : " + traitName,
@@ -55,4 +59,35 @@ public class CMTrait {
 
     }
 
+    public String getTraitName() {
+        return traitName;
+    }
+
+    public String[] getLore() {
+        return lore;
+    }
+
+    public String getAddedBy() {
+        return addedBy;
+    }
+
+    public SlimefunItemStack getPartType() {
+        return partType;
+    }
+
+    public CMTraits getParent() {
+        return parent;
+    }
+
+    public ComponentMaterial getParentCM() {
+        return parentCM;
+    }
+
+    public SlimefunItemStack getItemStack() {
+        return itemStack;
+    }
+
+    public SlimefunItem getItem() {
+        return item;
+    }
 }

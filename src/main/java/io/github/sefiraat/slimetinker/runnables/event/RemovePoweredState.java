@@ -40,5 +40,4 @@ public class RemovePoweredState extends BukkitRunnable {
         BlockUtils.fakeUnPower(block.getRelative(BlockFace.UP));
         this.cancel();
     }
-
 }

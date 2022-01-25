@@ -7,10 +7,10 @@ import io.github.sefiraat.slimetinker.runnables.event.RemoveWolf;
 import io.github.sefiraat.slimetinker.utils.EntityUtils;
 import io.github.sefiraat.slimetinker.utils.GeneralUtils;
 import io.github.sefiraat.slimetinker.utils.ItemUtils;
+import io.github.sefiraat.slimetinker.utils.Keys;
 import io.github.sefiraat.slimetinker.utils.ThemeUtils;
 import io.github.sefiraat.slimetinker.utils.WorldUtils;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.data.persistent.PersistentDataAPI;
-import lombok.experimental.UtilityClass;
 import org.apache.commons.lang.Validate;
 import org.bukkit.Color;
 import org.bukkit.Effect;
@@ -39,8 +39,11 @@ import java.util.concurrent.ThreadLocalRandom;
 
 import static io.github.sefiraat.slimetinker.utils.EntityUtils.increaseEffect;
 
-@UtilityClass
 public final class PlayerDamagedEvents {
+
+    private PlayerDamagedEvents() {
+        throw new UnsupportedOperationException("Utility Class");
+    }
 
     public static void rodAdamantite(EventFriend friend) {
         if (friend.getCause() == EntityDamageEvent.DamageCause.ENTITY_EXPLOSION || friend.getCause() == EntityDamageEvent.DamageCause.BLOCK_EXPLOSION) {
@@ -182,7 +185,7 @@ public final class PlayerDamagedEvents {
     }
 
     public static void plateSilver(EventFriend friend) {
-        NamespacedKey key = SlimeTinker.inst().getKeys().getStopEvents();
+        NamespacedKey key = Keys.STOP_EVENTS;
         Player player = friend.getPlayer();
         if (!PersistentDataAPI.hasInt(player, key) && friend.getCause() == EntityDamageEvent.DamageCause.LIGHTNING) {
             PersistentDataAPI.setInt(player, key, 1);
@@ -342,7 +345,7 @@ public final class PlayerDamagedEvents {
     }
 
     public static void plateSingSilver(EventFriend friend) {
-        NamespacedKey key = SlimeTinker.inst().getKeys().getStopEvents();
+        NamespacedKey key = Keys.STOP_EVENTS;
         Player player = friend.getPlayer();
         if (!PersistentDataAPI.hasInt(player, key) && friend.getCause() == EntityDamageEvent.DamageCause.LIGHTNING) {
             PersistentDataAPI.setInt(player, key, 1);
@@ -439,7 +442,7 @@ public final class PlayerDamagedEvents {
     public static void plateInfinity(EventFriend friend) {
         ItemStack i = friend.getActiveStack();
         ItemMeta im = i.getItemMeta();
-        NamespacedKey k = SlimeTinker.inst().getKeys().getArmourInfiniteCapacityStored();
+        NamespacedKey k = Keys.ARMOUR_INFINITE_CAPACITY_STORED;
         Validate.notNull(im, "Meta is null, nope!");
         double d = PersistentDataAPI.getDouble(im, k, 0);
         if (d < 5) {
@@ -459,7 +462,7 @@ public final class PlayerDamagedEvents {
     public static void plateSingInfinity(EventFriend friend) {
         ItemStack i = friend.getActiveStack();
         ItemMeta im = i.getItemMeta();
-        NamespacedKey k = SlimeTinker.inst().getKeys().getArmourInfinitlyPowerfulStored();
+        NamespacedKey k = Keys.ARMOUR_INFINITLY_POWERFUL_STORED;
         Validate.notNull(im, "Meta is null, nope!");
         int d = PersistentDataAPI.getInt(im, k, 0);
         d = (int) (d + friend.getInitialDamage());
@@ -542,7 +545,7 @@ public final class PlayerDamagedEvents {
             ItemStack i = friend.getActiveStack();
             ItemMeta im = i.getItemMeta();
             Validate.notNull(im, "Meta is null, herp derp derp");
-            NamespacedKey k = SlimeTinker.inst().getKeys().getArmourHyperbolicStored();
+            NamespacedKey k = Keys.ARMOUR_HYPERBOLIC_STORED;
             int amount = PersistentDataAPI.getInt(im, k, 0);
             double dmg = friend.getInitialDamage() * friend.getDamageMod();
             if (amount >= dmg) {
@@ -656,7 +659,7 @@ public final class PlayerDamagedEvents {
         ItemStack i = friend.getActiveStack();
         ItemMeta im = i.getItemMeta();
         Validate.notNull(im, "Meta is null, herp derp derp");
-        NamespacedKey k = SlimeTinker.inst().getKeys().getArmourUnconventionalStored();
+        NamespacedKey k = Keys.ARMOUR_UNCONVENTIONAL_STORED;
         int amount = PersistentDataAPI.getInt(im, k, 0);
 
         PersistentDataAPI.setInt(im, k, (int) (amount + friend.getInitialDamage()));

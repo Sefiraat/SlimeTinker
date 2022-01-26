@@ -50,5 +50,9 @@ thanks to [Martin](https://github.com/martinbrom) who helped us out with ideas a
 to [Boomer](https://www.youtube.com/channel/UC2ZmER18YBRYube-62-JVpA) for testing, feeding back and breaking things for
 me!
 
-Finaly a very big thanks to the mct.tantrum.org Minecraft server for fostering the initial ideas, testing and generally
-being awesome!
+
+## Thanks!
+
+A big thanks to the owners of **mct.tantrum.org** who have tested nearly everything I have made and really given me direction and drive to make these things and was the first server willing to take the buggy mess that Tinker was, at first, onto their server!
+
+Another big shoutout to **GentlemanCheesy** of **mc.talosmp.net** for being my first (and as of writing this, only!) sponsor. A few coffee's a month to make me feel better about making these addons <3

@@ -175,7 +175,7 @@ public final class TickEvents {
         increaseEffect(PotionEffectType.FIRE_RESISTANCE, friend.getPotionEffects());
     }
 
-    public static void sharpOne(EventFriend friend) {
+    public static void rodIron(EventFriend friend) {
         increaseEffect(PotionEffectType.INCREASE_DAMAGE, friend.getPotionEffects());
     }
 

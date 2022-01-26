@@ -35,7 +35,7 @@ public final class Traits {
             "Gives increased damage) stacks with",
             "mods and other properties."
         )
-        .addConsumer(TraitEventType.TICK, TickEvents::sharpOne);
+        .addConsumer(TraitEventType.TICK, TickEvents::rodIron);
 
     public static final MaterialTrait CORE_IRON_PLATES = new MaterialTrait()
         .setPartType(MaterialTrait.PROP_PLATES)

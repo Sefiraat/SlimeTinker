@@ -26,7 +26,7 @@ public final class Experience {
     public static void setupExpNew(ItemMeta im) {
         PersistentDataAPI.setInt(im, Keys.ST_EXP_CURRENT, 0);
         PersistentDataAPI.setDouble(im, Keys.ST_EXP_REQUIRED, EXP_LEVEL_BASE);
-        PersistentDataAPI.setInt(im, Keys.ST_EXP_REQUIRED, 0);
+        PersistentDataAPI.setInt(im, Keys.ST_LEVEL, 0);
         PersistentDataAPI.setInt(im, Keys.ST_MOD_SLOTS, 0);
     }
 

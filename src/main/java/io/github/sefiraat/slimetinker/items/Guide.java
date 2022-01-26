@@ -7,7 +7,7 @@ import io.github.sefiraat.slimetinker.items.templates.ToolTemplate;
 import io.github.sefiraat.slimetinker.items.templates.ToolTemplateExplosive;
 import io.github.sefiraat.slimetinker.items.workstations.armourtable.DummyArmourTable;
 import io.github.sefiraat.slimetinker.items.workstations.tooltable.DummyToolTable;
-import io.github.sefiraat.slimetinker.utils.IDStrings;
+import io.github.sefiraat.slimetinker.utils.Ids;
 import io.github.sefiraat.slimetinker.utils.SkullTextures;
 import io.github.sefiraat.slimetinker.utils.ThemeUtils;
 import io.github.sefiraat.slimetinker.utils.enums.ThemeItemType;
@@ -431,15 +431,15 @@ public final class Guide {
         LEG.register(p);
         BOOT.register(p);
 
-        GROWTH_MAP.put(IDStrings.SHOVEL, getShovelMap());
-        GROWTH_MAP.put(IDStrings.PICKAXE, getPickaxeMap());
-        GROWTH_MAP.put(IDStrings.AXE, getAxeMap());
-        GROWTH_MAP.put(IDStrings.HOE, getHoeMap());
-        GROWTH_MAP.put(IDStrings.SWORD, getSwordMap());
+        GROWTH_MAP.put(Ids.SHOVEL, getShovelMap());
+        GROWTH_MAP.put(Ids.PICKAXE, getPickaxeMap());
+        GROWTH_MAP.put(Ids.AXE, getAxeMap());
+        GROWTH_MAP.put(Ids.HOE, getHoeMap());
+        GROWTH_MAP.put(Ids.SWORD, getSwordMap());
 
-        GROWTH_MAP.put(IDStrings.HELMET, getHelmetMap());
-        GROWTH_MAP.put(IDStrings.CHESTPLATE, getChestplateMap());
-        GROWTH_MAP.put(IDStrings.LEGGINGS, getLeggingsMap());
-        GROWTH_MAP.put(IDStrings.BOOTS, getBootsMap());
+        GROWTH_MAP.put(Ids.HELMET, getHelmetMap());
+        GROWTH_MAP.put(Ids.CHESTPLATE, getChestplateMap());
+        GROWTH_MAP.put(Ids.LEGGINGS, getLeggingsMap());
+        GROWTH_MAP.put(Ids.BOOTS, getBootsMap());
     }
 }

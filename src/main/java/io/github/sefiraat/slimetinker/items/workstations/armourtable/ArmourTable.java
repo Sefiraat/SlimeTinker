@@ -1,10 +1,11 @@
 package io.github.sefiraat.slimetinker.items.workstations.armourtable;
 
+import io.github.mooy1.infinitylib.common.StackUtils;
 import io.github.mooy1.infinitylib.machines.MenuBlock;
 import io.github.sefiraat.slimetinker.items.Guide;
 import io.github.sefiraat.slimetinker.items.templates.ArmourDefinition;
 import io.github.sefiraat.slimetinker.utils.GUIItems;
-import io.github.sefiraat.slimetinker.utils.IDStrings;
+import io.github.sefiraat.slimetinker.utils.Ids;
 import io.github.sefiraat.slimetinker.utils.ItemUtils;
 import io.github.sefiraat.slimetinker.utils.Keys;
 import io.github.sefiraat.slimetinker.utils.ThemeUtils;
@@ -107,16 +108,16 @@ public class ArmourTable extends MenuBlock {
         );
 
         switch (armourDefinition.getPartType()) {
-            case IDStrings.HELMET:
+            case Ids.HELMET:
                 armour = Guide.HELM.getStack(armourDefinition);
                 break;
-            case IDStrings.CHESTPLATE:
+            case Ids.CHESTPLATE:
                 armour = Guide.CHEST.getStack(armourDefinition);
                 break;
-            case IDStrings.LEGGINGS:
+            case Ids.LEGGINGS:
                 armour = Guide.LEG.getStack(armourDefinition);
                 break;
-            case IDStrings.BOOTS:
+            case Ids.BOOTS:
                 armour = Guide.BOOT.getStack(armourDefinition);
                 break;
             default:
@@ -144,7 +145,7 @@ public class ArmourTable extends MenuBlock {
         if (itemStack == null || !itemStack.hasItemMeta()) { // No item
             return false;
         }
-        return ItemUtils.getIdOrType(itemStack).startsWith("PART_GAMBESON_");
+        return StackUtils.getIdOrType(itemStack).startsWith("PART_GAMBESON_");
     }
 
     @SuppressWarnings("SameReturnValue")
@@ -169,7 +170,7 @@ public class ArmourTable extends MenuBlock {
     }
 
     private boolean validate(ItemStack plates, ItemStack gambeson, ItemStack links) {
-        return validateClass(plates, IDStrings.PLATE) && validateGambeson(gambeson) && validateClass(links, IDStrings.LINKS);
+        return validateClass(plates, Ids.PLATE) && validateGambeson(gambeson) && validateClass(links, Ids.LINKS);
     }
 
     @Override

@@ -1,6 +1,6 @@
 package io.github.sefiraat.slimetinker.listeners;
 
-import io.github.sefiraat.slimetinker.utils.IDStrings;
+import io.github.sefiraat.slimetinker.utils.Ids;
 import org.bukkit.Material;
 
 import java.util.EnumMap;
@@ -61,7 +61,7 @@ public final class BlockMap {
                 case AMETHYST_CLUSTER:
                 case GLOWSTONE:
                 case NETHERRACK:
-                    MATERIAL_MAP.put(m, IDStrings.PICKAXE);
+                    MATERIAL_MAP.put(m, Ids.PICKAXE);
                     break;
                 case GRASS_BLOCK:
                 case DIRT:
@@ -78,7 +78,7 @@ public final class BlockMap {
                 case SOUL_SOIL:
                 case MYCELIUM:
                 case MOSS_BLOCK:
-                    MATERIAL_MAP.put(m, IDStrings.SHOVEL);
+                    MATERIAL_MAP.put(m, Ids.SHOVEL);
                     break;
                 case OAK_LOG:
                 case SPRUCE_LOG:
@@ -118,13 +118,13 @@ public final class BlockMap {
                 case MUSHROOM_STEM:
                 case PUMPKIN:
                 case MELON:
-                    MATERIAL_MAP.put(m, IDStrings.AXE);
+                    MATERIAL_MAP.put(m, Ids.AXE);
                     break;
                 case SEA_PICKLE:
                 case VINE:
                 case GLOW_LICHEN:
                 case LILY_PAD:
-                    MATERIAL_MAP.put(m, IDStrings.HOE);
+                    MATERIAL_MAP.put(m, Ids.HOE);
                     break;
                 default:
                     break;

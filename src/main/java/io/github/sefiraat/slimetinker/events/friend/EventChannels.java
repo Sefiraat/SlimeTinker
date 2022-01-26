@@ -1,11 +1,11 @@
 package io.github.sefiraat.slimetinker.events.friend;
 
 import io.github.sefiraat.slimetinker.SlimeTinker;
-import io.github.sefiraat.slimetinker.items.componentmaterials.CMManager;
-import io.github.sefiraat.slimetinker.items.componentmaterials.ComponentMaterial;
+import io.github.sefiraat.slimetinker.items.tinkermaterials.TinkerMaterial;
+import io.github.sefiraat.slimetinker.items.tinkermaterials.TinkerMaterialManager;
 import io.github.sefiraat.slimetinker.managers.TraitManager;
 import io.github.sefiraat.slimetinker.utils.Experience;
-import io.github.sefiraat.slimetinker.utils.IDStrings;
+import io.github.sefiraat.slimetinker.utils.Ids;
 import io.github.sefiraat.slimetinker.utils.ItemUtils;
 import io.github.sefiraat.slimetinker.utils.ThemeUtils;
 import org.bukkit.entity.Player;
@@ -79,19 +79,19 @@ public final class EventChannels {
         String matPropertyBinding = ItemUtils.getToolBindingMaterial(i);
         String matPropertyRod = ItemUtils.getToolRodMaterial(i);
 
-        ComponentMaterial headMaterial = CMManager.getMap().get(matPropertyHead);
-        ComponentMaterial binderMaterial = CMManager.getMap().get(matPropertyBinding);
-        ComponentMaterial rodMaterial = CMManager.getMap().get(matPropertyRod);
+        TinkerMaterial headMaterial = TinkerMaterialManager.getMap().get(matPropertyHead);
+        TinkerMaterial binderMaterial = TinkerMaterialManager.getMap().get(matPropertyBinding);
+        TinkerMaterial rodMaterial = TinkerMaterialManager.getMap().get(matPropertyRod);
 
         TraitManager manager = SlimeTinker.inst().getTraitManager();
 
-        if (headMaterial != null && manager.isEnabled(matPropertyHead, IDStrings.HEAD)) {
+        if (headMaterial != null && manager.isEnabled(matPropertyHead, Ids.HEAD)) {
             headMaterial.runEvent(friend.getEventType(), TraitPartType.HEAD, friend);
         }
-        if (binderMaterial != null && manager.isEnabled(matPropertyBinding, IDStrings.BINDING)) {
+        if (binderMaterial != null && manager.isEnabled(matPropertyBinding, Ids.BINDING)) {
             binderMaterial.runEvent(friend.getEventType(), TraitPartType.BINDER, friend);
         }
-        if (rodMaterial != null && manager.isEnabled(matPropertyRod, IDStrings.ROD)) {
+        if (rodMaterial != null && manager.isEnabled(matPropertyRod, Ids.ROD)) {
             rodMaterial.runEvent(friend.getEventType(), TraitPartType.ROD, friend);
         }
 
@@ -180,19 +180,19 @@ public final class EventChannels {
         String matPropertyGambeson = ItemUtils.getArmourGambesonMaterial(i);
         String matPropertyLinks = ItemUtils.getArmourLinksMaterial(i);
 
-        ComponentMaterial plateMaterial = CMManager.getMap().get(matPropertyPlate);
-        ComponentMaterial gambesonMaterial = CMManager.getMap().get(matPropertyGambeson);
-        ComponentMaterial linksMaterial = CMManager.getMap().get(matPropertyLinks);
+        TinkerMaterial plateMaterial = TinkerMaterialManager.getMap().get(matPropertyPlate);
+        TinkerMaterial gambesonMaterial = TinkerMaterialManager.getMap().get(matPropertyGambeson);
+        TinkerMaterial linksMaterial = TinkerMaterialManager.getMap().get(matPropertyLinks);
 
         TraitManager manager = SlimeTinker.inst().getTraitManager();
 
-        if (plateMaterial != null && manager.isEnabled(matPropertyPlate, IDStrings.PLATE)) {
+        if (plateMaterial != null && manager.isEnabled(matPropertyPlate, Ids.PLATE)) {
             plateMaterial.runEvent(friend.getEventType(), TraitPartType.PLATE, friend);
         }
-        if (gambesonMaterial != null && manager.isEnabled(matPropertyGambeson, IDStrings.GAMBESON)) {
+        if (gambesonMaterial != null && manager.isEnabled(matPropertyGambeson, Ids.GAMBESON)) {
             gambesonMaterial.runEvent(friend.getEventType(), TraitPartType.GAMBESON, friend);
         }
-        if (linksMaterial != null && manager.isEnabled(matPropertyLinks, IDStrings.LINKS)) {
+        if (linksMaterial != null && manager.isEnabled(matPropertyLinks, Ids.LINKS)) {
             linksMaterial.runEvent(friend.getEventType(), TraitPartType.LINKS, friend);
         }
 

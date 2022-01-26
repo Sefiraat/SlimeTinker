@@ -1,5 +1,6 @@
 package io.github.sefiraat.slimetinker.items.workstations.modificationstation;
 
+import io.github.mooy1.infinitylib.common.StackUtils;
 import io.github.mooy1.infinitylib.machines.MenuBlock;
 import io.github.sefiraat.slimetinker.modifiers.Mod;
 import io.github.sefiraat.slimetinker.modifiers.Modifications;
@@ -67,7 +68,7 @@ public class ModificationStation extends MenuBlock {
 
     private boolean modTool(BlockMenu blockMenu, Player player, ItemStack item, ItemStack modItem) {
         // No modifier!
-        if (modItem == null || !Modifications.getModificationListTool().contains(ItemUtils.getIdOrType(modItem))) {
+        if (modItem == null || !Modifications.getModificationListTool().contains(StackUtils.getIdOrType(modItem))) {
             player.sendMessage(ThemeUtils.WARNING + "Input a valid modifier into the second slot.");
             return false;
         }
@@ -78,9 +79,9 @@ public class ModificationStation extends MenuBlock {
 
         Map<String, Integer> modMap = Modifications.getModificationMapTool(c);
 
-        Mod mod = Modifications.getModificationDefinitionsTool().get(ItemUtils.getIdOrType(modItem)); // The definition of the mod being created/updated
+        Mod mod = Modifications.getModificationDefinitionsTool().get(StackUtils.getIdOrType(modItem)); // The definition of the mod being created/updated
         int modSlots = ItemUtils.getTinkerModifierSlots(c); // Number of free modification slots on the tool
-        int currentAmount = modMap.get(ItemUtils.getIdOrType(modItem)); // The current value of that material loaded into the tool (not the level)
+        int currentAmount = modMap.get(StackUtils.getIdOrType(modItem)); // The current value of that material loaded into the tool (not the level)
         int currentLevel = Modifications.getModLevel(mod, item); // The current level of this mod (or 0)
 
         if (!mod.getRequirementMap().containsKey(currentLevel + 1)) { // Max level
@@ -108,7 +109,7 @@ public class ModificationStation extends MenuBlock {
             currentAmount = currentAmount + modItem.getAmount();
         }
 
-        modMap.put(ItemUtils.getIdOrType(modItem), currentAmount);
+        modMap.put(StackUtils.getIdOrType(modItem), currentAmount);
         Modifications.setModificationMapTool(c, modMap);
 
         item.setItemMeta(im);
@@ -129,7 +130,7 @@ public class ModificationStation extends MenuBlock {
 
     private boolean modArmour(BlockMenu blockMenu, Player player, ItemStack item, ItemStack modItem) {
         // No modifier!
-        if (modItem == null || !Modifications.getModificationListArmour().contains(ItemUtils.getIdOrType(modItem))) {
+        if (modItem == null || !Modifications.getModificationListArmour().contains(StackUtils.getIdOrType(modItem))) {
             player.sendMessage(ThemeUtils.WARNING + "Input a valid modifier into the second slot.");
             return false;
         }
@@ -140,9 +141,9 @@ public class ModificationStation extends MenuBlock {
 
         Map<String, Integer> modMap = Modifications.getModificationMapArmour(c);
 
-        Mod mod = Modifications.getModificationDefinitionsArmour().get(ItemUtils.getIdOrType(modItem)); // The definition of the mod being created/updated
+        Mod mod = Modifications.getModificationDefinitionsArmour().get(StackUtils.getIdOrType(modItem)); // The definition of the mod being created/updated
         int modSlots = ItemUtils.getTinkerModifierSlots(c); // Number of free modification slots on the tool
-        int currentAmount = modMap.get(ItemUtils.getIdOrType(modItem)); // The current value of that material loaded into the tool (not the level)
+        int currentAmount = modMap.get(StackUtils.getIdOrType(modItem)); // The current value of that material loaded into the tool (not the level)
         int currentLevel = Modifications.getModLevel(mod, item); // The current level of this mod (or 0)
 
         if (!mod.getRequirementMap().containsKey(currentLevel + 1)) { // Max level
@@ -170,7 +171,7 @@ public class ModificationStation extends MenuBlock {
             currentAmount = currentAmount + modItem.getAmount();
         }
 
-        modMap.put(ItemUtils.getIdOrType(modItem), currentAmount);
+        modMap.put(StackUtils.getIdOrType(modItem), currentAmount);
         Modifications.setModificationMapArmour(c, modMap);
 
         item.setItemMeta(im);

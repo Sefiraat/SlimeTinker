@@ -1,22 +1,22 @@
-package io.github.sefiraat.slimetinker.items.componentmaterials;
+package io.github.sefiraat.slimetinker.items.tinkermaterials;
 
+import io.github.mooy1.infinitylib.common.StackUtils;
 import io.github.sefiraat.slimetinker.SlimeTinker;
 import io.github.sefiraat.slimetinker.events.friend.TraitPartType;
 import io.github.sefiraat.slimetinker.items.Casts;
 import io.github.sefiraat.slimetinker.items.Dies;
 import io.github.sefiraat.slimetinker.items.Parts;
-import io.github.sefiraat.slimetinker.items.componentmaterials.cmelements.CMAlloy;
-import io.github.sefiraat.slimetinker.items.componentmaterials.cmelements.CMTraits;
-import io.github.sefiraat.slimetinker.items.componentmaterials.cmfactories.CMCore;
-import io.github.sefiraat.slimetinker.items.componentmaterials.cmfactories.CMDynaTech;
-import io.github.sefiraat.slimetinker.items.componentmaterials.cmfactories.CMInfinity;
-import io.github.sefiraat.slimetinker.items.componentmaterials.cmfactories.CMLiteXpansion;
-import io.github.sefiraat.slimetinker.items.componentmaterials.cmfactories.CMSlimefunWarfare;
-import io.github.sefiraat.slimetinker.items.componentmaterials.cmrecipes.CastResult;
-import io.github.sefiraat.slimetinker.items.componentmaterials.cmrecipes.MoltenResult;
+import io.github.sefiraat.slimetinker.items.tinkermaterials.elements.Alloy;
+import io.github.sefiraat.slimetinker.items.tinkermaterials.recipes.CastResult;
+import io.github.sefiraat.slimetinker.items.tinkermaterials.recipes.MoltenResult;
+import io.github.sefiraat.slimetinker.items.tinkermaterials.setup.TinkersMaterialsCore;
+import io.github.sefiraat.slimetinker.items.tinkermaterials.setup.TinkersMaterialsDynatech;
+import io.github.sefiraat.slimetinker.items.tinkermaterials.setup.TinkersMaterialsInfinity;
+import io.github.sefiraat.slimetinker.items.tinkermaterials.setup.TinkersMaterialsLiteXpansion;
+import io.github.sefiraat.slimetinker.items.tinkermaterials.setup.TinkersMaterialsSlimefunWarfare;
 import io.github.sefiraat.slimetinker.managers.SupportedPluginsManager;
 import io.github.sefiraat.slimetinker.managers.TraitManager;
-import io.github.sefiraat.slimetinker.utils.IDStrings;
+import io.github.sefiraat.slimetinker.utils.Ids;
 import io.github.sefiraat.slimetinker.utils.ItemUtils;
 import net.md_5.bungee.api.ChatColor;
 import org.apache.commons.lang.Validate;
@@ -29,7 +29,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class CMManager {
+public class TinkerMaterialManager {
 
     // Base
     public static final int AMOUNT_NUGGET = 1;
@@ -60,99 +60,99 @@ public class CMManager {
     public static final int AMOUNT_ARM_LINKS = AMOUNT_INGOT * 2;
 
     // Dies (Items that makes casts and then burn away)
-    protected static final Map<ComponentMaterial, ItemStack> MAP_DIE_NUGGET = new HashMap<>();
-    protected static final Map<ComponentMaterial, ItemStack> MAP_DIE_INGOT = new HashMap<>();
-    protected static final Map<ComponentMaterial, ItemStack> MAP_DIE_BLOCK = new HashMap<>();
-    protected static final Map<ComponentMaterial, ItemStack> MAP_DIE_GEM = new HashMap<>();
-    protected static final Map<ComponentMaterial, ItemStack> MAP_DIE_SHOVELHEAD = new HashMap<>();
-    protected static final Map<ComponentMaterial, ItemStack> MAP_DIE_PICKAXEHEAD = new HashMap<>();
-    protected static final Map<ComponentMaterial, ItemStack> MAP_DIE_AXEHEAD = new HashMap<>();
-    protected static final Map<ComponentMaterial, ItemStack> MAP_DIE_HOEHEAD = new HashMap<>();
-    protected static final Map<ComponentMaterial, ItemStack> MAP_DIE_SWORDBLADE = new HashMap<>();
-    protected static final Map<ComponentMaterial, ItemStack> MAP_DIE_TOOLROD = new HashMap<>();
-    protected static final Map<ComponentMaterial, ItemStack> MAP_DIE_ARMOUR_PLATES_HELM = new HashMap<>();
-    protected static final Map<ComponentMaterial, ItemStack> MAP_DIE_ARMOUR_PLATES_CHEST = new HashMap<>();
-    protected static final Map<ComponentMaterial, ItemStack> MAP_DIE_ARMOUR_PLATES_LEGGINGS = new HashMap<>();
-    protected static final Map<ComponentMaterial, ItemStack> MAP_DIE_ARMOUR_PLATES_BOOTS = new HashMap<>();
-    protected static final Map<ComponentMaterial, ItemStack> MAP_DIE_ARMOUR_MAIL = new HashMap<>();
-    protected static final Map<ComponentMaterial, ItemStack> MAP_DIE_REPAIRKIT = new HashMap<>();
+    protected static final Map<TinkerMaterial, ItemStack> MAP_DIE_NUGGET = new HashMap<>();
+    protected static final Map<TinkerMaterial, ItemStack> MAP_DIE_INGOT = new HashMap<>();
+    protected static final Map<TinkerMaterial, ItemStack> MAP_DIE_BLOCK = new HashMap<>();
+    protected static final Map<TinkerMaterial, ItemStack> MAP_DIE_GEM = new HashMap<>();
+    protected static final Map<TinkerMaterial, ItemStack> MAP_DIE_SHOVELHEAD = new HashMap<>();
+    protected static final Map<TinkerMaterial, ItemStack> MAP_DIE_PICKAXEHEAD = new HashMap<>();
+    protected static final Map<TinkerMaterial, ItemStack> MAP_DIE_AXEHEAD = new HashMap<>();
+    protected static final Map<TinkerMaterial, ItemStack> MAP_DIE_HOEHEAD = new HashMap<>();
+    protected static final Map<TinkerMaterial, ItemStack> MAP_DIE_SWORDBLADE = new HashMap<>();
+    protected static final Map<TinkerMaterial, ItemStack> MAP_DIE_TOOLROD = new HashMap<>();
+    protected static final Map<TinkerMaterial, ItemStack> MAP_DIE_ARMOUR_PLATES_HELM = new HashMap<>();
+    protected static final Map<TinkerMaterial, ItemStack> MAP_DIE_ARMOUR_PLATES_CHEST = new HashMap<>();
+    protected static final Map<TinkerMaterial, ItemStack> MAP_DIE_ARMOUR_PLATES_LEGGINGS = new HashMap<>();
+    protected static final Map<TinkerMaterial, ItemStack> MAP_DIE_ARMOUR_PLATES_BOOTS = new HashMap<>();
+    protected static final Map<TinkerMaterial, ItemStack> MAP_DIE_ARMOUR_MAIL = new HashMap<>();
+    protected static final Map<TinkerMaterial, ItemStack> MAP_DIE_REPAIRKIT = new HashMap<>();
 
     // Casts (Items that cast metals and remain)
-    protected static final Map<ComponentMaterial, ItemStack> MAP_CAST_NUGGET = new HashMap<>();
-    protected static final Map<ComponentMaterial, ItemStack> MAP_CAST_INGOT = new HashMap<>();
-    protected static final Map<ComponentMaterial, ItemStack> MAP_CAST_BLOCK = new HashMap<>();
-    protected static final Map<ComponentMaterial, ItemStack> MAP_CAST_GEM = new HashMap<>();
-    protected static final Map<ComponentMaterial, ItemStack> MAP_CAST_SHOVELHEAD = new HashMap<>();
-    protected static final Map<ComponentMaterial, ItemStack> MAP_CAST_PICKAXEHEAD = new HashMap<>();
-    protected static final Map<ComponentMaterial, ItemStack> MAP_CAST_AXEHEAD = new HashMap<>();
-    protected static final Map<ComponentMaterial, ItemStack> MAP_CAST_HOEHEAD = new HashMap<>();
-    protected static final Map<ComponentMaterial, ItemStack> MAP_CAST_SWORDBLADE = new HashMap<>();
-    protected static final Map<ComponentMaterial, ItemStack> MAP_CAST_TOOLROD = new HashMap<>();
-    protected static final Map<ComponentMaterial, ItemStack> MAP_CAST_ARMOUR_PLATES_HELM = new HashMap<>();
-    protected static final Map<ComponentMaterial, ItemStack> MAP_CAST_ARMOUR_PLATES_CHEST = new HashMap<>();
-    protected static final Map<ComponentMaterial, ItemStack> MAP_CAST_ARMOUR_PLATES_LEGGINGS = new HashMap<>();
-    protected static final Map<ComponentMaterial, ItemStack> MAP_CAST_ARMOUR_PLATES_BOOTS = new HashMap<>();
-    protected static final Map<ComponentMaterial, ItemStack> MAP_CAST_ARMOUR_MAIL = new HashMap<>();
-    protected static final Map<ComponentMaterial, ItemStack> MAP_CAST_REPAIRKIT = new HashMap<>();
+    protected static final Map<TinkerMaterial, ItemStack> MAP_CAST_NUGGET = new HashMap<>();
+    protected static final Map<TinkerMaterial, ItemStack> MAP_CAST_INGOT = new HashMap<>();
+    protected static final Map<TinkerMaterial, ItemStack> MAP_CAST_BLOCK = new HashMap<>();
+    protected static final Map<TinkerMaterial, ItemStack> MAP_CAST_GEM = new HashMap<>();
+    protected static final Map<TinkerMaterial, ItemStack> MAP_CAST_SHOVELHEAD = new HashMap<>();
+    protected static final Map<TinkerMaterial, ItemStack> MAP_CAST_PICKAXEHEAD = new HashMap<>();
+    protected static final Map<TinkerMaterial, ItemStack> MAP_CAST_AXEHEAD = new HashMap<>();
+    protected static final Map<TinkerMaterial, ItemStack> MAP_CAST_HOEHEAD = new HashMap<>();
+    protected static final Map<TinkerMaterial, ItemStack> MAP_CAST_SWORDBLADE = new HashMap<>();
+    protected static final Map<TinkerMaterial, ItemStack> MAP_CAST_TOOLROD = new HashMap<>();
+    protected static final Map<TinkerMaterial, ItemStack> MAP_CAST_ARMOUR_PLATES_HELM = new HashMap<>();
+    protected static final Map<TinkerMaterial, ItemStack> MAP_CAST_ARMOUR_PLATES_CHEST = new HashMap<>();
+    protected static final Map<TinkerMaterial, ItemStack> MAP_CAST_ARMOUR_PLATES_LEGGINGS = new HashMap<>();
+    protected static final Map<TinkerMaterial, ItemStack> MAP_CAST_ARMOUR_PLATES_BOOTS = new HashMap<>();
+    protected static final Map<TinkerMaterial, ItemStack> MAP_CAST_ARMOUR_MAIL = new HashMap<>();
+    protected static final Map<TinkerMaterial, ItemStack> MAP_CAST_REPAIRKIT = new HashMap<>();
 
-    private static final Map<String, ComponentMaterial> MAP = new HashMap<>();
+    private static final Map<String, TinkerMaterial> MAP = new HashMap<>();
     private static final String VALIDATE_TRAIT_MESSAGE = "The material {0} does not have a compatible trait type of {1}";
 
     public final Map<String, MoltenResult> meltingRecipes = new HashMap<>();
     public final Map<String, CastResult> castingRecipes = new HashMap<>();
 
-    public CMManager() {
+    public TinkerMaterialManager() {
 
         // Adds all the Vanilla / Core slimefun ComponentMaterials into the map.
-        MAP.putAll(CMCore.getCmMap());
+        MAP.putAll(TinkersMaterialsCore.getCmMap());
 
         // Adds expansion ComponentMaterials if they are on the server
         if (SupportedPluginsManager.INFINITY_EXPANSION) {
-            MAP.putAll(CMInfinity.getCmMap());
+            MAP.putAll(TinkersMaterialsInfinity.getCmMap());
         }
         if (SupportedPluginsManager.SLIMEFUN_WARFARE) {
-            MAP.putAll(CMSlimefunWarfare.getCmMap());
+            MAP.putAll(TinkersMaterialsSlimefunWarfare.getCmMap());
         }
         if (SupportedPluginsManager.DYNATECH) {
-            MAP.putAll(CMDynaTech.getCmMap());
+            MAP.putAll(TinkersMaterialsDynatech.getCmMap());
         }
         if (SupportedPluginsManager.LITEXPANSION) {
-            MAP.putAll(CMLiteXpansion.getCmMap());
+            MAP.putAll(TinkersMaterialsLiteXpansion.getCmMap());
         }
 
         TraitManager traitManager = SlimeTinker.inst().getTraitManager();
 
         // Add melting recipes
-        for (Map.Entry<String, ComponentMaterial> entry : MAP.entrySet()) {
+        for (Map.Entry<String, TinkerMaterial> entry : MAP.entrySet()) {
 
-            ComponentMaterial cm = entry.getValue();
+            TinkerMaterial cm = entry.getValue();
             String id = entry.getKey();
 
             // Tools, armour and kits (referenced through dummy)
-            if (cm.isValidToolRod() && traitManager.isEnabled(id, IDStrings.ROD)) {
-                MAP_CAST_TOOLROD.put(cm, Parts.TOOL_ROD.getStack(id, IDStrings.ROD, null, cm.getColor()));
+            if (cm.isValidRod() && traitManager.isEnabled(id, Ids.ROD)) {
+                MAP_CAST_TOOLROD.put(cm, Parts.TOOL_ROD.getStack(id, Ids.ROD, null, cm.getColor()));
             }
-            if (cm.isValidLinks() && traitManager.isEnabled(id, IDStrings.LINKS)) {
-                MAP_CAST_ARMOUR_MAIL.put(cm, Parts.MAIL_LINKS.getStack(id, IDStrings.LINKS, null, cm.getColor()));
-            }
-
-            if (cm.isValidToolHead() && traitManager.isEnabled(id, IDStrings.HEAD)) {
-                MAP_CAST_SWORDBLADE.put(cm, Parts.SWORD_BLADE.getStack(id, IDStrings.HEAD, IDStrings.SWORD, cm.getColor()));
-                MAP_CAST_HOEHEAD.put(cm, Parts.HOE_HEAD.getStack(id, IDStrings.HEAD, IDStrings.HOE, cm.getColor()));
-                MAP_CAST_AXEHEAD.put(cm, Parts.AXE_HEAD.getStack(id, IDStrings.HEAD, IDStrings.AXE, cm.getColor()));
-                MAP_CAST_PICKAXEHEAD.put(cm, Parts.PICKAXE_HEAD.getStack(id, IDStrings.HEAD, IDStrings.PICKAXE, cm.getColor()));
-                MAP_CAST_SHOVELHEAD.put(cm, Parts.SHOVEL_HEAD.getStack(id, IDStrings.HEAD, IDStrings.SHOVEL, cm.getColor()));
+            if (cm.isValidLinks() && traitManager.isEnabled(id, Ids.LINKS)) {
+                MAP_CAST_ARMOUR_MAIL.put(cm, Parts.MAIL_LINKS.getStack(id, Ids.LINKS, null, cm.getColor()));
             }
 
-            if (cm.isValidPlates() && traitManager.isEnabled(id, IDStrings.PLATE)) {
-                MAP_CAST_ARMOUR_PLATES_HELM.put(cm, Parts.HELM_PLATE.getStack(id, IDStrings.PLATE, IDStrings.HELMET, cm.getColor()));
-                MAP_CAST_ARMOUR_PLATES_CHEST.put(cm, Parts.CHEST_PLATE.getStack(id, IDStrings.PLATE, IDStrings.CHESTPLATE, cm.getColor()));
-                MAP_CAST_ARMOUR_PLATES_LEGGINGS.put(cm, Parts.LEG_PLATE.getStack(id, IDStrings.PLATE, IDStrings.LEGGINGS, cm.getColor()));
-                MAP_CAST_ARMOUR_PLATES_BOOTS.put(cm, Parts.BOOT_PLATE.getStack(id, IDStrings.PLATE, IDStrings.BOOTS, cm.getColor()));
+            if (cm.isValidHead() && traitManager.isEnabled(id, Ids.HEAD)) {
+                MAP_CAST_SWORDBLADE.put(cm, Parts.SWORD_BLADE.getStack(id, Ids.HEAD, Ids.SWORD, cm.getColor()));
+                MAP_CAST_HOEHEAD.put(cm, Parts.HOE_HEAD.getStack(id, Ids.HEAD, Ids.HOE, cm.getColor()));
+                MAP_CAST_AXEHEAD.put(cm, Parts.AXE_HEAD.getStack(id, Ids.HEAD, Ids.AXE, cm.getColor()));
+                MAP_CAST_PICKAXEHEAD.put(cm, Parts.PICKAXE_HEAD.getStack(id, Ids.HEAD, Ids.PICKAXE, cm.getColor()));
+                MAP_CAST_SHOVELHEAD.put(cm, Parts.SHOVEL_HEAD.getStack(id, Ids.HEAD, Ids.SHOVEL, cm.getColor()));
             }
 
-            if (cm.isValidToolHead() || cm.isValidPlates()) {
-                MAP_CAST_REPAIRKIT.put(cm, Parts.REPAIR_KIT.getStack(id, IDStrings.REPAIR, cm.getColor())); // We use HEAD here are repair always goes by head material
+            if (cm.isValidPlates() && traitManager.isEnabled(id, Ids.PLATE)) {
+                MAP_CAST_ARMOUR_PLATES_HELM.put(cm, Parts.HELM_PLATE.getStack(id, Ids.PLATE, Ids.HELMET, cm.getColor()));
+                MAP_CAST_ARMOUR_PLATES_CHEST.put(cm, Parts.CHEST_PLATE.getStack(id, Ids.PLATE, Ids.CHESTPLATE, cm.getColor()));
+                MAP_CAST_ARMOUR_PLATES_LEGGINGS.put(cm, Parts.LEG_PLATE.getStack(id, Ids.PLATE, Ids.LEGGINGS, cm.getColor()));
+                MAP_CAST_ARMOUR_PLATES_BOOTS.put(cm, Parts.BOOT_PLATE.getStack(id, Ids.PLATE, Ids.BOOTS, cm.getColor()));
+            }
+
+            if (cm.isValidHead() || cm.isValidPlates()) {
+                MAP_CAST_REPAIRKIT.put(cm, Parts.REPAIR_KIT.getStack(id, Ids.REPAIR, cm.getColor())); // We use HEAD here are repair always goes by head material
             }
 
             // Gems
@@ -206,23 +206,23 @@ public class CMManager {
             }
 
             // Helm
-            if (cm.getFormHelm() != null) {
-                meltingRecipes.put(cm.getFormHelm(), new MoltenResult(cm, AMOUNT_HELM));
+            if (cm.getFormHelmet() != null) {
+                meltingRecipes.put(cm.getFormHelmet(), new MoltenResult(cm, AMOUNT_HELM));
             }
 
             // Chest
-            if (cm.getFormChest() != null) {
-                meltingRecipes.put(cm.getFormChest(), new MoltenResult(cm, AMOUNT_CHEST));
+            if (cm.getFormChestplate() != null) {
+                meltingRecipes.put(cm.getFormChestplate(), new MoltenResult(cm, AMOUNT_CHEST));
             }
 
             // Leg
-            if (cm.getFormLeg() != null) {
-                meltingRecipes.put(cm.getFormLeg(), new MoltenResult(cm, AMOUNT_LEG));
+            if (cm.getFormLeggings() != null) {
+                meltingRecipes.put(cm.getFormLeggings(), new MoltenResult(cm, AMOUNT_LEG));
             }
 
             // Boot
-            if (cm.getFormBoot() != null) {
-                meltingRecipes.put(cm.getFormBoot(), new MoltenResult(cm, AMOUNT_BOOT));
+            if (cm.getFormBoots() != null) {
+                meltingRecipes.put(cm.getFormBoots(), new MoltenResult(cm, AMOUNT_BOOT));
             }
 
         }
@@ -233,7 +233,7 @@ public class CMManager {
 
     }
 
-    public static ComponentMaterial getById(String id) {
+    public static TinkerMaterial getById(String id) {
         return MAP.get(id);
     }
 
@@ -242,33 +242,32 @@ public class CMManager {
     }
 
     public static String getTraitName(String id, TraitPartType partType) {
-        CMTraits cmTraits = MAP.get(id).getCmTraits();
-        assert cmTraits != null;
+        TinkerMaterial tinkerMaterial = MAP.get(id);
         if (partType == TraitPartType.HEAD) {
-            Validate.notNull(cmTraits.getTraitHead(), MessageFormat.format(VALIDATE_TRAIT_MESSAGE, id, partType));
-            return cmTraits.getTraitHead().getTraitName();
+            Validate.notNull(tinkerMaterial.getTraitToolHead(), MessageFormat.format(VALIDATE_TRAIT_MESSAGE, id, partType));
+            return tinkerMaterial.getTraitToolHead().getTraitName();
         } else if (partType == TraitPartType.BINDER) {
-            Validate.notNull(cmTraits.getTraitBind(), MessageFormat.format(VALIDATE_TRAIT_MESSAGE, id, partType));
-            return cmTraits.getTraitBind().getTraitName();
+            Validate.notNull(tinkerMaterial.getTraitToolBinding(), MessageFormat.format(VALIDATE_TRAIT_MESSAGE, id, partType));
+            return tinkerMaterial.getTraitToolBinding().getTraitName();
         } else if (partType == TraitPartType.ROD) {
-            Validate.notNull(cmTraits.getTraitRod(), MessageFormat.format(VALIDATE_TRAIT_MESSAGE, id, partType));
-            return cmTraits.getTraitRod().getTraitName();
+            Validate.notNull(tinkerMaterial.getTraitToolRod(), MessageFormat.format(VALIDATE_TRAIT_MESSAGE, id, partType));
+            return tinkerMaterial.getTraitToolRod().getTraitName();
         } else if (partType == TraitPartType.PLATE) {
-            Validate.notNull(cmTraits.getTraitPlates(), MessageFormat.format(VALIDATE_TRAIT_MESSAGE, id, partType));
-            return cmTraits.getTraitPlates().getTraitName();
+            Validate.notNull(tinkerMaterial.getTraitArmorPlates(), MessageFormat.format(VALIDATE_TRAIT_MESSAGE, id, partType));
+            return tinkerMaterial.getTraitArmorPlates().getTraitName();
         } else if (partType == TraitPartType.GAMBESON) {
-            Validate.notNull(cmTraits.getTraitGambeson(), MessageFormat.format(VALIDATE_TRAIT_MESSAGE, id, partType));
-            return cmTraits.getTraitGambeson().getTraitName();
+            Validate.notNull(tinkerMaterial.getTraitArmorGambeson(), MessageFormat.format(VALIDATE_TRAIT_MESSAGE, id, partType));
+            return tinkerMaterial.getTraitArmorGambeson().getTraitName();
         } else if (partType == TraitPartType.LINKS) {
-            Validate.notNull(cmTraits.getTraitLinks(), MessageFormat.format(VALIDATE_TRAIT_MESSAGE, id, partType));
-            return cmTraits.getTraitLinks().getTraitName();
+            Validate.notNull(tinkerMaterial.getTraitArmorLinks(), MessageFormat.format(VALIDATE_TRAIT_MESSAGE, id, partType));
+            return tinkerMaterial.getTraitArmorLinks().getTraitName();
         }
         return "Error";
     }
 
-    public static List<CMAlloy> getAlloys() {
-        List<CMAlloy> list = new ArrayList<>();
-        for (ComponentMaterial cm : MAP.values()) {
+    public static List<Alloy> getAlloys() {
+        List<Alloy> list = new ArrayList<>();
+        for (TinkerMaterial cm : MAP.values()) {
             if (cm.getCmAlloy() != null) {
                 list.add(cm.getCmAlloy());
             }
@@ -277,22 +276,22 @@ public class CMManager {
     }
 
     private void fillDieMetals() {
-        MAP_DIE_NUGGET.put(CMManager.getById(IDStrings.GOLD), Casts.CAST_NUGGET);
-        MAP_DIE_INGOT.put(CMManager.getById(IDStrings.GOLD), Casts.CAST_INGOT);
-        MAP_DIE_BLOCK.put(CMManager.getById(IDStrings.GOLD), Casts.CAST_BLOCK);
-        MAP_DIE_GEM.put(CMManager.getById(IDStrings.GOLD), Casts.CAST_GEM);
-        MAP_DIE_REPAIRKIT.put(CMManager.getById(IDStrings.GOLD), Casts.CAST_REPAIRKIT);
-        MAP_DIE_SHOVELHEAD.put(CMManager.getById(IDStrings.BRASS), Casts.CAST_SHOVELHEAD);
-        MAP_DIE_PICKAXEHEAD.put(CMManager.getById(IDStrings.BRASS), Casts.CAST_PICKAXEHEAD);
-        MAP_DIE_AXEHEAD.put(CMManager.getById(IDStrings.BRASS), Casts.CAST_AXEHEAD);
-        MAP_DIE_HOEHEAD.put(CMManager.getById(IDStrings.BRASS), Casts.CAST_HOEHEAD);
-        MAP_DIE_SWORDBLADE.put(CMManager.getById(IDStrings.BRASS), Casts.CAST_SWORDBLADE);
-        MAP_DIE_TOOLROD.put(CMManager.getById(IDStrings.BRASS), Casts.CAST_TOOLROD);
-        MAP_DIE_ARMOUR_PLATES_HELM.put(CMManager.getById(IDStrings.BRASS), Casts.CAST_HELM_PLATE);
-        MAP_DIE_ARMOUR_PLATES_CHEST.put(CMManager.getById(IDStrings.BRASS), Casts.CAST_CHEST_PLATE);
-        MAP_DIE_ARMOUR_PLATES_LEGGINGS.put(CMManager.getById(IDStrings.BRASS), Casts.CAST_LEG_PLATE);
-        MAP_DIE_ARMOUR_PLATES_BOOTS.put(CMManager.getById(IDStrings.BRASS), Casts.CAST_BOOT_PLATE);
-        MAP_DIE_ARMOUR_MAIL.put(CMManager.getById(IDStrings.BRASS), Casts.CAST_MAIL_LINK);
+        MAP_DIE_NUGGET.put(TinkerMaterialManager.getById(Ids.GOLD), Casts.CAST_NUGGET);
+        MAP_DIE_INGOT.put(TinkerMaterialManager.getById(Ids.GOLD), Casts.CAST_INGOT);
+        MAP_DIE_BLOCK.put(TinkerMaterialManager.getById(Ids.GOLD), Casts.CAST_BLOCK);
+        MAP_DIE_GEM.put(TinkerMaterialManager.getById(Ids.GOLD), Casts.CAST_GEM);
+        MAP_DIE_REPAIRKIT.put(TinkerMaterialManager.getById(Ids.GOLD), Casts.CAST_REPAIRKIT);
+        MAP_DIE_SHOVELHEAD.put(TinkerMaterialManager.getById(Ids.BRASS), Casts.CAST_SHOVELHEAD);
+        MAP_DIE_PICKAXEHEAD.put(TinkerMaterialManager.getById(Ids.BRASS), Casts.CAST_PICKAXEHEAD);
+        MAP_DIE_AXEHEAD.put(TinkerMaterialManager.getById(Ids.BRASS), Casts.CAST_AXEHEAD);
+        MAP_DIE_HOEHEAD.put(TinkerMaterialManager.getById(Ids.BRASS), Casts.CAST_HOEHEAD);
+        MAP_DIE_SWORDBLADE.put(TinkerMaterialManager.getById(Ids.BRASS), Casts.CAST_SWORDBLADE);
+        MAP_DIE_TOOLROD.put(TinkerMaterialManager.getById(Ids.BRASS), Casts.CAST_TOOLROD);
+        MAP_DIE_ARMOUR_PLATES_HELM.put(TinkerMaterialManager.getById(Ids.BRASS), Casts.CAST_HELM_PLATE);
+        MAP_DIE_ARMOUR_PLATES_CHEST.put(TinkerMaterialManager.getById(Ids.BRASS), Casts.CAST_CHEST_PLATE);
+        MAP_DIE_ARMOUR_PLATES_LEGGINGS.put(TinkerMaterialManager.getById(Ids.BRASS), Casts.CAST_LEG_PLATE);
+        MAP_DIE_ARMOUR_PLATES_BOOTS.put(TinkerMaterialManager.getById(Ids.BRASS), Casts.CAST_BOOT_PLATE);
+        MAP_DIE_ARMOUR_MAIL.put(TinkerMaterialManager.getById(Ids.BRASS), Casts.CAST_MAIL_LINK);
     }
 
     private void fillCastingDies() {
@@ -333,7 +332,7 @@ public class CMManager {
         castingRecipes.put(Casts.CAST_MAIL_LINK.getItemId(), new CastResult(Casts.CAST_MAIL_LINK.getItemId(), AMOUNT_ARM_LINKS, MAP_CAST_ARMOUR_MAIL, false));
     }
 
-    public static Map<String, ComponentMaterial> getMap() {
+    public static Map<String, TinkerMaterial> getMap() {
         return MAP;
     }
 }

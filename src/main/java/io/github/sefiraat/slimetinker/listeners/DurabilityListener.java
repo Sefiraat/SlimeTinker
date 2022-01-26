@@ -1,11 +1,12 @@
 package io.github.sefiraat.slimetinker.listeners;
 
+import io.github.mooy1.infinitylib.common.StackUtils;
 import io.github.sefiraat.slimetinker.events.friend.EventFriend;
 import io.github.sefiraat.slimetinker.events.friend.TraitEventType;
 import io.github.sefiraat.slimetinker.items.Materials;
 import io.github.sefiraat.slimetinker.modifiers.Modifications;
 import io.github.sefiraat.slimetinker.utils.GeneralUtils;
-import io.github.sefiraat.slimetinker.utils.IDStrings;
+import io.github.sefiraat.slimetinker.utils.Ids;
 import io.github.sefiraat.slimetinker.utils.ItemUtils;
 import org.apache.commons.lang.Validate;
 import org.bukkit.event.EventHandler;
@@ -40,16 +41,16 @@ public class DurabilityListener implements Listener {
                 checkTool(friend);
             } else if (armourTypeName != null) {
                 switch (armourTypeName) {
-                    case IDStrings.HELMET:
+                    case Ids.HELMET:
                         checkHelm(friend);
                         break;
-                    case IDStrings.CHESTPLATE:
+                    case Ids.CHESTPLATE:
                         checkChestplate(friend);
                         break;
-                    case IDStrings.LEGGINGS:
+                    case Ids.LEGGINGS:
                         checkLeggings(friend);
                         break;
-                    case IDStrings.BOOTS:
+                    case Ids.BOOTS:
                         checkBoots(friend);
                         break;
                     default:
@@ -103,8 +104,8 @@ public class DurabilityListener implements Listener {
     private void modChecks(ItemStack damagedItem, PlayerItemDamageEvent event) {
         Map<String, Integer> modLevels = Modifications.getAllModLevels(damagedItem);
 
-        if (modLevels.containsKey(ItemUtils.getIdOrType(Materials.MOD_PLATE))) { // PLATE
-            modCheckPlate(damagedItem, modLevels.get(ItemUtils.getIdOrType(Materials.MOD_PLATE)), event);
+        if (modLevels.containsKey(StackUtils.getIdOrType(Materials.MOD_PLATE))) { // PLATE
+            modCheckPlate(damagedItem, modLevels.get(StackUtils.getIdOrType(Materials.MOD_PLATE)), event);
         }
     }
 

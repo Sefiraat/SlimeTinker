@@ -1,6 +1,6 @@
 package io.github.sefiraat.slimetinker.items.templates;
 
-import io.github.sefiraat.slimetinker.utils.IDStrings;
+import io.github.sefiraat.slimetinker.utils.Ids;
 import io.github.sefiraat.slimetinker.utils.Keys;
 import io.github.sefiraat.slimetinker.utils.ThemeUtils;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
@@ -33,7 +33,7 @@ public class RepairkitTemplate extends UnplaceableBlock {
         ItemMeta im = itemStack.getItemMeta();
         Validate.notNull(im, "Meta is null, wrong wrong wrong.");
         String value = PersistentDataAPI.getString(im, key);
-        return value != null && value.equals(IDStrings.REPAIR);
+        return value != null && value.equals(Ids.REPAIR);
     }
 
     public String getName(String material) {

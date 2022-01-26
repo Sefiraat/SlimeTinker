@@ -1,8 +1,8 @@
 package io.github.sefiraat.slimetinker.items.templates;
 
-import io.github.sefiraat.slimetinker.items.componentmaterials.CMManager;
+import io.github.sefiraat.slimetinker.items.tinkermaterials.TinkerMaterialManager;
 import io.github.sefiraat.slimetinker.utils.Experience;
-import io.github.sefiraat.slimetinker.utils.IDStrings;
+import io.github.sefiraat.slimetinker.utils.Ids;
 import io.github.sefiraat.slimetinker.utils.ItemUtils;
 import io.github.sefiraat.slimetinker.utils.Keys;
 import io.github.sefiraat.slimetinker.utils.ThemeUtils;
@@ -25,22 +25,22 @@ public class ArmourTemplate extends UnplaceableBlock {
 
     public String getName(ArmourDefinition armourDefinition) {
         return
-            CMManager.getById(armourDefinition.getPlateMaterial()).getColor() + ThemeUtils.toTitleCase(armourDefinition.getPlateMaterial()) + "-" +
-                CMManager.getById(armourDefinition.getGambesonMaterial()).getColor() + ThemeUtils.toTitleCase(armourDefinition.getGambesonMaterial()) + "-" +
-                CMManager.getById(armourDefinition.getLinksMaterial()).getColor() + ThemeUtils.toTitleCase(armourDefinition.getLinksMaterial()) + " " +
+            TinkerMaterialManager.getById(armourDefinition.getPlateMaterial()).getColor() + ThemeUtils.toTitleCase(armourDefinition.getPlateMaterial()) + "-" +
+                TinkerMaterialManager.getById(armourDefinition.getGambesonMaterial()).getColor() + ThemeUtils.toTitleCase(armourDefinition.getGambesonMaterial()) + "-" +
+                TinkerMaterialManager.getById(armourDefinition.getLinksMaterial()).getColor() + ThemeUtils.toTitleCase(armourDefinition.getLinksMaterial()) + " " +
                 ChatColor.WHITE + ThemeUtils.toTitleCase(armourDefinition.getPartType());
 
     }
 
     public Material getMaterial(ArmourDefinition armourDefinition) {
         switch (armourDefinition.getPartType()) {
-            case IDStrings.HELMET:
+            case Ids.HELMET:
                 return Material.LEATHER_HELMET;
-            case IDStrings.CHESTPLATE:
+            case Ids.CHESTPLATE:
                 return Material.LEATHER_CHESTPLATE;
-            case IDStrings.LEGGINGS:
+            case Ids.LEGGINGS:
                 return Material.LEATHER_LEGGINGS;
-            case IDStrings.BOOTS:
+            case Ids.BOOTS:
                 return Material.LEATHER_BOOTS;
             default:
                 throw new IllegalStateException("Unexpected value: " + armourDefinition.getClassType());

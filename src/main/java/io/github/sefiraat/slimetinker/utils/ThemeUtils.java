@@ -56,7 +56,7 @@ public final class ThemeUtils {
     public static final String LORE_TYPE_BASE = ITEM_TYPEDESC + "Base Resource";
     public static final String LORE_TYPE_CHEST = ITEM_TYPEDESC + "Chest";
     public static final String LORE_MOLTEN_METAL = ITEM_TYPEDESC + "Molten Metal";
-    public static final String LORE_LIQUID = ITEM_TYPEDESC + "ComponentMaterial";
+    public static final String LORE_LIQUID = ITEM_TYPEDESC + "TinkerMaterial";
     public static final String LORE_CAST = ITEM_TYPEDESC + "Cast";
     public static final String LORE_PART = ITEM_TYPEDESC + "Part";
     public static final String LORE_TOOL = ITEM_TYPEDESC + "Tinker's Tool";

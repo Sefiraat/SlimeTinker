@@ -4,7 +4,7 @@ import io.github.mooy1.infinitylib.machines.TickingMenuBlock;
 import io.github.sefiraat.slimetinker.items.Guide;
 import io.github.sefiraat.slimetinker.items.templates.ToolDefinition;
 import io.github.sefiraat.slimetinker.utils.GUIItems;
-import io.github.sefiraat.slimetinker.utils.IDStrings;
+import io.github.sefiraat.slimetinker.utils.Ids;
 import io.github.sefiraat.slimetinker.utils.ItemUtils;
 import io.github.sefiraat.slimetinker.utils.Keys;
 import io.github.sefiraat.slimetinker.utils.ThemeUtils;
@@ -58,7 +58,7 @@ public class ToolTable extends TickingMenuBlock {
                 clearPreview(blockMenu);
                 return;
             }
-            if (!validateClass(head, IDStrings.HEAD) || !validateBinder(binding) || !validateClass(rod, IDStrings.ROD)) { // One or more items are not the correct part
+            if (!validateClass(head, Ids.HEAD) || !validateBinder(binding) || !validateClass(rod, Ids.ROD)) { // One or more items are not the correct part
                 clearPreview(blockMenu);
                 return;
             }
@@ -89,25 +89,25 @@ public class ToolTable extends TickingMenuBlock {
         );
 
         if (
-            toolDefinition.getHeadMaterial().equals(IDStrings.REINFORCED) ||
-                toolDefinition.getRodMaterial().equals(IDStrings.HARD) ||
-                toolDefinition.getHeadMaterial().equals(IDStrings.SINGINFINITY) ||
-                toolDefinition.getHeadMaterial().equals(IDStrings.OSMIUM)
+            toolDefinition.getHeadMaterial().equals(Ids.REINFORCED_ALLOY) ||
+                toolDefinition.getRodMaterial().equals(Ids.HARDENED_METAL) ||
+                toolDefinition.getHeadMaterial().equals(Ids.INFINITY_SINGULARITY) ||
+                toolDefinition.getHeadMaterial().equals(Ids.OSMIUM)
         ) { // Reinforced Head/Hard Rod tools are explosive
             switch (toolDefinition.getPartType()) {
-                case IDStrings.SHOVEL:
+                case Ids.SHOVEL:
                     tool = Guide.EXP_SHOVEL.getStack(toolDefinition);
                     break;
-                case IDStrings.PICKAXE:
+                case Ids.PICKAXE:
                     tool = Guide.EXP_PICKAXE.getStack(toolDefinition);
                     break;
-                case IDStrings.AXE:
+                case Ids.AXE:
                     tool = Guide.EXP_AXE.getStack(toolDefinition);
                     break;
-                case IDStrings.HOE:
+                case Ids.HOE:
                     tool = Guide.EXP_HOE.getStack(toolDefinition);
                     break;
-                case IDStrings.SWORD:
+                case Ids.SWORD:
                     tool = Guide.EXP_SWORD.getStack(toolDefinition);
                     break;
                 default:
@@ -115,19 +115,19 @@ public class ToolTable extends TickingMenuBlock {
             }
         } else {
             switch (toolDefinition.getPartType()) {
-                case IDStrings.SHOVEL:
+                case Ids.SHOVEL:
                     tool = Guide.SHOVEL.getStack(toolDefinition);
                     break;
-                case IDStrings.PICKAXE:
+                case Ids.PICKAXE:
                     tool = Guide.PICKAXE.getStack(toolDefinition);
                     break;
-                case IDStrings.AXE:
+                case Ids.AXE:
                     tool = Guide.AXE.getStack(toolDefinition);
                     break;
-                case IDStrings.HOE:
+                case Ids.HOE:
                     tool = Guide.HOE.getStack(toolDefinition);
                     break;
-                case IDStrings.SWORD:
+                case Ids.SWORD:
                     tool = Guide.SWORD.getStack(toolDefinition);
                     break;
                 default:
@@ -171,7 +171,7 @@ public class ToolTable extends TickingMenuBlock {
             player.sendMessage(ThemeUtils.ERROR + "Not all items present");
             return;
         }
-        if (!validateClass(head, IDStrings.HEAD) || !validateBinder(binding) || !validateClass(rod, IDStrings.ROD)) { // One or more items are not the correct part
+        if (!validateClass(head, Ids.HEAD) || !validateBinder(binding) || !validateClass(rod, Ids.ROD)) { // One or more items are not the correct part
             player.sendMessage(ThemeUtils.WARNING + "One or more items are either not Tinker's parts or in the wrong slot?");
             return;
         }

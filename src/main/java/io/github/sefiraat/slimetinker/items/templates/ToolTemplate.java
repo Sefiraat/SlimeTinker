@@ -1,8 +1,8 @@
 package io.github.sefiraat.slimetinker.items.templates;
 
-import io.github.sefiraat.slimetinker.items.componentmaterials.CMManager;
+import io.github.sefiraat.slimetinker.items.tinkermaterials.TinkerMaterialManager;
 import io.github.sefiraat.slimetinker.utils.Experience;
-import io.github.sefiraat.slimetinker.utils.IDStrings;
+import io.github.sefiraat.slimetinker.utils.Ids;
 import io.github.sefiraat.slimetinker.utils.ItemUtils;
 import io.github.sefiraat.slimetinker.utils.Keys;
 import io.github.sefiraat.slimetinker.utils.ThemeUtils;
@@ -26,24 +26,24 @@ public class ToolTemplate extends SlimefunItem implements NotPlaceable {
 
     public String getName(ToolDefinition toolDefinition) {
         return
-            CMManager.getById(toolDefinition.getHeadMaterial()).getColor() + ThemeUtils.toTitleCase(toolDefinition.getHeadMaterial()) + "-" +
-                CMManager.getById(toolDefinition.getBinderMaterial()).getColor() + ThemeUtils.toTitleCase(toolDefinition.getBinderMaterial()) + "-" +
-                CMManager.getById(toolDefinition.getRodMaterial()).getColor() + ThemeUtils.toTitleCase(toolDefinition.getRodMaterial()) + " " +
+            TinkerMaterialManager.getById(toolDefinition.getHeadMaterial()).getColor() + ThemeUtils.toTitleCase(toolDefinition.getHeadMaterial()) + "-" +
+                TinkerMaterialManager.getById(toolDefinition.getBinderMaterial()).getColor() + ThemeUtils.toTitleCase(toolDefinition.getBinderMaterial()) + "-" +
+                TinkerMaterialManager.getById(toolDefinition.getRodMaterial()).getColor() + ThemeUtils.toTitleCase(toolDefinition.getRodMaterial()) + " " +
                 ChatColor.WHITE + ThemeUtils.toTitleCase(toolDefinition.getPartType());
 
     }
 
     public Material getMaterial(ToolDefinition toolDefinition) {
         switch (toolDefinition.getPartType()) {
-            case IDStrings.SHOVEL:
+            case Ids.SHOVEL:
                 return Material.STONE_SHOVEL;
-            case IDStrings.PICKAXE:
+            case Ids.PICKAXE:
                 return Material.STONE_PICKAXE;
-            case IDStrings.AXE:
+            case Ids.AXE:
                 return Material.STONE_AXE;
-            case IDStrings.HOE:
+            case Ids.HOE:
                 return Material.STONE_HOE;
-            case IDStrings.SWORD:
+            case Ids.SWORD:
                 return Material.STONE_SWORD;
             default:
                 throw new IllegalStateException("Unexpected value: " + toolDefinition.getClassType());

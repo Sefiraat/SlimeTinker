@@ -1,11 +1,12 @@
 package io.github.sefiraat.slimetinker.items.workstations.smeltery;
 
+import io.github.mooy1.infinitylib.common.StackUtils;
 import io.github.sefiraat.slimetinker.SlimeTinker;
-import io.github.sefiraat.slimetinker.items.componentmaterials.CMManager;
-import io.github.sefiraat.slimetinker.items.componentmaterials.ComponentMaterial;
-import io.github.sefiraat.slimetinker.items.componentmaterials.cmelements.CMAlloy;
-import io.github.sefiraat.slimetinker.items.componentmaterials.cmrecipes.CastResult;
-import io.github.sefiraat.slimetinker.items.componentmaterials.cmrecipes.MoltenResult;
+import io.github.sefiraat.slimetinker.items.tinkermaterials.TinkerMaterial;
+import io.github.sefiraat.slimetinker.items.tinkermaterials.TinkerMaterialManager;
+import io.github.sefiraat.slimetinker.items.tinkermaterials.elements.Alloy;
+import io.github.sefiraat.slimetinker.items.tinkermaterials.recipes.CastResult;
+import io.github.sefiraat.slimetinker.items.tinkermaterials.recipes.MoltenResult;
 import io.github.sefiraat.slimetinker.utils.GUIItems;
 import io.github.sefiraat.slimetinker.utils.ItemUtils;
 import io.github.sefiraat.slimetinker.utils.ThemeUtils;
@@ -208,7 +209,7 @@ public final class TinkersSmelteryCache extends AbstractCache {
 
     @SuppressWarnings("SameReturnValue")
     private void clickAlloy() {
-        for (CMAlloy alloy : CMManager.getAlloys()) {
+        for (Alloy alloy : TinkerMaterialManager.getAlloys()) {
             if (!alloy.getAlloyMap().keySet().equals(tankContent.keySet())) {
                 continue;
             }
@@ -237,7 +238,7 @@ public final class TinkersSmelteryCache extends AbstractCache {
         ItemStack inputItem = blockMenu.getItemInSlot(TinkersSmeltery.CAST_SLOT);
 
         // Cast item is null or not a cast
-        if (inputItem == null || !SlimeTinker.inst().getCmManager().castingRecipes.containsKey(ItemUtils.getIdOrType(inputItem))) {
+        if (inputItem == null || !SlimeTinker.inst().getCmManager().castingRecipes.containsKey(StackUtils.getIdOrType(inputItem))) {
             player.sendMessage(ThemeUtils.WARNING + "Please input a valid cast before trying to pour metals.");
             return;
         }
@@ -251,16 +252,16 @@ public final class TinkersSmelteryCache extends AbstractCache {
         }
 
         String metalID = first.get();
-        ComponentMaterial componentMaterial = CMManager.getById(metalID);
-        CastResult result = SlimeTinker.inst().getCmManager().castingRecipes.get(ItemUtils.getIdOrType(inputItem));
+        TinkerMaterial tinkerMaterial = TinkerMaterialManager.getById(metalID);
+        CastResult result = SlimeTinker.inst().getCmManager().castingRecipes.get(StackUtils.getIdOrType(inputItem));
 
         // Cast valid, but this cast and metal combination doesn't work
-        if (!result.getOutputs().containsKey(componentMaterial)) {
+        if (!result.getOutputs().containsKey(tinkerMaterial)) {
             player.sendMessage(ThemeUtils.WARNING + "The selected metal cannot be shaped into the selected cast.");
             return;
         }
 
-        ItemStack outputItem = result.getOutputs().get(componentMaterial).clone();
+        ItemStack outputItem = result.getOutputs().get(tinkerMaterial).clone();
         int metalAmount = result.getAmount();
 
         // Does not have enough metal to cats this specific item

@@ -2,7 +2,7 @@ package io.github.sefiraat.slimetinker.items.workstations.swappingstation;
 
 import io.github.mooy1.infinitylib.machines.MenuBlock;
 import io.github.sefiraat.slimetinker.utils.GUIItems;
-import io.github.sefiraat.slimetinker.utils.IDStrings;
+import io.github.sefiraat.slimetinker.utils.Ids;
 import io.github.sefiraat.slimetinker.utils.ItemUtils;
 import io.github.sefiraat.slimetinker.utils.Keys;
 import io.github.sefiraat.slimetinker.utils.ThemeUtils;
@@ -24,7 +24,6 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import javax.annotation.Nonnull;
-import javax.annotation.ParametersAreNonnullByDefault;
 
 public class SwappingStation extends MenuBlock {
 
@@ -82,7 +81,7 @@ public class SwappingStation extends MenuBlock {
 
     private void swapTool(BlockMenu blockMenu, Player player, ItemStack item, String partClass, String partType, String partMaterial) {
         // The part is a head part but the type is either null or not matching the tool (Axe head part for shovel etc.)
-        if (partClass.equals(IDStrings.HEAD) && (partType != null && !partType.equals(ItemUtils.getToolTypeName(item)))) {
+        if (partClass.equals(Ids.HEAD) && (partType != null && !partType.equals(ItemUtils.getToolTypeName(item)))) {
             player.sendMessage(ThemeUtils.WARNING + "This head type cannot be swapped onto this tool.");
             return;
         }
@@ -93,13 +92,13 @@ public class SwappingStation extends MenuBlock {
         checkAndChangeExplosiveness(newTool, newToolMeta, partMaterial, partClass);
 
         switch (partClass) {
-            case IDStrings.HEAD:
+            case Ids.HEAD:
                 PersistentDataAPI.setString(newToolMeta, Keys.TOOL_INFO_HEAD_MATERIAL, partMaterial);
                 break;
-            case IDStrings.BINDING:
+            case Ids.BINDING:
                 PersistentDataAPI.setString(newToolMeta, Keys.TOOL_INFO_BINDER_MATERIAL, partMaterial);
                 break;
-            case IDStrings.ROD:
+            case Ids.ROD:
                 PersistentDataAPI.setString(newToolMeta, Keys.TOOL_INFO_ROD_MATERIAL, partMaterial);
                 break;
             default:
@@ -116,24 +115,24 @@ public class SwappingStation extends MenuBlock {
         blockMenu.getItemInSlot(INPUT_PART).setAmount(blockMenu.getItemInSlot(INPUT_PART).getAmount() - 1);
     }
 
-    private boolean swapArmour(BlockMenu blockMenu, Player player, ItemStack item, String partClass, String partType, String partMaterial) {
+    private void swapArmour(BlockMenu blockMenu, Player player, ItemStack item, String partClass, String partType, String partMaterial) {
         // The part is a plate part but the type is either null or not matching the armour (Helm plates for boots etc..)
-        if (partClass.equals(IDStrings.PLATE) && (partType != null && !partType.equals(ItemUtils.getArmourTypeName(item)))) {
+        if (partClass.equals(Ids.PLATE) && (partType != null && !partType.equals(ItemUtils.getArmourTypeName(item)))) {
             player.sendMessage(ThemeUtils.WARNING + "This plate type cannot be swapped onto this armour.");
-            return false;
+            return;
         }
 
         ItemStack newArmour = item.clone();
         ItemMeta newArmourMeta = newArmour.getItemMeta();
 
         switch (partClass) {
-            case IDStrings.PLATE:
+            case Ids.PLATE:
                 PersistentDataAPI.setString(newArmourMeta, Keys.ARMOUR_INFO_PLATE_MATERIAL, partMaterial);
                 break;
-            case IDStrings.GAMBESON:
+            case Ids.GAMBESON:
                 PersistentDataAPI.setString(newArmourMeta, Keys.ARMOUR_INFO_GAMBESON_MATERIAL, partMaterial);
                 break;
-            case IDStrings.LINKS:
+            case Ids.LINKS:
                 PersistentDataAPI.setString(newArmourMeta, Keys.ARMOUR_INFO_LINKS_MATERIAL, partMaterial);
                 break;
             default:
@@ -149,7 +148,7 @@ public class SwappingStation extends MenuBlock {
         blockMenu.getItemInSlot(INPUT_ITEM).setAmount(blockMenu.getItemInSlot(INPUT_ITEM).getAmount() - 1);
         blockMenu.getItemInSlot(INPUT_PART).setAmount(blockMenu.getItemInSlot(INPUT_PART).getAmount() - 1);
 
-        return false;
+        return;
 
     }
 
@@ -211,10 +210,10 @@ public class SwappingStation extends MenuBlock {
 
     private boolean isExplosivePart(String material, String part) {
         return (
-            (material.equals(IDStrings.REINFORCED) && part.equals(IDStrings.HEAD)) ||
-                (material.equals(IDStrings.HARD) && part.equals(IDStrings.ROD)) ||
-                (material.equals(IDStrings.SINGINFINITY) && part.equals(IDStrings.HEAD)) ||
-                (material.equals(IDStrings.OSMIUM) && part.equals(IDStrings.HEAD))
+            (material.equals(Ids.REINFORCED_ALLOY) && part.equals(Ids.HEAD)) ||
+                (material.equals(Ids.HARDENED_METAL) && part.equals(Ids.ROD)) ||
+                (material.equals(Ids.INFINITY_SINGULARITY) && part.equals(Ids.HEAD)) ||
+                (material.equals(Ids.OSMIUM) && part.equals(Ids.HEAD))
         );
     }
 

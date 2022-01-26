@@ -9,7 +9,7 @@ import io.github.sefiraat.slimetinker.items.Materials;
 import io.github.sefiraat.slimetinker.items.Mods;
 import io.github.sefiraat.slimetinker.items.Parts;
 import io.github.sefiraat.slimetinker.items.Workstations;
-import io.github.sefiraat.slimetinker.items.componentmaterials.CMManager;
+import io.github.sefiraat.slimetinker.items.tinkermaterials.TinkerMaterialManager;
 import io.github.sefiraat.slimetinker.items.workstations.workbench.Workbench;
 import io.github.sefiraat.slimetinker.listeners.ListenerManager;
 import io.github.sefiraat.slimetinker.managers.DispatchManager;
@@ -23,20 +23,10 @@ public class SlimeTinker extends AbstractAddon {
 
     private static SlimeTinker instance;
 
-
     private RunnableManager runnableManager;
     private ListenerManager listenerManager;
-    private CMManager cmManager;
+    private TinkerMaterialManager tinkerMaterialManager;
     private DispatchManager dispatchManager;
-
-    public Workbench getWorkbench() {
-        return workbench;
-    }
-
-    public void setWorkbench(Workbench workbench) {
-        this.workbench = workbench;
-    }
-
     private Workbench workbench;
     private TraitManager traitManager;
 
@@ -69,7 +59,7 @@ public class SlimeTinker extends AbstractAddon {
         Workstations.set(this);
 
         traitManager = new TraitManager();
-        cmManager = new CMManager();
+        tinkerMaterialManager = new TinkerMaterialManager();
         runnableManager = new RunnableManager();
         dispatchManager = new DispatchManager();
 
@@ -95,12 +85,20 @@ public class SlimeTinker extends AbstractAddon {
         return listenerManager;
     }
 
-    public CMManager getCmManager() {
-        return cmManager;
+    public TinkerMaterialManager getCmManager() {
+        return tinkerMaterialManager;
     }
 
     public DispatchManager getDispatchManager() {
         return dispatchManager;
+    }
+
+    public Workbench getWorkbench() {
+        return workbench;
+    }
+
+    public void setWorkbench(Workbench workbench) {
+        this.workbench = workbench;
     }
 
     public TraitManager getTraitManager() {

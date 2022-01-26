@@ -187,7 +187,7 @@ public final class EventChannels {
         TraitManager manager = SlimeTinker.inst().getTraitManager();
 
         if (plateMaterial != null && manager.isEnabled(matPropertyPlate, Ids.PLATE)) {
-            plateMaterial.runEvent(friend.getEventType(), TraitPartType.PLATE, friend);
+            plateMaterial.runEvent(friend.getEventType(), TraitPartType.PLATES, friend);
         }
         if (gambesonMaterial != null && manager.isEnabled(matPropertyGambeson, Ids.GAMBESON)) {
             gambesonMaterial.runEvent(friend.getEventType(), TraitPartType.GAMBESON, friend);

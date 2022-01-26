@@ -129,58 +129,6 @@ public final class TinkersMaterialsLiteXpansion {
         CM_MAP.put(Ids.CARBON_MESH, CARBON_MESH);
         CM_MAP.put(Ids.SCRAP, SCRAP);
         CM_MAP.put(Ids.IRIDIUM, IRIDIUM);
-
-        setupToolConsumers();
-        setupArmourConsumers();
-    }
-
-    public static void setupToolConsumers() {
-
-        CM_MAP.get(Ids.SCRAP).addEvent(TraitEventType.ENTITY_DAMAGED, TraitPartType.ROD, EntityDamageEvents::headCopper);                            // Brains not brawn - Damage             |
-        CM_MAP.get(Ids.SCRAP).addEvent(TraitEventType.BLOCK_BREAK, TraitPartType.ROD, BlockBreakEvents::headCopper);                                 // Brains not brawn - Block Break        | - CO Copper Head
-        CM_MAP.get(Ids.ADVANCED_ALLOY).addEvent(TraitEventType.ENTITY_DAMAGED, TraitPartType.HEAD, EntityDamageEvents::headAdvancedAlloy);           // Cleave
-        CM_MAP.get(Ids.MAG_THOR).addEvent(TraitEventType.PLAYER_DAMAGED, TraitPartType.HEAD, PlayerDamagedEvents::headMagThor);                      // Heat Resistance
-        CM_MAP.get(Ids.ADVANCED_ALLOY).addEvent(TraitEventType.DURABILITY, TraitPartType.ROD, DurabilityEvents::rodAdvancedAlloy);                   // Heavy Duty
-        CM_MAP.get(Ids.RUBBER).addEvent(TraitEventType.PLAYER_DAMAGED, TraitPartType.BINDER, PlayerDamagedEvents::bindRubber);                       // Insulated
-        CM_MAP.get(Ids.REFINED_IRON).addEvent(TraitEventType.ENTITY_DAMAGED, TraitPartType.ROD, EntityDamageEvents::rodRefinedIron);                 // Manners Maketh Man - Damage
-        CM_MAP.get(Ids.REFINED_IRON).addEvent(TraitEventType.RIGHT_CLICK, TraitPartType.ROD, RightClickEvents::rodRefinedIron);                      // Manners Maketh Man - Right Click (Register Manners)
-        CM_MAP.get(Ids.REFINED_IRON).addEvent(TraitEventType.TICK, TraitPartType.ROD, TickEvents::rodRefinedIron);                                   // Manners Maketh Man - Tick
-        CM_MAP.get(Ids.MIXED_METAL).addEvent(TraitEventType.TICK, TraitPartType.HEAD, TickEvents::headMixedMetal);                                   // Mixed Metals
-        CM_MAP.get(Ids.CARBON_MESH).addEvent(TraitEventType.PLAYER_DAMAGED, TraitPartType.BINDER, PlayerDamagedEvents::bindCarbonMesh);              // Nimble - Player Damage
-        CM_MAP.get(Ids.CARBON_MESH).addEvent(TraitEventType.TICK, TraitPartType.BINDER, TickEvents::bindCarbonMesh);                                 // Nimble - Tick
-        CM_MAP.get(Ids.IRIDIUM).addEvent(TraitEventType.PLAYER_DAMAGED, TraitPartType.HEAD, PlayerDamagedEvents::headIridium);                       // Protective
-        CM_MAP.get(Ids.REFINED_IRON).addEvent(TraitEventType.ENTITY_DAMAGED, TraitPartType.HEAD, EntityDamageEvents::headRefinedIron);               // Really Stable
-        CM_MAP.get(Ids.MIXED_METAL).addEvent(TraitEventType.ENTITY_DAMAGED, TraitPartType.ROD, EntityDamageEvents::headBrass);                       // Stiff - Damage                        |
-        CM_MAP.get(Ids.MIXED_METAL).addEvent(TraitEventType.TICK, TraitPartType.ROD, TickEvents::headBrass);                                         // Stiff - Tick                          | - CO Brass Head
-        CM_MAP.get(Ids.SCRAP).addEvent(TraitEventType.DURABILITY, TraitPartType.HEAD, DurabilityEvents::headScrap);                                  // Terrible - Durability
-        CM_MAP.get(Ids.SCRAP).addEvent(TraitEventType.ENTITY_DAMAGED, TraitPartType.HEAD, EntityDamageEvents::headScrap);                            // Terrible - Damage
-        CM_MAP.get(Ids.SCRAP).addEvent(TraitEventType.BLOCK_BREAK, TraitPartType.HEAD, BlockBreakEvents::headScrap);                                 // Terrible - Block Break
-        CM_MAP.get(Ids.MAG_THOR).addEvent(TraitEventType.ENTITY_DAMAGED, TraitPartType.ROD, EntityDamageEvents::headDamsteel);                       // Vampirism                             | - CO DamSteel Head
-        CM_MAP.get(Ids.IRIDIUM).addEvent(TraitEventType.ENTITY_DAMAGED, TraitPartType.ROD, EntityDamageEvents::rodIridium);                          // Warp
-
-    }
-
-    public static void setupArmourConsumers() {
-
-        CM_MAP.get(Ids.MAG_THOR).addEvent(TraitEventType.PLAYER_DAMAGED, TraitPartType.LINKS, PlayerDamagedEvents::linksMagThor);                    // Building Rage
-        CM_MAP.get(Ids.CARBON_MESH).addEvent(TraitEventType.TICK, TraitPartType.GAMBESON, TickEvents::gambesonCarbonMesh);                           // Carbon Fibre
-        // Event More Advanced (mod affector)
-        CM_MAP.get(Ids.MIXED_METAL).addEvent(TraitEventType.ENTITY_DAMAGED, TraitPartType.PLATE, EntityDamageEvents::linksAdamantite);               // Experienced (CO) - Kill
-        CM_MAP.get(Ids.MIXED_METAL).addEvent(TraitEventType.BLOCK_BREAK, TraitPartType.PLATE, BlockBreakEvents::linksAdamantite);                    // Experienced (CO) - Block Break
-        CM_MAP.get(Ids.SCRAP).addEvent(TraitEventType.ENTITY_DAMAGED, TraitPartType.LINKS, EntityDamageEvents::linksScrap);                          // Falling Apart - Exp
-        CM_MAP.get(Ids.SCRAP).addEvent(TraitEventType.PLAYER_DAMAGED, TraitPartType.LINKS, PlayerDamagedEvents::linksScrap);                         // Falling Apart - Drop
-        CM_MAP.get(Ids.IRIDIUM).addEvent(TraitEventType.PLAYER_DAMAGED, TraitPartType.PLATE, PlayerDamagedEvents::plateIridium);                     // Indomitable
-        CM_MAP.get(Ids.REFINED_IRON).addEvent(TraitEventType.RIGHT_CLICK, TraitPartType.PLATE, RightClickEvents::plateRefinedIron);                  // Kingsman
-        CM_MAP.get(Ids.MIXED_METAL).addEvent(TraitEventType.PLAYER_DAMAGED, TraitPartType.LINKS, PlayerDamagedEvents::linksMixedMetal);              // Mix it Up
-        CM_MAP.get(Ids.REFINED_IRON).addEvent(TraitEventType.PLAYER_DAMAGED, TraitPartType.LINKS, PlayerDamagedEvents::linksRefinedIron);            // Narrowing
-        CM_MAP.get(Ids.SCRAP).addEvent(TraitEventType.PLAYER_DAMAGED, TraitPartType.PLATE, PlayerDamagedEvents::plateScrap);                         // Pathetic - Death
-        CM_MAP.get(Ids.SCRAP).addEvent(TraitEventType.ENTITY_DAMAGED, TraitPartType.PLATE, EntityDamageEvents::plateScrap);                          // Pathetic - Exp
-        CM_MAP.get(Ids.MAG_THOR).addEvent(TraitEventType.PLAYER_DAMAGED, TraitPartType.PLATE, PlayerDamagedEvents::plateMagThor);                    // Radioactive Plates
-        CM_MAP.get(Ids.ADVANCED_ALLOY).addEvent(TraitEventType.TICK, TraitPartType.LINKS, TickEvents::plateCorBronze);                               // SuperHot (CO)
-        CM_MAP.get(Ids.RUBBER).addEvent(TraitEventType.TICK, TraitPartType.GAMBESON, TickEvents::gambesonRubber);                                    // Sweaty
-        CM_MAP.get(Ids.IRIDIUM).addEvent(TraitEventType.PLAYER_DAMAGED, TraitPartType.LINKS, PlayerDamagedEvents::linksIridium);                     // Unconventional Power - Store
-        CM_MAP.get(Ids.IRIDIUM).addEvent(TraitEventType.RIGHT_CLICK, TraitPartType.LINKS, RightClickEvents::linksIridium);                           // Unconventional Power - Charge
-
     }
 
     public static Map<String, TinkerMaterial> getCmMap() {

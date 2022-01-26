@@ -1,6 +1,5 @@
 package io.github.sefiraat.slimetinker.items.tinkermaterials;
 
-import io.github.mooy1.infinitylib.common.StackUtils;
 import io.github.sefiraat.slimetinker.SlimeTinker;
 import io.github.sefiraat.slimetinker.events.friend.TraitPartType;
 import io.github.sefiraat.slimetinker.items.Casts;
@@ -129,14 +128,14 @@ public class TinkerMaterialManager {
             String id = entry.getKey();
 
             // Tools, armour and kits (referenced through dummy)
-            if (cm.isValidRod() && traitManager.isEnabled(id, Ids.ROD)) {
+            if (cm.getTraitToolRod() != null && traitManager.isEnabled(id, Ids.ROD)) {
                 MAP_CAST_TOOLROD.put(cm, Parts.TOOL_ROD.getStack(id, Ids.ROD, null, cm.getColor()));
             }
-            if (cm.isValidLinks() && traitManager.isEnabled(id, Ids.LINKS)) {
+            if (cm.getTraitArmorLinks() != null && traitManager.isEnabled(id, Ids.LINKS)) {
                 MAP_CAST_ARMOUR_MAIL.put(cm, Parts.MAIL_LINKS.getStack(id, Ids.LINKS, null, cm.getColor()));
             }
 
-            if (cm.isValidHead() && traitManager.isEnabled(id, Ids.HEAD)) {
+            if (cm.getTraitToolHead() != null && traitManager.isEnabled(id, Ids.HEAD)) {
                 MAP_CAST_SWORDBLADE.put(cm, Parts.SWORD_BLADE.getStack(id, Ids.HEAD, Ids.SWORD, cm.getColor()));
                 MAP_CAST_HOEHEAD.put(cm, Parts.HOE_HEAD.getStack(id, Ids.HEAD, Ids.HOE, cm.getColor()));
                 MAP_CAST_AXEHEAD.put(cm, Parts.AXE_HEAD.getStack(id, Ids.HEAD, Ids.AXE, cm.getColor()));
@@ -144,14 +143,14 @@ public class TinkerMaterialManager {
                 MAP_CAST_SHOVELHEAD.put(cm, Parts.SHOVEL_HEAD.getStack(id, Ids.HEAD, Ids.SHOVEL, cm.getColor()));
             }
 
-            if (cm.isValidPlates() && traitManager.isEnabled(id, Ids.PLATE)) {
+            if (cm.getTraitArmorPlates() != null && traitManager.isEnabled(id, Ids.PLATE)) {
                 MAP_CAST_ARMOUR_PLATES_HELM.put(cm, Parts.HELM_PLATE.getStack(id, Ids.PLATE, Ids.HELMET, cm.getColor()));
                 MAP_CAST_ARMOUR_PLATES_CHEST.put(cm, Parts.CHEST_PLATE.getStack(id, Ids.PLATE, Ids.CHESTPLATE, cm.getColor()));
                 MAP_CAST_ARMOUR_PLATES_LEGGINGS.put(cm, Parts.LEG_PLATE.getStack(id, Ids.PLATE, Ids.LEGGINGS, cm.getColor()));
                 MAP_CAST_ARMOUR_PLATES_BOOTS.put(cm, Parts.BOOT_PLATE.getStack(id, Ids.PLATE, Ids.BOOTS, cm.getColor()));
             }
 
-            if (cm.isValidHead() || cm.isValidPlates()) {
+            if (cm.getTraitToolHead() != null || cm.getTraitArmorPlates() != null) {
                 MAP_CAST_REPAIRKIT.put(cm, Parts.REPAIR_KIT.getStack(id, Ids.REPAIR, cm.getColor())); // We use HEAD here are repair always goes by head material
             }
 
@@ -247,12 +246,12 @@ public class TinkerMaterialManager {
             Validate.notNull(tinkerMaterial.getTraitToolHead(), MessageFormat.format(VALIDATE_TRAIT_MESSAGE, id, partType));
             return tinkerMaterial.getTraitToolHead().getTraitName();
         } else if (partType == TraitPartType.BINDER) {
-            Validate.notNull(tinkerMaterial.getTraitToolBinding(), MessageFormat.format(VALIDATE_TRAIT_MESSAGE, id, partType));
-            return tinkerMaterial.getTraitToolBinding().getTraitName();
+            Validate.notNull(tinkerMaterial.getTraitToolBinder(), MessageFormat.format(VALIDATE_TRAIT_MESSAGE, id, partType));
+            return tinkerMaterial.getTraitToolBinder().getTraitName();
         } else if (partType == TraitPartType.ROD) {
             Validate.notNull(tinkerMaterial.getTraitToolRod(), MessageFormat.format(VALIDATE_TRAIT_MESSAGE, id, partType));
             return tinkerMaterial.getTraitToolRod().getTraitName();
-        } else if (partType == TraitPartType.PLATE) {
+        } else if (partType == TraitPartType.PLATES) {
             Validate.notNull(tinkerMaterial.getTraitArmorPlates(), MessageFormat.format(VALIDATE_TRAIT_MESSAGE, id, partType));
             return tinkerMaterial.getTraitArmorPlates().getTraitName();
         } else if (partType == TraitPartType.GAMBESON) {

@@ -6,6 +6,8 @@ import io.github.sefiraat.slimetinker.SlimeTinker;
 import io.github.sefiraat.slimetinker.commands.Commands;
 import io.github.sefiraat.slimetinker.items.tinkermaterials.TinkerMaterial;
 import io.github.sefiraat.slimetinker.items.tinkermaterials.TinkerMaterialManager;
+import io.github.sefiraat.slimetinker.utils.Ids;
+import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,7 +39,7 @@ public class DispatchManager {
         commandManager.getCommandCompletions().registerCompletion("PART_MATERIALS_HEAD", context -> {
             List<String> s = new ArrayList<>();
             for (TinkerMaterial tinkerMaterial : TinkerMaterialManager.getMap().values()) {
-                if (tinkerMaterial.isValidHead()) {
+                if (tinkerMaterial.getTraitToolHead() != null && SlimeTinker.getInstance().getTraitManager().isEnabled(tinkerMaterial.getId(), Ids.HEAD)) {
                     s.add(tinkerMaterial.getId());
                 }
             }
@@ -47,7 +49,7 @@ public class DispatchManager {
         commandManager.getCommandCompletions().registerCompletion("PART_MATERIALS_BINDER", context -> {
             List<String> s = new ArrayList<>();
             for (TinkerMaterial tinkerMaterial : TinkerMaterialManager.getMap().values()) {
-                if (tinkerMaterial.isValidBinder()) {
+                if (tinkerMaterial.getTraitToolBinder() != null && SlimeTinker.getInstance().getTraitManager().isEnabled(tinkerMaterial.getId(), Ids.BINDING)) {
                     s.add(tinkerMaterial.getId());
                 }
             }
@@ -57,7 +59,7 @@ public class DispatchManager {
         commandManager.getCommandCompletions().registerCompletion("PART_MATERIALS_ROD", context -> {
             List<String> s = new ArrayList<>();
             for (TinkerMaterial tinkerMaterial : TinkerMaterialManager.getMap().values()) {
-                if (tinkerMaterial.isValidRod()) {
+                if (tinkerMaterial.getTraitToolRod() != null && SlimeTinker.getInstance().getTraitManager().isEnabled(tinkerMaterial.getId(), Ids.ROD)) {
                     s.add(tinkerMaterial.getId());
                 }
             }
@@ -67,7 +69,7 @@ public class DispatchManager {
         commandManager.getCommandCompletions().registerCompletion("PART_MATERIALS_PLATE", context -> {
             List<String> s = new ArrayList<>();
             for (TinkerMaterial tinkerMaterial : TinkerMaterialManager.getMap().values()) {
-                if (tinkerMaterial.isValidPlates()) {
+                if (tinkerMaterial.getTraitArmorPlates() != null && SlimeTinker.getInstance().getTraitManager().isEnabled(tinkerMaterial.getId(), Ids.PLATE)) {
                     s.add(tinkerMaterial.getId());
                 }
             }
@@ -77,7 +79,7 @@ public class DispatchManager {
         commandManager.getCommandCompletions().registerCompletion("PART_MATERIALS_GAMBESON", context -> {
             List<String> s = new ArrayList<>();
             for (TinkerMaterial tinkerMaterial : TinkerMaterialManager.getMap().values()) {
-                if (tinkerMaterial.isValidGambeson()) {
+                if (tinkerMaterial.getTraitArmorGambeson() != null && SlimeTinker.getInstance().getTraitManager().isEnabled(tinkerMaterial.getId(), Ids.GAMBESON)) {
                     s.add(tinkerMaterial.getId());
                 }
             }
@@ -87,7 +89,7 @@ public class DispatchManager {
         commandManager.getCommandCompletions().registerCompletion("PART_MATERIALS_LINKS", context -> {
             List<String> s = new ArrayList<>();
             for (TinkerMaterial tinkerMaterial : TinkerMaterialManager.getMap().values()) {
-                if (tinkerMaterial.isValidLinks()) {
+                if (tinkerMaterial.getTraitArmorLinks() != null && SlimeTinker.getInstance().getTraitManager().isEnabled(tinkerMaterial.getId(), Ids.LINKS)) {
                     s.add(tinkerMaterial.getId());
                 }
             }

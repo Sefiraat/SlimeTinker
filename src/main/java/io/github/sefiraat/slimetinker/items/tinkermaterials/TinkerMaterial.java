@@ -29,7 +29,6 @@ import org.bukkit.inventory.meta.ItemMeta;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
-import java.util.EnumMap;
 import java.util.Map;
 import java.util.function.Consumer;
 
@@ -47,19 +46,11 @@ public class TinkerMaterial {
     @Nullable
     private Liquid liquid;
 
-    // Validity
-    private boolean validHead;
-    private boolean validBinder;
-    private boolean validRod;
-    private boolean validPlates;
-    private boolean validGambeson;
-    private boolean validLinks;
-
     // Traits
     @Nullable
     private MaterialTrait traitToolHead;
     @Nullable
-    private MaterialTrait traitToolBinding;
+    private MaterialTrait traitToolBinder;
     @Nullable
     private MaterialTrait traitToolRod;
     @Nullable
@@ -90,8 +81,6 @@ public class TinkerMaterial {
     private String formChestplate;
     @Nullable
     private String formHelmet;
-
-    private final Map<TraitEventType, Map<TraitPartType, Consumer<EventFriend>>> cmEventMap = new EnumMap<>(TraitEventType.class);
 
     @Nullable
     private Alloy alloy;
@@ -125,8 +114,8 @@ public class TinkerMaterial {
         if (this.traitToolHead != null && manager.getEnabled(this.id, Ids.HEAD)) {
             this.traitToolHead.setupTrait(this);
         }
-        if (this.traitToolBinding != null && manager.getEnabled(this.id, Ids.BINDING)) {
-            this.traitToolBinding.setupTrait(this);
+        if (this.traitToolBinder != null && manager.getEnabled(this.id, Ids.BINDING)) {
+            this.traitToolBinder.setupTrait(this);
         }
         if (this.traitToolRod != null && manager.getEnabled(this.id, Ids.ROD)) {
             this.traitToolRod.setupTrait(this);
@@ -148,7 +137,7 @@ public class TinkerMaterial {
         TraitManager traitManager = SlimeTinker.inst().getTraitManager();
 
         // Heads (and repair kits)
-        if (this.validHead && traitManager.isEnabled(this.id, Ids.HEAD)) {
+        if (this.traitToolHead != null && traitManager.isEnabled(this.id, Ids.HEAD)) {
             new PartTemplate(
                 ItemGroups.PART_DICT,
                 headStack(this.id, "SWORD", SkullTextures.PART_SWORD_BLADE),
@@ -191,7 +180,7 @@ public class TinkerMaterial {
         }
 
         // Binders
-        if (this.validBinder && traitManager.isEnabled(this.id, Ids.BINDING)) {
+        if (this.traitToolBinder != null && traitManager.isEnabled(this.id, Ids.BINDING)) {
             PartTemplate binder = new PartTemplate(
                 ItemGroups.DUMMY,
                 bindingStack(this.id),
@@ -204,7 +193,7 @@ public class TinkerMaterial {
         }
 
         // Tool Rods
-        if (this.validRod && traitManager.isEnabled(this.id, Ids.ROD)) {
+        if (this.traitToolRod != null && traitManager.isEnabled(this.id, Ids.ROD)) {
             new PartTemplate(
                 ItemGroups.PART_DICT,
                 rodStack(this.id),
@@ -215,7 +204,7 @@ public class TinkerMaterial {
         }
 
         // Plates
-        if (this.validPlates && traitManager.isEnabled(this.id, Ids.PLATE)) {
+        if (this.traitArmorPlates != null && traitManager.isEnabled(this.id, Ids.PLATE)) {
             new PartTemplate(
                 ItemGroups.PART_DICT,
                 platesStack(this.id, "HELMET", SkullTextures.PART_HELM_PLATES),
@@ -250,7 +239,7 @@ public class TinkerMaterial {
         }
 
         // Gambeson
-        if (this.validGambeson && traitManager.isEnabled(this.id, Ids.GAMBESON)) {
+        if (this.traitArmorGambeson != null && traitManager.isEnabled(this.id, Ids.GAMBESON)) {
             PartTemplate gambeson = new PartTemplate(
                 ItemGroups.DUMMY,
                 gambesonStack(this.id),
@@ -263,7 +252,7 @@ public class TinkerMaterial {
         }
 
         // Mail Links
-        if (this.validLinks && traitManager.isEnabled(this.id, Ids.LINKS)) {
+        if (this.traitArmorLinks != null && traitManager.isEnabled(this.id, Ids.LINKS)) {
             new PartTemplate(
                 ItemGroups.PART_DICT,
                 linksStack(this.id),
@@ -274,7 +263,7 @@ public class TinkerMaterial {
         }
 
         // Repair Kit
-        if (this.validHead || this.validPlates) {
+        if (this.traitToolHead != null || this.traitArmorPlates != null) {
             new PartTemplate(
                 ItemGroups.PART_DICT,
                 repairStack(this.id),
@@ -304,18 +293,16 @@ public class TinkerMaterial {
 
     public TinkerMaterial setTraitToolHead(@Nullable MaterialTrait traitToolHead) {
         this.traitToolHead = traitToolHead;
-        this.validHead = true;
         return this;
     }
 
     @Nullable
-    public MaterialTrait getTraitToolBinding() {
-        return traitToolBinding;
+    public MaterialTrait getTraitToolBinder() {
+        return traitToolBinder;
     }
 
     public TinkerMaterial setTraitToolBinder(@Nullable MaterialTrait traitToolBinding) {
-        this.traitToolBinding = traitToolBinding;
-        this.validBinder = true;
+        this.traitToolBinder = traitToolBinding;
         return this;
     }
 
@@ -326,7 +313,6 @@ public class TinkerMaterial {
 
     public TinkerMaterial setTraitToolRod(@Nullable MaterialTrait traitToolRod) {
         this.traitToolRod = traitToolRod;
-        this.validRod = true;
         return this;
     }
 
@@ -337,7 +323,6 @@ public class TinkerMaterial {
 
     public TinkerMaterial setTraitArmorPlates(@Nullable MaterialTrait traitArmorPlates) {
         this.traitArmorPlates = traitArmorPlates;
-        this.validPlates = true;
         return this;
     }
 
@@ -348,7 +333,6 @@ public class TinkerMaterial {
 
     public TinkerMaterial setTraitArmorGambeson(@Nullable MaterialTrait traitArmorGambeson) {
         this.traitArmorGambeson = traitArmorGambeson;
-        this.validGambeson = true;
         return this;
     }
 
@@ -359,7 +343,6 @@ public class TinkerMaterial {
 
     public TinkerMaterial setTraitArmorLinks(@Nullable MaterialTrait traitArmorLinks) {
         this.traitArmorLinks = traitArmorLinks;
-        this.validLinks = true;
         return this;
     }
 
@@ -463,30 +446,6 @@ public class TinkerMaterial {
         return this;
     }
 
-    public boolean isValidHead() {
-        return validHead;
-    }
-
-    public boolean isValidBinder() {
-        return validBinder;
-    }
-
-    public boolean isValidRod() {
-        return validRod;
-    }
-
-    public boolean isValidPlates() {
-        return validPlates;
-    }
-
-    public boolean isValidGambeson() {
-        return validGambeson;
-    }
-
-    public boolean isValidLinks() {
-        return validLinks;
-    }
-
     public ChatColor getColor() {
         return ChatColor.of(this.colorHex);
     }
@@ -520,10 +479,6 @@ public class TinkerMaterial {
     @Nullable
     public Alloy getCmAlloy() {
         return alloy;
-    }
-
-    public Map<TraitEventType, Map<TraitPartType, Consumer<EventFriend>>> getCmEventMap() {
-        return cmEventMap;
     }
 
     @Nonnull
@@ -660,25 +615,41 @@ public class TinkerMaterial {
      * @param part   "The tool part to be tested against this material type"
      * @param friend "The EventFriend to be carried through the cmEventMap to the settle phase"
      */
+    @ParametersAreNonnullByDefault
     public void runEvent(TraitEventType type, TraitPartType part, EventFriend friend) {
-        if (!cmEventMap.containsKey(type)) {
-            return;
+        switch (part) {
+            case HEAD:
+                if (this.traitToolHead != null) {
+                    this.traitToolHead.run(type, friend);
+                }
+                break;
+            case BINDER:
+                if (this.traitToolBinder != null) {
+                    this.traitToolBinder.run(type, friend);
+                }
+                break;
+            case ROD:
+                if (this.traitToolRod != null) {
+                    this.traitToolRod.run(type, friend);
+                }
+                break;
+            case PLATES:
+                if (this.traitArmorPlates != null) {
+                    this.traitArmorPlates.run(type, friend);
+                }
+                break;
+            case GAMBESON:
+                if (this.traitArmorGambeson != null) {
+                    this.traitArmorGambeson.run(type, friend);
+                }
+                break;
+            case LINKS:
+                if (this.traitArmorLinks != null) {
+                    this.traitArmorLinks.run(type, friend);
+                }
+                break;
+            default:
+                throw new IllegalStateException("Unexpected value: " + part);
         }
-        Map<TraitPartType, Consumer<EventFriend>> map = cmEventMap.get(type);
-        if (!map.containsKey(part)) {
-            return;
-        }
-        map.get(part).accept(friend);
-    }
-
-    public void addEvent(TraitEventType eventType, TraitPartType partType, Consumer<EventFriend> consumer) {
-        Map<TraitPartType, Consumer<EventFriend>> map;
-        if (cmEventMap.containsKey(eventType)) {
-            map = cmEventMap.get(eventType);
-        } else {
-            map = new EnumMap<>(TraitPartType.class);
-        }
-        map.put(partType, consumer);
-        cmEventMap.put(eventType, map);
     }
 }

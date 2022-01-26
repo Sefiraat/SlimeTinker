@@ -219,10 +219,10 @@ public final class TinkersMaterialsInfinity {
 
     private static final TinkerMaterial INFINITY = new TinkerMaterial(Ids.INFINITY, SlimefunItem.getById("INFINITE_INGOT").getItem(), "#d1ebf0")
         .setLiquidTexture(SkullTextures.ALLOY_BLUE_PALE)
-        .setTraitToolHead(Traits.INFINITY_METAL_SINGULARITY_HEAD)
-        .setTraitToolRod(Traits.INFINITY_METAL_SINGULARITY_ROD)
-        .setTraitArmorPlates(Traits.INFINITY_METAL_SINGULARITY_PLATES)
-        .setTraitArmorLinks(Traits.INFINITY_METAL_SINGULARITY_LINKS)
+        .setTraitToolHead(Traits.INFINITY_INFINITY_HEAD)
+        .setTraitToolRod(Traits.INFINITY_INFINITY_ROD)
+        .setTraitArmorPlates(Traits.INFINITY_INFINITY_PLATES)
+        .setTraitArmorLinks(Traits.INFINITY_INFINITY_LINKS)
         .setFormNugget(Materials.NUGGET_CAST_INFINITY.getItemId())
         .setFormBlock("INFINITE_INGOT")
         .setFormNugget(Materials.BLOCK_CAST_INFINITY.getItemId())
@@ -259,119 +259,6 @@ public final class TinkersMaterialsInfinity {
         CM_MAP.put(Ids.METAL_SINGULARITY, METAL_SINGULARITY);
         CM_MAP.put(Ids.INFINITY, INFINITY);
         CM_MAP.put(Ids.INFINITY_SINGULARITY, INFINITY_SINGULARITY);
-
-        setupToolConsumers();
-        setupArmourConsumers();
-    }
-
-    public static void setupToolConsumers() {
-
-        CM_MAP.get(Ids.ADAMANTITE).addEvent(TraitEventType.PLAYER_DAMAGED, TraitPartType.ROD, PlayerDamagedEvents::rodAdamantite);           // Adamant
-        CM_MAP.get(Ids.GOLD_SINGULARITY).addEvent(TraitEventType.TICK, TraitPartType.ROD, TickEvents::rodSingGold);                                  // All that Glitters II
-        CM_MAP.get(Ids.COPPER_SINGULARITY).addEvent(TraitEventType.ENTITY_DAMAGED, TraitPartType.HEAD, EntityDamageEvents::headSingCopper);          // Brains Not Brawn II - Damage
-        CM_MAP.get(Ids.COPPER_SINGULARITY).addEvent(TraitEventType.BLOCK_BREAK, TraitPartType.HEAD, BlockBreakEvents::headSingCopper);               // Brains Not Brawn II - Block Break
-        CM_MAP.get(Ids.INFINITY_SINGULARITY).addEvent(TraitEventType.DURABILITY, TraitPartType.HEAD, DurabilityEvents::headSingInfinity);            // Breakpoint - Durability
-        CM_MAP.get(Ids.INFINITY_SINGULARITY).addEvent(TraitEventType.ENTITY_DAMAGED, TraitPartType.HEAD, EntityDamageEvents::headSingInfinity);      // Breakpoint - Damage
-        CM_MAP.get(Ids.INFINITY_SINGULARITY).addEvent(TraitEventType.BLOCK_BREAK, TraitPartType.HEAD, BlockBreakEvents::headSingInfinity);           // Breakpoint - Block Break
-        CM_MAP.get(Ids.TIN_SINGULARITY).addEvent(TraitEventType.TICK, TraitPartType.ROD, TickEvents::rodSingTin);                                    // Can II
-        CM_MAP.get(Ids.METAL_SINGULARITY).addEvent(TraitEventType.TICK, TraitPartType.HEAD, TickEvents::headMetal);                                      // Clean Cut - Tick
-        CM_MAP.get(Ids.METAL_SINGULARITY).addEvent(TraitEventType.ENTITY_DAMAGED, TraitPartType.HEAD, EntityDamageEvents::headMetal);                    // Clean Cut - Damage
-        CM_MAP.get(Ids.INFINITY).addEvent(TraitEventType.PLAYER_DAMAGED, TraitPartType.ROD, PlayerDamagedEvents::rodInfinity);               // Conceptual Defence
-        // Conductive II (Special case, handled in Experience.java)
-        CM_MAP.get(Ids.METAL_SINGULARITY).addEvent(TraitEventType.BLOCK_BREAK, TraitPartType.ROD, BlockBreakEvents::rodMetal);                           // Conductor - Block Break
-        CM_MAP.get(Ids.METAL_SINGULARITY).addEvent(TraitEventType.ENTITY_DAMAGED, TraitPartType.ROD, EntityDamageEvents::rodMetal);                      // Conductor - Damage
-        // Durable - Damage (Special Case - in EntityDamageListener.java - cant move)       |
-        // Durable - Block Break (Special Case - in BlockBreakListener.java - cant move)    |-- CO - Duralium Head
-        CM_MAP.get(Ids.TITANIUM).addEvent(TraitEventType.TICK, TraitPartType.HEAD, TickEvents::headDuralium);                                // Durable - Tick
-        CM_MAP.get(Ids.EARTH_SINGULARITY).addEvent(TraitEventType.ENTITY_DAMAGED, TraitPartType.HEAD, EntityDamageEvents::headEarth);                    // Earth Shaker
-        CM_MAP.get(Ids.MYTHRIL).addEvent(TraitEventType.DURABILITY, TraitPartType.HEAD, DurabilityEvents::headMythril);                      // Elven Speed - Durability
-        CM_MAP.get(Ids.MYTHRIL).addEvent(TraitEventType.TICK, TraitPartType.HEAD, TickEvents::headMythril);                                  // Elven Speed - Tick
-        // Enchanting II (Special Case, handled in Experience.java)
-        CM_MAP.get(Ids.VOID).addEvent(TraitEventType.ENTITY_DAMAGED, TraitPartType.ROD, EntityDamageEvents::rodVoid);                        // Fear the Void
-        CM_MAP.get(Ids.MAGSTEEL).addEvent(TraitEventType.ENTITY_DAMAGED, TraitPartType.ROD, EntityDamageEvents::headMagnesium);              // Flammable                                                                        |-- CO - Magnesium Head
-        CM_MAP.get(Ids.MAGNESIUM_SINGULARITY).addEvent(TraitEventType.ENTITY_DAMAGED, TraitPartType.HEAD, EntityDamageEvents::headSingMagnesium);    // Flammable II
-        CM_MAP.get(Ids.MAGNONIUM).addEvent(TraitEventType.BLOCK_BREAK, TraitPartType.ROD, BlockBreakEvents::headCorbronze);                  // Flaming Hot                                                                      |-- CO - Corin Bronze Head
-        CM_MAP.get(Ids.FORTUNE_SINGULARITY).addEvent(TraitEventType.BLOCK_BREAK, TraitPartType.HEAD, BlockBreakEvents::headFortune);                     // Fortunate
-        CM_MAP.get(Ids.GOLD_SINGULARITY).addEvent(TraitEventType.TICK, TraitPartType.HEAD, TickEvents::headSingGold);                                // Golden Veil II - Tick
-        CM_MAP.get(Ids.GOLD_SINGULARITY).addEvent(TraitEventType.ENTITY_DAMAGED, TraitPartType.HEAD, EntityDamageEvents::headSingGold);              // Golden Veil II - Damage
-        CM_MAP.get(Ids.ZINC_SINGULARITY).addEvent(TraitEventType.TICK, TraitPartType.HEAD, TickEvents::headSingZinc);                                // Graceful II
-        CM_MAP.get(Ids.EARTH_SINGULARITY).addEvent(TraitEventType.BLOCK_BREAK, TraitPartType.ROD, BlockBreakEvents::rodEarth);                           // Grinder
-        CM_MAP.get(Ids.INFINITY).addEvent(TraitEventType.DURABILITY, TraitPartType.HEAD, DurabilityEvents::headInfinity);                    // Infinite
-        CM_MAP.get(Ids.LEAD_SINGULARITY).addEvent(TraitEventType.TICK, TraitPartType.ROD, TickEvents::rodSingLead);                                  // Leech II
-        CM_MAP.get(Ids.MAGNONIUM).addEvent(TraitEventType.BLOCK_BREAK, TraitPartType.HEAD, BlockBreakEvents::headMagnonium);                 // Magnanimous
-        CM_MAP.get(Ids.MAGNESIUM_SINGULARITY).addEvent(TraitEventType.TICK, TraitPartType.ROD, TickEvents::rodSingMagnesium);                        // Magnetesium II
-        CM_MAP.get(Ids.TIN_SINGULARITY).addEvent(TraitEventType.ENTITY_DAMAGED, TraitPartType.HEAD, EntityDamageEvents::headSingTin);                // Malleable II - Damage
-        CM_MAP.get(Ids.TIN_SINGULARITY).addEvent(TraitEventType.TICK, TraitPartType.HEAD, TickEvents::headSingTin);                                  // Malleable II - Tick
-        CM_MAP.get(Ids.FORTUNE_SINGULARITY).addEvent(TraitEventType.TICK, TraitPartType.ROD, TickEvents::rodFortune);                                    // Merchant's Veil
-        CM_MAP.get(Ids.ADAMANTITE).addEvent(TraitEventType.BLOCK_BREAK, TraitPartType.HEAD, BlockBreakEvents::headAdamantite);               // Mystic - Block Break
-        CM_MAP.get(Ids.ADAMANTITE).addEvent(TraitEventType.ENTITY_DAMAGED, TraitPartType.HEAD, EntityDamageEvents::headAdamantite);          // Mystic - Damage
-        CM_MAP.get(Ids.LEAD_SINGULARITY).addEvent(TraitEventType.ENTITY_DAMAGED, TraitPartType.HEAD, EntityDamageEvents::headSingLead);              // Poisonous II
-        CM_MAP.get(Ids.MAGSTEEL).addEvent(TraitEventType.ENTITY_DAMAGED, TraitPartType.HEAD, EntityDamageEvents::headMagSteel);              // Really Stainless
-        CM_MAP.get(Ids.ALUMINUM_SINGULARITY).addEvent(TraitEventType.DURABILITY, TraitPartType.HEAD, DurabilityEvents::headSingAluminum);            // Recyclable II
-        // Reinforced                                                                       |-- CO - Reinforced Rod
-        CM_MAP.get(Ids.MAGIC_SINGULARITY).addEvent(TraitEventType.TICK, TraitPartType.ROD, TickEvents::rodMagic);                                        // Secrets Revealed
-        CM_MAP.get(Ids.IRON_SINGULARITY).addEvent(TraitEventType.TICK, TraitPartType.ROD, TickEvents::rodSingIron);                                  // Sharp 1 II
-        CM_MAP.get(Ids.ALUMINUM_SINGULARITY).addEvent(TraitEventType.DURABILITY, TraitPartType.ROD, DurabilityEvents::rodSingAluminum);              // Soft II - Durability
-        CM_MAP.get(Ids.ALUMINUM_SINGULARITY).addEvent(TraitEventType.BLOCK_BREAK, TraitPartType.ROD, BlockBreakEvents::rodSingAluminum);             // Soft II - Block Break
-        CM_MAP.get(Ids.ALUMINUM_SINGULARITY).addEvent(TraitEventType.ENTITY_DAMAGED, TraitPartType.ROD, EntityDamageEvents::rodSingAluminum);        // Soft II - Damage
-        CM_MAP.get(Ids.SILVER_SINGULARITY).addEvent(TraitEventType.PLAYER_DAMAGED, TraitPartType.ROD, PlayerDamagedEvents::rodSingSilver);           // Soft Touch II
-        // Stability II (Does nothing, here for consistency)
-        CM_MAP.get(Ids.MYTHRIL).addEvent(TraitEventType.TICK, TraitPartType.ROD, TickEvents::rodMythril);                                    // Sting of Gondolin
-        CM_MAP.get(Ids.ZINC_SINGULARITY).addEvent(TraitEventType.TICK, TraitPartType.ROD, TickEvents::rodSingZinc);                                  // Super Lightweight II
-        CM_MAP.get(Ids.MAGIC_SINGULARITY).addEvent(TraitEventType.TICK, TraitPartType.HEAD, TickEvents::headMagic);                                      // Trick
-        CM_MAP.get(Ids.VOID).addEvent(TraitEventType.BLOCK_BREAK, TraitPartType.HEAD, BlockBreakEvents::headVoid);                           // Void Miner
-
-    }
-
-    public static void setupArmourConsumers() {
-        CM_MAP.get(Ids.ZINC_SINGULARITY).addEvent(TraitEventType.PLAYER_DAMAGED, TraitPartType.LINKS, PlayerDamagedEvents::linksSingZinc);           // Acupuncture II
-        CM_MAP.get(Ids.GOLD_SINGULARITY).addEvent(TraitEventType.TICK, TraitPartType.LINKS, TickEvents::linksSingGold);                              // Barter II
-        CM_MAP.get(Ids.FORTUNE_SINGULARITY).addEvent(TraitEventType.TICK, TraitPartType.LINKS, TickEvents::plateAluBronze);                              // Beautiful (CO)
-        CM_MAP.get(Ids.COPPER_SINGULARITY).addEvent(TraitEventType.PLAYER_DAMAGED, TraitPartType.PLATE, PlayerDamagedEvents::plateSingCopper);       // Beginner II - Damage
-        CM_MAP.get(Ids.COPPER_SINGULARITY).addEvent(TraitEventType.ENTITY_DAMAGED, TraitPartType.PLATE, EntityDamageEvents::plateSingCopper);        // Beginner II - Exp
-        CM_MAP.get(Ids.TIN_SINGULARITY).addEvent(TraitEventType.PLAYER_DAMAGED, TraitPartType.LINKS, PlayerDamagedEvents::linksSingTin);             // Boost II
-        CM_MAP.get(Ids.MYTHRIL).addEvent(TraitEventType.TICK, TraitPartType.PLATE, TickEvents::brightBurn);                                  // Brightburn
-        CM_MAP.get(Ids.MYTHRIL).addEvent(TraitEventType.PLAYER_DAMAGED, TraitPartType.LINKS, PlayerDamagedEvents::linksMythril);             // Call of the Wild
-        CM_MAP.get(Ids.SILVER_SINGULARITY).addEvent(TraitEventType.PLAYER_DAMAGED, TraitPartType.PLATE, PlayerDamagedEvents::plateSingSilver);       // Conductivity II
-        CM_MAP.get(Ids.MAGSTEEL).addEvent(TraitEventType.PLAYER_DAMAGED, TraitPartType.LINKS, PlayerDamagedEvents::linksMagSteel);           // Defender
-        CM_MAP.get(Ids.ADAMANTITE).addEvent(TraitEventType.PLAYER_DAMAGED, TraitPartType.PLATE, PlayerDamagedEvents::plateAdamantite);       // Deflective
-        CM_MAP.get(Ids.TITANIUM).addEvent(TraitEventType.BLOCK_BREAK, TraitPartType.PLATE, BlockBreakEvents::linksHardened);                 // Dwarven Skills (CO)
-        // Easily Shaped II (In RepairBench)
-        // Enchanting II (in Experience)
-        CM_MAP.get(Ids.MAGNONIUM).addEvent(TraitEventType.PLAYER_DAMAGED, TraitPartType.PLATE, PlayerDamagedEvents::linksAluBrass);          // Escape (CO)
-        CM_MAP.get(Ids.ADAMANTITE).addEvent(TraitEventType.ENTITY_DAMAGED, TraitPartType.LINKS, EntityDamageEvents::linksAdamantite);        // Experienced - Kill
-        CM_MAP.get(Ids.ADAMANTITE).addEvent(TraitEventType.BLOCK_BREAK, TraitPartType.LINKS, BlockBreakEvents::linksAdamantite);             // Experienced - Block Break
-        CM_MAP.get(Ids.ALUMINUM_SINGULARITY).addEvent(TraitEventType.TICK, TraitPartType.PLATE, TickEvents::plateSingAluminium);                     // Foil II - Speed
-        CM_MAP.get(Ids.ALUMINUM_SINGULARITY).addEvent(TraitEventType.PLAYER_DAMAGED, TraitPartType.PLATE, PlayerDamagedEvents::plateSingAluminium);  // Foil II - Damage
-        CM_MAP.get(Ids.METAL_SINGULARITY).addEvent(TraitEventType.PLAYER_DAMAGED, TraitPartType.LINKS, PlayerDamagedEvents::linksMetal);                 // Gleam
-        CM_MAP.get(Ids.TITANIUM).addEvent(TraitEventType.PLAYER_DAMAGED, TraitPartType.LINKS, PlayerDamagedEvents::linksTitanium);           // Heat Resistant
-        CM_MAP.get(Ids.FORTUNE_SINGULARITY).addEvent(TraitEventType.PLAYER_DAMAGED, TraitPartType.PLATE, PlayerDamagedEvents::plateFortune);             // How Fortunate!
-        CM_MAP.get(Ids.FORTUNE_SINGULARITY).addEvent(TraitEventType.PLAYER_DAMAGED, TraitPartType.PLATE, PlayerDamagedEvents::plateFortune);             // How Fortunate!
-        CM_MAP.get(Ids.INFINITY).addEvent(TraitEventType.PLAYER_DAMAGED, TraitPartType.PLATE, PlayerDamagedEvents::plateInfinity);           // Infinite Capacity
-        CM_MAP.get(Ids.INFINITY).addEvent(TraitEventType.RIGHT_CLICK, TraitPartType.PLATE, RightClickEvents::plateInfinity);                 // Infinite Capacity - Click
-        CM_MAP.get(Ids.INFINITY_SINGULARITY).addEvent(TraitEventType.PLAYER_DAMAGED, TraitPartType.LINKS, PlayerDamagedEvents::linksSingInfinity);   // Infinite Defence
-        CM_MAP.get(Ids.INFINITY_SINGULARITY).addEvent(TraitEventType.PLAYER_DAMAGED, TraitPartType.PLATE, PlayerDamagedEvents::plateSingInfinity);   // Infinity Powerful
-        CM_MAP.get(Ids.EARTH_SINGULARITY).addEvent(TraitEventType.RIGHT_CLICK, TraitPartType.LINKS, RightClickEvents::linksEarth);                       // It's Natural
-        CM_MAP.get(Ids.METAL_SINGULARITY).addEvent(TraitEventType.PLAYER_DAMAGED, TraitPartType.PLATE, PlayerDamagedEvents::plateMetal);                 // KOTR
-        CM_MAP.get(Ids.EARTH_SINGULARITY).addEvent(TraitEventType.TICK, TraitPartType.PLATE, TickEvents::plateEarth);                                    // Lava Walker
-        CM_MAP.get(Ids.MAGNESIUM_SINGULARITY).addEvent(TraitEventType.TICK, TraitPartType.PLATE, TickEvents::plateSingMagnesium);                    // Light II - Speed
-        CM_MAP.get(Ids.MAGNESIUM_SINGULARITY).addEvent(TraitEventType.ENTITY_DAMAGED, TraitPartType.PLATE, EntityDamageEvents::plateSingMagnesium);  // Light II - Damage
-        CM_MAP.get(Ids.MAGIC_SINGULARITY).addEvent(TraitEventType.PLAYER_DAMAGED, TraitPartType.LINKS, PlayerDamagedEvents::linksMagic);                 // Magical Mint
-        CM_MAP.get(Ids.MAGNESIUM_SINGULARITY).addEvent(TraitEventType.TICK, TraitPartType.LINKS, TickEvents::linksSingMagnesium);                    // Magnesight II
-        CM_MAP.get(Ids.TIN_SINGULARITY).addEvent(TraitEventType.TICK, TraitPartType.PLATE, TickEvents::plateSingTin);                                // Non-Corrosive II
-        CM_MAP.get(Ids.INFINITY).addEvent(TraitEventType.PLAYER_DAMAGED, TraitPartType.LINKS, PlayerDamagedEvents::linksInfinity);           // Oroborus
-        CM_MAP.get(Ids.MAGNONIUM).addEvent(TraitEventType.PLAYER_DAMAGED, TraitPartType.LINKS, PlayerDamagedEvents::linksMagnonium);         // Oxygenated
-        CM_MAP.get(Ids.VOID).addEvent(TraitEventType.PLAYER_DAMAGED, TraitPartType.PLATE, PlayerDamagedEvents::plateVoid);                   // Planewalker
-        CM_MAP.get(Ids.GOLD_SINGULARITY).addEvent(TraitEventType.PLAYER_DAMAGED, TraitPartType.PLATE, PlayerDamagedEvents::plateSingGold);           // Prosperous II
-        CM_MAP.get(Ids.IRON_SINGULARITY).addEvent(TraitEventType.ENTITY_DAMAGED, TraitPartType.LINKS, EntityDamageEvents::linksSingIron);            // Rusty II
-        CM_MAP.get(Ids.LEAD_SINGULARITY).addEvent(TraitEventType.TICK, TraitPartType.LINKS, TickEvents::linksSingLead);                              // Sickly II - Links
-        CM_MAP.get(Ids.LEAD_SINGULARITY).addEvent(TraitEventType.TICK, TraitPartType.PLATE, TickEvents::plateSingLead);                              // Sickly II - Plate
-        CM_MAP.get(Ids.ZINC_SINGULARITY).addEvent(TraitEventType.ENTITY_DAMAGED, TraitPartType.PLATE, EntityDamageEvents::plateSingZinc);            // Sneaky II
-        CM_MAP.get(Ids.IRON_SINGULARITY).addEvent(TraitEventType.PLAYER_DAMAGED, TraitPartType.PLATE, PlayerDamagedEvents::plateSingIron);           // Steadfast II
-        CM_MAP.get(Ids.MAGSTEEL).addEvent(TraitEventType.ENTITY_DAMAGED, TraitPartType.PLATE, EntityDamageEvents::linksCopper);              // Tarnished (CO)
-        CM_MAP.get(Ids.COPPER_SINGULARITY).addEvent(TraitEventType.ENTITY_DAMAGED, TraitPartType.LINKS, EntityDamageEvents::linksSingCopper);        // Tarnished II
-        CM_MAP.get(Ids.VOID).addEvent(TraitEventType.PLAYER_DAMAGED, TraitPartType.LINKS, PlayerDamagedEvents::linksVoid);                   // The End
-        CM_MAP.get(Ids.MAGIC_SINGULARITY).addEvent(TraitEventType.ENTITY_DAMAGED, TraitPartType.PLATE, EntityDamageEvents::plateMagic);                  // Wizard Robes
     }
 
     public static Map<String, TinkerMaterial> getCmMap() {

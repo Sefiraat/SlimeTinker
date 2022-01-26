@@ -215,7 +215,7 @@ public final class ItemUtils {
         lore.add(ThemeUtils.getLine());
 
         // Material properties
-        lore.add(formatPropertyName(matPlate, TinkerMaterialManager.getTraitName(matPlate, TraitPartType.PLATE)));
+        lore.add(formatPropertyName(matPlate, TinkerMaterialManager.getTraitName(matPlate, TraitPartType.PLATES)));
         lore.add(formatPropertyName(matGambeson, TinkerMaterialManager.getTraitName(matGambeson, TraitPartType.GAMBESON)));
         lore.add(formatPropertyName(matLinks, TinkerMaterialManager.getTraitName(matLinks, TraitPartType.LINKS)));
         lore.add(ThemeUtils.getLine());

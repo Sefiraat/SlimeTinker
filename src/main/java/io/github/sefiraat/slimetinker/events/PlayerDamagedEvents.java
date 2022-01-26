@@ -73,7 +73,7 @@ public final class PlayerDamagedEvents {
         }
     }
 
-    public static void headReinforcedSlimesteel(EventFriend friend) {
+    public static void rodReinforcedSlimesteel(EventFriend friend) {
         if (!ItemUtils.isTinkersBroken(friend.getTool())) {
             ItemUtils.damageTinkersItem(friend.getTool(), (int) friend.getInitialDamage());
             friend.setDamageMod(friend.getDamageMod() / 2);

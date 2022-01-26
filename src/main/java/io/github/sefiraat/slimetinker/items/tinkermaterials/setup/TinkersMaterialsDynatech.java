@@ -79,37 +79,6 @@ public final class TinkersMaterialsDynatech {
         CM_MAP.put(Ids.STARDUST, STARDUST);
         CM_MAP.put(Ids.GHOSTLY_ESSENCE, GHOSTLY_ESSENCE);
         CM_MAP.put(Ids.TESSERACT, TESSERACT);
-
-        setupToolConsumers();
-        setupArmourConsumers();
-    }
-
-    public static void setupToolConsumers() {
-
-        CM_MAP.get(Ids.STARDUST).addEvent(TraitEventType.ENTITY_DAMAGED, TraitPartType.HEAD, EntityDamageEvents::headStarDust);                    // Bright Fury
-        CM_MAP.get(Ids.STAINLESS_STEEL).addEvent(TraitEventType.ENTITY_DAMAGED, TraitPartType.ROD, EntityDamageEvents::rodStainlessSteel);         // Cutlery
-        CM_MAP.get(Ids.TESSERACT).addEvent(TraitEventType.RIGHT_CLICK, TraitPartType.HEAD, RightClickEvents::headTessMat);                         // HyperCube [A]
-        CM_MAP.get(Ids.GHOSTLY_ESSENCE).addEvent(TraitEventType.RIGHT_CLICK, TraitPartType.ROD, RightClickEvents::rodGhostly);                     // HyperCube [B]
-        CM_MAP.get(Ids.GHOSTLY_ESSENCE).addEvent(TraitEventType.PLAYER_DAMAGED, TraitPartType.BINDER, PlayerDamagedEvents::bindGhostly);           // Incorporeal
-        CM_MAP.get(Ids.VEX_GEM).addEvent(TraitEventType.RIGHT_CLICK, TraitPartType.BINDER, RightClickEvents::bindVex);                             // NoClip
-        CM_MAP.get(Ids.STAINLESS_STEEL).addEvent(TraitEventType.ENTITY_DAMAGED, TraitPartType.HEAD, EntityDamageEvents::headStainlessSteel);       // Super Dooper Stainless
-        CM_MAP.get(Ids.STARDUST).addEvent(TraitEventType.TICK, TraitPartType.ROD, TickEvents::rodStarDust);                                        // Yvaine
-
-    }
-
-    public static void setupArmourConsumers() {
-
-        CM_MAP.get(Ids.VEX_GEM).addEvent(TraitEventType.TICK, TraitPartType.GAMBESON, TickEvents::gambesonVex);                                     // Annoying
-        CM_MAP.get(Ids.STARDUST).addEvent(TraitEventType.TICK, TraitPartType.LINKS, TickEvents::brightBurn);                                        // Brightburn (CO)
-        CM_MAP.get(Ids.GHOSTLY_ESSENCE).addEvent(TraitEventType.TICK, TraitPartType.GAMBESON, TickEvents::gambesonGhostly);                         // Ghost in the Shell
-        CM_MAP.get(Ids.GHOSTLY_ESSENCE).addEvent(TraitEventType.TICK, TraitPartType.LINKS, TickEvents::linksGhostly);                               // Ghostly
-        CM_MAP.get(Ids.TESSERACT).addEvent(TraitEventType.TICK, TraitPartType.LINKS, TickEvents::hyperbolic);                                       // Hyperbolic Tesseration - Links - Store
-        CM_MAP.get(Ids.TESSERACT).addEvent(TraitEventType.PLAYER_DAMAGED, TraitPartType.LINKS, PlayerDamagedEvents::hyperbolic);                    // Hyperbolic Tesseration - Links - Absorb
-        CM_MAP.get(Ids.TESSERACT).addEvent(TraitEventType.TICK, TraitPartType.PLATE, TickEvents::hyperbolic);                                       // Hyperbolic Tesseration - Plate - Store
-        CM_MAP.get(Ids.TESSERACT).addEvent(TraitEventType.PLAYER_DAMAGED, TraitPartType.PLATE, PlayerDamagedEvents::hyperbolic);                    // Hyperbolic Tesseration - Plate - Absorb
-        CM_MAP.get(Ids.STARDUST).addEvent(TraitEventType.TICK, TraitPartType.PLATE, TickEvents::plateStardust);                                     // Starshine
-        CM_MAP.get(Ids.STAINLESS_STEEL).addEvent(TraitEventType.PLAYER_DAMAGED, TraitPartType.PLATE, PlayerDamagedEvents::plateStainlessSteel);     // The Standard
-        CM_MAP.get(Ids.STAINLESS_STEEL).addEvent(TraitEventType.TICK, TraitPartType.LINKS, TickEvents::linksStainlessSteel);                        // Water Safe
     }
 
     public static Map<String, TinkerMaterial> getCmMap() {

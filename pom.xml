@@ -50,6 +50,7 @@
                 <artifactId>maven-shade-plugin</artifactId>
                 <version>3.2.4</version>
                 <configuration>
+                    <minimizeJar>true</minimizeJar>
                     <relocations>
                         <relocation>
                             <pattern>io.github.mooy1.infinitylib</pattern>
@@ -61,7 +62,7 @@
                         </relocation>
                         <relocation>
                             <pattern>co.aikar.commands</pattern>
-                            <shadedPattern>io.github.sefiraat.charmtech.acf</shadedPattern>
+                            <shadedPattern>io.github.sefiraat.slimetinker.acf</shadedPattern>
                         </relocation>
                     </relocations>
                     <filters>
@@ -111,8 +112,8 @@
             <scope>provided</scope>
             <exclusions>
                 <exclusion>
-                    <groupId>io.github.thebusybiscuit</groupId>
-                    <artifactId>cscorelib2</artifactId>
+                    <groupId>io.github.baked-libs</groupId>
+                    <artifactId>dough</artifactId>
                 </exclusion>
             </exclusions>
         </dependency>
@@ -132,6 +133,16 @@
             <groupId>com.google.code.findbugs</groupId>
             <artifactId>annotations</artifactId>
             <version>3.0.1u2</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>net.jcip</groupId>
+                    <artifactId>jcip-annotations</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>com.google.code.findbugs</groupId>
+                    <artifactId>jsr305</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>co.aikar</groupId>

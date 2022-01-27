@@ -135,6 +135,8 @@ public class MaterialTrait {
             return SkullTextures.TRAITS_DYNATECH;
         } else if (addedBy.equals(SupportedPluginsManager.LITEXPANSION_NOTE)) {
             return SkullTextures.TRAITS_LITEXPANSION;
+        } else if (addedBy.equals(SupportedPluginsManager.TRANSCENDENCE_NOTE)) {
+            return SkullTextures.TRAITS_TRANCSENENCE;
         }
         return "error";
     }

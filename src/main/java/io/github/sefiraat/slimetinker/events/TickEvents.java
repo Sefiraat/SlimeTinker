@@ -2,6 +2,8 @@ package io.github.sefiraat.slimetinker.events;
 
 import io.github.sefiraat.slimetinker.SlimeTinker;
 import io.github.sefiraat.slimetinker.events.friend.EventFriend;
+import io.github.sefiraat.slimetinker.managers.SupportedPluginsManager;
+import io.github.sefiraat.slimetinker.runnables.RunnableManager;
 import io.github.sefiraat.slimetinker.runnables.event.RemoveMagmaBlock;
 import io.github.sefiraat.slimetinker.runnables.event.RemovePoweredState;
 import io.github.sefiraat.slimetinker.utils.BlockUtils;
@@ -778,5 +780,54 @@ public final class TickEvents {
     public static void rodSteel(EventFriend friend) {
         friend.incrementItemExpMod(0.5);
         increaseEffect(PotionEffectType.SPEED, friend.getPotionEffects());
+    }
+
+    public static void plateDaxiAbsorption(EventFriend friend) {
+        friend.setDaxiAbsorption(true);
+        if (friend.isDaxiAbsorption()
+            && friend.isDaxiFortitude()
+            && friend.isDaxiSaturation()
+            && friend.isDaxiRegeneration()
+        ) {
+            setPlayerDaxiProof(friend.getPlayer());
+        }
+    }
+
+    public static void plateDaxiFortitude(EventFriend friend) {
+        friend.setDaxiFortitude(true);
+        if (friend.isDaxiAbsorption()
+            && friend.isDaxiFortitude()
+            && friend.isDaxiSaturation()
+            && friend.isDaxiRegeneration()
+        ) {
+            setPlayerDaxiProof(friend.getPlayer());
+        }
+    }
+
+    public static void plateDaxiSaturation(EventFriend friend) {
+        friend.setDaxiSaturation(true);
+        if (friend.isDaxiAbsorption()
+            && friend.isDaxiFortitude()
+            && friend.isDaxiSaturation()
+            && friend.isDaxiRegeneration()
+        ) {
+            setPlayerDaxiProof(friend.getPlayer());
+        }
+    }
+
+    public static void plateDaxiRegeneration(EventFriend friend) {
+        friend.setDaxiRegeneration(true);
+        if (friend.isDaxiAbsorption()
+            && friend.isDaxiFortitude()
+            && friend.isDaxiSaturation()
+            && friend.isDaxiRegeneration()
+        ) {
+            setPlayerDaxiProof(friend.getPlayer());
+        }
+    }
+
+    public static void setPlayerDaxiProof(Player player) {
+        NamespacedKey key = new NamespacedKey(SupportedPluginsManager.TRANSCENENCE_PLUGIN, "tinker");
+        PersistentDataAPI.setLong(player, key, System.currentTimeMillis() + 5000);
     }
 }

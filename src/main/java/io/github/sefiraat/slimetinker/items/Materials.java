@@ -23,6 +23,7 @@ public final class Materials {
     }
 
     // region Vanilla + Core SF
+
     // region Nuggets
     public static final SlimefunItemStack NUGGET_CAST_COPPER = ThemeUtils.themedItemStack(
         "NUGGET_CAST_COPPER",
@@ -262,7 +263,7 @@ public final class Materials {
         "Cringleium Ingot",
         "A festive ingot that's only available for a short time."
     );
-    // End Region
+    // endregion
 
     // region Blocks
     public static final SlimefunItemStack BLOCK_CAST_COPPER = ThemeUtils.themedItemStack(
@@ -531,9 +532,11 @@ public final class Materials {
         ThemeUtils.PASSIVE + "Used in building the smeltery."
     );
     // endregion
+
     // endregion
 
     // region Infinity Expansion
+
     // region Nuggets
     public static final SlimefunItemStack NUGGET_CAST_INFINITY = ThemeUtils.themedItemStack(
         "NUGGET_CAST_INFINITY",
@@ -584,6 +587,7 @@ public final class Materials {
     );
 
     // endregion
+
     // region Blocks
     public static final SlimefunItemStack BLOCK_CAST_VOID = ThemeUtils.themedItemStack(
         "BLOCK_CAST_VOID",
@@ -642,9 +646,11 @@ public final class Materials {
     );
 
     // endregion
+
     // endregion
 
     // region SFWarfare
+
     // region Nuggets
     public static final SlimefunItemStack NUGGET_CAST_SLIMESTEEL = ThemeUtils.themedItemStack(
         "NUGGET_CAST_SLIMESTEEL",
@@ -730,9 +736,11 @@ public final class Materials {
     );
 
     // endregion
+
     // endregion
 
     // region DynaTech
+
     // region Nuggets
     public static final SlimefunItemStack NUGGET_CAST_STAINLESSSTEEL = ThemeUtils.themedItemStack(
         "NUGGET_CAST_STAINLESSSTEEL",
@@ -743,6 +751,7 @@ public final class Materials {
     );
 
     // endregion
+
     // region Blocks
     public static final SlimefunItemStack BLOCK_CAST_STAINLESSSTEEL = ThemeUtils.themedItemStack(
         "BLOCK_CAST_STAINLESSSTEEL",
@@ -753,9 +762,11 @@ public final class Materials {
     );
 
     // endregion
+
     // endregion
 
-    // region DynaTech
+    // region LiteXpansion
+
     // region Nuggets
     public static final SlimefunItemStack NUGGET_CAST_REFINED_IRON = ThemeUtils.themedItemStack(
         "NUGGET_CAST_REFINED_IRON",
@@ -806,6 +817,7 @@ public final class Materials {
     );
 
     // endregion
+
     // region Blocks
     public static final SlimefunItemStack BLOCK_CAST_REFINED_IRON = ThemeUtils.themedItemStack(
         "BLOCK_CAST_REFINED_IRON",
@@ -855,8 +867,99 @@ public final class Materials {
         "A block of iridium"
     );
 
+    // endregion
 
     // endregion
+
+    // region TranscEndance
+
+    // region Nuggets
+    public static final SlimefunItemStack NUGGET_CAST_DAXI_STRENGTH = ThemeUtils.themedItemStack(
+        "NUGGET_CAST_DAXI_STRENGTH",
+        Material.IRON_NUGGET,
+        ThemeItemType.CRAFTING,
+        "Nugget of Strength Daxi",
+        "A nugget of Daxi emanating strength."
+    );
+
+    public static final SlimefunItemStack NUGGET_CAST_DAXI_ABSORPTION = ThemeUtils.themedItemStack(
+        "NUGGET_CAST_DAXI_ABSORPTION",
+        Material.IRON_NUGGET,
+        ThemeItemType.CRAFTING,
+        "Nugget of Absorption Daxi",
+        "A nugget of Daxi emanating resolution."
+    );
+
+    public static final SlimefunItemStack NUGGET_CAST_DAXI_FORTITUDE = ThemeUtils.themedItemStack(
+        "NUGGET_CAST_DAXI_FORTITUDE",
+        Material.IRON_NUGGET,
+        ThemeItemType.CRAFTING,
+        "Nugget of Fortitude Daxi",
+        "A nugget of Daxi emanating defiance."
+    );
+
+    public static final SlimefunItemStack NUGGET_CAST_DAXI_SATURATION = ThemeUtils.themedItemStack(
+        "NUGGET_CAST_DAXI_SATURATION",
+        Material.IRON_NUGGET,
+        ThemeItemType.CRAFTING,
+        "Nugget of Saturation Daxi",
+        "A nugget of Daxi emanating warmth."
+    );
+
+    public static final SlimefunItemStack NUGGET_CAST_DAXI_REGENERATION = ThemeUtils.themedItemStack(
+        "NUGGET_CAST_DAXI_REGENERATION",
+        Material.IRON_NUGGET,
+        ThemeItemType.CRAFTING,
+        "Nugget of Regeneration Daxi",
+        "A nugget of Daxi emanating kindness."
+    );
+
+    // endregion
+
+    // region Ingots
+
+    public static final SlimefunItemStack INGOT_CAST_DAXI_STRENGTH = ThemeUtils.themedItemStack(
+        "INGOT_CAST_DAXI_STRENGTH",
+        Material.IRON_INGOT,
+        ThemeItemType.CRAFTING,
+        "Ingot of Strength Daxi",
+        "An ingot of Daxi emanating strength."
+    );
+
+    public static final SlimefunItemStack INGOT_CAST_DAXI_ABSORPTION = ThemeUtils.themedItemStack(
+        "INGOT_CAST_DAXI_ABSORPTION",
+        Material.IRON_INGOT,
+        ThemeItemType.CRAFTING,
+        "Ingot of Absorption Daxi",
+        "An ingot of Daxi emanating resolution."
+    );
+
+    public static final SlimefunItemStack INGOT_CAST_DAXI_FORTITUDE = ThemeUtils.themedItemStack(
+        "INGOT_CAST_DAXI_FORTITUDE",
+        Material.IRON_INGOT,
+        ThemeItemType.CRAFTING,
+        "Ingot of Fortitude Daxi",
+        "An ingot of Daxi emanating defiance."
+    );
+
+    public static final SlimefunItemStack INGOT_CAST_DAXI_SATURATION = ThemeUtils.themedItemStack(
+        "INGOT_CAST_DAXI_SATURATION",
+        Material.IRON_INGOT,
+        ThemeItemType.CRAFTING,
+        "Ingot of Saturation Daxi",
+        "An ingot of Daxi emanating warmth."
+    );
+
+    public static final SlimefunItemStack INGOT_CAST_DAXI_REGENERATION = ThemeUtils.themedItemStack(
+        "INGOT_CAST_DAXI_REGENERATION",
+        Material.IRON_INGOT,
+        ThemeItemType.CRAFTING,
+        "Ingot of Regeneration Daxi",
+        "An ingot of Daxi emanating kindness."
+    );
+
+    // endregion
+
     // endregion
 
     private static final ItemStack[] RECIPE_GROUT = new ItemStack[]{
@@ -1062,6 +1165,24 @@ public final class Materials {
 
             new UnplaceableBlock(ItemGroups.MATERIALS, NUGGET_CAST_IRIDIUM, DummySmeltery.TYPE, ItemUtils.getMiddleOnlyRecipe(Casts.CAST_NUGGET)).register(p);
             new UnplaceableBlock(ItemGroups.MATERIALS, BLOCK_CAST_IRIDIUM, DummySmeltery.TYPE, ItemUtils.getMiddleOnlyRecipe(Casts.CAST_BLOCK)).register(p);
+        }
+
+        // TranscEndence
+        if (SupportedPluginsManager.TRANSCENDENCE) {
+            new UnplaceableBlock(ItemGroups.MATERIALS, NUGGET_CAST_DAXI_STRENGTH, DummySmeltery.TYPE, ItemUtils.getMiddleOnlyRecipe(Casts.CAST_NUGGET)).register(p);
+            new UnplaceableBlock(ItemGroups.MATERIALS, INGOT_CAST_DAXI_STRENGTH, DummySmeltery.TYPE, ItemUtils.getMiddleOnlyRecipe(Casts.CAST_INGOT)).register(p);
+
+            new UnplaceableBlock(ItemGroups.MATERIALS, NUGGET_CAST_DAXI_ABSORPTION, DummySmeltery.TYPE, ItemUtils.getMiddleOnlyRecipe(Casts.CAST_NUGGET)).register(p);
+            new UnplaceableBlock(ItemGroups.MATERIALS, INGOT_CAST_DAXI_ABSORPTION, DummySmeltery.TYPE, ItemUtils.getMiddleOnlyRecipe(Casts.CAST_INGOT)).register(p);
+
+            new UnplaceableBlock(ItemGroups.MATERIALS, NUGGET_CAST_DAXI_FORTITUDE, DummySmeltery.TYPE, ItemUtils.getMiddleOnlyRecipe(Casts.CAST_NUGGET)).register(p);
+            new UnplaceableBlock(ItemGroups.MATERIALS, INGOT_CAST_DAXI_FORTITUDE, DummySmeltery.TYPE, ItemUtils.getMiddleOnlyRecipe(Casts.CAST_INGOT)).register(p);
+
+            new UnplaceableBlock(ItemGroups.MATERIALS, NUGGET_CAST_DAXI_SATURATION, DummySmeltery.TYPE, ItemUtils.getMiddleOnlyRecipe(Casts.CAST_NUGGET)).register(p);
+            new UnplaceableBlock(ItemGroups.MATERIALS, INGOT_CAST_DAXI_SATURATION, DummySmeltery.TYPE, ItemUtils.getMiddleOnlyRecipe(Casts.CAST_INGOT)).register(p);
+
+            new UnplaceableBlock(ItemGroups.MATERIALS, NUGGET_CAST_DAXI_REGENERATION, DummySmeltery.TYPE, ItemUtils.getMiddleOnlyRecipe(Casts.CAST_NUGGET)).register(p);
+            new UnplaceableBlock(ItemGroups.MATERIALS, INGOT_CAST_DAXI_REGENERATION, DummySmeltery.TYPE, ItemUtils.getMiddleOnlyRecipe(Casts.CAST_INGOT)).register(p);
         }
     }
 }

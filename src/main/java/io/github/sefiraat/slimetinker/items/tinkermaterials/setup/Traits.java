@@ -2617,4 +2617,62 @@ public final class Traits {
 
     // endregion
 
+    // region TranscEndence
+
+    public static final MaterialTrait TNS_DAXI_STRENGTH = new MaterialTrait()
+        .setPartType(MaterialTrait.PROP_HEAD)
+        .setAddedBy(SupportedPluginsManager.TRANSCENDENCE_NOTE)
+        .setTraitName("The Power of Daxi")
+        .setLore(
+            "Has a chance on hit to unleash the",
+            "power of the Strength Daxi for an",
+            "additional 100% damage."
+        )
+        .addConsumer(TraitEventType.ENTITY_DAMAGED, EntityDamageEvents::headDaxiStrength);
+
+    public static final MaterialTrait TNS_DAXI_ABSORPTION = new MaterialTrait()
+        .setPartType(MaterialTrait.PROP_PLATES)
+        .setAddedBy(SupportedPluginsManager.TRANSCENDENCE_NOTE)
+        .setTraitName("Unite - Absorption")
+        .setLore(
+            "When all four defensive Daxi unite,",
+            "you will be granted the power to",
+            "retain your Daxi through death."
+        )
+        .addConsumer(TraitEventType.TICK, TickEvents::plateDaxiAbsorption);
+
+    public static final MaterialTrait TNS_DAXI_FORTITUDE = new MaterialTrait()
+        .setPartType(MaterialTrait.PROP_PLATES)
+        .setAddedBy(SupportedPluginsManager.TRANSCENDENCE_NOTE)
+        .setTraitName("Unite - Fortitude")
+        .setLore(
+            "When all four defensive Daxi unite,",
+            "you will be granted the power to",
+            "retain your Daxi through death."
+        )
+        .addConsumer(TraitEventType.TICK, TickEvents::plateDaxiFortitude);
+
+    public static final MaterialTrait TNS_DAXI_SATURATION = new MaterialTrait()
+        .setPartType(MaterialTrait.PROP_PLATES)
+        .setAddedBy(SupportedPluginsManager.TRANSCENDENCE_NOTE)
+        .setTraitName("Unite - Saturation")
+        .setLore(
+            "When all four defensive Daxi unite,",
+            "you will be granted the power to",
+            "retain your Daxi through death."
+        )
+        .addConsumer(TraitEventType.TICK, TickEvents::plateDaxiSaturation);
+
+    public static final MaterialTrait TNS_DAXI_REGENERATION = new MaterialTrait()
+        .setPartType(MaterialTrait.PROP_PLATES)
+        .setAddedBy(SupportedPluginsManager.TRANSCENDENCE_NOTE)
+        .setTraitName("Unite - Regeneration")
+        .setLore(
+            "When all four defensive Daxi unite,",
+            "you will be granted the power to",
+            "retain your Daxi through death."
+        )
+        .addConsumer(TraitEventType.TICK, TickEvents::plateDaxiRegeneration);
+
+    // end region
 }

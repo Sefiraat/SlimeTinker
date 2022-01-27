@@ -15,7 +15,6 @@ import java.util.Map;
 
 public class EventFriend {
 
-
     private final Map<PotionEffectType, Integer> potionEffects = new HashMap<>();
     /**
      * Denotes if any of the event channels actually triggered.
@@ -87,6 +86,11 @@ public class EventFriend {
     private int manners = 0;
     private int kingsman = 0;
     private int infinity = 0;
+
+    private boolean daxiAbsorption;
+    private boolean daxiFortitude;
+    private boolean daxiSaturation;
+    private boolean daxiRegeneration;
 
     private boolean blocksIntoInv = false;
 
@@ -441,6 +445,38 @@ public class EventFriend {
 
     public void setInfinity(int infinity) {
         this.infinity = infinity;
+    }
+
+    public boolean isDaxiAbsorption() {
+        return daxiAbsorption;
+    }
+
+    public void setDaxiAbsorption(boolean daxiAbsorption) {
+        this.daxiAbsorption = daxiAbsorption;
+    }
+
+    public boolean isDaxiFortitude() {
+        return daxiFortitude;
+    }
+
+    public void setDaxiFortitude(boolean daxiFortitude) {
+        this.daxiFortitude = daxiFortitude;
+    }
+
+    public boolean isDaxiSaturation() {
+        return daxiSaturation;
+    }
+
+    public void setDaxiSaturation(boolean daxiSaturation) {
+        this.daxiSaturation = daxiSaturation;
+    }
+
+    public boolean isDaxiRegeneration() {
+        return daxiRegeneration;
+    }
+
+    public void setDaxiRegeneration(boolean daxiRegeneration) {
+        this.daxiRegeneration = daxiRegeneration;
     }
 
     public boolean isBlocksIntoInv() {

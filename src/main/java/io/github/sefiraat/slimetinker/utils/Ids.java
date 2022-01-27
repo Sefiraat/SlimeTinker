@@ -99,6 +99,13 @@ public final class Ids {
     public static final String SCRAP = "SCRAP";
     public static final String IRIDIUM = "IRIDIUM";
 
+    // TranscEndence
+    public static final String DAXI_STRENGTH = "DAXI_STRENGTH";
+    public static final String DAXI_ABSORPTION = "DAXI_ABSORPTION";
+    public static final String DAXI_FORTITUDE = "DAXI_FORTITUDE";
+    public static final String DAXI_SATURATION = "DAXI_SATURATION";
+    public static final String DAXI_REGENERATION = "DAXI_REGENERATION";
+
     // Other
     public static final String HEAD = "HEAD";
     public static final String BINDING = "BINDING";

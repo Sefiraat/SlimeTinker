@@ -492,9 +492,11 @@ public final class PlayerDamagedEvents {
     public static void linksInfinity(EventFriend friend) {
         if (friend.getDamagingEntity() != null && GeneralUtils.testChance(20, 100)) {
             friend.setDamageMod(0);
-            LivingEntity e = (LivingEntity) friend.getDamagingEntity();
-            e.damage(friend.getInitialDamage(), friend.getPlayer());
-            e.getWorld().spawnParticle(Particle.ELECTRIC_SPARK, e.getLocation(), 5, 0.5, 0.5, 0.5);
+            if (friend.getDamagingEntity() instanceof LivingEntity) {
+                LivingEntity e = (LivingEntity) friend.getDamagingEntity();
+                e.damage(friend.getInitialDamage(), friend.getPlayer());
+                e.getWorld().spawnParticle(Particle.ELECTRIC_SPARK, e.getLocation(), 5, 0.5, 0.5, 0.5);
+            }
         }
     }
 

@@ -148,7 +148,6 @@ public class ArmourTable extends MenuBlock {
         return StackUtils.getIdOrType(itemStack).startsWith("PART_GAMBESON_");
     }
 
-    @SuppressWarnings("SameReturnValue")
     protected void craft(BlockMenu blockMenu, Player player) {
         ItemStack plates = blockMenu.getItemInSlot(INPUT_PLATES);
         ItemStack gambeson = blockMenu.getItemInSlot(INPUT_GAMBESON);

@@ -36,41 +36,36 @@ public class ModificationStation extends MenuBlock {
         super(itemGroup, item, recipeType, recipe);
     }
 
-    @SuppressWarnings("SameReturnValue")
-    protected boolean craft(BlockMenu blockMenu, Player player) {
-
+    protected void craft(BlockMenu blockMenu, Player player) {
         ItemStack item = blockMenu.getItemInSlot(INPUT_TOOL);
         ItemStack modItem = blockMenu.getItemInSlot(INPUT_MOD);
 
         // No item dummy!
         if (item == null) {
             player.sendMessage(ThemeUtils.WARNING + "Input a tool/piece of armour into the first slot.");
-            return false;
+            return;
         }
 
         if (item.getAmount() > 1) {
             player.sendMessage(ThemeUtils.WARNING + "Nope - nerd");
-            return false;
+            return;
         }
 
         // Still no tool, nice try
         if (ItemUtils.isTool(item)) {
-            return modTool(blockMenu, player, item, modItem);
+            modTool(blockMenu, player, item, modItem);
         } else if (ItemUtils.isArmour(item)) {
-            return modArmour(blockMenu, player, item, modItem);
+            modArmour(blockMenu, player, item, modItem);
         } else {
             player.sendMessage(ThemeUtils.WARNING + "The item in the first slot isn't a Tinker's tool/armour piece.");
         }
-
-        return false;
-
     }
 
-    private boolean modTool(BlockMenu blockMenu, Player player, ItemStack item, ItemStack modItem) {
+    private void modTool(BlockMenu blockMenu, Player player, ItemStack item, ItemStack modItem) {
         // No modifier!
         if (modItem == null || !Modifications.getModificationListTool().contains(StackUtils.getIdOrType(modItem))) {
             player.sendMessage(ThemeUtils.WARNING + "Input a valid modifier into the second slot.");
-            return false;
+            return;
         }
 
         ItemMeta im = item.getItemMeta();
@@ -86,7 +81,7 @@ public class ModificationStation extends MenuBlock {
 
         if (!mod.getRequirementMap().containsKey(currentLevel + 1)) { // Max level
             player.sendMessage(ThemeUtils.WARNING + "You have already maxed out this modifier");
-            return false;
+            return;
         }
 
         int requiredAmount = mod.getRequirementMap().get(currentLevel + 1) - currentAmount; // The amount needed for the next level less the amount currently on the tool
@@ -95,7 +90,7 @@ public class ModificationStation extends MenuBlock {
         if (currentAmount <= 0) {
             if (modSlots == 0) { // New mod and no slots
                 player.sendMessage(ThemeUtils.WARNING + "You do not have enough free Modification slots for this");
-                return false;
+                return;
             } else { // Remove mod slot
                 ItemUtils.setTinkerModifierSlots(c, modSlots - 1);
             }
@@ -117,22 +112,20 @@ public class ModificationStation extends MenuBlock {
 
         if (!blockMenu.fits(newTool, OUTPUT_SLOT)) {
             player.sendMessage(ThemeUtils.WARNING + "Clear the output slot first");
-            return false;
+            return;
         }
 
         ItemUtils.rebuildTinkerLore(newTool);
         blockMenu.pushItem(newTool, OUTPUT_SLOT);
         item.setAmount(0);
         modItem.setAmount(leftoverAmount);
-
-        return false;
     }
 
-    private boolean modArmour(BlockMenu blockMenu, Player player, ItemStack item, ItemStack modItem) {
+    private void modArmour(BlockMenu blockMenu, Player player, ItemStack item, ItemStack modItem) {
         // No modifier!
         if (modItem == null || !Modifications.getModificationListArmour().contains(StackUtils.getIdOrType(modItem))) {
             player.sendMessage(ThemeUtils.WARNING + "Input a valid modifier into the second slot.");
-            return false;
+            return;
         }
 
         ItemMeta im = item.getItemMeta();
@@ -148,7 +141,7 @@ public class ModificationStation extends MenuBlock {
 
         if (!mod.getRequirementMap().containsKey(currentLevel + 1)) { // Max level
             player.sendMessage(ThemeUtils.WARNING + "You have already maxed out this modifier");
-            return false;
+            return;
         }
 
         int requiredAmount = mod.getRequirementMap().get(currentLevel + 1) - currentAmount; // The amount needed for the next level less the amount currently on the tool
@@ -157,7 +150,7 @@ public class ModificationStation extends MenuBlock {
         if (currentAmount <= 0) {
             if (modSlots == 0) { // New mod and no slots
                 player.sendMessage(ThemeUtils.WARNING + "You do not have enough free Modification slots for this");
-                return false;
+                return;
             } else { // Remove mod slot
                 ItemUtils.setTinkerModifierSlots(c, modSlots - 1);
             }
@@ -179,15 +172,13 @@ public class ModificationStation extends MenuBlock {
 
         if (!blockMenu.fits(newArmour, OUTPUT_SLOT)) {
             player.sendMessage(ThemeUtils.WARNING + "Clear the output slot first");
-            return false;
+            return;
         }
 
         ItemUtils.rebuildTinkerLore(newArmour);
         blockMenu.pushItem(newArmour, OUTPUT_SLOT);
         item.setAmount(0);
         modItem.setAmount(leftoverAmount);
-
-        return false;
     }
 
     @Override
@@ -222,7 +213,10 @@ public class ModificationStation extends MenuBlock {
     @Override
     protected void onNewInstance(@Nonnull BlockMenu blockMenu, @Nonnull Block b) {
         super.onNewInstance(blockMenu, b);
-        blockMenu.addMenuClickHandler(MOD_BUTTON, (player, i, itemStack, clickAction) -> craft(blockMenu, player));
+        blockMenu.addMenuClickHandler(MOD_BUTTON, (player, i, itemStack, clickAction) -> {
+            craft(blockMenu, player);
+            return false;
+        });
     }
 
 }

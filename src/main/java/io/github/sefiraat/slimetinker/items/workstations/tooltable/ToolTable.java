@@ -160,7 +160,6 @@ public class ToolTable extends TickingMenuBlock {
         return ItemUtils.getItemName(itemStack).startsWith("PART_BINDING_");
     }
 
-    @SuppressWarnings("SameReturnValue")
     protected void craft(BlockMenu blockMenu, Player player) {
 
         ItemStack head = blockMenu.getItemInSlot(INPUT_HEAD);

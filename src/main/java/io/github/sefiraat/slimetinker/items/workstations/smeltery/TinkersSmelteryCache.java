@@ -177,7 +177,6 @@ public final class TinkersSmelteryCache extends AbstractCache {
         }
     }
 
-    @SuppressWarnings("SameReturnValue")
     private void clickPurge(ClickAction clickAction) {
 
         if (tankContent.isEmpty()) {
@@ -207,7 +206,6 @@ public final class TinkersSmelteryCache extends AbstractCache {
         }
     }
 
-    @SuppressWarnings("SameReturnValue")
     private void clickAlloy() {
         for (Alloy alloy : TinkerMaterialManager.getAlloys()) {
             if (!alloy.getAlloyMap().keySet().equals(tankContent.keySet())) {
@@ -232,7 +230,6 @@ public final class TinkersSmelteryCache extends AbstractCache {
         }
     }
 
-    @SuppressWarnings("SameReturnValue")
     private void clickPour(Player player) {
 
         ItemStack inputItem = blockMenu.getItemInSlot(TinkersSmeltery.CAST_SLOT);
@@ -284,7 +281,6 @@ public final class TinkersSmelteryCache extends AbstractCache {
         }
     }
 
-    @SuppressWarnings("SameReturnValue")
     private void clickMetalTank() {
         // 0 or 1 metals, wont do anything
         Optional<String> first = tankContent.keySet().stream().findFirst();

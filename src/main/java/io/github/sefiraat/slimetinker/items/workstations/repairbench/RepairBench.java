@@ -33,7 +33,6 @@ public class RepairBench extends MenuBlock {
         super(itemGroup, item, recipeType, recipe);
     }
 
-    @SuppressWarnings("SameReturnValue")
     protected void craft(BlockMenu blockMenu, Player player) {
 
         ItemStack item = blockMenu.getItemInSlot(INPUT_TOOL);

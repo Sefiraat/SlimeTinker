@@ -18,7 +18,7 @@ public class DispatchManager {
 
     public DispatchManager() {
 
-        this.commandManager = new PaperCommandManager(SlimeTinker.inst());
+        this.commandManager = new PaperCommandManager(SlimeTinker.getInstance());
         this.commandManager.registerCommand(new Commands());
 
         commandManager.getCommandCompletions().registerCompletion("ITEM_CLASS_TOOL", context -> ImmutableList.of(

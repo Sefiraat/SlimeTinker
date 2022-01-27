@@ -517,7 +517,7 @@ public final class TickEvents {
             BlockUtils.fakePower(blockTarget.getRelative(BlockFace.DOWN));
             BlockUtils.fakePower(blockTarget.getRelative(BlockFace.UP));
             RemovePoweredState task = new RemovePoweredState(blockTarget, friend.getPlayer());
-            task.runTaskTimer(SlimeTinker.inst(), 100, 100);
+            task.runTaskTimer(SlimeTinker.getInstance(), 100, 100);
         }
     }
 
@@ -581,7 +581,7 @@ public final class TickEvents {
         }
 
         RemovePoweredState task = new RemovePoweredState(blockTarget, friend.getPlayer());
-        task.runTaskTimer(SlimeTinker.inst(), 100, 100);
+        task.runTaskTimer(SlimeTinker.getInstance(), 100, 100);
 
     }
 
@@ -608,7 +608,7 @@ public final class TickEvents {
                     if (l.getLevel() == 0) {
                         b.setType(Material.MAGMA_BLOCK);
                         RemoveMagmaBlock task = new RemoveMagmaBlock(b);
-                        task.runTaskLater(SlimeTinker.inst(), 100);
+                        task.runTaskLater(SlimeTinker.getInstance(), 100);
                     }
                 }
             }

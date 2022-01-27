@@ -7,6 +7,6 @@ public class FirstTick extends BukkitRunnable {
 
     @Override
     public void run() {
-        SlimeTinker.inst().getWorkbench().setupRecipes();
+        SlimeTinker.getInstance().getWorkbench().setupRecipes();
     }
 }

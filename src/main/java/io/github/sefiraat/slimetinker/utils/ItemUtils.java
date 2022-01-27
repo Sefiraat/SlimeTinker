@@ -436,11 +436,11 @@ public final class ItemUtils {
     }
 
     public static boolean isMeltable(ItemStack itemStack) {
-        return SlimeTinker.inst().getCmManager().meltingRecipes.containsKey(StackUtils.getIdOrType(itemStack));
+        return SlimeTinker.getInstance().getCmManager().meltingRecipes.containsKey(StackUtils.getIdOrType(itemStack));
     }
 
     public static MoltenResult getMoltenResult(ItemStack itemStack) {
-        return SlimeTinker.inst().getCmManager().meltingRecipes.get(StackUtils.getIdOrType(itemStack));
+        return SlimeTinker.getInstance().getCmManager().meltingRecipes.get(StackUtils.getIdOrType(itemStack));
     }
 
     public static boolean doesUnequipWhenBroken(ItemStack itemStack) {
@@ -695,7 +695,7 @@ public final class ItemUtils {
     public static boolean onCooldown(@Nonnull ItemStack i, String name) {
         ItemMeta im = i.getItemMeta();
         Validate.notNull(im, "Meta is null, THIS PARTY BE POPPIN'");
-        NamespacedKey key = new NamespacedKey(SlimeTinker.inst(), "cooldown_" + name);
+        NamespacedKey key = new NamespacedKey(SlimeTinker.getInstance(), "cooldown_" + name);
         long time = System.currentTimeMillis();
         long cd = PersistentDataAPI.getLong(im, key, 0);
         return cd > time;
@@ -704,7 +704,7 @@ public final class ItemUtils {
     public static void setCooldown(@Nonnull ItemStack i, String name, long duration) {
         ItemMeta im = i.getItemMeta();
         Validate.notNull(im, "Meta is null, sigh");
-        NamespacedKey key = new NamespacedKey(SlimeTinker.inst(), "cooldown_" + name);
+        NamespacedKey key = new NamespacedKey(SlimeTinker.getInstance(), "cooldown_" + name);
         long time = System.currentTimeMillis();
         long cd = time + duration;
         PersistentDataAPI.setLong(im, key, cd);

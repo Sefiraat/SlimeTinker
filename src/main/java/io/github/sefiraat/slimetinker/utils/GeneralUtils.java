@@ -33,7 +33,7 @@ public final class GeneralUtils {
     public static Location deserializeLocation(@Nonnull String s) {
         String[] split = s.split(";");
         return new Location(
-            SlimeTinker.inst().getServer().getWorld(split[0]),
+            SlimeTinker.getInstance().getServer().getWorld(split[0]),
             Double.parseDouble(split[1]),
             Double.parseDouble(split[2]),
             Double.parseDouble(split[3]),

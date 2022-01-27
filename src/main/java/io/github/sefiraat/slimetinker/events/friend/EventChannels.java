@@ -83,7 +83,7 @@ public final class EventChannels {
         TinkerMaterial binderMaterial = TinkerMaterialManager.getMap().get(matPropertyBinding);
         TinkerMaterial rodMaterial = TinkerMaterialManager.getMap().get(matPropertyRod);
 
-        TraitManager manager = SlimeTinker.inst().getTraitManager();
+        TraitManager manager = SlimeTinker.getInstance().getTraitManager();
 
         if (headMaterial != null && manager.isEnabled(matPropertyHead, Ids.HEAD)) {
             headMaterial.runEvent(friend.getEventType(), TraitPartType.HEAD, friend);
@@ -184,7 +184,7 @@ public final class EventChannels {
         TinkerMaterial gambesonMaterial = TinkerMaterialManager.getMap().get(matPropertyGambeson);
         TinkerMaterial linksMaterial = TinkerMaterialManager.getMap().get(matPropertyLinks);
 
-        TraitManager manager = SlimeTinker.inst().getTraitManager();
+        TraitManager manager = SlimeTinker.getInstance().getTraitManager();
 
         if (plateMaterial != null && manager.isEnabled(matPropertyPlate, Ids.PLATE)) {
             plateMaterial.runEvent(friend.getEventType(), TraitPartType.PLATES, friend);

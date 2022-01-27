@@ -156,7 +156,7 @@ public final class RightClickEvents {
             String cdName = "kingsman";
             if (!ItemUtils.onCooldown(i, cdName)) {
                 KingsmanSpam task = new KingsmanSpam(p, 10);
-                task.runTaskTimer(SlimeTinker.inst(), 0, 20);
+                task.runTaskTimer(SlimeTinker.getInstance(), 0, 20);
                 ItemUtils.setCooldown(i, cdName, 20 * 60000L);
             } else {
                 p.sendMessage(ThemeUtils.WARNING + "This ability is on cooldown.");

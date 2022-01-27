@@ -119,7 +119,7 @@ public class TinkerMaterialManager {
             MAP.putAll(TinkersMaterialsLiteXpansion.getCmMap());
         }
 
-        TraitManager traitManager = SlimeTinker.inst().getTraitManager();
+        TraitManager traitManager = SlimeTinker.getInstance().getTraitManager();
 
         // Add melting recipes
         for (Map.Entry<String, TinkerMaterial> entry : MAP.entrySet()) {

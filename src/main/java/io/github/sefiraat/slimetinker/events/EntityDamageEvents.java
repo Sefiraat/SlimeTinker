@@ -232,7 +232,7 @@ public final class EntityDamageEvents {
     public static void rodOsmium(EventFriend friend) {
         LivingEntity e = (LivingEntity) friend.getDamagedEntity();
         if (e.getType() == EntityType.ENDERMAN) {
-            PersistentDataAPI.setString(e, new NamespacedKey(SlimeTinker.inst(), "ST_STOP_TELEPORT"), "Y");
+            PersistentDataAPI.setString(e, new NamespacedKey(SlimeTinker.getInstance(), "ST_STOP_TELEPORT"), "Y");
             e.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 100, 5, true, true));
         }
     }

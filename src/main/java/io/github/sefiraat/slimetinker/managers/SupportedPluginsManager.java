@@ -23,7 +23,7 @@ public final class SupportedPluginsManager {
     public static final String LITEXPANSION_NOTE = ThemeUtils.ADD_LITEXPANSION + "LiteXpansion";
 
     static {
-        PluginManager pluginManager = SlimeTinker.inst().getServer().getPluginManager();
+        PluginManager pluginManager = SlimeTinker.getInstance().getServer().getPluginManager();
         INFINITY_EXPANSION = pluginManager.isPluginEnabled("InfinityExpansion");
         SLIMEFUN_WARFARE = pluginManager.isPluginEnabled("SlimefunWarfare");
         DYNATECH = pluginManager.isPluginEnabled("DynaTech");

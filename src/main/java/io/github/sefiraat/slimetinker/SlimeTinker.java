@@ -34,10 +34,6 @@ public class SlimeTinker extends AbstractAddon {
         super("Sefiraat", "SlimeTinker", "master", "auto-update");
     }
 
-    public static SlimeTinker inst() {
-        return instance;
-    }
-
     @Override
     public void enable() {
 
@@ -73,9 +69,6 @@ public class SlimeTinker extends AbstractAddon {
         instance = null;
     }
 
-    public static SlimeTinker getInstance() {
-        return instance;
-    }
 
     public RunnableManager getRunnableManager() {
         return runnableManager;
@@ -105,4 +98,7 @@ public class SlimeTinker extends AbstractAddon {
         return traitManager;
     }
 
+    public static SlimeTinker getInstance() {
+        return instance;
+    }
 }

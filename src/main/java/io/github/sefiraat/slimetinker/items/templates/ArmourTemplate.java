@@ -17,6 +17,8 @@ import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
+import java.text.MessageFormat;
+
 public class ArmourTemplate extends UnplaceableBlock {
 
     public ArmourTemplate(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
@@ -24,12 +26,17 @@ public class ArmourTemplate extends UnplaceableBlock {
     }
 
     public String getName(ArmourDefinition armourDefinition) {
-        return
-            TinkerMaterialManager.getById(armourDefinition.getPlateMaterial()).getColor() + ThemeUtils.toTitleCase(armourDefinition.getPlateMaterial()) + "-" +
-                TinkerMaterialManager.getById(armourDefinition.getGambesonMaterial()).getColor() + ThemeUtils.toTitleCase(armourDefinition.getGambesonMaterial()) + "-" +
-                TinkerMaterialManager.getById(armourDefinition.getLinksMaterial()).getColor() + ThemeUtils.toTitleCase(armourDefinition.getLinksMaterial()) + " " +
-                ChatColor.WHITE + ThemeUtils.toTitleCase(armourDefinition.getPartType());
-
+        return MessageFormat.format(
+            "{0}{1}-{2}{3}-{4}{5} {6}{7}",
+            TinkerMaterialManager.getById(armourDefinition.getPlateMaterial()).getColor(),
+            ThemeUtils.toTitleCase(armourDefinition.getPlateMaterial()),
+            TinkerMaterialManager.getById(armourDefinition.getGambesonMaterial()).getColor(),
+            ThemeUtils.toTitleCase(armourDefinition.getGambesonMaterial()),
+            TinkerMaterialManager.getById(armourDefinition.getLinksMaterial()).getColor(),
+            ThemeUtils.toTitleCase(armourDefinition.getLinksMaterial()),
+            ChatColor.WHITE,
+            ThemeUtils.toTitleCase(armourDefinition.getPartType())
+        );
     }
 
     public Material getMaterial(ArmourDefinition armourDefinition) {

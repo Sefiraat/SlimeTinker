@@ -14,7 +14,7 @@ public class ArmourRemove extends BukkitRunnable {
 
     @Override
     public void run() {
-        for (Player player : SlimeTinker.inst().getServer().getOnlinePlayers()) {
+        for (Player player : SlimeTinker.getInstance().getServer().getOnlinePlayers()) {
 
             ItemStack helmet = player.getInventory().getHelmet();
             ItemStack chestplate = player.getInventory().getChestplate();

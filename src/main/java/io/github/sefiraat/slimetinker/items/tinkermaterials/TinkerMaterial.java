@@ -29,8 +29,6 @@ import org.bukkit.inventory.meta.ItemMeta;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
-import java.util.Map;
-import java.util.function.Consumer;
 
 public class TinkerMaterial {
 
@@ -109,7 +107,7 @@ public class TinkerMaterial {
     }
 
     public void setupTraits() {
-        final TraitManager manager = SlimeTinker.inst().getTraitManager();
+        final TraitManager manager = SlimeTinker.getInstance().getTraitManager();
 
         if (this.traitToolHead != null && manager.getEnabled(this.id, Ids.HEAD)) {
             this.traitToolHead.setupTrait(this);
@@ -134,7 +132,8 @@ public class TinkerMaterial {
     }
 
     public void registerParts() {
-        TraitManager traitManager = SlimeTinker.inst().getTraitManager();
+        final SlimeTinker plugin = SlimeTinker.getInstance();
+        final TraitManager traitManager = plugin.getTraitManager();
 
         // Heads (and repair kits)
         if (this.traitToolHead != null && traitManager.isEnabled(this.id, Ids.HEAD)) {
@@ -144,7 +143,7 @@ public class TinkerMaterial {
                 DummySmeltery.TYPE,
                 basicRecipe(Casts.CAST_SWORDBLADE, getLiquidItemStack(2)),
                 this.id
-            ).register(SlimeTinker.inst());
+            ).register(plugin);
 
             new PartTemplate(
                 ItemGroups.PART_DICT,
@@ -152,7 +151,7 @@ public class TinkerMaterial {
                 DummySmeltery.TYPE,
                 basicRecipe(Casts.CAST_HOEHEAD, getLiquidItemStack(1)),
                 this.id
-            ).register(SlimeTinker.inst());
+            ).register(plugin);
 
             new PartTemplate(
                 ItemGroups.PART_DICT,
@@ -160,15 +159,15 @@ public class TinkerMaterial {
                 DummySmeltery.TYPE,
                 basicRecipe(Casts.CAST_AXEHEAD, getLiquidItemStack(1)),
                 this.id
-            ).register(SlimeTinker.inst());
+            ).register(plugin);
 
             new PartTemplate(
                 ItemGroups.PART_DICT,
                 headStack(this.id, "PICK", SkullTextures.PART_PICKAXE_HEAD),
                 DummySmeltery.TYPE,
                 basicRecipe(Casts.CAST_PICKAXEHEAD, getLiquidItemStack(1)),
-                this.id).register(SlimeTinker.inst()
-            );
+                this.id
+            ).register(plugin);
 
             new PartTemplate(
                 ItemGroups.PART_DICT,
@@ -176,7 +175,7 @@ public class TinkerMaterial {
                 DummySmeltery.TYPE,
                 basicRecipe(Casts.CAST_SHOVELHEAD, getLiquidItemStack(1)),
                 this.id
-            ).register(SlimeTinker.inst());
+            ).register(plugin);
         }
 
         // Binders
@@ -189,7 +188,7 @@ public class TinkerMaterial {
                 this.id
             );
             binder.setHidden(true);
-            binder.register(SlimeTinker.inst());
+            binder.register(plugin);
         }
 
         // Tool Rods
@@ -200,7 +199,7 @@ public class TinkerMaterial {
                 DummySmeltery.TYPE,
                 basicRecipe(Casts.CAST_TOOLROD, getLiquidItemStack(1)),
                 this.id
-            ).register(SlimeTinker.inst());
+            ).register(plugin);
         }
 
         // Plates
@@ -211,7 +210,7 @@ public class TinkerMaterial {
                 DummySmeltery.TYPE,
                 basicRecipe(Casts.CAST_HELM_PLATE, getLiquidItemStack(TinkerMaterialManager.AMOUNT_ARM_HELM)),
                 this.id
-            ).register(SlimeTinker.inst());
+            ).register(plugin);
 
             new PartTemplate(
                 ItemGroups.PART_DICT,
@@ -219,7 +218,7 @@ public class TinkerMaterial {
                 DummySmeltery.TYPE,
                 basicRecipe(Casts.CAST_CHEST_PLATE, getLiquidItemStack(TinkerMaterialManager.AMOUNT_ARM_CHEST)),
                 this.id
-            ).register(SlimeTinker.inst());
+            ).register(plugin);
 
             new PartTemplate(
                 ItemGroups.PART_DICT,
@@ -227,7 +226,7 @@ public class TinkerMaterial {
                 DummySmeltery.TYPE,
                 basicRecipe(Casts.CAST_LEG_PLATE, getLiquidItemStack(TinkerMaterialManager.AMOUNT_ARM_LEG)),
                 this.id
-            ).register(SlimeTinker.inst());
+            ).register(plugin);
 
             new PartTemplate(
                 ItemGroups.PART_DICT,
@@ -235,7 +234,7 @@ public class TinkerMaterial {
                 DummySmeltery.TYPE,
                 basicRecipe(Casts.CAST_BOOT_PLATE, getLiquidItemStack(TinkerMaterialManager.AMOUNT_ARM_BOOT)),
                 this.id
-            ).register(SlimeTinker.inst());
+            ).register(plugin);
         }
 
         // Gambeson
@@ -248,7 +247,7 @@ public class TinkerMaterial {
                 this.id
             );
             gambeson.setHidden(true);
-            gambeson.register(SlimeTinker.inst());
+            gambeson.register(plugin);
         }
 
         // Mail Links
@@ -259,7 +258,7 @@ public class TinkerMaterial {
                 DummySmeltery.TYPE,
                 basicRecipe(Casts.CAST_MAIL_LINK, getLiquidItemStack(TinkerMaterialManager.AMOUNT_ARM_LINKS)),
                 this.id
-            ).register(SlimeTinker.inst());
+            ).register(plugin);
         }
 
         // Repair Kit
@@ -270,7 +269,7 @@ public class TinkerMaterial {
                 DummySmeltery.TYPE,
                 basicRecipe(Casts.CAST_REPAIRKIT, getLiquidItemStack(TinkerMaterialManager.AMOUNT_KIT)),
                 this.id
-            ).register(SlimeTinker.inst());
+            ).register(plugin);
         }
     }
 

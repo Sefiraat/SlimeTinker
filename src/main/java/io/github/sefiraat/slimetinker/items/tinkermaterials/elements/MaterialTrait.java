@@ -120,7 +120,7 @@ public class MaterialTrait {
                 newLore
             );
         this.item = new SlimefunItem(ItemGroups.TRAITS, itemStack, DummySmelteryTrait.TYPE, propRecipe(partType, parentCM.getRepresentativeStack()));
-        item.register(SlimeTinker.inst());
+        item.register(SlimeTinker.getInstance());
     }
 
     @Nonnull

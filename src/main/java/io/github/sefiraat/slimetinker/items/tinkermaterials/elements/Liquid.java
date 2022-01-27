@@ -37,7 +37,7 @@ public class Liquid {
             null, parent.getRepresentativeStack(), null,
             null, null, null
         });
-        item.register(SlimeTinker.inst());
+        item.register(SlimeTinker.getInstance());
     }
 
     public String getTexture() {

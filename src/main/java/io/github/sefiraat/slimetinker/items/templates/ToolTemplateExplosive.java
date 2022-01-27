@@ -17,6 +17,8 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
 
+import java.text.MessageFormat;
+
 public class ToolTemplateExplosive extends ExplosiveTool {
 
     public ToolTemplateExplosive(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
@@ -33,12 +35,17 @@ public class ToolTemplateExplosive extends ExplosiveTool {
     }
 
     public String getName(ToolDefinition toolDefinition) {
-        return
-            TinkerMaterialManager.getById(toolDefinition.getHeadMaterial()).getColor() + ThemeUtils.toTitleCase(toolDefinition.getHeadMaterial()) + "-" +
-                TinkerMaterialManager.getById(toolDefinition.getBinderMaterial()).getColor() + ThemeUtils.toTitleCase(toolDefinition.getBinderMaterial()) + "-" +
-                TinkerMaterialManager.getById(toolDefinition.getRodMaterial()).getColor() + ThemeUtils.toTitleCase(toolDefinition.getRodMaterial()) + " " +
-                ChatColor.WHITE + ThemeUtils.toTitleCase(toolDefinition.getPartType());
-
+        return MessageFormat.format(
+            "{0}{1}-{2}{3}-{4}{5} {6}{7}",
+            TinkerMaterialManager.getById(toolDefinition.getHeadMaterial()).getColor(),
+            ThemeUtils.toTitleCase(toolDefinition.getHeadMaterial()),
+            TinkerMaterialManager.getById(toolDefinition.getBinderMaterial()).getColor(),
+            ThemeUtils.toTitleCase(toolDefinition.getBinderMaterial()),
+            TinkerMaterialManager.getById(toolDefinition.getRodMaterial()).getColor(),
+            ThemeUtils.toTitleCase(toolDefinition.getRodMaterial()),
+            ChatColor.WHITE,
+            ThemeUtils.toTitleCase(toolDefinition.getPartType())
+        );
     }
 
     public Material getMaterial(ToolDefinition toolDefinition) {

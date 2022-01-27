@@ -238,7 +238,7 @@ public final class TinkersSmelteryCache extends AbstractCache {
         ItemStack inputItem = blockMenu.getItemInSlot(TinkersSmeltery.CAST_SLOT);
 
         // Cast item is null or not a cast
-        if (inputItem == null || !SlimeTinker.inst().getCmManager().castingRecipes.containsKey(StackUtils.getIdOrType(inputItem))) {
+        if (inputItem == null || !SlimeTinker.getInstance().getCmManager().castingRecipes.containsKey(StackUtils.getIdOrType(inputItem))) {
             player.sendMessage(ThemeUtils.WARNING + "Please input a valid cast before trying to pour metals.");
             return;
         }
@@ -253,7 +253,7 @@ public final class TinkersSmelteryCache extends AbstractCache {
 
         String metalID = first.get();
         TinkerMaterial tinkerMaterial = TinkerMaterialManager.getById(metalID);
-        CastResult result = SlimeTinker.inst().getCmManager().castingRecipes.get(StackUtils.getIdOrType(inputItem));
+        CastResult result = SlimeTinker.getInstance().getCmManager().castingRecipes.get(StackUtils.getIdOrType(inputItem));
 
         // Cast valid, but this cast and metal combination doesn't work
         if (!result.getOutputs().containsKey(tinkerMaterial)) {

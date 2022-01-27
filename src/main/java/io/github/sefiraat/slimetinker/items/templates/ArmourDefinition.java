@@ -2,6 +2,7 @@ package io.github.sefiraat.slimetinker.items.templates;
 
 public class ArmourDefinition {
 
+    private final String classType;
     private final String partType;
     private final String plateMaterial;
     private final String gambesonMaterial;
@@ -14,9 +15,7 @@ public class ArmourDefinition {
         this.gambesonMaterial = gambesonMaterial;
         this.linksMaterial = linksMaterial;
     }
-
-    private final String classType;
-
+    
     public String getClassType() {
         return classType;
     }

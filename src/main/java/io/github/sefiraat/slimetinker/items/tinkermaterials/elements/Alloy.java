@@ -39,7 +39,7 @@ public class Alloy {
         SlimefunItemStack[] alloyRecipe = parent.getAlloyRecipe();
         Validate.notNull(alloyRecipe, "Alloy recipe is null. SefiDumb™");
         this.item = new SlimefunItem(ItemGroups.ALLOYS, itemStack, DummySmelteryAlloy.TYPE, alloyRecipe);
-        item.register(SlimeTinker.inst());
+        item.register(SlimeTinker.getInstance());
         for (SlimefunItemStack i : parent.getAlloyRecipe()) {
             alloyMap.put(i.getItemId().replace("_LIQUID", ""), i.getAmount());
         }

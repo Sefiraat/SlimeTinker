@@ -333,7 +333,7 @@ public final class PlayerDamagedEvents {
                 w.setTarget((LivingEntity) friend.getDamagingEntity());
             }
             RemoveWolf task = new RemoveWolf(w);
-            task.runTaskLater(SlimeTinker.inst(), 500);
+            task.runTaskLater(SlimeTinker.getInstance(), 500);
         }
     }
 

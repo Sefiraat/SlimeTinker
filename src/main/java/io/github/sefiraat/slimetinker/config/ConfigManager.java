@@ -12,13 +12,13 @@ public class ConfigManager {
     private final Config config;
 
     public ConfigManager(String filename) {
-        File file = new File(SlimeTinker.inst().getDataFolder(), filename);
+        File file = new File(SlimeTinker.getInstance().getDataFolder(), filename);
         if (!file.exists()) {
             file.getParentFile().mkdirs();
-            SlimeTinker.inst().saveResource(filename, true);
+            SlimeTinker.getInstance().saveResource(filename, true);
         }
 
-        this.config = new Config(SlimeTinker.inst(), filename);
+        this.config = new Config(SlimeTinker.getInstance(), filename);
     }
 
     public Config getConfig() {

@@ -18,6 +18,8 @@ import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
+import java.text.MessageFormat;
+
 public class ToolTemplate extends SlimefunItem implements NotPlaceable {
 
     public ToolTemplate(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
@@ -25,12 +27,17 @@ public class ToolTemplate extends SlimefunItem implements NotPlaceable {
     }
 
     public String getName(ToolDefinition toolDefinition) {
-        return
-            TinkerMaterialManager.getById(toolDefinition.getHeadMaterial()).getColor() + ThemeUtils.toTitleCase(toolDefinition.getHeadMaterial()) + "-" +
-                TinkerMaterialManager.getById(toolDefinition.getBinderMaterial()).getColor() + ThemeUtils.toTitleCase(toolDefinition.getBinderMaterial()) + "-" +
-                TinkerMaterialManager.getById(toolDefinition.getRodMaterial()).getColor() + ThemeUtils.toTitleCase(toolDefinition.getRodMaterial()) + " " +
-                ChatColor.WHITE + ThemeUtils.toTitleCase(toolDefinition.getPartType());
-
+        return MessageFormat.format(
+            "{0}{1}-{2}{3}-{4}{5} {6}{7}",
+            TinkerMaterialManager.getById(toolDefinition.getHeadMaterial()).getColor(),
+            ThemeUtils.toTitleCase(toolDefinition.getHeadMaterial()),
+            TinkerMaterialManager.getById(toolDefinition.getBinderMaterial()).getColor(),
+            ThemeUtils.toTitleCase(toolDefinition.getBinderMaterial()),
+            TinkerMaterialManager.getById(toolDefinition.getRodMaterial()).getColor(),
+            ThemeUtils.toTitleCase(toolDefinition.getRodMaterial()),
+            ChatColor.WHITE,
+            ThemeUtils.toTitleCase(toolDefinition.getPartType())
+        );
     }
 
     public Material getMaterial(ToolDefinition toolDefinition) {

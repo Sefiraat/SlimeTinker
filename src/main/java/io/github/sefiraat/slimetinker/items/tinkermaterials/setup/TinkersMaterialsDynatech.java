@@ -1,11 +1,5 @@
 package io.github.sefiraat.slimetinker.items.tinkermaterials.setup;
 
-import io.github.sefiraat.slimetinker.events.EntityDamageEvents;
-import io.github.sefiraat.slimetinker.events.PlayerDamagedEvents;
-import io.github.sefiraat.slimetinker.events.RightClickEvents;
-import io.github.sefiraat.slimetinker.events.TickEvents;
-import io.github.sefiraat.slimetinker.events.friend.TraitEventType;
-import io.github.sefiraat.slimetinker.events.friend.TraitPartType;
 import io.github.sefiraat.slimetinker.items.Materials;
 import io.github.sefiraat.slimetinker.items.tinkermaterials.TinkerMaterial;
 import io.github.sefiraat.slimetinker.utils.Ids;

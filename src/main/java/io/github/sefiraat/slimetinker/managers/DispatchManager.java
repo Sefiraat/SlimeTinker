@@ -7,7 +7,6 @@ import io.github.sefiraat.slimetinker.commands.Commands;
 import io.github.sefiraat.slimetinker.items.tinkermaterials.TinkerMaterial;
 import io.github.sefiraat.slimetinker.items.tinkermaterials.TinkerMaterialManager;
 import io.github.sefiraat.slimetinker.utils.Ids;
-import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
 
 import java.util.ArrayList;
 import java.util.List;

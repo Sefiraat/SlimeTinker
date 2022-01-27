@@ -8,7 +8,6 @@ import io.github.sefiraat.slimetinker.modifiers.Modifications;
 import io.github.sefiraat.slimetinker.utils.GeneralUtils;
 import io.github.sefiraat.slimetinker.utils.Ids;
 import io.github.sefiraat.slimetinker.utils.ItemUtils;
-import org.apache.commons.lang.Validate;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerItemBreakEvent;
@@ -110,8 +109,6 @@ public class DurabilityListener implements Listener {
     }
 
     private void modCheckPlate(@Nonnull ItemStack damagedItem, int level, PlayerItemDamageEvent event) {
-        ItemMeta im = damagedItem.getItemMeta();
-
         if (ItemUtils.isReinforced(damagedItem)) {
             level = level * 2;
         }

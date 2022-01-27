@@ -165,30 +165,37 @@ public final class RightClickEvents {
     }
 
     public static void linksIridium(EventFriend friend) {
+        final ItemStack i = friend.getActiveStack();
+        final ItemMeta im = i.getItemMeta();
+        int amount = PersistentDataAPI.getInt(im, Keys.ARMOUR_UNCONVENTIONAL_STORED, 0);
 
-        ItemStack i = friend.getActiveStack();
-        ItemMeta im = i.getItemMeta();
-        Validate.notNull(im, "Meta is null, herp derp derp");
-        NamespacedKey k = Keys.ARMOUR_UNCONVENTIONAL_STORED;
-        int amount = PersistentDataAPI.getInt(im, k, 0);
 
         for (ItemStack i2 : friend.getPlayer().getInventory()) {
-            SlimefunItem s = SlimefunItem.getByItem(i2);
-            if (s instanceof Rechargeable) {
-                Rechargeable r1 = (Rechargeable) s;
-                float maxCharge = r1.getMaxItemCharge(i2);
-                float charge = r1.getItemCharge(i2);
-                float amountToCharge = maxCharge - charge;
-                if (amount > amountToCharge) {
-                    r1.setItemCharge(i2, maxCharge);
-                    amount = (int) (amount - amountToCharge);
-                } else {
-                    r1.addItemCharge(i2, amount);
-                    amount = 0;
-                }
+            final SlimefunItem slimefunItem = SlimefunItem.getByItem(i2);
+
+            if (!(slimefunItem instanceof Rechargeable)) {
+                return;
+            }
+
+            final Rechargeable rechargeable = (Rechargeable) slimefunItem;
+            final float maxCharge = rechargeable.getMaxItemCharge(i2);
+            final float charge = rechargeable.getItemCharge(i2);
+            final float amountToCharge = maxCharge - charge;
+
+            if (amount > amountToCharge) {
+                rechargeable.setItemCharge(i2, maxCharge);
+                amount = (int) (amount - amountToCharge);
+            } else {
+                rechargeable.addItemCharge(i2, amount);
+                amount = 0;
+            }
+
+            if (amount <= 0) {
+                break;
             }
         }
-        PersistentDataAPI.setInt(im, k, amount);
+
+        PersistentDataAPI.setInt(im, Keys.ARMOUR_UNCONVENTIONAL_STORED, amount);
         i.setItemMeta(im);
     }
 

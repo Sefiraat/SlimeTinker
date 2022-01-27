@@ -25,6 +25,8 @@ import org.bukkit.persistence.PersistentDataType;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import javax.annotation.ParametersAreNonnullByDefault;
+import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -281,15 +283,20 @@ public final class ItemUtils {
         setName(itemStack, matPlate, matGambeson, matLinks, armourType);
     }
 
-    private static void setName(@Nonnull ItemStack itemStack, String first, String second, String third, String type) {
-        ItemMeta im = itemStack.getItemMeta();
-        assert im != null;
-
-        String name =
-            TinkerMaterialManager.getById(first).getColor() + ThemeUtils.toTitleCase(first) + "-" +
-                TinkerMaterialManager.getById(second).getColor() + ThemeUtils.toTitleCase(second) + "-" +
-                TinkerMaterialManager.getById(third).getColor() + ThemeUtils.toTitleCase(third) + " " +
-                ChatColor.WHITE + ThemeUtils.toTitleCase(type);
+    @ParametersAreNonnullByDefault
+    private static void setName(ItemStack itemStack, String first, String second, String third, String type) {
+        final ItemMeta im = itemStack.getItemMeta();
+        final String name = MessageFormat.format(
+            "{0}{1}-{2}{3}-{4}{5} {6}{7}",
+            TinkerMaterialManager.getById(first).getColor(),
+            ThemeUtils.toTitleCase(first),
+            TinkerMaterialManager.getById(second).getColor(),
+            ThemeUtils.toTitleCase(second),
+            TinkerMaterialManager.getById(third).getColor(),
+            ThemeUtils.toTitleCase(third),
+            ChatColor.WHITE,
+            ThemeUtils.toTitleCase(type)
+        );
 
         im.setDisplayName(name);
         itemStack.setItemMeta(im);

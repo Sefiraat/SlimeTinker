@@ -32,7 +32,7 @@ public final class Traits {
         .setAddedBy(SupportedPluginsManager.CORE_NOTE)
         .setTraitName("Sharp 1")
         .setLore(
-            "Gives increased damage) stacks with",
+            "Gives increased damage, stacks with",
             "mods and other properties."
         )
         .addConsumer(TraitEventType.TICK, TickEvents::rodIron);
@@ -61,7 +61,7 @@ public final class Traits {
         .setTraitName("Golden Veil")
         .setLore(
             "Makes the player invisible. If used on",
-            "a weapon) -100% damage."
+            "a weapon, -100% damage."
         )
         .addConsumer(TraitEventType.ENTITY_DAMAGED, EntityDamageEvents::headGold)
         .addConsumer(TraitEventType.TICK, TickEvents::headGold);

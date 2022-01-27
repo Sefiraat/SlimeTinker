@@ -3,7 +3,6 @@ package io.github.sefiraat.slimetinker.events;
 import io.github.sefiraat.slimetinker.SlimeTinker;
 import io.github.sefiraat.slimetinker.events.friend.EventFriend;
 import io.github.sefiraat.slimetinker.managers.SupportedPluginsManager;
-import io.github.sefiraat.slimetinker.runnables.RunnableManager;
 import io.github.sefiraat.slimetinker.runnables.event.RemoveMagmaBlock;
 import io.github.sefiraat.slimetinker.runnables.event.RemovePoweredState;
 import io.github.sefiraat.slimetinker.utils.BlockUtils;
@@ -827,7 +826,7 @@ public final class TickEvents {
     }
 
     public static void setPlayerDaxiProof(Player player) {
-        NamespacedKey key = new NamespacedKey(SupportedPluginsManager.TRANSCENENCE_PLUGIN, "tinker");
+        NamespacedKey key = new NamespacedKey(SupportedPluginsManager.TRANSCENDENCE_PLUGIN, "tinker");
         PersistentDataAPI.setLong(player, key, System.currentTimeMillis() + 5000);
     }
 }

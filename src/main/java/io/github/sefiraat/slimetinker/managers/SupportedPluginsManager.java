@@ -4,7 +4,6 @@ import io.github.sefiraat.slimetinker.SlimeTinker;
 import io.github.sefiraat.slimetinker.utils.ThemeUtils;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginManager;
-import org.bukkit.plugin.java.JavaPlugin;
 
 @SuppressWarnings("SpellCheckingInspection")
 public final class SupportedPluginsManager {
@@ -19,7 +18,7 @@ public final class SupportedPluginsManager {
     public static final boolean LITEXPANSION;
     public static final boolean TRANSCENDENCE;
 
-    public static Plugin TRANSCENENCE_PLUGIN;
+    public static Plugin TRANSCENDENCE_PLUGIN;
 
     public static final String CORE_NOTE = ThemeUtils.MAIN + "Core SlimeTinker";
     public static final String INFINITY_EXPANSION_NOTE = ThemeUtils.ADD_INFINITY + "Infinity Expansion";
@@ -36,7 +35,7 @@ public final class SupportedPluginsManager {
         LITEXPANSION = pluginManager.isPluginEnabled("LiteXpansion");
         TRANSCENDENCE = pluginManager.isPluginEnabled("TranscEndence");
         if (TRANSCENDENCE) {
-            TRANSCENENCE_PLUGIN = pluginManager.getPlugin("TranscEndence");
+            TRANSCENDENCE_PLUGIN = pluginManager.getPlugin("TranscEndence");
         }
     }
 

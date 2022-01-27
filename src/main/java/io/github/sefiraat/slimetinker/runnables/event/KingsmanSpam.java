@@ -31,9 +31,6 @@ public class KingsmanSpam extends BukkitRunnable {
         if (runs <= 0) {
             this.cancel();
         } else {
-
-            Validate.notNull(l.getWorld(), "World is null - cannot spawn effects.");
-
             int rnd1 = GeneralUtils.roll(255);
             int rnd2 = GeneralUtils.roll(255);
             int rnd3 = GeneralUtils.roll(255);

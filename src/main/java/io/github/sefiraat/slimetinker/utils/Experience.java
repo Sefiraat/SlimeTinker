@@ -88,7 +88,6 @@ public final class Experience {
         }
 
         ItemMeta im = itemStack.getItemMeta();
-        Validate.notNull(im, "Meta null, grr!");
         String type;
         if (ItemUtils.isTool(itemStack)) {
             type = PersistentDataAPI.getString(im, Keys.TOOL_INFO_TOOL_TYPE);

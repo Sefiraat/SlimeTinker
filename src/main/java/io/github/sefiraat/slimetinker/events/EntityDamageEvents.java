@@ -407,7 +407,6 @@ public final class EntityDamageEvents {
             ItemStack i = friend.getActiveStack();
             ItemMeta im = i.getItemMeta();
             NamespacedKey k = Keys.ARMOUR_SOULS_STORED;
-            Validate.notNull(im, "Meta is not null, this is odd!");
             long souls = PersistentDataAPI.getLong(im, k, 0);
             friend.setDamageMod(friend.getDamageMod() + ((double) souls / 10000L));
             if (friend.getInitialDamage() >= e.getHealth()) {

@@ -44,7 +44,6 @@ public class PartTemplate extends UnplaceableBlock {
     public ItemStack getStack(String material, String partClass, @Nullable String partType, ChatColor color) {
         ItemStack itemStack = this.getItem().clone();
         ItemMeta im = itemStack.getItemMeta();
-        Validate.notNull(im, "Meta null, boo!");
         im.setLore(getLore(material, color));
         im.setDisplayName(color + getName(material));
         PersistentDataAPI.setString(im, Keys.PART_MATERIAL, material);

@@ -31,7 +31,6 @@ public class RepairkitTemplate extends UnplaceableBlock {
     public static boolean isRepairKit(ItemStack itemStack) {
         NamespacedKey key = Keys.PART_CLASS;
         ItemMeta im = itemStack.getItemMeta();
-        Validate.notNull(im, "Meta is null, wrong wrong wrong.");
         String value = PersistentDataAPI.getString(im, key);
         return value != null && value.equals(Ids.REPAIR);
     }
@@ -54,7 +53,6 @@ public class RepairkitTemplate extends UnplaceableBlock {
         ItemStack itemStack = this.getItem().clone();
         itemStack.setType(Material.CHEST_MINECART);
         ItemMeta im = itemStack.getItemMeta();
-        Validate.notNull(im, "Meta be null y'all!");
         im.setLore(getLore(material, color));
         im.setDisplayName(color + getName(material));
         PersistentDataAPI.setString(im, Keys.PART_MATERIAL, material);

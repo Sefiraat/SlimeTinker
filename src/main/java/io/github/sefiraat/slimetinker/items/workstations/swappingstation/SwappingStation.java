@@ -146,15 +146,10 @@ public class SwappingStation extends MenuBlock {
         blockMenu.pushItem(newArmour, OUTPUT_SLOT);
         blockMenu.getItemInSlot(INPUT_ITEM).setAmount(blockMenu.getItemInSlot(INPUT_ITEM).getAmount() - 1);
         blockMenu.getItemInSlot(INPUT_PART).setAmount(blockMenu.getItemInSlot(INPUT_PART).getAmount() - 1);
-
-        return;
-
     }
 
     private void checkAndChangeExplosiveness(ItemStack newTool, ItemMeta im, String partMaterial, String partClass) {
-
         Validate.notNull(Slimefun.instance(), "Slimefun is null, that's... not great?");
-
         NamespacedKey sfIDKey = new NamespacedKey(Slimefun.instance(), "slimefun_item");
         String sID = PersistentDataAPI.getString(im, sfIDKey);
 
@@ -167,16 +162,13 @@ public class SwappingStation extends MenuBlock {
             sID = sID.replace("_EXP", "");
             PersistentDataAPI.setString(im, sfIDKey, sID);
         }
-
     }
 
     @Override
     protected void setup(BlockMenuPreset blockMenuPreset) {
-
         blockMenuPreset.drawBackground(ChestMenuUtils.getBackground(), BACKGROUND_SLOTS);
         blockMenuPreset.addItem(CRAFT_BUTTON, GUIItems.MENU_CRAFT_SWAP);
         blockMenuPreset.addMenuClickHandler(CRAFT_BUTTON, (player, i, itemStack, clickAction) -> false);
-
     }
 
     @Override

@@ -60,7 +60,6 @@ public class ArmourTemplate extends UnplaceableBlock {
 
         itemStack.setType(getMaterial(armourDefinition));
         ItemMeta im = itemStack.getItemMeta();
-        Validate.notNull(im, "Meta is null, whoops!");
         Experience.setupExpNew(im);
         PersistentDataAPI.setString(im, Keys.ARMOUR_INFO_IS_ARMOUR, "Y");
         PersistentDataAPI.setString(im, Keys.ARMOUR_INFO_PLATE_TYPE, armourDefinition.getClassType());

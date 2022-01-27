@@ -304,14 +304,12 @@ public final class ItemUtils {
 
     public static boolean isTinkersBroken(@Nonnull ItemStack itemStack) {
         Damageable damageable = (Damageable) itemStack.getItemMeta();
-        Validate.notNull(damageable, "Damagable is null, this is some BULL YO'");
         return damageable.getDamage() == itemStack.getType().getMaxDurability() - 1;
     }
 
     public static void damageTinkersItem(@Nonnull ItemStack itemStack, int amount) {
         ItemMeta im = itemStack.getItemMeta();
         Damageable damageable = (Damageable) im;
-        Validate.notNull(damageable, "Damagable is null, this is some BULL YO'");
         if ((damageable.getDamage() + amount) >= itemStack.getType().getMaxDurability()) { // This will break the tool, lets stop that!
             damageable.setDamage(itemStack.getType().getMaxDurability() - 1);
         } else {
@@ -323,7 +321,6 @@ public final class ItemUtils {
     public static void repairItem(@Nonnull ItemStack itemStack) {
         ItemMeta im = itemStack.getItemMeta();
         Damageable d = (Damageable) im;
-        Validate.notNull(d, "Damagable is null, this is some BULL YO'");
         d.setDamage(0);
         itemStack.setItemMeta(im);
     }
@@ -331,7 +328,6 @@ public final class ItemUtils {
     public static void repairItem(@Nonnull ItemStack itemStack, int amount) {
         ItemMeta im = itemStack.getItemMeta();
         Damageable d = (Damageable) im;
-        Validate.notNull(d, "Damagable is null, this is some BULL YO'");
         d.setDamage(Math.max(d.getDamage() - amount, 0));
         itemStack.setItemMeta(im);
     }
@@ -339,7 +335,6 @@ public final class ItemUtils {
     @Nullable
     public static String getToolHeadMaterial(@Nonnull ItemStack itemStack) {
         ItemMeta im = itemStack.getItemMeta();
-        Validate.notNull(im, "ItemStack with no meta provided.");
         return getToolHeadMaterial(im.getPersistentDataContainer());
     }
 
@@ -351,7 +346,6 @@ public final class ItemUtils {
     @Nullable
     public static String getToolBindingMaterial(@Nonnull ItemStack itemStack) {
         ItemMeta im = itemStack.getItemMeta();
-        Validate.notNull(im, "ItemStack with no meta provided.");
         return getToolBindingMaterial(im.getPersistentDataContainer());
     }
 
@@ -363,7 +357,6 @@ public final class ItemUtils {
     @Nullable
     public static String getToolRodMaterial(@Nonnull ItemStack itemStack) {
         ItemMeta im = itemStack.getItemMeta();
-        Validate.notNull(im, "ItemStack with no meta provided.");
         return getToolRodMaterial(im.getPersistentDataContainer());
     }
 
@@ -375,7 +368,6 @@ public final class ItemUtils {
     @Nullable
     public static String getToolTypeName(@Nonnull ItemStack itemStack) {
         ItemMeta im = itemStack.getItemMeta();
-        Validate.notNull(im, "ItemStack with no meta provided.");
         return getToolTypeName(im.getPersistentDataContainer());
     }
 
@@ -387,7 +379,6 @@ public final class ItemUtils {
     @Nullable
     public static String getArmourPlateMaterial(@Nonnull ItemStack itemStack) {
         ItemMeta im = itemStack.getItemMeta();
-        Validate.notNull(im, "ItemStack with no meta provided.");
         return getArmourPlateMaterial(im.getPersistentDataContainer());
     }
 
@@ -399,7 +390,6 @@ public final class ItemUtils {
     @Nullable
     public static String getArmourGambesonMaterial(@Nonnull ItemStack itemStack) {
         ItemMeta im = itemStack.getItemMeta();
-        Validate.notNull(im, "ItemStack with no meta provided.");
         return getArmourGambesonMaterial(im.getPersistentDataContainer());
     }
 
@@ -411,7 +401,6 @@ public final class ItemUtils {
     @Nullable
     public static String getArmourLinksMaterial(@Nonnull ItemStack itemStack) {
         ItemMeta im = itemStack.getItemMeta();
-        Validate.notNull(im, "ItemStack with no meta provided.");
         return getArmourLinksMaterial(im.getPersistentDataContainer());
     }
 
@@ -423,7 +412,6 @@ public final class ItemUtils {
     @Nullable
     public static String getArmourTypeName(@Nonnull ItemStack itemStack) {
         ItemMeta im = itemStack.getItemMeta();
-        Validate.notNull(im, "ItemStack with no meta provided.");
         return getArmourTypeName(im.getPersistentDataContainer());
     }
 
@@ -613,7 +601,6 @@ public final class ItemUtils {
     public static int getTinkerExp(ItemStack itemStack) {
         if (itemStack == null) return 0;
         ItemMeta im = itemStack.getItemMeta();
-        Validate.notNull(im, "ItemStack does not have meta");
         PersistentDataContainer c = im.getPersistentDataContainer();
         return getTinkerExp(c);
     }
@@ -625,7 +612,6 @@ public final class ItemUtils {
     public static int getTinkerRequiredExp(ItemStack itemStack) {
         if (itemStack == null) return 0;
         ItemMeta im = itemStack.getItemMeta();
-        Validate.notNull(im, "ItemStack does not have meta");
         PersistentDataContainer c = im.getPersistentDataContainer();
         return getTinkerRequiredExp(c);
     }
@@ -638,7 +624,6 @@ public final class ItemUtils {
     public static int getTinkerLevel(ItemStack itemStack) {
         if (itemStack == null) return 0;
         ItemMeta im = itemStack.getItemMeta();
-        Validate.notNull(im, "ItemStack does not have meta");
         PersistentDataContainer c = im.getPersistentDataContainer();
         return getTinkerLevel(c);
     }
@@ -651,7 +636,6 @@ public final class ItemUtils {
     public static int getTinkerModifierSlots(ItemStack itemStack) {
         if (itemStack == null) return 0;
         ItemMeta im = itemStack.getItemMeta();
-        Validate.notNull(im, "ItemStack does not have meta");
         PersistentDataContainer c = im.getPersistentDataContainer();
         return getTinkerModifierSlots(c);
     }
@@ -690,7 +674,6 @@ public final class ItemUtils {
     }
 
     public static void incrementRandomEnchant(ItemStack i, ItemMeta im) {
-        Validate.notNull(im, "Mata is null, TIME TO GET GOT!");
         Enchantment randEnchant = Enchantment.values()[(GeneralUtils.roll(Enchantment.values().length, false))];
         if (im.hasEnchant(randEnchant)) {
             im.addEnchant(randEnchant, i.getEnchantmentLevel(randEnchant) + 1, true);
@@ -701,7 +684,6 @@ public final class ItemUtils {
 
     public static boolean onCooldown(@Nonnull ItemStack i, String name) {
         ItemMeta im = i.getItemMeta();
-        Validate.notNull(im, "Meta is null, THIS PARTY BE POPPIN'");
         NamespacedKey key = new NamespacedKey(SlimeTinker.getInstance(), "cooldown_" + name);
         long time = System.currentTimeMillis();
         long cd = PersistentDataAPI.getLong(im, key, 0);
@@ -710,7 +692,6 @@ public final class ItemUtils {
 
     public static void setCooldown(@Nonnull ItemStack i, String name, long duration) {
         ItemMeta im = i.getItemMeta();
-        Validate.notNull(im, "Meta is null, sigh");
         NamespacedKey key = new NamespacedKey(SlimeTinker.getInstance(), "cooldown_" + name);
         long time = System.currentTimeMillis();
         long cd = time + duration;
@@ -720,7 +701,6 @@ public final class ItemUtils {
 
     public static boolean isToolExplosive(@Nonnull ItemStack itemStack) {
         ItemMeta im = itemStack.getItemMeta();
-        Validate.notNull(im, "Meta is null, nerd.");
         return isToolExplosive(im.getPersistentDataContainer());
     }
 

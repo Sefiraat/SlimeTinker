@@ -63,7 +63,6 @@ public class ToolTemplate extends SlimefunItem implements NotPlaceable {
 
         itemStack.setType(getMaterial(toolDefinition));
         ItemMeta im = itemStack.getItemMeta();
-        Validate.notNull(im, "This meta, it be null!");
         Experience.setupExpNew(im);
         PersistentDataAPI.setString(im, Keys.TOOL_INFO_IS_TOOL, "Y");
         PersistentDataAPI.setString(im, Keys.TOOL_INFO_HEAD_TYPE, toolDefinition.getClassType());

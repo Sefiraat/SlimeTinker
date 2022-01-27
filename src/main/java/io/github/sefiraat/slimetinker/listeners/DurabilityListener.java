@@ -111,7 +111,6 @@ public class DurabilityListener implements Listener {
 
     private void modCheckPlate(@Nonnull ItemStack damagedItem, int level, PlayerItemDamageEvent event) {
         ItemMeta im = damagedItem.getItemMeta();
-        Validate.notNull(im, "Meta is null, mod check failed");
 
         if (ItemUtils.isReinforced(damagedItem)) {
             level = level * 2;

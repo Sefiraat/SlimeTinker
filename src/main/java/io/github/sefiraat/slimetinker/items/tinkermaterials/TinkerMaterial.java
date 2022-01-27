@@ -504,7 +504,6 @@ public class TinkerMaterial {
         );
 
         ItemMeta im = i.getItemMeta();
-        Validate.notNull(im, "Meta is null, impossible but meh!");
 
         PersistentDataAPI.setString(im, Keys.PART_MATERIAL, name);
         PersistentDataAPI.setString(im, Keys.PART_CLASS, Ids.BINDING);
@@ -549,7 +548,6 @@ public class TinkerMaterial {
         );
 
         ItemMeta im = i.getItemMeta();
-        Validate.notNull(im, "Meta is null, nope, not happening!");
 
         PersistentDataAPI.setString(im, Keys.PART_MATERIAL, name);
         PersistentDataAPI.setString(im, Keys.PART_CLASS, Ids.GAMBESON);

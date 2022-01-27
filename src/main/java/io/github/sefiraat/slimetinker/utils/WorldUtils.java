@@ -24,7 +24,6 @@ public final class WorldUtils {
     }
 
     public static void dropItem(ItemStack i, @Nonnull Location l) {
-        Validate.notNull(l.getWorld(), "Location doesn't have a world");
         dropItem(l.getWorld(), l, i);
     }
 

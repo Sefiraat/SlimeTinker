@@ -140,11 +140,17 @@ public final class PlayerDamagedEvents {
 
     public static void plateBrass(EventFriend friend) {
         ItemStack itemStack = friend.getActiveStack();
-        Damageable damagable = (Damageable) itemStack.getItemMeta();
-        Validate.notNull(damagable, "Damagable is null, this means the world is a lie!");
+        ItemMeta itemMeta = itemStack.getItemMeta();
+
+        if (!(itemMeta instanceof Damageable)) {
+            return;
+        }
+
+        Damageable damagable = (Damageable) itemMeta;
         int maxDurability = itemStack.getType().getMaxDurability();
         int damage = damagable.getDamage();
         float dmgPerc = ((float) damage) / ((float) maxDurability);
+
         if (dmgPerc <= 0) {
             friend.setDamageMod(friend.getDamageMod() + 0.25);
         } else if (dmgPerc <= 0.1) {
@@ -443,7 +449,6 @@ public final class PlayerDamagedEvents {
         ItemStack i = friend.getActiveStack();
         ItemMeta im = i.getItemMeta();
         NamespacedKey k = Keys.ARMOUR_INFINITE_CAPACITY_STORED;
-        Validate.notNull(im, "Meta is null, nope!");
         double d = PersistentDataAPI.getDouble(im, k, 0);
         if (d < 5) {
             d = Math.min(5, d + friend.getInitialDamage() / 10);
@@ -463,7 +468,6 @@ public final class PlayerDamagedEvents {
         ItemStack i = friend.getActiveStack();
         ItemMeta im = i.getItemMeta();
         NamespacedKey k = Keys.ARMOUR_INFINITLY_POWERFUL_STORED;
-        Validate.notNull(im, "Meta is null, nope!");
         int d = PersistentDataAPI.getInt(im, k, 0);
         d = (int) (d + friend.getInitialDamage());
         int numberOfEnchants = 0;
@@ -544,7 +548,6 @@ public final class PlayerDamagedEvents {
         if (friend.getHyperbolic() >= 8) {
             ItemStack i = friend.getActiveStack();
             ItemMeta im = i.getItemMeta();
-            Validate.notNull(im, "Meta is null, herp derp derp");
             NamespacedKey k = Keys.ARMOUR_HYPERBOLIC_STORED;
             int amount = PersistentDataAPI.getInt(im, k, 0);
             double dmg = friend.getInitialDamage() * friend.getDamageMod();
@@ -658,7 +661,6 @@ public final class PlayerDamagedEvents {
     public static void linksIridium(EventFriend friend) {
         ItemStack i = friend.getActiveStack();
         ItemMeta im = i.getItemMeta();
-        Validate.notNull(im, "Meta is null, herp derp derp");
         NamespacedKey k = Keys.ARMOUR_UNCONVENTIONAL_STORED;
         int amount = PersistentDataAPI.getInt(im, k, 0);
 

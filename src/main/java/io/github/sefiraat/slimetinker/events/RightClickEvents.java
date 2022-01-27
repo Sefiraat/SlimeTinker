@@ -104,7 +104,6 @@ public final class RightClickEvents {
         ItemStack i = friend.getActiveStack();
         ItemMeta im = i.getItemMeta();
         NamespacedKey k = Keys.ARMOUR_INFINITE_CAPACITY_STORED;
-        Validate.notNull(im, "Meta is null, nope!");
         double d = PersistentDataAPI.getDouble(im, k, 0);
         if (d > 1) {
             List<Entity> entityList = friend.getPlayer().getNearbyEntities(3, 3, 3);

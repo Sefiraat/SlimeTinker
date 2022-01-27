@@ -678,7 +678,6 @@ public final class TickEvents {
         if (friend.getHyperbolic() >= 8 && p.getWorld().getName().equals("dimensionalhome")) {
             ItemStack i = friend.getActiveStack();
             ItemMeta im = i.getItemMeta();
-            Validate.notNull(im, "Meta is null, herp derp derp");
             NamespacedKey k = Keys.ARMOUR_HYPERBOLIC_STORED;
             int amount = PersistentDataAPI.getInt(im, k, 0);
             PersistentDataAPI.setInt(im, k, Math.min(amount + 1, 50));

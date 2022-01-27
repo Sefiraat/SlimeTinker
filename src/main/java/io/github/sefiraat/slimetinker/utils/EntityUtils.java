@@ -117,7 +117,6 @@ public final class EntityUtils {
     @Nonnull
     public static <T> List<T> getNearbyEntitiesByType(@Nonnull Class<?> clazz, @Nonnull Location l, double x, double y, double z) {
         World world = l.getWorld();
-        Validate.notNull(world);
         return ((List<T>) world.getNearbyEntities(l, x, y, z, clazz::isInstance));
     }
 

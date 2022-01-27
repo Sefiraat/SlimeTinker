@@ -1,6 +1,11 @@
 package io.github.sefiraat.slimetinker.events;
 
+import de.jeff_media.morepersistentdatatypes.DataType;
+import io.github.sefiraat.networks.slimefun.network.grid.NetworkGrid;
+import io.github.sefiraat.networks.utils.Theme;
+import io.github.sefiraat.networks.utils.datatypes.DataTypeMethods;
 import io.github.sefiraat.slimetinker.SlimeTinker;
+import io.github.sefiraat.slimetinker.events.friend.ActiveFriendElement;
 import io.github.sefiraat.slimetinker.events.friend.EventFriend;
 import io.github.sefiraat.slimetinker.runnables.event.KingsmanSpam;
 import io.github.sefiraat.slimetinker.utils.BlockUtils;
@@ -15,6 +20,8 @@ import io.github.thebusybiscuit.slimefun4.core.attributes.Rechargeable;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.data.persistent.PersistentDataAPI;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.protection.Interaction;
+import me.mrCookieSlime.Slimefun.api.BlockStorage;
+import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
 import org.apache.commons.lang.Validate;
 import org.bukkit.Effect;
 import org.bukkit.Location;
@@ -28,15 +35,17 @@ import org.bukkit.entity.Animals;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
+import org.bukkit.event.block.Action;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
+import javax.annotation.Nonnull;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
-public final class RightClickEvents {
+public final class InteractionEvents {
 
-    private RightClickEvents() {
+    private InteractionEvents() {
         throw new UnsupportedOperationException("Utility Class");
     }
 
@@ -228,6 +237,77 @@ public final class RightClickEvents {
             }
         } else {
             player.sendMessage(ThemeUtils.WARNING + "This ability is on cooldown.");
+        }
+    }
+
+    public static void linksUltimaninium(EventFriend friend) {
+        if (friend.getActiveFriendElement() != ActiveFriendElement.HELMET) {
+            return;
+        }
+
+        final Player player = friend.getPlayer();
+
+        if (player.getInventory().getItemInMainHand().getType() != Material.AIR) {
+            return;
+        }
+
+        if (friend.getAction() != Action.LEFT_CLICK_AIR && friend.getAction() != Action.LEFT_CLICK_BLOCK) {
+            return;
+        }
+
+        if (player.isSneaking()) {
+            final Block block = friend.getBlock();
+            if (block == null) {
+                return;
+            }
+
+            final SlimefunItem slimefunItem = BlockStorage.check(block);
+            if (Slimefun.getProtectionManager().hasPermission(player, block, Interaction.INTERACT_BLOCK)
+                && slimefunItem instanceof NetworkGrid
+            ) {
+                setGrid(friend.getActiveStack(), block, player);
+            } else {
+                player.sendMessage(Theme.ERROR + "Must be set to a Network Grid (not crafting grid).");
+            }
+        } else {
+            tryOpenGrid(friend.getActiveStack(), player);
+        }
+    }
+
+    private static void setGrid(@Nonnull ItemStack itemStack, @Nonnull Block block, @Nonnull Player player) {
+        final NamespacedKey key = io.github.sefiraat.networks.utils.Keys.newKey("location");
+        final ItemMeta itemMeta = itemStack.getItemMeta();
+        DataTypeMethods.setCustom(itemMeta, key, DataType.LOCATION, block.getLocation());
+        itemStack.setItemMeta(itemMeta);
+        player.sendMessage(Theme.SUCCESS + "Grid has been bound to the remote.");
+    }
+
+    private static void tryOpenGrid(@Nonnull ItemStack itemStack, @Nonnull Player player) {
+        final NamespacedKey key = io.github.sefiraat.networks.utils.Keys.newKey("location");
+        final ItemMeta itemMeta = itemStack.getItemMeta();
+        final Location location = DataTypeMethods.getCustom(itemMeta, key, DataType.LOCATION);
+
+        if (location != null) {
+
+            if (!location.getWorld().isChunkLoaded(location.getBlockX() / 16, location.getBlockZ() / 16)) {
+                player.sendMessage(Theme.ERROR + "The bound grid is not loaded.");
+                return;
+            }
+            openGrid(location, player);
+        } else {
+            player.sendMessage(Theme.ERROR + "Remote is not bound to a grid.");
+        }
+    }
+
+    private static void openGrid(@Nonnull Location location, @Nonnull Player player) {
+        BlockMenu blockMenu = BlockStorage.getInventory(location);
+        SlimefunItem slimefunItem = BlockStorage.check(location);
+        if (Slimefun.getProtectionManager().hasPermission(player, blockMenu.getLocation(), Interaction.INTERACT_BLOCK)
+            && slimefunItem instanceof NetworkGrid
+        ) {
+            blockMenu.open(player);
+        } else {
+            player.sendMessage(Theme.ERROR + "The bound grid can no longer be found.");
         }
     }
 }

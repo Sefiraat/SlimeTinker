@@ -4,7 +4,7 @@ import io.github.sefiraat.slimetinker.events.BlockBreakEvents;
 import io.github.sefiraat.slimetinker.events.DurabilityEvents;
 import io.github.sefiraat.slimetinker.events.EntityDamageEvents;
 import io.github.sefiraat.slimetinker.events.PlayerDamagedEvents;
-import io.github.sefiraat.slimetinker.events.RightClickEvents;
+import io.github.sefiraat.slimetinker.events.InteractionEvents;
 import io.github.sefiraat.slimetinker.events.TickEvents;
 import io.github.sefiraat.slimetinker.events.friend.TraitEventType;
 import io.github.sefiraat.slimetinker.items.tinkermaterials.elements.MaterialTrait;
@@ -1118,7 +1118,7 @@ public final class Traits {
         .setLore(
             "Spawns ladders on right click."
         )
-        .addConsumer(TraitEventType.RIGHT_CLICK, RightClickEvents::headBoomerite);
+        .addConsumer(TraitEventType.INTERACT, InteractionEvents::headBoomerite);
 
     public static final MaterialTrait CORE_BOOMERITE_PLATES = new MaterialTrait()
         .setPartType(MaterialTrait.PROP_PLATES)
@@ -1136,7 +1136,7 @@ public final class Traits {
         .setLore(
             "Time to celebrate"
         )
-        .addConsumer(TraitEventType.RIGHT_CLICK, RightClickEvents::headSefirite);
+        .addConsumer(TraitEventType.INTERACT, InteractionEvents::headSefirite);
 
     public static final MaterialTrait CORE_CRINGLEIUM_LINKS = new MaterialTrait()
         .setPartType(MaterialTrait.PROP_LINKS)
@@ -1824,7 +1824,7 @@ public final class Traits {
             "Feeds two nearby animals on right click. (CD: 2m)",
             "Cooldown fires regardless of success."
         )
-        .addConsumer(TraitEventType.RIGHT_CLICK, RightClickEvents::linksEarth);
+        .addConsumer(TraitEventType.INTERACT, InteractionEvents::linksEarth);
 
     public static final MaterialTrait INFINITY_METAL_SINGULARITY_HEAD = new MaterialTrait()
         .setPartType(MaterialTrait.PROP_HEAD)
@@ -1895,7 +1895,7 @@ public final class Traits {
             "the damage on nearby entities"
         )
         .addConsumer(TraitEventType.PLAYER_DAMAGED, PlayerDamagedEvents::plateInfinity)
-        .addConsumer(TraitEventType.RIGHT_CLICK, RightClickEvents::plateInfinity);
+        .addConsumer(TraitEventType.INTERACT, InteractionEvents::plateInfinity);
 
     public static final MaterialTrait INFINITY_INFINITY_LINKS = new MaterialTrait()
         .setPartType(MaterialTrait.PROP_LINKS)
@@ -1980,7 +1980,7 @@ public final class Traits {
             "super cool."
         )
         .addConsumer(TraitEventType.ENTITY_DAMAGED, EntityDamageEvents::rodRefinedIron)
-        .addConsumer(TraitEventType.RIGHT_CLICK, RightClickEvents::rodRefinedIron)
+        .addConsumer(TraitEventType.INTERACT, InteractionEvents::rodRefinedIron)
         .addConsumer(TraitEventType.TICK, TickEvents::rodRefinedIron);
 
     public static final MaterialTrait LITE_REFINED_IRON_PLATES = new MaterialTrait()
@@ -1993,7 +1993,7 @@ public final class Traits {
             "Does nothing if you don't have manners.",
             "Requires 4 pieces with Kingsman."
         )
-        .addConsumer(TraitEventType.RIGHT_CLICK, RightClickEvents::plateRefinedIron);
+        .addConsumer(TraitEventType.INTERACT, InteractionEvents::plateRefinedIron);
 
     public static final MaterialTrait LITE_REFINED_IRON_LINKS = new MaterialTrait()
         .setPartType(MaterialTrait.PROP_LINKS)
@@ -2219,7 +2219,7 @@ public final class Traits {
             "Click to charge inventory items."
         )
         .addConsumer(TraitEventType.PLAYER_DAMAGED, PlayerDamagedEvents::linksIridium)
-        .addConsumer(TraitEventType.RIGHT_CLICK, RightClickEvents::linksIridium);
+        .addConsumer(TraitEventType.INTERACT, InteractionEvents::linksIridium);
 
     // endregion
 
@@ -2489,7 +2489,7 @@ public final class Traits {
             "Right click while holding to randomly teleport.",
             "5 min cooldown."
         )
-        .addConsumer(TraitEventType.RIGHT_CLICK, RightClickEvents::bindVex);
+        .addConsumer(TraitEventType.INTERACT, InteractionEvents::bindVex);
 
     public static final MaterialTrait DYN_VEX_GEM_GAMBESON = new MaterialTrait()
         .setPartType(MaterialTrait.PROP_GAMBESON)
@@ -2557,7 +2557,7 @@ public final class Traits {
             "click to store a location. Right click to recall",
             "to that location. (CD: 10m)"
         )
-        .addConsumer(TraitEventType.RIGHT_CLICK, RightClickEvents::rodGhostly);
+        .addConsumer(TraitEventType.INTERACT, InteractionEvents::rodGhostly);
 
     public static final MaterialTrait DYN_GHOSTLY_ESSENCE_PLATES = new MaterialTrait()
         .setPartType(MaterialTrait.PROP_GAMBESON)
@@ -2587,7 +2587,7 @@ public final class Traits {
             "click to store a location. Right click to recall",
             "to that location. (CD: 10m)"
         )
-        .addConsumer(TraitEventType.RIGHT_CLICK, RightClickEvents::headTessMat);
+        .addConsumer(TraitEventType.INTERACT, InteractionEvents::headTessMat);
 
     public static final MaterialTrait DYN_TESSERACT_PLATES = new MaterialTrait()
         .setPartType(MaterialTrait.PROP_PLATES)
@@ -2674,5 +2674,28 @@ public final class Traits {
         )
         .addConsumer(TraitEventType.TICK, TickEvents::plateDaxiRegeneration);
 
-    // end region
+    // endregion
+
+    // region Networks
+
+    public static final MaterialTrait NTW_UTLIMANINIUM = new MaterialTrait()
+        .setPartType(MaterialTrait.PROP_LINKS)
+        .setAddedBy(SupportedPluginsManager.NETWORKS_NOTE)
+        .setTraitName("Feeling Connected")
+        .setLore(
+            "Allows you to connect wirelessly",
+            "to a network using direct nural",
+            "connection via your helmet.",
+            "",
+            "Shift + Left Click with an empty",
+            "hand to bind to a grid.",
+            "",
+            "Right Left with an empty hand to",
+            "try to open the bound grid.",
+            "",
+            "Will only work on a helmet."
+        )
+        .addConsumer(TraitEventType.INTERACT, InteractionEvents::linksUltimaninium);
+
+    // endregion
 }

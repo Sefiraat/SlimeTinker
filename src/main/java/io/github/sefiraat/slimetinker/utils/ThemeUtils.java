@@ -49,6 +49,8 @@ public final class ThemeUtils {
     public static final ChatColor ADD_SLIMEFUN_WARFARE = ChatColor.of("#c1db4d");
     public static final ChatColor ADD_DYNATECH = ChatColor.of("#60d1cd");
     public static final ChatColor ADD_LITEXPANSION = ChatColor.of("#8a8a8a");
+    public static final ChatColor ADD_TRANSCENDENCE = ChatColor.of("#c242f5");
+    public static final ChatColor ADD_NETWORKS = ChatColor.of("#05ad08");
 
     public static final String LORE_TYPE_CRAFT = ITEM_TYPEDESC + "Crafting Material";
     public static final String LORE_TYPE_MACHINE = ITEM_TYPEDESC + "Machine";

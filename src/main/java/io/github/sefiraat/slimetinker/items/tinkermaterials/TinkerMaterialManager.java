@@ -12,6 +12,7 @@ import io.github.sefiraat.slimetinker.items.tinkermaterials.setup.TinkersMateria
 import io.github.sefiraat.slimetinker.items.tinkermaterials.setup.TinkersMaterialsDynatech;
 import io.github.sefiraat.slimetinker.items.tinkermaterials.setup.TinkersMaterialsInfinity;
 import io.github.sefiraat.slimetinker.items.tinkermaterials.setup.TinkersMaterialsLiteXpansion;
+import io.github.sefiraat.slimetinker.items.tinkermaterials.setup.TinkersMaterialsNetworks;
 import io.github.sefiraat.slimetinker.items.tinkermaterials.setup.TinkersMaterialsSlimefunWarfare;
 import io.github.sefiraat.slimetinker.items.tinkermaterials.setup.TinkersMaterialsTranscEndence;
 import io.github.sefiraat.slimetinker.managers.SupportedPluginsManager;
@@ -121,6 +122,9 @@ public class TinkerMaterialManager {
         }
         if (SupportedPluginsManager.TRANSCENDENCE) {
             MAP.putAll(TinkersMaterialsTranscEndence.getCmMap());
+        }
+        if (SupportedPluginsManager.NETWORKS) {
+            MAP.putAll(TinkersMaterialsNetworks.getCmMap());
         }
 
         TraitManager traitManager = SlimeTinker.getInstance().getTraitManager();

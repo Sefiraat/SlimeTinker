@@ -4,6 +4,7 @@ import io.github.sefiraat.slimetinker.utils.ItemUtils;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
+import org.bukkit.event.block.Action;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffectType;
@@ -40,6 +41,10 @@ public class EventFriend {
      * The block broken in BlockBreakEvents
      */
     private Block block;
+    /**
+     * The block broken in BlockBreakEvents
+     */
+    private Action action;
     /**
      * The entity doing the damaging (for EntityDamageEvents)
      * Otherwise use player for PlayerDamageEvents
@@ -181,6 +186,14 @@ public class EventFriend {
 
     public void setBlock(Block block) {
         this.block = block;
+    }
+
+    public Action getAction() {
+        return this.action;
+    }
+
+    public void setAction(Action action) {
+        this.action = action;
     }
 
     public Entity getDamagedEntity() {

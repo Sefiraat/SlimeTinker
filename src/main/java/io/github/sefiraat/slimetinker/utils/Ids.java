@@ -106,6 +106,11 @@ public final class Ids {
     public static final String DAXI_SATURATION = "DAXI_SATURATION";
     public static final String DAXI_REGENERATION = "DAXI_REGENERATION";
 
+    // Networks
+    public static final String MOLTEN_PRESENCE = "INTERDIMENSIONAL_PRESENCE";
+    public static final String REMOTININIUM = "REMOTININIUM";
+    public static final String ULTIMANINIUM = "ULTIMANINIUM";
+
     // Other
     public static final String HEAD = "HEAD";
     public static final String BINDING = "BINDING";

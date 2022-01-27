@@ -127,16 +127,24 @@ public class MaterialTrait {
     protected static String getTraitTexture(@Nonnull String addedBy) {
         if (addedBy.equals(SupportedPluginsManager.CORE_NOTE)) {
             return SkullTextures.TRAITS_CORE;
-        } else if (addedBy.equals(SupportedPluginsManager.INFINITY_EXPANSION_NOTE)) {
+        }
+        if (addedBy.equals(SupportedPluginsManager.INFINITY_EXPANSION_NOTE)) {
             return SkullTextures.TRAITS_INFINITY;
-        } else if (addedBy.equals(SupportedPluginsManager.SLIMEFUN_WARFARE_NOTE)) {
+        }
+        if (addedBy.equals(SupportedPluginsManager.SLIMEFUN_WARFARE_NOTE)) {
             return SkullTextures.TRAITS_WARFARE;
-        } else if (addedBy.equals(SupportedPluginsManager.DYNATECH_NOTE)) {
+        }
+        if (addedBy.equals(SupportedPluginsManager.DYNATECH_NOTE)) {
             return SkullTextures.TRAITS_DYNATECH;
-        } else if (addedBy.equals(SupportedPluginsManager.LITEXPANSION_NOTE)) {
+        }
+        if (addedBy.equals(SupportedPluginsManager.LITEXPANSION_NOTE)) {
             return SkullTextures.TRAITS_LITEXPANSION;
-        } else if (addedBy.equals(SupportedPluginsManager.TRANSCENDENCE_NOTE)) {
+        }
+        if (addedBy.equals(SupportedPluginsManager.TRANSCENDENCE_NOTE)) {
             return SkullTextures.TRAITS_TRANCSENENCE;
+        }
+        if (addedBy.equals(SupportedPluginsManager.NETWORKS_NOTE)) {
+            return SkullTextures.TRAITS_NETWORKS;
         }
         return "error";
     }

@@ -32,7 +32,7 @@ public final class Traits {
         .setAddedBy(SupportedPluginsManager.CORE_NOTE)
         .setTraitName("Sharp 1")
         .setLore(
-            "Gives increased damage) stacks with",
+            "Gives increased damage, stacks with",
             "mods and other properties."
         )
         .addConsumer(TraitEventType.TICK, TickEvents::rodIron);
@@ -61,7 +61,7 @@ public final class Traits {
         .setTraitName("Golden Veil")
         .setLore(
             "Makes the player invisible. If used on",
-            "a weapon) -100% damage."
+            "a weapon, -100% damage."
         )
         .addConsumer(TraitEventType.ENTITY_DAMAGED, EntityDamageEvents::headGold)
         .addConsumer(TraitEventType.TICK, TickEvents::headGold);
@@ -146,7 +146,7 @@ public final class Traits {
         .setAddedBy(SupportedPluginsManager.CORE_NOTE)
         .setTraitName("Leech")
         .setLore(
-            "Bonus health) but drains your energy."
+            "Bonus health, but drains your energy."
         )
         .addConsumer(TraitEventType.TICK, TickEvents::rodLead);
 
@@ -769,7 +769,7 @@ public final class Traits {
         .setAddedBy(SupportedPluginsManager.CORE_NOTE)
         .setTraitName("Escape")
         .setLore(
-            "Randomly teleport then hit (10s CD)"
+            "Randomly teleport then hit (CD: 10s)"
         )
         .addConsumer(TraitEventType.PLAYER_DAMAGED, PlayerDamagedEvents::linksAluBrass);
 
@@ -1080,7 +1080,7 @@ public final class Traits {
         .setTraitName("Brightburn")
         .setLore(
             "Gives on stack of Burning Bright! With 4 ",
-            "stacks) hostile mobs are repelled (not bosses)."
+            "stacks, hostile mobs are repelled (not bosses)."
         )
         .addConsumer(TraitEventType.TICK, TickEvents::brightBurn);
 
@@ -1183,7 +1183,7 @@ public final class Traits {
         .setAddedBy(SupportedPluginsManager.INFINITY_EXPANSION_NOTE)
         .setTraitName("The End")
         .setLore(
-            "Reduce damage from the Dragon) Endermen and",
+            "Reduce damage from the Dragon, Endermen and",
             "Shulkers by 10%"
         )
         .addConsumer(TraitEventType.PLAYER_DAMAGED, PlayerDamagedEvents::linksVoid);
@@ -1463,7 +1463,7 @@ public final class Traits {
         .setAddedBy(SupportedPluginsManager.INFINITY_EXPANSION_NOTE)
         .setTraitName("Soft II")
         .setLore(
-            "Durability loss +100%) tool EXP +100%."
+            "Durability loss +100%, tool EXP +100%."
         )
         .addConsumer(TraitEventType.DURABILITY, DurabilityEvents::rodSingAluminum)
         .addConsumer(TraitEventType.BLOCK_BREAK, BlockBreakEvents::rodSingAluminum)
@@ -1587,7 +1587,7 @@ public final class Traits {
         .setAddedBy(SupportedPluginsManager.INFINITY_EXPANSION_NOTE)
         .setTraitName("Light II")
         .setLore(
-            "Damage Dealt -50%. Speed + 2"
+            "Damage dealt -50%. Speed + 2"
         )
         .addConsumer(TraitEventType.TICK, TickEvents::plateSingMagnesium)
         .addConsumer(TraitEventType.ENTITY_DAMAGED, EntityDamageEvents::plateSingMagnesium);
@@ -1700,7 +1700,7 @@ public final class Traits {
         .setAddedBy(SupportedPluginsManager.INFINITY_EXPANSION_NOTE)
         .setTraitName("Escape")
         .setLore(
-            "When hit, teleport away randomly (10s CD)."
+            "When hit, teleport away randomly (CD: 10s)."
         )
         .addConsumer(TraitEventType.PLAYER_DAMAGED, PlayerDamagedEvents::linksAluBrass);
 
@@ -1821,7 +1821,7 @@ public final class Traits {
         .setAddedBy(SupportedPluginsManager.INFINITY_EXPANSION_NOTE)
         .setTraitName("It's only natural")
         .setLore(
-            "Feeds two nearby animals on right click. 2m CD",
+            "Feeds two nearby animals on right click. (CD: 2m)",
             "Cooldown fires regardless of success."
         )
         .addConsumer(TraitEventType.RIGHT_CLICK, RightClickEvents::linksEarth);
@@ -1890,7 +1890,7 @@ public final class Traits {
         .setAddedBy(SupportedPluginsManager.INFINITY_EXPANSION_NOTE)
         .setTraitName("Infinite Capacity")
         .setLore(
-            "Everytime you take damage) 10% is stored",
+            "Everytime you take damage, 10% is stored",
             "up to 5 hearts. Right click to release",
             "the damage on nearby entities"
         )
@@ -1976,7 +1976,7 @@ public final class Traits {
         .setAddedBy(SupportedPluginsManager.LITEXPANSION_NOTE)
         .setTraitName("Manners Maketh Man")
         .setLore(
-            "Speed 1) Damage + 50%. Your fights look",
+            "Speed 1, Damage + 50%. Your fights look",
             "super cool."
         )
         .addConsumer(TraitEventType.ENTITY_DAMAGED, EntityDamageEvents::rodRefinedIron)
@@ -2058,7 +2058,7 @@ public final class Traits {
         .setAddedBy(SupportedPluginsManager.LITEXPANSION_NOTE)
         .setTraitName("Heavy Duty")
         .setLore(
-            "When durability gets low) it eats 1 iron",
+            "When durability gets low, it eats 1 iron",
             "ingot from your inventory to restore some."
         )
         .addConsumer(TraitEventType.DURABILITY, DurabilityEvents::rodAdvancedAlloy);
@@ -2177,7 +2177,7 @@ public final class Traits {
         .setAddedBy(SupportedPluginsManager.LITEXPANSION_NOTE)
         .setTraitName("Falling Apart")
         .setLore(
-            "Exp + 200%. Chance for the amour to",
+            "Exp + 200%. Chance for the armour to",
             "just fall off!"
         )
         .addConsumer(TraitEventType.ENTITY_DAMAGED, EntityDamageEvents::linksScrap)
@@ -2188,7 +2188,7 @@ public final class Traits {
         .setAddedBy(SupportedPluginsManager.LITEXPANSION_NOTE)
         .setTraitName("Protective")
         .setLore(
-            "Saves you from deaths. 20min CD."
+            "Saves you from deaths. (CD 20m)"
         )
         .addConsumer(TraitEventType.PLAYER_DAMAGED, PlayerDamagedEvents::headIridium);
 
@@ -2197,7 +2197,7 @@ public final class Traits {
         .setAddedBy(SupportedPluginsManager.LITEXPANSION_NOTE)
         .setTraitName("Warp")
         .setLore(
-            "Turns your opponent around. 20s CD."
+            "Turns your opponent around. (CD: 20m)"
         )
         .addConsumer(TraitEventType.ENTITY_DAMAGED, EntityDamageEvents::rodIridium);
 
@@ -2347,7 +2347,7 @@ public final class Traits {
         .setTraitName("Increased Mass")
         .setLore(
             "Attackers will be knocked back.",
-            "Gives you slow when procc'd"
+            "Gives you slow when procced"
         )
         .addConsumer(TraitEventType.TICK, TickEvents::plateOsmium)
         .addConsumer(TraitEventType.PLAYER_DAMAGED, PlayerDamagedEvents::plateOsmium);
@@ -2555,7 +2555,7 @@ public final class Traits {
         .setLore(
             "Only works with both [A] and [B]. Shift + Right",
             "click to store a location. Right click to recall",
-            "to that location. 10min CD."
+            "to that location. (CD: 10m)"
         )
         .addConsumer(TraitEventType.RIGHT_CLICK, RightClickEvents::rodGhostly);
 
@@ -2585,7 +2585,7 @@ public final class Traits {
         .setLore(
             "Only works with both [A] and [B]. Shift + Right",
             "click to store a location. Right click to recall",
-            "to that location. 10min CD."
+            "to that location. (CD: 10m)"
         )
         .addConsumer(TraitEventType.RIGHT_CLICK, RightClickEvents::headTessMat);
 
@@ -2594,9 +2594,9 @@ public final class Traits {
         .setAddedBy(SupportedPluginsManager.DYNATECH_NOTE)
         .setTraitName("Hyberbolic Tesseration")
         .setLore(
-            "When in your personal home) you store energy.",
+            "When in your personal home, you store energy.",
             "Damage taken is removed from this energy pool.",
-            "Required 8x pieces to function and caps at 50.",
+            "Required 8x pieces to function and caps at 50",
             "per piece."
         )
         .addConsumer(TraitEventType.TICK, TickEvents::hyperbolic)
@@ -2607,7 +2607,7 @@ public final class Traits {
         .setAddedBy(SupportedPluginsManager.DYNATECH_NOTE)
         .setTraitName("Hyberbolic Tesseration")
         .setLore(
-            "When in your personal home) you store energy.",
+            "When in your personal home, you store energy.",
             "Damage taken is removed from this energy pool.",
             "Required 8x pieces to function and caps at 50",
             "per piece."

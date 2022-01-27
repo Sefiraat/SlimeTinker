@@ -28,9 +28,8 @@ public class RepairkitTemplate extends UnplaceableBlock {
     }
 
     public static boolean isRepairKit(ItemStack itemStack) {
-        NamespacedKey key = Keys.PART_CLASS;
         ItemMeta im = itemStack.getItemMeta();
-        String value = PersistentDataAPI.getString(im, key);
+        String value = PersistentDataAPI.getString(im, Keys.PART_CLASS);
         return value != null && value.equals(Ids.REPAIR);
     }
 

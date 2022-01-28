@@ -2690,7 +2690,7 @@ public final class Traits {
             "Shift + Left Click with an empty",
             "hand to bind to a grid.",
             "",
-            "Right Left with an empty hand to",
+            "Left Click air with an empty hand to",
             "try to open the bound grid.",
             "",
             "Will only work on a helmet."

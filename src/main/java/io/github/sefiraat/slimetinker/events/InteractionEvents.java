@@ -2,6 +2,7 @@ package io.github.sefiraat.slimetinker.events;
 
 import de.jeff_media.morepersistentdatatypes.DataType;
 import io.github.sefiraat.networks.slimefun.network.grid.NetworkGrid;
+import io.github.sefiraat.networks.slimefun.tools.NetworkRemote;
 import io.github.sefiraat.networks.utils.Theme;
 import io.github.sefiraat.networks.utils.datatypes.DataTypeMethods;
 import io.github.sefiraat.slimetinker.SlimeTinker;
@@ -251,11 +252,7 @@ public final class InteractionEvents {
             return;
         }
 
-        if (friend.getAction() != Action.LEFT_CLICK_AIR && friend.getAction() != Action.LEFT_CLICK_BLOCK) {
-            return;
-        }
-
-        if (player.isSneaking()) {
+        if (player.isSneaking() && friend.getAction() == Action.LEFT_CLICK_BLOCK) {
             final Block block = friend.getBlock();
             if (block == null) {
                 return;
@@ -265,49 +262,12 @@ public final class InteractionEvents {
             if (Slimefun.getProtectionManager().hasPermission(player, block, Interaction.INTERACT_BLOCK)
                 && slimefunItem instanceof NetworkGrid
             ) {
-                setGrid(friend.getActiveStack(), block, player);
+                NetworkRemote.setGrid(friend.getActiveStack(), block, player);
             } else {
                 player.sendMessage(Theme.ERROR + "Must be set to a Network Grid (not crafting grid).");
             }
-        } else {
-            tryOpenGrid(friend.getActiveStack(), player);
-        }
-    }
-
-    private static void setGrid(@Nonnull ItemStack itemStack, @Nonnull Block block, @Nonnull Player player) {
-        final NamespacedKey key = io.github.sefiraat.networks.utils.Keys.newKey("location");
-        final ItemMeta itemMeta = itemStack.getItemMeta();
-        DataTypeMethods.setCustom(itemMeta, key, DataType.LOCATION, block.getLocation());
-        itemStack.setItemMeta(itemMeta);
-        player.sendMessage(Theme.SUCCESS + "Grid has been bound to the remote.");
-    }
-
-    private static void tryOpenGrid(@Nonnull ItemStack itemStack, @Nonnull Player player) {
-        final NamespacedKey key = io.github.sefiraat.networks.utils.Keys.newKey("location");
-        final ItemMeta itemMeta = itemStack.getItemMeta();
-        final Location location = DataTypeMethods.getCustom(itemMeta, key, DataType.LOCATION);
-
-        if (location != null) {
-
-            if (!location.getWorld().isChunkLoaded(location.getBlockX() / 16, location.getBlockZ() / 16)) {
-                player.sendMessage(Theme.ERROR + "The bound grid is not loaded.");
-                return;
-            }
-            openGrid(location, player);
-        } else {
-            player.sendMessage(Theme.ERROR + "Remote is not bound to a grid.");
-        }
-    }
-
-    private static void openGrid(@Nonnull Location location, @Nonnull Player player) {
-        BlockMenu blockMenu = BlockStorage.getInventory(location);
-        SlimefunItem slimefunItem = BlockStorage.check(location);
-        if (Slimefun.getProtectionManager().hasPermission(player, blockMenu.getLocation(), Interaction.INTERACT_BLOCK)
-            && slimefunItem instanceof NetworkGrid
-        ) {
-            blockMenu.open(player);
-        } else {
-            player.sendMessage(Theme.ERROR + "The bound grid can no longer be found.");
+        } else if (friend.getAction() == Action.LEFT_CLICK_AIR) {
+            NetworkRemote.tryOpenGrid(friend.getActiveStack(), player, -1);
         }
     }
 }

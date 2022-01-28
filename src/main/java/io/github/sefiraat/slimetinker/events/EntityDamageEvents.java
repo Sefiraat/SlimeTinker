@@ -30,11 +30,21 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
+import java.util.Set;
 import java.util.concurrent.ThreadLocalRandom;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import static io.github.sefiraat.slimetinker.utils.EntityUtils.push;
 
 public final class EntityDamageEvents {
+
+    public static final Set<Particle.DustOptions> DAXI_DUST_OPTIONS = Stream.of(
+        new Particle.DustOptions(Color.RED, 1),
+        new Particle.DustOptions(Color.YELLOW, 1),
+        new Particle.DustOptions(Color.GREEN, 1),
+        new Particle.DustOptions(Color.BLUE, 1)
+    ).collect(Collectors.toSet());
 
     private EntityDamageEvents() {
         throw new UnsupportedOperationException("Utility Class");
@@ -426,5 +436,23 @@ public final class EntityDamageEvents {
 
     public static void binderLeather(EventFriend friend) {
         friend.incrementItemExpMod(0.5);
+    }
+
+    public static void headDaxiStrength(EventFriend friend) {
+        if (GeneralUtils.testChance(20, 100)) {
+            final Player player = friend.getPlayer();
+            final Location location = friend.getDamagedEntity().getLocation();
+
+            friend.setDamageMod(friend.getDamageMod() + 1);
+            for (Particle.DustOptions dustOption : DAXI_DUST_OPTIONS) {
+                for (int i2 = 0; i2 <= 6; i2++) {
+                    double rndX = ThreadLocalRandom.current().nextDouble(-2.0, 2.1);
+                    double rndY = ThreadLocalRandom.current().nextDouble(-2.0, 2.1);
+                    double rndZ = ThreadLocalRandom.current().nextDouble(-2.0, 2.1);
+                    player.getWorld().spawnParticle(Particle.REDSTONE, location.clone().add(rndX, rndY, rndZ), 2, dustOption);
+                }
+            }
+
+        }
     }
 }

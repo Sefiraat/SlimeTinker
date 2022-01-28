@@ -6,5 +6,5 @@ public enum TraitEventType {
     ENTITY_DAMAGED,
     PLAYER_DAMAGED,
     TICK,
-    RIGHT_CLICK
+    INTERACT
 }

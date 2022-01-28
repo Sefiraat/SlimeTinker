@@ -4,6 +4,7 @@ import io.github.sefiraat.slimetinker.utils.ItemUtils;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
+import org.bukkit.event.block.Action;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffectType;
@@ -14,7 +15,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class EventFriend {
-
 
     private final Map<PotionEffectType, Integer> potionEffects = new HashMap<>();
     /**
@@ -41,6 +41,10 @@ public class EventFriend {
      * The block broken in BlockBreakEvents
      */
     private Block block;
+    /**
+     * The block broken in BlockBreakEvents
+     */
+    private Action action;
     /**
      * The entity doing the damaging (for EntityDamageEvents)
      * Otherwise use player for PlayerDamageEvents
@@ -87,6 +91,11 @@ public class EventFriend {
     private int manners = 0;
     private int kingsman = 0;
     private int infinity = 0;
+
+    private boolean daxiAbsorption;
+    private boolean daxiFortitude;
+    private boolean daxiSaturation;
+    private boolean daxiRegeneration;
 
     private boolean blocksIntoInv = false;
 
@@ -177,6 +186,14 @@ public class EventFriend {
 
     public void setBlock(Block block) {
         this.block = block;
+    }
+
+    public Action getAction() {
+        return this.action;
+    }
+
+    public void setAction(Action action) {
+        this.action = action;
     }
 
     public Entity getDamagedEntity() {
@@ -441,6 +458,38 @@ public class EventFriend {
 
     public void setInfinity(int infinity) {
         this.infinity = infinity;
+    }
+
+    public boolean isDaxiAbsorption() {
+        return daxiAbsorption;
+    }
+
+    public void setDaxiAbsorption(boolean daxiAbsorption) {
+        this.daxiAbsorption = daxiAbsorption;
+    }
+
+    public boolean isDaxiFortitude() {
+        return daxiFortitude;
+    }
+
+    public void setDaxiFortitude(boolean daxiFortitude) {
+        this.daxiFortitude = daxiFortitude;
+    }
+
+    public boolean isDaxiSaturation() {
+        return daxiSaturation;
+    }
+
+    public void setDaxiSaturation(boolean daxiSaturation) {
+        this.daxiSaturation = daxiSaturation;
+    }
+
+    public boolean isDaxiRegeneration() {
+        return daxiRegeneration;
+    }
+
+    public void setDaxiRegeneration(boolean daxiRegeneration) {
+        this.daxiRegeneration = daxiRegeneration;
     }
 
     public boolean isBlocksIntoInv() {

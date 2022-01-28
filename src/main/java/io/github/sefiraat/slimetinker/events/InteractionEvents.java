@@ -1,6 +1,10 @@
 package io.github.sefiraat.slimetinker.events;
 
+import io.github.sefiraat.networks.slimefun.network.grid.NetworkGrid;
+import io.github.sefiraat.networks.slimefun.tools.NetworkRemote;
+import io.github.sefiraat.networks.utils.Theme;
 import io.github.sefiraat.slimetinker.SlimeTinker;
+import io.github.sefiraat.slimetinker.events.friend.ActiveFriendElement;
 import io.github.sefiraat.slimetinker.events.friend.EventFriend;
 import io.github.sefiraat.slimetinker.runnables.event.KingsmanSpam;
 import io.github.sefiraat.slimetinker.utils.BlockUtils;
@@ -15,6 +19,7 @@ import io.github.thebusybiscuit.slimefun4.core.attributes.Rechargeable;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.data.persistent.PersistentDataAPI;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.protection.Interaction;
+import me.mrCookieSlime.Slimefun.api.BlockStorage;
 import org.apache.commons.lang.Validate;
 import org.bukkit.Effect;
 import org.bukkit.Location;
@@ -28,15 +33,16 @@ import org.bukkit.entity.Animals;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
+import org.bukkit.event.block.Action;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
-public final class RightClickEvents {
+public final class InteractionEvents {
 
-    private RightClickEvents() {
+    private InteractionEvents() {
         throw new UnsupportedOperationException("Utility Class");
     }
 
@@ -228,6 +234,36 @@ public final class RightClickEvents {
             }
         } else {
             player.sendMessage(ThemeUtils.WARNING + "This ability is on cooldown.");
+        }
+    }
+
+    public static void linksUltimaninium(EventFriend friend) {
+        if (friend.getActiveFriendElement() != ActiveFriendElement.HELMET) {
+            return;
+        }
+
+        final Player player = friend.getPlayer();
+
+        if (player.getInventory().getItemInMainHand().getType() != Material.AIR) {
+            return;
+        }
+
+        if (player.isSneaking() && friend.getAction() == Action.LEFT_CLICK_BLOCK) {
+            final Block block = friend.getBlock();
+            if (block == null) {
+                return;
+            }
+
+            final SlimefunItem slimefunItem = BlockStorage.check(block);
+            if (Slimefun.getProtectionManager().hasPermission(player, block, Interaction.INTERACT_BLOCK)
+                && slimefunItem instanceof NetworkGrid
+            ) {
+                NetworkRemote.setGrid(friend.getActiveStack(), block, player);
+            } else {
+                player.sendMessage(Theme.ERROR + "Must be set to a Network Grid (not crafting grid).");
+            }
+        } else if (friend.getAction() == Action.LEFT_CLICK_AIR) {
+            NetworkRemote.tryOpenGrid(friend.getActiveStack(), player, -1);
         }
     }
 }

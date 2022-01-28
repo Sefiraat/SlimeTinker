@@ -1,6 +1,5 @@
 package io.github.sefiraat.slimetinker.events;
 
-import com.google.common.collect.Sets;
 import io.github.sefiraat.slimetinker.SlimeTinker;
 import io.github.sefiraat.slimetinker.events.friend.EventFriend;
 import io.github.sefiraat.slimetinker.utils.EntityUtils;

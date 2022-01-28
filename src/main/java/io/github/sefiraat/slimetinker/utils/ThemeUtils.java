@@ -3,21 +3,22 @@ package io.github.sefiraat.slimetinker.utils;
 import io.github.sefiraat.slimetinker.items.BaseItem;
 import io.github.sefiraat.slimetinker.utils.enums.ThemeItemType;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
-import lombok.experimental.UtilityClass;
 import net.md_5.bungee.api.ChatColor;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.WordUtils;
 import org.bukkit.Material;
 import org.bukkit.inventory.meta.ItemMeta;
 
+import javax.annotation.Nonnull;
+import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.List;
 
 @SuppressWarnings("SpellCheckingInspection")
-@UtilityClass
 public final class ThemeUtils {
 
-    public static final String PREFIX = "" + ChatColor.GRAY + "[Slime Tinker] ";
-    public static final String SUFFIX = "" + ChatColor.GRAY + "";
+    private ThemeUtils() {
+        throw new UnsupportedOperationException("Utility Class");
+    }
 
     public static final ChatColor WARNING = ChatColor.YELLOW;
     public static final ChatColor ERROR = ChatColor.RED;
@@ -55,7 +56,7 @@ public final class ThemeUtils {
     public static final String LORE_TYPE_BASE = ITEM_TYPEDESC + "Base Resource";
     public static final String LORE_TYPE_CHEST = ITEM_TYPEDESC + "Chest";
     public static final String LORE_MOLTEN_METAL = ITEM_TYPEDESC + "Molten Metal";
-    public static final String LORE_LIQUID = ITEM_TYPEDESC + "ComponentMaterial";
+    public static final String LORE_LIQUID = ITEM_TYPEDESC + "TinkerMaterial";
     public static final String LORE_CAST = ITEM_TYPEDESC + "Cast";
     public static final String LORE_PART = ITEM_TYPEDESC + "Part";
     public static final String LORE_TOOL = ITEM_TYPEDESC + "Tinker's Tool";
@@ -65,6 +66,8 @@ public final class ThemeUtils {
     public static final String LORE_PROP = ITEM_TYPEDESC + "Material Trait";
     public static final String LORE_MULTIBLOCK = ITEM_TYPEDESC + "Mutliblock";
 
+    @Nonnull
+    @ParametersAreNonnullByDefault
     public static SlimefunItemStack themedItemStack(String id, String skull, ThemeItemType type, String name, String... loreLines) {
         BaseItem itemStack = new BaseItem(
             id,
@@ -84,6 +87,8 @@ public final class ThemeUtils {
         return itemStack;
     }
 
+    @Nonnull
+    @ParametersAreNonnullByDefault
     public static SlimefunItemStack themedItemStack(String id, Material material, ThemeItemType type, String name, String... loreLines) {
         BaseItem itemStack = new BaseItem(
             id,
@@ -103,6 +108,8 @@ public final class ThemeUtils {
         return itemStack;
     }
 
+    @Nonnull
+    @ParametersAreNonnullByDefault
     public static SlimefunItemStack themedItemStack(String id, String skull, ThemeItemType type, String name, List<String> loreLines) {
         BaseItem itemStack = new BaseItem(
             id,
@@ -122,6 +129,8 @@ public final class ThemeUtils {
         return itemStack;
     }
 
+    @Nonnull
+    @ParametersAreNonnullByDefault
     public static SlimefunItemStack themedItemStack(String id, Material material, ThemeItemType type, String name, List<String> loreLines) {
         BaseItem itemStack = new BaseItem(
             id,
@@ -141,7 +150,8 @@ public final class ThemeUtils {
         return itemStack;
     }
 
-    public static ChatColor itemTypeColor(ThemeItemType type) {
+    @Nonnull
+    public static ChatColor itemTypeColor(@Nonnull ThemeItemType type) {
         switch (type) {
             case DROP:
                 return ITEM_RARE_DROP;
@@ -176,7 +186,8 @@ public final class ThemeUtils {
         }
     }
 
-    public static String itemTypeDescriptor(ThemeItemType type) {
+    @Nonnull
+    public static String itemTypeDescriptor(@Nonnull ThemeItemType type) {
         switch (type) {
             case DROP:
                 return LORE_TYPE_DROP;
@@ -211,13 +222,14 @@ public final class ThemeUtils {
         }
     }
 
+    @Nonnull
     public static String toTitleCase(String string) {
         final char[] delimiters = {' ', '_'};
         return WordUtils.capitalizeFully(string, delimiters).replace("_", " ");
     }
 
+    @Nonnull
     public static String getLine() {
         return PASSIVE + StringUtils.repeat("-", 25);
     }
-
 }

@@ -8,11 +8,13 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.scheduler.BukkitRunnable;
 
+import javax.annotation.Nonnull;
+
 public class ArmourRemove extends BukkitRunnable {
 
     @Override
     public void run() {
-        for (Player player : SlimeTinker.inst().getServer().getOnlinePlayers()) {
+        for (Player player : SlimeTinker.getInstance().getServer().getOnlinePlayers()) {
 
             ItemStack helmet = player.getInventory().getHelmet();
             ItemStack chestplate = player.getInventory().getChestplate();
@@ -35,7 +37,7 @@ public class ArmourRemove extends BukkitRunnable {
         }
     }
 
-    private void unequip(Player player, ItemStack itemStack) {
+    private void unequip(@Nonnull Player player, @Nonnull ItemStack itemStack) {
         Inventory i = player.getInventory();
         ItemStack newItem = itemStack.clone();
         itemStack.setAmount(0);
@@ -47,6 +49,4 @@ public class ArmourRemove extends BukkitRunnable {
             player.sendMessage(ThemeUtils.WARNING + "A piece of armour has broken! You had no room for it and it has been dropped.");
         }
     }
-
-
 }

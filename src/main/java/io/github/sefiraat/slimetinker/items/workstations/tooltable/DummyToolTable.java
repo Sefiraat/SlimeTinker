@@ -1,6 +1,6 @@
 package io.github.sefiraat.slimetinker.items.workstations.tooltable;
 
-import io.github.sefiraat.slimetinker.SlimeTinker;
+import io.github.sefiraat.slimetinker.utils.Keys;
 import io.github.sefiraat.slimetinker.utils.ThemeUtils;
 import io.github.sefiraat.slimetinker.utils.enums.ThemeItemType;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
@@ -16,10 +16,9 @@ public final class DummyToolTable {
         "Tinker's Tool Table",
         "This item is made on a Tinker's Tool Table."
     );
-    public static final RecipeType TYPE = new RecipeType(SlimeTinker.inst().getKeys().getWsDummyToolTable(), STACK);
+    public static final RecipeType TYPE = new RecipeType(Keys.WS_DUMMY_TOOL_TABLE, STACK);
 
     private DummyToolTable() {
         throw new IllegalStateException("Utility class");
     }
-
 }

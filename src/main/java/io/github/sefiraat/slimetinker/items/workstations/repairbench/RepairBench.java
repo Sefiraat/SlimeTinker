@@ -33,8 +33,7 @@ public class RepairBench extends MenuBlock {
         super(itemGroup, item, recipeType, recipe);
     }
 
-    @SuppressWarnings("SameReturnValue")
-    protected boolean craft(BlockMenu blockMenu, Player player) {
+    protected void craft(BlockMenu blockMenu, Player player) {
 
         ItemStack item = blockMenu.getItemInSlot(INPUT_TOOL);
         ItemStack kit = blockMenu.getItemInSlot(INPUT_KIT);
@@ -42,19 +41,19 @@ public class RepairBench extends MenuBlock {
         // No item dummy!
         if (item == null) {
             player.sendMessage(ThemeUtils.WARNING + "Input a item into the first slot.");
-            return false;
+            return;
         }
 
         // Still no item, nice try
         if (!ItemUtils.isTool(item) && !ItemUtils.isArmour(item)) {
             player.sendMessage(ThemeUtils.WARNING + "The item in the first slot isn't a Tinker's item.");
-            return false;
+            return;
         }
 
         // No kit!
         if (kit == null || !RepairkitTemplate.isRepairKit(kit)) {
             player.sendMessage(ThemeUtils.WARNING + "Input a repair kit into the second slot.");
-            return false;
+            return;
         }
 
         // All items present, are they correct?
@@ -78,9 +77,6 @@ public class RepairBench extends MenuBlock {
         } else {
             player.sendMessage(ThemeUtils.WARNING + "The kit type does not match the item material.");
         }
-
-        return false;
-
     }
 
     private boolean repairChecks(String partMaterial, String toolMaterial, String armourMaterial, ItemStack itemStack) {
@@ -120,7 +116,7 @@ public class RepairBench extends MenuBlock {
 
         blockMenuPreset.drawBackground(ChestMenuUtils.getBackground(), BACKGROUND_SLOTS);
 
-        blockMenuPreset.addItem(CRAFT_BUTTON, GUIItems.menuCraftRepair());
+        blockMenuPreset.addItem(CRAFT_BUTTON, GUIItems.MENU_CRAFT_REPAIR);
         blockMenuPreset.addMenuClickHandler(CRAFT_BUTTON, (player, i, itemStack, clickAction) -> false);
 
     }
@@ -147,7 +143,10 @@ public class RepairBench extends MenuBlock {
     @Override
     protected void onNewInstance(@Nonnull BlockMenu blockMenu, @Nonnull Block b) {
         super.onNewInstance(blockMenu, b);
-        blockMenu.addMenuClickHandler(CRAFT_BUTTON, (player, i, itemStack, clickAction) -> craft(blockMenu, player));
+        blockMenu.addMenuClickHandler(CRAFT_BUTTON, (player, i, itemStack, clickAction) -> {
+            craft(blockMenu, player);
+            return false;
+        });
     }
 
 }

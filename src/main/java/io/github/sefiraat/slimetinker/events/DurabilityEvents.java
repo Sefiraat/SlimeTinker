@@ -3,7 +3,6 @@ package io.github.sefiraat.slimetinker.events;
 import io.github.sefiraat.slimetinker.events.friend.EventFriend;
 import io.github.sefiraat.slimetinker.utils.ItemUtils;
 import io.github.sefiraat.slimetinker.utils.ThemeUtils;
-import lombok.experimental.UtilityClass;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.Damageable;
@@ -11,8 +10,11 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.concurrent.ThreadLocalRandom;
 
-@UtilityClass
 public final class DurabilityEvents {
+
+    private DurabilityEvents() {
+        throw new UnsupportedOperationException("Utility Class");
+    }
 
     public static void rodAluBronze(EventFriend friend) {
         friend.setDurabilityMod(friend.getDurabilityMod() + 1);

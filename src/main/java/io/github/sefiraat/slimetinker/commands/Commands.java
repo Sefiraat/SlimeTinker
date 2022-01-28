@@ -11,7 +11,7 @@ import io.github.sefiraat.slimetinker.items.Guide;
 import io.github.sefiraat.slimetinker.items.templates.ArmourDefinition;
 import io.github.sefiraat.slimetinker.items.templates.ToolDefinition;
 import io.github.sefiraat.slimetinker.utils.Experience;
-import io.github.sefiraat.slimetinker.utils.IDStrings;
+import io.github.sefiraat.slimetinker.utils.Ids;
 import io.github.sefiraat.slimetinker.utils.ItemUtils;
 import io.github.sefiraat.slimetinker.utils.ThemeUtils;
 import org.bukkit.command.CommandSender;
@@ -55,7 +55,7 @@ public class Commands extends BaseCommand {
         public void armour(CommandSender sender, String type, String plateMat, String gambesonMat, String linksMat) {
             if (sender instanceof Player) {
                 Player p = (Player) sender;
-                ArmourDefinition armour = new ArmourDefinition(IDStrings.PLATE, type, plateMat, gambesonMat, linksMat);
+                ArmourDefinition armour = new ArmourDefinition(Ids.PLATE, type, plateMat, gambesonMat, linksMat);
                 p.getInventory().addItem(Guide.HELM.getStack(armour));
             } else {
                 sender.sendMessage(ThemeUtils.ERROR + "This can only be done as a player.");
@@ -68,7 +68,7 @@ public class Commands extends BaseCommand {
         public void tool(CommandSender sender, String type, String headMat, String binderMat, String rodMat) {
             if (sender instanceof Player) {
                 Player p = (Player) sender;
-                ToolDefinition tool = new ToolDefinition(IDStrings.HEAD, type, headMat, binderMat, rodMat);
+                ToolDefinition tool = new ToolDefinition(Ids.HEAD, type, headMat, binderMat, rodMat);
                 if (ItemUtils.isToolExplosive(headMat, rodMat)) {
                     p.getInventory().addItem(Guide.EXP_SHOVEL.getStack(tool));
                 } else {

@@ -8,12 +8,11 @@ import io.github.sefiraat.slimetinker.utils.BlockUtils;
 import io.github.sefiraat.slimetinker.utils.EntityUtils;
 import io.github.sefiraat.slimetinker.utils.GeneralUtils;
 import io.github.sefiraat.slimetinker.utils.ItemUtils;
+import io.github.sefiraat.slimetinker.utils.Keys;
 import io.github.sefiraat.slimetinker.utils.WorldUtils;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.data.persistent.PersistentDataAPI;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.protection.Interaction;
-import lombok.experimental.UtilityClass;
-import org.apache.commons.lang.Validate;
 import org.bukkit.Color;
 import org.bukkit.Effect;
 import org.bukkit.Location;
@@ -54,8 +53,11 @@ import java.util.concurrent.ThreadLocalRandom;
 
 import static io.github.sefiraat.slimetinker.utils.EntityUtils.increaseEffect;
 
-@UtilityClass
 public final class TickEvents {
+
+    private TickEvents() {
+        throw new UnsupportedOperationException("Utility Class");
+    }
 
     public static void linksCringleium(EventFriend friend) {
         Location location = friend.getPlayer().getLocation();
@@ -332,7 +334,6 @@ public final class TickEvents {
         increaseEffect(PotionEffectType.SLOW_DIGGING, friend.getPotionEffects());
     }
 
-    // todo Find a way for 'real' following without NMS - Spoke w/Walshy Jeff Alle - USE PAPER :O ??
     public static void rodStarDust(EventFriend friend) {
         increaseEffect(PotionEffectType.GLOWING, friend.getPotionEffects());
         for (Entity e : friend.getPlayer().getNearbyEntities(10, 10, 10)) {
@@ -376,7 +377,7 @@ public final class TickEvents {
     public static void linksGold(EventFriend friend) {
         List<Piglin> piglins = EntityUtils.getNearbyEntitiesByType(Piglin.class, friend.getPlayer(), 5, 5, 5);
         for (Piglin p : piglins) {
-            PersistentDataAPI.setString(p, SlimeTinker.inst().getKeys().getArmourHappyPiglin(), friend.getPlayer().getUniqueId().toString());
+            PersistentDataAPI.setString(p, Keys.ARMOUR_HAPPY_PIGLIN, friend.getPlayer().getUniqueId().toString());
             p.setTarget(null);
         }
     }
@@ -515,7 +516,7 @@ public final class TickEvents {
             BlockUtils.fakePower(blockTarget.getRelative(BlockFace.DOWN));
             BlockUtils.fakePower(blockTarget.getRelative(BlockFace.UP));
             RemovePoweredState task = new RemovePoweredState(blockTarget, friend.getPlayer());
-            task.runTaskTimer(SlimeTinker.inst(), 100, 100);
+            task.runTaskTimer(SlimeTinker.getInstance(), 100, 100);
         }
     }
 
@@ -579,14 +580,14 @@ public final class TickEvents {
         }
 
         RemovePoweredState task = new RemovePoweredState(blockTarget, friend.getPlayer());
-        task.runTaskTimer(SlimeTinker.inst(), 100, 100);
+        task.runTaskTimer(SlimeTinker.getInstance(), 100, 100);
 
     }
 
     public static void linksSingGold(EventFriend friend) {
         List<Piglin> piglins = EntityUtils.getNearbyEntitiesByType(Piglin.class, friend.getPlayer(), 5, 5, 5);
         for (Piglin p : piglins) {
-            PersistentDataAPI.setString(p, SlimeTinker.inst().getKeys().getArmourHappyPiglin(), friend.getPlayer().getUniqueId().toString());
+            PersistentDataAPI.setString(p, Keys.ARMOUR_HAPPY_PIGLIN, friend.getPlayer().getUniqueId().toString());
             p.setTarget(null);
         }
     }
@@ -606,7 +607,7 @@ public final class TickEvents {
                     if (l.getLevel() == 0) {
                         b.setType(Material.MAGMA_BLOCK);
                         RemoveMagmaBlock task = new RemoveMagmaBlock(b);
-                        task.runTaskLater(SlimeTinker.inst(), 100);
+                        task.runTaskLater(SlimeTinker.getInstance(), 100);
                     }
                 }
             }
@@ -676,8 +677,7 @@ public final class TickEvents {
         if (friend.getHyperbolic() >= 8 && p.getWorld().getName().equals("dimensionalhome")) {
             ItemStack i = friend.getActiveStack();
             ItemMeta im = i.getItemMeta();
-            Validate.notNull(im, "Meta is null, herp derp derp");
-            NamespacedKey k = SlimeTinker.inst().getKeys().getArmourHyperbolicStored();
+            NamespacedKey k = Keys.ARMOUR_HYPERBOLIC_STORED;
             int amount = PersistentDataAPI.getInt(im, k, 0);
             PersistentDataAPI.setInt(im, k, Math.min(amount + 1, 50));
             i.setItemMeta(im);
@@ -745,7 +745,7 @@ public final class TickEvents {
 
     public static void plateOsmiumSuperalloy(EventFriend friend) {
         if (GeneralUtils.testChance(1, 25)) {
-            NamespacedKey key = SlimeTinker.inst().getKeys().getStopEvents();
+            NamespacedKey key = Keys.STOP_EVENTS;
             Player player = friend.getPlayer();
             if (!PersistentDataAPI.hasInt(player, key)) {
                 PersistentDataAPI.setInt(player, key, 1);
@@ -779,5 +779,4 @@ public final class TickEvents {
         friend.incrementItemExpMod(0.5);
         increaseEffect(PotionEffectType.SPEED, friend.getPotionEffects());
     }
-
 }

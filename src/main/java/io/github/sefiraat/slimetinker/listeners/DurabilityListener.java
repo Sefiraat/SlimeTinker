@@ -1,13 +1,13 @@
 package io.github.sefiraat.slimetinker.listeners;
 
+import io.github.mooy1.infinitylib.common.StackUtils;
 import io.github.sefiraat.slimetinker.events.friend.EventFriend;
 import io.github.sefiraat.slimetinker.events.friend.TraitEventType;
 import io.github.sefiraat.slimetinker.items.Materials;
 import io.github.sefiraat.slimetinker.modifiers.Modifications;
 import io.github.sefiraat.slimetinker.utils.GeneralUtils;
-import io.github.sefiraat.slimetinker.utils.IDStrings;
+import io.github.sefiraat.slimetinker.utils.Ids;
 import io.github.sefiraat.slimetinker.utils.ItemUtils;
-import org.apache.commons.lang.Validate;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerItemBreakEvent;
@@ -16,6 +16,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.Damageable;
 import org.bukkit.inventory.meta.ItemMeta;
 
+import javax.annotation.Nonnull;
 import java.util.Map;
 
 import static io.github.sefiraat.slimetinker.events.friend.EventChannels.checkBoots;
@@ -30,7 +31,6 @@ public class DurabilityListener implements Listener {
     @SuppressWarnings("unused")
     @EventHandler
     public void onItemDamage(PlayerItemDamageEvent event) {
-
         ItemStack damagedItem = event.getItem();
         EventFriend friend = new EventFriend(event.getPlayer(), TraitEventType.DURABILITY);
         String armourTypeName = ItemUtils.getArmourTypeName(damagedItem);
@@ -40,16 +40,16 @@ public class DurabilityListener implements Listener {
                 checkTool(friend);
             } else if (armourTypeName != null) {
                 switch (armourTypeName) {
-                    case IDStrings.HELMET:
+                    case Ids.HELMET:
                         checkHelm(friend);
                         break;
-                    case IDStrings.CHESTPLATE:
+                    case Ids.CHESTPLATE:
                         checkChestplate(friend);
                         break;
-                    case IDStrings.LEGGINGS:
+                    case Ids.LEGGINGS:
                         checkLeggings(friend);
                         break;
-                    case IDStrings.BOOTS:
+                    case Ids.BOOTS:
                         checkBoots(friend);
                         break;
                     default:
@@ -81,13 +81,11 @@ public class DurabilityListener implements Listener {
             damageable.setDamage(damageable.getDamage() + event.getDamage());
             damagedItem.setItemMeta(im);
         }
-
     }
 
     @SuppressWarnings("unused")
     @EventHandler
     public void onItemBreak(PlayerItemBreakEvent event) { // Covering my bases here for anything else that can break a tool, may not be required?
-
         ItemStack damagedItem = event.getBrokenItem();
         if (!ItemUtils.isTool(damagedItem)) { // Not a tool, moving on!
             return;
@@ -100,24 +98,17 @@ public class DurabilityListener implements Listener {
         Damageable damageable = (Damageable) im;
         damageable.setDamage(damagedItem.getType().getMaxDurability() - 1);
         event.getPlayer().getInventory().addItem(newItem);
-
     }
 
     private void modChecks(ItemStack damagedItem, PlayerItemDamageEvent event) {
-
         Map<String, Integer> modLevels = Modifications.getAllModLevels(damagedItem);
 
-        if (modLevels.containsKey(ItemUtils.getIdOrType(Materials.MOD_PLATE))) { // PLATE
-            modCheckPlate(damagedItem, modLevels.get(ItemUtils.getIdOrType(Materials.MOD_PLATE)), event);
+        if (modLevels.containsKey(StackUtils.getIdOrType(Materials.MOD_PLATE))) { // PLATE
+            modCheckPlate(damagedItem, modLevels.get(StackUtils.getIdOrType(Materials.MOD_PLATE)), event);
         }
-
     }
 
-    private void modCheckPlate(ItemStack damagedItem, int level, PlayerItemDamageEvent event) {
-
-        ItemMeta im = damagedItem.getItemMeta();
-        Validate.notNull(im, "Meta is null, mod check failed");
-
+    private void modCheckPlate(@Nonnull ItemStack damagedItem, int level, PlayerItemDamageEvent event) {
         if (ItemUtils.isReinforced(damagedItem)) {
             level = level * 2;
         }
@@ -125,7 +116,5 @@ public class DurabilityListener implements Listener {
         if (GeneralUtils.testChance(level, 10)) {
             event.setCancelled(true);
         }
-
     }
-
 }

@@ -1,28 +1,24 @@
 package io.github.sefiraat.slimetinker.config;
 
-import java.io.File;
-
+import io.github.sefiraat.slimetinker.SlimeTinker;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.config.Config;
 
-import io.github.sefiraat.slimetinker.SlimeTinker;
+import java.io.File;
 
 /**
  * Basic config file manager
  */
 public class ConfigManager {
-    private final String filename;
     private final Config config;
 
     public ConfigManager(String filename) {
-        this.filename = filename;
-
-        File file = new File(SlimeTinker.inst().getDataFolder(), filename);
+        File file = new File(SlimeTinker.getInstance().getDataFolder(), filename);
         if (!file.exists()) {
             file.getParentFile().mkdirs();
-            SlimeTinker.inst().saveResource(filename, true);
+            SlimeTinker.getInstance().saveResource(filename, true);
         }
 
-        this.config = new Config(SlimeTinker.inst(), filename);
+        this.config = new Config(SlimeTinker.getInstance(), filename);
     }
 
     public Config getConfig() {

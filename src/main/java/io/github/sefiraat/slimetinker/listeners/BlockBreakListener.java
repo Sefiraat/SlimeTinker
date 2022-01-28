@@ -1,14 +1,14 @@
 package io.github.sefiraat.slimetinker.listeners;
 
-import io.github.sefiraat.slimetinker.SlimeTinker;
 import io.github.sefiraat.slimetinker.events.friend.EventChannels;
 import io.github.sefiraat.slimetinker.events.friend.EventFriend;
 import io.github.sefiraat.slimetinker.events.friend.TraitEventType;
 import io.github.sefiraat.slimetinker.modifiers.Modifications;
 import io.github.sefiraat.slimetinker.utils.BlockUtils;
 import io.github.sefiraat.slimetinker.utils.Experience;
-import io.github.sefiraat.slimetinker.utils.IDStrings;
+import io.github.sefiraat.slimetinker.utils.Ids;
 import io.github.sefiraat.slimetinker.utils.ItemUtils;
+import io.github.sefiraat.slimetinker.utils.Keys;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import org.bukkit.Color;
@@ -79,38 +79,12 @@ public class BlockBreakListener implements Listener {
 
             // Settle
             EventChannels.settlePotionEffects(friend);
-//            event.setDropItems(false);
-//
-//            for (ItemStack i : friend.getDrops()) { // Drop items in original collection not flagged for removal
-//                if (friend.getRemoveDrops().contains(i) || i.getType() == Material.AIR) {
-//                    continue;
-//                }
-//                if (friend.isBlocksIntoInv()) {
-//                    Map<Integer, ItemStack> remainingItems = player.getInventory().addItem(i);
-//                    for (ItemStack i2 : remainingItems.values()) {
-//                        block.getWorld().dropItem(block.getLocation().clone().add(0.5, 0.5, 0.5), i2);
-//                    }
-//                    continue;
-//                }
-//                block.getWorld().dropItem(block.getLocation().clone().add(0.5, 0.5, 0.5), i);
-//            }
-//
-//            for (ItemStack i : friend.getAddDrops()) { // Then the additional items collection - no removals
-//                if (friend.isBlocksIntoInv()) {
-//                    Map<Integer, ItemStack> remainingItems = player.getInventory().addItem(i);
-//                    for (ItemStack i2 : remainingItems.values()) {
-//                        block.getWorld().dropItem(block.getLocation().clone().add(0.5, 0.5, 0.5), i2);
-//                    }
-//                    continue;
-//                }
-//                block.getWorld().dropItem(block.getLocation().clone().add(0.5, 0.5, 0.5), i);
-//            }
 
             if (ItemUtils.isTool(heldItem)) {
                 if (shouldGrantExp(heldItem, event.getBlock())) { // Should grant exp (checks tool / material validity and the crop state)
                     Experience.addExp(heldItem, (int) Math.ceil(1 * friend.getToolExpMod()), event.getPlayer(), true);
                 }
-                if (event.getExpToDrop() > 0 && friend.isMetalCheck()) { // todo Get outta dodge with this one
+                if (event.getExpToDrop() > 0 && friend.isMetalCheck()) {
                     Experience.addExp(heldItem, (int) Math.ceil(event.getExpToDrop() / 10D), event.getPlayer(), true);
                     event.setExpToDrop(0);
                 }
@@ -164,14 +138,14 @@ public class BlockBreakListener implements Listener {
         assert im != null;
         PersistentDataContainer c = im.getPersistentDataContainer();
 
-        String toolType = c.get(SlimeTinker.inst().getKeys().getToolInfoToolType(), PersistentDataType.STRING);
+        String toolType = c.get(Keys.TOOL_INFO_TOOL_TYPE, PersistentDataType.STRING);
         assert toolType != null;
 
         // Hoe Stuff (Ageable and fully grown only)
         if (block.getBlockData() instanceof Ageable) {
             Ageable ageable = (Ageable) block.getBlockData();
             if (ageable.getAge() == ageable.getMaximumAge()) {
-                return toolType.equals(IDStrings.HOE);
+                return toolType.equals(Ids.HOE);
             }
             return false;
         }

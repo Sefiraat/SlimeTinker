@@ -1,6 +1,6 @@
 package io.github.sefiraat.slimetinker.items.workstations.armourtable;
 
-import io.github.sefiraat.slimetinker.SlimeTinker;
+import io.github.sefiraat.slimetinker.utils.Keys;
 import io.github.sefiraat.slimetinker.utils.ThemeUtils;
 import io.github.sefiraat.slimetinker.utils.enums.ThemeItemType;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
@@ -16,7 +16,7 @@ public final class DummyArmourTable {
         "Tinker's Armour Table",
         "This item is made on a Tinker's Armour Table."
     );
-    public static final RecipeType TYPE = new RecipeType(SlimeTinker.inst().getKeys().getWsDummyArmourTable(), STACK);
+    public static final RecipeType TYPE = new RecipeType(Keys.WS_DUMMY_ARMOUR_TABLE, STACK);
 
     private DummyArmourTable() {
         throw new IllegalStateException("Utility class");

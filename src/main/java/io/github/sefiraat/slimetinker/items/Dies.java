@@ -8,12 +8,14 @@ import io.github.sefiraat.slimetinker.utils.ThemeUtils;
 import io.github.sefiraat.slimetinker.utils.enums.ThemeItemType;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.implementation.items.blocks.UnplaceableBlock;
-import lombok.experimental.UtilityClass;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
-@UtilityClass
 public final class Dies {
+
+    private Dies() {
+        throw new UnsupportedOperationException("Utility Class");
+    }
 
     public static final String DIE_DESC = "A die to create a cast from";
     public static final SlimefunItemStack DIE_SHOVEL_HEAD =

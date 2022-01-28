@@ -7,11 +7,10 @@ import io.github.sefiraat.slimetinker.runnables.event.RemoveWolf;
 import io.github.sefiraat.slimetinker.utils.EntityUtils;
 import io.github.sefiraat.slimetinker.utils.GeneralUtils;
 import io.github.sefiraat.slimetinker.utils.ItemUtils;
+import io.github.sefiraat.slimetinker.utils.Keys;
 import io.github.sefiraat.slimetinker.utils.ThemeUtils;
 import io.github.sefiraat.slimetinker.utils.WorldUtils;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.data.persistent.PersistentDataAPI;
-import lombok.experimental.UtilityClass;
-import org.apache.commons.lang.Validate;
 import org.bukkit.Color;
 import org.bukkit.Effect;
 import org.bukkit.Location;
@@ -39,8 +38,11 @@ import java.util.concurrent.ThreadLocalRandom;
 
 import static io.github.sefiraat.slimetinker.utils.EntityUtils.increaseEffect;
 
-@UtilityClass
 public final class PlayerDamagedEvents {
+
+    private PlayerDamagedEvents() {
+        throw new UnsupportedOperationException("Utility Class");
+    }
 
     public static void rodAdamantite(EventFriend friend) {
         if (friend.getCause() == EntityDamageEvent.DamageCause.ENTITY_EXPLOSION || friend.getCause() == EntityDamageEvent.DamageCause.BLOCK_EXPLOSION) {
@@ -70,7 +72,7 @@ public final class PlayerDamagedEvents {
         }
     }
 
-    public static void headReinforcedSlimesteel(EventFriend friend) {
+    public static void rodReinforcedSlimesteel(EventFriend friend) {
         if (!ItemUtils.isTinkersBroken(friend.getTool())) {
             ItemUtils.damageTinkersItem(friend.getTool(), (int) friend.getInitialDamage());
             friend.setDamageMod(friend.getDamageMod() / 2);
@@ -137,11 +139,17 @@ public final class PlayerDamagedEvents {
 
     public static void plateBrass(EventFriend friend) {
         ItemStack itemStack = friend.getActiveStack();
-        Damageable damagable = (Damageable) itemStack.getItemMeta();
-        Validate.notNull(damagable, "Damagable is null, this means the world is a lie!");
+        ItemMeta itemMeta = itemStack.getItemMeta();
+
+        if (!(itemMeta instanceof Damageable)) {
+            return;
+        }
+
+        Damageable damagable = (Damageable) itemMeta;
         int maxDurability = itemStack.getType().getMaxDurability();
         int damage = damagable.getDamage();
         float dmgPerc = ((float) damage) / ((float) maxDurability);
+
         if (dmgPerc <= 0) {
             friend.setDamageMod(friend.getDamageMod() + 0.25);
         } else if (dmgPerc <= 0.1) {
@@ -182,7 +190,7 @@ public final class PlayerDamagedEvents {
     }
 
     public static void plateSilver(EventFriend friend) {
-        NamespacedKey key = SlimeTinker.inst().getKeys().getStopEvents();
+        NamespacedKey key = Keys.STOP_EVENTS;
         Player player = friend.getPlayer();
         if (!PersistentDataAPI.hasInt(player, key) && friend.getCause() == EntityDamageEvent.DamageCause.LIGHTNING) {
             PersistentDataAPI.setInt(player, key, 1);
@@ -330,7 +338,7 @@ public final class PlayerDamagedEvents {
                 w.setTarget((LivingEntity) friend.getDamagingEntity());
             }
             RemoveWolf task = new RemoveWolf(w);
-            task.runTaskLater(SlimeTinker.inst(), 500);
+            task.runTaskLater(SlimeTinker.getInstance(), 500);
         }
     }
 
@@ -342,7 +350,7 @@ public final class PlayerDamagedEvents {
     }
 
     public static void plateSingSilver(EventFriend friend) {
-        NamespacedKey key = SlimeTinker.inst().getKeys().getStopEvents();
+        NamespacedKey key = Keys.STOP_EVENTS;
         Player player = friend.getPlayer();
         if (!PersistentDataAPI.hasInt(player, key) && friend.getCause() == EntityDamageEvent.DamageCause.LIGHTNING) {
             PersistentDataAPI.setInt(player, key, 1);
@@ -439,8 +447,7 @@ public final class PlayerDamagedEvents {
     public static void plateInfinity(EventFriend friend) {
         ItemStack i = friend.getActiveStack();
         ItemMeta im = i.getItemMeta();
-        NamespacedKey k = SlimeTinker.inst().getKeys().getArmourInfiniteCapacityStored();
-        Validate.notNull(im, "Meta is null, nope!");
+        NamespacedKey k = Keys.ARMOUR_INFINITE_CAPACITY_STORED;
         double d = PersistentDataAPI.getDouble(im, k, 0);
         if (d < 5) {
             d = Math.min(5, d + friend.getInitialDamage() / 10);
@@ -459,8 +466,7 @@ public final class PlayerDamagedEvents {
     public static void plateSingInfinity(EventFriend friend) {
         ItemStack i = friend.getActiveStack();
         ItemMeta im = i.getItemMeta();
-        NamespacedKey k = SlimeTinker.inst().getKeys().getArmourInfinitlyPowerfulStored();
-        Validate.notNull(im, "Meta is null, nope!");
+        NamespacedKey k = Keys.ARMOUR_INFINITLY_POWERFUL_STORED;
         int d = PersistentDataAPI.getInt(im, k, 0);
         d = (int) (d + friend.getInitialDamage());
         int numberOfEnchants = 0;
@@ -486,9 +492,11 @@ public final class PlayerDamagedEvents {
     public static void linksInfinity(EventFriend friend) {
         if (friend.getDamagingEntity() != null && GeneralUtils.testChance(20, 100)) {
             friend.setDamageMod(0);
-            LivingEntity e = (LivingEntity) friend.getDamagingEntity();
-            e.damage(friend.getInitialDamage(), friend.getPlayer());
-            e.getWorld().spawnParticle(Particle.ELECTRIC_SPARK, e.getLocation(), 5, 0.5, 0.5, 0.5);
+            if (friend.getDamagingEntity() instanceof LivingEntity) {
+                LivingEntity e = (LivingEntity) friend.getDamagingEntity();
+                e.damage(friend.getInitialDamage(), friend.getPlayer());
+                e.getWorld().spawnParticle(Particle.ELECTRIC_SPARK, e.getLocation(), 5, 0.5, 0.5, 0.5);
+            }
         }
     }
 
@@ -541,8 +549,7 @@ public final class PlayerDamagedEvents {
         if (friend.getHyperbolic() >= 8) {
             ItemStack i = friend.getActiveStack();
             ItemMeta im = i.getItemMeta();
-            Validate.notNull(im, "Meta is null, herp derp derp");
-            NamespacedKey k = SlimeTinker.inst().getKeys().getArmourHyperbolicStored();
+            NamespacedKey k = Keys.ARMOUR_HYPERBOLIC_STORED;
             int amount = PersistentDataAPI.getInt(im, k, 0);
             double dmg = friend.getInitialDamage() * friend.getDamageMod();
             if (amount >= dmg) {
@@ -655,8 +662,7 @@ public final class PlayerDamagedEvents {
     public static void linksIridium(EventFriend friend) {
         ItemStack i = friend.getActiveStack();
         ItemMeta im = i.getItemMeta();
-        Validate.notNull(im, "Meta is null, herp derp derp");
-        NamespacedKey k = SlimeTinker.inst().getKeys().getArmourUnconventionalStored();
+        NamespacedKey k = Keys.ARMOUR_UNCONVENTIONAL_STORED;
         int amount = PersistentDataAPI.getInt(im, k, 0);
 
         PersistentDataAPI.setInt(im, k, (int) (amount + friend.getInitialDamage()));

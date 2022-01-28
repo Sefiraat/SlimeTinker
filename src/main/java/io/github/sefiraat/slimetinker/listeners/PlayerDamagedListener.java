@@ -15,6 +15,7 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.inventory.ItemStack;
 
+import javax.annotation.Nonnull;
 import java.util.Map;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -27,7 +28,6 @@ public class PlayerDamagedListener implements Listener {
     @SuppressWarnings("unused")
     @EventHandler
     public void onPlayerDamaged(EntityDamageEvent event) {
-
         if (!(event.getEntity() instanceof Player)) {
             return;
         }
@@ -57,7 +57,6 @@ public class PlayerDamagedListener implements Listener {
     @SuppressWarnings("unused")
     @EventHandler
     public void onPlayerDamagedByEntity(EntityDamageByEntityEvent event) {
-
         if (!(event.getEntity() instanceof Player)) {
             return;
         }
@@ -85,11 +84,9 @@ public class PlayerDamagedListener implements Listener {
                 event.setCancelled(true);
             }
         }
-
     }
 
     private void modChecks(EntityDamageEvent event, ItemStack heldItem) { // Entity Damaging player
-
         Map<String, Integer> modLevels = Modifications.getAllModLevels(heldItem);
 
         if (event instanceof EntityDamageByEntityEvent && modLevels.containsKey(Material.DIAMOND.toString())) { // DIAMOND
@@ -98,7 +95,7 @@ public class PlayerDamagedListener implements Listener {
 
     }
 
-    private void modCheckDiamond(EntityDamageByEntityEvent event, int level) {
+    private void modCheckDiamond(@Nonnull EntityDamageByEntityEvent event, int level) {
         if (event.getDamager() instanceof LivingEntity) {
             LivingEntity l = (LivingEntity) event.getDamager();
             int rnd = ThreadLocalRandom.current().nextInt(1, 11);
@@ -111,5 +108,4 @@ public class PlayerDamagedListener implements Listener {
             }
         }
     }
-
 }

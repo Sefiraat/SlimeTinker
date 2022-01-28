@@ -2,8 +2,6 @@ package io.github.sefiraat.slimetinker.utils;
 
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.data.persistent.PersistentDataAPI;
-import lombok.experimental.UtilityClass;
-import org.apache.commons.lang.Validate;
 import org.bukkit.Location;
 import org.bukkit.NamespacedKey;
 import org.bukkit.Particle;
@@ -20,14 +18,16 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Map;
-import java.util.function.Predicate;
 
-@UtilityClass
 public final class EntityUtils {
+
+    private EntityUtils() {
+        throw new IllegalStateException("Utility class");
+    }
 
     private static final NamespacedKey IGNORE_DAMAGE_KEY = new NamespacedKey(Slimefun.instance(), "ignore_damage");
 
-    public static void push(LivingEntity pushed, Location loc, double force) {
+    public static void push(@Nonnull LivingEntity pushed, @Nonnull Location loc, double force) {
         Vector v = pushed.getLocation().toVector().subtract(loc.toVector()).normalize().multiply(force);
         v.add(new Vector(0, force + 1, 0));
         pushed.setVelocity(v);
@@ -50,7 +50,7 @@ public final class EntityUtils {
      * @param potionEffects    The map of effects to update
      * @param amount           The amount to increment by
      */
-    public static void increaseEffect(PotionEffectType potionEffectType, Map<PotionEffectType, Integer> potionEffects, int amount) {
+    public static void increaseEffect(PotionEffectType potionEffectType, @Nonnull Map<PotionEffectType, Integer> potionEffects, int amount) {
         if (potionEffects.containsKey(potionEffectType)) {
             potionEffects.put(potionEffectType, potionEffects.get(potionEffectType) + amount);
         } else {
@@ -63,7 +63,7 @@ public final class EntityUtils {
      *
      * @return True is target is a Training Dummy
      */
-    public static boolean isTrainingDummy(Entity e) {
+    public static boolean isTrainingDummy(@Nonnull Entity e) {
         return e.getCustomName() != null && e.getCustomName().equals("Dummy");
     }
 
@@ -76,7 +76,7 @@ public final class EntityUtils {
         return PersistentDataAPI.getBoolean(e, IGNORE_DAMAGE_KEY);
     }
 
-    public static double getFacing(Player p, Entity e) {
+    public static double getFacing(@Nonnull Player p, @Nonnull Entity e) {
         Vector pd = p.getLocation().getDirection();
         Vector ed = e.getLocation().getDirection();
         double x = (pd.getX() * ed.getZ()) - (pd.getZ() * ed.getX());
@@ -95,7 +95,7 @@ public final class EntityUtils {
         return d <= val && d >= -val;
     }
 
-    public static void makeBreed(Animals a) {
+    public static void makeBreed(@Nonnull Animals a) {
         if (a.isAdult() && !a.isLoveMode()) {
             a.setBreed(true);
             a.setLoveModeTicks(400);
@@ -116,13 +116,7 @@ public final class EntityUtils {
     @Nonnull
     public static <T> List<T> getNearbyEntitiesByType(@Nonnull Class<?> clazz, @Nonnull Location l, double x, double y, double z) {
         World world = l.getWorld();
-        Validate.notNull(world);
-        return ((List<T>) world.getNearbyEntities(l, x, y, z, new Predicate<Entity>() {
-            @Override
-            public boolean test(Entity entity) {
-                return clazz.isInstance(entity);
-            }
-        }));
+        return ((List<T>) world.getNearbyEntities(l, x, y, z, clazz::isInstance));
     }
 
     @Nullable
@@ -131,7 +125,7 @@ public final class EntityUtils {
     }
 
     @Nullable
-    public static <T extends Entity> T getEntityLookedAtByEntityByType(LivingEntity lookingEntity, Class<? extends Entity> entityType) {
+    public static <T extends Entity> T getEntityLookedAtByEntityByType(@Nonnull LivingEntity lookingEntity, Class<? extends Entity> entityType) {
 
         Vector fromLookDir = lookingEntity.getEyeLocation().getDirection();
         Vector fromEyeLoc = lookingEntity.getEyeLocation().toVector();
@@ -149,5 +143,4 @@ public final class EntityUtils {
         }
         return null;
     }
-
 }

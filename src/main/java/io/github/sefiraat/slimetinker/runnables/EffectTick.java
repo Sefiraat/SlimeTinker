@@ -13,6 +13,7 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
 
+import javax.annotation.Nonnull;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -24,7 +25,7 @@ public class EffectTick extends BukkitRunnable {
 
     @Override
     public void run() {
-        for (Player player : SlimeTinker.inst().getServer().getOnlinePlayers()) {
+        for (Player player : SlimeTinker.getInstance().getServer().getOnlinePlayers()) {
             ItemStack heldItem = player.getInventory().getItemInMainHand();
 
             Map<PotionEffectType, Integer> potionEffects = new HashMap<>();
@@ -35,25 +36,21 @@ public class EffectTick extends BukkitRunnable {
             checkArmour(friend);
 
             // Mods
-            checkModifications(heldItem, player, potionEffects);
+            checkModifications(heldItem, potionEffects);
 
             // Settle if not cancelled
             if (!friend.isCancelEvent()) {
                 settlePotionEffects(friend);
             }
 
-            // TODO remove with modification changes
             for (Map.Entry<PotionEffectType, Integer> entry : potionEffects.entrySet()) {
                 player.addPotionEffect(new PotionEffect(entry.getKey(), SlimeTinker.RUNNABLE_TICK_RATE + 20, entry.getValue(), false, true, true));
             }
             TickEvents.magnetic(friend);
-
-
         }
     }
 
-    private void checkModifications(ItemStack heldItem, Player player, Map<PotionEffectType, Integer> potionEffects) {
-
+    private void checkModifications(ItemStack heldItem, Map<PotionEffectType, Integer> potionEffects) {
         if (!ItemUtils.isTool(heldItem)) {
             return;
         }
@@ -67,12 +64,11 @@ public class EffectTick extends BukkitRunnable {
 
     }
 
-    private void modRedstone(int level, Map<PotionEffectType, Integer> potionEffects) {
+    private void modRedstone(int level, @Nonnull Map<PotionEffectType, Integer> potionEffects) {
         if (potionEffects.containsKey(PotionEffectType.FAST_DIGGING)) {
             potionEffects.put(PotionEffectType.FAST_DIGGING, potionEffects.get(PotionEffectType.FAST_DIGGING) + level);
         } else {
             potionEffects.put(PotionEffectType.FAST_DIGGING, level);
         }
     }
-
 }

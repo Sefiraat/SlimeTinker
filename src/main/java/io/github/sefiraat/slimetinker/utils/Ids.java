@@ -1,11 +1,11 @@
 package io.github.sefiraat.slimetinker.utils;
 
-import lombok.experimental.UtilityClass;
+public final class Ids {
 
-@UtilityClass
-public final class IDStrings {
+    private Ids() {
+        throw new IllegalStateException("Utility class");
+    }
 
-    // TODO Collapse into Map and then form command completions from this
     // Vanilla + Core SF + Tinkers
     public static final String IRON = "IRON";
     public static final String GOLD = "GOLD";
@@ -18,25 +18,25 @@ public final class IDStrings {
     public static final String ZINC = "ZINC";
     public static final String COAL = "COAL";
     public static final String STEEL = "STEEL";
-    public static final String DAMSTEEL = "DAMASCUS_STEEL";
-    public static final String DURALIUM = "DURALIUM";
+    public static final String DAMASCUS_STEEL = "DAMASCUS_STEEL";
+    public static final String DURALUMIN = "DURALIUM";
     public static final String BRONZE = "BRONZE";
-    public static final String ALUBRONZE = "ALUMINUM_BRONZE";
-    public static final String HARD = "HARDENED_METAL";
-    public static final String CORBRONZE = "CORINTHIAN_BRONZE";
+    public static final String ALUMINUM_BRONZE = "ALUMINUM_BRONZE";
+    public static final String HARDENED_METAL = "HARDENED_METAL";
+    public static final String CORINTHIAN_BRONZE = "CORINTHIAN_BRONZE";
     public static final String SOLDER = "SOLDER";
     public static final String BILLON = "BILLON";
     public static final String BRASS = "BRASS";
-    public static final String ALUBRASS = "ALUMINUM_BRASS";
+    public static final String ALUMINUM_BRASS = "ALUMINUM_BRASS";
     public static final String NICKEL = "NICKEL";
     public static final String COBALT = "COBALT";
-    public static final String REINFORCED = "REINFORCED_ALLOY";
+    public static final String REINFORCED_ALLOY = "REINFORCED_ALLOY";
     public static final String STRING = "STRING";
     public static final String VINE = "VINE";
     public static final String CRIMSON_ROOTS = "CRIMSON_ROOT";
     public static final String WARPED_ROOTS = "WARPED_ROOT";
     public static final String WEEPING_VINES = "WEEPING_VINE";
-    public static final String TWISTED_VINES = "TWISTED_VINE";
+    public static final String TWISTING_VINES = "TWISTED_VINE";
     public static final String SLIME = "SLIME";
     public static final String LEATHER = "LEATHER";
     public static final String DIAMOND = "DIAMOND";
@@ -52,26 +52,26 @@ public final class IDStrings {
     // Infinity Expansion
     public static final String VOID = "VOID";
     public static final String INFINITY = "INFINITE";
-    public static final String FORTUNE = "FORTUNE_SINGULARITY";
-    public static final String MAGIC = "MAGIC_SINGULARITY";
-    public static final String EARTH = "EARTH_SINGULARITY";
-    public static final String METAL = "METAL_SINGULARITY";
+    public static final String FORTUNE_SINGULARITY = "FORTUNE_SINGULARITY";
+    public static final String MAGIC_SINGULARITY = "MAGIC_SINGULARITY";
+    public static final String EARTH_SINGULARITY = "EARTH_SINGULARITY";
+    public static final String METAL_SINGULARITY = "METAL_SINGULARITY";
     public static final String MAGSTEEL = "MAGSTEEL";
     public static final String TITANIUM = "TITANIUM";
     public static final String MYTHRIL = "MYTHRIL";
     public static final String ADAMANTITE = "ADAMANTITE";
     public static final String MAGNONIUM = "MAGNONIUM";
-    public static final String SINGCOPPER = "COPPER_SINGULARITY";
-    public static final String SINGZINC = "ZINC_SINGULARITY";
-    public static final String SINGTIN = "TIN_SINGULARITY";
-    public static final String SINGALUMINUM = "ALUMINUM_SINGULARITY";
-    public static final String SINGSILVER = "SILVER_SINGULARITY";
-    public static final String SINGMAGNESIUM = "MAGNESIUM_SINGULARITY";
-    public static final String SINGLEAD = "LEAD_SINGULARITY";
-    public static final String SINGGOLD = "GOLD_SINGULARITY";
-    public static final String SINGIRON = "IRON_SINGULARITY";
-    public static final String SINGDIAMOND = "DIAMOND_SINGULARITY";
-    public static final String SINGINFINITY = "INFINITY_SINGULARITY";
+    public static final String COPPER_SINGULARITY = "COPPER_SINGULARITY";
+    public static final String ZINC_SINGULARITY = "ZINC_SINGULARITY";
+    public static final String TIN_SINGULARITY = "TIN_SINGULARITY";
+    public static final String ALUMINUM_SINGULARITY = "ALUMINUM_SINGULARITY";
+    public static final String SILVER_SINGULARITY = "SILVER_SINGULARITY";
+    public static final String MAGNESIUM_SINGULARITY = "MAGNESIUM_SINGULARITY";
+    public static final String LEAD_SINGULARITY = "LEAD_SINGULARITY";
+    public static final String GOLD_SINGULARITY = "GOLD_SINGULARITY";
+    public static final String IRON_SINGULARITY = "IRON_SINGULARITY";
+    public static final String DIAMOND_SINGULARITY = "DIAMOND_SINGULARITY";
+    public static final String INFINITY_SINGULARITY = "INFINITY_SINGULARITY";
 
     // Slimefun Warfare
     public static final String SLIMESTEEL = "SLIME_STEEL";

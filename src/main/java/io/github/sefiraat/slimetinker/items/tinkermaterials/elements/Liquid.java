@@ -1,29 +1,27 @@
-package io.github.sefiraat.slimetinker.items.componentmaterials.cmelements;
+package io.github.sefiraat.slimetinker.items.tinkermaterials.elements;
 
 import io.github.sefiraat.slimetinker.SlimeTinker;
 import io.github.sefiraat.slimetinker.itemgroups.ItemGroups;
-import io.github.sefiraat.slimetinker.items.componentmaterials.ComponentMaterial;
+import io.github.sefiraat.slimetinker.items.tinkermaterials.TinkerMaterial;
 import io.github.sefiraat.slimetinker.items.workstations.smeltery.DummySmelteryMolten;
 import io.github.sefiraat.slimetinker.utils.ThemeUtils;
 import io.github.sefiraat.slimetinker.utils.enums.ThemeItemType;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
-import lombok.Getter;
 import org.bukkit.inventory.ItemStack;
 
-@Getter
-public class CMLiquid {
+public class Liquid {
 
     private final String texture;
-    private ComponentMaterial parent;
+    private TinkerMaterial parent;
     private SlimefunItemStack itemStack;
     private SlimefunItem item;
 
-    public CMLiquid(String texture) {
+    public Liquid(String texture) {
         this.texture = texture;
     }
 
-    public void setupLiquid(ComponentMaterial parent) {
+    public void setupLiquid(TinkerMaterial parent) {
         this.parent = parent;
         String titName = ThemeUtils.toTitleCase(parent.getId());
         this.itemStack = ThemeUtils.themedItemStack(
@@ -39,7 +37,22 @@ public class CMLiquid {
             null, parent.getRepresentativeStack(), null,
             null, null, null
         });
-        item.register(SlimeTinker.inst());
+        item.register(SlimeTinker.getInstance());
     }
 
+    public String getTexture() {
+        return texture;
+    }
+
+    public TinkerMaterial getParent() {
+        return parent;
+    }
+
+    public SlimefunItemStack getItemStack() {
+        return itemStack;
+    }
+
+    public SlimefunItem getItem() {
+        return item;
+    }
 }

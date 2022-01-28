@@ -1,11 +1,8 @@
 package io.github.sefiraat.slimetinker.utils;
 
-import io.github.sefiraat.slimetinker.SlimeTinker;
 import io.github.sefiraat.slimetinker.items.Guide;
 import io.github.sefiraat.slimetinker.modifiers.Modifications;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.data.persistent.PersistentDataAPI;
-import lombok.experimental.UtilityClass;
-import org.apache.commons.lang.Validate;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -16,17 +13,20 @@ import org.bukkit.persistence.PersistentDataType;
 import java.util.Map;
 import java.util.concurrent.ThreadLocalRandom;
 
-@UtilityClass
 public final class Experience {
+
+    private Experience() {
+        throw new IllegalStateException("Utility class");
+    }
 
     public static final double EXP_LEVEL_BASE = 100;
     public static final double EXP_GROWTH = 1.3;
 
     public static void setupExpNew(ItemMeta im) {
-        PersistentDataAPI.setInt(im, SlimeTinker.inst().getKeys().getStExpCurrent(), 0);
-        PersistentDataAPI.setDouble(im, SlimeTinker.inst().getKeys().getStExpRequired(), EXP_LEVEL_BASE);
-        PersistentDataAPI.setInt(im, SlimeTinker.inst().getKeys().getStLevel(), 0);
-        PersistentDataAPI.setInt(im, SlimeTinker.inst().getKeys().getStModSlots(), 0);
+        PersistentDataAPI.setInt(im, Keys.ST_EXP_CURRENT, 0);
+        PersistentDataAPI.setDouble(im, Keys.ST_EXP_REQUIRED, EXP_LEVEL_BASE);
+        PersistentDataAPI.setInt(im, Keys.ST_LEVEL, 0);
+        PersistentDataAPI.setInt(im, Keys.ST_MOD_SLOTS, 0);
     }
 
     public static void addExp(ItemStack itemStack, int amount, Player player, boolean tool) {
@@ -40,10 +40,10 @@ public final class Experience {
         }
 
         // Add the EXP given
-        int currentExp = c.get(SlimeTinker.inst().getKeys().getStExpCurrent(), PersistentDataType.INTEGER);
-        double expRequired = c.get(SlimeTinker.inst().getKeys().getStExpRequired(), PersistentDataType.DOUBLE);
-        int level = c.get(SlimeTinker.inst().getKeys().getStLevel(), PersistentDataType.INTEGER);
-        int modSlots = c.get(SlimeTinker.inst().getKeys().getStModSlots(), PersistentDataType.INTEGER);
+        int currentExp = c.get(Keys.ST_EXP_CURRENT, PersistentDataType.INTEGER);
+        double expRequired = c.get(Keys.ST_EXP_REQUIRED, PersistentDataType.DOUBLE);
+        int level = c.get(Keys.ST_LEVEL, PersistentDataType.INTEGER);
+        int modSlots = c.get(Keys.ST_MOD_SLOTS, PersistentDataType.INTEGER);
         int newExp = 0;
 
         // Emerald mod
@@ -69,10 +69,10 @@ public final class Experience {
             newExp = currentExp + amount;
         }
 
-        c.set(SlimeTinker.inst().getKeys().getStExpCurrent(), PersistentDataType.INTEGER, newExp);
-        c.set(SlimeTinker.inst().getKeys().getStExpRequired(), PersistentDataType.DOUBLE, expRequired);
-        c.set(SlimeTinker.inst().getKeys().getStLevel(), PersistentDataType.INTEGER, level);
-        c.set(SlimeTinker.inst().getKeys().getStModSlots(), PersistentDataType.INTEGER, modSlots);
+        c.set(Keys.ST_EXP_CURRENT, PersistentDataType.INTEGER, newExp);
+        c.set(Keys.ST_EXP_REQUIRED, PersistentDataType.DOUBLE, expRequired);
+        c.set(Keys.ST_LEVEL, PersistentDataType.INTEGER, level);
+        c.set(Keys.ST_MOD_SLOTS, PersistentDataType.INTEGER, modSlots);
 
         itemStack.setItemMeta(im);
 
@@ -87,12 +87,11 @@ public final class Experience {
         }
 
         ItemMeta im = itemStack.getItemMeta();
-        Validate.notNull(im, "Meta null, grr!");
         String type;
         if (ItemUtils.isTool(itemStack)) {
-            type = PersistentDataAPI.getString(im, SlimeTinker.inst().getKeys().getToolInfoToolType());
+            type = PersistentDataAPI.getString(im, Keys.TOOL_INFO_TOOL_TYPE);
         } else if (ItemUtils.isArmour(itemStack)) {
-            type = PersistentDataAPI.getString(im, SlimeTinker.inst().getKeys().getArmourInfoArmourType());
+            type = PersistentDataAPI.getString(im, Keys.ARMOUR_INFO_ARMOUR_TYPE);
         } else {
             throw new IllegalArgumentException("Trying to promote something that isn't armour or a tool!");
         }

@@ -3,7 +3,7 @@ package io.github.sefiraat.slimetinker.listeners;
 import io.github.sefiraat.slimetinker.events.friend.EventFriend;
 import io.github.sefiraat.slimetinker.events.friend.TraitEventType;
 import io.github.sefiraat.slimetinker.utils.Experience;
-import io.github.sefiraat.slimetinker.utils.IDStrings;
+import io.github.sefiraat.slimetinker.utils.Ids;
 import io.github.sefiraat.slimetinker.utils.ItemUtils;
 import io.github.sefiraat.slimetinker.utils.ThemeUtils;
 import org.apache.commons.lang.Validate;
@@ -39,7 +39,6 @@ public class PlayerInteractListener implements Listener {
         if (friend.isActionTaken()) {
             settlePotionEffects(friend);
         }
-
     }
 
     @EventHandler
@@ -61,12 +60,10 @@ public class PlayerInteractListener implements Listener {
         if (ItemUtils.isTool(itemStack)) {
             String type = ItemUtils.getToolTypeName(itemStack);
             Validate.notNull(type, "Item is tool but without a type? /sf cheat or other error has happened.");
-            return ((type.equals(IDStrings.HOE) || type.equals(IDStrings.SHOVEL))
+            return ((type.equals(Ids.HOE) || type.equals(Ids.SHOVEL))
                 && (block.getType() == Material.DIRT || block.getType() == Material.GRASS_BLOCK));
         } else {
             return false;
         }
     }
-
-
 }

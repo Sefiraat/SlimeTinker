@@ -1,6 +1,6 @@
 package io.github.sefiraat.slimetinker.items.workstations.modificationstation;
 
-import io.github.sefiraat.slimetinker.SlimeTinker;
+import io.github.sefiraat.slimetinker.utils.Keys;
 import io.github.sefiraat.slimetinker.utils.ThemeUtils;
 import io.github.sefiraat.slimetinker.utils.enums.ThemeItemType;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
@@ -19,7 +19,7 @@ public final class DummyModificationStation {
         "Once enough material has been added, the",
         "modification will level."
     );
-    public static final RecipeType TYPE = new RecipeType(SlimeTinker.inst().getKeys().getWsDummyToolTable(), STACK);
+    public static final RecipeType TYPE = new RecipeType(Keys.WS_DUMMY_TOOL_TABLE, STACK);
 
     private DummyModificationStation() {
         throw new IllegalStateException("Utility class");

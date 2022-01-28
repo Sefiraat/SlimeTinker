@@ -1,12 +1,12 @@
 package io.github.sefiraat.slimetinker.items.workstations.tooltable;
 
 import io.github.mooy1.infinitylib.machines.TickingMenuBlock;
-import io.github.sefiraat.slimetinker.SlimeTinker;
 import io.github.sefiraat.slimetinker.items.Guide;
 import io.github.sefiraat.slimetinker.items.templates.ToolDefinition;
 import io.github.sefiraat.slimetinker.utils.GUIItems;
-import io.github.sefiraat.slimetinker.utils.IDStrings;
+import io.github.sefiraat.slimetinker.utils.Ids;
 import io.github.sefiraat.slimetinker.utils.ItemUtils;
+import io.github.sefiraat.slimetinker.utils.Keys;
 import io.github.sefiraat.slimetinker.utils.ThemeUtils;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
@@ -58,7 +58,7 @@ public class ToolTable extends TickingMenuBlock {
                 clearPreview(blockMenu);
                 return;
             }
-            if (!validateClass(head, IDStrings.HEAD) || !validateBinder(binding) || !validateClass(rod, IDStrings.ROD)) { // One or more items are not the correct part
+            if (!validateClass(head, Ids.HEAD) || !validateBinder(binding) || !validateClass(rod, Ids.ROD)) { // One or more items are not the correct part
                 clearPreview(blockMenu);
                 return;
             }
@@ -69,7 +69,7 @@ public class ToolTable extends TickingMenuBlock {
     }
 
     protected void clearPreview(BlockMenu blockMenu) {
-        blockMenu.replaceExistingItem(PREVIEW_SLOT, GUIItems.menuPreview());
+        blockMenu.replaceExistingItem(PREVIEW_SLOT, GUIItems.MENU_PREVIEW);
     }
 
     protected ItemStack getTool(@Nonnull ItemStack head, @Nonnull ItemStack binding, @Nonnull ItemStack rod) {
@@ -81,33 +81,33 @@ public class ToolTable extends TickingMenuBlock {
         ItemStack tool;
 
         ToolDefinition toolDefinition = new ToolDefinition(
-            hm.getPersistentDataContainer().get(SlimeTinker.inst().getKeys().getPartClass(), PersistentDataType.STRING),
-            hm.getPersistentDataContainer().get(SlimeTinker.inst().getKeys().getPartType(), PersistentDataType.STRING),
-            hm.getPersistentDataContainer().get(SlimeTinker.inst().getKeys().getPartMaterial(), PersistentDataType.STRING),
-            bm.getPersistentDataContainer().get(SlimeTinker.inst().getKeys().getPartMaterial(), PersistentDataType.STRING),
-            rm.getPersistentDataContainer().get(SlimeTinker.inst().getKeys().getPartMaterial(), PersistentDataType.STRING)
+            hm.getPersistentDataContainer().get(Keys.PART_CLASS, PersistentDataType.STRING),
+            hm.getPersistentDataContainer().get(Keys.PART_TYPE, PersistentDataType.STRING),
+            hm.getPersistentDataContainer().get(Keys.PART_MATERIAL, PersistentDataType.STRING),
+            bm.getPersistentDataContainer().get(Keys.PART_MATERIAL, PersistentDataType.STRING),
+            rm.getPersistentDataContainer().get(Keys.PART_MATERIAL, PersistentDataType.STRING)
         );
 
         if (
-            toolDefinition.getHeadMaterial().equals(IDStrings.REINFORCED) ||
-                toolDefinition.getRodMaterial().equals(IDStrings.HARD) ||
-                toolDefinition.getHeadMaterial().equals(IDStrings.SINGINFINITY) ||
-                toolDefinition.getHeadMaterial().equals(IDStrings.OSMIUM)
+            toolDefinition.getHeadMaterial().equals(Ids.REINFORCED_ALLOY) ||
+                toolDefinition.getRodMaterial().equals(Ids.HARDENED_METAL) ||
+                toolDefinition.getHeadMaterial().equals(Ids.INFINITY_SINGULARITY) ||
+                toolDefinition.getHeadMaterial().equals(Ids.OSMIUM)
         ) { // Reinforced Head/Hard Rod tools are explosive
             switch (toolDefinition.getPartType()) {
-                case IDStrings.SHOVEL:
+                case Ids.SHOVEL:
                     tool = Guide.EXP_SHOVEL.getStack(toolDefinition);
                     break;
-                case IDStrings.PICKAXE:
+                case Ids.PICKAXE:
                     tool = Guide.EXP_PICKAXE.getStack(toolDefinition);
                     break;
-                case IDStrings.AXE:
+                case Ids.AXE:
                     tool = Guide.EXP_AXE.getStack(toolDefinition);
                     break;
-                case IDStrings.HOE:
+                case Ids.HOE:
                     tool = Guide.EXP_HOE.getStack(toolDefinition);
                     break;
-                case IDStrings.SWORD:
+                case Ids.SWORD:
                     tool = Guide.EXP_SWORD.getStack(toolDefinition);
                     break;
                 default:
@@ -115,19 +115,19 @@ public class ToolTable extends TickingMenuBlock {
             }
         } else {
             switch (toolDefinition.getPartType()) {
-                case IDStrings.SHOVEL:
+                case Ids.SHOVEL:
                     tool = Guide.SHOVEL.getStack(toolDefinition);
                     break;
-                case IDStrings.PICKAXE:
+                case Ids.PICKAXE:
                     tool = Guide.PICKAXE.getStack(toolDefinition);
                     break;
-                case IDStrings.AXE:
+                case Ids.AXE:
                     tool = Guide.AXE.getStack(toolDefinition);
                     break;
-                case IDStrings.HOE:
+                case Ids.HOE:
                     tool = Guide.HOE.getStack(toolDefinition);
                     break;
-                case IDStrings.SWORD:
+                case Ids.SWORD:
                     tool = Guide.SWORD.getStack(toolDefinition);
                     break;
                 default:
@@ -144,10 +144,10 @@ public class ToolTable extends TickingMenuBlock {
         if (itemStack == null || !itemStack.hasItemMeta()) { // No item
             return false;
         }
-        if (!itemStack.getItemMeta().getPersistentDataContainer().has(SlimeTinker.inst().getKeys().getPartClass(), PersistentDataType.STRING)) { // Not a part
+        if (!itemStack.getItemMeta().getPersistentDataContainer().has(Keys.PART_CLASS, PersistentDataType.STRING)) { // Not a part
             return false;
         }
-        String type = itemStack.getItemMeta().getPersistentDataContainer().get(SlimeTinker.inst().getKeys().getPartClass(), PersistentDataType.STRING);
+        String type = itemStack.getItemMeta().getPersistentDataContainer().get(Keys.PART_CLASS, PersistentDataType.STRING);
         assert type != null;
         return type.equals(classType);
     }
@@ -160,8 +160,7 @@ public class ToolTable extends TickingMenuBlock {
         return ItemUtils.getItemName(itemStack).startsWith("PART_BINDING_");
     }
 
-    @SuppressWarnings("SameReturnValue")
-    protected boolean craft(BlockMenu blockMenu, Player player) {
+    protected void craft(BlockMenu blockMenu, Player player) {
 
         ItemStack head = blockMenu.getItemInSlot(INPUT_HEAD);
         ItemStack binding = blockMenu.getItemInSlot(INPUT_BINDING);
@@ -169,35 +168,32 @@ public class ToolTable extends TickingMenuBlock {
 
         if (head == null || binding == null || rod == null) { // Missing one or more items
             player.sendMessage(ThemeUtils.ERROR + "Not all items present");
-            return false;
+            return;
         }
-        if (!validateClass(head, IDStrings.HEAD) || !validateBinder(binding) || !validateClass(rod, IDStrings.ROD)) { // One or more items are not the correct part
+        if (!validateClass(head, Ids.HEAD) || !validateBinder(binding) || !validateClass(rod, Ids.ROD)) { // One or more items are not the correct part
             player.sendMessage(ThemeUtils.WARNING + "One or more items are either not Tinker's parts or in the wrong slot?");
-            return false;
+            return;
         }
 
         blockMenu.pushItem(getTool(head, binding, rod).clone(), OUTPUT_SLOT);
         blockMenu.getItemInSlot(INPUT_HEAD).setAmount(blockMenu.getItemInSlot(INPUT_HEAD).getAmount() - 1);
         blockMenu.getItemInSlot(INPUT_BINDING).setAmount(blockMenu.getItemInSlot(INPUT_BINDING).getAmount() - 1);
         blockMenu.getItemInSlot(INPUT_ROD).setAmount(blockMenu.getItemInSlot(INPUT_ROD).getAmount() - 1);
-
-        return false;
-
     }
 
     @Override
     protected void setup(BlockMenuPreset blockMenuPreset) {
 
         blockMenuPreset.drawBackground(ChestMenuUtils.getBackground(), BACKGROUND_SLOTS);
-        blockMenuPreset.drawBackground(GUIItems.menuBackgroundInput(), BACKGROUND_INPUTS);
-        blockMenuPreset.drawBackground(GUIItems.menuBackgroundOutput(), BACKGROUND_OUTPUT);
-        blockMenuPreset.drawBackground(GUIItems.menuBackgroundPreview(), BACKGROUND_PREVIEW);
+        blockMenuPreset.drawBackground(GUIItems.MENU_BACKGROUND_INPUT, BACKGROUND_INPUTS);
+        blockMenuPreset.drawBackground(GUIItems.MENU_BACKGROUND_OUTPUT, BACKGROUND_OUTPUT);
+        blockMenuPreset.drawBackground(GUIItems.MENU_BACKGROUND_PREVIEW, BACKGROUND_PREVIEW);
 
-        blockMenuPreset.addItem(CRAFT_BUTTON, GUIItems.menuCraftToolTable());
-        blockMenuPreset.addItem(MARKER_ROD, GUIItems.menuMarkerRod());
-        blockMenuPreset.addItem(MARKER_BINDER, GUIItems.menuMarkerBinder());
-        blockMenuPreset.addItem(MARKER_HEAD, GUIItems.menuMarkerHead());
-        blockMenuPreset.addItem(PREVIEW_SLOT, GUIItems.menuPreview());
+        blockMenuPreset.addItem(CRAFT_BUTTON, GUIItems.MENU_CRAFT_TOOL_TABLE);
+        blockMenuPreset.addItem(MARKER_ROD, GUIItems.MENU_MARKER_ROD);
+        blockMenuPreset.addItem(MARKER_BINDER, GUIItems.MENU_MARKER_BINDER);
+        blockMenuPreset.addItem(MARKER_HEAD, GUIItems.MENU_MARKER_HEAD);
+        blockMenuPreset.addItem(PREVIEW_SLOT, GUIItems.MENU_PREVIEW);
 
         blockMenuPreset.addMenuClickHandler(CRAFT_BUTTON, (player, i, itemStack, clickAction) -> false);
         blockMenuPreset.addMenuClickHandler(MARKER_ROD, (player, i, itemStack, clickAction) -> false);
@@ -230,7 +226,10 @@ public class ToolTable extends TickingMenuBlock {
     @Override
     protected void onNewInstance(@Nonnull BlockMenu blockMenu, @Nonnull Block b) {
         super.onNewInstance(blockMenu, b);
-        blockMenu.addMenuClickHandler(CRAFT_BUTTON, (player, i, itemStack, clickAction) -> craft(blockMenu, player));
+        blockMenu.addMenuClickHandler(CRAFT_BUTTON, (player, i, itemStack, clickAction) -> {
+            craft(blockMenu, player);
+            return false;
+        });
     }
 
 }

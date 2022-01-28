@@ -7,7 +7,6 @@ import io.github.sefiraat.slimetinker.utils.ItemUtils;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
 import io.github.thebusybiscuit.slimefun4.utils.tags.SlimefunTag;
-import lombok.experimental.UtilityClass;
 import org.bukkit.Bukkit;
 import org.bukkit.Color;
 import org.bukkit.Material;
@@ -26,8 +25,11 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.ThreadLocalRandom;
 
-@UtilityClass
 public final class BlockBreakEvents {
+
+    private BlockBreakEvents() {
+        throw new UnsupportedOperationException("Utility Class");
+    }
 
     public static void headCorbronze(EventFriend friend) {
         Collection<ItemStack> newDrops = new ArrayList<>(friend.getAddDrops());

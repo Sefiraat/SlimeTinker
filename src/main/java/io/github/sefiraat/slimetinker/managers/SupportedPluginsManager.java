@@ -2,12 +2,14 @@ package io.github.sefiraat.slimetinker.managers;
 
 import io.github.sefiraat.slimetinker.SlimeTinker;
 import io.github.sefiraat.slimetinker.utils.ThemeUtils;
-import lombok.experimental.UtilityClass;
 import org.bukkit.plugin.PluginManager;
 
 @SuppressWarnings("SpellCheckingInspection")
-@UtilityClass
 public final class SupportedPluginsManager {
+
+    private SupportedPluginsManager() {
+        throw new IllegalStateException("Utility class");
+    }
 
     public static final boolean INFINITY_EXPANSION;
     public static final boolean SLIMEFUN_WARFARE;
@@ -21,11 +23,26 @@ public final class SupportedPluginsManager {
     public static final String LITEXPANSION_NOTE = ThemeUtils.ADD_LITEXPANSION + "LiteXpansion";
 
     static {
-        PluginManager pluginManager = SlimeTinker.inst().getServer().getPluginManager();
+        PluginManager pluginManager = SlimeTinker.getInstance().getServer().getPluginManager();
         INFINITY_EXPANSION = pluginManager.isPluginEnabled("InfinityExpansion");
         SLIMEFUN_WARFARE = pluginManager.isPluginEnabled("SlimefunWarfare");
         DYNATECH = pluginManager.isPluginEnabled("DynaTech");
         LITEXPANSION = pluginManager.isPluginEnabled("LiteXpansion");
     }
 
+    public static boolean isInfinityExpansion() {
+        return INFINITY_EXPANSION;
+    }
+
+    public static boolean isSlimefunWarfare() {
+        return SLIMEFUN_WARFARE;
+    }
+
+    public static boolean isDynatech() {
+        return DYNATECH;
+    }
+
+    public static boolean isLitexpansion() {
+        return LITEXPANSION;
+    }
 }

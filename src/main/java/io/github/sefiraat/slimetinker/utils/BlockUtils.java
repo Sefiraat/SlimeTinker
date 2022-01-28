@@ -2,7 +2,6 @@ package io.github.sefiraat.slimetinker.utils;
 
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.protection.Interaction;
-import lombok.experimental.UtilityClass;
 import me.mrCookieSlime.Slimefun.api.BlockStorage;
 import org.bukkit.Location;
 import org.bukkit.block.Block;
@@ -18,10 +17,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@UtilityClass
 public final class BlockUtils {
 
-    public static Map<Location, Boolean> STATE_MAP = new HashMap<>();
+    private BlockUtils() {
+        throw new IllegalStateException("Utility class");
+    }
+
+    private static final Map<Location, Boolean> STATE_MAP = new HashMap<>();
 
     public static boolean isValidBreakEvent(Block block, Player player) {
         return !isPlaced(block)
@@ -41,7 +43,7 @@ public final class BlockUtils {
      * @param player the player's whos targeted blocks BlockFace is to be checked.
      * @return the BlockFace of the targeted block, or null if the targeted block is non-occluding.
      */
-    public BlockFace getTargetedBlockFace(Player player) {
+    public static BlockFace getTargetedBlockFace(Player player) {
         List<Block> lastTwoTargetBlocks = player.getLastTwoTargetBlocks(null, 100);
         if (lastTwoTargetBlocks.size() != 2 || !lastTwoTargetBlocks.get(1).getType().isOccluding()) return null;
         Block targetBlock = lastTwoTargetBlocks.get(1);
@@ -73,4 +75,7 @@ public final class BlockUtils {
         block.setBlockData(blockData);
     }
 
+    public static Map<Location, Boolean> getStateMap() {
+        return STATE_MAP;
+    }
 }

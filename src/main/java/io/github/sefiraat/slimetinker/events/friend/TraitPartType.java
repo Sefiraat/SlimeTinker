@@ -4,7 +4,7 @@ public enum TraitPartType {
     HEAD,
     BINDER,
     ROD,
-    PLATE,
+    PLATES,
     GAMBESON,
     LINKS
 }

@@ -7,9 +7,6 @@ public abstract class AbstractCache {
     protected final BlockMenu blockMenu;
 
     protected AbstractCache(BlockMenu blockMenu) {
-
         this.blockMenu = blockMenu;
-
     }
-
 }

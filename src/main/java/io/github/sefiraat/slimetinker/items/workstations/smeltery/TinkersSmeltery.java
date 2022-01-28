@@ -57,20 +57,20 @@ public class TinkersSmeltery extends TickingMenuBlock {
         blockMenuPreset.setSize(54);
 
         blockMenuPreset.drawBackground(ChestMenuUtils.getBackground(), BACKGROUND_SLOTS);
-        blockMenuPreset.drawBackground(GUIItems.menuBackgroundInput(), BACKGROUND_INPUT_SLOTS);
-        blockMenuPreset.drawBackground(GUIItems.menuBackgroundOutput(), BACKGROUND_OUTPUT_SLOTS);
-        blockMenuPreset.drawBackground(GUIItems.menuBackgroundCast(), BACKGROUND_CAST_SLOTS);
+        blockMenuPreset.drawBackground(GUIItems.MENU_BACKGROUND_INPUT, BACKGROUND_INPUT_SLOTS);
+        blockMenuPreset.drawBackground(GUIItems.MENU_BACKGROUND_OUTPUT, BACKGROUND_OUTPUT_SLOTS);
+        blockMenuPreset.drawBackground(GUIItems.MENU_BACKGROUND_CAST, BACKGROUND_CAST_SLOTS);
 
         blockMenuPreset.addItem(LAVA_INFO, GUIItems.menuLavaInfo(0, 0, TinkersSmelteryCache.LAVA_MAX));
         blockMenuPreset.addItem(METAL_INFO, GUIItems.menuMetalInfo(0, 0, TinkersSmelteryCache.METALS_MAX, null));
 
-        blockMenuPreset.addItem(PURGE_BUTTON, GUIItems.menuPurge());
+        blockMenuPreset.addItem(PURGE_BUTTON, GUIItems.MENU_PURGE);
         blockMenuPreset.addMenuClickHandler(PURGE_BUTTON, (player, i, itemStack, clickAction) -> false);
 
-        blockMenuPreset.addItem(ALLOY_BUTTON, GUIItems.menuAlloy());
+        blockMenuPreset.addItem(ALLOY_BUTTON, GUIItems.MENU_ALLOY);
         blockMenuPreset.addMenuClickHandler(ALLOY_BUTTON, (player, i, itemStack, clickAction) -> false);
 
-        blockMenuPreset.addItem(POUR_BUTTON, GUIItems.menuPour());
+        blockMenuPreset.addItem(POUR_BUTTON, GUIItems.MENU_POUR);
         blockMenuPreset.addMenuClickHandler(POUR_BUTTON, (player, i, itemStack, clickAction) -> false);
 
     }
@@ -133,7 +133,6 @@ public class TinkersSmeltery extends TickingMenuBlock {
 
         Location controllerLoc = blockMenu.getLocation();
         Block b = controllerLoc.getBlock();
-        //if (BlockStorage. controllerLoc.getBlock().getRelative(BlockFace.UP))
         Map<String, Integer> blockMapXY = getBlockMapXY(b);
         Map<String, Integer> blockMapZY = getBlockMapZY(b);
 

@@ -1,28 +1,35 @@
 package io.github.sefiraat.slimetinker.runnables;
 
 import io.github.sefiraat.slimetinker.SlimeTinker;
-import lombok.Getter;
 
 public class RunnableManager {
 
-    @Getter
     private final EffectTick effectTick;
-    @Getter
     private final ArmourRemove armourRemove;
-    @Getter
     private final FirstTick firstTick;
 
     public RunnableManager() {
+        final SlimeTinker plugin = SlimeTinker.getInstance();
 
         this.effectTick = new EffectTick();
-        effectTick.runTaskTimer(SlimeTinker.inst(), 0, SlimeTinker.RUNNABLE_TICK_RATE);
+        effectTick.runTaskTimer(plugin, 0, SlimeTinker.RUNNABLE_TICK_RATE);
 
         this.armourRemove = new ArmourRemove();
-        armourRemove.runTaskTimer(SlimeTinker.inst(), 0, SlimeTinker.RUNNABLE_TICK_RATE);
+        armourRemove.runTaskTimer(plugin, 0, SlimeTinker.RUNNABLE_TICK_RATE);
 
         this.firstTick = new FirstTick();
-        firstTick.runTaskLater(SlimeTinker.inst(), 1);
-
+        firstTick.runTaskLater(plugin, 1);
     }
 
+    public EffectTick getEffectTick() {
+        return effectTick;
+    }
+
+    public ArmourRemove getArmourRemove() {
+        return armourRemove;
+    }
+
+    public FirstTick getFirstTick() {
+        return firstTick;
+    }
 }

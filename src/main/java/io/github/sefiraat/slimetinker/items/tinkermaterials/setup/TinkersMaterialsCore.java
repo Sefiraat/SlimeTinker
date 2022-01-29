@@ -395,6 +395,7 @@ public final class TinkersMaterialsCore {
         .build();
 
     private static final TinkerMaterial SLIME = new TinkerMaterial(Ids.SLIME, new ItemStack(Material.SLIME_BALL), "#29e01f")
+        .setLiquidTexture(SkullTextures.ALLOY_GREEN)
         .setTraitToolBinder(Traits.CORE_SLIME_BINDER)
         .setTraitArmorGambeson(Traits.CORE_SLIME_GAMBESON)
         .build();

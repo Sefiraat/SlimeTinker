@@ -52,7 +52,7 @@ public final class TinkersMaterialsDynatech {
 
     private static final TinkerMaterial GHOSTLY_ESSENCE = new TinkerMaterial(Ids.GHOSTLY_ESSENCE, SlimefunItem.getById("GHOSTLY_ESSENCE").getItem(), "#d4ffef")
         .setLiquidTexture(SkullTextures.ALLOY_BROWN)
-        .setTraitToolHead(Traits.DYN_GHOSTLY_ESSENCE_HEAD)
+        .setTraitToolBinder(Traits.DYN_GHOSTLY_ESSENCE_BINDING)
         .setTraitToolRod(Traits.DYN_GHOSTLY_ESSENCE_ROD)
         .setTraitArmorPlates(Traits.DYN_GHOSTLY_ESSENCE_PLATES)
         .setTraitArmorLinks(Traits.DYN_GHOSTLY_ESSENCE_LINKS)

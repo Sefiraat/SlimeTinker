@@ -2539,7 +2539,7 @@ public final class Traits {
         )
         .addConsumer(TraitEventType.TICK, TickEvents::brightBurn);
 
-    public static final MaterialTrait DYN_GHOSTLY_ESSENCE_HEAD = new MaterialTrait()
+    public static final MaterialTrait DYN_GHOSTLY_ESSENCE_BINDING = new MaterialTrait()
         .setPartType(MaterialTrait.PROP_BINDING)
         .setAddedBy(SupportedPluginsManager.DYNATECH_NOTE)
         .setTraitName("Incorporeal")

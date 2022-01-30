@@ -54,7 +54,7 @@ public final class TinkersMaterialsDynatech {
         .setLiquidTexture(SkullTextures.ALLOY_BROWN)
         .setTraitToolBinder(Traits.DYN_GHOSTLY_ESSENCE_BINDING)
         .setTraitToolRod(Traits.DYN_GHOSTLY_ESSENCE_ROD)
-        .setTraitArmorPlates(Traits.DYN_GHOSTLY_ESSENCE_PLATES)
+        .setTraitArmorGambeson(Traits.DYN_GHOSTLY_ESSENCE_GAMBESON)
         .setTraitArmorLinks(Traits.DYN_GHOSTLY_ESSENCE_LINKS)
         .setFormDust("GHOSTLY_ESSENCE")
         .build();

@@ -24,7 +24,7 @@ public final class TinkersMaterialsLiteXpansion {
         .setFormGem("RUBBER")
         .build();
 
-    private static final TinkerMaterial REFINED_IRON = new TinkerMaterial(Ids.RUBBER, SlimefunItem.getById("REFINED_IRON").getItem(), "#ababab")
+    private static final TinkerMaterial REFINED_IRON = new TinkerMaterial(Ids.REFINED_IRON, SlimefunItem.getById("REFINED_IRON").getItem(), "#ababab")
         .setLiquidTexture(SkullTextures.ALLOY_SILVER)
         .setTraitToolHead(Traits.LITE_REFINED_IRON_HEAD)
         .setTraitToolRod(Traits.LITE_REFINED_IRON_ROD)

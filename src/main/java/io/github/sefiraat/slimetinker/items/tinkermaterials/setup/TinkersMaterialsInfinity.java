@@ -152,7 +152,9 @@ public final class TinkersMaterialsInfinity {
         .setTraitToolRod(Traits.INFINITY_MYTHRIL_ROD)
         .setTraitArmorPlates(Traits.INFINITY_MYTHRIL_PLATES)
         .setTraitArmorLinks(Traits.INFINITY_MYTHRIL_LINKS)
-        .setFormBlock("MYTHRIL")
+        .setFormNugget(Materials.NUGGET_CAST_MYTHRIL.getItemId())
+        .setFormIngot("MYTHRIL")
+        .setFormBlock(Materials.BLOCK_CAST_MYTHRIL.getItemId())
         .build();
 
     private static final TinkerMaterial ADAMANTITE = new TinkerMaterial(Ids.ADAMANTITE, SlimefunItem.getById("ADAMANTITE").getItem(), "#c93ec2")
@@ -161,7 +163,9 @@ public final class TinkersMaterialsInfinity {
         .setTraitToolRod(Traits.INFINITY_ADAMANTITE_ROD)
         .setTraitArmorPlates(Traits.INFINITY_ADAMANTITE_PLATES)
         .setTraitArmorLinks(Traits.INFINITY_ADAMANTITE_LINKS)
-        .setFormBlock("ADAMANTITE")
+        .setFormNugget(Materials.NUGGET_CAST_ADAMANTITE.getItemId())
+        .setFormIngot("ADAMANTITE")
+        .setFormBlock(Materials.BLOCK_CAST_ADAMANTITE.getItemId())
         .build();
 
     private static final TinkerMaterial MAGNONIUM = new TinkerMaterial(Ids.MAGNONIUM, SlimefunItem.getById("MAGNONIUM").getItem(), "#4a0446")
@@ -170,7 +174,9 @@ public final class TinkersMaterialsInfinity {
         .setTraitToolRod(Traits.INFINITY_MAGNONIUM_ROD)
         .setTraitArmorPlates(Traits.INFINITY_MAGNONIUM_PLATES)
         .setTraitArmorLinks(Traits.INFINITY_MAGNONIUM_LINKS)
-        .setFormBlock("MAGNONIUM")
+        .setFormNugget(Materials.NUGGET_CAST_MAGNONIUM.getItemId())
+        .setFormIngot("MAGNONIUM")
+        .setFormBlock(Materials.BLOCK_CAST_MAGNONIUM.getItemId())
         .build();
 
     private static final TinkerMaterial FORTUNE_SINGULARITY = new TinkerMaterial(Ids.FORTUNE_SINGULARITY, SlimefunItem.getById("FORTUNE_SINGULARITY").getItem(), "#f0d541")
@@ -179,7 +185,7 @@ public final class TinkersMaterialsInfinity {
         .setTraitToolRod(Traits.INFINITY_FORTUNE_SINGULARITY_ROD)
         .setTraitArmorPlates(Traits.INFINITY_FORTUNE_SINGULARITY_PLATES)
         .setTraitArmorLinks(Traits.INFINITY_FORTUNE_SINGULARITY_LINKS)
-        .setFormBlock("FORTUNE_SINGULARITY")
+        .setFormGem("FORTUNE_SINGULARITY")
         .build();
 
     private static final TinkerMaterial MAGIC_SINGULARITY = new TinkerMaterial(Ids.MAGIC_SINGULARITY, SlimefunItem.getById("MAGIC_SINGULARITY").getItem(), "#c941e8")
@@ -188,7 +194,7 @@ public final class TinkersMaterialsInfinity {
         .setTraitToolRod(Traits.INFINITY_MAGIC_SINGULARITY_ROD)
         .setTraitArmorPlates(Traits.INFINITY_MAGIC_SINGULARITY_PLATES)
         .setTraitArmorLinks(Traits.INFINITY_MAGIC_SINGULARITY_LINKS)
-        .setFormBlock("MAGIC_SINGULARITY")
+        .setFormGem("MAGIC_SINGULARITY")
         .build();
 
     private static final TinkerMaterial EARTH_SINGULARITY = new TinkerMaterial(Ids.EARTH_SINGULARITY, SlimefunItem.getById("EARTH_SINGULARITY").getItem(), "#44e34f")
@@ -197,7 +203,7 @@ public final class TinkersMaterialsInfinity {
         .setTraitToolRod(Traits.INFINITY_EARTH_SINGULARITY_ROD)
         .setTraitArmorPlates(Traits.INFINITY_EARTH_SINGULARITY_PLATES)
         .setTraitArmorLinks(Traits.INFINITY_EARTH_SINGULARITY_LINKS)
-        .setFormBlock("EARTH_SINGULARITY")
+        .setFormGem("EARTH_SINGULARITY")
         .build();
 
     private static final TinkerMaterial METAL_SINGULARITY = new TinkerMaterial(Ids.METAL_SINGULARITY, SlimefunItem.getById("METAL_SINGULARITY").getItem(), "#5b615b")
@@ -206,7 +212,7 @@ public final class TinkersMaterialsInfinity {
         .setTraitToolRod(Traits.INFINITY_METAL_SINGULARITY_ROD)
         .setTraitArmorPlates(Traits.INFINITY_METAL_SINGULARITY_PLATES)
         .setTraitArmorLinks(Traits.INFINITY_METAL_SINGULARITY_LINKS)
-        .setFormBlock("METAL_SINGULARITY")
+        .setFormGem("METAL_SINGULARITY")
         .build();
 
     private static final TinkerMaterial INFINITY = new TinkerMaterial(Ids.INFINITY, SlimefunItem.getById("INFINITE_INGOT").getItem(), "#d1ebf0")
@@ -216,8 +222,8 @@ public final class TinkersMaterialsInfinity {
         .setTraitArmorPlates(Traits.INFINITY_INFINITY_PLATES)
         .setTraitArmorLinks(Traits.INFINITY_INFINITY_LINKS)
         .setFormNugget(Materials.NUGGET_CAST_INFINITY.getItemId())
-        .setFormBlock("INFINITE_INGOT")
-        .setFormNugget(Materials.BLOCK_CAST_INFINITY.getItemId())
+        .setFormIngot("INFINITE_INGOT")
+        .setFormBlock(Materials.BLOCK_CAST_INFINITY.getItemId())
         .build();
 
     private static final TinkerMaterial INFINITY_SINGULARITY = new TinkerMaterial(Ids.INFINITY_SINGULARITY, SlimefunItem.getById("INFINITY_SINGULARITY").getItem(), "#e8cef5")

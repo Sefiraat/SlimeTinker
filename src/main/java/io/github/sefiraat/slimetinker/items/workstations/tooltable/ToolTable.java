@@ -16,6 +16,7 @@ import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenuPreset;
 import org.bukkit.Location;
 import org.bukkit.block.Block;
+import org.bukkit.entity.Breedable;
 import org.bukkit.entity.Player;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.inventory.ItemStack;
@@ -157,7 +158,8 @@ public class ToolTable extends TickingMenuBlock {
         if (itemStack == null || !itemStack.hasItemMeta()) { // No item
             return false;
         }
-        return ItemUtils.getItemName(itemStack).startsWith("PART_BINDING_");
+        String name = ItemUtils.getItemName(itemStack);
+        return name != null && name.startsWith("PART_BINDING_");
     }
 
     protected void craft(BlockMenu blockMenu, Player player) {

@@ -1,0 +1,159 @@
+name: Bug report
+description: Report a Bug or an Issue with this Plugin.
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Welcome to SlimeTinker Bug Tracker
+        If you need any help to identify the problem, visit `#other-addons` channel in [Slimefun Discord server](https://discord.gg/slimefun).
+        You can also visit `#slime-tinker` channel in [Slimefun Addon Community](https://discord.gg/SqD3gg5SAU).
+
+        Also take a look at our list of [existing Issues](https://github.com/Sefiraat/SlimeTinker/issues).
+
+        <strong><i>Fields marked with an asterisk (*) are required.</i></strong>
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Checklist
+      description: Please go through this checklist before filling this bug report.
+      options:
+        - label: I am using official English version of SlimeTinker and did not modify jar.
+          required: true
+        - label: I am using an up to date "DEV" version of SlimeTinker.
+          required: true
+        - label: I searched for similar open issues and could not find an existing bug report on this.
+          required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: |
+        A clear and detailed description of what exactly the Issue consists of.
+        Please try to write as much as possible. "it doesn't work" is not sufficient.
+        Try to write at least 4-6 sentences.
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Steps to reproduce
+      description: |
+        Tell us the exact steps to reproduce this issue, the more detailed the easier we can reproduce it.
+        Youtube Videos and Screenshots are recommended!
+      placeholder: |
+        1. xxx
+        2. xxx
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected-behavior
+    attributes:
+      label: Expected behavior
+      description: |
+        What did you expect to happen?
+    validations:
+      required: true
+
+  - type: input
+    id: server-log
+    attributes:
+      label: Server log
+      description: |
+        Take a look at your Server Log and please provide any error reports you can find via any paste site (e.g. https://pastebin.com/).
+        If you are unsure about it, post your full log, you can find it under /logs/latest.log
+        **DO NOT paste log here! Please use Pastebin!**
+      placeholder: https://pastebin.com/...
+    validations:
+      required: false
+
+  - type: input
+    id: error-report
+    attributes:
+      label: Error report
+      description: |
+        If server log mentioned any error report file, please provide us via any paste site (e.g. https://pastebin.com/).
+        You can find error reports under `/plugins/Slimefun/error-reports`.
+        **DO NOT paste log here! Please use Pastebin!**
+      placeholder: https://pastebin.com/...
+    validations:
+      required: false
+
+  - type: dropdown
+    id: server-software
+    attributes:
+      label: Server software
+      description: Please select the software your Server is running on
+      options:
+        - Spigot
+        - Paper
+        - Purpur
+        - Airplane
+        - Other (please specify in your description)
+    validations:
+      required: true
+
+  - type: dropdown
+    id: minecraft-version
+    attributes:
+      label: Minecraft Version
+      description: Please select the Minecraft version of the server
+      options:
+        - 1.18.x
+        - 1.17.x
+        - 1.16.x
+        - (Older versions are not supported)
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: cscorelib-version
+    attributes:
+      label: CS-CoreLib Version
+      description: |
+        As of Jan 30 2021, you no longer need to install CS-CoreLib to use Slimefun and addons (of course including SlimeTinker).
+        If you still have CS-CoreLib on your server, it may cause problems. We recommend you to remove it.
+      options:
+        - label: I don't have CS-CoreLib installed
+          required: true
+
+  - type: textarea
+    id: slimefun-version
+    attributes:
+      label: Slimefun version
+      description: |
+        **"latest" is not a version number, we need the exact version.**
+        We recommend running "/sf versions" and uploading a screenshot of that.
+        Make sure that the screenshot covers the entire output of that command.
+      placeholder: DEV - [...]
+    validations:
+      required: true
+
+  - type: input
+    id: version-plugin
+    attributes:
+      label: SlimeTinker version
+      description: |
+        **"latest" is not a version number, we need the exact version.**
+      placeholder: DEV - [...]
+    validations:
+      required: true
+
+  - type: textarea
+    id: other-versions
+    attributes:
+      label: Other plugins
+      description: |
+        If your issue is related to another plugin, make sure to include this here!
+      placeholder: The issue is related to plugin [...], version [...]
+
+  - type: markdown
+    attributes:
+      value: |
+        ## Thank you for submitting your bug report!
+        If you find any additional info that can help to identify this problem, don't hesitate to comment on your issue!
+        Any additional info can help us fix this bug faster.

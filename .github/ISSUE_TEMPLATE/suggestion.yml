@@ -1,0 +1,34 @@
+name: Suggestion
+description: Post your suggestion about this plugin
+labels: ["suggestion"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Welcome to SlimeTinker ~~Bug Tracker~~ Suggestion Board
+        We welcome any suggestion about SlimeTinker here.
+        You can also post your suggestion about SlimeTinker at `#suggestions` channel in [Slimefun Discord server](https://discord.gg/slimefun).
+        You can also visit `#slime-tinker` channel in [Slimefun Addon Community](https://discord.gg/SqD3gg5SAU).
+
+        <strong><i>Fields marked with an asterisk (*) are required.</i></strong>
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: |
+        Describe what is your suggestion about this plugin.
+    validations:
+      required: true
+
+  - type: textarea
+    id: preview
+    attributes:
+      label: Preview
+      description: |
+        If you have pictures/videos to describe your suggestion, please provide us as well.
+
+  - type: markdown
+    attributes:
+      value: |
+        ## Thank you for submitting your suggestion!

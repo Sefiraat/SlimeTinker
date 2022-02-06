@@ -84,7 +84,7 @@ public final class TinkersMaterialsLiteXpansion {
         )
         .build();
 
-    private static final TinkerMaterial CARBON_MESH = new TinkerMaterial(Ids.THORIUM, SlimefunItem.getById("RAW_CARBON_MESH").getItem(), "#192927")
+    private static final TinkerMaterial CARBON_MESH = new TinkerMaterial(Ids.CARBON_MESH, SlimefunItem.getById("RAW_CARBON_MESH").getItem(), "#192927")
         .setTraitToolBinder(Traits.LITE_CARBON_MESH_BINDING)
         .setTraitArmorGambeson(Traits.LITE_CARBON_MESH_GAMBESON)
         .build();

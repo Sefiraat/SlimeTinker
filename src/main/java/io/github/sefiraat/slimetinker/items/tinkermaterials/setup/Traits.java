@@ -1147,6 +1147,15 @@ public final class Traits {
         )
         .addConsumer(TraitEventType.TICK, TickEvents::linksCringleium);
 
+    public static final MaterialTrait CORE_LOVE_LINKS = new MaterialTrait()
+        .setPartType(MaterialTrait.PROP_LINKS)
+        .setAddedBy(SupportedPluginsManager.CORE_NOTE)
+        .setTraitName("It's all you need")
+        .setLore(
+            "You are loved"
+        )
+        .addConsumer(TraitEventType.TICK, TickEvents::linksLove);
+
     // endregion
 
     // region Infinity Expansion

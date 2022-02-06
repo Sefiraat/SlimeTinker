@@ -239,6 +239,38 @@ public final class Materials {
         "Cringleium Nugget",
         "A nugget made from Cringleium."
     );
+    public static final SlimefunItemStack NUGGET_CAST_FONDNESS = ThemeUtils.themedItemStack(
+        "NUGGET_CAST_FONDNESS",
+        Material.PINK_DYE,
+        ThemeItemType.CRAFTING,
+        "Fondness Nugget",
+        "A nugget made from the concept",
+        "of fondness."
+    );
+    public static final SlimefunItemStack NUGGET_CAST_DEVOTION = ThemeUtils.themedItemStack(
+        "NUGGET_CAST_DEVOTION",
+        Material.PINK_DYE,
+        ThemeItemType.CRAFTING,
+        "Devotion Nugget",
+        "A nugget made from the concept",
+        "of devotion."
+    );
+    public static final SlimefunItemStack NUGGET_CAST_PASSION = ThemeUtils.themedItemStack(
+        "NUGGET_CAST_PASSION",
+        Material.PINK_DYE,
+        ThemeItemType.CRAFTING,
+        "Passion Nugget",
+        "A nugget made from the concept",
+        "of passion."
+    );
+    public static final SlimefunItemStack NUGGET_CAST_LOVE = ThemeUtils.themedItemStack(
+        "NUGGET_CAST_LOVE",
+        Material.PINK_DYE,
+        ThemeItemType.CRAFTING,
+        "Love Nugget",
+        "A nugget that exudes nothing but",
+        "pure and unadulterated love."
+    );
     // endregion
 
     // region Ingots
@@ -262,6 +294,38 @@ public final class Materials {
         ThemeItemType.CRAFTING,
         "Cringleium Ingot",
         "A festive ingot that's only available for a short time."
+    );
+    public static final SlimefunItemStack INGOT_CAST_FONDNESS = ThemeUtils.themedItemStack(
+        "INGOT_CAST_FONDNESS",
+        Material.BRICK,
+        ThemeItemType.CRAFTING,
+        "Fondness Ingot",
+        "An ingot made from the concept",
+        "of fondness."
+    );
+    public static final SlimefunItemStack INGOT_CAST_DEVOTION = ThemeUtils.themedItemStack(
+        "INGOT_CAST_DEVOTION",
+        Material.BRICK,
+        ThemeItemType.CRAFTING,
+        "Devotion Ingot",
+        "An ingot made from the concept",
+        "of devotion."
+    );
+    public static final SlimefunItemStack INGOT_CAST_PASSION = ThemeUtils.themedItemStack(
+        "INGOT_CAST_PASSION",
+        Material.BRICK,
+        ThemeItemType.CRAFTING,
+        "Passion Ingot",
+        "An ingot made from the concept",
+        "of passion."
+    );
+    public static final SlimefunItemStack INGOT_CAST_LOVE = ThemeUtils.themedItemStack(
+        "INGOT_CAST_LOVE",
+        Material.BRICK,
+        ThemeItemType.CRAFTING,
+        "Love Ingot",
+        "An ingot that exudes nothing but",
+        "pure and unadulterated love."
     );
     // endregion
 
@@ -470,6 +534,14 @@ public final class Materials {
         ThemeItemType.CRAFTING,
         "Cringleium Block",
         "A block made from Cringleium"
+    );
+    public static final SlimefunItemStack BLOCK_CAST_LOVE = ThemeUtils.themedItemStack(
+        "BLOCK_CAST_LOVE",
+        Material.PINK_DYE,
+        ThemeItemType.CRAFTING,
+        "Love Block",
+        "A block that exudes nothing but",
+        "pure and unadulterated love."
     );
     // endregion
 
@@ -1096,6 +1168,19 @@ public final class Materials {
         new UnplaceableBlock(ItemGroups.MATERIALS, NUGGET_CAST_CRINGLEIUM, DummySmeltery.TYPE, ItemUtils.getMiddleOnlyRecipe(Casts.CAST_NUGGET)).register(p);
         new UnplaceableBlock(ItemGroups.MATERIALS, INGOT_CAST_CRINGLEIUM, DummySmeltery.TYPE, ItemUtils.getMiddleOnlyRecipe(Casts.CAST_INGOT)).register(p);
         new UnplaceableBlock(ItemGroups.MATERIALS, BLOCK_CAST_CRINGLEIUM, DummySmeltery.TYPE, ItemUtils.getMiddleOnlyRecipe(Casts.CAST_BLOCK)).register(p);
+
+        new UnplaceableBlock(ItemGroups.MATERIALS, NUGGET_CAST_FONDNESS, DummySmeltery.TYPE, ItemUtils.getMiddleOnlyRecipe(Casts.CAST_NUGGET)).register(p);
+        new UnplaceableBlock(ItemGroups.MATERIALS, INGOT_CAST_FONDNESS, DummySmeltery.TYPE, ItemUtils.getMiddleOnlyRecipe(Casts.CAST_INGOT)).register(p);
+
+        new UnplaceableBlock(ItemGroups.MATERIALS, NUGGET_CAST_DEVOTION, DummySmeltery.TYPE, ItemUtils.getMiddleOnlyRecipe(Casts.CAST_NUGGET)).register(p);
+        new UnplaceableBlock(ItemGroups.MATERIALS, INGOT_CAST_DEVOTION, DummySmeltery.TYPE, ItemUtils.getMiddleOnlyRecipe(Casts.CAST_INGOT)).register(p);
+
+        new UnplaceableBlock(ItemGroups.MATERIALS, NUGGET_CAST_PASSION, DummySmeltery.TYPE, ItemUtils.getMiddleOnlyRecipe(Casts.CAST_NUGGET)).register(p);
+        new UnplaceableBlock(ItemGroups.MATERIALS, INGOT_CAST_PASSION, DummySmeltery.TYPE, ItemUtils.getMiddleOnlyRecipe(Casts.CAST_INGOT)).register(p);
+
+        new UnplaceableBlock(ItemGroups.MATERIALS, NUGGET_CAST_LOVE, DummySmeltery.TYPE, ItemUtils.getMiddleOnlyRecipe(Casts.CAST_NUGGET)).register(p);
+        new UnplaceableBlock(ItemGroups.MATERIALS, INGOT_CAST_LOVE, DummySmeltery.TYPE, ItemUtils.getMiddleOnlyRecipe(Casts.CAST_INGOT)).register(p);
+        new UnplaceableBlock(ItemGroups.MATERIALS, BLOCK_CAST_LOVE, DummySmeltery.TYPE, ItemUtils.getMiddleOnlyRecipe(Casts.CAST_BLOCK)).register(p);
 
         new UnplaceableBlock(ItemGroups.MATERIALS, NUGGET_CAST_COAL, DummySmeltery.TYPE, ItemUtils.getMiddleOnlyRecipe(Casts.CAST_NUGGET)).register(p);
 

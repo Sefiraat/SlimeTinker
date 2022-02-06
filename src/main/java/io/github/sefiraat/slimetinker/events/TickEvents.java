@@ -60,6 +60,17 @@ public final class TickEvents {
         throw new UnsupportedOperationException("Utility Class");
     }
 
+    public static void linksLove(EventFriend friend) {
+        Location location = friend.getPlayer().getLocation();
+        for (int i = 0; i <= 10; i++) {
+            double x = ThreadLocalRandom.current().nextDouble(-2.5, 2.6);
+            double y = ThreadLocalRandom.current().nextDouble(-2.5, 2.6);
+            double z = ThreadLocalRandom.current().nextDouble(-2.5, 2.6);
+            location.getWorld().spawnParticle(Particle.HEART, location.clone().add(x, y, z), 1);
+        }
+        increaseEffect(PotionEffectType.REGENERATION, friend.getPotionEffects(), 1);
+    }
+
     public static void linksCringleium(EventFriend friend) {
         Location location = friend.getPlayer().getLocation();
         Particle.DustOptions red = new Particle.DustOptions(Color.RED, 1);

@@ -48,6 +48,10 @@ public final class Ids {
     public static final String SEFIRITE = "SEFIRITE";
     public static final String LIQUID_CHRISTMAS = "LIQUID_CHRISTMAS";
     public static final String CRINGLEIUM = "CRINGLEIUM";
+    public static final String FLOWING_FONDNESS = "FLOWING_FONDNESS";
+    public static final String DETAILED_DEVOTION = "DETAILED_DEVOTION";
+    public static final String PURIFIED_PASSION = "PURIFIED_PASSION";
+    public static final String LIQUID_LOVE = "LIQUID_LOVE";
 
     // Infinity Expansion
     public static final String VOID = "VOID";

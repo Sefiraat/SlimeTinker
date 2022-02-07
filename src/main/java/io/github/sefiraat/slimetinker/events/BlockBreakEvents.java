@@ -4,6 +4,7 @@ import io.github.sefiraat.slimetinker.events.friend.EventFriend;
 import io.github.sefiraat.slimetinker.listeners.BlockMap;
 import io.github.sefiraat.slimetinker.utils.GeneralUtils;
 import io.github.sefiraat.slimetinker.utils.ItemUtils;
+import io.github.sefiraat.slimetinker.utils.ThemeUtils;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
 import io.github.thebusybiscuit.slimefun4.utils.tags.SlimefunTag;
@@ -29,6 +30,10 @@ public final class BlockBreakEvents {
 
     private BlockBreakEvents() {
         throw new UnsupportedOperationException("Utility Class");
+    }
+
+    public static void headNice(EventFriend friend) {
+        friend.getPlayer().sendMessage(ThemeUtils.WARNING + "Nice");
     }
 
     public static void headCorbronze(EventFriend friend) {

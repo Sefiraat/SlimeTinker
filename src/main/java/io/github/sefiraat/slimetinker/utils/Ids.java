@@ -52,6 +52,7 @@ public final class Ids {
     public static final String DETAILED_DEVOTION = "DETAILED_DEVOTION";
     public static final String PURIFIED_PASSION = "PURIFIED_PASSION";
     public static final String LIQUID_LOVE = "LIQUID_LOVE";
+    public static final String NICEINIUM = "NICEINIUM";
 
     // Infinity Expansion
     public static final String VOID = "VOID";

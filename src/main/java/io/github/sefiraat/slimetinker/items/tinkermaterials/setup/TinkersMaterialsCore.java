@@ -533,6 +533,20 @@ public final class TinkersMaterialsCore {
         )
         .build();
 
+    private static final TinkerMaterial NICEINIUM = new TinkerMaterial(Ids.NICEINIUM, Materials.INGOT_CAST_NICE, "#80550d")
+        .setLiquidTexture(SkullTextures.ALLOY_TAN)
+        .setFormNugget(Materials.NUGGET_CAST_NICE.getItemId())
+        .setFormIngot(Materials.INGOT_CAST_NICE.getItemId())
+        .setFormBlock(Materials.BLOCK_CAST_NICE.getItemId())
+        .setTraitToolHead(Traits.CORE_NICEINIUM_HEAD)
+        .addAlloyRecipe(
+            REINFORCED_ALLOY.getLiquidItemStack(3),
+            HARDENED_METAL.getLiquidItemStack(3),
+            REDSTONE.getLiquidItemStack(10),
+            DIAMOND.getLiquidItemStack(5)
+        )
+        .build();
+
     static {
         CM_MAP.put(Ids.IRON, IRON);
         CM_MAP.put(Ids.GOLD, GOLD);
@@ -579,6 +593,7 @@ public final class TinkersMaterialsCore {
         CM_MAP.put(Ids.DETAILED_DEVOTION, DETAILED_DEVOTION);
         CM_MAP.put(Ids.PURIFIED_PASSION, PURIFIED_PASSION);
         CM_MAP.put(Ids.LIQUID_LOVE, LIQUID_LOVE);
+        CM_MAP.put(Ids.NICEINIUM, NICEINIUM);
     }
 
     public static Map<String, TinkerMaterial> getCmMap() {

@@ -50,6 +50,10 @@ public final class EntityDamageEvents {
         throw new UnsupportedOperationException("Utility Class");
     }
 
+    public static void headNice(EventFriend friend) {
+        friend.getPlayer().sendMessage(ThemeUtils.WARNING + "Nice");
+    }
+
     public static void headAluBrass(EventFriend friend) {
         int rnd = ThreadLocalRandom.current().nextInt(1, 4);
         if (rnd == 1) {

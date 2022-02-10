@@ -3,6 +3,10 @@
 SlimeTinker is a Slimefun4 addon that tries it's best to recreate the amazing Tinker's Construct
 Mod ([link](https://www.curseforge.com/minecraft/mc-mods/tinkers-construct)) in Vanilla Minecraft.
 
+## Download SlimeTinker
+
+[![Build Status](https://thebusybiscuit.github.io/builds/Sefiraat/SlimeTinker/master/badge.svg)](https://thebusybiscuit.github.io/builds/Sefiraat/SlimeTinker/master)
+
 ## Features include:
 
 * The ability to melt all Vanilla and Core Slimefun metals and alloys.

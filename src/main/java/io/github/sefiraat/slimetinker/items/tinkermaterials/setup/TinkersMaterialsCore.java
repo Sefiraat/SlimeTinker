@@ -343,7 +343,8 @@ public final class TinkersMaterialsCore {
             IRON.getLiquidItemStack(1),
             NICKEL.getLiquidItemStack(1),
             COPPER.getLiquidItemStack(1)
-        );
+        )
+        .build();
 
     private static final TinkerMaterial REINFORCED_ALLOY = new TinkerMaterial(Ids.REINFORCED_ALLOY, SlimefunItems.REINFORCED_ALLOY_INGOT, "#465899")
         .setLiquidTexture(SkullTextures.ALLOY_PURPLE)

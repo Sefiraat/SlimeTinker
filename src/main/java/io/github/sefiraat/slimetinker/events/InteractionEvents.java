@@ -96,7 +96,9 @@ public final class InteractionEvents {
             int rndY = ThreadLocalRandom.current().nextInt(0, 5);
             int rndZ = ThreadLocalRandom.current().nextInt(-25, 26);
             Location location = p.getLocation().clone().add(rndX, rndY, rndZ);
-            if (p.getWorld().getBlockAt(location).getType() == Material.AIR) {
+            if (p.getWorld().getBlockAt(location).getType() == Material.AIR
+                && Slimefun.getProtectionManager().hasPermission(p, location, Interaction.PLACE_BLOCK)
+            ) {
                 p.teleport(location);
                 p.getWorld().playEffect(friend.getPlayer().getLocation(), Effect.ENDEREYE_LAUNCH, 10);
                 ItemUtils.setCooldown(i, "NOCLIP", 300000);

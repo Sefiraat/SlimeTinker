@@ -301,7 +301,7 @@ public final class TickEvents {
     public static void headMagic(EventFriend friend) {
         for (Entity entity : friend.getPlayer().getNearbyEntities(5, 5, 5)) {
             int rnd = ThreadLocalRandom.current().nextInt(1, 10);
-            if (entity instanceof LivingEntity) {
+            if (entity instanceof LivingEntity && !(entity instanceof ArmorStand)) {
                 LivingEntity l = (LivingEntity) entity;
                 switch (rnd) {
                     case 1:

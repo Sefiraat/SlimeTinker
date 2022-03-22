@@ -30,6 +30,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
+import java.util.List;
 import java.util.Set;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.stream.Collectors;
@@ -290,16 +291,29 @@ public final class EntityDamageEvents {
     }
 
     public static void headAdvancedAlloy(EventFriend friend) {
-        for (Entity e : friend.getPlayer().getNearbyEntities(3, 3, 3)) {
-            if (e instanceof LivingEntity
-                && e != friend.getDamagedEntity()
-            ) {
-                OfflinePlayer offlinePlayer = Bukkit.getOfflinePlayer(friend.getPlayer().getUniqueId());
-                Interaction interaction = e instanceof Player ? Interaction.ATTACK_PLAYER : Interaction.ATTACK_ENTITY;
-                if (Slimefun.getProtectionManager().hasPermission(offlinePlayer, e.getLocation(), interaction)) {
-                    ((LivingEntity) e).damage(friend.getInitialDamage(), friend.getPlayer());
-                    Particle.DustOptions dustOptions3 = new Particle.DustOptions(Color.fromRGB(250, 75, 10), 5);
-                    e.getWorld().spawnParticle(Particle.REDSTONE, e.getLocation(), 5, 1, 1, 1, 1, dustOptions3);
+        final NamespacedKey key = Keys.create("cleaved");
+
+        List<Entity> entityList = friend.getPlayer().getNearbyEntities(3, 3, 3);
+        entityList.removeIf(entity -> {
+            final long cleaveCooldown = PersistentDataAPI.getLong(entity, key, 0);
+            return System.currentTimeMillis() < cleaveCooldown;
+        });
+
+        for (Entity entity : entityList) {
+            PersistentDataAPI.setLong(entity, key, System.currentTimeMillis() + 1000);
+        }
+
+        for (Entity entity : entityList) {
+            if (entity instanceof LivingEntity && entity != friend.getDamagedEntity()) {
+                final OfflinePlayer offlinePlayer = Bukkit.getOfflinePlayer(friend.getPlayer().getUniqueId());
+                final Interaction interaction = entity instanceof Player ? Interaction.ATTACK_PLAYER : Interaction.ATTACK_ENTITY;
+
+                if (Slimefun.getProtectionManager().hasPermission(offlinePlayer, entity.getLocation(), interaction)) {
+                    final Particle.DustOptions dustOptions = new Particle.DustOptions(Color.fromRGB(250, 75, 10), 3);
+                    final LivingEntity livingEntity = (LivingEntity) entity;
+
+                    livingEntity.damage(friend.getInitialDamage(), friend.getPlayer());
+                    entity.getWorld().spawnParticle(Particle.REDSTONE, entity.getLocation(), 2, 1, 1, 1, 1, dustOptions);
                 }
             }
         }

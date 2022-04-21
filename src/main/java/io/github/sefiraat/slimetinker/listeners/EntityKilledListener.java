@@ -11,6 +11,7 @@ import org.bukkit.Color;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Particle;
+import org.bukkit.entity.ChestedHorse;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -113,6 +114,15 @@ public class EntityKilledListener implements Listener {
         Map<String, Integer> modLevels = Modifications.getAllModLevels(heldItem);
 
         if (!modLevels.containsKey(Material.LAPIS_LAZULI.toString())) { // The tools must have the lapis mod
+            return;
+        }
+
+        /*
+         We do not want to increase the chest drop of a ChestedHorse
+         This is a bad fix but a better one needs to await the change to how mods work before
+         being suitable.
+         */
+        if (event.getEntity() instanceof ChestedHorse) {
             return;
         }
 

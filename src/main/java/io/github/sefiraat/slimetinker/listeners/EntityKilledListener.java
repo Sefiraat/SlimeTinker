@@ -122,7 +122,7 @@ public class EntityKilledListener implements Listener {
          This is a bad fix but a better one needs to await the change to how mods work before
          being suitable.
          */
-        if (event.getEntity() instanceof ChestedHorse) {
+        if (event.getEntity() instanceof ChestedHorse || event.getEntity() instanceof Player) {
             return;
         }
 

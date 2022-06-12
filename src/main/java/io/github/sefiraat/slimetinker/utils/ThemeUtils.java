@@ -245,7 +245,7 @@ public final class ThemeUtils {
 
     @Nonnull
     public static String toTitleCase(@Nonnull String string) {
-        return toTitleCase(string, true, " _'-/");
+        return toTitleCase(string, true);
     }
 
     @Nonnull

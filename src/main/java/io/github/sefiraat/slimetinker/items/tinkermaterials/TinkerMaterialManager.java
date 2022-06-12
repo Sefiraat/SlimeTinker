@@ -1,5 +1,6 @@
 package io.github.sefiraat.slimetinker.items.tinkermaterials;
 
+import com.google.common.base.Preconditions;
 import io.github.sefiraat.slimetinker.SlimeTinker;
 import io.github.sefiraat.slimetinker.events.friend.TraitPartType;
 import io.github.sefiraat.slimetinker.items.Casts;
@@ -20,7 +21,6 @@ import io.github.sefiraat.slimetinker.managers.TraitManager;
 import io.github.sefiraat.slimetinker.utils.Ids;
 import io.github.sefiraat.slimetinker.utils.ItemUtils;
 import net.md_5.bungee.api.ChatColor;
-import org.apache.commons.lang.Validate;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
@@ -152,14 +152,33 @@ public class TinkerMaterialManager {
             }
 
             if (cm.getTraitArmorPlates() != null && traitManager.isEnabled(id, Ids.PLATE)) {
-                MAP_CAST_ARMOUR_PLATES_HELM.put(cm, Parts.HELM_PLATE.getStack(id, Ids.PLATE, Ids.HELMET, cm.getColor()));
-                MAP_CAST_ARMOUR_PLATES_CHEST.put(cm, Parts.CHEST_PLATE.getStack(id, Ids.PLATE, Ids.CHESTPLATE, cm.getColor()));
-                MAP_CAST_ARMOUR_PLATES_LEGGINGS.put(cm, Parts.LEG_PLATE.getStack(id, Ids.PLATE, Ids.LEGGINGS, cm.getColor()));
-                MAP_CAST_ARMOUR_PLATES_BOOTS.put(cm, Parts.BOOT_PLATE.getStack(id, Ids.PLATE, Ids.BOOTS, cm.getColor()));
+                MAP_CAST_ARMOUR_PLATES_HELM.put(
+                    cm,
+                    Parts.HELM_PLATE.getStack(id, Ids.PLATE, Ids.HELMET, cm.getColor())
+                );
+                MAP_CAST_ARMOUR_PLATES_CHEST.put(
+                    cm,
+                    Parts.CHEST_PLATE.getStack(id,
+                                               Ids.PLATE,
+                                               Ids.CHESTPLATE,
+                                               cm.getColor()
+                    )
+                );
+                MAP_CAST_ARMOUR_PLATES_LEGGINGS.put(
+                    cm,
+                    Parts.LEG_PLATE.getStack(id, Ids.PLATE, Ids.LEGGINGS, cm.getColor())
+                );
+                MAP_CAST_ARMOUR_PLATES_BOOTS.put(
+                    cm,
+                    Parts.BOOT_PLATE.getStack(id, Ids.PLATE, Ids.BOOTS, cm.getColor())
+                );
             }
 
             if (cm.getTraitToolHead() != null || cm.getTraitArmorPlates() != null) {
-                MAP_CAST_REPAIRKIT.put(cm, Parts.REPAIR_KIT.getStack(id, Ids.REPAIR, cm.getColor())); // We use HEAD here are repair always goes by head material
+                MAP_CAST_REPAIRKIT.put(
+                    cm,
+                    Parts.REPAIR_KIT.getStack(id, Ids.REPAIR, cm.getColor())
+                ); // We use HEAD here are repair always goes by head material
             }
 
             // Gems
@@ -251,22 +270,40 @@ public class TinkerMaterialManager {
     public static String getTraitName(String id, TraitPartType partType) {
         TinkerMaterial tinkerMaterial = MAP.get(id);
         if (partType == TraitPartType.HEAD) {
-            Validate.notNull(tinkerMaterial.getTraitToolHead(), MessageFormat.format(VALIDATE_TRAIT_MESSAGE, id, partType));
+            Preconditions.checkNotNull(
+                tinkerMaterial.getTraitToolHead(),
+                MessageFormat.format(VALIDATE_TRAIT_MESSAGE, id, partType)
+            );
             return tinkerMaterial.getTraitToolHead().getTraitName();
         } else if (partType == TraitPartType.BINDER) {
-            Validate.notNull(tinkerMaterial.getTraitToolBinder(), MessageFormat.format(VALIDATE_TRAIT_MESSAGE, id, partType));
+            Preconditions.checkNotNull(
+                tinkerMaterial.getTraitToolBinder(),
+                MessageFormat.format(VALIDATE_TRAIT_MESSAGE, id, partType)
+            );
             return tinkerMaterial.getTraitToolBinder().getTraitName();
         } else if (partType == TraitPartType.ROD) {
-            Validate.notNull(tinkerMaterial.getTraitToolRod(), MessageFormat.format(VALIDATE_TRAIT_MESSAGE, id, partType));
+            Preconditions.checkNotNull(
+                tinkerMaterial.getTraitToolRod(),
+                MessageFormat.format(VALIDATE_TRAIT_MESSAGE, id, partType)
+            );
             return tinkerMaterial.getTraitToolRod().getTraitName();
         } else if (partType == TraitPartType.PLATES) {
-            Validate.notNull(tinkerMaterial.getTraitArmorPlates(), MessageFormat.format(VALIDATE_TRAIT_MESSAGE, id, partType));
+            Preconditions.checkNotNull(
+                tinkerMaterial.getTraitArmorPlates(),
+                MessageFormat.format(VALIDATE_TRAIT_MESSAGE, id, partType)
+            );
             return tinkerMaterial.getTraitArmorPlates().getTraitName();
         } else if (partType == TraitPartType.GAMBESON) {
-            Validate.notNull(tinkerMaterial.getTraitArmorGambeson(), MessageFormat.format(VALIDATE_TRAIT_MESSAGE, id, partType));
+            Preconditions.checkNotNull(
+                tinkerMaterial.getTraitArmorGambeson(),
+                MessageFormat.format(VALIDATE_TRAIT_MESSAGE, id, partType)
+            );
             return tinkerMaterial.getTraitArmorGambeson().getTraitName();
         } else if (partType == TraitPartType.LINKS) {
-            Validate.notNull(tinkerMaterial.getTraitArmorLinks(), MessageFormat.format(VALIDATE_TRAIT_MESSAGE, id, partType));
+            Preconditions.checkNotNull(
+                tinkerMaterial.getTraitArmorLinks(),
+                MessageFormat.format(VALIDATE_TRAIT_MESSAGE, id, partType)
+            );
             return tinkerMaterial.getTraitArmorLinks().getTraitName();
         }
         return "Error";
@@ -302,41 +339,185 @@ public class TinkerMaterialManager {
     }
 
     private void fillCastingDies() {
-        castingRecipes.put(Material.IRON_NUGGET.toString(), new CastResult(Material.IRON_NUGGET.toString(), AMOUNT_CAST, MAP_DIE_NUGGET, true));
-        castingRecipes.put(Material.BRICK.toString(), new CastResult(Material.BRICK.toString(), AMOUNT_CAST, MAP_DIE_INGOT, true));
-        castingRecipes.put(Material.STONE.toString(), new CastResult(Material.STONE.toString(), AMOUNT_CAST, MAP_DIE_BLOCK, true));
-        castingRecipes.put(Material.DIAMOND.toString(), new CastResult(Material.DIAMOND.toString(), AMOUNT_CAST, MAP_DIE_GEM, true));
-        castingRecipes.put(Dies.DIE_REPAIR_KIT.getItemId(), new CastResult(Dies.DIE_REPAIR_KIT.getItemId(), AMOUNT_CAST, MAP_DIE_REPAIRKIT, true));
-        castingRecipes.put(Dies.DIE_SHOVEL_HEAD.getItemId(), new CastResult(Dies.DIE_SHOVEL_HEAD.getItemId(), AMOUNT_CAST, MAP_DIE_SHOVELHEAD, true));
-        castingRecipes.put(Dies.DIE_PICKAXE_HEAD.getItemId(), new CastResult(Dies.DIE_PICKAXE_HEAD.getItemId(), AMOUNT_CAST, MAP_DIE_PICKAXEHEAD, true));
-        castingRecipes.put(Dies.DIE_AXE_HEAD.getItemId(), new CastResult(Dies.DIE_AXE_HEAD.getItemId(), AMOUNT_CAST, MAP_DIE_AXEHEAD, true));
-        castingRecipes.put(Dies.DIE_HOE_HEAD.getItemId(), new CastResult(Dies.DIE_HOE_HEAD.getItemId(), AMOUNT_CAST, MAP_DIE_HOEHEAD, true));
-        castingRecipes.put(Dies.DIE_SWORD_BLADE.getItemId(), new CastResult(Dies.DIE_SWORD_BLADE.getItemId(), AMOUNT_CAST, MAP_DIE_SWORDBLADE, true));
-        castingRecipes.put(Dies.DIE_TOOL_ROD.getItemId(), new CastResult(Dies.DIE_TOOL_ROD.getItemId(), AMOUNT_CAST, MAP_DIE_TOOLROD, true));
-        castingRecipes.put(Dies.DIE_HELM_PLATE.getItemId(), new CastResult(Dies.DIE_HELM_PLATE.getItemId(), AMOUNT_CAST, MAP_DIE_ARMOUR_PLATES_HELM, true));
-        castingRecipes.put(Dies.DIE_CHEST_PLATE.getItemId(), new CastResult(Dies.DIE_CHEST_PLATE.getItemId(), AMOUNT_CAST, MAP_DIE_ARMOUR_PLATES_CHEST, true));
-        castingRecipes.put(Dies.DIE_LEG_PLATE.getItemId(), new CastResult(Dies.DIE_LEG_PLATE.getItemId(), AMOUNT_CAST, MAP_DIE_ARMOUR_PLATES_LEGGINGS, true));
-        castingRecipes.put(Dies.DIE_BOOT_PLATE.getItemId(), new CastResult(Dies.DIE_BOOT_PLATE.getItemId(), AMOUNT_CAST, MAP_DIE_ARMOUR_PLATES_BOOTS, true));
-        castingRecipes.put(Dies.DIE_MAIL_LINK.getItemId(), new CastResult(Dies.DIE_MAIL_LINK.getItemId(), AMOUNT_CAST, MAP_DIE_ARMOUR_MAIL, true));
+        castingRecipes.put(
+            Material.IRON_NUGGET.toString(),
+            new CastResult(Material.IRON_NUGGET.toString(), AMOUNT_CAST, MAP_DIE_NUGGET, true)
+        );
+        castingRecipes.put(
+            Material.BRICK.toString(),
+            new CastResult(Material.BRICK.toString(), AMOUNT_CAST, MAP_DIE_INGOT, true)
+        );
+        castingRecipes.put(
+            Material.STONE.toString(),
+            new CastResult(Material.STONE.toString(), AMOUNT_CAST, MAP_DIE_BLOCK, true)
+        );
+        castingRecipes.put(
+            Material.DIAMOND.toString(),
+            new CastResult(Material.DIAMOND.toString(), AMOUNT_CAST, MAP_DIE_GEM, true)
+        );
+        castingRecipes.put(
+            Dies.DIE_REPAIR_KIT.getItemId(),
+            new CastResult(Dies.DIE_REPAIR_KIT.getItemId(), AMOUNT_CAST, MAP_DIE_REPAIRKIT, true)
+        );
+        castingRecipes.put(
+            Dies.DIE_SHOVEL_HEAD.getItemId(),
+            new CastResult(Dies.DIE_SHOVEL_HEAD.getItemId(), AMOUNT_CAST, MAP_DIE_SHOVELHEAD, true)
+        );
+        castingRecipes.put(
+            Dies.DIE_PICKAXE_HEAD.getItemId(),
+            new CastResult(Dies.DIE_PICKAXE_HEAD.getItemId(), AMOUNT_CAST, MAP_DIE_PICKAXEHEAD, true)
+        );
+        castingRecipes.put(
+            Dies.DIE_AXE_HEAD.getItemId(),
+            new CastResult(Dies.DIE_AXE_HEAD.getItemId(), AMOUNT_CAST, MAP_DIE_AXEHEAD, true)
+        );
+        castingRecipes.put(
+            Dies.DIE_HOE_HEAD.getItemId(),
+            new CastResult(Dies.DIE_HOE_HEAD.getItemId(), AMOUNT_CAST, MAP_DIE_HOEHEAD, true)
+        );
+        castingRecipes.put(
+            Dies.DIE_SWORD_BLADE.getItemId(),
+            new CastResult(Dies.DIE_SWORD_BLADE.getItemId(), AMOUNT_CAST, MAP_DIE_SWORDBLADE, true)
+        );
+        castingRecipes.put(
+            Dies.DIE_TOOL_ROD.getItemId(),
+            new CastResult(Dies.DIE_TOOL_ROD.getItemId(), AMOUNT_CAST, MAP_DIE_TOOLROD, true)
+        );
+        castingRecipes.put(
+            Dies.DIE_HELM_PLATE.getItemId(),
+            new CastResult(Dies.DIE_HELM_PLATE.getItemId(),
+                           AMOUNT_CAST,
+                           MAP_DIE_ARMOUR_PLATES_HELM,
+                           true
+            )
+        );
+        castingRecipes.put(
+            Dies.DIE_CHEST_PLATE.getItemId(),
+            new CastResult(Dies.DIE_CHEST_PLATE.getItemId(),
+                           AMOUNT_CAST,
+                           MAP_DIE_ARMOUR_PLATES_CHEST,
+                           true
+            )
+        );
+        castingRecipes.put(
+            Dies.DIE_LEG_PLATE.getItemId(),
+            new CastResult(Dies.DIE_LEG_PLATE.getItemId(),
+                           AMOUNT_CAST,
+                           MAP_DIE_ARMOUR_PLATES_LEGGINGS,
+                           true
+            )
+        );
+        castingRecipes.put(
+            Dies.DIE_BOOT_PLATE.getItemId(),
+            new CastResult(Dies.DIE_BOOT_PLATE.getItemId(),
+                           AMOUNT_CAST,
+                           MAP_DIE_ARMOUR_PLATES_BOOTS,
+                           true
+            )
+        );
+        castingRecipes.put(
+            Dies.DIE_MAIL_LINK.getItemId(),
+            new CastResult(Dies.DIE_MAIL_LINK.getItemId(), AMOUNT_CAST, MAP_DIE_ARMOUR_MAIL, true)
+        );
     }
 
     private void fillCastingRecipes() {
-        castingRecipes.put(Casts.CAST_NUGGET.getItemId(), new CastResult(Casts.CAST_NUGGET.getItemId(), AMOUNT_NUGGET, MAP_CAST_NUGGET, false));
-        castingRecipes.put(Casts.CAST_INGOT.getItemId(), new CastResult(Casts.CAST_INGOT.getItemId(), AMOUNT_INGOT, MAP_CAST_INGOT, false));
-        castingRecipes.put(Casts.CAST_BLOCK.getItemId(), new CastResult(Casts.CAST_BLOCK.getItemId(), AMOUNT_BLOCK, MAP_CAST_BLOCK, false));
-        castingRecipes.put(Casts.CAST_GEM.getItemId(), new CastResult(Casts.CAST_GEM.getItemId(), AMOUNT_GEM, MAP_CAST_GEM, false));
-        castingRecipes.put(Casts.CAST_REPAIRKIT.getItemId(), new CastResult(Casts.CAST_REPAIRKIT.getItemId(), AMOUNT_KIT, MAP_CAST_REPAIRKIT, false));
-        castingRecipes.put(Casts.CAST_SHOVELHEAD.getItemId(), new CastResult(Casts.CAST_SHOVELHEAD.getItemId(), AMOUNT_SHOVELHEAD, MAP_CAST_SHOVELHEAD, false));
-        castingRecipes.put(Casts.CAST_PICKAXEHEAD.getItemId(), new CastResult(Casts.CAST_PICKAXEHEAD.getItemId(), AMOUNT_PICKAXEHEAD, MAP_CAST_PICKAXEHEAD, false));
-        castingRecipes.put(Casts.CAST_AXEHEAD.getItemId(), new CastResult(Casts.CAST_AXEHEAD.getItemId(), AMOUNT_AXEHEAD, MAP_CAST_AXEHEAD, false));
-        castingRecipes.put(Casts.CAST_HOEHEAD.getItemId(), new CastResult(Casts.CAST_HOEHEAD.getItemId(), AMOUNT_HOEHEAD, MAP_CAST_HOEHEAD, false));
-        castingRecipes.put(Casts.CAST_SWORDBLADE.getItemId(), new CastResult(Casts.CAST_SWORDBLADE.getItemId(), AMOUNT_SWORDBLADE, MAP_CAST_SWORDBLADE, false));
-        castingRecipes.put(Casts.CAST_TOOLROD.getItemId(), new CastResult(Casts.CAST_TOOLROD.getItemId(), AMOUNT_TOOLROD, MAP_CAST_TOOLROD, false));
-        castingRecipes.put(Casts.CAST_HELM_PLATE.getItemId(), new CastResult(Casts.CAST_HELM_PLATE.getItemId(), AMOUNT_ARM_HELM, MAP_CAST_ARMOUR_PLATES_HELM, false));
-        castingRecipes.put(Casts.CAST_CHEST_PLATE.getItemId(), new CastResult(Casts.CAST_CHEST_PLATE.getItemId(), AMOUNT_ARM_CHEST, MAP_CAST_ARMOUR_PLATES_CHEST, false));
-        castingRecipes.put(Casts.CAST_LEG_PLATE.getItemId(), new CastResult(Casts.CAST_LEG_PLATE.getItemId(), AMOUNT_ARM_LEG, MAP_CAST_ARMOUR_PLATES_LEGGINGS, false));
-        castingRecipes.put(Casts.CAST_BOOT_PLATE.getItemId(), new CastResult(Casts.CAST_BOOT_PLATE.getItemId(), AMOUNT_ARM_BOOT, MAP_CAST_ARMOUR_PLATES_BOOTS, false));
-        castingRecipes.put(Casts.CAST_MAIL_LINK.getItemId(), new CastResult(Casts.CAST_MAIL_LINK.getItemId(), AMOUNT_ARM_LINKS, MAP_CAST_ARMOUR_MAIL, false));
+        castingRecipes.put(
+            Casts.CAST_NUGGET.getItemId(),
+            new CastResult(Casts.CAST_NUGGET.getItemId(), AMOUNT_NUGGET, MAP_CAST_NUGGET, false)
+        );
+        castingRecipes.put(
+            Casts.CAST_INGOT.getItemId(),
+            new CastResult(Casts.CAST_INGOT.getItemId(), AMOUNT_INGOT, MAP_CAST_INGOT, false)
+        );
+        castingRecipes.put(
+            Casts.CAST_BLOCK.getItemId(),
+            new CastResult(Casts.CAST_BLOCK.getItemId(), AMOUNT_BLOCK, MAP_CAST_BLOCK, false)
+        );
+        castingRecipes.put(
+            Casts.CAST_GEM.getItemId(),
+            new CastResult(Casts.CAST_GEM.getItemId(), AMOUNT_GEM, MAP_CAST_GEM, false)
+        );
+        castingRecipes.put(
+            Casts.CAST_REPAIRKIT.getItemId(),
+            new CastResult(Casts.CAST_REPAIRKIT.getItemId(), AMOUNT_KIT, MAP_CAST_REPAIRKIT, false)
+        );
+        castingRecipes.put(
+            Casts.CAST_SHOVELHEAD.getItemId(),
+            new CastResult(Casts.CAST_SHOVELHEAD.getItemId(),
+                           AMOUNT_SHOVELHEAD,
+                           MAP_CAST_SHOVELHEAD,
+                           false
+            )
+        );
+        castingRecipes.put(
+            Casts.CAST_PICKAXEHEAD.getItemId(),
+            new CastResult(Casts.CAST_PICKAXEHEAD.getItemId(),
+                           AMOUNT_PICKAXEHEAD,
+                           MAP_CAST_PICKAXEHEAD,
+                           false
+            )
+        );
+        castingRecipes.put(
+            Casts.CAST_AXEHEAD.getItemId(),
+            new CastResult(Casts.CAST_AXEHEAD.getItemId(), AMOUNT_AXEHEAD, MAP_CAST_AXEHEAD, false)
+        );
+        castingRecipes.put(
+            Casts.CAST_HOEHEAD.getItemId(),
+            new CastResult(Casts.CAST_HOEHEAD.getItemId(), AMOUNT_HOEHEAD, MAP_CAST_HOEHEAD, false)
+        );
+        castingRecipes.put(
+            Casts.CAST_SWORDBLADE.getItemId(),
+            new CastResult(Casts.CAST_SWORDBLADE.getItemId(),
+                           AMOUNT_SWORDBLADE,
+                           MAP_CAST_SWORDBLADE,
+                           false
+            )
+        );
+        castingRecipes.put(
+            Casts.CAST_TOOLROD.getItemId(),
+            new CastResult(Casts.CAST_TOOLROD.getItemId(), AMOUNT_TOOLROD, MAP_CAST_TOOLROD, false)
+        );
+        castingRecipes.put(
+            Casts.CAST_HELM_PLATE.getItemId(),
+            new CastResult(Casts.CAST_HELM_PLATE.getItemId(),
+                           AMOUNT_ARM_HELM,
+                           MAP_CAST_ARMOUR_PLATES_HELM,
+                           false
+            )
+        );
+        castingRecipes.put(
+            Casts.CAST_CHEST_PLATE.getItemId(),
+            new CastResult(Casts.CAST_CHEST_PLATE.getItemId(),
+                           AMOUNT_ARM_CHEST,
+                           MAP_CAST_ARMOUR_PLATES_CHEST,
+                           false
+            )
+        );
+        castingRecipes.put(
+            Casts.CAST_LEG_PLATE.getItemId(),
+            new CastResult(Casts.CAST_LEG_PLATE.getItemId(),
+                           AMOUNT_ARM_LEG,
+                           MAP_CAST_ARMOUR_PLATES_LEGGINGS,
+                           false
+            )
+        );
+        castingRecipes.put(
+            Casts.CAST_BOOT_PLATE.getItemId(),
+            new CastResult(Casts.CAST_BOOT_PLATE.getItemId(),
+                           AMOUNT_ARM_BOOT,
+                           MAP_CAST_ARMOUR_PLATES_BOOTS,
+                           false
+            )
+        );
+        castingRecipes.put(
+            Casts.CAST_MAIL_LINK.getItemId(),
+            new CastResult(Casts.CAST_MAIL_LINK.getItemId(),
+                           AMOUNT_ARM_LINKS,
+                           MAP_CAST_ARMOUR_MAIL,
+                           false
+            )
+        );
     }
 
     public static Map<String, TinkerMaterial> getMap() {

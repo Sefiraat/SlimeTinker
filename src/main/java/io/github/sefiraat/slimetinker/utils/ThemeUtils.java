@@ -4,8 +4,6 @@ import io.github.sefiraat.slimetinker.items.BaseItem;
 import io.github.sefiraat.slimetinker.utils.enums.ThemeItemType;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import net.md_5.bungee.api.ChatColor;
-import org.apache.commons.lang.StringUtils;
-import org.apache.commons.lang.WordUtils;
 import org.bukkit.Material;
 import org.bukkit.inventory.meta.ItemMeta;
 
@@ -51,6 +49,7 @@ public final class ThemeUtils {
     public static final ChatColor ADD_LITEXPANSION = ChatColor.of("#8a8a8a");
     public static final ChatColor ADD_TRANSCENDENCE = ChatColor.of("#c242f5");
     public static final ChatColor ADD_NETWORKS = ChatColor.of("#05ad08");
+    public static final ChatColor GUIDE = ChatColor.of("#444444");
 
     public static final String LORE_TYPE_CRAFT = ITEM_TYPEDESC + "Crafting Material";
     public static final String LORE_TYPE_MACHINE = ITEM_TYPEDESC + "Machine";
@@ -70,7 +69,12 @@ public final class ThemeUtils {
 
     @Nonnull
     @ParametersAreNonnullByDefault
-    public static SlimefunItemStack themedItemStack(String id, String skull, ThemeItemType type, String name, String... loreLines) {
+    public static SlimefunItemStack themedItemStack(String id,
+                                                    String skull,
+                                                    ThemeItemType type,
+                                                    String name,
+                                                    String... loreLines
+    ) {
         BaseItem itemStack = new BaseItem(
             id,
             skull,
@@ -91,7 +95,12 @@ public final class ThemeUtils {
 
     @Nonnull
     @ParametersAreNonnullByDefault
-    public static SlimefunItemStack themedItemStack(String id, Material material, ThemeItemType type, String name, String... loreLines) {
+    public static SlimefunItemStack themedItemStack(String id,
+                                                    Material material,
+                                                    ThemeItemType type,
+                                                    String name,
+                                                    String... loreLines
+    ) {
         BaseItem itemStack = new BaseItem(
             id,
             material,
@@ -112,7 +121,12 @@ public final class ThemeUtils {
 
     @Nonnull
     @ParametersAreNonnullByDefault
-    public static SlimefunItemStack themedItemStack(String id, String skull, ThemeItemType type, String name, List<String> loreLines) {
+    public static SlimefunItemStack themedItemStack(String id,
+                                                    String skull,
+                                                    ThemeItemType type,
+                                                    String name,
+                                                    List<String> loreLines
+    ) {
         BaseItem itemStack = new BaseItem(
             id,
             skull,
@@ -133,7 +147,12 @@ public final class ThemeUtils {
 
     @Nonnull
     @ParametersAreNonnullByDefault
-    public static SlimefunItemStack themedItemStack(String id, Material material, ThemeItemType type, String name, List<String> loreLines) {
+    public static SlimefunItemStack themedItemStack(String id,
+                                                    Material material,
+                                                    ThemeItemType type,
+                                                    String name,
+                                                    List<String> loreLines
+    ) {
         BaseItem itemStack = new BaseItem(
             id,
             material,
@@ -225,13 +244,39 @@ public final class ThemeUtils {
     }
 
     @Nonnull
-    public static String toTitleCase(String string) {
-        final char[] delimiters = {' ', '_'};
-        return WordUtils.capitalizeFully(string, delimiters).replace("_", " ");
+    public static String toTitleCase(@Nonnull String string) {
+        return toTitleCase(string, true);
+    }
+
+    @Nonnull
+    public static String toTitleCase(@Nonnull String string, boolean delimiterToSpace) {
+        return toTitleCase(string, delimiterToSpace, " _'-/");
+    }
+
+    @Nonnull
+    public static String toTitleCase(@Nonnull String string, boolean delimiterToSpace, @Nonnull String delimiters) {
+        final StringBuilder builder = new StringBuilder();
+        boolean capNext = true;
+
+        for (char character : string.toCharArray()) {
+            character = (capNext) ? Character.toUpperCase(character) : Character.toLowerCase(character);
+            builder.append(character);
+            capNext = (delimiters.indexOf(character) >= 0);
+        }
+
+        String built = builder.toString();
+
+        if (delimiterToSpace) {
+            final char space = ' ';
+            for (char c : delimiters.toCharArray()) {
+                built = built.replace(c, space);
+            }
+        }
+        return built;
     }
 
     @Nonnull
     public static String getLine() {
-        return PASSIVE + StringUtils.repeat("-", 25);
+        return PASSIVE + "-".repeat(25);
     }
 }

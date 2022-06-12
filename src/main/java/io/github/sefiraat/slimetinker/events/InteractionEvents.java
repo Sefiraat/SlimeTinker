@@ -1,5 +1,6 @@
 package io.github.sefiraat.slimetinker.events;
 
+import com.google.common.base.Preconditions;
 import io.github.sefiraat.networks.slimefun.network.grid.NetworkGrid;
 import io.github.sefiraat.networks.slimefun.tools.NetworkRemote;
 import io.github.sefiraat.networks.utils.Theme;
@@ -20,7 +21,6 @@ import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.data.persistent.PersistentDataAPI;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.protection.Interaction;
 import me.mrCookieSlime.Slimefun.api.BlockStorage;
-import org.apache.commons.lang.Validate;
 import org.bukkit.Effect;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -159,7 +159,7 @@ public final class InteractionEvents {
             // We use helmet to control CD. You HAVE to have all four so using one stops 4 triggers
             Player p = friend.getPlayer();
             ItemStack i = friend.getHelmet();
-            Validate.notNull(i, "Helmet doesn't exist but has 4 stacks? I call hax");
+            Preconditions.checkNotNull(i, "Helmet doesn't exist but has 4 stacks? I call hax");
             String cdName = "kingsman";
             if (!ItemUtils.onCooldown(i, cdName)) {
                 KingsmanSpam task = new KingsmanSpam(p, 10);
@@ -213,7 +213,8 @@ public final class InteractionEvents {
             Block target = player.getTargetBlock(null, 5);
             if (target.getType() != Material.AIR) {
                 Block place = target.getRelative(blockFace);
-                if (place.getType() == Material.AIR && Slimefun.getProtectionManager().hasPermission(player, place, Interaction.PLACE_BLOCK)) {
+                if (place.getType() == Material.AIR && Slimefun.getProtectionManager()
+                                                               .hasPermission(player, place, Interaction.PLACE_BLOCK)) {
                     place.setType(Material.LADDER);
                     Directional directional = (Directional) place.getBlockData();
                     directional.setFacing(blockFace);
@@ -229,9 +230,15 @@ public final class InteractionEvents {
         final Player player = friend.getPlayer();
         if (!ItemUtils.onCooldown(tool, "celebrate")) {
             Block potential = player.getTargetBlock(null, 5).getRelative(BlockFace.UP);
-            if (potential.getType() == Material.AIR && Slimefun.getProtectionManager().hasPermission(player, potential, Interaction.PLACE_BLOCK)) {
+            if (potential.getType() == Material.AIR && Slimefun.getProtectionManager()
+                                                               .hasPermission(player,
+                                                                              potential,
+                                                                              Interaction.PLACE_BLOCK
+                                                               )) {
                 MinecraftVersion minecraftVersion = Slimefun.getMinecraftVersion();
-                potential.setType(minecraftVersion.isAtLeast(MinecraftVersion.MINECRAFT_1_17) ? Material.BLACK_CANDLE_CAKE : Material.CAKE);
+                potential.setType(minecraftVersion.isAtLeast(MinecraftVersion.MINECRAFT_1_17) ?
+                                  Material.BLACK_CANDLE_CAKE :
+                                  Material.CAKE);
                 ItemUtils.setCooldown(tool, "celebrate", 3600000);
             }
         } else {

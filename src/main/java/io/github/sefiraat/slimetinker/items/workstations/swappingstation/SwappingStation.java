@@ -1,5 +1,6 @@
 package io.github.sefiraat.slimetinker.items.workstations.swappingstation;
 
+import com.google.common.base.Preconditions;
 import io.github.mooy1.infinitylib.machines.MenuBlock;
 import io.github.sefiraat.slimetinker.utils.GUIItems;
 import io.github.sefiraat.slimetinker.utils.Ids;
@@ -14,7 +15,6 @@ import io.github.thebusybiscuit.slimefun4.libraries.dough.data.persistent.Persis
 import io.github.thebusybiscuit.slimefun4.utils.ChestMenuUtils;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenuPreset;
-import org.apache.commons.lang.Validate;
 import org.bukkit.Location;
 import org.bukkit.NamespacedKey;
 import org.bukkit.block.Block;
@@ -78,7 +78,13 @@ public class SwappingStation extends MenuBlock {
         }
     }
 
-    private void swapTool(BlockMenu blockMenu, Player player, ItemStack item, String partClass, String partType, String partMaterial) {
+    private void swapTool(BlockMenu blockMenu,
+                          Player player,
+                          ItemStack item,
+                          String partClass,
+                          String partType,
+                          String partMaterial
+    ) {
         // The part is a head part but the type is either null or not matching the tool (Axe head part for shovel etc.)
         if (partClass.equals(Ids.HEAD) && (partType != null && !partType.equals(ItemUtils.getToolTypeName(item)))) {
             player.sendMessage(ThemeUtils.WARNING + "This head type cannot be swapped onto this tool.");
@@ -114,7 +120,13 @@ public class SwappingStation extends MenuBlock {
         blockMenu.getItemInSlot(INPUT_PART).setAmount(blockMenu.getItemInSlot(INPUT_PART).getAmount() - 1);
     }
 
-    private void swapArmour(BlockMenu blockMenu, Player player, ItemStack item, String partClass, String partType, String partMaterial) {
+    private void swapArmour(BlockMenu blockMenu,
+                            Player player,
+                            ItemStack item,
+                            String partClass,
+                            String partType,
+                            String partMaterial
+    ) {
         // The part is a plate part but the type is either null or not matching the armour (Helm plates for boots etc..)
         if (partClass.equals(Ids.PLATE) && (partType != null && !partType.equals(ItemUtils.getArmourTypeName(item)))) {
             player.sendMessage(ThemeUtils.WARNING + "This plate type cannot be swapped onto this armour.");
@@ -149,7 +161,7 @@ public class SwappingStation extends MenuBlock {
     }
 
     private void checkAndChangeExplosiveness(ItemStack newTool, ItemMeta im, String partMaterial, String partClass) {
-        Validate.notNull(Slimefun.instance(), "Slimefun is null, that's... not great?");
+        Preconditions.checkNotNull(Slimefun.instance(), "Slimefun is null, that's... not great?");
         NamespacedKey sfIDKey = new NamespacedKey(Slimefun.instance(), "slimefun_item");
         String sID = PersistentDataAPI.getString(im, sfIDKey);
 

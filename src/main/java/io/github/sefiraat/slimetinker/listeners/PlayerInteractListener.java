@@ -1,12 +1,12 @@
 package io.github.sefiraat.slimetinker.listeners;
 
+import com.google.common.base.Preconditions;
 import io.github.sefiraat.slimetinker.events.friend.EventFriend;
 import io.github.sefiraat.slimetinker.events.friend.TraitEventType;
 import io.github.sefiraat.slimetinker.utils.Experience;
 import io.github.sefiraat.slimetinker.utils.Ids;
 import io.github.sefiraat.slimetinker.utils.ItemUtils;
 import io.github.sefiraat.slimetinker.utils.ThemeUtils;
-import org.apache.commons.lang.Validate;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
@@ -49,7 +49,8 @@ public class PlayerInteractListener implements Listener {
             if (eventIsTinkersTillOrPath(itemStack, event.getClickedBlock())) {
                 if (ItemUtils.isTinkersBroken(itemStack)) {
                     event.setCancelled(true);
-                    event.getPlayer().sendMessage(ThemeUtils.WARNING + "Your tool is broken, you should really repair it!");
+                    event.getPlayer()
+                         .sendMessage(ThemeUtils.WARNING + "Your tool is broken, you should really repair it!");
                 } else {
                     Experience.addExp(itemStack, 1, event.getPlayer(), true);
                 }
@@ -60,7 +61,7 @@ public class PlayerInteractListener implements Listener {
     public boolean eventIsTinkersTillOrPath(ItemStack itemStack, Block block) {
         if (ItemUtils.isTool(itemStack)) {
             String type = ItemUtils.getToolTypeName(itemStack);
-            Validate.notNull(type, "Item is tool but without a type? /sf cheat or other error has happened.");
+            Preconditions.checkNotNull(type, "Item is tool but without a type? /sf cheat or other error has happened.");
             return ((type.equals(Ids.HOE) || type.equals(Ids.SHOVEL))
                 && (block.getType() == Material.DIRT || block.getType() == Material.GRASS_BLOCK));
         } else {

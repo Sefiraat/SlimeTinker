@@ -40,6 +40,7 @@ public final class Ids {
     public static final String SLIME = "SLIME";
     public static final String LEATHER = "LEATHER";
     public static final String DIAMOND = "DIAMOND";
+    public static final String DRACONIC = "DRACONIC";
     public static final String REDSTONE = "REDSTONE";
     public static final String REDSTONE_ALLOY = "REDSTONE_ALLOY";
     public static final String SILICON = "SILICON";
@@ -77,6 +78,7 @@ public final class Ids {
     public static final String IRON_SINGULARITY = "IRON_SINGULARITY";
     public static final String DIAMOND_SINGULARITY = "DIAMOND_SINGULARITY";
     public static final String INFINITY_SINGULARITY = "INFINITY_SINGULARITY";
+    public static final String REINFORCED_DRACONIUM = "REINFORCED_DRACONIUM";
 
     // Slimefun Warfare
     public static final String SLIMESTEEL = "SLIME_STEEL";

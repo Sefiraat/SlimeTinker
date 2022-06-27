@@ -278,6 +278,14 @@ public final class Materials {
         "Nice Nugget",
         "Nice"
     );
+    public static final SlimefunItemStack NUGGET_CAST_REINFORCED_DRACONIUM = ThemeUtils.themedItemStack(
+        "NUGGET_CAST_REINFORCED_DRACONIUM",
+        Material.CRIMSON_BUTTON,
+        ThemeItemType.CRAFTING,
+        "Reinforced Draconium Nugget",
+        "An ingot that just teems with an",
+        "unrivalled fury."
+    );
     // endregion
 
     // region Ingots
@@ -340,6 +348,14 @@ public final class Materials {
         ThemeItemType.CRAFTING,
         "Nice Ingot",
         "Nice"
+    );
+    public static final SlimefunItemStack INGOT_CAST_REINFORCED_DRACONIUM = ThemeUtils.themedItemStack(
+        "INGOT_CAST_REINFORCED_DRACONIUM",
+        Material.BRICK,
+        ThemeItemType.CRAFTING,
+        "Reinforced Draconium Ingot",
+        "An ingot that just teems with an",
+        "unrivalled fury."
     );
     // endregion
 
@@ -563,6 +579,14 @@ public final class Materials {
         ThemeItemType.CRAFTING,
         "Nice Block",
         "Nice"
+    );
+    public static final SlimefunItemStack BLOCK_CAST_REINFORCED_DRACONIUM = ThemeUtils.themedItemStack(
+        "BLOCK_CAST_REINFORCED_DRACONIUM",
+        Material.RED_CONCRETE,
+        ThemeItemType.CRAFTING,
+        "Reinforced Draconium Block",
+        "A block that just teems with an",
+        "unrivalled fury."
     );
     // endregion
 
@@ -1206,6 +1230,10 @@ public final class Materials {
         new UnplaceableBlock(ItemGroups.MATERIALS, NUGGET_CAST_NICE, DummySmeltery.TYPE, ItemUtils.getMiddleOnlyRecipe(Casts.CAST_NUGGET)).register(p);
         new UnplaceableBlock(ItemGroups.MATERIALS, INGOT_CAST_NICE, DummySmeltery.TYPE, ItemUtils.getMiddleOnlyRecipe(Casts.CAST_INGOT)).register(p);
         new UnplaceableBlock(ItemGroups.MATERIALS, BLOCK_CAST_NICE, DummySmeltery.TYPE, ItemUtils.getMiddleOnlyRecipe(Casts.CAST_BLOCK)).register(p);
+
+        new UnplaceableBlock(ItemGroups.MATERIALS, NUGGET_CAST_REINFORCED_DRACONIUM, DummySmeltery.TYPE, ItemUtils.getMiddleOnlyRecipe(Casts.CAST_NUGGET)).register(p);
+        new UnplaceableBlock(ItemGroups.MATERIALS, INGOT_CAST_REINFORCED_DRACONIUM, DummySmeltery.TYPE, ItemUtils.getMiddleOnlyRecipe(Casts.CAST_INGOT)).register(p);
+        new UnplaceableBlock(ItemGroups.MATERIALS, BLOCK_CAST_REINFORCED_DRACONIUM, DummySmeltery.TYPE, ItemUtils.getMiddleOnlyRecipe(Casts.CAST_BLOCK)).register(p);
 
         new UnplaceableBlock(ItemGroups.MATERIALS, NUGGET_CAST_COAL, DummySmeltery.TYPE, ItemUtils.getMiddleOnlyRecipe(Casts.CAST_NUGGET)).register(p);
 

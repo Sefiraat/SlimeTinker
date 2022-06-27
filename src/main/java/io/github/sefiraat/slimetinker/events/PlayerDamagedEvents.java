@@ -463,6 +463,15 @@ public final class PlayerDamagedEvents {
         }
     }
 
+    public static void headReinforcedDraconium(EventFriend friend) {
+        if (friend.getDamagingEntity() instanceof EnderDragon) {
+            final Player player = friend.getPlayer();
+            final int stacks = PersistentDataAPI.getInt(player, Keys.DRACONIC_STACKS, 0);
+            PersistentDataAPI.setInt(player, Keys.DRACONIC_STACKS, stacks + 1);
+            PersistentDataAPI.setLong(player, Keys.DRACONIC_DURATION, System.currentTimeMillis() + (15 * 1000));
+        }
+    }
+
     public static void plateSingInfinity(EventFriend friend) {
         ItemStack i = friend.getActiveStack();
         ItemMeta im = i.getItemMeta();

@@ -234,6 +234,19 @@ public final class TinkersMaterialsInfinity {
         .setFormBlock("INFINITY_SINGULARITY")
         .build();
 
+    private static final TinkerMaterial REINFORCED_DRACONIUM = new TinkerMaterial(Ids.REINFORCED_DRACONIUM, Materials.INGOT_CAST_REINFORCED_DRACONIUM, "#9532a8")
+        .setLiquidTexture(SkullTextures.ALLOY_PURPLE_DEEP)
+        .setTraitToolHead(Traits.INFINITY_REINFORCED_DRACONIUM_HEAD)
+        .setFormNugget(Materials.NUGGET_CAST_REINFORCED_DRACONIUM.getItemId())
+        .setFormIngot(Materials.INGOT_CAST_REINFORCED_DRACONIUM.getItemId())
+        .setFormBlock(Materials.BLOCK_CAST_REINFORCED_DRACONIUM.getItemId())
+        .addAlloyRecipe(
+            TinkersMaterialsCore.getCmMap().get(Ids.COBALT).getLiquidItemStack(1),
+            TinkersMaterialsCore.getCmMap().get(Ids.DRACONIC).getLiquidItemStack(2),
+            MYTHRIL.getLiquidItemStack(2)
+        )
+        .build();
+
     static {
         CM_MAP.put(Ids.VOID, VOID);
         CM_MAP.put(Ids.MAGSTEEL, MAGSTEEL);
@@ -257,6 +270,7 @@ public final class TinkersMaterialsInfinity {
         CM_MAP.put(Ids.METAL_SINGULARITY, METAL_SINGULARITY);
         CM_MAP.put(Ids.INFINITY, INFINITY);
         CM_MAP.put(Ids.INFINITY_SINGULARITY, INFINITY_SINGULARITY);
+        CM_MAP.put(Ids.REINFORCED_DRACONIUM, REINFORCED_DRACONIUM);
     }
 
     public static Map<String, TinkerMaterial> getCmMap() {

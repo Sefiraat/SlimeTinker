@@ -459,6 +459,11 @@ public final class TinkersMaterialsCore {
         .setFormGem(Material.DIAMOND.toString())
         .build();
 
+    private static final TinkerMaterial DRACONIC = new TinkerMaterial(Ids.DRACONIC, new ItemStack(Material.DRAGON_BREATH), "#9532a8")
+        .setLiquidTexture(SkullTextures.ALLOY_PURPLE_DEEP)
+        .setFormGem(Material.DRAGON_BREATH.toString())
+        .build();
+
     private static final TinkerMaterial BOOMERITE = new TinkerMaterial(Ids.BOOMERITE, Materials.INGOT_CAST_BOOMERITE, "#d94c00")
         .setLiquidTexture(SkullTextures.ALLOY_PURPLE)
         .setTraitToolHead(Traits.CORE_BOOMERITE_HEAD)
@@ -586,6 +591,7 @@ public final class TinkersMaterialsCore {
         CM_MAP.put(Ids.FERROSILICON, FERROSILICON);
         CM_MAP.put(Ids.REDSTONE_ALLOY, REDSTONE_ALLOY);
         CM_MAP.put(Ids.DIAMOND, DIAMOND);
+        CM_MAP.put(Ids.DRACONIC, DRACONIC);
         CM_MAP.put(Ids.BOOMERITE, BOOMERITE);
         CM_MAP.put(Ids.SEFIRITE, SEFIRITE);
         CM_MAP.put(Ids.LIQUID_CHRISTMAS, LIQUID_CHRISTMAS);

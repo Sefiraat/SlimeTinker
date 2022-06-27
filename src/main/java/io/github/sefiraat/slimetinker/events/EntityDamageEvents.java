@@ -20,6 +20,7 @@ import org.bukkit.OfflinePlayer;
 import org.bukkit.Particle;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.entity.Animals;
+import org.bukkit.entity.EnderDragon;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
@@ -231,6 +232,27 @@ public final class EntityDamageEvents {
 
     public static void rodSingAluminum(EventFriend friend) {
         friend.setToolExpMod(friend.getToolExpMod() + 1);
+    }
+
+    public static void headReinforcedDraconium(EventFriend friend) {
+        if (friend.getDamagedEntity() instanceof EnderDragon) {
+            final Player player = friend.getPlayer();
+            final int stacks = PersistentDataAPI.getInt(player, Keys.DRACONIC_STACKS, 0);
+            final long falloff = PersistentDataAPI.getLong(player, Keys.DRACONIC_DURATION, 0L);
+
+            if (falloff >= System.currentTimeMillis()) {
+                friend.setDamageMod(friend.getDamageMod() + (0.1 * stacks));
+                friend.getDamagedEntity().getWorld().spawnParticle(
+                    Particle.ELECTRIC_SPARK,
+                    friend.getDamagedEntity().getLocation(),
+                    25,
+                    1,
+                    1,
+                    1,
+                    1
+                );
+            }
+        }
     }
 
     public static void headSegganesson(EventFriend friend) {

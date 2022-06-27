@@ -1959,6 +1959,19 @@ public final class Traits {
         )
         .addConsumer(TraitEventType.PLAYER_DAMAGED, PlayerDamagedEvents::linksSingInfinity);
 
+    public static final MaterialTrait INFINITY_REINFORCED_DRACONIUM_HEAD = new MaterialTrait()
+        .setPartType(MaterialTrait.PROP_HEAD)
+        .setAddedBy(SupportedPluginsManager.INFINITY_EXPANSION_NOTE)
+        .setSponsoredBy("Bunkky/ReasonFoundDecoy")
+        .setTraitName("Draconic Tantrum")
+        .setLore(
+            "When hit by the Ender Dragon, gain",
+            "bonus damage for 15 seconds.",
+            "Stacks additively. Stacks refresh duration."
+        )
+        .addConsumer(TraitEventType.PLAYER_DAMAGED, PlayerDamagedEvents::headReinforcedDraconium)
+        .addConsumer(TraitEventType.ENTITY_DAMAGED, EntityDamageEvents::headReinforcedDraconium);
+
     // endregion
 
     // region LiteXpansion

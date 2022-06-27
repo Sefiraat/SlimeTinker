@@ -74,6 +74,8 @@ public final class Keys {
     public static final NamespacedKey ARMOUR_SOULS_STORED = create("ST_souls_stored");
     public static final NamespacedKey ARMOUR_HAPPY_PIGLIN = create("ST_happy_piglin");
     public static final NamespacedKey STOP_EVENTS = create("STOP_EVENTS");
+    public static final NamespacedKey DRACONIC_STACKS = create("draconic_stacks");
+    public static final NamespacedKey DRACONIC_DURATION = create("draconic_duration");
 
     // Workstations
     public static final NamespacedKey WS_DUMMY_SMELTERY = create("dummy-smeltery");

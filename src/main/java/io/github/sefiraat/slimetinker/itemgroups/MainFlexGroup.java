@@ -123,7 +123,7 @@ public class MainFlexGroup extends FlexItemGroup {
         // Materials
         menu.replaceExistingItem(MATERIALS, ItemGroups.MATERIALS.getItem(player));
         menu.addMenuClickHandler(MATERIALS, (player1, i1, itemStack1, clickAction) ->
-            openPage(profile, ItemGroups.TOOLS, mode, 1)
+            openPage(profile, ItemGroups.MATERIALS, mode, 1)
         );
 
         // Molten Metals

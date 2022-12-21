@@ -159,7 +159,7 @@
         <dependency>
             <groupId>io.github.sefiraat</groupId>
             <artifactId>networks</artifactId>
-            <version>MODIFIED_1.0.4</version>
+            <version>MODIFIED_1.0.7</version>
             <scope>provided</scope>
         </dependency>
     </dependencies>

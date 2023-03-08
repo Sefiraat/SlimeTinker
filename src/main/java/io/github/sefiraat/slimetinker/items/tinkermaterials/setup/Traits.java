@@ -1166,6 +1166,17 @@ public final class Traits {
         .addConsumer(TraitEventType.ENTITY_DAMAGED, EntityDamageEvents::headNice)
         .addConsumer(TraitEventType.BLOCK_BREAK, BlockBreakEvents::headNice);
 
+    public static final MaterialTrait CORE_ANNIVERSARIUM_PLATES = new MaterialTrait()
+        .setPartType(MaterialTrait.PROP_PLATES)
+        .setAddedBy(SupportedPluginsManager.CORE_NOTE)
+        .setTraitName("10 Years of (Slime)fun!")
+        .setLore(
+            "10 Years of (Slime)fun!",
+            "",
+            "Requires all four armor pieces."
+        )
+        .addConsumer(TraitEventType.TICK, TickEvents::plateAnniversary);
+
     // endregion
 
     // region Infinity Expansion

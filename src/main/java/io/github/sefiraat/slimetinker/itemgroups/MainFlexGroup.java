@@ -20,9 +20,6 @@ import org.bukkit.inventory.ItemStack;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 
-/**
- * @noinspection deprecation
- */
 public class MainFlexGroup extends FlexItemGroup {
 
     private static final ItemStack DOCS_ITEM_STACK = new CustomItemStack(

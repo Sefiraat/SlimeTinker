@@ -3,6 +3,7 @@ package io.github.sefiraat.slimetinker.events;
 import io.github.sefiraat.slimetinker.SlimeTinker;
 import io.github.sefiraat.slimetinker.events.friend.EventFriend;
 import io.github.sefiraat.slimetinker.managers.SupportedPluginsManager;
+import io.github.sefiraat.slimetinker.runnables.TrailTick;
 import io.github.sefiraat.slimetinker.runnables.event.RemoveMagmaBlock;
 import io.github.sefiraat.slimetinker.runnables.event.RemovePoweredState;
 import io.github.sefiraat.slimetinker.utils.BlockUtils;
@@ -839,5 +840,15 @@ public final class TickEvents {
     public static void setPlayerDaxiProof(Player player) {
         NamespacedKey key = new NamespacedKey(SupportedPluginsManager.TRANSCENDENCE_PLUGIN, "tinker");
         PersistentDataAPI.setLong(player, key, System.currentTimeMillis() + 5000);
+    }
+
+    public static void plateAnniversary(EventFriend friend) {
+        friend.setAnniversary(friend.getAnniversary() + 1);
+        if (friend.getAnniversary() >= 4) {
+            TrailTick.addPlayer(friend.getPlayer());
+            increaseEffect(PotionEffectType.REGENERATION, friend.getPotionEffects(), 1);
+        } else {
+            TrailTick.removePlayer(friend.getPlayer());
+        }
     }
 }

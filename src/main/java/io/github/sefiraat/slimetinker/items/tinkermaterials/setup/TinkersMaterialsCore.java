@@ -553,6 +553,20 @@ public final class TinkersMaterialsCore {
         )
         .build();
 
+    private static final TinkerMaterial ANNIVERSARIUM = new TinkerMaterial(Ids.ANNIVERSARIUM, Materials.INGOT_CAST_ANNIVERSARIUM, "#32b41e")
+        .setLiquidTexture(SkullTextures.ALLOY_RED)
+        .setFormNugget(Materials.NUGGET_CAST_ANNIVERSARIUM.getItemId())
+        .setFormIngot(Materials.INGOT_CAST_ANNIVERSARIUM.getItemId())
+        .setFormBlock(Materials.BLOCK_CAST_ANNIVERSARIUM.getItemId())
+        .setTraitArmorPlates(Traits.CORE_ANNIVERSARIUM_PLATES)
+        .addAlloyRecipe(
+            REINFORCED_ALLOY.getLiquidItemStack(2),
+            HARDENED_METAL.getLiquidItemStack(2),
+            DAMASCUS_STEEL.getLiquidItemStack(2),
+            ALUMINUM_BRASS.getLiquidItemStack(2)
+        )
+        .build();
+
     static {
         CM_MAP.put(Ids.IRON, IRON);
         CM_MAP.put(Ids.GOLD, GOLD);
@@ -601,6 +615,7 @@ public final class TinkersMaterialsCore {
         CM_MAP.put(Ids.PURIFIED_PASSION, PURIFIED_PASSION);
         CM_MAP.put(Ids.LIQUID_LOVE, LIQUID_LOVE);
         CM_MAP.put(Ids.NICEINIUM, NICEINIUM);
+        CM_MAP.put(Ids.ANNIVERSARIUM, ANNIVERSARIUM);
     }
 
     public static Map<String, TinkerMaterial> getCmMap() {

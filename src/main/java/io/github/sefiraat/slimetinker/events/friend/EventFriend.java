@@ -91,6 +91,7 @@ public class EventFriend {
     private int manners = 0;
     private int kingsman = 0;
     private int infinity = 0;
+    private int anniversary = 0;
 
     private boolean daxiAbsorption;
     private boolean daxiFortitude;
@@ -458,6 +459,14 @@ public class EventFriend {
 
     public void setInfinity(int infinity) {
         this.infinity = infinity;
+    }
+
+    public int getAnniversary() {
+        return anniversary;
+    }
+
+    public void setAnniversary(int anniversary) {
+        this.anniversary = anniversary;
     }
 
     public boolean isDaxiAbsorption() {

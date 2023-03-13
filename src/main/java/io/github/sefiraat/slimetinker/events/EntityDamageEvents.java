@@ -124,6 +124,10 @@ public final class EntityDamageEvents {
         e.getWorld().spawnParticle(Particle.REDSTONE, e.getLocation(), 50, 1.5, 1.5, 1.5, 1, dustOptions);
     }
 
+    public static void rodSteel(EventFriend friend) {
+        friend.incrementItemExpMod(0.5);
+    }
+
     public static void headBrass(EventFriend friend) {
         friend.setDamageMod(friend.getDamageMod() + 0.5);
     }

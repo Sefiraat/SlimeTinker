@@ -51,7 +51,7 @@ public final class Traits {
         .setAddedBy(SupportedPluginsManager.CORE_NOTE)
         .setTraitName("Rusty")
         .setLore(
-            "Armour durability loss +10%. Player Exp gain +10%"
+            "Outgoing damage reduced by 10%. Player Exp gain +10%"
         )
         .addConsumer(TraitEventType.ENTITY_DAMAGED, EntityDamageEvents::linksIron);
 
@@ -375,7 +375,9 @@ public final class Traits {
         .setLore(
             "Tool Exp +50%. Speed + 1"
         )
-        .addConsumer(TraitEventType.TICK, TickEvents::rodSteel);
+        .addConsumer(TraitEventType.TICK, TickEvents::rodSteel)
+        .addConsumer(TraitEventType.ENTITY_DAMAGED, EntityDamageEvents::rodSteel)
+        .addConsumer(TraitEventType.BLOCK_BREAK, BlockBreakEvents::rodSteel);
 
     public static final MaterialTrait CORE_STEEL_PLATES = new MaterialTrait()
         .setPartType(MaterialTrait.PROP_PLATES)

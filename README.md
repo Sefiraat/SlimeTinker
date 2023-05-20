@@ -11,7 +11,7 @@ Mod ([link](https://www.curseforge.com/minecraft/mc-mods/tinkers-construct)) in 
 
 ## Info
 
-For more information about SlimeTinker, please visit my <a href="https://sefiraat.gitbook.io/docs/slimetinker/basics">documentation</a> page.
+For more information about SlimeTinker, please visit my <a href="https://sefiraat.dev/slimetinker/basics">documentation</a> page.
 
 ## Features include:
 

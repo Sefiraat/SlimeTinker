@@ -429,7 +429,7 @@ public final class Traits {
         .setAddedBy(SupportedPluginsManager.CORE_NOTE)
         .setTraitName("Snroht")
         .setLore(
-            "Thorns damage is ignored and relfected back"
+            "Thorns damage is ignored and reflected back"
         )
         .addConsumer(TraitEventType.PLAYER_DAMAGED, PlayerDamagedEvents::linksDamSteel);
 
@@ -495,7 +495,7 @@ public final class Traits {
         .setAddedBy(SupportedPluginsManager.CORE_NOTE)
         .setTraitName("Farmer")
         .setLore(
-            "All crop drops 1 extra item. Not effected by fortune.",
+            "All crop drops 1 extra item. Not affected by fortune.",
             "Does not stack with itself but does with other effects."
         )
         .addConsumer(TraitEventType.BLOCK_BREAK, BlockBreakEvents::plateBronze);

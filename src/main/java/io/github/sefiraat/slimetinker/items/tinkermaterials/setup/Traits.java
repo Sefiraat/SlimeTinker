@@ -495,7 +495,7 @@ public final class Traits {
         .setAddedBy(SupportedPluginsManager.CORE_NOTE)
         .setTraitName("Farmer")
         .setLore(
-            "All crop drops 1 extra item. Not affected by fortune.",
+            "All crops drop 1 extra item. Not affected by fortune.",
             "Does not stack with itself but does with other effects."
         )
         .addConsumer(TraitEventType.BLOCK_BREAK, BlockBreakEvents::plateBronze);

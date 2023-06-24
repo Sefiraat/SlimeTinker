@@ -7,6 +7,7 @@ import io.github.sefiraat.networks.utils.Theme;
 import io.github.sefiraat.slimetinker.SlimeTinker;
 import io.github.sefiraat.slimetinker.events.friend.ActiveFriendElement;
 import io.github.sefiraat.slimetinker.events.friend.EventFriend;
+import io.github.sefiraat.slimetinker.managers.MemoryManager;
 import io.github.sefiraat.slimetinker.runnables.event.KingsmanSpam;
 import io.github.sefiraat.slimetinker.utils.BlockUtils;
 import io.github.sefiraat.slimetinker.utils.EntityUtils;
@@ -44,6 +45,22 @@ public final class InteractionEvents {
 
     private InteractionEvents() {
         throw new UnsupportedOperationException("Utility Class");
+    }
+
+    public static void rodSmithium(EventFriend friend) {
+        Player player = friend.getPlayer();
+        ItemStack itemStack = friend.getActiveStack();
+        String cooldownName = "haste_burst";
+
+        if (player.isSneaking()) {
+            if (ItemUtils.onCooldown(itemStack, cooldownName)) {
+                player.sendMessage(ThemeUtils.WARNING + "Haste Burst is on cooldown!");
+            } else {
+                player.sendMessage(ThemeUtils.SUCCESS + "Haste Burst is active");
+                MemoryManager.getInstance().setHasteBurstEnd(player.getUniqueId(), 30000);
+                ItemUtils.setCooldown(itemStack, cooldownName, 300000);
+            }
+        }
     }
 
     public static void headTessMat(EventFriend friend) {

@@ -1166,6 +1166,45 @@ public final class Traits {
         .addConsumer(TraitEventType.ENTITY_DAMAGED, EntityDamageEvents::headNice)
         .addConsumer(TraitEventType.BLOCK_BREAK, BlockBreakEvents::headNice);
 
+    public static final MaterialTrait CORE_SMITHIUM_HEAD = new MaterialTrait()
+        .setPartType(MaterialTrait.PROP_HEAD)
+        .setAddedBy(SupportedPluginsManager.CORE_NOTE)
+        .setTraitName("Hardy")
+        .setLore(
+            "50% chance to ignore durability loss."
+        )
+        .addConsumer(TraitEventType.DURABILITY, DurabilityEvents::headSmithium);
+
+    public static final MaterialTrait CORE_SMITHIUM_ROD = new MaterialTrait()
+        .setPartType(MaterialTrait.PROP_ROD)
+        .setAddedBy(SupportedPluginsManager.CORE_NOTE)
+        .setTraitName("Industrious")
+        .setLore(
+            "Shift + Right click to activate Haste Burst for 30 seconds.",
+            "When Haste Burst is active, every block broken has",
+            "a [50 ÷ Haste Level]% chance to apply a stack of haste.",
+            "Hardcaps at Haste 10. Has a 5 min cooldown."
+        )
+        .addConsumer(TraitEventType.INTERACT, InteractionEvents::rodSmithium)
+        .addConsumer(TraitEventType.BLOCK_BREAK, BlockBreakEvents::rodSmithium);
+
+    public static final MaterialTrait CORE_SMITHIUM_PLATES = new MaterialTrait()
+        .setPartType(MaterialTrait.PROP_PLATES)
+        .setAddedBy(SupportedPluginsManager.CORE_NOTE)
+        .setTraitName("Heat Resistance")
+        .setLore(
+            "25% chance to ignore fire/heat damage."
+        )
+        .addConsumer(TraitEventType.PLAYER_DAMAGED, PlayerDamagedEvents::platesSmithium);
+
+    public static final MaterialTrait CORE_SMITHIUM_LINKS = new MaterialTrait()
+        .setPartType(MaterialTrait.PROP_LINKS)
+        .setAddedBy(SupportedPluginsManager.CORE_NOTE)
+        .setTraitName("Craftsmanship")
+        .setLore(
+            "25% chance to have repair costs refunded!"
+        );
+
     public static final MaterialTrait CORE_ANNIVERSARIUM_PLATES = new MaterialTrait()
         .setPartType(MaterialTrait.PROP_PLATES)
         .setAddedBy(SupportedPluginsManager.CORE_NOTE)

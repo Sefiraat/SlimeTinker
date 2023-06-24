@@ -315,28 +315,27 @@ public final class EntityDamageEvents {
     public static void headAdvancedAlloy(EventFriend friend) {
         final NamespacedKey key = Keys.create("cleaved");
 
-        List<Entity> entityList = friend.getPlayer().getNearbyEntities(3, 3, 3);
+        List<Entity> entityList = friend.getPlayer().getNearbyEntities(2, 2, 2);
         entityList.removeIf(entity -> {
+            final Interaction interaction = entity instanceof Player ? Interaction.ATTACK_PLAYER : Interaction.ATTACK_ENTITY;
+            final OfflinePlayer offlinePlayer = Bukkit.getOfflinePlayer(friend.getPlayer().getUniqueId());
+
+            if (!Slimefun.getProtectionManager().hasPermission(offlinePlayer, entity.getLocation(), interaction)) {
+                return true;
+            }
+
             final long cleaveCooldown = PersistentDataAPI.getLong(entity, key, 0);
             return System.currentTimeMillis() < cleaveCooldown;
         });
 
         for (Entity entity : entityList) {
-            PersistentDataAPI.setLong(entity, key, System.currentTimeMillis() + 1000);
-        }
-
-        for (Entity entity : entityList) {
             if (entity instanceof LivingEntity && entity != friend.getDamagedEntity()) {
-                final OfflinePlayer offlinePlayer = Bukkit.getOfflinePlayer(friend.getPlayer().getUniqueId());
-                final Interaction interaction = entity instanceof Player ? Interaction.ATTACK_PLAYER : Interaction.ATTACK_ENTITY;
+                final Particle.DustOptions dustOptions = new Particle.DustOptions(Color.fromRGB(250, 75, 10), 3);
+                final LivingEntity livingEntity = (LivingEntity) entity;
 
-                if (Slimefun.getProtectionManager().hasPermission(offlinePlayer, entity.getLocation(), interaction)) {
-                    final Particle.DustOptions dustOptions = new Particle.DustOptions(Color.fromRGB(250, 75, 10), 3);
-                    final LivingEntity livingEntity = (LivingEntity) entity;
-
-                    livingEntity.damage(friend.getInitialDamage(), friend.getPlayer());
-                    entity.getWorld().spawnParticle(Particle.REDSTONE, entity.getLocation(), 2, 1, 1, 1, 1, dustOptions);
-                }
+                PersistentDataAPI.setLong(entity, key, System.currentTimeMillis() + 1000);
+                livingEntity.damage(friend.getInitialDamage(), friend.getPlayer());
+                entity.getWorld().spawnParticle(Particle.REDSTONE, entity.getLocation(), 2, 1, 1, 1, 1, dustOptions);
             }
         }
     }

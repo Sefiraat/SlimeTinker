@@ -20,6 +20,7 @@ import org.bukkit.inventory.meta.Damageable;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import javax.annotation.Nonnull;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class RepairBench extends MenuBlock {
 
@@ -63,17 +64,19 @@ public class RepairBench extends MenuBlock {
 
         if (repairChecks(partMaterial, toolMaterial, armourMaterial, item)) {
             ItemStack newItem = item.clone();
-
-            boolean fixAll = false;
-            if (ItemUtils.repairBenchEasyFix(newItem)) { // EASY FIX
-                fixAll = true;
-            }
+            boolean fixAll = ItemUtils.repairBenchEasyFix(newItem);
 
             repairItemStack(newItem, fixAll);
             blockMenu.pushItem(newItem, OUTPUT_SLOT);
             blockMenu.getItemInSlot(INPUT_TOOL).setAmount(blockMenu.getItemInSlot(INPUT_TOOL).getAmount() - 1);
-            blockMenu.getItemInSlot(INPUT_KIT).setAmount(blockMenu.getItemInSlot(INPUT_KIT).getAmount() - 1);
 
+            boolean freeFix = ItemUtils.repairBenchCraftsman(newItem) && ThreadLocalRandom.current().nextInt(1, 5) == 1;
+
+            if (!freeFix) {
+                blockMenu.getItemInSlot(INPUT_KIT).setAmount(blockMenu.getItemInSlot(INPUT_KIT).getAmount() -1);
+            } else {
+                player.sendMessage(ThemeUtils.SUCCESS + "Free repair!");
+            }
         } else {
             player.sendMessage(ThemeUtils.WARNING + "The kit type does not match the item material.");
         }

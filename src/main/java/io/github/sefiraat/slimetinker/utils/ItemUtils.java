@@ -507,6 +507,14 @@ public final class ItemUtils {
         return false;
     }
 
+    public static boolean repairBenchCraftsman(ItemStack itemStack) {
+        if (isArmour(itemStack)) {
+            return getArmourLinksMaterial(itemStack).equals(Ids.SMITHIUM);
+        } else {
+            return false;
+        }
+    }
+
     public static boolean isEnchanting(ItemStack itemStack) {
         if (isTool(itemStack)) {
             return getToolHeadMaterial(itemStack).equals(Ids.SILVER)

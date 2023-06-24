@@ -2,6 +2,7 @@ package io.github.sefiraat.slimetinker.events;
 
 import io.github.sefiraat.slimetinker.events.friend.EventFriend;
 import io.github.sefiraat.slimetinker.listeners.BlockMap;
+import io.github.sefiraat.slimetinker.managers.MemoryManager;
 import io.github.sefiraat.slimetinker.utils.GeneralUtils;
 import io.github.sefiraat.slimetinker.utils.ItemUtils;
 import io.github.sefiraat.slimetinker.utils.ThemeUtils;
@@ -13,9 +14,12 @@ import org.bukkit.Color;
 import org.bukkit.Material;
 import org.bukkit.Particle;
 import org.bukkit.block.Block;
+import org.bukkit.entity.Player;
 import org.bukkit.inventory.FurnaceRecipe;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.Recipe;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -30,6 +34,37 @@ public final class BlockBreakEvents {
 
     private BlockBreakEvents() {
         throw new UnsupportedOperationException("Utility Class");
+    }
+
+    public static void rodSmithium(EventFriend friend) {
+        Player player = friend.getPlayer();
+        long hasteEnd = MemoryManager.getInstance().getHasteBurstEnd(player.getUniqueId());
+        long timeNow = System.currentTimeMillis();
+
+        if (hasteEnd == 0) {
+            return;
+        }
+
+        if (hasteEnd < timeNow) {
+            MemoryManager.getInstance().removeHasteBurst(player.getUniqueId());
+            return;
+        }
+
+        PotionEffect effect = player.getPotionEffect(PotionEffectType.FAST_DIGGING);
+
+        if (effect != null && effect.getAmplifier() >= 9) {
+            return;
+        }
+
+        int chanceUpper = 2 * ((effect == null ? 0 : effect.getAmplifier()) + 1);
+
+        if (ThreadLocalRandom.current().nextInt(1, chanceUpper) == 1) {
+            int nextLevel = effect == null ? 0 : Math.min(effect.getAmplifier() + 1, 9);
+            int durationTicks = (int) (hasteEnd - timeNow) / 50;
+            PotionEffect newEffect = new PotionEffect(PotionEffectType.FAST_DIGGING, durationTicks, nextLevel);
+            player.addPotionEffect(newEffect);
+            player.sendMessage(ThemeUtils.SUCCESS + "Haste Burst has hit level " + (nextLevel + 1) + "!");
+        }
     }
 
     public static void headNice(EventFriend friend) {

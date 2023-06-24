@@ -16,6 +16,12 @@ public final class DurabilityEvents {
         throw new UnsupportedOperationException("Utility Class");
     }
 
+    public static void headSmithium(EventFriend friend) {
+        if (ThreadLocalRandom.current().nextInt(1, 3) == 1) {
+            friend.setCancelEvent(true);
+        }
+    }
+
     public static void rodAluBronze(EventFriend friend) {
         friend.setDurabilityMod(friend.getDurabilityMod() + 1);
     }

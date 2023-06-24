@@ -13,6 +13,7 @@ import io.github.sefiraat.slimetinker.items.tinkermaterials.TinkerMaterialManage
 import io.github.sefiraat.slimetinker.items.workstations.workbench.Workbench;
 import io.github.sefiraat.slimetinker.listeners.ListenerManager;
 import io.github.sefiraat.slimetinker.managers.DispatchManager;
+import io.github.sefiraat.slimetinker.managers.MemoryManager;
 import io.github.sefiraat.slimetinker.managers.TraitManager;
 import io.github.sefiraat.slimetinker.runnables.RunnableManager;
 import org.bstats.bukkit.Metrics;
@@ -29,6 +30,7 @@ public class SlimeTinker extends AbstractAddon {
     private DispatchManager dispatchManager;
     private Workbench workbench;
     private TraitManager traitManager;
+    private MemoryManager memoryManager;
 
     public SlimeTinker() {
         super("Sefiraat", "SlimeTinker", "master", "auto-update");
@@ -58,6 +60,7 @@ public class SlimeTinker extends AbstractAddon {
         tinkerMaterialManager = new TinkerMaterialManager();
         runnableManager = new RunnableManager();
         dispatchManager = new DispatchManager();
+        memoryManager = new MemoryManager();
 
         this.listenerManager = new ListenerManager(this, this.getServer().getPluginManager());
 

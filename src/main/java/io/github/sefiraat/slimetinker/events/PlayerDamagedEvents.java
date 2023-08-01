@@ -639,10 +639,11 @@ public final class PlayerDamagedEvents {
     public static void plateIridium(EventFriend friend) {
         Player p = friend.getPlayer();
         Entity e = friend.getDamagingEntity();
-        if (e.getType() == EntityType.GUARDIAN) {
-            return;
-        }
         if (e instanceof Mob) {
+            if (e.getType() == EntityType.GUARDIAN) {
+                return;
+            }
+
             ((Mob) e).damage(friend.getInitialDamage() * 0.1, p);
             friend.setDamageMod(friend.getDamageMod() - 0.1);
         }

@@ -8,6 +8,7 @@ import io.github.sefiraat.slimetinker.utils.Experience;
 import io.github.sefiraat.slimetinker.utils.Ids;
 import io.github.sefiraat.slimetinker.utils.ItemUtils;
 import io.github.sefiraat.slimetinker.utils.ThemeUtils;
+import org.bukkit.attribute.Attribute;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
@@ -35,6 +36,10 @@ public final class EventChannels {
             int amplifier = entry.getValue() - 1;
             friend.getPlayer().addPotionEffect(new PotionEffect(potionEffectType, tickDuration, amplifier, false, false, true));
             if (resetHealth) {
+                double maxHealth = p.getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue();
+                if (health > maxHealth) {
+                    health = maxHealth;
+                }
                 p.setHealth(health);
             }
         }

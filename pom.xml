@@ -77,11 +77,6 @@
             <id>aikar</id>
             <url>https://repo.aikar.co/content/groups/aikar/</url>
         </repository>
-        <repository>
-            <id>sefi-central</id>
-            <name>Sefiraat</name>
-            <url>https://sefiraat.jfrog.io/artifactory/default-maven-local</url>
-        </repository>
     </repositories>
 
     <!-- Thanks to dough here! -->
@@ -285,9 +280,9 @@
             <version>0.5.0-SNAPSHOT</version>
         </dependency>
         <dependency>
-            <groupId>io.github.sefiraat</groupId>
+            <groupId>dev.sefiraat</groupId>
             <artifactId>networks</artifactId>
-            <version>MODIFIED_1.0.7</version>
+            <version>1.0.0</version>
             <scope>provided</scope>
         </dependency>
     </dependencies>

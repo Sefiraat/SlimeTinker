@@ -30,16 +30,16 @@ public final class EventChannels {
             if (entry.getKey() == PotionEffectType.HEALTH_BOOST) {
                 resetHealth = true;
                 health = p.getHealth();
-                double maxHealth = p.getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue();
-                if (health > maxHealth) {
-                    health = maxHealth;
-                }
             }
             PotionEffectType potionEffectType = entry.getKey();
             int tickDuration = SlimeTinker.RUNNABLE_TICK_RATE + getBonusTicks(potionEffectType);
             int amplifier = entry.getValue() - 1;
             friend.getPlayer().addPotionEffect(new PotionEffect(potionEffectType, tickDuration, amplifier, false, false, true));
             if (resetHealth) {
+                double maxHealth = p.getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue();
+                if (health > maxHealth) {
+                    health = maxHealth;
+                }
                 p.setHealth(health);
             }
         }

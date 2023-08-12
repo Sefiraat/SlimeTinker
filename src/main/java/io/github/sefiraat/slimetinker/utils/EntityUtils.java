@@ -28,6 +28,9 @@ public final class EntityUtils {
     private static final NamespacedKey IGNORE_DAMAGE_KEY = new NamespacedKey(Slimefun.instance(), "ignore_damage");
 
     public static void push(@Nonnull LivingEntity pushed, @Nonnull Location loc, double force) {
+        if (pushed.hasMetadata("NPC")) {
+            return;
+        }
         Vector v = pushed.getLocation().toVector().subtract(loc.toVector()).normalize().multiply(force);
         v.add(new Vector(0, force + 1, 0));
         pushed.setVelocity(v);

@@ -111,17 +111,6 @@ body:
     validations:
       required: true
 
-  - type: checkboxes
-    id: cscorelib-version
-    attributes:
-      label: CS-CoreLib Version
-      description: |
-        As of Jan 30 2021, you no longer need to install CS-CoreLib to use Slimefun and addons (of course including SlimeTinker).
-        If you still have CS-CoreLib on your server, it may cause problems. We recommend you to remove it.
-      options:
-        - label: I don't have CS-CoreLib installed
-          required: true
-
   - type: textarea
     id: slimefun-version
     attributes:

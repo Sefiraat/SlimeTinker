@@ -108,6 +108,10 @@ public final class BlockBreakEvents {
         friend.setToolExpMod(friend.getToolExpMod() + 1);
     }
 
+    public static void rodSteel(EventFriend friend) {
+        friend.incrementItemExpMod(0.5);
+    }
+
     public static void rodAluBrass(EventFriend friend) {
         friend.setToolExpMod(friend.getToolExpMod() + 0.5);
         friend.setPlayerExpMod(friend.getPlayerExpMod() + 0.5);

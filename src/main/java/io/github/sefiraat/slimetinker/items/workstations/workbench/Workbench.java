@@ -1,10 +1,10 @@
 package io.github.sefiraat.slimetinker.items.workstations.workbench;
 
 import io.github.mooy1.infinitylib.machines.CraftingBlock;
-import io.github.sefiraat.slimetinker.SlimeTinker;
 import io.github.sefiraat.slimetinker.items.Workstations;
 import io.github.sefiraat.slimetinker.utils.GUIItems;
 import io.github.sefiraat.slimetinker.utils.ItemUtils;
+import io.github.sefiraat.slimetinker.utils.Keys;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
@@ -22,7 +22,7 @@ import javax.annotation.Nonnull;
 
 public class Workbench extends CraftingBlock {
 
-    public static final RecipeType TYPE = new RecipeType(SlimeTinker.createKey("tinkers-workbench"), Workstations.TINKERS_WORKBENCH);
+    public static final RecipeType TYPE = new RecipeType(Keys.create("tinkers-workbench"), Workstations.TINKERS_WORKBENCH);
     protected static final int OUTPUT_SLOT = 25;
     protected static final int CRAFT_BUTTON = 23;
     private static final int[] BACKGROUND_SLOTS = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 13, 14, 15, 16, 17, 18, 22, 24, 26, 27, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44};

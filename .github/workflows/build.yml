@@ -28,5 +28,4 @@ jobs:
         with:
           project: SlimeTinker
           apiToken: ${{ secrets.BLOB_BUILDS_API_TOKEN }}
-          file: ./target/SlimeTinker.jar
           releaseNotes: ${{ github.event.head_commit.message }}

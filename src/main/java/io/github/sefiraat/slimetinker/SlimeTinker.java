@@ -78,7 +78,7 @@ public class SlimeTinker extends JavaPlugin implements SlimefunAddon {
 
         this.listenerManager = new ListenerManager(this, this.getServer().getPluginManager());
 
-        if (getConfig().getBoolean("auto-update") && getDescription().getVersion().startsWith("DEV")) {
+        if (getConfig().getBoolean("auto-update") && getDescription().getVersion().startsWith("Dev")) {
             new BlobBuildUpdater(this, getFile(), "SlimeTinker", "Dev").start();
         }
     }

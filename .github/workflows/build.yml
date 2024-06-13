@@ -1,15 +1,14 @@
-name: Build and Upload
+name: Test Build
 
 on:
-  push:
+  pull_request:
     branches:
       - master
 
 jobs:
   build:
-    name: Build and Upload
+    name: Build
     runs-on: ubuntu-latest
-    if: contains(github.event.head_commit.message, '[ci skip]') == false
 
     steps:
       - uses: actions/checkout@v4.1.7
@@ -22,10 +21,3 @@ jobs:
 
       - name: Build with Maven
         run: mvn package
-
-      - name: Upload to Builds
-        uses: WalshyDev/blob-builds/gh-action@main
-        with:
-          project: SlimeTinker
-          apiToken: ${{ secrets.BLOB_BUILDS_API_TOKEN }}
-          releaseNotes: ${{ github.event.head_commit.message }}

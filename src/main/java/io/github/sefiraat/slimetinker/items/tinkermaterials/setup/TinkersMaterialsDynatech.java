@@ -18,14 +18,14 @@ public final class TinkersMaterialsDynatech {
 
     private static final Map<String, TinkerMaterial> CM_MAP = new HashMap<>();
 
-    private static final TinkerMaterial STAINLESS_STEEL = new TinkerMaterial(Ids.STAINLESS_STEEL, SlimefunItem.getById("STAINLESS_STEEL_INGOT").getItem(), "#d1d1d1")
+    private static final TinkerMaterial STAINLESS_STEEL = new TinkerMaterial(Ids.STAINLESS_STEEL, SlimefunItem.getById("DT_STAINLESS_STEEL_INGOT").getItem(), "#d1d1d1")
         .setLiquidTexture(SkullTextures.ALLOY_SILVER)
         .setTraitToolHead(Traits.DYN_STAINLESS_STEEL_HEAD)
         .setTraitToolRod(Traits.DYN_STAINLESS_STEEL_ROD)
         .setTraitArmorPlates(Traits.DYN_STAINLESS_STEEL_PLATES)
         .setTraitArmorLinks(Traits.DYN_STAINLESS_STEEL_LINKS)
         .setFormNugget(Materials.NUGGET_CAST_STAINLESSSTEEL.getItemId())
-        .setFormIngot("STAINLESS_STEEL_INGOT")
+        .setFormIngot("DT_STAINLESS_STEEL_INGOT")
         .setFormBlock(Materials.BLOCK_CAST_STAINLESSSTEEL.getItemId())
         .addAlloyRecipe(
             TinkersMaterialsCore.getCmMap().get(Ids.IRON).getLiquidItemStack(2),

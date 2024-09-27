@@ -789,7 +789,6 @@ public final class TickEvents {
     }
 
     public static void rodSteel(EventFriend friend) {
-        friend.incrementItemExpMod(0.5);
         increaseEffect(PotionEffectType.SPEED, friend.getPotionEffects());
     }
 
